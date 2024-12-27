@@ -467,15 +467,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString());
         }
 
         [Fact]
@@ -490,19 +483,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1"));
-                Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
-                Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
-                Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1"));
+            Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
+            Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
+            Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
         }
 
         [Fact]

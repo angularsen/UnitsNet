@@ -1761,43 +1761,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Bq", new Radioactivity(1, RadioactivityUnit.Becquerel).ToString());
-                Assert.Equal("1 Ci", new Radioactivity(1, RadioactivityUnit.Curie).ToString());
-                Assert.Equal("1 EBq", new Radioactivity(1, RadioactivityUnit.Exabecquerel).ToString());
-                Assert.Equal("1 GBq", new Radioactivity(1, RadioactivityUnit.Gigabecquerel).ToString());
-                Assert.Equal("1 GCi", new Radioactivity(1, RadioactivityUnit.Gigacurie).ToString());
-                Assert.Equal("1 GRd", new Radioactivity(1, RadioactivityUnit.Gigarutherford).ToString());
-                Assert.Equal("1 kBq", new Radioactivity(1, RadioactivityUnit.Kilobecquerel).ToString());
-                Assert.Equal("1 kCi", new Radioactivity(1, RadioactivityUnit.Kilocurie).ToString());
-                Assert.Equal("1 kRd", new Radioactivity(1, RadioactivityUnit.Kilorutherford).ToString());
-                Assert.Equal("1 MBq", new Radioactivity(1, RadioactivityUnit.Megabecquerel).ToString());
-                Assert.Equal("1 MCi", new Radioactivity(1, RadioactivityUnit.Megacurie).ToString());
-                Assert.Equal("1 MRd", new Radioactivity(1, RadioactivityUnit.Megarutherford).ToString());
-                Assert.Equal("1 µBq", new Radioactivity(1, RadioactivityUnit.Microbecquerel).ToString());
-                Assert.Equal("1 µCi", new Radioactivity(1, RadioactivityUnit.Microcurie).ToString());
-                Assert.Equal("1 µRd", new Radioactivity(1, RadioactivityUnit.Microrutherford).ToString());
-                Assert.Equal("1 mBq", new Radioactivity(1, RadioactivityUnit.Millibecquerel).ToString());
-                Assert.Equal("1 mCi", new Radioactivity(1, RadioactivityUnit.Millicurie).ToString());
-                Assert.Equal("1 mRd", new Radioactivity(1, RadioactivityUnit.Millirutherford).ToString());
-                Assert.Equal("1 nBq", new Radioactivity(1, RadioactivityUnit.Nanobecquerel).ToString());
-                Assert.Equal("1 nCi", new Radioactivity(1, RadioactivityUnit.Nanocurie).ToString());
-                Assert.Equal("1 nRd", new Radioactivity(1, RadioactivityUnit.Nanorutherford).ToString());
-                Assert.Equal("1 PBq", new Radioactivity(1, RadioactivityUnit.Petabecquerel).ToString());
-                Assert.Equal("1 pBq", new Radioactivity(1, RadioactivityUnit.Picobecquerel).ToString());
-                Assert.Equal("1 pCi", new Radioactivity(1, RadioactivityUnit.Picocurie).ToString());
-                Assert.Equal("1 pRd", new Radioactivity(1, RadioactivityUnit.Picorutherford).ToString());
-                Assert.Equal("1 Rd", new Radioactivity(1, RadioactivityUnit.Rutherford).ToString());
-                Assert.Equal("1 TBq", new Radioactivity(1, RadioactivityUnit.Terabecquerel).ToString());
-                Assert.Equal("1 TCi", new Radioactivity(1, RadioactivityUnit.Teracurie).ToString());
-                Assert.Equal("1 TRd", new Radioactivity(1, RadioactivityUnit.Terarutherford).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Bq", new Radioactivity(1, RadioactivityUnit.Becquerel).ToString());
+            Assert.Equal("1 Ci", new Radioactivity(1, RadioactivityUnit.Curie).ToString());
+            Assert.Equal("1 EBq", new Radioactivity(1, RadioactivityUnit.Exabecquerel).ToString());
+            Assert.Equal("1 GBq", new Radioactivity(1, RadioactivityUnit.Gigabecquerel).ToString());
+            Assert.Equal("1 GCi", new Radioactivity(1, RadioactivityUnit.Gigacurie).ToString());
+            Assert.Equal("1 GRd", new Radioactivity(1, RadioactivityUnit.Gigarutherford).ToString());
+            Assert.Equal("1 kBq", new Radioactivity(1, RadioactivityUnit.Kilobecquerel).ToString());
+            Assert.Equal("1 kCi", new Radioactivity(1, RadioactivityUnit.Kilocurie).ToString());
+            Assert.Equal("1 kRd", new Radioactivity(1, RadioactivityUnit.Kilorutherford).ToString());
+            Assert.Equal("1 MBq", new Radioactivity(1, RadioactivityUnit.Megabecquerel).ToString());
+            Assert.Equal("1 MCi", new Radioactivity(1, RadioactivityUnit.Megacurie).ToString());
+            Assert.Equal("1 MRd", new Radioactivity(1, RadioactivityUnit.Megarutherford).ToString());
+            Assert.Equal("1 µBq", new Radioactivity(1, RadioactivityUnit.Microbecquerel).ToString());
+            Assert.Equal("1 µCi", new Radioactivity(1, RadioactivityUnit.Microcurie).ToString());
+            Assert.Equal("1 µRd", new Radioactivity(1, RadioactivityUnit.Microrutherford).ToString());
+            Assert.Equal("1 mBq", new Radioactivity(1, RadioactivityUnit.Millibecquerel).ToString());
+            Assert.Equal("1 mCi", new Radioactivity(1, RadioactivityUnit.Millicurie).ToString());
+            Assert.Equal("1 mRd", new Radioactivity(1, RadioactivityUnit.Millirutherford).ToString());
+            Assert.Equal("1 nBq", new Radioactivity(1, RadioactivityUnit.Nanobecquerel).ToString());
+            Assert.Equal("1 nCi", new Radioactivity(1, RadioactivityUnit.Nanocurie).ToString());
+            Assert.Equal("1 nRd", new Radioactivity(1, RadioactivityUnit.Nanorutherford).ToString());
+            Assert.Equal("1 PBq", new Radioactivity(1, RadioactivityUnit.Petabecquerel).ToString());
+            Assert.Equal("1 pBq", new Radioactivity(1, RadioactivityUnit.Picobecquerel).ToString());
+            Assert.Equal("1 pCi", new Radioactivity(1, RadioactivityUnit.Picocurie).ToString());
+            Assert.Equal("1 pRd", new Radioactivity(1, RadioactivityUnit.Picorutherford).ToString());
+            Assert.Equal("1 Rd", new Radioactivity(1, RadioactivityUnit.Rutherford).ToString());
+            Assert.Equal("1 TBq", new Radioactivity(1, RadioactivityUnit.Terabecquerel).ToString());
+            Assert.Equal("1 TCi", new Radioactivity(1, RadioactivityUnit.Teracurie).ToString());
+            Assert.Equal("1 TRd", new Radioactivity(1, RadioactivityUnit.Terarutherford).ToString());
         }
 
         [Fact]
@@ -1840,19 +1833,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s1"));
-                Assert.Equal("0.12 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s2"));
-                Assert.Equal("0.123 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s3"));
-                Assert.Equal("0.1235 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s1"));
+            Assert.Equal("0.12 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s2"));
+            Assert.Equal("0.123 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s3"));
+            Assert.Equal("0.1235 Bq", new Radioactivity(0.123456, RadioactivityUnit.Becquerel).ToString("s4"));
         }
 
         [Fact]

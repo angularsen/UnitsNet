@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Units;
 using Xunit;
 
@@ -31,18 +32,10 @@ namespace UnitsNet.Tests
             [Fact]
             public void FormatsNumberUsingGivenCulture()
             {
-                var oldCulture = CultureInfo.CurrentCulture;
-                try
-                {
-                    CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider?)null));
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
-                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.GetCultureInfo("nb-NO")));
-                }
-                finally
-                {
-                    CultureInfo.CurrentCulture = oldCulture;
-                }
+                using var _ = new CultureScope(CultureInfo.InvariantCulture);
+                Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider?)null));
+                Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
+                Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.GetCultureInfo("nb-NO")));
             }
         }
     }

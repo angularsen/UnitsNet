@@ -552,18 +552,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString());
-                Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString());
-                Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString());
-                Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString());
+            Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString());
+            Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString());
+            Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString());
         }
 
         [Fact]
@@ -581,19 +574,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s1"));
-                Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2"));
-                Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3"));
-                Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s1"));
+            Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2"));
+            Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3"));
+            Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4"));
         }
 
         [Fact]

@@ -596,19 +596,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString());
-                Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString());
-                Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString());
-                Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
-                Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString());
+            Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString());
+            Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString());
+            Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
+            Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
         }
 
         [Fact]
@@ -627,19 +620,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s1"));
-                Assert.Equal("0.12 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s2"));
-                Assert.Equal("0.123 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s3"));
-                Assert.Equal("0.1235 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s1"));
+            Assert.Equal("0.12 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s2"));
+            Assert.Equal("0.123 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s3"));
+            Assert.Equal("0.1235 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s4"));
         }
 
         [Fact]

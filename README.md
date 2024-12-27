@@ -98,7 +98,7 @@ var oneKg = Mass.FromKilograms(1);
 
 // ToString() uses CurrentCulture for abbreviation language number formatting. This is consistent with the behavior of the .NET Framework,
 // where DateTime.ToString() uses CurrentCulture for the whole string, likely because mixing an english date format with a russian month name might be confusing.
-Thread.CurrentThread.CurrentCulture = russian;
+CultureInfo.CurrentCulture = russian;
 string kgRu = oneKg.ToString(); // "1 кг"
 
 // ToString() with specific culture and custom string format pattern
@@ -362,7 +362,7 @@ double convertedValue = UnitConverter.Convert(
 ### Example: WPF app using IValueConverter to parse input
 
 Src: [Samples/MvvmSample.Wpf](https://github.com/angularsen/UnitsNet/tree/master/Samples/MvvmSample.Wpf)
-                             
+
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.

@@ -2912,68 +2912,61 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString());
-                Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString());
-                Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString());
-                Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString());
-                Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString());
-                Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString());
-                Assert.Equal("1 hm³", new Volume(1, VolumeUnit.CubicHectometer).ToString());
-                Assert.Equal("1 in³", new Volume(1, VolumeUnit.CubicInch).ToString());
-                Assert.Equal("1 km³", new Volume(1, VolumeUnit.CubicKilometer).ToString());
-                Assert.Equal("1 m³", new Volume(1, VolumeUnit.CubicMeter).ToString());
-                Assert.Equal("1 µm³", new Volume(1, VolumeUnit.CubicMicrometer).ToString());
-                Assert.Equal("1 mi³", new Volume(1, VolumeUnit.CubicMile).ToString());
-                Assert.Equal("1 mm³", new Volume(1, VolumeUnit.CubicMillimeter).ToString());
-                Assert.Equal("1 yd³", new Volume(1, VolumeUnit.CubicYard).ToString());
-                Assert.Equal("1 dal", new Volume(1, VolumeUnit.Decaliter).ToString());
-                Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString());
-                Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString());
-                Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString());
-                Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString());
-                Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString());
-                Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString());
-                Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString());
-                Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString());
-                Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString());
-                Assert.Equal("1 oz (imp.)", new Volume(1, VolumeUnit.ImperialOunce).ToString());
-                Assert.Equal("1 pt (imp.)", new Volume(1, VolumeUnit.ImperialPint).ToString());
-                Assert.Equal("1 qt (imp.)", new Volume(1, VolumeUnit.ImperialQuart).ToString());
-                Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString());
-                Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString());
-                Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString());
-                Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString());
-                Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString());
-                Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString());
-                Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString());
-                Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString());
-                Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
-                Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString());
-                Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
-                Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
-                Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
-                Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString());
-                Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString());
-                Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.UsCustomaryCup).ToString());
-                Assert.Equal("1 gal (U.S.)", new Volume(1, VolumeUnit.UsGallon).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.UsLegalCup).ToString());
-                Assert.Equal("1 oz (U.S.)", new Volume(1, VolumeUnit.UsOunce).ToString());
-                Assert.Equal("1 pt (U.S.)", new Volume(1, VolumeUnit.UsPint).ToString());
-                Assert.Equal("1 qt (U.S.)", new Volume(1, VolumeUnit.UsQuart).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.UsTablespoon).ToString());
-                Assert.Equal("1", new Volume(1, VolumeUnit.UsTeaspoon).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString());
+            Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString());
+            Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString());
+            Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString());
+            Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString());
+            Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString());
+            Assert.Equal("1 hm³", new Volume(1, VolumeUnit.CubicHectometer).ToString());
+            Assert.Equal("1 in³", new Volume(1, VolumeUnit.CubicInch).ToString());
+            Assert.Equal("1 km³", new Volume(1, VolumeUnit.CubicKilometer).ToString());
+            Assert.Equal("1 m³", new Volume(1, VolumeUnit.CubicMeter).ToString());
+            Assert.Equal("1 µm³", new Volume(1, VolumeUnit.CubicMicrometer).ToString());
+            Assert.Equal("1 mi³", new Volume(1, VolumeUnit.CubicMile).ToString());
+            Assert.Equal("1 mm³", new Volume(1, VolumeUnit.CubicMillimeter).ToString());
+            Assert.Equal("1 yd³", new Volume(1, VolumeUnit.CubicYard).ToString());
+            Assert.Equal("1 dal", new Volume(1, VolumeUnit.Decaliter).ToString());
+            Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString());
+            Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString());
+            Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString());
+            Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString());
+            Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString());
+            Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString());
+            Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString());
+            Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString());
+            Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString());
+            Assert.Equal("1 oz (imp.)", new Volume(1, VolumeUnit.ImperialOunce).ToString());
+            Assert.Equal("1 pt (imp.)", new Volume(1, VolumeUnit.ImperialPint).ToString());
+            Assert.Equal("1 qt (imp.)", new Volume(1, VolumeUnit.ImperialQuart).ToString());
+            Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString());
+            Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString());
+            Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString());
+            Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString());
+            Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString());
+            Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString());
+            Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString());
+            Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString());
+            Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
+            Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString());
+            Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
+            Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
+            Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
+            Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString());
+            Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString());
+            Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.UsCustomaryCup).ToString());
+            Assert.Equal("1 gal (U.S.)", new Volume(1, VolumeUnit.UsGallon).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.UsLegalCup).ToString());
+            Assert.Equal("1 oz (U.S.)", new Volume(1, VolumeUnit.UsOunce).ToString());
+            Assert.Equal("1 pt (U.S.)", new Volume(1, VolumeUnit.UsPint).ToString());
+            Assert.Equal("1 qt (U.S.)", new Volume(1, VolumeUnit.UsQuart).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.UsTablespoon).ToString());
+            Assert.Equal("1", new Volume(1, VolumeUnit.UsTeaspoon).ToString());
         }
 
         [Fact]
@@ -3041,19 +3034,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s1"));
-                Assert.Equal("0.12 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s2"));
-                Assert.Equal("0.123 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s1"));
+            Assert.Equal("0.12 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s2"));
+            Assert.Equal("0.123 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 m³", new Volume(0.123456, VolumeUnit.CubicMeter).ToString("s4"));
         }
 
         [Fact]

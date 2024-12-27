@@ -745,23 +745,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 BTU/(lb·°F)", new SpecificEntropy(1, SpecificEntropyUnit.BtuPerPoundFahrenheit).ToString());
-                Assert.Equal("1 cal/g.K", new SpecificEntropy(1, SpecificEntropyUnit.CaloriePerGramKelvin).ToString());
-                Assert.Equal("1 J/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius).ToString());
-                Assert.Equal("1 J/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString());
-                Assert.Equal("1 kcal/g.K", new SpecificEntropy(1, SpecificEntropyUnit.KilocaloriePerGramKelvin).ToString());
-                Assert.Equal("1 kJ/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius).ToString());
-                Assert.Equal("1 kJ/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString());
-                Assert.Equal("1 MJ/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius).ToString());
-                Assert.Equal("1 MJ/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 BTU/(lb·°F)", new SpecificEntropy(1, SpecificEntropyUnit.BtuPerPoundFahrenheit).ToString());
+            Assert.Equal("1 cal/g.K", new SpecificEntropy(1, SpecificEntropyUnit.CaloriePerGramKelvin).ToString());
+            Assert.Equal("1 J/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius).ToString());
+            Assert.Equal("1 J/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString());
+            Assert.Equal("1 kcal/g.K", new SpecificEntropy(1, SpecificEntropyUnit.KilocaloriePerGramKelvin).ToString());
+            Assert.Equal("1 kJ/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius).ToString());
+            Assert.Equal("1 kJ/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString());
+            Assert.Equal("1 MJ/kg.C", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius).ToString());
+            Assert.Equal("1 MJ/kg.K", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin).ToString());
         }
 
         [Fact]
@@ -784,19 +777,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s1"));
-                Assert.Equal("0.12 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s2"));
-                Assert.Equal("0.123 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s3"));
-                Assert.Equal("0.1235 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s1"));
+            Assert.Equal("0.12 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s2"));
+            Assert.Equal("0.123 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s3"));
+            Assert.Equal("0.1235 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s4"));
         }
 
         [Fact]

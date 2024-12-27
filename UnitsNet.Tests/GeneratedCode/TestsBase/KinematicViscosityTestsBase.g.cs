@@ -860,23 +860,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cSt", new KinematicViscosity(1, KinematicViscosityUnit.Centistokes).ToString());
-                Assert.Equal("1 dSt", new KinematicViscosity(1, KinematicViscosityUnit.Decistokes).ToString());
-                Assert.Equal("1 kSt", new KinematicViscosity(1, KinematicViscosityUnit.Kilostokes).ToString());
-                Assert.Equal("1 µSt", new KinematicViscosity(1, KinematicViscosityUnit.Microstokes).ToString());
-                Assert.Equal("1 mSt", new KinematicViscosity(1, KinematicViscosityUnit.Millistokes).ToString());
-                Assert.Equal("1 nSt", new KinematicViscosity(1, KinematicViscosityUnit.Nanostokes).ToString());
-                Assert.Equal("1 ft²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareFootPerSecond).ToString());
-                Assert.Equal("1 m²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond).ToString());
-                Assert.Equal("1 St", new KinematicViscosity(1, KinematicViscosityUnit.Stokes).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cSt", new KinematicViscosity(1, KinematicViscosityUnit.Centistokes).ToString());
+            Assert.Equal("1 dSt", new KinematicViscosity(1, KinematicViscosityUnit.Decistokes).ToString());
+            Assert.Equal("1 kSt", new KinematicViscosity(1, KinematicViscosityUnit.Kilostokes).ToString());
+            Assert.Equal("1 µSt", new KinematicViscosity(1, KinematicViscosityUnit.Microstokes).ToString());
+            Assert.Equal("1 mSt", new KinematicViscosity(1, KinematicViscosityUnit.Millistokes).ToString());
+            Assert.Equal("1 nSt", new KinematicViscosity(1, KinematicViscosityUnit.Nanostokes).ToString());
+            Assert.Equal("1 ft²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareFootPerSecond).ToString());
+            Assert.Equal("1 m²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond).ToString());
+            Assert.Equal("1 St", new KinematicViscosity(1, KinematicViscosityUnit.Stokes).ToString());
         }
 
         [Fact]
@@ -899,19 +892,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s1"));
-                Assert.Equal("0.12 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s2"));
-                Assert.Equal("0.123 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s1"));
+            Assert.Equal("0.12 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s2"));
+            Assert.Equal("0.123 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s4"));
         }
 
         [Fact]

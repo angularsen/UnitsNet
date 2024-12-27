@@ -1703,47 +1703,40 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cg/d", new MassFlow(1, MassFlowUnit.CentigramPerDay).ToString());
-                Assert.Equal("1 cg/s", new MassFlow(1, MassFlowUnit.CentigramPerSecond).ToString());
-                Assert.Equal("1 dag/d", new MassFlow(1, MassFlowUnit.DecagramPerDay).ToString());
-                Assert.Equal("1 dag/s", new MassFlow(1, MassFlowUnit.DecagramPerSecond).ToString());
-                Assert.Equal("1 dg/d", new MassFlow(1, MassFlowUnit.DecigramPerDay).ToString());
-                Assert.Equal("1 dg/s", new MassFlow(1, MassFlowUnit.DecigramPerSecond).ToString());
-                Assert.Equal("1 g/d", new MassFlow(1, MassFlowUnit.GramPerDay).ToString());
-                Assert.Equal("1 g/h", new MassFlow(1, MassFlowUnit.GramPerHour).ToString());
-                Assert.Equal("1 g/s", new MassFlow(1, MassFlowUnit.GramPerSecond).ToString());
-                Assert.Equal("1 hg/d", new MassFlow(1, MassFlowUnit.HectogramPerDay).ToString());
-                Assert.Equal("1 hg/s", new MassFlow(1, MassFlowUnit.HectogramPerSecond).ToString());
-                Assert.Equal("1 kg/d", new MassFlow(1, MassFlowUnit.KilogramPerDay).ToString());
-                Assert.Equal("1 kg/h", new MassFlow(1, MassFlowUnit.KilogramPerHour).ToString());
-                Assert.Equal("1 kg/min", new MassFlow(1, MassFlowUnit.KilogramPerMinute).ToString());
-                Assert.Equal("1 kg/s", new MassFlow(1, MassFlowUnit.KilogramPerSecond).ToString());
-                Assert.Equal("1 Mg/d", new MassFlow(1, MassFlowUnit.MegagramPerDay).ToString());
-                Assert.Equal("1 Mlb/d", new MassFlow(1, MassFlowUnit.MegapoundPerDay).ToString());
-                Assert.Equal("1 Mlb/h", new MassFlow(1, MassFlowUnit.MegapoundPerHour).ToString());
-                Assert.Equal("1 Mlb/min", new MassFlow(1, MassFlowUnit.MegapoundPerMinute).ToString());
-                Assert.Equal("1 Mlb/s", new MassFlow(1, MassFlowUnit.MegapoundPerSecond).ToString());
-                Assert.Equal("1 µg/d", new MassFlow(1, MassFlowUnit.MicrogramPerDay).ToString());
-                Assert.Equal("1 µg/s", new MassFlow(1, MassFlowUnit.MicrogramPerSecond).ToString());
-                Assert.Equal("1 mg/d", new MassFlow(1, MassFlowUnit.MilligramPerDay).ToString());
-                Assert.Equal("1 mg/s", new MassFlow(1, MassFlowUnit.MilligramPerSecond).ToString());
-                Assert.Equal("1 ng/d", new MassFlow(1, MassFlowUnit.NanogramPerDay).ToString());
-                Assert.Equal("1 ng/s", new MassFlow(1, MassFlowUnit.NanogramPerSecond).ToString());
-                Assert.Equal("1 lb/d", new MassFlow(1, MassFlowUnit.PoundPerDay).ToString());
-                Assert.Equal("1 lb/h", new MassFlow(1, MassFlowUnit.PoundPerHour).ToString());
-                Assert.Equal("1 lb/min", new MassFlow(1, MassFlowUnit.PoundPerMinute).ToString());
-                Assert.Equal("1 lb/s", new MassFlow(1, MassFlowUnit.PoundPerSecond).ToString());
-                Assert.Equal("1 short tn/h", new MassFlow(1, MassFlowUnit.ShortTonPerHour).ToString());
-                Assert.Equal("1 t/d", new MassFlow(1, MassFlowUnit.TonnePerDay).ToString());
-                Assert.Equal("1 t/h", new MassFlow(1, MassFlowUnit.TonnePerHour).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cg/d", new MassFlow(1, MassFlowUnit.CentigramPerDay).ToString());
+            Assert.Equal("1 cg/s", new MassFlow(1, MassFlowUnit.CentigramPerSecond).ToString());
+            Assert.Equal("1 dag/d", new MassFlow(1, MassFlowUnit.DecagramPerDay).ToString());
+            Assert.Equal("1 dag/s", new MassFlow(1, MassFlowUnit.DecagramPerSecond).ToString());
+            Assert.Equal("1 dg/d", new MassFlow(1, MassFlowUnit.DecigramPerDay).ToString());
+            Assert.Equal("1 dg/s", new MassFlow(1, MassFlowUnit.DecigramPerSecond).ToString());
+            Assert.Equal("1 g/d", new MassFlow(1, MassFlowUnit.GramPerDay).ToString());
+            Assert.Equal("1 g/h", new MassFlow(1, MassFlowUnit.GramPerHour).ToString());
+            Assert.Equal("1 g/s", new MassFlow(1, MassFlowUnit.GramPerSecond).ToString());
+            Assert.Equal("1 hg/d", new MassFlow(1, MassFlowUnit.HectogramPerDay).ToString());
+            Assert.Equal("1 hg/s", new MassFlow(1, MassFlowUnit.HectogramPerSecond).ToString());
+            Assert.Equal("1 kg/d", new MassFlow(1, MassFlowUnit.KilogramPerDay).ToString());
+            Assert.Equal("1 kg/h", new MassFlow(1, MassFlowUnit.KilogramPerHour).ToString());
+            Assert.Equal("1 kg/min", new MassFlow(1, MassFlowUnit.KilogramPerMinute).ToString());
+            Assert.Equal("1 kg/s", new MassFlow(1, MassFlowUnit.KilogramPerSecond).ToString());
+            Assert.Equal("1 Mg/d", new MassFlow(1, MassFlowUnit.MegagramPerDay).ToString());
+            Assert.Equal("1 Mlb/d", new MassFlow(1, MassFlowUnit.MegapoundPerDay).ToString());
+            Assert.Equal("1 Mlb/h", new MassFlow(1, MassFlowUnit.MegapoundPerHour).ToString());
+            Assert.Equal("1 Mlb/min", new MassFlow(1, MassFlowUnit.MegapoundPerMinute).ToString());
+            Assert.Equal("1 Mlb/s", new MassFlow(1, MassFlowUnit.MegapoundPerSecond).ToString());
+            Assert.Equal("1 µg/d", new MassFlow(1, MassFlowUnit.MicrogramPerDay).ToString());
+            Assert.Equal("1 µg/s", new MassFlow(1, MassFlowUnit.MicrogramPerSecond).ToString());
+            Assert.Equal("1 mg/d", new MassFlow(1, MassFlowUnit.MilligramPerDay).ToString());
+            Assert.Equal("1 mg/s", new MassFlow(1, MassFlowUnit.MilligramPerSecond).ToString());
+            Assert.Equal("1 ng/d", new MassFlow(1, MassFlowUnit.NanogramPerDay).ToString());
+            Assert.Equal("1 ng/s", new MassFlow(1, MassFlowUnit.NanogramPerSecond).ToString());
+            Assert.Equal("1 lb/d", new MassFlow(1, MassFlowUnit.PoundPerDay).ToString());
+            Assert.Equal("1 lb/h", new MassFlow(1, MassFlowUnit.PoundPerHour).ToString());
+            Assert.Equal("1 lb/min", new MassFlow(1, MassFlowUnit.PoundPerMinute).ToString());
+            Assert.Equal("1 lb/s", new MassFlow(1, MassFlowUnit.PoundPerSecond).ToString());
+            Assert.Equal("1 short tn/h", new MassFlow(1, MassFlowUnit.ShortTonPerHour).ToString());
+            Assert.Equal("1 t/d", new MassFlow(1, MassFlowUnit.TonnePerDay).ToString());
+            Assert.Equal("1 t/h", new MassFlow(1, MassFlowUnit.TonnePerHour).ToString());
         }
 
         [Fact]
@@ -1790,19 +1783,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s1"));
-                Assert.Equal("0.12 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s2"));
-                Assert.Equal("0.123 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s1"));
+            Assert.Equal("0.12 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s2"));
+            Assert.Equal("0.123 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s4"));
         }
 
         [Fact]

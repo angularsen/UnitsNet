@@ -564,18 +564,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Gvar", new ReactivePower(1, ReactivePowerUnit.GigavoltampereReactive).ToString());
-                Assert.Equal("1 kvar", new ReactivePower(1, ReactivePowerUnit.KilovoltampereReactive).ToString());
-                Assert.Equal("1 Mvar", new ReactivePower(1, ReactivePowerUnit.MegavoltampereReactive).ToString());
-                Assert.Equal("1 var", new ReactivePower(1, ReactivePowerUnit.VoltampereReactive).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Gvar", new ReactivePower(1, ReactivePowerUnit.GigavoltampereReactive).ToString());
+            Assert.Equal("1 kvar", new ReactivePower(1, ReactivePowerUnit.KilovoltampereReactive).ToString());
+            Assert.Equal("1 Mvar", new ReactivePower(1, ReactivePowerUnit.MegavoltampereReactive).ToString());
+            Assert.Equal("1 var", new ReactivePower(1, ReactivePowerUnit.VoltampereReactive).ToString());
         }
 
         [Fact]
@@ -593,19 +586,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s1"));
-                Assert.Equal("0.12 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s2"));
-                Assert.Equal("0.123 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s3"));
-                Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s1"));
+            Assert.Equal("0.12 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s2"));
+            Assert.Equal("0.123 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s3"));
+            Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4"));
         }
 
         [Fact]

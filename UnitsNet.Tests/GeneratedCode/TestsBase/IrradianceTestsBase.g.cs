@@ -860,28 +860,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kW/cm²", new Irradiance(1, IrradianceUnit.KilowattPerSquareCentimeter).ToString());
-                Assert.Equal("1 kW/m²", new Irradiance(1, IrradianceUnit.KilowattPerSquareMeter).ToString());
-                Assert.Equal("1 MW/cm²", new Irradiance(1, IrradianceUnit.MegawattPerSquareCentimeter).ToString());
-                Assert.Equal("1 MW/m²", new Irradiance(1, IrradianceUnit.MegawattPerSquareMeter).ToString());
-                Assert.Equal("1 µW/cm²", new Irradiance(1, IrradianceUnit.MicrowattPerSquareCentimeter).ToString());
-                Assert.Equal("1 µW/m²", new Irradiance(1, IrradianceUnit.MicrowattPerSquareMeter).ToString());
-                Assert.Equal("1 mW/cm²", new Irradiance(1, IrradianceUnit.MilliwattPerSquareCentimeter).ToString());
-                Assert.Equal("1 mW/m²", new Irradiance(1, IrradianceUnit.MilliwattPerSquareMeter).ToString());
-                Assert.Equal("1 nW/cm²", new Irradiance(1, IrradianceUnit.NanowattPerSquareCentimeter).ToString());
-                Assert.Equal("1 nW/m²", new Irradiance(1, IrradianceUnit.NanowattPerSquareMeter).ToString());
-                Assert.Equal("1 pW/cm²", new Irradiance(1, IrradianceUnit.PicowattPerSquareCentimeter).ToString());
-                Assert.Equal("1 pW/m²", new Irradiance(1, IrradianceUnit.PicowattPerSquareMeter).ToString());
-                Assert.Equal("1 W/cm²", new Irradiance(1, IrradianceUnit.WattPerSquareCentimeter).ToString());
-                Assert.Equal("1 W/m²", new Irradiance(1, IrradianceUnit.WattPerSquareMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kW/cm²", new Irradiance(1, IrradianceUnit.KilowattPerSquareCentimeter).ToString());
+            Assert.Equal("1 kW/m²", new Irradiance(1, IrradianceUnit.KilowattPerSquareMeter).ToString());
+            Assert.Equal("1 MW/cm²", new Irradiance(1, IrradianceUnit.MegawattPerSquareCentimeter).ToString());
+            Assert.Equal("1 MW/m²", new Irradiance(1, IrradianceUnit.MegawattPerSquareMeter).ToString());
+            Assert.Equal("1 µW/cm²", new Irradiance(1, IrradianceUnit.MicrowattPerSquareCentimeter).ToString());
+            Assert.Equal("1 µW/m²", new Irradiance(1, IrradianceUnit.MicrowattPerSquareMeter).ToString());
+            Assert.Equal("1 mW/cm²", new Irradiance(1, IrradianceUnit.MilliwattPerSquareCentimeter).ToString());
+            Assert.Equal("1 mW/m²", new Irradiance(1, IrradianceUnit.MilliwattPerSquareMeter).ToString());
+            Assert.Equal("1 nW/cm²", new Irradiance(1, IrradianceUnit.NanowattPerSquareCentimeter).ToString());
+            Assert.Equal("1 nW/m²", new Irradiance(1, IrradianceUnit.NanowattPerSquareMeter).ToString());
+            Assert.Equal("1 pW/cm²", new Irradiance(1, IrradianceUnit.PicowattPerSquareCentimeter).ToString());
+            Assert.Equal("1 pW/m²", new Irradiance(1, IrradianceUnit.PicowattPerSquareMeter).ToString());
+            Assert.Equal("1 W/cm²", new Irradiance(1, IrradianceUnit.WattPerSquareCentimeter).ToString());
+            Assert.Equal("1 W/m²", new Irradiance(1, IrradianceUnit.WattPerSquareMeter).ToString());
         }
 
         [Fact]
@@ -909,19 +902,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s4"));
         }
 
         [Fact]

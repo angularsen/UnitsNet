@@ -860,28 +860,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 daW", new Luminosity(1, LuminosityUnit.Decawatt).ToString());
-                Assert.Equal("1 dW", new Luminosity(1, LuminosityUnit.Deciwatt).ToString());
-                Assert.Equal("1 fW", new Luminosity(1, LuminosityUnit.Femtowatt).ToString());
-                Assert.Equal("1 GW", new Luminosity(1, LuminosityUnit.Gigawatt).ToString());
-                Assert.Equal("1 kW", new Luminosity(1, LuminosityUnit.Kilowatt).ToString());
-                Assert.Equal("1 MW", new Luminosity(1, LuminosityUnit.Megawatt).ToString());
-                Assert.Equal("1 µW", new Luminosity(1, LuminosityUnit.Microwatt).ToString());
-                Assert.Equal("1 mW", new Luminosity(1, LuminosityUnit.Milliwatt).ToString());
-                Assert.Equal("1 nW", new Luminosity(1, LuminosityUnit.Nanowatt).ToString());
-                Assert.Equal("1 PW", new Luminosity(1, LuminosityUnit.Petawatt).ToString());
-                Assert.Equal("1 pW", new Luminosity(1, LuminosityUnit.Picowatt).ToString());
-                Assert.Equal("1 L⊙", new Luminosity(1, LuminosityUnit.SolarLuminosity).ToString());
-                Assert.Equal("1 TW", new Luminosity(1, LuminosityUnit.Terawatt).ToString());
-                Assert.Equal("1 W", new Luminosity(1, LuminosityUnit.Watt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 daW", new Luminosity(1, LuminosityUnit.Decawatt).ToString());
+            Assert.Equal("1 dW", new Luminosity(1, LuminosityUnit.Deciwatt).ToString());
+            Assert.Equal("1 fW", new Luminosity(1, LuminosityUnit.Femtowatt).ToString());
+            Assert.Equal("1 GW", new Luminosity(1, LuminosityUnit.Gigawatt).ToString());
+            Assert.Equal("1 kW", new Luminosity(1, LuminosityUnit.Kilowatt).ToString());
+            Assert.Equal("1 MW", new Luminosity(1, LuminosityUnit.Megawatt).ToString());
+            Assert.Equal("1 µW", new Luminosity(1, LuminosityUnit.Microwatt).ToString());
+            Assert.Equal("1 mW", new Luminosity(1, LuminosityUnit.Milliwatt).ToString());
+            Assert.Equal("1 nW", new Luminosity(1, LuminosityUnit.Nanowatt).ToString());
+            Assert.Equal("1 PW", new Luminosity(1, LuminosityUnit.Petawatt).ToString());
+            Assert.Equal("1 pW", new Luminosity(1, LuminosityUnit.Picowatt).ToString());
+            Assert.Equal("1 L⊙", new Luminosity(1, LuminosityUnit.SolarLuminosity).ToString());
+            Assert.Equal("1 TW", new Luminosity(1, LuminosityUnit.Terawatt).ToString());
+            Assert.Equal("1 W", new Luminosity(1, LuminosityUnit.Watt).ToString());
         }
 
         [Fact]
@@ -909,19 +902,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s1"));
-                Assert.Equal("0.12 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s2"));
-                Assert.Equal("0.123 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s3"));
-                Assert.Equal("0.1235 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s1"));
+            Assert.Equal("0.12 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s2"));
+            Assert.Equal("0.123 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s3"));
+            Assert.Equal("0.1235 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s4"));
         }
 
         [Fact]

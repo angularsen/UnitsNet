@@ -1000,29 +1000,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString());
-                Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString());
-                Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString());
-                Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString());
-                Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString());
-                Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString());
-                Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString());
-                Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString());
-                Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString());
-                Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString());
-                Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString());
-                Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString());
-                Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString());
-                Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
-                Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString());
+            Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString());
+            Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString());
+            Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString());
+            Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString());
+            Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString());
+            Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString());
+            Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString());
+            Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString());
+            Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString());
+            Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString());
+            Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString());
+            Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString());
+            Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
+            Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
         }
 
         [Fact]
@@ -1051,19 +1044,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s1"));
-                Assert.Equal("0.12 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s2"));
-                Assert.Equal("0.123 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s1"));
+            Assert.Equal("0.12 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s2"));
+            Assert.Equal("0.123 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s4"));
         }
 
         [Fact]

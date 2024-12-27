@@ -785,19 +785,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString());
-                Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString());
-                Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString());
-                Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString());
-                Assert.Equal("1 W/(m²·K)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString());
+            Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString());
+            Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString());
+            Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString());
+            Assert.Equal("1 W/(m²·K)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString());
         }
 
         [Fact]
@@ -816,19 +809,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s1"));
-                Assert.Equal("0.12 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s2"));
-                Assert.Equal("0.123 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s3"));
-                Assert.Equal("0.1235 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s1"));
+            Assert.Equal("0.12 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s2"));
+            Assert.Equal("0.123 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s3"));
+            Assert.Equal("0.1235 W/(m²·K)", new HeatTransferCoefficient(0.123456, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString("s4"));
         }
 
         [Fact]

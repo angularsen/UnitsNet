@@ -1012,32 +1012,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 g/cm", new LinearDensity(1, LinearDensityUnit.GramPerCentimeter).ToString());
-                Assert.Equal("1 g/ft", new LinearDensity(1, LinearDensityUnit.GramPerFoot).ToString());
-                Assert.Equal("1 g/m", new LinearDensity(1, LinearDensityUnit.GramPerMeter).ToString());
-                Assert.Equal("1 g/mm", new LinearDensity(1, LinearDensityUnit.GramPerMillimeter).ToString());
-                Assert.Equal("1 kg/cm", new LinearDensity(1, LinearDensityUnit.KilogramPerCentimeter).ToString());
-                Assert.Equal("1 kg/ft", new LinearDensity(1, LinearDensityUnit.KilogramPerFoot).ToString());
-                Assert.Equal("1 kg/m", new LinearDensity(1, LinearDensityUnit.KilogramPerMeter).ToString());
-                Assert.Equal("1 kg/mm", new LinearDensity(1, LinearDensityUnit.KilogramPerMillimeter).ToString());
-                Assert.Equal("1 µg/cm", new LinearDensity(1, LinearDensityUnit.MicrogramPerCentimeter).ToString());
-                Assert.Equal("1 µg/ft", new LinearDensity(1, LinearDensityUnit.MicrogramPerFoot).ToString());
-                Assert.Equal("1 µg/m", new LinearDensity(1, LinearDensityUnit.MicrogramPerMeter).ToString());
-                Assert.Equal("1 µg/mm", new LinearDensity(1, LinearDensityUnit.MicrogramPerMillimeter).ToString());
-                Assert.Equal("1 mg/cm", new LinearDensity(1, LinearDensityUnit.MilligramPerCentimeter).ToString());
-                Assert.Equal("1 mg/ft", new LinearDensity(1, LinearDensityUnit.MilligramPerFoot).ToString());
-                Assert.Equal("1 mg/m", new LinearDensity(1, LinearDensityUnit.MilligramPerMeter).ToString());
-                Assert.Equal("1 mg/mm", new LinearDensity(1, LinearDensityUnit.MilligramPerMillimeter).ToString());
-                Assert.Equal("1 lb/ft", new LinearDensity(1, LinearDensityUnit.PoundPerFoot).ToString());
-                Assert.Equal("1 lb/in", new LinearDensity(1, LinearDensityUnit.PoundPerInch).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 g/cm", new LinearDensity(1, LinearDensityUnit.GramPerCentimeter).ToString());
+            Assert.Equal("1 g/ft", new LinearDensity(1, LinearDensityUnit.GramPerFoot).ToString());
+            Assert.Equal("1 g/m", new LinearDensity(1, LinearDensityUnit.GramPerMeter).ToString());
+            Assert.Equal("1 g/mm", new LinearDensity(1, LinearDensityUnit.GramPerMillimeter).ToString());
+            Assert.Equal("1 kg/cm", new LinearDensity(1, LinearDensityUnit.KilogramPerCentimeter).ToString());
+            Assert.Equal("1 kg/ft", new LinearDensity(1, LinearDensityUnit.KilogramPerFoot).ToString());
+            Assert.Equal("1 kg/m", new LinearDensity(1, LinearDensityUnit.KilogramPerMeter).ToString());
+            Assert.Equal("1 kg/mm", new LinearDensity(1, LinearDensityUnit.KilogramPerMillimeter).ToString());
+            Assert.Equal("1 µg/cm", new LinearDensity(1, LinearDensityUnit.MicrogramPerCentimeter).ToString());
+            Assert.Equal("1 µg/ft", new LinearDensity(1, LinearDensityUnit.MicrogramPerFoot).ToString());
+            Assert.Equal("1 µg/m", new LinearDensity(1, LinearDensityUnit.MicrogramPerMeter).ToString());
+            Assert.Equal("1 µg/mm", new LinearDensity(1, LinearDensityUnit.MicrogramPerMillimeter).ToString());
+            Assert.Equal("1 mg/cm", new LinearDensity(1, LinearDensityUnit.MilligramPerCentimeter).ToString());
+            Assert.Equal("1 mg/ft", new LinearDensity(1, LinearDensityUnit.MilligramPerFoot).ToString());
+            Assert.Equal("1 mg/m", new LinearDensity(1, LinearDensityUnit.MilligramPerMeter).ToString());
+            Assert.Equal("1 mg/mm", new LinearDensity(1, LinearDensityUnit.MilligramPerMillimeter).ToString());
+            Assert.Equal("1 lb/ft", new LinearDensity(1, LinearDensityUnit.PoundPerFoot).ToString());
+            Assert.Equal("1 lb/in", new LinearDensity(1, LinearDensityUnit.PoundPerInch).ToString());
         }
 
         [Fact]
@@ -1069,19 +1062,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s1"));
-                Assert.Equal("0.12 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s2"));
-                Assert.Equal("0.123 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s1"));
+            Assert.Equal("0.12 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s2"));
+            Assert.Equal("0.123 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s4"));
         }
 
         [Fact]

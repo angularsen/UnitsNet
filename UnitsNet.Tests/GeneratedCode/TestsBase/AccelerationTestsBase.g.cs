@@ -1122,28 +1122,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cm/s²", new Acceleration(1, AccelerationUnit.CentimeterPerSecondSquared).ToString());
-                Assert.Equal("1 dm/s²", new Acceleration(1, AccelerationUnit.DecimeterPerSecondSquared).ToString());
-                Assert.Equal("1 ft/s²", new Acceleration(1, AccelerationUnit.FootPerSecondSquared).ToString());
-                Assert.Equal("1 in/s²", new Acceleration(1, AccelerationUnit.InchPerSecondSquared).ToString());
-                Assert.Equal("1 km/s²", new Acceleration(1, AccelerationUnit.KilometerPerSecondSquared).ToString());
-                Assert.Equal("1 kn/h", new Acceleration(1, AccelerationUnit.KnotPerHour).ToString());
-                Assert.Equal("1 kn/min", new Acceleration(1, AccelerationUnit.KnotPerMinute).ToString());
-                Assert.Equal("1 kn/s", new Acceleration(1, AccelerationUnit.KnotPerSecond).ToString());
-                Assert.Equal("1 m/s²", new Acceleration(1, AccelerationUnit.MeterPerSecondSquared).ToString());
-                Assert.Equal("1 µm/s²", new Acceleration(1, AccelerationUnit.MicrometerPerSecondSquared).ToString());
-                Assert.Equal("1 mm/s²", new Acceleration(1, AccelerationUnit.MillimeterPerSecondSquared).ToString());
-                Assert.Equal("1 mg", new Acceleration(1, AccelerationUnit.MillistandardGravity).ToString());
-                Assert.Equal("1 nm/s²", new Acceleration(1, AccelerationUnit.NanometerPerSecondSquared).ToString());
-                Assert.Equal("1 g", new Acceleration(1, AccelerationUnit.StandardGravity).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cm/s²", new Acceleration(1, AccelerationUnit.CentimeterPerSecondSquared).ToString());
+            Assert.Equal("1 dm/s²", new Acceleration(1, AccelerationUnit.DecimeterPerSecondSquared).ToString());
+            Assert.Equal("1 ft/s²", new Acceleration(1, AccelerationUnit.FootPerSecondSquared).ToString());
+            Assert.Equal("1 in/s²", new Acceleration(1, AccelerationUnit.InchPerSecondSquared).ToString());
+            Assert.Equal("1 km/s²", new Acceleration(1, AccelerationUnit.KilometerPerSecondSquared).ToString());
+            Assert.Equal("1 kn/h", new Acceleration(1, AccelerationUnit.KnotPerHour).ToString());
+            Assert.Equal("1 kn/min", new Acceleration(1, AccelerationUnit.KnotPerMinute).ToString());
+            Assert.Equal("1 kn/s", new Acceleration(1, AccelerationUnit.KnotPerSecond).ToString());
+            Assert.Equal("1 m/s²", new Acceleration(1, AccelerationUnit.MeterPerSecondSquared).ToString());
+            Assert.Equal("1 µm/s²", new Acceleration(1, AccelerationUnit.MicrometerPerSecondSquared).ToString());
+            Assert.Equal("1 mm/s²", new Acceleration(1, AccelerationUnit.MillimeterPerSecondSquared).ToString());
+            Assert.Equal("1 mg", new Acceleration(1, AccelerationUnit.MillistandardGravity).ToString());
+            Assert.Equal("1 nm/s²", new Acceleration(1, AccelerationUnit.NanometerPerSecondSquared).ToString());
+            Assert.Equal("1 g", new Acceleration(1, AccelerationUnit.StandardGravity).ToString());
         }
 
         [Fact]
@@ -1171,19 +1164,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s1"));
-                Assert.Equal("0.12 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s2"));
-                Assert.Equal("0.123 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s3"));
-                Assert.Equal("0.1235 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s1"));
+            Assert.Equal("0.12 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s2"));
+            Assert.Equal("0.123 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s3"));
+            Assert.Equal("0.1235 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s4"));
         }
 
         [Fact]

@@ -628,20 +628,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 µS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MicrosiemensPerCentimeter).ToString());
-                Assert.Equal("1 mS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MillisiemensPerCentimeter).ToString());
-                Assert.Equal("1 S/cm", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerCentimeter).ToString());
-                Assert.Equal("1 S/ft", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerFoot).ToString());
-                Assert.Equal("1 S/in", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerInch).ToString());
-                Assert.Equal("1 S/m", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 µS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MicrosiemensPerCentimeter).ToString());
+            Assert.Equal("1 mS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MillisiemensPerCentimeter).ToString());
+            Assert.Equal("1 S/cm", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerCentimeter).ToString());
+            Assert.Equal("1 S/ft", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerFoot).ToString());
+            Assert.Equal("1 S/in", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerInch).ToString());
+            Assert.Equal("1 S/m", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter).ToString());
         }
 
         [Fact]
@@ -661,19 +654,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s1"));
-                Assert.Equal("0.12 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s2"));
-                Assert.Equal("0.123 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s1"));
+            Assert.Equal("0.12 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s2"));
+            Assert.Equal("0.123 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s4"));
         }
 
         [Fact]

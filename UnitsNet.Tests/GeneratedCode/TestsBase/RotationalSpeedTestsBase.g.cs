@@ -1182,27 +1182,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 crad/s", new RotationalSpeed(1, RotationalSpeedUnit.CentiradianPerSecond).ToString());
-                Assert.Equal("1 drad/s", new RotationalSpeed(1, RotationalSpeedUnit.DeciradianPerSecond).ToString());
-                Assert.Equal("1 °/min", new RotationalSpeed(1, RotationalSpeedUnit.DegreePerMinute).ToString());
-                Assert.Equal("1 °/s", new RotationalSpeed(1, RotationalSpeedUnit.DegreePerSecond).ToString());
-                Assert.Equal("1 µ°/s", new RotationalSpeed(1, RotationalSpeedUnit.MicrodegreePerSecond).ToString());
-                Assert.Equal("1 µrad/s", new RotationalSpeed(1, RotationalSpeedUnit.MicroradianPerSecond).ToString());
-                Assert.Equal("1 m°/s", new RotationalSpeed(1, RotationalSpeedUnit.MillidegreePerSecond).ToString());
-                Assert.Equal("1 mrad/s", new RotationalSpeed(1, RotationalSpeedUnit.MilliradianPerSecond).ToString());
-                Assert.Equal("1 n°/s", new RotationalSpeed(1, RotationalSpeedUnit.NanodegreePerSecond).ToString());
-                Assert.Equal("1 nrad/s", new RotationalSpeed(1, RotationalSpeedUnit.NanoradianPerSecond).ToString());
-                Assert.Equal("1 rad/s", new RotationalSpeed(1, RotationalSpeedUnit.RadianPerSecond).ToString());
-                Assert.Equal("1 rpm", new RotationalSpeed(1, RotationalSpeedUnit.RevolutionPerMinute).ToString());
-                Assert.Equal("1 r/s", new RotationalSpeed(1, RotationalSpeedUnit.RevolutionPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 crad/s", new RotationalSpeed(1, RotationalSpeedUnit.CentiradianPerSecond).ToString());
+            Assert.Equal("1 drad/s", new RotationalSpeed(1, RotationalSpeedUnit.DeciradianPerSecond).ToString());
+            Assert.Equal("1 °/min", new RotationalSpeed(1, RotationalSpeedUnit.DegreePerMinute).ToString());
+            Assert.Equal("1 °/s", new RotationalSpeed(1, RotationalSpeedUnit.DegreePerSecond).ToString());
+            Assert.Equal("1 µ°/s", new RotationalSpeed(1, RotationalSpeedUnit.MicrodegreePerSecond).ToString());
+            Assert.Equal("1 µrad/s", new RotationalSpeed(1, RotationalSpeedUnit.MicroradianPerSecond).ToString());
+            Assert.Equal("1 m°/s", new RotationalSpeed(1, RotationalSpeedUnit.MillidegreePerSecond).ToString());
+            Assert.Equal("1 mrad/s", new RotationalSpeed(1, RotationalSpeedUnit.MilliradianPerSecond).ToString());
+            Assert.Equal("1 n°/s", new RotationalSpeed(1, RotationalSpeedUnit.NanodegreePerSecond).ToString());
+            Assert.Equal("1 nrad/s", new RotationalSpeed(1, RotationalSpeedUnit.NanoradianPerSecond).ToString());
+            Assert.Equal("1 rad/s", new RotationalSpeed(1, RotationalSpeedUnit.RadianPerSecond).ToString());
+            Assert.Equal("1 rpm", new RotationalSpeed(1, RotationalSpeedUnit.RevolutionPerMinute).ToString());
+            Assert.Equal("1 r/s", new RotationalSpeed(1, RotationalSpeedUnit.RevolutionPerSecond).ToString());
         }
 
         [Fact]
@@ -1229,19 +1222,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s1"));
-                Assert.Equal("0.12 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s2"));
-                Assert.Equal("0.123 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s1"));
+            Assert.Equal("0.12 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s2"));
+            Assert.Equal("0.123 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 rad/s", new RotationalSpeed(0.123456, RotationalSpeedUnit.RadianPerSecond).ToString("s4"));
         }
 
         [Fact]

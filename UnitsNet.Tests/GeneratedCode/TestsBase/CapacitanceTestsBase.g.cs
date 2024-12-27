@@ -648,21 +648,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 F", new Capacitance(1, CapacitanceUnit.Farad).ToString());
-                Assert.Equal("1 kF", new Capacitance(1, CapacitanceUnit.Kilofarad).ToString());
-                Assert.Equal("1 MF", new Capacitance(1, CapacitanceUnit.Megafarad).ToString());
-                Assert.Equal("1 µF", new Capacitance(1, CapacitanceUnit.Microfarad).ToString());
-                Assert.Equal("1 mF", new Capacitance(1, CapacitanceUnit.Millifarad).ToString());
-                Assert.Equal("1 nF", new Capacitance(1, CapacitanceUnit.Nanofarad).ToString());
-                Assert.Equal("1 pF", new Capacitance(1, CapacitanceUnit.Picofarad).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 F", new Capacitance(1, CapacitanceUnit.Farad).ToString());
+            Assert.Equal("1 kF", new Capacitance(1, CapacitanceUnit.Kilofarad).ToString());
+            Assert.Equal("1 MF", new Capacitance(1, CapacitanceUnit.Megafarad).ToString());
+            Assert.Equal("1 µF", new Capacitance(1, CapacitanceUnit.Microfarad).ToString());
+            Assert.Equal("1 mF", new Capacitance(1, CapacitanceUnit.Millifarad).ToString());
+            Assert.Equal("1 nF", new Capacitance(1, CapacitanceUnit.Nanofarad).ToString());
+            Assert.Equal("1 pF", new Capacitance(1, CapacitanceUnit.Picofarad).ToString());
         }
 
         [Fact]
@@ -683,19 +676,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s1"));
-                Assert.Equal("0.12 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s2"));
-                Assert.Equal("0.123 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s3"));
-                Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s1"));
+            Assert.Equal("0.12 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s2"));
+            Assert.Equal("0.123 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s3"));
+            Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4"));
         }
 
         [Fact]

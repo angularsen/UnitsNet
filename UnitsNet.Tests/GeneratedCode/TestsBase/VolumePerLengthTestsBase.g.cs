@@ -724,23 +724,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 m³/m", new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter).ToString());
-                Assert.Equal("1 yd³/ft", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerFoot).ToString());
-                Assert.Equal("1 yd³/ftUS", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot).ToString());
-                Assert.Equal("1 gal (imp.)/mi", new VolumePerLength(1, VolumePerLengthUnit.ImperialGallonPerMile).ToString());
-                Assert.Equal("1 l/km", new VolumePerLength(1, VolumePerLengthUnit.LiterPerKilometer).ToString());
-                Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString());
-                Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString());
-                Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString());
-                Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 m³/m", new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter).ToString());
+            Assert.Equal("1 yd³/ft", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerFoot).ToString());
+            Assert.Equal("1 yd³/ftUS", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot).ToString());
+            Assert.Equal("1 gal (imp.)/mi", new VolumePerLength(1, VolumePerLengthUnit.ImperialGallonPerMile).ToString());
+            Assert.Equal("1 l/km", new VolumePerLength(1, VolumePerLengthUnit.LiterPerKilometer).ToString());
+            Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString());
+            Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString());
+            Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString());
+            Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString());
         }
 
         [Fact]
@@ -763,19 +756,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s1"));
-                Assert.Equal("0.12 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s2"));
-                Assert.Equal("0.123 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s1"));
+            Assert.Equal("0.12 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s2"));
+            Assert.Equal("0.123 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s4"));
         }
 
         [Fact]
