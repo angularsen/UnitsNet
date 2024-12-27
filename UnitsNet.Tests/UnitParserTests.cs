@@ -9,7 +9,6 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitParserTests
     {
         [Theory]

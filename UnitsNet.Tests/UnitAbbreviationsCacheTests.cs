@@ -9,6 +9,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
+    // Disable parallelization due to manipulating global state, like UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation().
     [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitAbbreviationsCacheTests
     {
