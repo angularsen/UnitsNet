@@ -217,7 +217,6 @@ namespace UnitsNet.Tests
             // CurrentCulture also affects localization of unit abbreviations.
             // Zulu (South Africa)
             var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
-            // CultureInfo.CurrentCulture = zuluCulture;
 
             var abbreviationsCache = new UnitAbbreviationsCache();
             abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
