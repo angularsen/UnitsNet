@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -983,7 +984,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -996,27 +997,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 bpm", new Frequency(1, FrequencyUnit.BeatPerMinute).ToString());
-                Assert.Equal("1 B Units", new Frequency(1, FrequencyUnit.BUnit).ToString());
-                Assert.Equal("1 cph", new Frequency(1, FrequencyUnit.CyclePerHour).ToString());
-                Assert.Equal("1 cpm", new Frequency(1, FrequencyUnit.CyclePerMinute).ToString());
-                Assert.Equal("1 GHz", new Frequency(1, FrequencyUnit.Gigahertz).ToString());
-                Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString());
-                Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString());
-                Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString());
-                Assert.Equal("1 µHz", new Frequency(1, FrequencyUnit.Microhertz).ToString());
-                Assert.Equal("1 mHz", new Frequency(1, FrequencyUnit.Millihertz).ToString());
-                Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString());
-                Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString());
-                Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 bpm", new Frequency(1, FrequencyUnit.BeatPerMinute).ToString());
+            Assert.Equal("1 B Units", new Frequency(1, FrequencyUnit.BUnit).ToString());
+            Assert.Equal("1 cph", new Frequency(1, FrequencyUnit.CyclePerHour).ToString());
+            Assert.Equal("1 cpm", new Frequency(1, FrequencyUnit.CyclePerMinute).ToString());
+            Assert.Equal("1 GHz", new Frequency(1, FrequencyUnit.Gigahertz).ToString());
+            Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString());
+            Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString());
+            Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString());
+            Assert.Equal("1 µHz", new Frequency(1, FrequencyUnit.Microhertz).ToString());
+            Assert.Equal("1 mHz", new Frequency(1, FrequencyUnit.Millihertz).ToString());
+            Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString());
+            Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString());
+            Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString());
         }
 
         [Fact]
@@ -1043,19 +1037,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s1"));
-                Assert.Equal("0.12 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s2"));
-                Assert.Equal("0.123 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s3"));
-                Assert.Equal("0.1235 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s1"));
+            Assert.Equal("0.12 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s2"));
+            Assert.Equal("0.123 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s3"));
+            Assert.Equal("0.1235 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s4"));
         }
 
         [Fact]

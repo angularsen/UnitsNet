@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -671,7 +672,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -684,23 +685,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString());
-                Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString());
-                Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString());
-                Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString());
-                Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString());
-                Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString());
-                Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString());
-                Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString());
-                Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString());
+            Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString());
+            Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString());
+            Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString());
+            Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString());
+            Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString());
+            Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString());
+            Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString());
+            Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString());
         }
 
         [Fact]
@@ -723,19 +717,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
         }
 
         [Fact]

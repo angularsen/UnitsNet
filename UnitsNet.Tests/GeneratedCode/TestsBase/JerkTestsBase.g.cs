@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1005,7 +1006,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(JerkUnit)).Cast<JerkUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1018,25 +1019,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString());
-                Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString());
-                Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString());
-                Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString());
-                Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString());
-                Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString());
-                Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString());
-                Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString());
-                Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString());
-                Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString());
-                Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString());
+            Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString());
+            Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString());
+            Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString());
+            Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString());
+            Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString());
+            Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString());
+            Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString());
+            Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString());
+            Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString());
+            Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString());
         }
 
         [Fact]
@@ -1061,19 +1055,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s1"));
-                Assert.Equal("0.12 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s2"));
-                Assert.Equal("0.123 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s3"));
-                Assert.Equal("0.1235 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s1"));
+            Assert.Equal("0.12 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s2"));
+            Assert.Equal("0.123 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s3"));
+            Assert.Equal("0.1235 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s4"));
         }
 
         [Fact]

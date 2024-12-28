@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1952,7 +1953,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1965,26 +1966,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString());
-                Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString());
-                Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString());
-                Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString());
-                Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString());
-                Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
-                Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
-                Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
-                Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
-                Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
-                Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
-                Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString());
+            Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString());
+            Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString());
+            Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString());
+            Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString());
+            Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
+            Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
+            Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
+            Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
+            Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
+            Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
+            Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
         }
 
         [Fact]
@@ -2010,19 +2004,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 s", new Duration(0.123456, DurationUnit.Second).ToString("s1"));
-                Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2"));
-                Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3"));
-                Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 s", new Duration(0.123456, DurationUnit.Second).ToString("s1"));
+            Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2"));
+            Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3"));
+            Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4"));
         }
 
         [Fact]

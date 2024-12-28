@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -776,7 +777,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(EnergyDensityUnit)).Cast<EnergyDensityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -789,26 +790,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString());
-                Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString());
-                Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString());
-                Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString());
-                Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString());
-                Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString());
-                Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString());
-                Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString());
+            Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString());
+            Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString());
+            Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString());
+            Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString());
+            Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString());
+            Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString());
+            Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString());
         }
 
         [Fact]
@@ -834,19 +828,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4"));
         }
 
         [Fact]

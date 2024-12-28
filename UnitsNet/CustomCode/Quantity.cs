@@ -235,7 +235,7 @@ namespace UnitsNet
             // such as "cm" matching both LengthUnit.Centimeter (cm) and MolarityUnit.CentimolePerLiter (cM).
             return Infos
                 .SelectMany(i => i.UnitInfos)
-                .Select(ui => UnitAbbreviationsCache.Default
+                .Select(ui => UnitsNetSetup.Default.UnitAbbreviations
                     .GetUnitAbbreviations(ui.Value.GetType(), Convert.ToInt32(ui.Value), formatProvider)
                     .Contains(unitAbbreviation, StringComparer.Ordinal)
                     ? ui.Value

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -671,7 +672,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -684,23 +685,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 ∆°C", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeCelsius).ToString());
-                Assert.Equal("1 ∆°De", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeDelisle).ToString());
-                Assert.Equal("1 ∆°F", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeFahrenheit).ToString());
-                Assert.Equal("1 ∆°N", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeNewton).ToString());
-                Assert.Equal("1 ∆°R", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRankine).ToString());
-                Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString());
-                Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString());
-                Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString());
-                Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 ∆°C", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeCelsius).ToString());
+            Assert.Equal("1 ∆°De", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeDelisle).ToString());
+            Assert.Equal("1 ∆°F", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeFahrenheit).ToString());
+            Assert.Equal("1 ∆°N", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeNewton).ToString());
+            Assert.Equal("1 ∆°R", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRankine).ToString());
+            Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString());
+            Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString());
+            Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString());
+            Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString());
         }
 
         [Fact]
@@ -723,19 +717,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s1"));
-                Assert.Equal("0.12 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s2"));
-                Assert.Equal("0.123 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s3"));
-                Assert.Equal("0.1235 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s1"));
+            Assert.Equal("0.12 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s2"));
+            Assert.Equal("0.123 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s3"));
+            Assert.Equal("0.1235 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s4"));
         }
 
         [Fact]

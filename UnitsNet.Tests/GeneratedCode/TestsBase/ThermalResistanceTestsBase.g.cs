@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -566,7 +567,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -579,20 +580,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Hrft²°F/Btu", new ThermalResistance(1, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString());
-                Assert.Equal("1 cm²Hr°C/kcal", new ThermalResistance(1, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString());
-                Assert.Equal("1 cm²K/W", new ThermalResistance(1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt).ToString());
-                Assert.Equal("1 m²°C/W", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString());
-                Assert.Equal("1 m²K/kW", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString());
-                Assert.Equal("1 m²K/W", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerWatt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Hrft²°F/Btu", new ThermalResistance(1, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString());
+            Assert.Equal("1 cm²Hr°C/kcal", new ThermalResistance(1, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString());
+            Assert.Equal("1 cm²K/W", new ThermalResistance(1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt).ToString());
+            Assert.Equal("1 m²°C/W", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString());
+            Assert.Equal("1 m²K/kW", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString());
+            Assert.Equal("1 m²K/W", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerWatt).ToString());
         }
 
         [Fact]
@@ -612,19 +606,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s1"));
-                Assert.Equal("0.12 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2"));
-                Assert.Equal("0.123 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3"));
-                Assert.Equal("0.1235 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s1"));
+            Assert.Equal("0.12 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2"));
+            Assert.Equal("0.123 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3"));
+            Assert.Equal("0.1235 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4"));
         }
 
         [Fact]

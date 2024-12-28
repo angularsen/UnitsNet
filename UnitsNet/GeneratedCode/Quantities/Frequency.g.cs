@@ -308,7 +308,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(FrequencyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Frequency Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Frequency, FrequencyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Frequency, FrequencyUnit>(
                 str,
                 provider,
                 From);
@@ -543,7 +543,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Frequency result)
         {
-            return QuantityParser.Default.TryParse<Frequency, FrequencyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Frequency, FrequencyUnit>(
                 str,
                 provider,
                 From,
@@ -576,7 +576,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static FrequencyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<FrequencyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<FrequencyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.FrequencyUnit)"/>
@@ -597,7 +597,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out FrequencyUnit unit)
         {
-            return UnitParser.Default.TryParse<FrequencyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<FrequencyUnit>(str, provider, out unit);
         }
 
         #endregion

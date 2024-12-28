@@ -54,6 +54,7 @@ namespace UnitsNet
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
+            { "DoseAreaProduct", DoseAreaProduct.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
             { "ElectricAdmittance", ElectricAdmittance.Info },
@@ -131,6 +132,7 @@ namespace UnitsNet
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
             { "RadiationEquivalentDose", RadiationEquivalentDose.Info },
+            { "RadiationEquivalentDoseRate", RadiationEquivalentDoseRate.Info },
             { "RadiationExposure", RadiationExposure.Info },
             { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
@@ -198,6 +200,7 @@ namespace UnitsNet
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
+                "DoseAreaProduct" => DoseAreaProduct.From(value, DoseAreaProduct.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
                 "ElectricAdmittance" => ElectricAdmittance.From(value, ElectricAdmittance.BaseUnit),
@@ -275,6 +278,7 @@ namespace UnitsNet
                 "Pressure" => Pressure.From(value, Pressure.BaseUnit),
                 "PressureChangeRate" => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
                 "RadiationEquivalentDose" => RadiationEquivalentDose.From(value, RadiationEquivalentDose.BaseUnit),
+                "RadiationEquivalentDoseRate" => RadiationEquivalentDoseRate.From(value, RadiationEquivalentDoseRate.BaseUnit),
                 "RadiationExposure" => RadiationExposure.From(value, RadiationExposure.BaseUnit),
                 "Radioactivity" => Radioactivity.From(value, Radioactivity.BaseUnit),
                 "Ratio" => Ratio.From(value, Ratio.BaseUnit),
@@ -345,6 +349,7 @@ namespace UnitsNet
                 CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit => CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit),
                 CompressibilityUnit compressibilityUnit => Compressibility.From(value, compressibilityUnit),
                 DensityUnit densityUnit => Density.From(value, densityUnit),
+                DoseAreaProductUnit doseAreaProductUnit => DoseAreaProduct.From(value, doseAreaProductUnit),
                 DurationUnit durationUnit => Duration.From(value, durationUnit),
                 DynamicViscosityUnit dynamicViscosityUnit => DynamicViscosity.From(value, dynamicViscosityUnit),
                 ElectricAdmittanceUnit electricAdmittanceUnit => ElectricAdmittance.From(value, electricAdmittanceUnit),
@@ -422,6 +427,7 @@ namespace UnitsNet
                 PressureUnit pressureUnit => Pressure.From(value, pressureUnit),
                 PressureChangeRateUnit pressureChangeRateUnit => PressureChangeRate.From(value, pressureChangeRateUnit),
                 RadiationEquivalentDoseUnit radiationEquivalentDoseUnit => RadiationEquivalentDose.From(value, radiationEquivalentDoseUnit),
+                RadiationEquivalentDoseRateUnit radiationEquivalentDoseRateUnit => RadiationEquivalentDoseRate.From(value, radiationEquivalentDoseRateUnit),
                 RadiationExposureUnit radiationExposureUnit => RadiationExposure.From(value, radiationExposureUnit),
                 RadioactivityUnit radioactivityUnit => Radioactivity.From(value, radioactivityUnit),
                 RatioUnit ratioUnit => Ratio.From(value, ratioUnit),
@@ -482,7 +488,7 @@ namespace UnitsNet
             if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
-            var parser = QuantityParser.Default;
+            var parser = UnitsNetSetup.Default.QuantityParser;
 
             return quantityType switch
             {
@@ -502,6 +508,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
                 Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
+                Type _ when quantityType == typeof(DoseAreaProduct) => parser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(quantityString, formatProvider, DoseAreaProduct.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricAdmittance) => parser.TryParse<ElectricAdmittance, ElectricAdmittanceUnit>(quantityString, formatProvider, ElectricAdmittance.From, out quantity),
@@ -579,6 +586,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Pressure) => parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity),
                 Type _ when quantityType == typeof(PressureChangeRate) => parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationEquivalentDose) => parser.TryParse<RadiationEquivalentDose, RadiationEquivalentDoseUnit>(quantityString, formatProvider, RadiationEquivalentDose.From, out quantity),
+                Type _ when quantityType == typeof(RadiationEquivalentDoseRate) => parser.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(quantityString, formatProvider, RadiationEquivalentDoseRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationExposure) => parser.TryParse<RadiationExposure, RadiationExposureUnit>(quantityString, formatProvider, RadiationExposure.From, out quantity),
                 Type _ when quantityType == typeof(Radioactivity) => parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity),
                 Type _ when quantityType == typeof(Ratio) => parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity),
@@ -640,6 +648,7 @@ namespace UnitsNet
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
             yield return typeof(Density);
+            yield return typeof(DoseAreaProduct);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
             yield return typeof(ElectricAdmittance);
@@ -717,6 +726,7 @@ namespace UnitsNet
             yield return typeof(Pressure);
             yield return typeof(PressureChangeRate);
             yield return typeof(RadiationEquivalentDose);
+            yield return typeof(RadiationEquivalentDoseRate);
             yield return typeof(RadiationExposure);
             yield return typeof(Radioactivity);
             yield return typeof(Ratio);

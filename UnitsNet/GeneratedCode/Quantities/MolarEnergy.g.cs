@@ -228,7 +228,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MolarEnergyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -332,7 +332,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MolarEnergy Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarEnergy, MolarEnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MolarEnergy, MolarEnergyUnit>(
                 str,
                 provider,
                 From);
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MolarEnergy result)
         {
-            return QuantityParser.Default.TryParse<MolarEnergy, MolarEnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MolarEnergy, MolarEnergyUnit>(
                 str,
                 provider,
                 From,
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MolarEnergyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MolarEnergyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MolarEnergyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarEnergyUnit)"/>
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MolarEnergyUnit unit)
         {
-            return UnitParser.Default.TryParse<MolarEnergyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MolarEnergyUnit>(str, provider, out unit);
         }
 
         #endregion

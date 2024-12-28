@@ -655,7 +655,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1289,7 +1289,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Density Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Density, DensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Density, DensityUnit>(
                 str,
                 provider,
                 From);
@@ -1320,7 +1320,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Density result)
         {
-            return QuantityParser.Default.TryParse<Density, DensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Density, DensityUnit>(
                 str,
                 provider,
                 From,
@@ -1353,7 +1353,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<DensityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<DensityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DensityUnit)"/>
@@ -1374,7 +1374,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out DensityUnit unit)
         {
-            return UnitParser.Default.TryParse<DensityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<DensityUnit>(str, provider, out unit);
         }
 
         #endregion

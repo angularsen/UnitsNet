@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1706,7 +1707,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1719,32 +1720,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString());
-                Assert.Equal("1 bar/min", new PressureChangeRate(1, PressureChangeRateUnit.BarPerMinute).ToString());
-                Assert.Equal("1 bar/s", new PressureChangeRate(1, PressureChangeRateUnit.BarPerSecond).ToString());
-                Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString());
-                Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString());
-                Assert.Equal("1 ksi/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString());
-                Assert.Equal("1 ksi/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString());
-                Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString());
-                Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString());
-                Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString());
-                Assert.Equal("1 Mpsi/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond).ToString());
-                Assert.Equal("1 mbar/min", new PressureChangeRate(1, PressureChangeRateUnit.MillibarPerMinute).ToString());
-                Assert.Equal("1 mbar/s", new PressureChangeRate(1, PressureChangeRateUnit.MillibarPerSecond).ToString());
-                Assert.Equal("1 mmHg/s", new PressureChangeRate(1, PressureChangeRateUnit.MillimeterOfMercuryPerSecond).ToString());
-                Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString());
-                Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString());
-                Assert.Equal("1 psi/min", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute).ToString());
-                Assert.Equal("1 psi/s", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString());
+            Assert.Equal("1 bar/min", new PressureChangeRate(1, PressureChangeRateUnit.BarPerMinute).ToString());
+            Assert.Equal("1 bar/s", new PressureChangeRate(1, PressureChangeRateUnit.BarPerSecond).ToString());
+            Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString());
+            Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString());
+            Assert.Equal("1 ksi/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString());
+            Assert.Equal("1 ksi/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString());
+            Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString());
+            Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString());
+            Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString());
+            Assert.Equal("1 Mpsi/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond).ToString());
+            Assert.Equal("1 mbar/min", new PressureChangeRate(1, PressureChangeRateUnit.MillibarPerMinute).ToString());
+            Assert.Equal("1 mbar/s", new PressureChangeRate(1, PressureChangeRateUnit.MillibarPerSecond).ToString());
+            Assert.Equal("1 mmHg/s", new PressureChangeRate(1, PressureChangeRateUnit.MillimeterOfMercuryPerSecond).ToString());
+            Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString());
+            Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString());
+            Assert.Equal("1 psi/min", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute).ToString());
+            Assert.Equal("1 psi/s", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond).ToString());
         }
 
         [Fact]
@@ -1776,19 +1770,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s1"));
-                Assert.Equal("0.12 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s2"));
-                Assert.Equal("0.123 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s1"));
+            Assert.Equal("0.12 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s2"));
+            Assert.Equal("0.123 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s4"));
         }
 
         [Fact]

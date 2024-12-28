@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1444,7 +1445,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1457,30 +1458,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString());
-                Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString());
-                Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString());
-                Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString());
-                Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString());
-                Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString());
-                Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString());
-                Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString());
-                Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString());
-                Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString());
-                Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString());
-                Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString());
-                Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString());
-                Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString());
-                Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
-                Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString());
+            Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString());
+            Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString());
+            Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString());
+            Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString());
+            Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString());
+            Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString());
+            Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString());
+            Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString());
+            Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString());
+            Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString());
+            Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString());
+            Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString());
+            Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString());
+            Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
+            Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString());
         }
 
         [Fact]
@@ -1510,19 +1504,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 °", new Angle(0.123456, AngleUnit.Degree).ToString("s1"));
-                Assert.Equal("0.12 °", new Angle(0.123456, AngleUnit.Degree).ToString("s2"));
-                Assert.Equal("0.123 °", new Angle(0.123456, AngleUnit.Degree).ToString("s3"));
-                Assert.Equal("0.1235 °", new Angle(0.123456, AngleUnit.Degree).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 °", new Angle(0.123456, AngleUnit.Degree).ToString("s1"));
+            Assert.Equal("0.12 °", new Angle(0.123456, AngleUnit.Degree).ToString("s2"));
+            Assert.Equal("0.123 °", new Angle(0.123456, AngleUnit.Degree).ToString("s3"));
+            Assert.Equal("0.1235 °", new Angle(0.123456, AngleUnit.Degree).ToString("s4"));
         }
 
         [Fact]

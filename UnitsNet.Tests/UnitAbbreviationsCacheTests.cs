@@ -9,7 +9,8 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
+    // Disable parallelization due to manipulating global state, like UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation().
+    [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitAbbreviationsCacheTests
     {
         private const string AmericanCultureName = "en-US";
@@ -20,7 +21,7 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider NorwegianCulture = CultureInfo.GetCultureInfo(NorwegianCultureName);
         private static readonly IFormatProvider RussianCulture = CultureInfo.GetCultureInfo(RussianCultureName);
 
-        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
+        // The default, parameterless ToString() method uses 2 significant digits after the radix point.
         [Theory]
         [InlineData(0, "0 m")]
         [InlineData(0.1, "0.1 m")]
@@ -217,7 +218,6 @@ namespace UnitsNet.Tests
             // CurrentCulture also affects localization of unit abbreviations.
             // Zulu (South Africa)
             var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
-            // CultureInfo.CurrentCulture = zuluCulture;
 
             var abbreviationsCache = new UnitAbbreviationsCache();
             abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
@@ -270,7 +270,7 @@ namespace UnitsNet.Tests
         {
             // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
             var newZealandCulture = GetCulture("en-NZ");
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
         }
@@ -310,8 +310,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapAndLookup_WithSpecificEnumType()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
 
         /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
@@ -319,16 +319,16 @@ namespace UnitsNet.Tests
         public void MapAndLookup_WithEnumType()
         {
             Enum valueAsEnumType = HowMuchUnit.Some;
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(valueAsEnumType));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(valueAsEnumType));
         }
 
         /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
         [Fact]
         public void MapAndLookup_MapWithSpecificEnumType_LookupWithEnumType()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
         }
 
         /// <summary>

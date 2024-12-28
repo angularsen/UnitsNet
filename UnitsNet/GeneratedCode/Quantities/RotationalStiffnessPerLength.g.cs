@@ -244,7 +244,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(RotationalStiffnessPerLengthUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -368,7 +368,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static RotationalStiffnessPerLength Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(
                 str,
                 provider,
                 From);
@@ -399,7 +399,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out RotationalStiffnessPerLength result)
         {
-            return QuantityParser.Default.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(
                 str,
                 provider,
                 From,
@@ -432,7 +432,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static RotationalStiffnessPerLengthUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<RotationalStiffnessPerLengthUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<RotationalStiffnessPerLengthUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RotationalStiffnessPerLengthUnit)"/>
@@ -453,7 +453,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out RotationalStiffnessPerLengthUnit unit)
         {
-            return UnitParser.Default.TryParse<RotationalStiffnessPerLengthUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<RotationalStiffnessPerLengthUnit>(str, provider, out unit);
         }
 
         #endregion
