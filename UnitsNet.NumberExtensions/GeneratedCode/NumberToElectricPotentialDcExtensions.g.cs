@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialDc
     /// <summary>
     /// A number to ElectricPotentialDc Extensions
     /// </summary>
+    [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
     public static class NumberToElectricPotentialDcExtensions
     {
         /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
         public static ElectricPotentialDc KilovoltsDc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialDc
             => ElectricPotentialDc.FromKilovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
         public static ElectricPotentialDc MegavoltsDc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialDc
             => ElectricPotentialDc.FromMegavoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
         public static ElectricPotentialDc MicrovoltsDc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -57,6 +61,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialDc
             => ElectricPotentialDc.FromMicrovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
         public static ElectricPotentialDc MillivoltsDc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -65,6 +70,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialDc
             => ElectricPotentialDc.FromMillivoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
         public static ElectricPotentialDc VoltsDc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

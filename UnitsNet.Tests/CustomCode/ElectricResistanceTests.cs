@@ -8,6 +8,8 @@ namespace UnitsNet.Tests
     public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
         protected override bool SupportsSIUnitSystem => false;
+        protected override double NanoohmsInOneOhm => 1e9;
+
         protected override double MicroohmsInOneOhm => 1e6;
 
         protected override double MilliohmsInOneOhm => 1000;

@@ -24,8 +24,11 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     The electrical resistance of an object is a measure of its opposition to the flow of electric current. Along with reactance, it is one of two elements of impedance. Its reciprocal quantity is electrical conductance.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
+    /// </remarks>
     public struct  ElectricResistance
     {
         /// <summary>
@@ -105,6 +108,11 @@ namespace UnitsNet
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Nanoohm"/>
+        /// </summary>
+        public double Nanoohms => As(ElectricResistanceUnit.Nanoohm);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
@@ -147,6 +155,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMilliohms(double milliohms) => new ElectricResistance(milliohms, ElectricResistanceUnit.Milliohm);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Nanoohm"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromNanoohms(double nanoohms) => new ElectricResistance(nanoohms, ElectricResistanceUnit.Nanoohm);
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
@@ -205,6 +219,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Megaohm => (_value) * 1e6d,
                         ElectricResistanceUnit.Microohm => (_value) * 1e-6d,
                         ElectricResistanceUnit.Milliohm => (_value) * 1e-3d,
+                        ElectricResistanceUnit.Nanoohm => (_value) * 1e-9d,
                         ElectricResistanceUnit.Ohm => _value,
                         ElectricResistanceUnit.Teraohm => (_value) * 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -225,6 +240,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Megaohm => (baseUnitValue) / 1e6d,
                         ElectricResistanceUnit.Microohm => (baseUnitValue) / 1e-6d,
                         ElectricResistanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                        ElectricResistanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
                         ElectricResistanceUnit.Ohm => baseUnitValue,
                         ElectricResistanceUnit.Teraohm => (baseUnitValue) / 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
