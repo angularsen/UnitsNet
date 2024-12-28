@@ -335,7 +335,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ElectricSusceptanceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -569,7 +569,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricSusceptance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricSusceptance, ElectricSusceptanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricSusceptance, ElectricSusceptanceUnit>(
                 str,
                 provider,
                 From);
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricSusceptance result)
         {
-            return QuantityParser.Default.TryParse<ElectricSusceptance, ElectricSusceptanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricSusceptance, ElectricSusceptanceUnit>(
                 str,
                 provider,
                 From,
@@ -633,7 +633,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ElectricSusceptanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ElectricSusceptanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ElectricSusceptanceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricSusceptanceUnit)"/>
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricSusceptanceUnit unit)
         {
-            return UnitParser.Default.TryParse<ElectricSusceptanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ElectricSusceptanceUnit>(str, provider, out unit);
         }
 
         #endregion

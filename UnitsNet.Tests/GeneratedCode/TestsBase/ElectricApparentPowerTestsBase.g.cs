@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -544,7 +545,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricApparentPowerUnit)).Cast<ElectricApparentPowerUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -557,20 +558,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 GVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Gigavoltampere).ToString());
-                Assert.Equal("1 kVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Kilovoltampere).ToString());
-                Assert.Equal("1 MVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Megavoltampere).ToString());
-                Assert.Equal("1 µVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Microvoltampere).ToString());
-                Assert.Equal("1 mVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Millivoltampere).ToString());
-                Assert.Equal("1 VA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Voltampere).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 GVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Gigavoltampere).ToString());
+            Assert.Equal("1 kVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Kilovoltampere).ToString());
+            Assert.Equal("1 MVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Megavoltampere).ToString());
+            Assert.Equal("1 µVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Microvoltampere).ToString());
+            Assert.Equal("1 mVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Millivoltampere).ToString());
+            Assert.Equal("1 VA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Voltampere).ToString());
         }
 
         [Fact]
@@ -590,19 +584,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s1"));
-                Assert.Equal("0.12 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s2"));
-                Assert.Equal("0.123 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s3"));
-                Assert.Equal("0.1235 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s1"));
+            Assert.Equal("0.12 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s2"));
+            Assert.Equal("0.123 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s3"));
+            Assert.Equal("0.1235 VA", new ElectricApparentPower(0.123456, ElectricApparentPowerUnit.Voltampere).ToString("s4"));
         }
 
         [Fact]

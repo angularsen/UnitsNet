@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -614,7 +615,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricImpedanceUnit)).Cast<ElectricImpedanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -627,22 +628,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 GΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Gigaohm).ToString());
-                Assert.Equal("1 kΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Kiloohm).ToString());
-                Assert.Equal("1 MΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Megaohm).ToString());
-                Assert.Equal("1 µΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Microohm).ToString());
-                Assert.Equal("1 mΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Milliohm).ToString());
-                Assert.Equal("1 nΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Nanoohm).ToString());
-                Assert.Equal("1 Ω", new ElectricImpedance(1, ElectricImpedanceUnit.Ohm).ToString());
-                Assert.Equal("1 TΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Teraohm).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 GΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Gigaohm).ToString());
+            Assert.Equal("1 kΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Kiloohm).ToString());
+            Assert.Equal("1 MΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Megaohm).ToString());
+            Assert.Equal("1 µΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Microohm).ToString());
+            Assert.Equal("1 mΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Milliohm).ToString());
+            Assert.Equal("1 nΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Nanoohm).ToString());
+            Assert.Equal("1 Ω", new ElectricImpedance(1, ElectricImpedanceUnit.Ohm).ToString());
+            Assert.Equal("1 TΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Teraohm).ToString());
         }
 
         [Fact]
@@ -664,19 +658,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s1"));
-                Assert.Equal("0.12 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s2"));
-                Assert.Equal("0.123 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s3"));
-                Assert.Equal("0.1235 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s1"));
+            Assert.Equal("0.12 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s2"));
+            Assert.Equal("0.123 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s3"));
+            Assert.Equal("0.1235 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s4"));
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -872,7 +873,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricSusceptanceUnit)).Cast<ElectricSusceptanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -885,30 +886,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 G℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigamho).ToString());
-                Assert.Equal("1 GS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigasiemens).ToString());
-                Assert.Equal("1 k℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilomho).ToString());
-                Assert.Equal("1 kS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilosiemens).ToString());
-                Assert.Equal("1 M℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megamho).ToString());
-                Assert.Equal("1 MS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megasiemens).ToString());
-                Assert.Equal("1 ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Mho).ToString());
-                Assert.Equal("1 µ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Micromho).ToString());
-                Assert.Equal("1 µS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Microsiemens).ToString());
-                Assert.Equal("1 m℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millimho).ToString());
-                Assert.Equal("1 mS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millisiemens).ToString());
-                Assert.Equal("1 n℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanomho).ToString());
-                Assert.Equal("1 nS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanosiemens).ToString());
-                Assert.Equal("1 S", new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens).ToString());
-                Assert.Equal("1 T℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Teramho).ToString());
-                Assert.Equal("1 TS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Terasiemens).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 G℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigamho).ToString());
+            Assert.Equal("1 GS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigasiemens).ToString());
+            Assert.Equal("1 k℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilomho).ToString());
+            Assert.Equal("1 kS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilosiemens).ToString());
+            Assert.Equal("1 M℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megamho).ToString());
+            Assert.Equal("1 MS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megasiemens).ToString());
+            Assert.Equal("1 ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Mho).ToString());
+            Assert.Equal("1 µ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Micromho).ToString());
+            Assert.Equal("1 µS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Microsiemens).ToString());
+            Assert.Equal("1 m℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millimho).ToString());
+            Assert.Equal("1 mS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millisiemens).ToString());
+            Assert.Equal("1 n℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanomho).ToString());
+            Assert.Equal("1 nS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanosiemens).ToString());
+            Assert.Equal("1 S", new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens).ToString());
+            Assert.Equal("1 T℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Teramho).ToString());
+            Assert.Equal("1 TS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Terasiemens).ToString());
         }
 
         [Fact]
@@ -938,19 +932,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s1"));
-                Assert.Equal("0.12 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s2"));
-                Assert.Equal("0.123 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s3"));
-                Assert.Equal("0.1235 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s1"));
+            Assert.Equal("0.12 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s2"));
+            Assert.Equal("0.123 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s3"));
+            Assert.Equal("0.1235 S", new ElectricSusceptance(0.123456, ElectricSusceptanceUnit.Siemens).ToString("s4"));
         }
 
         [Fact]
