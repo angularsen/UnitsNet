@@ -14,7 +14,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             UnitEnumValue = val;
             UnitEnumValueInt = Convert.ToInt32(val);
             UnitEnumType = val.GetType();
-            Abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
+            Abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
 
             Text = $"{val} [{Abbreviation}]";
         }
