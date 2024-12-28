@@ -79,9 +79,9 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, "PerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, "PerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerKelvin, "PerKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, "PpmPerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, "PpmPerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerKelvin, "PpmPerKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, "PpmPerDegreeCelsius", BaseUnits.Undefined, "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, "PpmPerDegreeFahrenheit", BaseUnits.Undefined, "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerKelvin, "PpmPerKelvin", BaseUnits.Undefined, "CoefficientOfThermalExpansion"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

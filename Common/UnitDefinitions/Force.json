@@ -112,11 +112,6 @@
     {
       "SingularName": "Poundal",
       "PluralName": "Poundals",
-      "BaseUnits": {
-        "L": "Foot",
-        "M": "Pound",
-        "T": "Second"
-      },
       "FromUnitToBaseFunc": "{x} * 0.138254954376",
       "FromBaseToUnitFunc": "{x} / 0.138254954376",
       "XmlDocSummary": "The poundal is defined as the force necessary to accelerate 1 pound-mass at 1 foot per second per second. 1 pdl = 0.138254954376 N exactly.",

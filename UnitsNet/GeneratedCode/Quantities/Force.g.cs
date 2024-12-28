@@ -98,7 +98,7 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined, "Force"),

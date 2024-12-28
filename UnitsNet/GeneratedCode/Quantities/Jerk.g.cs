@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<JerkUnit>(JerkUnit.MillimeterPerSecondCubed, "MillimetersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
                     new UnitInfo<JerkUnit>(JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
                     new UnitInfo<JerkUnit>(JerkUnit.NanometerPerSecondCubed, "NanometersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
