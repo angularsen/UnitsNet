@@ -827,7 +827,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ImpulseUnit)).Cast<ImpulseUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -840,27 +840,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cN·s", new Impulse(1, ImpulseUnit.CentinewtonSecond).ToString());
-                Assert.Equal("1 daN·s", new Impulse(1, ImpulseUnit.DecanewtonSecond).ToString());
-                Assert.Equal("1 dN·s", new Impulse(1, ImpulseUnit.DecinewtonSecond).ToString());
-                Assert.Equal("1 kg·m/s", new Impulse(1, ImpulseUnit.KilogramMeterPerSecond).ToString());
-                Assert.Equal("1 kN·s", new Impulse(1, ImpulseUnit.KilonewtonSecond).ToString());
-                Assert.Equal("1 MN·s", new Impulse(1, ImpulseUnit.MeganewtonSecond).ToString());
-                Assert.Equal("1 µN·s", new Impulse(1, ImpulseUnit.MicronewtonSecond).ToString());
-                Assert.Equal("1 mN·s", new Impulse(1, ImpulseUnit.MillinewtonSecond).ToString());
-                Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString());
-                Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString());
-                Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString());
-                Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString());
-                Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cN·s", new Impulse(1, ImpulseUnit.CentinewtonSecond).ToString());
+            Assert.Equal("1 daN·s", new Impulse(1, ImpulseUnit.DecanewtonSecond).ToString());
+            Assert.Equal("1 dN·s", new Impulse(1, ImpulseUnit.DecinewtonSecond).ToString());
+            Assert.Equal("1 kg·m/s", new Impulse(1, ImpulseUnit.KilogramMeterPerSecond).ToString());
+            Assert.Equal("1 kN·s", new Impulse(1, ImpulseUnit.KilonewtonSecond).ToString());
+            Assert.Equal("1 MN·s", new Impulse(1, ImpulseUnit.MeganewtonSecond).ToString());
+            Assert.Equal("1 µN·s", new Impulse(1, ImpulseUnit.MicronewtonSecond).ToString());
+            Assert.Equal("1 mN·s", new Impulse(1, ImpulseUnit.MillinewtonSecond).ToString());
+            Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString());
+            Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString());
+            Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString());
+            Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString());
+            Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString());
         }
 
         [Fact]
@@ -887,19 +880,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s1"));
-                Assert.Equal("0.12 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s2"));
-                Assert.Equal("0.123 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s3"));
-                Assert.Equal("0.1235 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s1"));
+            Assert.Equal("0.12 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s2"));
+            Assert.Equal("0.123 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s3"));
+            Assert.Equal("0.1235 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s4"));
         }
 
         [Fact]

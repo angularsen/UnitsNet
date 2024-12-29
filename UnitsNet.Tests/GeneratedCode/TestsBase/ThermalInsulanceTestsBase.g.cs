@@ -615,7 +615,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ThermalInsulanceUnit)).Cast<ThermalInsulanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -628,20 +628,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Hrft²°F/Btu", new ThermalInsulance(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString());
-                Assert.Equal("1 cm²Hr°C/kcal", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString());
-                Assert.Equal("1 cm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt).ToString());
-                Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString());
-                Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString());
-                Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Hrft²°F/Btu", new ThermalInsulance(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString());
+            Assert.Equal("1 cm²Hr°C/kcal", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString());
+            Assert.Equal("1 cm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt).ToString());
+            Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString());
+            Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString());
+            Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString());
         }
 
         [Fact]
@@ -661,19 +654,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s1"));
-                Assert.Equal("0.12 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2"));
-                Assert.Equal("0.123 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3"));
-                Assert.Equal("0.1235 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s1"));
+            Assert.Equal("0.12 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2"));
+            Assert.Equal("0.123 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3"));
+            Assert.Equal("0.1235 m²K/kW", new ThermalInsulance(0.123456, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4"));
         }
 
         [Fact]

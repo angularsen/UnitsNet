@@ -1783,7 +1783,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1796,58 +1796,51 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 daW/ft³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicFoot).ToString());
-                Assert.Equal("1 daW/in³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicInch).ToString());
-                Assert.Equal("1 daW/m³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicMeter).ToString());
-                Assert.Equal("1 daW/l", new PowerDensity(1, PowerDensityUnit.DecawattPerLiter).ToString());
-                Assert.Equal("1 dW/ft³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicFoot).ToString());
-                Assert.Equal("1 dW/in³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicInch).ToString());
-                Assert.Equal("1 dW/m³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicMeter).ToString());
-                Assert.Equal("1 dW/l", new PowerDensity(1, PowerDensityUnit.DeciwattPerLiter).ToString());
-                Assert.Equal("1 GW/ft³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicFoot).ToString());
-                Assert.Equal("1 GW/in³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicInch).ToString());
-                Assert.Equal("1 GW/m³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicMeter).ToString());
-                Assert.Equal("1 GW/l", new PowerDensity(1, PowerDensityUnit.GigawattPerLiter).ToString());
-                Assert.Equal("1 kW/ft³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicFoot).ToString());
-                Assert.Equal("1 kW/in³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicInch).ToString());
-                Assert.Equal("1 kW/m³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicMeter).ToString());
-                Assert.Equal("1 kW/l", new PowerDensity(1, PowerDensityUnit.KilowattPerLiter).ToString());
-                Assert.Equal("1 MW/ft³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicFoot).ToString());
-                Assert.Equal("1 MW/in³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicInch).ToString());
-                Assert.Equal("1 MW/m³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicMeter).ToString());
-                Assert.Equal("1 MW/l", new PowerDensity(1, PowerDensityUnit.MegawattPerLiter).ToString());
-                Assert.Equal("1 µW/ft³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicFoot).ToString());
-                Assert.Equal("1 µW/in³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicInch).ToString());
-                Assert.Equal("1 µW/m³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicMeter).ToString());
-                Assert.Equal("1 µW/l", new PowerDensity(1, PowerDensityUnit.MicrowattPerLiter).ToString());
-                Assert.Equal("1 mW/ft³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicFoot).ToString());
-                Assert.Equal("1 mW/in³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicInch).ToString());
-                Assert.Equal("1 mW/m³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicMeter).ToString());
-                Assert.Equal("1 mW/l", new PowerDensity(1, PowerDensityUnit.MilliwattPerLiter).ToString());
-                Assert.Equal("1 nW/ft³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicFoot).ToString());
-                Assert.Equal("1 nW/in³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicInch).ToString());
-                Assert.Equal("1 nW/m³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicMeter).ToString());
-                Assert.Equal("1 nW/l", new PowerDensity(1, PowerDensityUnit.NanowattPerLiter).ToString());
-                Assert.Equal("1 pW/ft³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicFoot).ToString());
-                Assert.Equal("1 pW/in³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicInch).ToString());
-                Assert.Equal("1 pW/m³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicMeter).ToString());
-                Assert.Equal("1 pW/l", new PowerDensity(1, PowerDensityUnit.PicowattPerLiter).ToString());
-                Assert.Equal("1 TW/ft³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicFoot).ToString());
-                Assert.Equal("1 TW/in³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicInch).ToString());
-                Assert.Equal("1 TW/m³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicMeter).ToString());
-                Assert.Equal("1 TW/l", new PowerDensity(1, PowerDensityUnit.TerawattPerLiter).ToString());
-                Assert.Equal("1 W/ft³", new PowerDensity(1, PowerDensityUnit.WattPerCubicFoot).ToString());
-                Assert.Equal("1 W/in³", new PowerDensity(1, PowerDensityUnit.WattPerCubicInch).ToString());
-                Assert.Equal("1 W/m³", new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter).ToString());
-                Assert.Equal("1 W/l", new PowerDensity(1, PowerDensityUnit.WattPerLiter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 daW/ft³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicFoot).ToString());
+            Assert.Equal("1 daW/in³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicInch).ToString());
+            Assert.Equal("1 daW/m³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicMeter).ToString());
+            Assert.Equal("1 daW/l", new PowerDensity(1, PowerDensityUnit.DecawattPerLiter).ToString());
+            Assert.Equal("1 dW/ft³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicFoot).ToString());
+            Assert.Equal("1 dW/in³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicInch).ToString());
+            Assert.Equal("1 dW/m³", new PowerDensity(1, PowerDensityUnit.DeciwattPerCubicMeter).ToString());
+            Assert.Equal("1 dW/l", new PowerDensity(1, PowerDensityUnit.DeciwattPerLiter).ToString());
+            Assert.Equal("1 GW/ft³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicFoot).ToString());
+            Assert.Equal("1 GW/in³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicInch).ToString());
+            Assert.Equal("1 GW/m³", new PowerDensity(1, PowerDensityUnit.GigawattPerCubicMeter).ToString());
+            Assert.Equal("1 GW/l", new PowerDensity(1, PowerDensityUnit.GigawattPerLiter).ToString());
+            Assert.Equal("1 kW/ft³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicFoot).ToString());
+            Assert.Equal("1 kW/in³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicInch).ToString());
+            Assert.Equal("1 kW/m³", new PowerDensity(1, PowerDensityUnit.KilowattPerCubicMeter).ToString());
+            Assert.Equal("1 kW/l", new PowerDensity(1, PowerDensityUnit.KilowattPerLiter).ToString());
+            Assert.Equal("1 MW/ft³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicFoot).ToString());
+            Assert.Equal("1 MW/in³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicInch).ToString());
+            Assert.Equal("1 MW/m³", new PowerDensity(1, PowerDensityUnit.MegawattPerCubicMeter).ToString());
+            Assert.Equal("1 MW/l", new PowerDensity(1, PowerDensityUnit.MegawattPerLiter).ToString());
+            Assert.Equal("1 µW/ft³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicFoot).ToString());
+            Assert.Equal("1 µW/in³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicInch).ToString());
+            Assert.Equal("1 µW/m³", new PowerDensity(1, PowerDensityUnit.MicrowattPerCubicMeter).ToString());
+            Assert.Equal("1 µW/l", new PowerDensity(1, PowerDensityUnit.MicrowattPerLiter).ToString());
+            Assert.Equal("1 mW/ft³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicFoot).ToString());
+            Assert.Equal("1 mW/in³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicInch).ToString());
+            Assert.Equal("1 mW/m³", new PowerDensity(1, PowerDensityUnit.MilliwattPerCubicMeter).ToString());
+            Assert.Equal("1 mW/l", new PowerDensity(1, PowerDensityUnit.MilliwattPerLiter).ToString());
+            Assert.Equal("1 nW/ft³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicFoot).ToString());
+            Assert.Equal("1 nW/in³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicInch).ToString());
+            Assert.Equal("1 nW/m³", new PowerDensity(1, PowerDensityUnit.NanowattPerCubicMeter).ToString());
+            Assert.Equal("1 nW/l", new PowerDensity(1, PowerDensityUnit.NanowattPerLiter).ToString());
+            Assert.Equal("1 pW/ft³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicFoot).ToString());
+            Assert.Equal("1 pW/in³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicInch).ToString());
+            Assert.Equal("1 pW/m³", new PowerDensity(1, PowerDensityUnit.PicowattPerCubicMeter).ToString());
+            Assert.Equal("1 pW/l", new PowerDensity(1, PowerDensityUnit.PicowattPerLiter).ToString());
+            Assert.Equal("1 TW/ft³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicFoot).ToString());
+            Assert.Equal("1 TW/in³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicInch).ToString());
+            Assert.Equal("1 TW/m³", new PowerDensity(1, PowerDensityUnit.TerawattPerCubicMeter).ToString());
+            Assert.Equal("1 TW/l", new PowerDensity(1, PowerDensityUnit.TerawattPerLiter).ToString());
+            Assert.Equal("1 W/ft³", new PowerDensity(1, PowerDensityUnit.WattPerCubicFoot).ToString());
+            Assert.Equal("1 W/in³", new PowerDensity(1, PowerDensityUnit.WattPerCubicInch).ToString());
+            Assert.Equal("1 W/m³", new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter).ToString());
+            Assert.Equal("1 W/l", new PowerDensity(1, PowerDensityUnit.WattPerLiter).ToString());
         }
 
         [Fact]
@@ -1905,19 +1898,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s4"));
         }
 
         [Fact]

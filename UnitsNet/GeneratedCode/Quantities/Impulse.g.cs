@@ -313,7 +313,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ImpulseUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Impulse Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Impulse, ImpulseUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Impulse, ImpulseUnit>(
                 str,
                 provider,
                 From);
@@ -522,7 +522,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Impulse result)
         {
-            return QuantityParser.Default.TryParse<Impulse, ImpulseUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Impulse, ImpulseUnit>(
                 str,
                 provider,
                 From,
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ImpulseUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ImpulseUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ImpulseUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ImpulseUnit)"/>
@@ -576,7 +576,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ImpulseUnit unit)
         {
-            return UnitParser.Default.TryParse<ImpulseUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ImpulseUnit>(str, provider, out unit);
         }
 
         #endregion

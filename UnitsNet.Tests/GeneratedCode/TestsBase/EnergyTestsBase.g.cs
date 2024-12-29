@@ -2048,7 +2048,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -2061,54 +2061,47 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString());
-                Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString());
-                Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString());
-                Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString());
-                Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString());
-                Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString());
-                Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString());
-                Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString());
-                Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString());
-                Assert.Equal("1 GeV", new Energy(1, EnergyUnit.GigaelectronVolt).ToString());
-                Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString());
-                Assert.Equal("1 GWd", new Energy(1, EnergyUnit.GigawattDay).ToString());
-                Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString());
-                Assert.Equal("1 hp·h", new Energy(1, EnergyUnit.HorsepowerHour).ToString());
-                Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString());
-                Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString());
-                Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString());
-                Assert.Equal("1 keV", new Energy(1, EnergyUnit.KiloelectronVolt).ToString());
-                Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString());
-                Assert.Equal("1 kWd", new Energy(1, EnergyUnit.KilowattDay).ToString());
-                Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString());
-                Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString());
-                Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString());
-                Assert.Equal("1 MeV", new Energy(1, EnergyUnit.MegaelectronVolt).ToString());
-                Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString());
-                Assert.Equal("1 MWd", new Energy(1, EnergyUnit.MegawattDay).ToString());
-                Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString());
-                Assert.Equal("1 µJ", new Energy(1, EnergyUnit.Microjoule).ToString());
-                Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString());
-                Assert.Equal("1 nJ", new Energy(1, EnergyUnit.Nanojoule).ToString());
-                Assert.Equal("1 PJ", new Energy(1, EnergyUnit.Petajoule).ToString());
-                Assert.Equal("1 TeV", new Energy(1, EnergyUnit.TeraelectronVolt).ToString());
-                Assert.Equal("1 TJ", new Energy(1, EnergyUnit.Terajoule).ToString());
-                Assert.Equal("1 TWd", new Energy(1, EnergyUnit.TerawattDay).ToString());
-                Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString());
-                Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString());
-                Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString());
-                Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString());
-                Assert.Equal("1 Wd", new Energy(1, EnergyUnit.WattDay).ToString());
-                Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString());
+            Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString());
+            Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString());
+            Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString());
+            Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString());
+            Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString());
+            Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString());
+            Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString());
+            Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString());
+            Assert.Equal("1 GeV", new Energy(1, EnergyUnit.GigaelectronVolt).ToString());
+            Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString());
+            Assert.Equal("1 GWd", new Energy(1, EnergyUnit.GigawattDay).ToString());
+            Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString());
+            Assert.Equal("1 hp·h", new Energy(1, EnergyUnit.HorsepowerHour).ToString());
+            Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString());
+            Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString());
+            Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString());
+            Assert.Equal("1 keV", new Energy(1, EnergyUnit.KiloelectronVolt).ToString());
+            Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString());
+            Assert.Equal("1 kWd", new Energy(1, EnergyUnit.KilowattDay).ToString());
+            Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString());
+            Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString());
+            Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString());
+            Assert.Equal("1 MeV", new Energy(1, EnergyUnit.MegaelectronVolt).ToString());
+            Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString());
+            Assert.Equal("1 MWd", new Energy(1, EnergyUnit.MegawattDay).ToString());
+            Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString());
+            Assert.Equal("1 µJ", new Energy(1, EnergyUnit.Microjoule).ToString());
+            Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString());
+            Assert.Equal("1 nJ", new Energy(1, EnergyUnit.Nanojoule).ToString());
+            Assert.Equal("1 PJ", new Energy(1, EnergyUnit.Petajoule).ToString());
+            Assert.Equal("1 TeV", new Energy(1, EnergyUnit.TeraelectronVolt).ToString());
+            Assert.Equal("1 TJ", new Energy(1, EnergyUnit.Terajoule).ToString());
+            Assert.Equal("1 TWd", new Energy(1, EnergyUnit.TerawattDay).ToString());
+            Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString());
+            Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString());
+            Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString());
+            Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString());
+            Assert.Equal("1 Wd", new Energy(1, EnergyUnit.WattDay).ToString());
+            Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
         }
 
         [Fact]
@@ -2162,19 +2155,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1"));
-                Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
-                Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
-                Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1"));
+            Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
+            Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
+            Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
         }
 
         [Fact]

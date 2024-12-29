@@ -1789,7 +1789,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1802,52 +1802,45 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cN/cm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerCentimeter).ToString());
-                Assert.Equal("1 cN/m", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMeter).ToString());
-                Assert.Equal("1 cN/mm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMillimeter).ToString());
-                Assert.Equal("1 daN/cm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerCentimeter).ToString());
-                Assert.Equal("1 daN/m", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMeter).ToString());
-                Assert.Equal("1 daN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMillimeter).ToString());
-                Assert.Equal("1 dN/cm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerCentimeter).ToString());
-                Assert.Equal("1 dN/m", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMeter).ToString());
-                Assert.Equal("1 dN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMillimeter).ToString());
-                Assert.Equal("1 kgf/cm", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerCentimeter).ToString());
-                Assert.Equal("1 kgf/m", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMeter).ToString());
-                Assert.Equal("1 kgf/mm", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMillimeter).ToString());
-                Assert.Equal("1 kN/cm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerCentimeter).ToString());
-                Assert.Equal("1 kN/m", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMeter).ToString());
-                Assert.Equal("1 kN/mm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMillimeter).ToString());
-                Assert.Equal("1 kipf/ft", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerFoot).ToString());
-                Assert.Equal("1 kipf/in", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerInch).ToString());
-                Assert.Equal("1 MN/cm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerCentimeter).ToString());
-                Assert.Equal("1 MN/m", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMeter).ToString());
-                Assert.Equal("1 MN/mm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMillimeter).ToString());
-                Assert.Equal("1 µN/cm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerCentimeter).ToString());
-                Assert.Equal("1 µN/m", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMeter).ToString());
-                Assert.Equal("1 µN/mm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMillimeter).ToString());
-                Assert.Equal("1 mN/cm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerCentimeter).ToString());
-                Assert.Equal("1 mN/m", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMeter).ToString());
-                Assert.Equal("1 mN/mm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMillimeter).ToString());
-                Assert.Equal("1 nN/cm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerCentimeter).ToString());
-                Assert.Equal("1 nN/m", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMeter).ToString());
-                Assert.Equal("1 nN/mm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMillimeter).ToString());
-                Assert.Equal("1 N/cm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerCentimeter).ToString());
-                Assert.Equal("1 N/m", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter).ToString());
-                Assert.Equal("1 N/mm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMillimeter).ToString());
-                Assert.Equal("1 lbf/ft", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerFoot).ToString());
-                Assert.Equal("1 lbf/in", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerInch).ToString());
-                Assert.Equal("1 lbf/yd", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerYard).ToString());
-                Assert.Equal("1 tf/cm", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerCentimeter).ToString());
-                Assert.Equal("1 tf/m", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMeter).ToString());
-                Assert.Equal("1 tf/mm", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMillimeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cN/cm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerCentimeter).ToString());
+            Assert.Equal("1 cN/m", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMeter).ToString());
+            Assert.Equal("1 cN/mm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMillimeter).ToString());
+            Assert.Equal("1 daN/cm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerCentimeter).ToString());
+            Assert.Equal("1 daN/m", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMeter).ToString());
+            Assert.Equal("1 daN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMillimeter).ToString());
+            Assert.Equal("1 dN/cm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerCentimeter).ToString());
+            Assert.Equal("1 dN/m", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMeter).ToString());
+            Assert.Equal("1 dN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMillimeter).ToString());
+            Assert.Equal("1 kgf/cm", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerCentimeter).ToString());
+            Assert.Equal("1 kgf/m", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMeter).ToString());
+            Assert.Equal("1 kgf/mm", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMillimeter).ToString());
+            Assert.Equal("1 kN/cm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerCentimeter).ToString());
+            Assert.Equal("1 kN/m", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMeter).ToString());
+            Assert.Equal("1 kN/mm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMillimeter).ToString());
+            Assert.Equal("1 kipf/ft", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerFoot).ToString());
+            Assert.Equal("1 kipf/in", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerInch).ToString());
+            Assert.Equal("1 MN/cm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerCentimeter).ToString());
+            Assert.Equal("1 MN/m", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMeter).ToString());
+            Assert.Equal("1 MN/mm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMillimeter).ToString());
+            Assert.Equal("1 µN/cm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerCentimeter).ToString());
+            Assert.Equal("1 µN/m", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMeter).ToString());
+            Assert.Equal("1 µN/mm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMillimeter).ToString());
+            Assert.Equal("1 mN/cm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerCentimeter).ToString());
+            Assert.Equal("1 mN/m", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMeter).ToString());
+            Assert.Equal("1 mN/mm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMillimeter).ToString());
+            Assert.Equal("1 nN/cm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerCentimeter).ToString());
+            Assert.Equal("1 nN/m", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMeter).ToString());
+            Assert.Equal("1 nN/mm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMillimeter).ToString());
+            Assert.Equal("1 N/cm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerCentimeter).ToString());
+            Assert.Equal("1 N/m", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter).ToString());
+            Assert.Equal("1 N/mm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMillimeter).ToString());
+            Assert.Equal("1 lbf/ft", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerFoot).ToString());
+            Assert.Equal("1 lbf/in", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerInch).ToString());
+            Assert.Equal("1 lbf/yd", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerYard).ToString());
+            Assert.Equal("1 tf/cm", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerCentimeter).ToString());
+            Assert.Equal("1 tf/m", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMeter).ToString());
+            Assert.Equal("1 tf/mm", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMillimeter).ToString());
         }
 
         [Fact]
@@ -1899,19 +1892,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s1"));
-                Assert.Equal("0.12 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s2"));
-                Assert.Equal("0.123 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s1"));
+            Assert.Equal("0.12 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s2"));
+            Assert.Equal("0.123 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s4"));
         }
 
         [Fact]

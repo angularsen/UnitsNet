@@ -284,7 +284,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(IrradiationUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -430,7 +430,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Irradiation Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Irradiation, IrradiationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Irradiation, IrradiationUnit>(
                 str,
                 provider,
                 From);
@@ -461,7 +461,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Irradiation result)
         {
-            return QuantityParser.Default.TryParse<Irradiation, IrradiationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Irradiation, IrradiationUnit>(
                 str,
                 provider,
                 From,
@@ -494,7 +494,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static IrradiationUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<IrradiationUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<IrradiationUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IrradiationUnit)"/>
@@ -515,7 +515,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out IrradiationUnit unit)
         {
-            return UnitParser.Default.TryParse<IrradiationUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<IrradiationUnit>(str, provider, out unit);
         }
 
         #endregion

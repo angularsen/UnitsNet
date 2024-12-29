@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AreaUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -525,7 +525,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Area Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Area, AreaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Area, AreaUnit>(
                 str,
                 provider,
                 From);
@@ -556,7 +556,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Area result)
         {
-            return QuantityParser.Default.TryParse<Area, AreaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Area, AreaUnit>(
                 str,
                 provider,
                 From,
@@ -589,7 +589,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static AreaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<AreaUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<AreaUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AreaUnit)"/>
@@ -610,7 +610,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaUnit unit)
         {
-            return UnitParser.Default.TryParse<AreaUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<AreaUnit>(str, provider, out unit);
         }
 
         #endregion

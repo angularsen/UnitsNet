@@ -454,7 +454,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -467,15 +467,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 C/m³", new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 C/m³", new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString());
         }
 
         [Fact]
@@ -490,19 +483,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s4"));
         }
 
         [Fact]

@@ -292,7 +292,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(RadiationEquivalentDoseRateUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static RadiationEquivalentDoseRate Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(
                 str,
                 provider,
                 From);
@@ -477,7 +477,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationEquivalentDoseRate result)
         {
-            return QuantityParser.Default.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(
                 str,
                 provider,
                 From,
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static RadiationEquivalentDoseRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<RadiationEquivalentDoseRateUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<RadiationEquivalentDoseRateUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RadiationEquivalentDoseRateUnit)"/>
@@ -531,7 +531,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationEquivalentDoseRateUnit unit)
         {
-            return UnitParser.Default.TryParse<RadiationEquivalentDoseRateUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<RadiationEquivalentDoseRateUnit>(str, provider, out unit);
         }
 
         #endregion

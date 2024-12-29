@@ -683,7 +683,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RadiationEquivalentDoseUnit)).Cast<RadiationEquivalentDoseUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -696,20 +696,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 µSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Microsievert).ToString());
-                Assert.Equal("1 mrem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan).ToString());
-                Assert.Equal("1 mSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Millisievert).ToString());
-                Assert.Equal("1 nSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Nanosievert).ToString());
-                Assert.Equal("1 rem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan).ToString());
-                Assert.Equal("1 Sv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 µSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Microsievert).ToString());
+            Assert.Equal("1 mrem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan).ToString());
+            Assert.Equal("1 mSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Millisievert).ToString());
+            Assert.Equal("1 nSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Nanosievert).ToString());
+            Assert.Equal("1 rem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan).ToString());
+            Assert.Equal("1 Sv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert).ToString());
         }
 
         [Fact]
@@ -729,19 +722,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s1"));
-                Assert.Equal("0.12 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s2"));
-                Assert.Equal("0.123 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s3"));
-                Assert.Equal("0.1235 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s1"));
+            Assert.Equal("0.12 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s2"));
+            Assert.Equal("0.123 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s3"));
+            Assert.Equal("0.1235 Sv", new RadiationEquivalentDose(0.123456, RadiationEquivalentDoseUnit.Sievert).ToString("s4"));
         }
 
         [Fact]

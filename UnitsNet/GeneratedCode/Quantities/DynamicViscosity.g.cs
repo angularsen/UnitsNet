@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DynamicViscosityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static DynamicViscosity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<DynamicViscosity, DynamicViscosityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<DynamicViscosity, DynamicViscosityUnit>(
                 str,
                 provider,
                 From);
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out DynamicViscosity result)
         {
-            return QuantityParser.Default.TryParse<DynamicViscosity, DynamicViscosityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<DynamicViscosity, DynamicViscosityUnit>(
                 str,
                 provider,
                 From,
@@ -514,7 +514,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DynamicViscosityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<DynamicViscosityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<DynamicViscosityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DynamicViscosityUnit)"/>
@@ -535,7 +535,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DynamicViscosityUnit unit)
         {
-            return UnitParser.Default.TryParse<DynamicViscosityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<DynamicViscosityUnit>(str, provider, out unit);
         }
 
         #endregion

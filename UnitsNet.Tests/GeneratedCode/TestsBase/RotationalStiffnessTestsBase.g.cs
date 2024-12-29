@@ -2850,7 +2850,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RotationalStiffnessUnit)).Cast<RotationalStiffnessUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -2863,47 +2863,40 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMeterPerDegree).ToString());
-                Assert.Equal("1 cN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 cN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 daN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMeterPerDegree).ToString());
-                Assert.Equal("1 daN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 daN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 dN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMeterPerDegree).ToString());
-                Assert.Equal("1 dN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 dN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 kN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerDegree).ToString());
-                Assert.Equal("1 kN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian).ToString());
-                Assert.Equal("1 kN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 kN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString());
-                Assert.Equal("1 MN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerDegree).ToString());
-                Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString());
-                Assert.Equal("1 MN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 MN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 µN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMeterPerDegree).ToString());
-                Assert.Equal("1 µN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 µN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 mN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMeterPerDegree).ToString());
-                Assert.Equal("1 mN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 mN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 nN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMeterPerDegree).ToString());
-                Assert.Equal("1 nN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 nN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 N·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerDegree).ToString());
-                Assert.Equal("1 N·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString());
-                Assert.Equal("1 N·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMillimeterPerDegree).ToString());
-                Assert.Equal("1 N·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMillimeterPerRadian).ToString());
-                Assert.Equal("1 lbf·ft/rad", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFeetPerRadian).ToString());
-                Assert.Equal("1 lbf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFootPerDegrees).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMeterPerDegree).ToString());
+            Assert.Equal("1 cN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 cN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 daN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMeterPerDegree).ToString());
+            Assert.Equal("1 daN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 daN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 dN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMeterPerDegree).ToString());
+            Assert.Equal("1 dN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 dN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 kN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerDegree).ToString());
+            Assert.Equal("1 kN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian).ToString());
+            Assert.Equal("1 kN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 kN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString());
+            Assert.Equal("1 MN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerDegree).ToString());
+            Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString());
+            Assert.Equal("1 MN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 MN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 µN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMeterPerDegree).ToString());
+            Assert.Equal("1 µN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 µN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 mN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMeterPerDegree).ToString());
+            Assert.Equal("1 mN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 mN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 nN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMeterPerDegree).ToString());
+            Assert.Equal("1 nN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 nN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 N·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerDegree).ToString());
+            Assert.Equal("1 N·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString());
+            Assert.Equal("1 N·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMillimeterPerDegree).ToString());
+            Assert.Equal("1 N·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMillimeterPerRadian).ToString());
+            Assert.Equal("1 lbf·ft/rad", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFeetPerRadian).ToString());
+            Assert.Equal("1 lbf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFootPerDegrees).ToString());
         }
 
         [Fact]
@@ -2950,19 +2943,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s1"));
-                Assert.Equal("0.12 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s2"));
-                Assert.Equal("0.123 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s3"));
-                Assert.Equal("0.1235 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s1"));
+            Assert.Equal("0.12 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s2"));
+            Assert.Equal("0.123 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s3"));
+            Assert.Equal("0.1235 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s4"));
         }
 
         [Fact]

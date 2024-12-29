@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Reflection;
 using System.Linq;
 using UnitsNet.InternalHelpers;
@@ -35,13 +34,6 @@ namespace UnitsNet
     /// </summary>
     public sealed class UnitConverter
     {
-        /// <summary>
-        /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
-        /// as adding your own third-party units and quantities to convert between.
-        /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitConverter instead.")]
-        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
-
         /// <summary>
         /// Creates a new <see cref="UnitConverter"/> instance.
         /// </summary>
@@ -430,10 +422,10 @@ namespace UnitsNet
 
             var cultureInfo = CultureHelper.GetCultureOrInvariant(culture);
 
-            var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var fromUnit = UnitsNetSetup.Default.UnitParser.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var fromQuantity = Quantity.From(fromValue, fromUnit);
 
-            var toUnit = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            var toUnit = UnitsNetSetup.Default.UnitParser.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
             return fromQuantity.As(toUnit);
         }
 
@@ -489,10 +481,10 @@ namespace UnitsNet
 
             var cultureInfo = CultureHelper.GetCultureOrInvariant(culture);
 
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if (!UnitsNetSetup.Default.UnitParser.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum? toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            if (!UnitsNetSetup.Default.UnitParser.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum? toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
             var fromQuantity = Quantity.From(fromValue, fromUnit);

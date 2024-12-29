@@ -1528,7 +1528,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1541,40 +1541,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 bit/s", new BitRate(1, BitRateUnit.BitPerSecond).ToString());
-                Assert.Equal("1 B/s", new BitRate(1, BitRateUnit.BytePerSecond).ToString());
-                Assert.Equal("1 Ebit/s", new BitRate(1, BitRateUnit.ExabitPerSecond).ToString());
-                Assert.Equal("1 EB/s", new BitRate(1, BitRateUnit.ExabytePerSecond).ToString());
-                Assert.Equal("1 Eibit/s", new BitRate(1, BitRateUnit.ExbibitPerSecond).ToString());
-                Assert.Equal("1 EiB/s", new BitRate(1, BitRateUnit.ExbibytePerSecond).ToString());
-                Assert.Equal("1 Gibit/s", new BitRate(1, BitRateUnit.GibibitPerSecond).ToString());
-                Assert.Equal("1 GiB/s", new BitRate(1, BitRateUnit.GibibytePerSecond).ToString());
-                Assert.Equal("1 Gbit/s", new BitRate(1, BitRateUnit.GigabitPerSecond).ToString());
-                Assert.Equal("1 GB/s", new BitRate(1, BitRateUnit.GigabytePerSecond).ToString());
-                Assert.Equal("1 Kibit/s", new BitRate(1, BitRateUnit.KibibitPerSecond).ToString());
-                Assert.Equal("1 KiB/s", new BitRate(1, BitRateUnit.KibibytePerSecond).ToString());
-                Assert.Equal("1 kbit/s", new BitRate(1, BitRateUnit.KilobitPerSecond).ToString());
-                Assert.Equal("1 kB/s", new BitRate(1, BitRateUnit.KilobytePerSecond).ToString());
-                Assert.Equal("1 Mibit/s", new BitRate(1, BitRateUnit.MebibitPerSecond).ToString());
-                Assert.Equal("1 MiB/s", new BitRate(1, BitRateUnit.MebibytePerSecond).ToString());
-                Assert.Equal("1 Mbit/s", new BitRate(1, BitRateUnit.MegabitPerSecond).ToString());
-                Assert.Equal("1 MB/s", new BitRate(1, BitRateUnit.MegabytePerSecond).ToString());
-                Assert.Equal("1 Pibit/s", new BitRate(1, BitRateUnit.PebibitPerSecond).ToString());
-                Assert.Equal("1 PiB/s", new BitRate(1, BitRateUnit.PebibytePerSecond).ToString());
-                Assert.Equal("1 Pbit/s", new BitRate(1, BitRateUnit.PetabitPerSecond).ToString());
-                Assert.Equal("1 PB/s", new BitRate(1, BitRateUnit.PetabytePerSecond).ToString());
-                Assert.Equal("1 Tibit/s", new BitRate(1, BitRateUnit.TebibitPerSecond).ToString());
-                Assert.Equal("1 TiB/s", new BitRate(1, BitRateUnit.TebibytePerSecond).ToString());
-                Assert.Equal("1 Tbit/s", new BitRate(1, BitRateUnit.TerabitPerSecond).ToString());
-                Assert.Equal("1 TB/s", new BitRate(1, BitRateUnit.TerabytePerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 bit/s", new BitRate(1, BitRateUnit.BitPerSecond).ToString());
+            Assert.Equal("1 B/s", new BitRate(1, BitRateUnit.BytePerSecond).ToString());
+            Assert.Equal("1 Ebit/s", new BitRate(1, BitRateUnit.ExabitPerSecond).ToString());
+            Assert.Equal("1 EB/s", new BitRate(1, BitRateUnit.ExabytePerSecond).ToString());
+            Assert.Equal("1 Eibit/s", new BitRate(1, BitRateUnit.ExbibitPerSecond).ToString());
+            Assert.Equal("1 EiB/s", new BitRate(1, BitRateUnit.ExbibytePerSecond).ToString());
+            Assert.Equal("1 Gibit/s", new BitRate(1, BitRateUnit.GibibitPerSecond).ToString());
+            Assert.Equal("1 GiB/s", new BitRate(1, BitRateUnit.GibibytePerSecond).ToString());
+            Assert.Equal("1 Gbit/s", new BitRate(1, BitRateUnit.GigabitPerSecond).ToString());
+            Assert.Equal("1 GB/s", new BitRate(1, BitRateUnit.GigabytePerSecond).ToString());
+            Assert.Equal("1 Kibit/s", new BitRate(1, BitRateUnit.KibibitPerSecond).ToString());
+            Assert.Equal("1 KiB/s", new BitRate(1, BitRateUnit.KibibytePerSecond).ToString());
+            Assert.Equal("1 kbit/s", new BitRate(1, BitRateUnit.KilobitPerSecond).ToString());
+            Assert.Equal("1 kB/s", new BitRate(1, BitRateUnit.KilobytePerSecond).ToString());
+            Assert.Equal("1 Mibit/s", new BitRate(1, BitRateUnit.MebibitPerSecond).ToString());
+            Assert.Equal("1 MiB/s", new BitRate(1, BitRateUnit.MebibytePerSecond).ToString());
+            Assert.Equal("1 Mbit/s", new BitRate(1, BitRateUnit.MegabitPerSecond).ToString());
+            Assert.Equal("1 MB/s", new BitRate(1, BitRateUnit.MegabytePerSecond).ToString());
+            Assert.Equal("1 Pibit/s", new BitRate(1, BitRateUnit.PebibitPerSecond).ToString());
+            Assert.Equal("1 PiB/s", new BitRate(1, BitRateUnit.PebibytePerSecond).ToString());
+            Assert.Equal("1 Pbit/s", new BitRate(1, BitRateUnit.PetabitPerSecond).ToString());
+            Assert.Equal("1 PB/s", new BitRate(1, BitRateUnit.PetabytePerSecond).ToString());
+            Assert.Equal("1 Tibit/s", new BitRate(1, BitRateUnit.TebibitPerSecond).ToString());
+            Assert.Equal("1 TiB/s", new BitRate(1, BitRateUnit.TebibytePerSecond).ToString());
+            Assert.Equal("1 Tbit/s", new BitRate(1, BitRateUnit.TerabitPerSecond).ToString());
+            Assert.Equal("1 TB/s", new BitRate(1, BitRateUnit.TerabytePerSecond).ToString());
         }
 
         [Fact]
@@ -1614,19 +1607,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s1"));
-                Assert.Equal("0.12 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s2"));
-                Assert.Equal("0.123 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s1"));
+            Assert.Equal("0.12 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s2"));
+            Assert.Equal("0.123 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 bit/s", new BitRate(0.123456, BitRateUnit.BitPerSecond).ToString("s4"));
         }
 
         [Fact]

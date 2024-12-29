@@ -485,7 +485,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassFlowUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -823,7 +823,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassFlow Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassFlow, MassFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MassFlow, MassFlowUnit>(
                 str,
                 provider,
                 From);
@@ -854,7 +854,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlow result)
         {
-            return QuantityParser.Default.TryParse<MassFlow, MassFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MassFlow, MassFlowUnit>(
                 str,
                 provider,
                 From,
@@ -887,7 +887,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassFlowUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassFlowUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassFlowUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFlowUnit)"/>
@@ -908,7 +908,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlowUnit unit)
         {
-            return UnitParser.Default.TryParse<MassFlowUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassFlowUnit>(str, provider, out unit);
         }
 
         #endregion

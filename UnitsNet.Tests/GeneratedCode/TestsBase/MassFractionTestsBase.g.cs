@@ -1212,7 +1212,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1225,38 +1225,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cg/g", new MassFraction(1, MassFractionUnit.CentigramPerGram).ToString());
-                Assert.Equal("1 cg/kg", new MassFraction(1, MassFractionUnit.CentigramPerKilogram).ToString());
-                Assert.Equal("1 dag/g", new MassFraction(1, MassFractionUnit.DecagramPerGram).ToString());
-                Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString());
-                Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString());
-                Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString());
-                Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
-                Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString());
-                Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString());
-                Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString());
-                Assert.Equal("1 hg/kg", new MassFraction(1, MassFractionUnit.HectogramPerKilogram).ToString());
-                Assert.Equal("1 kg/g", new MassFraction(1, MassFractionUnit.KilogramPerGram).ToString());
-                Assert.Equal("1 kg/kg", new MassFraction(1, MassFractionUnit.KilogramPerKilogram).ToString());
-                Assert.Equal("1 µg/g", new MassFraction(1, MassFractionUnit.MicrogramPerGram).ToString());
-                Assert.Equal("1 µg/kg", new MassFraction(1, MassFractionUnit.MicrogramPerKilogram).ToString());
-                Assert.Equal("1 mg/g", new MassFraction(1, MassFractionUnit.MilligramPerGram).ToString());
-                Assert.Equal("1 mg/kg", new MassFraction(1, MassFractionUnit.MilligramPerKilogram).ToString());
-                Assert.Equal("1 ng/g", new MassFraction(1, MassFractionUnit.NanogramPerGram).ToString());
-                Assert.Equal("1 ng/kg", new MassFraction(1, MassFractionUnit.NanogramPerKilogram).ToString());
-                Assert.Equal("1 ppb", new MassFraction(1, MassFractionUnit.PartPerBillion).ToString());
-                Assert.Equal("1 ppm", new MassFraction(1, MassFractionUnit.PartPerMillion).ToString());
-                Assert.Equal("1 ‰", new MassFraction(1, MassFractionUnit.PartPerThousand).ToString());
-                Assert.Equal("1 ppt", new MassFraction(1, MassFractionUnit.PartPerTrillion).ToString());
-                Assert.Equal("1 %", new MassFraction(1, MassFractionUnit.Percent).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cg/g", new MassFraction(1, MassFractionUnit.CentigramPerGram).ToString());
+            Assert.Equal("1 cg/kg", new MassFraction(1, MassFractionUnit.CentigramPerKilogram).ToString());
+            Assert.Equal("1 dag/g", new MassFraction(1, MassFractionUnit.DecagramPerGram).ToString());
+            Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString());
+            Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString());
+            Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString());
+            Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
+            Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString());
+            Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString());
+            Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString());
+            Assert.Equal("1 hg/kg", new MassFraction(1, MassFractionUnit.HectogramPerKilogram).ToString());
+            Assert.Equal("1 kg/g", new MassFraction(1, MassFractionUnit.KilogramPerGram).ToString());
+            Assert.Equal("1 kg/kg", new MassFraction(1, MassFractionUnit.KilogramPerKilogram).ToString());
+            Assert.Equal("1 µg/g", new MassFraction(1, MassFractionUnit.MicrogramPerGram).ToString());
+            Assert.Equal("1 µg/kg", new MassFraction(1, MassFractionUnit.MicrogramPerKilogram).ToString());
+            Assert.Equal("1 mg/g", new MassFraction(1, MassFractionUnit.MilligramPerGram).ToString());
+            Assert.Equal("1 mg/kg", new MassFraction(1, MassFractionUnit.MilligramPerKilogram).ToString());
+            Assert.Equal("1 ng/g", new MassFraction(1, MassFractionUnit.NanogramPerGram).ToString());
+            Assert.Equal("1 ng/kg", new MassFraction(1, MassFractionUnit.NanogramPerKilogram).ToString());
+            Assert.Equal("1 ppb", new MassFraction(1, MassFractionUnit.PartPerBillion).ToString());
+            Assert.Equal("1 ppm", new MassFraction(1, MassFractionUnit.PartPerMillion).ToString());
+            Assert.Equal("1 ‰", new MassFraction(1, MassFractionUnit.PartPerThousand).ToString());
+            Assert.Equal("1 ppt", new MassFraction(1, MassFractionUnit.PartPerTrillion).ToString());
+            Assert.Equal("1 %", new MassFraction(1, MassFractionUnit.Percent).ToString());
         }
 
         [Fact]
@@ -1294,19 +1287,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
+            Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
+            Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
+            Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
         }
 
         [Fact]

@@ -711,7 +711,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -724,23 +724,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString());
-                Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString());
-                Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString());
-                Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString());
-                Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString());
-                Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString());
-                Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString());
-                Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString());
-                Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString());
+            Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString());
+            Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString());
+            Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString());
+            Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString());
+            Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString());
+            Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString());
+            Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString());
+            Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString());
         }
 
         [Fact]
@@ -763,19 +756,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1"));
-                Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2"));
-                Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1"));
+            Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2"));
+            Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4"));
         }
 
         [Fact]

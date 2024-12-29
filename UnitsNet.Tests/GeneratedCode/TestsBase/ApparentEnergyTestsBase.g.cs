@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -532,17 +532,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kVAh", new ApparentEnergy(1, ApparentEnergyUnit.KilovoltampereHour).ToString());
-                Assert.Equal("1 MVAh", new ApparentEnergy(1, ApparentEnergyUnit.MegavoltampereHour).ToString());
-                Assert.Equal("1 VAh", new ApparentEnergy(1, ApparentEnergyUnit.VoltampereHour).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kVAh", new ApparentEnergy(1, ApparentEnergyUnit.KilovoltampereHour).ToString());
+            Assert.Equal("1 MVAh", new ApparentEnergy(1, ApparentEnergyUnit.MegavoltampereHour).ToString());
+            Assert.Equal("1 VAh", new ApparentEnergy(1, ApparentEnergyUnit.VoltampereHour).ToString());
         }
 
         [Fact]
@@ -559,19 +552,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s1"));
-                Assert.Equal("0.12 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s2"));
-                Assert.Equal("0.123 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s3"));
-                Assert.Equal("0.1235 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s1"));
+            Assert.Equal("0.12 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s2"));
+            Assert.Equal("0.123 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s3"));
+            Assert.Equal("0.1235 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s4"));
         }
 
         [Fact]

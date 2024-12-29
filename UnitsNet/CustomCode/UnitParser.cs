@@ -13,28 +13,21 @@ namespace UnitsNet
 {
     /// <summary>
     ///     Parses units given a unit abbreviations cache.
-    ///     The static instance <see cref="Default"/> is used internally to parse quantities and units using the
-    ///     default abbreviations cache for all units and abbreviations defined in the library.
+    ///     A static instance <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitParser"/> is used internally
+    ///     to parse quantities and units using the default abbreviations cache for all units and abbreviations defined in the library.
     /// </summary>
     public sealed class UnitParser
     {
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
         /// <summary>
-        ///     The default static instance used internally to parse quantities and units using the
-        ///     default abbreviations cache for all units and abbreviations defined in the library.
-        /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
-        public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
-
-        /// <summary>
         ///     Create a parser using the given unit abbreviations cache.
         /// </summary>
-        /// <param name="unitAbbreviationsCache"></param>
-        // TODO Change this to not fallback to built-in units abbreviations when given null, in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
+        /// <param name="unitAbbreviationsCache">The unit abbreviations to parse with.</param>
+        /// <exception cref="ArgumentNullException">No unit abbreviations cache was given.</exception>
+        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? throw new ArgumentNullException(nameof(unitAbbreviationsCache));
         }
 
         /// <summary>

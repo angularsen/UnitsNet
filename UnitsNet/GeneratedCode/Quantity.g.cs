@@ -458,7 +458,7 @@ namespace UnitsNet
             if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
-            var parser = QuantityParser.Default;
+            var parser = UnitsNetSetup.Default.QuantityParser;
 
             return quantityType switch
             {

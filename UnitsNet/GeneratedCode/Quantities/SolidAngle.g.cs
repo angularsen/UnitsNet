@@ -220,7 +220,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(SolidAngleUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -302,7 +302,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static SolidAngle Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SolidAngle, SolidAngleUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<SolidAngle, SolidAngleUnit>(
                 str,
                 provider,
                 From);
@@ -333,7 +333,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SolidAngle result)
         {
-            return QuantityParser.Default.TryParse<SolidAngle, SolidAngleUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<SolidAngle, SolidAngleUnit>(
                 str,
                 provider,
                 From,
@@ -366,7 +366,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static SolidAngleUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<SolidAngleUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<SolidAngleUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SolidAngleUnit)"/>
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SolidAngleUnit unit)
         {
-            return UnitParser.Default.TryParse<SolidAngleUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<SolidAngleUnit>(str, provider, out unit);
         }
 
         #endregion

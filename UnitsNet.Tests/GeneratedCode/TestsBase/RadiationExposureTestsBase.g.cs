@@ -679,7 +679,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RadiationExposureUnit)).Cast<RadiationExposureUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -692,22 +692,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 C/kg", new RadiationExposure(1, RadiationExposureUnit.CoulombPerKilogram).ToString());
-                Assert.Equal("1 µC/kg", new RadiationExposure(1, RadiationExposureUnit.MicrocoulombPerKilogram).ToString());
-                Assert.Equal("1 µR", new RadiationExposure(1, RadiationExposureUnit.Microroentgen).ToString());
-                Assert.Equal("1 mC/kg", new RadiationExposure(1, RadiationExposureUnit.MillicoulombPerKilogram).ToString());
-                Assert.Equal("1 mR", new RadiationExposure(1, RadiationExposureUnit.Milliroentgen).ToString());
-                Assert.Equal("1 nC/kg", new RadiationExposure(1, RadiationExposureUnit.NanocoulombPerKilogram).ToString());
-                Assert.Equal("1 pC/kg", new RadiationExposure(1, RadiationExposureUnit.PicocoulombPerKilogram).ToString());
-                Assert.Equal("1 R", new RadiationExposure(1, RadiationExposureUnit.Roentgen).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 C/kg", new RadiationExposure(1, RadiationExposureUnit.CoulombPerKilogram).ToString());
+            Assert.Equal("1 µC/kg", new RadiationExposure(1, RadiationExposureUnit.MicrocoulombPerKilogram).ToString());
+            Assert.Equal("1 µR", new RadiationExposure(1, RadiationExposureUnit.Microroentgen).ToString());
+            Assert.Equal("1 mC/kg", new RadiationExposure(1, RadiationExposureUnit.MillicoulombPerKilogram).ToString());
+            Assert.Equal("1 mR", new RadiationExposure(1, RadiationExposureUnit.Milliroentgen).ToString());
+            Assert.Equal("1 nC/kg", new RadiationExposure(1, RadiationExposureUnit.NanocoulombPerKilogram).ToString());
+            Assert.Equal("1 pC/kg", new RadiationExposure(1, RadiationExposureUnit.PicocoulombPerKilogram).ToString());
+            Assert.Equal("1 R", new RadiationExposure(1, RadiationExposureUnit.Roentgen).ToString());
         }
 
         [Fact]
@@ -729,19 +722,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s1"));
-                Assert.Equal("0.12 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s2"));
-                Assert.Equal("0.123 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s3"));
-                Assert.Equal("0.1235 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s1"));
+            Assert.Equal("0.12 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s2"));
+            Assert.Equal("0.123 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s3"));
+            Assert.Equal("0.1235 C/kg", new RadiationExposure(0.123456, RadiationExposureUnit.CoulombPerKilogram).ToString("s4"));
         }
 
         [Fact]
