@@ -20,10 +20,11 @@ namespace UnitsNet
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
         /// <summary>
-        ///     The default static instance used internally to parse quantities and units using the
-        ///     default abbreviations cache for all units and abbreviations defined in the library.
+        ///     The default singleton instance for parsing units from the default configured unit abbreviations.
         /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitParser"/>.
+        /// </remarks>
         public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
