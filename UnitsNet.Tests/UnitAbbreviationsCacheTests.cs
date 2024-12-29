@@ -404,23 +404,6 @@ namespace UnitsNet.Tests
             Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
 
-        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
-        [Fact]
-        public void MapAndLookup_WithEnumType()
-        {
-            Enum valueAsEnumType = HowMuchUnit.Some;
-            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
-            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(valueAsEnumType));
-        }
-
-        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
-        [Fact]
-        public void MapAndLookup_MapWithSpecificEnumType_LookupWithEnumType()
-        {
-            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
-        }
-
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
         /// </summary>

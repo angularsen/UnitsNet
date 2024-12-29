@@ -37,7 +37,7 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string DefaultAbbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(_quantity.Unit);
+        public string DefaultAbbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(_quantity.Unit.GetType(), Convert.ToInt32(_quantity.Unit));
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public string[] Abbreviations =>
@@ -55,7 +55,7 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
             public IQuantity Quantity => baseQuantity.ToUnit(Unit);
 
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Unit);
+            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Unit.GetType(), Convert.ToInt32(Unit));
 
             public override string ToString()
             {
@@ -129,7 +129,7 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         internal readonly struct ConvertedQuantity(IQuantity quantity)
         {
             public Enum Unit => Quantity.Unit;
-            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Quantity.Unit);
+            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Quantity.Unit.GetType(), Convert.ToInt32(Quantity.Unit));
             public ValueDisplay Value => new(Quantity);
             public IQuantity Quantity { get; } = quantity;
 

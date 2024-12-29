@@ -63,7 +63,7 @@ public class QuantityFormatter
     /// <returns>The string representation.</returns>
     /// <exception cref="FormatException">Thrown when the format specifier is invalid.</exception>
     public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         return Format(quantity, format, CultureInfo.CurrentCulture);
     }
@@ -124,13 +124,13 @@ public class QuantityFormatter
     /// <returns>The string representation.</returns>
     /// <exception cref="FormatException">Thrown when the format specifier is invalid.</exception>
     public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
     }
 
     private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         formatProvider ??= CultureInfo.CurrentCulture;
         if (format is null)
@@ -208,14 +208,14 @@ public class QuantityFormatter
     }
 
     private static string FormatWithValueAndAbbreviation<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
         return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviation);
     }
 
     private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number)
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         var formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value, number);
         var formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value, formatProvider, []);
