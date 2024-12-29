@@ -38,6 +38,10 @@ namespace UnitsNet
     /// <summary>
     ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
+    /// <remarks>
+    ///     <c>ElectricPotentialAc</c> has been merged into <c>ElectricPotential</c>, and will be removed in a later major version. If you want to map more parameters into the <c>ElectricPotential</c> class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.
+    /// </remarks>
+    [Obsolete("ElectricPotentialAc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotentialAc :

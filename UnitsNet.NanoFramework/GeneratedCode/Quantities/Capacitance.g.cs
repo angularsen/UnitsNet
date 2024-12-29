@@ -27,8 +27,9 @@ namespace UnitsNet
     ///     Capacitance is the ability of a body to store an electric charge.
     /// </summary>
     /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Capacitance
+    ///     <c>Capacitance</c> has been renamed to <c>ElectricCapacitance</c>, and will be removed in a later major version.
     /// </remarks>
+    [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
     public struct  Capacitance
     {
         /// <summary>

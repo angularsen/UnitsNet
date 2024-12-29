@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
     /// <summary>
     /// A number to ReactiveEnergy Extensions
     /// </summary>
+    [Obsolete("ReactiveEnergy has been renamed to ElectricReactiveEnergy, and will be removed in a later major version.")]
     public static class NumberToReactiveEnergyExtensions
     {
         /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(double)" />
+        [Obsolete("ReactiveEnergy has been renamed to ElectricReactiveEnergy, and will be removed in a later major version.")]
         public static ReactiveEnergy KilovoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
             => ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
+        [Obsolete("ReactiveEnergy has been renamed to ElectricReactiveEnergy, and will be removed in a later major version.")]
         public static ReactiveEnergy MegavoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
             => ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(double)" />
+        [Obsolete("ReactiveEnergy has been renamed to ElectricReactiveEnergy, and will be removed in a later major version.")]
         public static ReactiveEnergy VoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

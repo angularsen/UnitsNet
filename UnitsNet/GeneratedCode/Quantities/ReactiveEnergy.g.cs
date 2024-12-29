@@ -38,6 +38,10 @@ namespace UnitsNet
     /// <summary>
     ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
+    /// <remarks>
+    ///     <c>ReactiveEnergy</c> has been renamed to <c>ElectricReactiveEnergy</c>, and will be removed in a later major version.
+    /// </remarks>
+    [Obsolete("ReactiveEnergy has been renamed to ElectricReactiveEnergy, and will be removed in a later major version.")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ReactiveEnergy :
@@ -66,7 +70,7 @@ namespace UnitsNet
 
         static ReactiveEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             BaseUnit = ReactiveEnergyUnit.VoltampereReactiveHour;
             Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().ToArray();
             Zero = new ReactiveEnergy(0, BaseUnit);

@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
     /// <summary>
     /// A number to ApparentPower Extensions
     /// </summary>
+    [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
     public static class NumberToApparentPowerExtensions
     {
         /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Gigavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
             => ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Kilovoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
             => ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Megavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -57,6 +61,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
             => ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMicrovoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Microvoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -65,6 +70,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
             => ApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMillivoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Millivoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -73,6 +79,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
             => ApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromVoltamperes(double)" />
+        [Obsolete("ApparentPower has been renamed to ElectricApparentPower, and will be removed in a later major version.")]
         public static ApparentPower Voltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

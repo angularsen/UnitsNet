@@ -24,8 +24,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
+    ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow by the combined effect of conductance and susceptance in a circuit. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Electrical_admittance
+    /// </remarks>
+    [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
     public struct  ElectricAdmittance
     {
         /// <summary>
@@ -79,14 +83,64 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigamho"/>
+        /// </summary>
+        public double Gigamhos => As(ElectricAdmittanceUnit.Gigamho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigasiemens"/>
+        /// </summary>
+        public double Gigasiemens => As(ElectricAdmittanceUnit.Gigasiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilomho"/>
+        /// </summary>
+        public double Kilomhos => As(ElectricAdmittanceUnit.Kilomho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilosiemens"/>
+        /// </summary>
+        public double Kilosiemens => As(ElectricAdmittanceUnit.Kilosiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megamho"/>
+        /// </summary>
+        public double Megamhos => As(ElectricAdmittanceUnit.Megamho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megasiemens"/>
+        /// </summary>
+        public double Megasiemens => As(ElectricAdmittanceUnit.Megasiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Mho"/>
+        /// </summary>
+        public double Mhos => As(ElectricAdmittanceUnit.Mho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Micromho"/>
+        /// </summary>
+        public double Micromhos => As(ElectricAdmittanceUnit.Micromho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millimho"/>
+        /// </summary>
+        public double Millimhos => As(ElectricAdmittanceUnit.Millimho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanomho"/>
+        /// </summary>
+        public double Nanomhos => As(ElectricAdmittanceUnit.Nanomho);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
@@ -98,9 +152,59 @@ namespace UnitsNet
         /// </summary>
         public double Siemens => As(ElectricAdmittanceUnit.Siemens);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Teramho"/>
+        /// </summary>
+        public double Teramhos => As(ElectricAdmittanceUnit.Teramho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Terasiemens"/>
+        /// </summary>
+        public double Terasiemens => As(ElectricAdmittanceUnit.Terasiemens);
+
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Gigamho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromGigamhos(double gigamhos) => new ElectricAdmittance(gigamhos, ElectricAdmittanceUnit.Gigamho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Gigasiemens"/>.
+        /// </summary>
+        public static ElectricAdmittance FromGigasiemens(double gigasiemens) => new ElectricAdmittance(gigasiemens, ElectricAdmittanceUnit.Gigasiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Kilomho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromKilomhos(double kilomhos) => new ElectricAdmittance(kilomhos, ElectricAdmittanceUnit.Kilomho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Kilosiemens"/>.
+        /// </summary>
+        public static ElectricAdmittance FromKilosiemens(double kilosiemens) => new ElectricAdmittance(kilosiemens, ElectricAdmittanceUnit.Kilosiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Megamho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromMegamhos(double megamhos) => new ElectricAdmittance(megamhos, ElectricAdmittanceUnit.Megamho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Megasiemens"/>.
+        /// </summary>
+        public static ElectricAdmittance FromMegasiemens(double megasiemens) => new ElectricAdmittance(megasiemens, ElectricAdmittanceUnit.Megasiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Mho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromMhos(double mhos) => new ElectricAdmittance(mhos, ElectricAdmittanceUnit.Mho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Micromho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromMicromhos(double micromhos) => new ElectricAdmittance(micromhos, ElectricAdmittanceUnit.Micromho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
@@ -108,9 +212,19 @@ namespace UnitsNet
         public static ElectricAdmittance FromMicrosiemens(double microsiemens) => new ElectricAdmittance(microsiemens, ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millimho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromMillimhos(double millimhos) => new ElectricAdmittance(millimhos, ElectricAdmittanceUnit.Millimho);
+
+        /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
         public static ElectricAdmittance FromMillisiemens(double millisiemens) => new ElectricAdmittance(millisiemens, ElectricAdmittanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanomho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromNanomhos(double nanomhos) => new ElectricAdmittance(nanomhos, ElectricAdmittanceUnit.Nanomho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
@@ -121,6 +235,16 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
         public static ElectricAdmittance FromSiemens(double siemens) => new ElectricAdmittance(siemens, ElectricAdmittanceUnit.Siemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Teramho"/>.
+        /// </summary>
+        public static ElectricAdmittance FromTeramhos(double teramhos) => new ElectricAdmittance(teramhos, ElectricAdmittanceUnit.Teramho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Terasiemens"/>.
+        /// </summary>
+        public static ElectricAdmittance FromTerasiemens(double terasiemens) => new ElectricAdmittance(terasiemens, ElectricAdmittanceUnit.Terasiemens);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
@@ -162,10 +286,22 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        ElectricAdmittanceUnit.Gigamho => (_value) * 1e9d,
+                        ElectricAdmittanceUnit.Gigasiemens => (_value) * 1e9d,
+                        ElectricAdmittanceUnit.Kilomho => (_value) * 1e3d,
+                        ElectricAdmittanceUnit.Kilosiemens => (_value) * 1e3d,
+                        ElectricAdmittanceUnit.Megamho => (_value) * 1e6d,
+                        ElectricAdmittanceUnit.Megasiemens => (_value) * 1e6d,
+                        ElectricAdmittanceUnit.Mho => _value,
+                        ElectricAdmittanceUnit.Micromho => (_value) * 1e-6d,
                         ElectricAdmittanceUnit.Microsiemens => (_value) * 1e-6d,
+                        ElectricAdmittanceUnit.Millimho => (_value) * 1e-3d,
                         ElectricAdmittanceUnit.Millisiemens => (_value) * 1e-3d,
+                        ElectricAdmittanceUnit.Nanomho => (_value) * 1e-9d,
                         ElectricAdmittanceUnit.Nanosiemens => (_value) * 1e-9d,
                         ElectricAdmittanceUnit.Siemens => _value,
+                        ElectricAdmittanceUnit.Teramho => (_value) * 1e12d,
+                        ElectricAdmittanceUnit.Terasiemens => (_value) * 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -179,10 +315,22 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        ElectricAdmittanceUnit.Gigamho => (baseUnitValue) / 1e9d,
+                        ElectricAdmittanceUnit.Gigasiemens => (baseUnitValue) / 1e9d,
+                        ElectricAdmittanceUnit.Kilomho => (baseUnitValue) / 1e3d,
+                        ElectricAdmittanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
+                        ElectricAdmittanceUnit.Megamho => (baseUnitValue) / 1e6d,
+                        ElectricAdmittanceUnit.Megasiemens => (baseUnitValue) / 1e6d,
+                        ElectricAdmittanceUnit.Mho => baseUnitValue,
+                        ElectricAdmittanceUnit.Micromho => (baseUnitValue) / 1e-6d,
                         ElectricAdmittanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                        ElectricAdmittanceUnit.Millimho => (baseUnitValue) / 1e-3d,
                         ElectricAdmittanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                        ElectricAdmittanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
                         ElectricAdmittanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
                         ElectricAdmittanceUnit.Siemens => baseUnitValue,
+                        ElectricAdmittanceUnit.Teramho => (baseUnitValue) / 1e12d,
+                        ElectricAdmittanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

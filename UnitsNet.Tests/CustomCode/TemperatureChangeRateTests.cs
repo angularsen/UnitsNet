@@ -29,6 +29,22 @@ namespace UnitsNet.Tests
 
         protected override double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond => 60;
 
+        protected override double DegreesKelvinPerMinuteInOneDegreeCelsiusPerSecond => 60;
+
+        protected override double DegreesFahrenheitPerHourInOneDegreeCelsiusPerSecond => 6480;
+
+        protected override double DegreesFahrenheitPerMinuteInOneDegreeCelsiusPerSecond => 108;
+
+        protected override double DegreesFahrenheitPerSecondInOneDegreeCelsiusPerSecond => 1.8;
+
+        protected override double DegreesKelvinPerHourInOneDegreeCelsiusPerSecond => 3600;
+
+        protected override double DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond => 1;
+
+        protected override double DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond => 3600;
+
+
+
         [Fact]
         public void TemperatureChangeRateMultipliedWithTimeSpanEqualsTemperatureDelta()
         {

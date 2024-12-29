@@ -1,8 +1,15 @@
 CentidegreesCelsiusPerSecond=c°C/s
 DecadegreesCelsiusPerSecond=da°C/s
 DecidegreesCelsiusPerSecond=d°C/s
+DegreesCelsiusPerHour=°C/h
 DegreesCelsiusPerMinute=°C/min
 DegreesCelsiusPerSecond=°C/s
+DegreesFahrenheitPerHour=°F/h
+DegreesFahrenheitPerMinute=°F/min
+DegreesFahrenheitPerSecond=°F/s
+DegreesKelvinPerHour=K/h
+DegreesKelvinPerMinute=K/min
+DegreesKelvinPerSecond=K/s
 HectodegreesCelsiusPerSecond=h°C/s
 KilodegreesCelsiusPerSecond=k°C/s
 MicrodegreesCelsiusPerSecond=µ°C/s

@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
     /// <summary>
     /// A number to ApparentEnergy Extensions
     /// </summary>
+    [Obsolete("ApparentEnergy has been renamed to ElectricApparentEnergy, and will be removed in a later major version.")]
     public static class NumberToApparentEnergyExtensions
     {
         /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)" />
+        [Obsolete("ApparentEnergy has been renamed to ElectricApparentEnergy, and will be removed in a later major version.")]
         public static ApparentEnergy KilovoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
             => ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)" />
+        [Obsolete("ApparentEnergy has been renamed to ElectricApparentEnergy, and will be removed in a later major version.")]
         public static ApparentEnergy MegavoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
             => ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)" />
+        [Obsolete("ApparentEnergy has been renamed to ElectricApparentEnergy, and will be removed in a later major version.")]
         public static ApparentEnergy VoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
