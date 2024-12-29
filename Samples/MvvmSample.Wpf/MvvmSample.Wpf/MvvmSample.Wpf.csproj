@@ -8,12 +8,8 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <!-- managing these dependencies is a nightmare   -->
-    <!-- note: there also seem to be breaking changes in the later versions: was getting an InvalidOperationException while trying to access ServiceLocator.Current -->
-    <PackageReference Include="CommonServiceLocator" OverrideVersion="2.0.4"/>
-    <PackageReference Include="Prism.Unity" OverrideVersion="7.1.0.431" />
-    <PackageReference Include="Prism.Wpf" OverrideVersion="7.1.0.431"/>
-    <PackageReference Include="Unity.Container" OverrideVersion="5.8.11"/>
+    <PackageReference Include="Prism.Unity" />
+    <PackageReference Include="Prism.Wpf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />

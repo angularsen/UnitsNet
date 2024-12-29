@@ -5,11 +5,9 @@
   <ItemGroup>
     <PackageVersion Include="UnitsNet" Version="5.65.0" />
     <PackageVersion Include="MahApps.Metro" Version="2.4.10" />
-    <PackageVersion Include="CommonServiceLocator" Version="2.0.4" />
     <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.106" />
-    <PackageVersion Include="Prism.Unity" Version="7.1.0.431" />
-    <PackageVersion Include="Prism.Wpf" Version="7.1.0.431" />
+    <PackageVersion Include="Prism.Unity" Version="9.0.537" />
+    <PackageVersion Include="Prism.Wpf" Version="9.0.537" />
     <PackageVersion Include="Unity.Abstractions" Version="5.11.7" />
-    <PackageVersion Include="Unity.Container" Version="5.8.11" />
   </ItemGroup>
 </Project>
