@@ -35,6 +35,15 @@ namespace UnitsNet
     public sealed class UnitConverter
     {
         /// <summary>
+        ///     The default singleton instance for converting values from one unit to another.<br />
+        ///     Modify this to add/remove conversion functions at runtime, such as adding your own third-party units and quantities to convert between.
+        /// </summary>
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitConverter"/>.
+        /// </remarks>
+        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
+
+        /// <summary>
         /// Creates a new <see cref="UnitConverter"/> instance.
         /// </summary>
         public UnitConverter()

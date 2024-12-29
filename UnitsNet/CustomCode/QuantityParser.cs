@@ -35,6 +35,14 @@ namespace UnitsNet
         private readonly UnitParser _unitParser;
 
         /// <summary>
+        ///     The default singleton instance for parsing quantities.
+        /// </summary>
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.QuantityParser"/>.
+        /// </remarks>
+        public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
+
+        /// <summary>
         ///     Creates an instance of <see cref="QuantityParser"/>, optionally specifying an <see cref="UnitAbbreviationsCache"/>
         ///     with unit abbreviations to use when parsing.
         /// </summary>
