@@ -31,6 +31,15 @@ namespace UnitsNet
         /// </example>
         internal static readonly CultureInfo FallbackCulture = CultureInfo.InvariantCulture;
 
+        /// <summary>
+        ///     The default singleton instance with the default configured unit abbreviations, used for ToString() and parsing of quantities and units.
+        /// </summary>
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitAbbreviations"/>.<br />
+        ///     You can add custom unit abbreviations at runtime, and this will affect all usages globally in the application.
+        /// </remarks>
+        public static UnitAbbreviationsCache Default => UnitsNetSetup.Default.UnitAbbreviations;
+
         private QuantityInfoLookup QuantityInfoLookup { get; }
 
         /// <summary>
