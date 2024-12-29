@@ -16,7 +16,7 @@ namespace WpfMVVMSample
 
         protected override Window CreateShell()
         {
-            return new MainWindow();
+            return Container.Resolve<MainWindow>();
         }
     }
 }

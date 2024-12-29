@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
-using CommonServiceLocator;
+using Prism.Ioc;
 using UnitsNet;
 using WpfMVVMSample.Settings;
 
@@ -22,7 +22,7 @@ namespace WpfMVVMSample.Converters
         {
             if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
-                _settings = ServiceLocator.Current.GetInstance<SettingsManager>();
+                _settings = Prism.Ioc.ContainerLocator.Container.Resolve<SettingsManager>();
             }
         }
 
