@@ -32,6 +32,11 @@ internal static class QuantityInfoExtensions
             throw new ArgumentNullException(nameof(unitSystem));
         }
 
+        if (quantityInfo.BaseDimensions.IsDimensionless())
+        {
+            return quantityInfo.BaseUnitInfo.Value;
+        }
+
         IEnumerable<UnitInfo<TUnit>> unitInfos = quantityInfo.GetUnitInfosFor(unitSystem.BaseUnits);
 
         UnitInfo<TUnit>? firstUnitInfo = unitInfos.FirstOrDefault();

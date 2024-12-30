@@ -58,4 +58,14 @@ public class QuantityInfoExtensionsTest
         // Assert
         Assert.Equal(VolumeUnit.CubicDecimeter, defaultUnit);
     }
+
+    [Fact]
+    public void GetDefaultUnit_ReturnsTheBaseUnit_WhenGivenADimensionlessQuantity()
+    {
+        Assert.Multiple(
+            () => Assert.Equal(RatioUnit.DecimalFraction, Ratio.Info.GetDefaultUnit(UnitSystem.SI)),
+            () => Assert.Equal(MassFractionUnit.DecimalFraction, MassFraction.Info.GetDefaultUnit(UnitSystem.SI)),
+            () => Assert.Equal(AngleUnit.Radian, Angle.Info.GetDefaultUnit(UnitSystem.SI)),
+            () => Assert.Equal(SolidAngleUnit.Steradian, SolidAngle.Info.GetDefaultUnit(UnitSystem.SI)));
+    }
 }

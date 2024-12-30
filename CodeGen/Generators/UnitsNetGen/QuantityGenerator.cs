@@ -996,19 +996,7 @@ namespace UnitsNet
         }}
 ");
 
-            Writer.WL(_isDimensionless
-                ? $@"
-
-        /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public double As(UnitSystem unitSystem)
-        {{
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            return As(BaseUnit);
-        }}
-"
-                : $@"
+            Writer.WL( $@"
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
         public double As(UnitSystem unitSystem)
@@ -1114,18 +1102,7 @@ namespace UnitsNet
             return true;
         }}
 ");
-            Writer.WL(_isDimensionless
-                ? $@"
-        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
-        {{
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            return ToUnit(BaseUnit);
-        }}
-"
-                : $@"
+            Writer.WL($@"
         /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
         public {_quantity.Name} ToUnit(UnitSystem unitSystem)
         {{
