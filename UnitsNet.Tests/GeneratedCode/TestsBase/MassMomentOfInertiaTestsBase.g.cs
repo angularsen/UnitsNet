@@ -1414,7 +1414,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1427,42 +1427,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 g·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareCentimeter).ToString());
-                Assert.Equal("1 g·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareDecimeter).ToString());
-                Assert.Equal("1 g·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMeter).ToString());
-                Assert.Equal("1 g·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMillimeter).ToString());
-                Assert.Equal("1 kg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareCentimeter).ToString());
-                Assert.Equal("1 kg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter).ToString());
-                Assert.Equal("1 kg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString());
-                Assert.Equal("1 kg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter).ToString());
-                Assert.Equal("1 kt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter).ToString());
-                Assert.Equal("1 kt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter).ToString());
-                Assert.Equal("1 kt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMeter).ToString());
-                Assert.Equal("1 kt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMilimeter).ToString());
-                Assert.Equal("1 Mt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter).ToString());
-                Assert.Equal("1 Mt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter).ToString());
-                Assert.Equal("1 Mt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMeter).ToString());
-                Assert.Equal("1 Mt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMilimeter).ToString());
-                Assert.Equal("1 mg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter).ToString());
-                Assert.Equal("1 mg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter).ToString());
-                Assert.Equal("1 mg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMeter).ToString());
-                Assert.Equal("1 mg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter).ToString());
-                Assert.Equal("1 lb·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareFoot).ToString());
-                Assert.Equal("1 lb·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareInch).ToString());
-                Assert.Equal("1 slug·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareFoot).ToString());
-                Assert.Equal("1 slug·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareInch).ToString());
-                Assert.Equal("1 t·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareCentimeter).ToString());
-                Assert.Equal("1 t·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).ToString());
-                Assert.Equal("1 t·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMeter).ToString());
-                Assert.Equal("1 t·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMilimeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 g·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareCentimeter).ToString());
+            Assert.Equal("1 g·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareDecimeter).ToString());
+            Assert.Equal("1 g·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMeter).ToString());
+            Assert.Equal("1 g·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMillimeter).ToString());
+            Assert.Equal("1 kg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareCentimeter).ToString());
+            Assert.Equal("1 kg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter).ToString());
+            Assert.Equal("1 kg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString());
+            Assert.Equal("1 kg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter).ToString());
+            Assert.Equal("1 kt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter).ToString());
+            Assert.Equal("1 kt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter).ToString());
+            Assert.Equal("1 kt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMeter).ToString());
+            Assert.Equal("1 kt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMilimeter).ToString());
+            Assert.Equal("1 Mt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter).ToString());
+            Assert.Equal("1 Mt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter).ToString());
+            Assert.Equal("1 Mt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMeter).ToString());
+            Assert.Equal("1 Mt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMilimeter).ToString());
+            Assert.Equal("1 mg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter).ToString());
+            Assert.Equal("1 mg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter).ToString());
+            Assert.Equal("1 mg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMeter).ToString());
+            Assert.Equal("1 mg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter).ToString());
+            Assert.Equal("1 lb·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareFoot).ToString());
+            Assert.Equal("1 lb·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareInch).ToString());
+            Assert.Equal("1 slug·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareFoot).ToString());
+            Assert.Equal("1 slug·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareInch).ToString());
+            Assert.Equal("1 t·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareCentimeter).ToString());
+            Assert.Equal("1 t·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).ToString());
+            Assert.Equal("1 t·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMeter).ToString());
+            Assert.Equal("1 t·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMilimeter).ToString());
         }
 
         [Fact]
@@ -1504,19 +1497,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s4"));
         }
 
         [Fact]

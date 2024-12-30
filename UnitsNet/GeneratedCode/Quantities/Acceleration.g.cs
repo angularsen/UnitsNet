@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AccelerationUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -509,7 +509,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Acceleration Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Acceleration, AccelerationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Acceleration, AccelerationUnit>(
                 str,
                 provider,
                 From);
@@ -540,7 +540,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Acceleration result)
         {
-            return QuantityParser.Default.TryParse<Acceleration, AccelerationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Acceleration, AccelerationUnit>(
                 str,
                 provider,
                 From,
@@ -573,7 +573,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static AccelerationUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<AccelerationUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<AccelerationUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AccelerationUnit)"/>
@@ -594,7 +594,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AccelerationUnit unit)
         {
-            return UnitParser.Default.TryParse<AccelerationUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<AccelerationUnit>(str, provider, out unit);
         }
 
         #endregion

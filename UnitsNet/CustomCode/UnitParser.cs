@@ -21,20 +21,21 @@ namespace UnitsNet
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
         /// <summary>
-        ///     The default static instance used internally to parse quantities and units using the
-        ///     default abbreviations cache for all units and abbreviations defined in the library.
+        ///     The default singleton instance for parsing units from the default configured unit abbreviations.
         /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitParser"/>.
+        /// </remarks>
         public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
         ///     Create a parser using the given unit abbreviations cache.
         /// </summary>
-        /// <param name="unitAbbreviationsCache"></param>
-        // TODO Change this to not fallback to built-in units abbreviations when given null, in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
+        /// <param name="unitAbbreviationsCache">The unit abbreviations to parse with.</param>
+        /// <exception cref="ArgumentNullException">No unit abbreviations cache was given.</exception>
+        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? throw new ArgumentNullException(nameof(unitAbbreviationsCache));
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
         public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
         }
@@ -205,7 +206,7 @@ namespace UnitsNet
             {
                 return false;
             }
-        
+
             unit = matches[0].Unit;
             return true;
         }

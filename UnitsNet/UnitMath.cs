@@ -31,7 +31,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Sum<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Sum(x => x.As(unitType)), unitType);
@@ -55,7 +55,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Sum<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Sum(unitType);
@@ -83,7 +83,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Min<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Min(x => x.As(unitType)), unitType);
@@ -108,7 +108,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Min<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Min(unitType);
@@ -136,7 +136,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Max<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Max(x => x.As(unitType)), unitType);
@@ -161,7 +161,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Max<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Max(unitType);
@@ -179,7 +179,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Average<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Average(x => x.As(unitType)), unitType);
@@ -204,7 +204,7 @@ namespace UnitsNet
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
         public static TQuantity Average<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
             where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Average(unitType);

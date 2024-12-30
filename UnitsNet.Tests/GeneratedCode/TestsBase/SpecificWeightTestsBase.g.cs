@@ -1062,7 +1062,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1075,31 +1075,24 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kgf/cm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).ToString());
-                Assert.Equal("1 kgf/m³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMeter).ToString());
-                Assert.Equal("1 kgf/mm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).ToString());
-                Assert.Equal("1 kN/cm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).ToString());
-                Assert.Equal("1 kN/m³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMeter).ToString());
-                Assert.Equal("1 kN/mm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).ToString());
-                Assert.Equal("1 kipf/ft³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).ToString());
-                Assert.Equal("1 kipf/in³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicInch).ToString());
-                Assert.Equal("1 MN/m³", new SpecificWeight(1, SpecificWeightUnit.MeganewtonPerCubicMeter).ToString());
-                Assert.Equal("1 N/cm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicCentimeter).ToString());
-                Assert.Equal("1 N/m³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter).ToString());
-                Assert.Equal("1 N/mm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMillimeter).ToString());
-                Assert.Equal("1 lbf/ft³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicFoot).ToString());
-                Assert.Equal("1 lbf/in³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicInch).ToString());
-                Assert.Equal("1 tf/cm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).ToString());
-                Assert.Equal("1 tf/m³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMeter).ToString());
-                Assert.Equal("1 tf/mm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kgf/cm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).ToString());
+            Assert.Equal("1 kgf/m³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMeter).ToString());
+            Assert.Equal("1 kgf/mm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).ToString());
+            Assert.Equal("1 kN/cm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).ToString());
+            Assert.Equal("1 kN/m³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMeter).ToString());
+            Assert.Equal("1 kN/mm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).ToString());
+            Assert.Equal("1 kipf/ft³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).ToString());
+            Assert.Equal("1 kipf/in³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicInch).ToString());
+            Assert.Equal("1 MN/m³", new SpecificWeight(1, SpecificWeightUnit.MeganewtonPerCubicMeter).ToString());
+            Assert.Equal("1 N/cm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicCentimeter).ToString());
+            Assert.Equal("1 N/m³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter).ToString());
+            Assert.Equal("1 N/mm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMillimeter).ToString());
+            Assert.Equal("1 lbf/ft³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicFoot).ToString());
+            Assert.Equal("1 lbf/in³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicInch).ToString());
+            Assert.Equal("1 tf/cm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).ToString());
+            Assert.Equal("1 tf/m³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMeter).ToString());
+            Assert.Equal("1 tf/mm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).ToString());
         }
 
         [Fact]
@@ -1130,19 +1123,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s4"));
         }
 
         [Fact]

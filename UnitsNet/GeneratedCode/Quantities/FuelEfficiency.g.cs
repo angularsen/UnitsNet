@@ -225,7 +225,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(FuelEfficiencyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static FuelEfficiency Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<FuelEfficiency, FuelEfficiencyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<FuelEfficiency, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From);
@@ -362,7 +362,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out FuelEfficiency result)
         {
-            return QuantityParser.Default.TryParse<FuelEfficiency, FuelEfficiencyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From,
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static FuelEfficiencyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<FuelEfficiencyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<FuelEfficiencyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.FuelEfficiencyUnit)"/>
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out FuelEfficiencyUnit unit)
         {
-            return UnitParser.Default.TryParse<FuelEfficiencyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<FuelEfficiencyUnit>(str, provider, out unit);
         }
 
         #endregion

@@ -302,7 +302,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MolarityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -464,7 +464,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Molarity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Molarity, MolarityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Molarity, MolarityUnit>(
                 str,
                 provider,
                 From);
@@ -495,7 +495,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Molarity result)
         {
-            return QuantityParser.Default.TryParse<Molarity, MolarityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Molarity, MolarityUnit>(
                 str,
                 provider,
                 From,
@@ -528,7 +528,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MolarityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MolarityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MolarityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarityUnit)"/>
@@ -549,7 +549,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarityUnit unit)
         {
-            return UnitParser.Default.TryParse<MolarityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MolarityUnit>(str, provider, out unit);
         }
 
         #endregion

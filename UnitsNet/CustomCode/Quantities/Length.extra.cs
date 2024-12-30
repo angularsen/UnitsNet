@@ -82,7 +82,7 @@ namespace UnitsNet
             if (TryParse(str, formatProvider, out result))
                 return true;
 
-            var quantityParser = QuantityParser.Default;
+            var quantityParser = UnitsNetSetup.Default.QuantityParser;
             string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
             string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
 

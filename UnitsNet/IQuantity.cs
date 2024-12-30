@@ -111,7 +111,7 @@ namespace UnitsNet
     /// </example>
     /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
     public interface IQuantity<TUnitType> : IQuantity
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         /// <summary>
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
@@ -149,7 +149,7 @@ namespace UnitsNet
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     public interface IQuantity<in TSelf, TUnitType> : IQuantity<TUnitType>
         where TSelf : IQuantity<TSelf, TUnitType>
-        where TUnitType : Enum
+        where TUnitType : struct, Enum
     {
         /// <summary>
         ///     <para>

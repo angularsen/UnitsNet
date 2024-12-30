@@ -351,7 +351,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(HeatFluxUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -569,7 +569,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static HeatFlux Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<HeatFlux, HeatFluxUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<HeatFlux, HeatFluxUnit>(
                 str,
                 provider,
                 From);
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out HeatFlux result)
         {
-            return QuantityParser.Default.TryParse<HeatFlux, HeatFluxUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<HeatFlux, HeatFluxUnit>(
                 str,
                 provider,
                 From,
@@ -633,7 +633,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static HeatFluxUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<HeatFluxUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<HeatFluxUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.HeatFluxUnit)"/>
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out HeatFluxUnit unit)
         {
-            return UnitParser.Default.TryParse<HeatFluxUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<HeatFluxUnit>(str, provider, out unit);
         }
 
         #endregion

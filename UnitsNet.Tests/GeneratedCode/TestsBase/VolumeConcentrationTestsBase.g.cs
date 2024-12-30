@@ -1113,7 +1113,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1126,34 +1126,27 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerLiter).ToString());
-                Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString());
-                Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString());
-                Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString());
-                Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
-                Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString());
-                Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString());
-                Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString());
-                Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerMililiter).ToString());
-                Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerLiter).ToString());
-                Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerMililiter).ToString());
-                Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerLiter).ToString());
-                Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerMililiter).ToString());
-                Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString());
-                Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString());
-                Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString());
-                Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString());
-                Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString());
-                Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerLiter).ToString());
-                Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerMililiter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerLiter).ToString());
+            Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString());
+            Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString());
+            Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString());
+            Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
+            Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString());
+            Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString());
+            Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString());
+            Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerMililiter).ToString());
+            Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerLiter).ToString());
+            Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerMililiter).ToString());
+            Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerLiter).ToString());
+            Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerMililiter).ToString());
+            Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString());
+            Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString());
+            Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString());
+            Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString());
+            Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString());
+            Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerLiter).ToString());
+            Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerMililiter).ToString());
         }
 
         [Fact]
@@ -1187,19 +1180,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
+            Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
+            Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
+            Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
         }
 
         [Fact]

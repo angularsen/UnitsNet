@@ -1,7 +1,9 @@
 {
   "Name": "ElectricAdmittance",
   "BaseUnit": "Siemens",
-  "XmlDocSummary": "Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).",
+  "XmlDocSummary": "Electric admittance is a measure of how easily a circuit or device will allow a current to flow by the combined effect of conductance and susceptance in a circuit. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_admittance",
+  "ObsoleteText": "Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.",
   "BaseDimensions": {
     "L": -2,
     "M": -1,
@@ -20,11 +22,24 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "S" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Mho",
+      "PluralName": "Mhos",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "℧" ]
         }
       ]
     }

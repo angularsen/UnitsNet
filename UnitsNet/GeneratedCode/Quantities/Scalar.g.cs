@@ -198,7 +198,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ScalarUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -280,7 +280,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Scalar Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Scalar, ScalarUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Scalar, ScalarUnit>(
                 str,
                 provider,
                 From);
@@ -311,7 +311,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Scalar result)
         {
-            return QuantityParser.Default.TryParse<Scalar, ScalarUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Scalar, ScalarUnit>(
                 str,
                 provider,
                 From,
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ScalarUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ScalarUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ScalarUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ScalarUnit)"/>
@@ -365,7 +365,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ScalarUnit unit)
         {
-            return UnitParser.Default.TryParse<ScalarUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ScalarUnit>(str, provider, out unit);
         }
 
         #endregion

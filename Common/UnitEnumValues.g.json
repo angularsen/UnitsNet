@@ -67,19 +67,6 @@
     "Revolution": 15,
     "Tilt": 16
   },
-  "ApparentEnergy": {
-    "KilovoltampereHour": 1,
-    "MegavoltampereHour": 2,
-    "VoltampereHour": 3
-  },
-  "ApparentPower": {
-    "Gigavoltampere": 1,
-    "Kilovoltampere": 2,
-    "Megavoltampere": 3,
-    "Voltampere": 4,
-    "Microvoltampere": 6,
-    "Millivoltampere": 7
-  },
   "Area": {
     "Acre": 1,
     "Hectare": 2,
@@ -141,15 +128,6 @@
     "GramPerKiloWattHour": 1,
     "KilogramPerJoule": 2,
     "PoundPerMechanicalHorsepowerHour": 3
-  },
-  "Capacitance": {
-    "Farad": 1,
-    "Kilofarad": 2,
-    "Megafarad": 3,
-    "Microfarad": 4,
-    "Millifarad": 5,
-    "Nanofarad": 6,
-    "Picofarad": 7
   },
   "CoefficientOfThermalExpansion": {
     "InverseDegreeCelsius": 1,
@@ -259,7 +237,19 @@
     "Microsiemens": 1,
     "Millisiemens": 2,
     "Nanosiemens": 3,
-    "Siemens": 4
+    "Siemens": 4,
+    "Kilomho": 8,
+    "Mho": 7,
+    "Micromho": 12,
+    "Millimho": 5,
+    "Nanomho": 6,
+    "Gigamho": 16,
+    "Gigasiemens": 19,
+    "Kilosiemens": 14,
+    "Megamho": 10,
+    "Megasiemens": 13,
+    "Teramho": 15,
+    "Terasiemens": 9
   },
   "ElectricCharge": {
     "AmpereHour": 1,
@@ -282,7 +272,18 @@
     "Millisiemens": 2,
     "Siemens": 3,
     "Kilosiemens": 6,
-    "Nanosiemens": 10
+    "Nanosiemens": 10,
+    "Kilomho": 15,
+    "Mho": 12,
+    "Micromho": 5,
+    "Millimho": 9,
+    "Nanomho": 14,
+    "Gigamho": 7,
+    "Gigasiemens": 18,
+    "Megamho": 8,
+    "Megasiemens": 17,
+    "Teramho": 19,
+    "Terasiemens": 16
   },
   "ElectricConductivity": {
     "SiemensPerFoot": 1,
@@ -335,13 +336,6 @@
     "Volt": 5,
     "Nanovolt": 11
   },
-  "ElectricPotentialAc": {
-    "KilovoltAc": 1,
-    "MegavoltAc": 2,
-    "MicrovoltAc": 3,
-    "MillivoltAc": 4,
-    "VoltAc": 5
-  },
   "ElectricPotentialChangeRate": {
     "KilovoltPerHour": 1,
     "KilovoltPerMicrosecond": 2,
@@ -364,13 +358,6 @@
     "VoltPerMinute": 19,
     "VoltPerSecond": 20
   },
-  "ElectricPotentialDc": {
-    "KilovoltDc": 1,
-    "MegavoltDc": 2,
-    "MicrovoltDc": 3,
-    "MillivoltDc": 4,
-    "VoltDc": 5
-  },
   "ElectricResistance": {
     "Gigaohm": 1,
     "Kiloohm": 2,
@@ -378,7 +365,8 @@
     "Microohm": 4,
     "Milliohm": 5,
     "Ohm": 6,
-    "Teraohm": 12
+    "Teraohm": 12,
+    "Nanoohm": 11
   },
   "ElectricResistivity": {
     "KiloohmCentimeter": 1,
@@ -1202,17 +1190,6 @@
     "DecimalFractionPerSecond": 1,
     "PercentPerSecond": 2
   },
-  "ReactiveEnergy": {
-    "KilovoltampereReactiveHour": 1,
-    "MegavoltampereReactiveHour": 2,
-    "VoltampereReactiveHour": 3
-  },
-  "ReactivePower": {
-    "GigavoltampereReactive": 1,
-    "KilovoltampereReactive": 2,
-    "MegavoltampereReactive": 3,
-    "VoltampereReactive": 4
-  },
   "ReciprocalArea": {
     "InverseSquareCentimeter": 1,
     "InverseSquareDecimeter": 2,
@@ -1451,7 +1428,14 @@
     "KilodegreeCelsiusPerSecond": 7,
     "MicrodegreeCelsiusPerSecond": 8,
     "MillidegreeCelsiusPerSecond": 9,
-    "NanodegreeCelsiusPerSecond": 10
+    "NanodegreeCelsiusPerSecond": 10,
+    "DegreeKelvinPerMinute": 20,
+    "DegreeCelsiusPerHour": 18,
+    "DegreeFahrenheitPerHour": 11,
+    "DegreeFahrenheitPerMinute": 16,
+    "DegreeFahrenheitPerSecond": 19,
+    "DegreeKelvinPerHour": 12,
+    "DegreeKelvinPerSecond": 15
   },
   "TemperatureDelta": {
     "DegreeCelsius": 1,
@@ -1874,6 +1858,99 @@
     "MicrosievertPerSecond": 17,
     "MillisievertPerSecond": 14,
     "NanosievertPerSecond": 9
+  },
+  "DoseAreaProduct": {
+    "CentigraySquareCentimeter": 6,
+    "CentigraySquareDecimeter": 3,
+    "CentigraySquareMeter": 7,
+    "CentigraySquareMillimeter": 2,
+    "DecigraySquareCentimeter": 9,
+    "DecigraySquareDecimeter": 1,
+    "DecigraySquareMeter": 4,
+    "DecigraySquareMillimeter": 8,
+    "GraySquareCentimeter": 10,
+    "GraySquareDecimeter": 5,
+    "GraySquareMeter": 19,
+    "GraySquareMillimeter": 16,
+    "MicrograySquareCentimeter": 13,
+    "MicrograySquareDecimeter": 20,
+    "MicrograySquareMeter": 15,
+    "MicrograySquareMillimeter": 18,
+    "MilligraySquareCentimeter": 14,
+    "MilligraySquareDecimeter": 17,
+    "MilligraySquareMeter": 11,
+    "MilligraySquareMillimeter": 12
+  },
+  "ElectricApparentEnergy": {
+    "KilovoltampereHour": 7,
+    "MegavoltampereHour": 3,
+    "VoltampereHour": 10
+  },
+  "ElectricApparentPower": {
+    "Gigavoltampere": 3,
+    "Kilovoltampere": 1,
+    "Megavoltampere": 2,
+    "Microvoltampere": 10,
+    "Millivoltampere": 6,
+    "Voltampere": 9
+  },
+  "ElectricCapacitance": {
+    "Farad": 3,
+    "Kilofarad": 8,
+    "Megafarad": 1,
+    "Microfarad": 7,
+    "Millifarad": 5,
+    "Nanofarad": 4,
+    "Picofarad": 10
+  },
+  "ElectricReactance": {
+    "Gigaohm": 5,
+    "Kiloohm": 8,
+    "Megaohm": 1,
+    "Microohm": 9,
+    "Milliohm": 4,
+    "Ohm": 6,
+    "Teraohm": 2,
+    "Nanoohm": 13
+  },
+  "ElectricReactiveEnergy": {
+    "KilovoltampereReactiveHour": 10,
+    "MegavoltampereReactiveHour": 4,
+    "VoltampereReactiveHour": 7
+  },
+  "ElectricReactivePower": {
+    "GigavoltampereReactive": 1,
+    "KilovoltampereReactive": 2,
+    "MegavoltampereReactive": 8,
+    "VoltampereReactive": 7
+  },
+  "ElectricSusceptance": {
+    "Kilomho": 8,
+    "Kilosiemens": 4,
+    "Mho": 7,
+    "Micromho": 9,
+    "Microsiemens": 10,
+    "Millimho": 3,
+    "Millisiemens": 6,
+    "Nanomho": 5,
+    "Nanosiemens": 1,
+    "Siemens": 2,
+    "Gigamho": 16,
+    "Gigasiemens": 15,
+    "Megamho": 12,
+    "Megasiemens": 19,
+    "Teramho": 20,
+    "Terasiemens": 14
+  },
+  "ElectricImpedance": {
+    "Gigaohm": 4,
+    "Kiloohm": 3,
+    "Megaohm": 10,
+    "Microohm": 8,
+    "Milliohm": 9,
+    "Nanoohm": 7,
+    "Ohm": 6,
+    "Teraohm": 5
   },
   "ThermalInsulance": {
     "HourSquareFeetDegreeFahrenheitPerBtu": 2,

@@ -19,12 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="obj\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="obj\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
@@ -35,10 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GeneratedCode\" />
   </ItemGroup>
 
 </Project>

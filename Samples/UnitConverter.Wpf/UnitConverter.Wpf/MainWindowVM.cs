@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     public sealed class MainWindowVm : IMainWindowVm
     {
         private readonly ObservableCollection<UnitListItem> _units;
-        private decimal _fromValue;
+        private double _fromValue;
 
         [CanBeNull] private UnitListItem _selectedFromUnit;
 
@@ -25,7 +25,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         [CanBeNull] private UnitListItem _selectedToUnit;
 
-        private decimal _toValue;
+        private double _toValue;
 
         public MainWindowVm()
         {
@@ -38,7 +38,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             FromValue = 1;
             SwapCommand = new DelegateCommand(Swap);
 
-            OnSelectedQuantity(Length.Info.Name);
+            SelectedQuantity = Length.Info.Name;
         }
 
         public ICommand SwapCommand { get; }
@@ -90,24 +90,22 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public string ToHeader => $"Result [{SelectedToUnit?.Abbreviation}]";
 
-        public decimal FromValue
+        public double FromValue
         {
             get => _fromValue;
             set
             {
-                if (value == _fromValue) return;
                 _fromValue = value;
                 OnPropertyChanged();
                 UpdateResult();
             }
         }
 
-        public decimal ToValue
+        public double ToValue
         {
             get => _toValue;
             private set
             {
-                if (value == _toValue) return;
                 _toValue = value;
                 OnPropertyChanged();
             }
@@ -118,7 +116,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         private void Swap()
         {
             UnitListItem oldToUnit = SelectedToUnit;
-            decimal oldToValue = ToValue;
+            var oldToValue = ToValue;
 
             // Setting these will change ToValue
             SelectedToUnit = SelectedFromUnit;
@@ -131,11 +129,9 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             if (SelectedFromUnit == null || SelectedToUnit == null) return;
 
-            double convertedValue = UnitsNet.UnitConverter.Convert(FromValue,
+            ToValue = UnitsNet.UnitConverter.Convert(FromValue,
                 SelectedFromUnit.UnitEnumValue,
                 SelectedToUnit.UnitEnumValue);
-
-            ToValue = Convert.ToDecimal(convertedValue);
         }
 
         private void OnSelectedQuantity(string quantityName)

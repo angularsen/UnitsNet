@@ -407,7 +407,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(LinearPowerDensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -681,7 +681,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static LinearPowerDensity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<LinearPowerDensity, LinearPowerDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<LinearPowerDensity, LinearPowerDensityUnit>(
                 str,
                 provider,
                 From);
@@ -712,7 +712,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out LinearPowerDensity result)
         {
-            return QuantityParser.Default.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(
                 str,
                 provider,
                 From,
@@ -745,7 +745,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static LinearPowerDensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<LinearPowerDensityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<LinearPowerDensityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LinearPowerDensityUnit)"/>
@@ -766,7 +766,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LinearPowerDensityUnit unit)
         {
-            return UnitParser.Default.TryParse<LinearPowerDensityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<LinearPowerDensityUnit>(str, provider, out unit);
         }
 
         #endregion

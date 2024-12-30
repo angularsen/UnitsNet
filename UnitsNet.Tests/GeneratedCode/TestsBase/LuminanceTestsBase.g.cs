@@ -838,7 +838,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LuminanceUnit)).Cast<LuminanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -851,24 +851,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString());
-                Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString());
-                Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString());
-                Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString());
-                Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString());
-                Assert.Equal("1 kCd/m²", new Luminance(1, LuminanceUnit.KilocandelaPerSquareMeter).ToString());
-                Assert.Equal("1 µCd/m²", new Luminance(1, LuminanceUnit.MicrocandelaPerSquareMeter).ToString());
-                Assert.Equal("1 mCd/m²", new Luminance(1, LuminanceUnit.MillicandelaPerSquareMeter).ToString());
-                Assert.Equal("1 nCd/m²", new Luminance(1, LuminanceUnit.NanocandelaPerSquareMeter).ToString());
-                Assert.Equal("1 nt", new Luminance(1, LuminanceUnit.Nit).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString());
+            Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString());
+            Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString());
+            Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString());
+            Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString());
+            Assert.Equal("1 kCd/m²", new Luminance(1, LuminanceUnit.KilocandelaPerSquareMeter).ToString());
+            Assert.Equal("1 µCd/m²", new Luminance(1, LuminanceUnit.MicrocandelaPerSquareMeter).ToString());
+            Assert.Equal("1 mCd/m²", new Luminance(1, LuminanceUnit.MillicandelaPerSquareMeter).ToString());
+            Assert.Equal("1 nCd/m²", new Luminance(1, LuminanceUnit.NanocandelaPerSquareMeter).ToString());
+            Assert.Equal("1 nt", new Luminance(1, LuminanceUnit.Nit).ToString());
         }
 
         [Fact]
@@ -892,19 +885,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s4"));
         }
 
         [Fact]

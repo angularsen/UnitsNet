@@ -870,7 +870,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -883,25 +883,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareCentimeter).ToString());
-                Assert.Equal("1 dm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareDecimeter).ToString());
-                Assert.Equal("1 ft⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareFoot).ToString());
-                Assert.Equal("1 in⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareInch).ToString());
-                Assert.Equal("1 km⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareKilometer).ToString());
-                Assert.Equal("1 m⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter).ToString());
-                Assert.Equal("1 µm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMicrometer).ToString());
-                Assert.Equal("1 mi⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMile).ToString());
-                Assert.Equal("1 mm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMillimeter).ToString());
-                Assert.Equal("1 yd⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareYard).ToString());
-                Assert.Equal("1 ft⁻² (US)", new ReciprocalArea(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareCentimeter).ToString());
+            Assert.Equal("1 dm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareDecimeter).ToString());
+            Assert.Equal("1 ft⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareFoot).ToString());
+            Assert.Equal("1 in⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareInch).ToString());
+            Assert.Equal("1 km⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareKilometer).ToString());
+            Assert.Equal("1 m⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter).ToString());
+            Assert.Equal("1 µm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMicrometer).ToString());
+            Assert.Equal("1 mi⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMile).ToString());
+            Assert.Equal("1 mm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMillimeter).ToString());
+            Assert.Equal("1 yd⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareYard).ToString());
+            Assert.Equal("1 ft⁻² (US)", new ReciprocalArea(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot).ToString());
         }
 
         [Fact]
@@ -926,19 +919,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s4"));
         }
 
         [Fact]

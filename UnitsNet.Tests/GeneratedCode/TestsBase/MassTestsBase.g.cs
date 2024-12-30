@@ -2208,7 +2208,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -2221,41 +2221,34 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString());
-                Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString());
-                Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString());
-                Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString());
-                Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString());
-                Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString());
-                Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString());
-                Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString());
-                Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString());
-                Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString());
-                Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString());
-                Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString());
-                Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString());
-                Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString());
-                Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString());
-                Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString());
-                Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString());
-                Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString());
-                Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString());
-                Assert.Equal("1 pg", new Mass(1, MassUnit.Picogram).ToString());
-                Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString());
-                Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString());
-                Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString());
-                Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString());
-                Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString());
-                Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
-                Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString());
+            Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString());
+            Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString());
+            Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString());
+            Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString());
+            Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString());
+            Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString());
+            Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString());
+            Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString());
+            Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString());
+            Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString());
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString());
+            Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString());
+            Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString());
+            Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString());
+            Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString());
+            Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString());
+            Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString());
+            Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString());
+            Assert.Equal("1 pg", new Mass(1, MassUnit.Picogram).ToString());
+            Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString());
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString());
+            Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString());
+            Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString());
+            Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString());
+            Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
+            Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
         }
 
         [Fact]
@@ -2296,19 +2289,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s1"));
-                Assert.Equal("0.12 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s2"));
-                Assert.Equal("0.123 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s3"));
-                Assert.Equal("0.1235 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s1"));
+            Assert.Equal("0.12 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s2"));
+            Assert.Equal("0.123 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s3"));
+            Assert.Equal("0.1235 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s4"));
         }
 
         [Fact]

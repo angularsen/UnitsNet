@@ -788,7 +788,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -801,20 +801,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kV", new ElectricPotential(1, ElectricPotentialUnit.Kilovolt).ToString());
-                Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString());
-                Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString());
-                Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString());
-                Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString());
-                Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kV", new ElectricPotential(1, ElectricPotentialUnit.Kilovolt).ToString());
+            Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString());
+            Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString());
+            Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString());
+            Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString());
+            Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString());
         }
 
         [Fact]
@@ -834,19 +827,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s1"));
-                Assert.Equal("0.12 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s2"));
-                Assert.Equal("0.123 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s3"));
-                Assert.Equal("0.1235 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s1"));
+            Assert.Equal("0.12 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s2"));
+            Assert.Equal("0.123 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s3"));
+            Assert.Equal("0.1235 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s4"));
         }
 
         [Fact]

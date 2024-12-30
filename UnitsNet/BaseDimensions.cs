@@ -31,7 +31,7 @@ namespace UnitsNet
         public bool IsBaseQuantity()
         {
             var dimensionsArray = new[] { Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity };
-            bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
+            bool onlyOneEqualsOne = dimensionsArray.Select(dimension => dimension is 0 or 1 ? dimension : 2).Sum() == 1;
             return onlyOneEqualsOne;
         }
 
@@ -182,13 +182,11 @@ namespace UnitsNet
 
         private static void AppendDimensionString(StringBuilder sb, string name, int value)
         {
-            var absoluteValue = Math.Abs(value);
-
-            if(absoluteValue > 0)
+            if (0 != value)
             {
                 sb.AppendFormat("[{0}]", name);
 
-                if(absoluteValue > 1)
+                if (1 != value)
                     sb.AppendFormat("^{0}", value);
             }
         }

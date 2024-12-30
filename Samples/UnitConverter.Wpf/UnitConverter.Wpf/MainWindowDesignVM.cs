@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -30,8 +30,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public string FromHeader { get; } = "Value [cm]";
         public string ToHeader { get; } = "Result [dm]";
-        public decimal FromValue { get; set; } = 14.5m;
-        public decimal ToValue { get; } = 1.45m;
+        public double FromValue { get; set; } = 14.5;
+        public double ToValue { get; } = 1.45;
 
         public ICommand SwapCommand { get; } = new RoutedCommand();
 

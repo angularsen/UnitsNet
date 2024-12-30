@@ -19,7 +19,7 @@ namespace UnitsNet
     /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
     public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
         where TQuantity : IQuantity
-        where TUnitType : Enum;
+        where TUnitType : struct, Enum;
 
     /// <summary>
     ///     Parses quantities from strings, such as "1.2 kg" to <see cref="Length"/> or "100 cm" to <see cref="Mass"/>.
@@ -35,19 +35,21 @@ namespace UnitsNet
         private readonly UnitParser _unitParser;
 
         /// <summary>
-        ///     The default instance of <see cref="QuantityParser"/>, which uses <see cref="UnitAbbreviationsCache.Default"/> unit abbreviations.
+        ///     The default singleton instance for parsing quantities.
         /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.QuantityParser instead.")]
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.QuantityParser"/>.
+        /// </remarks>
         public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
 
         /// <summary>
         ///     Creates an instance of <see cref="QuantityParser"/>, optionally specifying an <see cref="UnitAbbreviationsCache"/>
         ///     with unit abbreviations to use when parsing.
         /// </summary>
-        /// <param name="unitAbbreviationsCache">(Optional) The unit abbreviations cache, or specify <c>null</c> to use <see cref="UnitAbbreviationsCache.Default"/>.</param>
+        /// <param name="unitAbbreviationsCache">(Optional) The unit abbreviations cache, or specify <c>null</c> to use <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitAbbreviations"/>.</param>
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache = null)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitsNetSetup.Default.UnitAbbreviations;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
         }
 
@@ -67,7 +69,7 @@ namespace UnitsNet
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             str = str.Trim();
@@ -154,7 +156,7 @@ namespace UnitsNet
             TUnitType unit,
             IFormatProvider? formatProvider,
             bool matchEntireString = true)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
             var unitAbbreviations = _unitAbbreviationsCache.GetUnitAbbreviations(unit, formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
@@ -181,7 +183,7 @@ namespace UnitsNet
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             IFormatProvider? formatProvider)
             where TQuantity : IQuantity
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
             var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
             var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
@@ -242,7 +244,7 @@ namespace UnitsNet
             return true;
         }
 
-        private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
+        private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : struct, Enum
         {
             var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
@@ -251,7 +253,7 @@ namespace UnitsNet
             return $"^{pattern}$";
         }
 
-        private Regex CreateRegexForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
+        private Regex CreateRegexForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : struct, Enum
         {
             var pattern = CreateRegexPatternForQuantity<TUnitType>(formatProvider);
             return new Regex(pattern, RegexOptions.Singleline | RegexOptions.IgnoreCase);

@@ -1,0 +1,31 @@
+{
+  "Name": "ElectricReactivePower",
+  "BaseUnit": "VoltampereReactive",
+  "XmlDocSummary": "In electric power transmission and distribution, volt-ampere reactive (var) is a unit of measurement of reactive power. Reactive power exists in an AC circuit when the current and voltage are not in phase.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/AC_power#Active,_reactive,_apparent,_and_complex_power_in_sinusoidal_steady-state",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "VoltampereReactive",
+      "PluralName": "VoltamperesReactive",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "var" ]
+        }
+      ]
+    }
+  ]
+}

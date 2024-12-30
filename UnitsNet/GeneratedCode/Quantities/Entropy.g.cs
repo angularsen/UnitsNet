@@ -265,7 +265,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(EntropyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Entropy Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Entropy, EntropyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Entropy, EntropyUnit>(
                 str,
                 provider,
                 From);
@@ -426,7 +426,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Entropy result)
         {
-            return QuantityParser.Default.TryParse<Entropy, EntropyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Entropy, EntropyUnit>(
                 str,
                 provider,
                 From,
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static EntropyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<EntropyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<EntropyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EntropyUnit)"/>
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out EntropyUnit unit)
         {
-            return UnitParser.Default.TryParse<EntropyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<EntropyUnit>(str, provider, out unit);
         }
 
         #endregion

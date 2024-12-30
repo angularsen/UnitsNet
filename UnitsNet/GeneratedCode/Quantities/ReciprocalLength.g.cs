@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ReciprocalLengthUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ReciprocalLength Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ReciprocalLength, ReciprocalLengthUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ReciprocalLength, ReciprocalLengthUnit>(
                 str,
                 provider,
                 From);
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ReciprocalLength result)
         {
-            return QuantityParser.Default.TryParse<ReciprocalLength, ReciprocalLengthUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ReciprocalLength, ReciprocalLengthUnit>(
                 str,
                 provider,
                 From,
@@ -514,7 +514,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ReciprocalLengthUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ReciprocalLengthUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ReciprocalLengthUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ReciprocalLengthUnit)"/>
@@ -535,7 +535,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ReciprocalLengthUnit unit)
         {
-            return UnitParser.Default.TryParse<ReciprocalLengthUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ReciprocalLengthUnit>(str, provider, out unit);
         }
 
         #endregion

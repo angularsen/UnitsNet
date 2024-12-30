@@ -303,7 +303,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(EnergyDensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -473,7 +473,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static EnergyDensity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<EnergyDensity, EnergyDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<EnergyDensity, EnergyDensityUnit>(
                 str,
                 provider,
                 From);
@@ -504,7 +504,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out EnergyDensity result)
         {
-            return QuantityParser.Default.TryParse<EnergyDensity, EnergyDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<EnergyDensity, EnergyDensityUnit>(
                 str,
                 provider,
                 From,
@@ -537,7 +537,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static EnergyDensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<EnergyDensityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<EnergyDensityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EnergyDensityUnit)"/>
@@ -558,7 +558,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out EnergyDensityUnit unit)
         {
-            return UnitParser.Default.TryParse<EnergyDensityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<EnergyDensityUnit>(str, provider, out unit);
         }
 
         #endregion

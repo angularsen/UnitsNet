@@ -1128,7 +1128,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1141,40 +1141,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 b", new Information(1, InformationUnit.Bit).ToString());
-                Assert.Equal("1 B", new Information(1, InformationUnit.Byte).ToString());
-                Assert.Equal("1 Eb", new Information(1, InformationUnit.Exabit).ToString());
-                Assert.Equal("1 EB", new Information(1, InformationUnit.Exabyte).ToString());
-                Assert.Equal("1 Eib", new Information(1, InformationUnit.Exbibit).ToString());
-                Assert.Equal("1 EiB", new Information(1, InformationUnit.Exbibyte).ToString());
-                Assert.Equal("1 Gib", new Information(1, InformationUnit.Gibibit).ToString());
-                Assert.Equal("1 GiB", new Information(1, InformationUnit.Gibibyte).ToString());
-                Assert.Equal("1 Gb", new Information(1, InformationUnit.Gigabit).ToString());
-                Assert.Equal("1 GB", new Information(1, InformationUnit.Gigabyte).ToString());
-                Assert.Equal("1 Kib", new Information(1, InformationUnit.Kibibit).ToString());
-                Assert.Equal("1 KiB", new Information(1, InformationUnit.Kibibyte).ToString());
-                Assert.Equal("1 kb", new Information(1, InformationUnit.Kilobit).ToString());
-                Assert.Equal("1 kB", new Information(1, InformationUnit.Kilobyte).ToString());
-                Assert.Equal("1 Mib", new Information(1, InformationUnit.Mebibit).ToString());
-                Assert.Equal("1 MiB", new Information(1, InformationUnit.Mebibyte).ToString());
-                Assert.Equal("1 Mb", new Information(1, InformationUnit.Megabit).ToString());
-                Assert.Equal("1 MB", new Information(1, InformationUnit.Megabyte).ToString());
-                Assert.Equal("1 Pib", new Information(1, InformationUnit.Pebibit).ToString());
-                Assert.Equal("1 PiB", new Information(1, InformationUnit.Pebibyte).ToString());
-                Assert.Equal("1 Pb", new Information(1, InformationUnit.Petabit).ToString());
-                Assert.Equal("1 PB", new Information(1, InformationUnit.Petabyte).ToString());
-                Assert.Equal("1 Tib", new Information(1, InformationUnit.Tebibit).ToString());
-                Assert.Equal("1 TiB", new Information(1, InformationUnit.Tebibyte).ToString());
-                Assert.Equal("1 Tb", new Information(1, InformationUnit.Terabit).ToString());
-                Assert.Equal("1 TB", new Information(1, InformationUnit.Terabyte).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 b", new Information(1, InformationUnit.Bit).ToString());
+            Assert.Equal("1 B", new Information(1, InformationUnit.Byte).ToString());
+            Assert.Equal("1 Eb", new Information(1, InformationUnit.Exabit).ToString());
+            Assert.Equal("1 EB", new Information(1, InformationUnit.Exabyte).ToString());
+            Assert.Equal("1 Eib", new Information(1, InformationUnit.Exbibit).ToString());
+            Assert.Equal("1 EiB", new Information(1, InformationUnit.Exbibyte).ToString());
+            Assert.Equal("1 Gib", new Information(1, InformationUnit.Gibibit).ToString());
+            Assert.Equal("1 GiB", new Information(1, InformationUnit.Gibibyte).ToString());
+            Assert.Equal("1 Gb", new Information(1, InformationUnit.Gigabit).ToString());
+            Assert.Equal("1 GB", new Information(1, InformationUnit.Gigabyte).ToString());
+            Assert.Equal("1 Kib", new Information(1, InformationUnit.Kibibit).ToString());
+            Assert.Equal("1 KiB", new Information(1, InformationUnit.Kibibyte).ToString());
+            Assert.Equal("1 kb", new Information(1, InformationUnit.Kilobit).ToString());
+            Assert.Equal("1 kB", new Information(1, InformationUnit.Kilobyte).ToString());
+            Assert.Equal("1 Mib", new Information(1, InformationUnit.Mebibit).ToString());
+            Assert.Equal("1 MiB", new Information(1, InformationUnit.Mebibyte).ToString());
+            Assert.Equal("1 Mb", new Information(1, InformationUnit.Megabit).ToString());
+            Assert.Equal("1 MB", new Information(1, InformationUnit.Megabyte).ToString());
+            Assert.Equal("1 Pib", new Information(1, InformationUnit.Pebibit).ToString());
+            Assert.Equal("1 PiB", new Information(1, InformationUnit.Pebibyte).ToString());
+            Assert.Equal("1 Pb", new Information(1, InformationUnit.Petabit).ToString());
+            Assert.Equal("1 PB", new Information(1, InformationUnit.Petabyte).ToString());
+            Assert.Equal("1 Tib", new Information(1, InformationUnit.Tebibit).ToString());
+            Assert.Equal("1 TiB", new Information(1, InformationUnit.Tebibyte).ToString());
+            Assert.Equal("1 Tb", new Information(1, InformationUnit.Terabit).ToString());
+            Assert.Equal("1 TB", new Information(1, InformationUnit.Terabyte).ToString());
         }
 
         [Fact]
@@ -1214,19 +1207,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 b", new Information(0.123456, InformationUnit.Bit).ToString("s1"));
-                Assert.Equal("0.12 b", new Information(0.123456, InformationUnit.Bit).ToString("s2"));
-                Assert.Equal("0.123 b", new Information(0.123456, InformationUnit.Bit).ToString("s3"));
-                Assert.Equal("0.1235 b", new Information(0.123456, InformationUnit.Bit).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 b", new Information(0.123456, InformationUnit.Bit).ToString("s1"));
+            Assert.Equal("0.12 b", new Information(0.123456, InformationUnit.Bit).ToString("s2"));
+            Assert.Equal("0.123 b", new Information(0.123456, InformationUnit.Bit).ToString("s3"));
+            Assert.Equal("0.1235 b", new Information(0.123456, InformationUnit.Bit).ToString("s4"));
         }
 
         [Fact]

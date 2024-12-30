@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Globalization;
+using UnitsNet.Tests.Helpers;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -33,7 +34,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void StonePoundsToString_FormatsNumberInCurrentCulture()
         {
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            using var _ = new CultureScope("en-US");
             StonePounds stonePounds = Mass.FromStonePounds(3500, 1).StonePounds;
 
             Assert.Equal("3,500 st 1 lb", stonePounds.ToString());
