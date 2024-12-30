@@ -76,9 +76,9 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricReactivePowerUnit>("ElectricReactivePower",
                 new UnitInfo<ElectricReactivePowerUnit>[]
                 {
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
+                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ElectricReactivePower"),
                     new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
+                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
                     new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
                 },
                 BaseUnit, Zero, BaseDimensions);

@@ -84,14 +84,14 @@ namespace UnitsNet
                 new UnitInfo<ElectricCurrentUnit>[]
                 {
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined, "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", new BaseUnits(current: ElectricCurrentUnit.Centiampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", new BaseUnits(current: ElectricCurrentUnit.Femtoampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", new BaseUnits(current: ElectricCurrentUnit.Kiloampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", new BaseUnits(current: ElectricCurrentUnit.Megaampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", new BaseUnits(current: ElectricCurrentUnit.Microampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", new BaseUnits(current: ElectricCurrentUnit.Milliampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", new BaseUnits(current: ElectricCurrentUnit.Nanoampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", new BaseUnits(current: ElectricCurrentUnit.Picoampere), "ElectricCurrent"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

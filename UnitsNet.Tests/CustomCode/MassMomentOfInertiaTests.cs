@@ -85,29 +85,5 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonneSquareMetersInOneKilogramSquareMeter => 1e-3;
 
         protected override double TonneSquareMilimetersInOneKilogramSquareMeter => 1e3;
-
-        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
-        public override void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
-        {
-            base.Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits();
-        }
-        
-        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
-        public override void BaseUnit_HasSIBase()
-        {
-            base.BaseUnit_HasSIBase();
-        }
-        
-        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
-        public override void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            base.As_UnitSystem_SI_ReturnsQuantityInSIUnits();
-        }
-        
-        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
-        public override void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
-        }
     }
 }

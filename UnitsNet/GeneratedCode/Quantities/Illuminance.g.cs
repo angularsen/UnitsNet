@@ -81,7 +81,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined, "Illuminance"),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela), "Illuminance"),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined, "Illuminance"),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", new BaseUnits(length: LengthUnit.Millimeter, luminousIntensity: LuminousIntensityUnit.Candela), "Illuminance"),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined, "Illuminance"),
                 },
                 BaseUnit, Zero, BaseDimensions);

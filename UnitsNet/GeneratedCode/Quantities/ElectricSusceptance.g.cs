@@ -77,21 +77,21 @@ namespace UnitsNet
                 new UnitInfo<ElectricSusceptanceUnit>[]
                 {
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Micromho, "Micromhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millimho, "Millimhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanomho, "Nanomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Siemens, "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Teramho, "Teramhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

@@ -76,22 +76,22 @@ namespace UnitsNet
             Info = new QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit>("AbsorbedDoseOfIonizingRadiation",
                 new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
                 {
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", new BaseUnits(length: LengthUnit.Megameter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

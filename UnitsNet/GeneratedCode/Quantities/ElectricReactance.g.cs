@@ -76,14 +76,14 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricReactanceUnit>("ElectricReactance",
                 new UnitInfo<ElectricReactanceUnit>[]
                 {
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined, "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Nanoohm, "Nanoohms", BaseUnits.Undefined, "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
