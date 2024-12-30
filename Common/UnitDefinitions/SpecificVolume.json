@@ -10,6 +10,10 @@
     {
       "SingularName": "CubicMeterPerKilogram",
       "PluralName": "CubicMetersPerKilogram",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Milli" ],
@@ -23,6 +27,10 @@
     {
       "SingularName": "CubicFootPerPound",
       "PluralName": "CubicFeetPerPound",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound"
+      },
       "FromUnitToBaseFunc": "{x} / 16.01846353",
       "FromBaseToUnitFunc": "{x} * 16.01846353",
       "Prefixes": [],

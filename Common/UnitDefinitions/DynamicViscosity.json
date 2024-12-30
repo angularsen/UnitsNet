@@ -12,6 +12,11 @@
     {
       "SingularName": "NewtonSecondPerMeterSquared",
       "PluralName": "NewtonSecondsPerMeterSquared",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

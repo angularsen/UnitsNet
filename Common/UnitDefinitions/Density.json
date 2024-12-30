@@ -185,6 +185,10 @@
     {
       "SingularName": "GramPerLiter",
       "PluralName": "GramsPerLiter",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1",
       "FromBaseToUnitFunc": "{x} * 1",
       "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
@@ -211,6 +215,10 @@
     {
       "SingularName": "GramPerMilliliter",
       "PluralName": "GramsPerMilliliter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1e-3",
       "FromBaseToUnitFunc": "{x} * 1e-3",
       "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],

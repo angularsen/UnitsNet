@@ -76,9 +76,9 @@ namespace UnitsNet
                     new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined, "ThermalInsulance"),
                     new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined, "ThermalInsulance"),
                     new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "ThermalInsulance"),
                     new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "ThermalInsulance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -107,13 +107,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ThermalInsulance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -717,25 +712,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ThermalInsulanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalInsulanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -822,6 +799,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ThermalInsulance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ThermalInsulanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalInsulanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -829,21 +822,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalInsulanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ThermalInsulance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -854,6 +832,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

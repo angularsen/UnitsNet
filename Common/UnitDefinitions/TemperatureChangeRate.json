@@ -10,6 +10,10 @@
     {
       "SingularName": "DegreeCelsiusPerSecond",
       "PluralName": "DegreesCelsiusPerSecond",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
@@ -23,6 +27,10 @@
     {
       "SingularName": "DegreeCelsiusPerMinute",
       "PluralName": "DegreesCelsiusPerMinute",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [

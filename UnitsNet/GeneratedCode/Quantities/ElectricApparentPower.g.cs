@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Microvoltampere, "Microvoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
+                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Voltampere, "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -110,13 +110,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricApparentPower(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -720,25 +715,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricApparentPowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricApparentPowerUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -825,6 +802,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricApparentPower ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricApparentPowerUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricApparentPowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -832,21 +825,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricApparentPowerUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricApparentPower ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -857,6 +835,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricApparentPowerUnit> IQuantity<ElectricApparentPowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

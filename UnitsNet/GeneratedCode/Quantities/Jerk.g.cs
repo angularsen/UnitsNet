@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<JerkUnit>(JerkUnit.MillimeterPerSecondCubed, "MillimetersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
                     new UnitInfo<JerkUnit>(JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
                     new UnitInfo<JerkUnit>(JerkUnit.NanometerPerSecondCubed, "NanometersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -115,13 +115,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Jerk(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -810,25 +805,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is JerkUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -925,6 +902,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Jerk ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not JerkUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -932,21 +925,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Jerk ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -957,6 +935,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<JerkUnit> IQuantity<JerkUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

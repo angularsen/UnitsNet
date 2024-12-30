@@ -83,17 +83,17 @@ namespace UnitsNet
             Info = new QuantityInfo<ReciprocalAreaUnit>("ReciprocalArea",
                 new UnitInfo<ReciprocalAreaUnit>[]
                 {
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareFoot, "InverseSquareFeet", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareInch, "InverseSquareInches", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareKilometer, "InverseSquareKilometers", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMeter, "InverseSquareMeters", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMicrometer, "InverseSquareMicrometers", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMile, "InverseSquareMiles", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined, "ReciprocalArea"),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined, "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareFoot, "InverseSquareFeet", new BaseUnits(length: LengthUnit.Foot), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareInch, "InverseSquareInches", new BaseUnits(length: LengthUnit.Inch), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareKilometer, "InverseSquareKilometers", new BaseUnits(length: LengthUnit.Kilometer), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMeter, "InverseSquareMeters", new BaseUnits(length: LengthUnit.Meter), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMicrometer, "InverseSquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMile, "InverseSquareMiles", new BaseUnits(length: LengthUnit.Mile), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", new BaseUnits(length: LengthUnit.Yard), "ReciprocalArea"),
+                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot), "ReciprocalArea"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -122,13 +122,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ReciprocalArea(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -848,25 +843,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ReciprocalAreaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -963,6 +940,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ReciprocalArea ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ReciprocalAreaUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -970,21 +963,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ReciprocalArea ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -995,6 +973,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

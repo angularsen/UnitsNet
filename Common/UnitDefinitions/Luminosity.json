@@ -12,6 +12,11 @@
     {
       "SingularName": "Watt",
       "PluralName": "Watts",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],

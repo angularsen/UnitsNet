@@ -12,6 +12,11 @@
     {
       "SingularName": "Tesla",
       "PluralName": "Teslas",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli" ],

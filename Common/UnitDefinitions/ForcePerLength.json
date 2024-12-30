@@ -10,6 +10,10 @@
     {
       "SingularName": "NewtonPerMeter",
       "PluralName": "NewtonsPerMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -190,7 +194,7 @@
         }
       ]
     },
-	    {
+    {
       "SingularName": "KilopoundForcePerInch",
       "PluralName": "KilopoundsForcePerInch",
       "FromUnitToBaseFunc": "{x} * 1.75126835e5",

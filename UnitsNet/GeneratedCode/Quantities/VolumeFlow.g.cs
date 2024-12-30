@@ -88,19 +88,19 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerHour, "CentilitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, "CentilitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerSecond, "CentilitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, "CubicCentimetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, "CubicDecimetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, "CubicFeetPerHour", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, "CubicFeetPerMinute", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, "CubicFeetPerSecond", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, "CubicMetersPerDay", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, "CubicMetersPerHour", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, "CubicMetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, "CubicMetersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimetersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, "CubicYardsPerDay", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", BaseUnits.Undefined, "VolumeFlow"),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, "CubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, "CubicDecimetersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, "CubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, "CubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, "CubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, "CubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, "CubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, "CubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, "CubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimetersPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, "CubicYardsPerDay", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Day), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour), "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute), "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, "CubicYardsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerDay, "DecalitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerHour, "DecalitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
@@ -183,13 +183,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public VolumeFlow(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -1862,25 +1857,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is VolumeFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -2105,6 +2082,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public VolumeFlow ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not VolumeFlowUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -2112,21 +2105,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public VolumeFlow ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -2137,6 +2115,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowUnit> IQuantity<VolumeFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

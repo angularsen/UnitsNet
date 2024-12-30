@@ -152,18 +152,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricConductance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricConductance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricConductance(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -312,20 +312,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricConductance.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricConductance.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+            var expectedUnit = ElectricConductance.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricConductance quantityToConvert = quantity;
+
+                ElectricConductance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricConductanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricConductanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricConductanceUnit> quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricConductanceUnit> quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]

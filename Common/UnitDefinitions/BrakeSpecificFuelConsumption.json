@@ -22,6 +22,10 @@
     {
       "SingularName": "KilogramPerJoule",
       "PluralName": "KilogramsPerJoule",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

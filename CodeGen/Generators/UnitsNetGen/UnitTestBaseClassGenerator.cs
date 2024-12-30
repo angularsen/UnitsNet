@@ -50,6 +50,14 @@ namespace CodeGen.Generators.UnitsNetGen
         /// Example: "LengthUnit.Centimeter".
         /// </summary>
         private readonly string _otherOrBaseUnitFullName;
+        
+        /// <summary>
+        /// Indicates whether the quantity is dimensionless.
+        /// </summary>
+        /// <remarks>
+        /// A dimensionless quantity has all base dimensions (L, M, T, I, Θ, N, J) equal to zero.
+        /// </remarks>
+        private readonly bool _isDimensionless;
 
         /// <summary>
         ///     Stores a mapping of culture names to their corresponding unique unit abbreviations.
@@ -98,6 +106,7 @@ namespace CodeGen.Generators.UnitsNetGen
             // Try to pick another unit, or fall back to base unit if only a single unit.
             _otherOrBaseUnit = quantity.Units.Where(u => u != _baseUnit).DefaultIfEmpty(_baseUnit).First();
             _otherOrBaseUnitFullName = $"{_unitEnumName}.{_otherOrBaseUnit.SingularName}";
+            _isDimensionless = quantity.BaseDimensions is { L: 0, M: 0, T: 0, I: 0, Θ: 0, N: 0, J: 0 };
 
             var abbreviationsForCulture = new Dictionary<string, Dictionary<string, List<Unit>>>();
             foreach (Unit unit in quantity.Units)
@@ -257,6 +266,10 @@ namespace UnitsNet.Tests
 
             Assert.Null(exception);
         }}
+");
+            if (!_isDimensionless)
+            {
+                Writer.WL($@"
 
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
@@ -265,19 +278,23 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {{
-            Func<object> TestCode = () => new {_quantity.Name}(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {{
-                var quantity = ({_quantity.Name}) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }}
-            else
-            {{
-                Assert.Throws<ArgumentException>(TestCode);
-            }}
+            var quantity = new {_quantity.Name}(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }}
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(value: 1, unitSystem: unsupportedUnitSystem));
+        }}
+");
+            }
+
+            Writer.WL($@"
 
         [Fact]
         public void {_quantity.Name}_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -346,23 +363,192 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName(unit)}), {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
+");
+            if (_isDimensionless)
+            {
+                Writer.WL($@"
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }}
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {{
             var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
-
-            if (SupportsSIUnitSystem)
-            {{
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }}
-            else
-            {{
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }}
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
         }}
+
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {{
+            Assert.Multiple(() =>
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+                {_quantity.Name} convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+                IQuantity<{_unitEnumName}> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }});
+        }}
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {{
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }});
+        }}
+");
+            }
+            else
+            {
+                Writer.WL($@"
+
+        [Fact]
+        public virtual void BaseUnit_HasSIBase()
+        {{
+            var baseUnitInfo = {_quantity.Name}.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }}
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            var expectedValue = quantity.As({_quantity.Name}.Info.GetDefaultUnit(UnitSystem.SI));
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }}
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }}
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }}
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            var expectedUnit = {_quantity.Name}.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
+            {{
+                {_quantity.Name} quantityToConvert = quantity;
+
+                {_quantity.Name} convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantityToConvert = quantity;
+
+                IQuantity<{_unitEnumName}> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }}, () =>
+            {{
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }});
+        }}
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {{
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }});
+        }}
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }});
+        }}
+");
+            }
+
+            Writer.WL($@"
 
         [Fact]
         public void Parse()

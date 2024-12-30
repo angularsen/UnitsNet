@@ -81,8 +81,8 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[]
                 {
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined, "ElectricCharge"),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", BaseUnits.Undefined, "ElectricCharge"),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined, "ElectricCharge"),
@@ -120,13 +120,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricCharge(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -827,25 +822,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricChargeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -906,25 +883,25 @@ namespace UnitsNet
             ElectricCharge? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricChargeUnit -> BaseUnit
-                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value * 3600, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Kilocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e3d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Megacoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Microcoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-6d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Millicoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Nanocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-9d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Picocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-12d, ElectricChargeUnit.Coulomb),
 
                 // BaseUnit -> ElectricChargeUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value / 3600, ElectricChargeUnit.AmpereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value / 3600) / 1e3d, ElectricChargeUnit.KiloampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Kilocoulomb) => new ElectricCharge((_value) / 1e3d, ElectricChargeUnit.Kilocoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value / 3600) / 1e6d, ElectricChargeUnit.MegaampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Megacoulomb) => new ElectricCharge((_value) / 1e6d, ElectricChargeUnit.Megacoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Microcoulomb) => new ElectricCharge((_value) / 1e-6d, ElectricChargeUnit.Microcoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value / 3600) / 1e-3d, ElectricChargeUnit.MilliampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Millicoulomb) => new ElectricCharge((_value) / 1e-3d, ElectricChargeUnit.Millicoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Nanocoulomb) => new ElectricCharge((_value) / 1e-9d, ElectricChargeUnit.Nanocoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Picocoulomb) => new ElectricCharge((_value) / 1e-12d, ElectricChargeUnit.Picocoulomb),
@@ -942,6 +919,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricCharge ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricChargeUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -949,21 +942,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricCharge ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -974,6 +952,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

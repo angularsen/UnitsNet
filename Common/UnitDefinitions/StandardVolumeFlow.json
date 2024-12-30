@@ -10,6 +10,10 @@
     {
       "SingularName": "StandardCubicMeterPerSecond",
       "PluralName": "StandardCubicMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -22,6 +26,10 @@
     {
       "SingularName": "StandardCubicMeterPerMinute",
       "PluralName": "StandardCubicMetersPerMinute",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
@@ -34,6 +42,10 @@
     {
       "SingularName": "StandardCubicMeterPerHour",
       "PluralName": "StandardCubicMetersPerHour",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
@@ -46,6 +58,10 @@
     {
       "SingularName": "StandardCubicMeterPerDay",
       "PluralName": "StandardCubicMetersPerDay",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "{x} / 86400",
       "FromBaseToUnitFunc": "{x} * 86400",
       "Localization": [
@@ -58,6 +74,10 @@
     {
       "SingularName": "StandardCubicCentimeterPerMinute",
       "PluralName": "StandardCubicCentimetersPerMinute",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 6e7",
       "FromBaseToUnitFunc": "{x} * 6e7",
       "Localization": [
@@ -70,6 +90,10 @@
     {
       "SingularName": "StandardLiterPerMinute",
       "PluralName": "StandardLitersPerMinute",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60000",
       "FromBaseToUnitFunc": "{x} * 60000",
       "Localization": [
@@ -82,6 +106,10 @@
     {
       "SingularName": "StandardCubicFootPerSecond",
       "PluralName": "StandardCubicFeetPerSecond",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} / 35.314666721",
       "FromBaseToUnitFunc": "{x} * 35.314666721",
       "Localization": [
@@ -94,6 +122,10 @@
     {
       "SingularName": "StandardCubicFootPerMinute",
       "PluralName": "StandardCubicFeetPerMinute",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 2118.88000326",
       "FromBaseToUnitFunc": "{x} * 2118.88000326",
       "Localization": [
@@ -106,6 +138,10 @@
     {
       "SingularName": "StandardCubicFootPerHour",
       "PluralName": "StandardCubicFeetPerHour",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} * 7.8657907199999087346816086183876e-6",
       "FromBaseToUnitFunc": "{x} / 7.8657907199999087346816086183876e-6",
       "Localization": [

@@ -76,17 +76,17 @@ namespace UnitsNet
             Info = new QuantityInfo<FrequencyUnit>("Frequency",
                 new UnitInfo<FrequencyUnit>[]
                 {
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined, "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute), "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", BaseUnits.Undefined, "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour), "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", new BaseUnits(time: DurationUnit.Minute), "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, "Gigahertz", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", BaseUnits.Undefined, "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", new BaseUnits(time: DurationUnit.Second), "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", BaseUnits.Undefined, "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", BaseUnits.Undefined, "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Microhertz, "Microhertz", BaseUnits.Undefined, "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Millihertz, "Millihertz", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined, "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", new BaseUnits(time: DurationUnit.Second), "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined, "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined, "Frequency"),
                 },
@@ -117,13 +117,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Frequency(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -842,25 +837,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is FrequencyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -961,6 +938,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Frequency ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not FrequencyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -968,21 +961,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Frequency ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -993,6 +971,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

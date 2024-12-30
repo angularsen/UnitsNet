@@ -13,6 +13,12 @@
     {
       "SingularName": "Henry",
       "PluralName": "Henries",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli" ],

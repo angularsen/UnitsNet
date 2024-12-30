@@ -106,7 +106,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, "NanonewtonMillimetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, "NanonewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerDegree, "NewtonMetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerRadian, "NewtonMetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerRadian, "NewtonMetersPerRadian", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerDegree, "NewtonMillimetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, "NewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, "PoundForceFeetPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
@@ -139,13 +139,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public RotationalStiffness(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -1176,25 +1171,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is RotationalStiffnessUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1335,6 +1312,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public RotationalStiffness ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not RotationalStiffnessUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1342,21 +1335,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RotationalStiffness ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1367,6 +1345,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

@@ -73,10 +73,10 @@ namespace UnitsNet
             Info = new QuantityInfo<MassMomentOfInertiaUnit>("MassMomentOfInertia",
                 new UnitInfo<MassMomentOfInertiaUnit>[]
                 {
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "MassMomentOfInertia"),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, "KilogramSquareCentimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, "KilogramSquareDecimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, "KilogramSquareMeters", BaseUnits.Undefined, "MassMomentOfInertia"),
@@ -93,14 +93,14 @@ namespace UnitsNet
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, "MilligramSquareDecimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, "MilligramSquareMeters", BaseUnits.Undefined, "MassMomentOfInertia"),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, "MilligramSquareMillimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFeet", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInches", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFeet", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInches", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined, "MassMomentOfInertia"),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined, "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInches", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInches", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Tonne), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne), "MassMomentOfInertia"),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne), "MassMomentOfInertia"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -129,13 +129,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassMomentOfInertia(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -1069,25 +1064,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassMomentOfInertiaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1218,6 +1195,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MassMomentOfInertia ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassMomentOfInertiaUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1225,21 +1218,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassMomentOfInertia ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1250,6 +1228,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

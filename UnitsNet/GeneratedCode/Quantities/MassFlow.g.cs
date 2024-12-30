@@ -91,14 +91,14 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute), "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined, "MassFlow"),
@@ -111,13 +111,13 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined, "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour), "MassFlow"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -146,13 +146,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassFlow(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -1225,25 +1220,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1384,6 +1361,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MassFlow ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassFlowUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1391,21 +1384,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassFlow ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1416,6 +1394,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

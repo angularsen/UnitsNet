@@ -116,18 +116,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricCurrentGradient(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricCurrentGradient) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricCurrentGradient(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -222,20 +222,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricCurrentGradient.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricCurrentGradient.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+            var expectedUnit = ElectricCurrentGradient.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricCurrentGradient quantityToConvert = quantity;
+
+                ElectricCurrentGradient convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricCurrentGradientUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricCurrentGradientUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricCurrentGradientUnit> quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricCurrentGradientUnit> quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
