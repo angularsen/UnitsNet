@@ -37,7 +37,7 @@
       "PluralName": "GramsPerKiloNewtonSecond",
       "BaseUnits": {
         "L": "Meter",
-        "T": "Microsecond"
+        "T": "Second"
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",

@@ -76,7 +76,7 @@ namespace UnitsNet
             Info = new QuantityInfo<SpecificFuelConsumptionUnit>("SpecificFuelConsumption",
                 new UnitInfo<SpecificFuelConsumptionUnit>[]
                 {
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Microsecond), "SpecificFuelConsumption"),
+                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "SpecificFuelConsumption"),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined, "SpecificFuelConsumption"),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined, "SpecificFuelConsumption"),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined, "SpecificFuelConsumption"),
