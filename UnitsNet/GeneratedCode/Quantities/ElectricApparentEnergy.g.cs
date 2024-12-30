@@ -75,7 +75,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<ElectricApparentEnergyUnit>(ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined, "ElectricApparentEnergy"),
                     new UnitInfo<ElectricApparentEnergyUnit>(ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined, "ElectricApparentEnergy"),
-                    new UnitInfo<ElectricApparentEnergyUnit>(ElectricApparentEnergyUnit.VoltampereHour, "VoltampereHours", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentEnergy"),
+                    new UnitInfo<ElectricApparentEnergyUnit>(ElectricApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined, "ElectricApparentEnergy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
