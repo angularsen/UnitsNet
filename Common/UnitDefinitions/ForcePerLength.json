@@ -3,7 +3,6 @@
   "BaseUnit": "NewtonPerMeter",
   "XmlDocSummary": "The magnitude of force per unit length.",
   "BaseDimensions": {
-    "L": 0,
     "M": 1,
     "T": -2
   },

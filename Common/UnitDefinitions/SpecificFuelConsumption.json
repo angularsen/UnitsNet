@@ -5,7 +5,6 @@
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption",
   "BaseDimensions": {
     "L": -1,
-    "M": 0,
     "T": 1
   },
   "Units": [
