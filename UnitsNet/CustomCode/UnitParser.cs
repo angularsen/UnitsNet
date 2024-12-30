@@ -70,16 +70,20 @@ namespace UnitsNet
 
             var enumValues = Enum.GetValues(unitType).Cast<Enum>();
             var stringUnitPairs = _unitAbbreviationsCache.GetStringUnitPairs(enumValues, formatProvider);
-            var matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var caseInsensitiveMatches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var matches = caseInsensitiveMatches;
 
+            // No match? Retry after normalizing the unit abbreviation.
             if(matches.Length == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
             }
 
-            // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
-            if(matches.Length > 1)
+            // More than one case-insensitive match? Retry with case-sensitive match.
+            // For example, Megabar "Mbar" and Millibar "mbar" need to be distinguished.
+            bool hasMultipleCaseInsensitiveMatches = matches.Length > 1;
+            if (hasMultipleCaseInsensitiveMatches)
                 matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation)).ToArray();
 
             switch(matches.Length)
@@ -91,6 +95,13 @@ namespace UnitsNet
                     if(!Equals(formatProvider, UnitAbbreviationsCache.FallbackCulture))
                     {
                         return Parse(unitAbbreviation, unitType, UnitAbbreviationsCache.FallbackCulture);
+                    }
+
+                    if (hasMultipleCaseInsensitiveMatches)
+                    {
+                        string ciUnitsCsv = string.Join(", ", caseInsensitiveMatches.Select(x => Enum.GetName(unitType, x.Unit)));
+                        throw new AmbiguousUnitParseException(
+                            $"Cannot parse \"{unitAbbreviation}\" since it matched multiple units [{ciUnitsCsv}] with case-insensitive comparison, but zero units with case-sensitive comparison. To resolve the ambiguity, pass a unit abbreviation with the correct casing.");
                     }
 
                     throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");

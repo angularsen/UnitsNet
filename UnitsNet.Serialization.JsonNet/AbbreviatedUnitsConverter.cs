@@ -190,7 +190,7 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         /// <summary>
-        ///     Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
+        ///     Attempt to find a unique (non-ambiguous) unit matching the provided abbreviation.
         ///     <remarks>
         ///         An exhaustive search using all quantities is very likely to fail with an
         ///         <exception cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
