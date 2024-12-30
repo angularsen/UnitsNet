@@ -410,6 +410,9 @@
     {
       "SingularName": "Angstrom",
       "PluralName": "Angstroms",
+      "BaseUnits": {
+        "L": "Angstrom"
+      },
       "FromUnitToBaseFunc": "{x} * 1e-10",
       "FromBaseToUnitFunc": "{x} / 1e-10",
       "XmlDocSummary": "Angstrom is a metric unit of length equal to 1e-10 meter",
