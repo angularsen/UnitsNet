@@ -166,9 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            // simulating a combination of units that won't match anything
-            var unsupportedUnitSystem = new UnitSystem(new BaseUnits(
-                (LengthUnit)(-1), (MassUnit)(-1), (DurationUnit)(-1), (ElectricCurrentUnit)(-1), (TemperatureUnit)(-1), (AmountOfSubstanceUnit)(-1), (LuminousIntensityUnit)(-1)));
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
             Assert.Throws<ArgumentException>(() => new AmountOfSubstance(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
@@ -353,9 +351,7 @@ namespace UnitsNet.Tests
         public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var quantity = new AmountOfSubstance(value: 1, unit: AmountOfSubstance.BaseUnit);
-            // simulating a combination of units that won't match anything
-            var unsupportedUnitSystem = new UnitSystem(new BaseUnits(
-                (LengthUnit)(-1), (MassUnit)(-1), (DurationUnit)(-1), (ElectricCurrentUnit)(-1), (TemperatureUnit)(-1), (AmountOfSubstanceUnit)(-1), (LuminousIntensityUnit)(-1)));
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
             Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
         }
 
@@ -415,9 +411,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            // simulating a combination of units that won't match anything
-            var unsupportedUnitSystem = new UnitSystem(new BaseUnits(
-                (LengthUnit)(-1), (MassUnit)(-1), (DurationUnit)(-1), (ElectricCurrentUnit)(-1), (TemperatureUnit)(-1), (AmountOfSubstanceUnit)(-1), (LuminousIntensityUnit)(-1)));
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
             Assert.Multiple(() =>
             {
                 var quantity = new AmountOfSubstance(value: 1, unit: AmountOfSubstance.BaseUnit);
