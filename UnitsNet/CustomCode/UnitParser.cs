@@ -70,8 +70,7 @@ namespace UnitsNet
 
             var enumValues = Enum.GetValues(unitType).Cast<Enum>();
             var stringUnitPairs = _unitAbbreviationsCache.GetStringUnitPairs(enumValues, formatProvider);
-            var caseInsensitiveMatches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
-            var matches = caseInsensitiveMatches;
+            var matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
             // No match? Retry after normalizing the unit abbreviation.
             if(matches.Length == 0)
@@ -79,6 +78,8 @@ namespace UnitsNet
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
             }
+
+            var caseInsensitiveMatches = matches;
 
             // More than one case-insensitive match? Retry with case-sensitive match.
             // For example, Megabar "Mbar" and Millibar "mbar" need to be distinguished.
@@ -92,7 +93,7 @@ namespace UnitsNet
                     return (Enum)Enum.ToObject(unitType, matches[0].Unit);
                 case 0:
                     // Retry with fallback culture, if different.
-                    if(!Equals(formatProvider, UnitAbbreviationsCache.FallbackCulture))
+                    if (formatProvider != null && !Equals(formatProvider, UnitAbbreviationsCache.FallbackCulture))
                     {
                         return Parse(unitAbbreviation, unitType, UnitAbbreviationsCache.FallbackCulture);
                     }

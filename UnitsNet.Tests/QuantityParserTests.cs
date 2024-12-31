@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Tests.CustomQuantities;
@@ -40,7 +40,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsUnitNotFoundException()
+        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsAmbiguousUnitParseException()
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache();
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
@@ -52,7 +52,8 @@ namespace UnitsNet.Tests
                 quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
             }
 
-            Assert.Throws<UnitNotFoundException>(Act);
+            var ex = Assert.Throws<AmbiguousUnitParseException>(Act);
+            Assert.Equal("Cannot parse \"Foo\" since it matched multiple units [Some, ATon] with case-insensitive comparison, but zero units with case-sensitive comparison. To resolve the ambiguity, pass a unit abbreviation with the correct casing.", ex.Message);
         }
 
         [Fact]
