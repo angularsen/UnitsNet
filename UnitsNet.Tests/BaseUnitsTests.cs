@@ -139,17 +139,22 @@ namespace UnitsNet.Tests
                 TemperatureUnit.Kelvin,
                 AmountOfSubstanceUnit.Mole,
                 LuminousIntensityUnit.Candela);
-
-            UnitAbbreviationsCache cache = UnitsNetSetup.Default.UnitAbbreviations;
-            var m = cache.GetDefaultAbbreviation(LengthUnit.Meter);
-            var kg = cache.GetDefaultAbbreviation(MassUnit.Kilogram);
-            var s = cache.GetDefaultAbbreviation(DurationUnit.Second);
-            var A = cache.GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
-            var K = cache.GetDefaultAbbreviation(TemperatureUnit.Kelvin);
-            var mol = cache.GetDefaultAbbreviation(AmountOfSubstanceUnit.Mole);
-            var cd = cache.GetDefaultAbbreviation(LuminousIntensityUnit.Candela);
+            
+            var m = LengthUnit.Meter;
+            var kg = MassUnit.Kilogram;
+            var s = DurationUnit.Second;
+            var A = ElectricCurrentUnit.Ampere;
+            var K = TemperatureUnit.Kelvin;
+            var mol = AmountOfSubstanceUnit.Mole;
+            var cd = LuminousIntensityUnit.Candela;
 
             Assert.Equal($"[Length]: {m}, [Mass]: {kg}, [Time]: {s}, [Current]: {A}, [Temperature]: {K}, [Amount]: {mol}, [LuminousIntensity]: {cd}", siBaseUnits.ToString());
+        }
+
+        [Fact]
+        public void ToString_WithUndefinedUnits_ReturnsUndefined()
+        {
+            Assert.Equal("Undefined", BaseUnits.Undefined.ToString());
         }
 
         [Fact]
