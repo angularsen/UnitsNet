@@ -73,12 +73,12 @@ namespace CodeGen.Generators
                 try
                 {
                     var prefixInfo = PrefixInfo.Entries[prefix];
-                    
+
                     unitsToAdd.Add(new Unit
                     {
                         SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
                         PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo), 
+                        BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo),
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
                         Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
@@ -127,23 +127,27 @@ namespace CodeGen.Generators
             }).ToArray();
         }
 
-        private static BaseUnits? GetPrefixedBaseUnits(BaseDimensions dimensions, BaseUnits? oldUnits, PrefixInfo prefixInfo)
+        /// <summary>
+        ///     TODO Improve me, give an overall explanation of the algorithm and 1-2 concrete examples.
+        /// </summary>
+        /// <param name="dimensions">SI base unit dimensions of quantity, e.g. L=1 for Length or L=1,T=-1 for Speed.</param>
+        /// <param name="baseUnits">SI base units for a non-prefixed unit, e.g. L=Meter for Length.Meter or L=Meter,T=Second for Speed.MeterPerSecond.</param>
+        /// <param name="prefixInfo">Information about the prefix to apply.</param>
+        /// <returns>A new instance of <paramref name="baseUnits"/> after applying the metric prefix <paramref name="prefixInfo"/>.</returns>
+        private static BaseUnits? GetPrefixedBaseUnits(BaseDimensions dimensions, BaseUnits? baseUnits, PrefixInfo prefixInfo)
         {
-            if (oldUnits is null)
-            {
-                return null;
-            }
+            if (baseUnits is null) return null;
 
-            // iterate the non-zero dimensions in the order [1, -1, 2, -2...n, -n]
-            foreach (var degree in dimensions.GetNonZeroDegrees().OrderBy(int.Abs).ThenByDescending(x => x))
+            // Iterate the non-zero dimension exponents in absolute-increasing order, positive first [1, -1, 2, -2...n, -n]
+            foreach (int degree in dimensions.GetNonZeroDegrees().OrderBy(int.Abs).ThenByDescending(x => x))
             {
-                if (TryPrefixWithDegree(dimensions, oldUnits, prefixInfo.Prefix, degree, out BaseUnits? prefixedUnits))
+                if (TryPrefixWithDegree(dimensions, baseUnits, prefixInfo.Prefix, degree, out BaseUnits? prefixedUnits))
                 {
                     return prefixedUnits;
                 }
             }
-            
-            return null; 
+
+            return null;
         }
 
         private static IEnumerable<int> GetNonZeroDegrees(this BaseDimensions dimensions)
@@ -183,80 +187,80 @@ namespace CodeGen.Generators
                 yield return dimensions.Θ;
             }
         }
-        
-        private static bool TryPrefixWithDegree(BaseDimensions dimensions, BaseUnits oldUnits, Prefix prefix, int degree, [NotNullWhen(true)] out BaseUnits? baseUnits)
+
+        /// <summary>
+        ///     TODO Explain this, in particular the degree/exponent stuff.
+        /// </summary>
+        /// <param name="dimensions"></param>
+        /// <param name="baseUnits"></param>
+        /// <param name="prefix"></param>
+        /// <param name="degree"></param>
+        /// <param name="prefixedBaseUnits"></param>
+        /// <returns></returns>
+        private static bool TryPrefixWithDegree(BaseDimensions dimensions, BaseUnits baseUnits, Prefix prefix, int degree, [NotNullWhen(true)] out BaseUnits? prefixedBaseUnits)
         {
-            baseUnits = new BaseUnits
-            {
-                N = oldUnits.N,
-                I = oldUnits.I,
-                L = oldUnits.L,
-                J = oldUnits.J,
-                M = oldUnits.M,
-                Θ = oldUnits.Θ,
-                T = oldUnits.T
-            };
-            
+            prefixedBaseUnits = baseUnits.Clone();
+
             // look for a dimension that is part of the non-zero exponents
-            if (oldUnits.N is { } oldAmount && dimensions.N == degree)
+            if (baseUnits.N is { } baseAmountUnit && dimensions.N == degree)
             {
-                if (TryPrefixUnit(oldAmount, degree, prefix, out var newAmount))
+                if (TryPrefixUnit(baseAmountUnit, degree, prefix, out var newAmount))
                 {
-                    baseUnits.N = newAmount;
+                    prefixedBaseUnits.N = newAmount;
                     return true;
                 }
             }
 
-            if (oldUnits.I is { } oldCurrent && dimensions.I == degree)
+            if (baseUnits.I is { } baseCurrentUnit && dimensions.I == degree)
             {
-                if (TryPrefixUnit(oldCurrent, degree, prefix, out var newCurrent))
+                if (TryPrefixUnit(baseCurrentUnit, degree, prefix, out var newCurrent))
                 {
-                    baseUnits.I = newCurrent;
+                    prefixedBaseUnits.I = newCurrent;
                     return true;
                 }
             }
 
-            if (oldUnits.L is {} oldLength && dimensions.L == degree)
+            if (baseUnits.L is {} baseLengthUnit && dimensions.L == degree)
             {
-                if (TryPrefixUnit(oldLength, degree, prefix, out var newLength))
+                if (TryPrefixUnit(baseLengthUnit, degree, prefix, out var newLength))
                 {
-                    baseUnits.L = newLength;
+                    prefixedBaseUnits.L = newLength;
                     return true;
                 }
             }
 
-            if (oldUnits.J is { } oldLuminosity && dimensions.J == degree)
+            if (baseUnits.J is { } baseLuminosityUnit && dimensions.J == degree)
             {
-                if (TryPrefixUnit(oldLuminosity, degree, prefix, out var newLuminosity))
+                if (TryPrefixUnit(baseLuminosityUnit, degree, prefix, out var newLuminosity))
                 {
-                    baseUnits.J = newLuminosity;
+                    prefixedBaseUnits.J = newLuminosity;
                     return true;
                 }
             }
 
-            if (oldUnits.M is {} oldMass && dimensions.M == degree)
+            if (baseUnits.M is {} baseMassUnit && dimensions.M == degree)
             {
-                if (TryPrefixUnit(oldMass, degree, prefix, out var newMass))
+                if (TryPrefixUnit(baseMassUnit, degree, prefix, out var newMass))
                 {
-                    baseUnits.M = newMass;
+                    prefixedBaseUnits.M = newMass;
                     return true;
                 }
             }
 
-            if (oldUnits.Θ is {} oldTemperature && dimensions.Θ == degree)
+            if (baseUnits.Θ is {} baseTemperatureUnit && dimensions.Θ == degree)
             {
-                if (TryPrefixUnit(oldTemperature, degree, prefix, out var newTemperature))
+                if (TryPrefixUnit(baseTemperatureUnit, degree, prefix, out var newTemperature))
                 {
-                    baseUnits.Θ = newTemperature;
+                    prefixedBaseUnits.Θ = newTemperature;
                     return true;
                 }
             }
-            
-            if (oldUnits.T is {} oldTime && dimensions.T == degree)
+
+            if (baseUnits.T is {} baseDurationUnit && dimensions.T == degree)
             {
-                if (TryPrefixUnit(oldTime, degree, prefix, out var newTime))
+                if (TryPrefixUnit(baseDurationUnit, degree, prefix, out var newTime))
                 {
-                    baseUnits.T = newTime;
+                    prefixedBaseUnits.T = newTime;
                     return true;
                 }
             }
@@ -264,26 +268,24 @@ namespace CodeGen.Generators
             return false;
         }
 
-        private static bool TryPrefixUnit(string oldBase, int degree, Prefix prefix, [NotNullWhen(true)] out string? newBaseUnit)
+        private static bool TryPrefixUnit(string unitName, int degree, Prefix prefix, [NotNullWhen(true)] out string? prefixedUnitName)
         {
-            if (PrefixedStringFactors.TryGetValue(oldBase, out (string, int) existingPrefixMapping) && PrefixFactors.TryGetValue(prefix, out var prefixFactor))
+            if (PrefixedStringFactors.TryGetValue(unitName, out UnitPrefixMap? prefixMap) && PrefixFactors.TryGetValue(prefix, out var prefixFactor))
             {
-                var baseUnit = existingPrefixMapping.Item1;
-                var currentFactor = existingPrefixMapping.Item2;
                 var (quotient, remainder) = int.DivRem(prefixFactor, degree);
-                if (remainder == 0 && PrefixFactorsByValue.TryGetValue(currentFactor + quotient, out Prefix calculatedPrefix))
+                if (remainder == 0 && PrefixFactorsByValue.TryGetValue(prefixMap.ScaleFactor + quotient, out Prefix calculatedPrefix))
                 {
-                    if (BaseUnitPrefixConversions.TryGetValue((baseUnit, calculatedPrefix), out newBaseUnit))
+                    if (BaseUnitPrefixConversions.TryGetValue((prefixMap.BaseUnit, calculatedPrefix), out prefixedUnitName))
                     {
                         return true;
                     }
                 }
             }
 
-            newBaseUnit = null;
+            prefixedUnitName = null;
             return false;
         }
-        
+
         /// <summary>
         /// A dictionary that maps metric prefixes to their corresponding exponent values.
         /// </summary>
@@ -308,14 +310,20 @@ namespace CodeGen.Generators
         /// to their base units and the associated fractional factors. The keys are the prefixed unit strings, and the values
         /// are tuples containing the base unit string and the fractional factor.
         /// </remarks>
-        private static readonly Dictionary<string, (string, int)> PrefixedStringFactors = GetSIPrefixes()
+        private static readonly Dictionary<string, UnitPrefixMap> PrefixedStringFactors = GetSIPrefixes()
             .SelectMany(pair => pair.Value
-                .Select(prefix => new KeyValuePair<string, (string, int)>(prefix + pair.Key.ToCamelCase(), (pair.Key, PrefixFactors[prefix])))
-                .Prepend(new KeyValuePair<string, (string, int)>(pair.Key, (pair.Key, 0)))).ToDictionary();
+                .Select(prefix => new KeyValuePair<string, UnitPrefixMap>(prefix + pair.Key.ToCamelCase(), new UnitPrefixMap(pair.Key, PrefixFactors[prefix])))
+                .Prepend(new KeyValuePair<string, UnitPrefixMap>(pair.Key, new UnitPrefixMap(pair.Key, 0)))).ToDictionary();
 
         /// <summary>
-        ///     Contains the list of the standard SI quantity prefix transitions, such as Gram => KiloGram
-        ///     MilliGram.
+        ///     Describes how to convert from base unit to prefixed unit.
+        /// </summary>
+        /// <param name="BaseUnit">Name of base unit, e.g. "Meter".</param>
+        /// <param name="ScaleFactor">Scale factor, e.g. 1000 for kilometer.</param>
+        private record UnitPrefixMap(string BaseUnit, int ScaleFactor);
+
+        /// <summary>
+        ///     Lookup of prefixed unit name from base unit + prefix pairs, such as ("Gram", Prefix.Kilo) => "Kilogram".
         /// </summary>
         private static readonly Dictionary<(string, Prefix), string> BaseUnitPrefixConversions = GetSIPrefixes()
             .SelectMany(pair => pair.Value.Select(prefix => (pair.Key, prefix))).ToDictionary(tuple => tuple, tuple => tuple.prefix + tuple.Key.ToCamelCase());
