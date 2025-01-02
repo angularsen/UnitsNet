@@ -42,7 +42,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsUnitNotFoundException()
+        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsAmbiguousUnitParseException()
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache();
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
@@ -54,7 +54,8 @@ namespace UnitsNet.Tests
                 quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
             }
 
-            Assert.Throws<UnitNotFoundException>(Act);
+            var ex = Assert.Throws<AmbiguousUnitParseException>(Act);
+            Assert.Equal("""Cannot parse "Foo" since it matches multiple units: ATon ("FOO"), Some ("foo").""", ex.Message);
         }
 
         [Fact]
