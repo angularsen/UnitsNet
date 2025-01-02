@@ -76,10 +76,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricApparentPowerUnit>("ElectricApparentPower",
                 new UnitInfo<ElectricApparentPowerUnit>[]
                 {
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
+                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Microvoltampere, "Microvoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
+                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Megavoltampere, "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
+                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Microvoltampere, "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Voltampere, "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
                 },

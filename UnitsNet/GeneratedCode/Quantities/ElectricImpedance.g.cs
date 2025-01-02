@@ -77,14 +77,14 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricImpedanceUnit>("ElectricImpedance",
                 new UnitInfo<ElectricImpedanceUnit>[]
                 {
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined, "ElectricImpedance"),
+                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
                     new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricImpedance"),
+                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
+                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
                     new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Nanoohm, "Nanoohms", BaseUnits.Undefined, "ElectricImpedance"),
+                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
                     new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricImpedance"),
+                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

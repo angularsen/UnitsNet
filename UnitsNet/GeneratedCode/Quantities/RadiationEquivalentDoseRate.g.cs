@@ -77,7 +77,7 @@ namespace UnitsNet
                 new UnitInfo<RadiationEquivalentDoseRateUnit>[]
                 {
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, "MicrosievertsPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
-                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "MicrosievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
+                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "MicrosievertsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, "MilliroentgensEquivalentManPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MillisievertPerHour, "MillisievertsPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, "MillisievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),

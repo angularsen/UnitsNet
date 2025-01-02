@@ -77,7 +77,7 @@ namespace UnitsNet
             Info = new QuantityInfo<RadiationEquivalentDoseUnit>("RadiationEquivalentDose",
                 new UnitInfo<RadiationEquivalentDoseUnit>[]
                 {
-                    new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Microsievert, "Microsieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
+                    new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Microsievert, "Microsieverts", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgensEquivalentMan", BaseUnits.Undefined, "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Millisievert, "Millisieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Nanosievert, "Nanosieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),

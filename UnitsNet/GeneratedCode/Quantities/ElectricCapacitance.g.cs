@@ -78,11 +78,11 @@ namespace UnitsNet
                 {
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined, "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined, "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined, "ElectricCapacitance"),
+                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Megafarad, "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
+                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Microfarad, "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined, "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined, "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined, "ElectricCapacitance"),
+                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Picofarad, "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricCapacitance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

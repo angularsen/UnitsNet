@@ -84,8 +84,8 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilocaloriePerGramKelvin, "KilocaloriesPerGramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, "KilojoulesPerKilogramDegreeCelsius", BaseUnits.Undefined, "SpecificEntropy"),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined, "SpecificEntropy"),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "SpecificEntropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

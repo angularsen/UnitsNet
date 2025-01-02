@@ -77,10 +77,10 @@ namespace UnitsNet
                 new UnitInfo<MagneticFieldUnit>[]
                 {
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined, "MagneticField"),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined, "MagneticField"),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere), "MagneticField"),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, "Milligausses", BaseUnits.Undefined, "MagneticField"),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined, "MagneticField"),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined, "MagneticField"),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Kiloampere), "MagneticField"),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, current: ElectricCurrentUnit.Ampere), "MagneticField"),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Ampere), "MagneticField"),
                 },
                 BaseUnit, Zero, BaseDimensions);

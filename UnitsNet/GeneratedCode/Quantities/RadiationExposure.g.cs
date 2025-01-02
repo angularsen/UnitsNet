@@ -74,12 +74,12 @@ namespace UnitsNet
                 new UnitInfo<RadiationExposureUnit>[]
                 {
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.CoulombPerKilogram, "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Microroentgen, "Microroentgens", BaseUnits.Undefined, "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Milliroentgen, "Milliroentgens", BaseUnits.Undefined, "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Microroentgen, "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Milliroentgen, "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere), "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere), "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Roentgen, "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
                 },
                 BaseUnit, Zero, BaseDimensions);

@@ -81,8 +81,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMinute, "AmperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerMinute, "MilliamperesPerMinute", BaseUnits.Undefined, "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerSecond, "MilliamperesPerSecond", BaseUnits.Undefined, "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerMinute, "MilliamperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Milliampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerSecond, "MilliamperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCurrentGradient"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

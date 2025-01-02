@@ -76,7 +76,7 @@ namespace UnitsNet
             Info = new QuantityInfo<MolalityUnit>("Molality",
                 new UnitInfo<MolalityUnit>[]
                 {
-                    new UnitInfo<MolalityUnit>(MolalityUnit.MillimolePerKilogram, "MillimolesPerKilogram", BaseUnits.Undefined, "Molality"),
+                    new UnitInfo<MolalityUnit>(MolalityUnit.MillimolePerKilogram, "MillimolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Millimole), "Molality"),
                     new UnitInfo<MolalityUnit>(MolalityUnit.MolePerGram, "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
                     new UnitInfo<MolalityUnit>(MolalityUnit.MolePerKilogram, "MolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
                 },
