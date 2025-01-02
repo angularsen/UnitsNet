@@ -148,31 +148,31 @@ namespace UnitsNet
             {
                 if (Length is not null)
                 {
-                    yield return $"[Length]: {Length}";
+                    yield return $"L={Length}";
                 }
                 if (Mass is not null)
                 {
-                    yield return $"[Mass]: {Mass}";
+                    yield return $"M={Mass}";
                 }
                 if (Time is not null)
                 {
-                    yield return $"[Time]: {Time}";
+                    yield return $"T={Time}";
                 }
                 if (Current is not null)
                 {
-                    yield return $"[Current]: {Current}";
+                    yield return $"I={Current}";
                 }
                 if (Temperature is not null)
                 {
-                    yield return $"[Temperature]: {Temperature}";
+                    yield return $"Θ={Temperature}";
                 }
                 if (Amount is not null)
                 {
-                    yield return $"[Amount]: {Amount}";
+                    yield return $"N={Amount}";
                 }
                 if (LuminousIntensity is not null)
                 {
-                    yield return $"[LuminousIntensity]: {LuminousIntensity}";
+                    yield return $"J={LuminousIntensity}";
                 }
             }
         }

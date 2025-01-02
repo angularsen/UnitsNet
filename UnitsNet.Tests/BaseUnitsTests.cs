@@ -139,16 +139,16 @@ namespace UnitsNet.Tests
                 TemperatureUnit.Kelvin,
                 AmountOfSubstanceUnit.Mole,
                 LuminousIntensityUnit.Candela);
-            
-            var m = LengthUnit.Meter;
-            var kg = MassUnit.Kilogram;
-            var s = DurationUnit.Second;
-            var A = ElectricCurrentUnit.Ampere;
-            var K = TemperatureUnit.Kelvin;
-            var mol = AmountOfSubstanceUnit.Mole;
-            var cd = LuminousIntensityUnit.Candela;
 
-            Assert.Equal($"[Length]: {m}, [Mass]: {kg}, [Time]: {s}, [Current]: {A}, [Temperature]: {K}, [Amount]: {mol}, [LuminousIntensity]: {cd}", siBaseUnits.ToString());
+            Assert.Equal("L=Meter, M=Kilogram, T=Second, I=Ampere, Θ=Kelvin, N=Mole, J=Candela", siBaseUnits.ToString());
+        }
+
+        [Fact]
+        public void ToString_WithFewerDimensions_ContainsOnlyTheSpecifiedDimensions()
+        {
+            var siBaseUnits = new BaseUnits(length:LengthUnit.Meter, mass:MassUnit.Gram, time:DurationUnit.Second, temperature:TemperatureUnit.DegreeCelsius);
+
+            Assert.Equal("L=Meter, M=Gram, T=Second, Θ=DegreeCelsius", siBaseUnits.ToString());
         }
 
         [Fact]
