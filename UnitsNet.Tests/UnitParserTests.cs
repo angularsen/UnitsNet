@@ -136,5 +136,13 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
         }
+
+        [Fact]
+        public void Parse_LengthUnit_MM_ThrowsExceptionDescribingTheAmbiguity()
+        {
+            var ex = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("MM"));
+            Assert.Contains("Cannot parse \"MM\" since it matched multiple units [Millimeter, Megameter] with case-insensitive comparison, but zero units with case-sensitive comparison. To resolve the ambiguity, pass a unit abbreviation with the correct casing.", ex.Message);
+        }
+
     }
 }
