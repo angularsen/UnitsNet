@@ -54,10 +54,10 @@ namespace CodeGen.JsonTypes
                 case 0:
                     return;
                 case 1:
-                    sb.Append(name);
+                    sb.AppendFormat("[{0}]", name);
                     break;
                 default:
-                    sb.Append($"{name}^{value}");
+                    sb.AppendFormat("[{0}^{1}]", name, value);
                     break;
             }
         }

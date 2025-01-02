@@ -104,11 +104,78 @@ internal class UnitPrefixBuilder
     /// <remarks>
     ///     The algorithm attempts to find matching prefixed base units by iterating through the non-zero dimension exponents
     ///     of the provided <paramref name="dimensions" />. The exponents are processed in ascending order of their absolute
-    ///     values,
-    ///     with positive exponents being prioritized over negative ones. This approach improves the likelihood of finding a
-    ///     match
-    ///     that does not deviate too much from the desired prefix.
+    ///     values, with positive exponents being prioritized over negative ones. This approach improves the likelihood of
+    ///     finding a
+    ///     match that does not deviate too much from the desired prefix.
     /// </remarks>
+    /// <example>
+    ///     <para>Examples of determining base units of prefix units:</para>
+    ///     <list type="bullet">
+    ///         <item>
+    ///             <term>Example 1 - Pressure.Micropascal</term>
+    ///             <description>
+    ///                 <para>
+    ///                     This highlights how UnitsNet chose Gram as the conversion base unit, while SI defines Kilogram as
+    ///                     the base mass unit.
+    ///                 </para>
+    ///                 <code>
+    ///                     Requested prefix: Micro (scale -6) for pressure unit Pascal
+    ///                     SI base units of Pascal: L=Meter, M=Kilogram, T=Second
+    ///                     SI base dimensions, ordered: M=1, L=-1, T=-2
+    ///                     Trying first dimension M=1:
+    ///                         SI base mass unit is Kilogram, but UnitsNet base mass unit is Gram so base prefix scale is 3
+    ///                         Inferred prefix is Milli: base prefix scale 3 + requested prefix scale (-6) = -3
+    ///                         ✅ Resulting base units: M=Milligram plus the original L=Meter, T=Second
+    ///                 </code>
+    ///             </description>
+    ///         </item>
+    ///         <item>
+    ///             <term>Example 2 - Pressure.Millipascal</term>
+    ///             <description>
+    ///                 <para>
+    ///                     Similar to example 1, but this time Length is used instead of Mass due to the base unit scale
+    ///                     factor of mass canceling out the requested prefix.
+    ///                 </para>
+    ///                 <code>
+    ///                     Requested prefix: Milli (scale -3) for pressure unit Pascal
+    ///                     SI base units of Pascal: L=Meter, M=Kilogram, T=Second
+    ///                     SI base dimensions, ordered: M=1, L=-1, T=-2
+    ///                     Trying first dimension M=1:
+    ///                         SI base unit in mass dimension is Kilogram, but configured base unit is Gram so base prefix scale is 3
+    ///                         ❌ No inferred prefix: base prefix scale 3 + requested prefix scale (-3) = 0
+    ///                     Trying second dimension L=-1:
+    ///                         SI base unit in length dimension is Meter, same as configured base unit, so base prefix scale is 0
+    ///                         Inferred prefix is Milli: base prefix scale 0 + requested prefix scale (-3) = -3
+    ///                         ✅ Resulting base units: M=Millimeter plus the original M=Kilogram, T=Second
+    ///                 </code>
+    ///             </description>
+    ///         </item>
+    ///         <item>
+    ///             <term>Example 3 - ElectricApparentPower.Kilovoltampere</term>
+    ///             <description>
+    ///                 <para>
+    ///                     This example demonstrates cases where determining the base units for certain prefixes is not
+    ///                     possible or trivial.
+    ///                 </para>
+    ///                 <code>
+    ///                     Requested prefix: Kilo (scale 3) for unit Voltampere
+    ///                     SI base units of Voltampere: L=Meter, M=Kilogram, T=Second
+    ///                     SI base dimensions, ordered: M=1, L=2, T=-3
+    ///                     Trying first dimension M=1:
+    ///                         SI base unit in mass dimension is Kilogram, same as configured base unit, so base prefix scale is 0
+    ///                         Inferred prefix is Kilo: base prefix scale 0 + requested prefix scale (3) = 3
+    ///                         ❌ Kilo prefix for Kilogram unit would be Megagram, but there is no unit Megagram, since Gram does not have this prefix (we could add it)
+    ///                     Trying second dimension L=2:
+    ///                         ❌ There is no metric prefix we can raise to the power of 2 and get Kilo, e.g., Deca*Deca = Hecto, Kilo*Kilo = Mega, etc.
+    ///                     Trying third dimension T=-3:
+    ///                         SI base unit in time dimension is Second, same as configured base unit, so base prefix scale is 0
+    ///                         Inferred prefix is Deci: (base prefix scale 0 + requested prefix scale (-3)) / exponent -3 = -3 / -3 = 1
+    ///                         ❌ There is no Duration unit Decasecond (we could add it)
+    ///                 </code>
+    ///             </description>
+    ///         </item>
+    ///     </list>
+    /// </example>
     private BaseUnits? GetPrefixedBaseUnits(BaseDimensions dimensions, BaseUnits? baseUnits, PrefixInfo prefixInfo)
     {
         if (baseUnits is null) return null;
