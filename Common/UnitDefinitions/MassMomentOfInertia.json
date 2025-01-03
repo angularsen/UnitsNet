@@ -127,8 +127,8 @@
       ]
     },
     {
-      "SingularName": "TonneSquareMilimeter",
-      "PluralName": "TonneSquareMilimeters",
+      "SingularName": "TonneSquareMillimeter",
+      "PluralName": "TonneSquareMillimeters",
       "BaseUnits": {
         "L": "Millimeter",
         "M": "Tonne"
