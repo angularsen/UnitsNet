@@ -1331,12 +1331,10 @@
     "MegajoulePerKilogramKelvin": 9
   },
   "SpecificFuelConsumption": {
-    "GramPerKiloNewtonSecond": 1,
+    "GramPerKilonewtonSecond": 1,
     "KilogramPerKilogramForceHour": 2,
-    "KilogramPerKiloNewtonSecond": 3,
-    "PoundMassPerPoundForceHour": 4,
-    "GramPerKilonewtonSecond": 11,
-    "KilogramPerKilonewtonSecond": 6
+    "KilogramPerKilonewtonSecond": 3,
+    "PoundMassPerPoundForceHour": 4
   },
   "SpecificVolume": {
     "CubicFootPerPound": 1,
