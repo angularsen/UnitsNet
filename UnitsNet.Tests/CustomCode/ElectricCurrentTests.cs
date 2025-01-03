@@ -28,6 +28,12 @@ namespace UnitsNet.Tests
         protected override double KiloamperesInOneAmpere => 1e-3;
 
         protected override double MegaamperesInOneAmpere => 1e-6;
+        
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(ElectricCurrent.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(current: unitInfo.Value), unitInfo.BaseUnits));
+        }
 
         [Theory]
         [InlineData(1, 1, 1)]
