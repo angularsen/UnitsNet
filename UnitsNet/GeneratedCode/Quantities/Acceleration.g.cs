@@ -91,9 +91,9 @@ namespace UnitsNet
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Acceleration"),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "Acceleration"),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined, "Acceleration"),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", BaseUnits.Undefined, "Acceleration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

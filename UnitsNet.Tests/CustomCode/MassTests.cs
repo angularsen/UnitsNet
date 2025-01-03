@@ -68,30 +68,36 @@ namespace UnitsNet.Tests
         protected override double PicogramsInOneKilogram => 1E15;
         
         [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(Mass.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(mass: unitInfo.Value), unitInfo.BaseUnits));
+        }
+
+        [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
-            Force force = Acceleration.FromMetersPerSecondSquared(3)*Mass.FromKilograms(18);
+            Force force = Acceleration.FromMetersPerSecondSquared(3) * Mass.FromKilograms(18);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 
         [Fact]
         public void MassDividedByDurationEqualsMassFlow()
         {
-            MassFlow massFlow = Mass.FromKilograms(18.0)/Duration.FromSeconds(6);
+            MassFlow massFlow = Mass.FromKilograms(18.0) / Duration.FromSeconds(6);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByTimeSpanEqualsMassFlow()
         {
-            MassFlow massFlow = Mass.FromKilograms(18.0)/TimeSpan.FromSeconds(6);
+            MassFlow massFlow = Mass.FromKilograms(18.0) / TimeSpan.FromSeconds(6);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByVolumeEqualsDensity()
         {
-            Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);
+            Density density = Mass.FromKilograms(18) / Volume.FromCubicMeters(3);
             Assert.Equal(density, Density.FromKilogramsPerCubicMeter(6));
         }
 
@@ -112,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
-            Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
+            Force force = Mass.FromKilograms(18) * Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 

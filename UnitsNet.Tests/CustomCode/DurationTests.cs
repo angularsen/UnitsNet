@@ -34,6 +34,12 @@ namespace UnitsNet.Tests
         protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
 
         protected override double SolsInOneSecond => 1.126440159375963e-5;
+        
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(Duration.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(time: unitInfo.Value), unitInfo.BaseUnits));
+        }
 
         [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()

@@ -131,10 +131,6 @@
     {
       "SingularName": "StandardGravity",
       "PluralName": "StandardGravity",
-      "BaseUnits": {
-        "L": "Meter",
-        "T": "Second"
-      },
       "FromUnitToBaseFunc": "{x} * 9.80665",
       "FromBaseToUnitFunc": "{x} / 9.80665",
       "Prefixes": [ "Milli"],

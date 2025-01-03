@@ -29,6 +29,12 @@ namespace UnitsNet.Tests
         protected override double MillidegreesCelsiusInOneKelvin => -272150;
 
         protected override double SolarTemperaturesInOneKelvin => 1.73070266528210E-04;
+        
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(Temperature.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(temperature: unitInfo.Value), unitInfo.BaseUnits));
+        }
 
         public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =
             new List<object[]>

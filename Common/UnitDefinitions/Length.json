@@ -337,6 +337,9 @@
     {
       "SingularName": "AstronomicalUnit",
       "PluralName": "AstronomicalUnits",
+      "BaseUnits": {
+        "L": "AstronomicalUnit"
+      },
       "FromUnitToBaseFunc": "{x} * 1.4959787070e11",
       "FromBaseToUnitFunc": "{x} / 1.4959787070e11",
       "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
@@ -351,6 +354,9 @@
     {
       "SingularName": "Parsec",
       "PluralName": "Parsecs",
+      "BaseUnits": {
+        "L": "Parsec"
+      },
       "FromUnitToBaseFunc": "{x} * 3.08567758128e16",
       "FromBaseToUnitFunc": "{x} / 3.08567758128e16",
       "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
@@ -366,6 +372,9 @@
     {
       "SingularName": "LightYear",
       "PluralName": "LightYears",
+      "BaseUnits": {
+        "L": "LightYear"
+      },
       "FromUnitToBaseFunc": "{x} * 9.46073047258e15",
       "FromBaseToUnitFunc": "{x} / 9.46073047258e15",
       "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
@@ -381,6 +390,9 @@
     {
       "SingularName": "SolarRadius",
       "PluralName": "SolarRadiuses",
+      "BaseUnits": {
+        "L": "SolarRadius"
+      },
       "FromUnitToBaseFunc": "{x} * 6.95700e8",
       "FromBaseToUnitFunc": "{x} / 6.95700e8",
       "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
@@ -427,6 +439,9 @@
     {
       "SingularName": "DataMile",
       "PluralName": "DataMiles",
+      "BaseUnits": {
+        "L": "DataMile"
+      },
       "FromUnitToBaseFunc": "{x} * 1828.8",
       "FromBaseToUnitFunc": "{x} / 1828.8",
       "XmlDocSummary": "In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).",
