@@ -36,7 +36,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Fuel efficiency is a form of thermal efficiency, meaning the ratio from effort to result of a process that converts chemical potential energy contained in a carrier (fuel) into kinetic energy or work. Fuel economy is stated as "fuel consumption" in liters per 100 kilometers (L/100 km). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).
+    ///     In the context of transport, fuel economy is the energy efficiency of a particular vehicle, given as a ratio of distance traveled per unit of fuel consumed. In most countries, using the metric system, fuel economy is stated as "fuel consumption" in liters per 100 kilometers (L/100 km) or kilometers per liter (km/L or kmpl). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
@@ -69,8 +69,8 @@ namespace UnitsNet
 
         static FuelEfficiency()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = FuelEfficiencyUnit.LiterPer100Kilometers;
+            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            BaseUnit = FuelEfficiencyUnit.KilometerPerLiter;
             Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().ToArray();
             Zero = new FuelEfficiency(0, BaseUnit);
             Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
@@ -78,6 +78,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiter", BaseUnits.Undefined, "FuelEfficiency"),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined, "FuelEfficiency"),
+                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MeterPerCubicMeter, "MetersPerCubicMeter", new BaseUnits(length: LengthUnit.Meter), "FuelEfficiency"),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined, "FuelEfficiency"),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined, "FuelEfficiency"),
                 },
@@ -98,6 +99,20 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
+        /// </summary>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public FuelEfficiency(double value, UnitSystem unitSystem)
+        {
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
+        }
+
         #region Static Properties
 
         /// <summary>
@@ -114,7 +129,7 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of FuelEfficiency, which is LiterPer100Kilometers. All conversions go via this value.
+        ///     The base unit of FuelEfficiency, which is KilometerPerLiter. All conversions go via this value.
         /// </summary>
         public static FuelEfficiencyUnit BaseUnit { get; }
 
@@ -124,7 +139,7 @@ namespace UnitsNet
         public static FuelEfficiencyUnit[] Units { get; }
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit LiterPer100Kilometers.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit KilometerPerLiter.
         /// </summary>
         public static FuelEfficiency Zero { get; }
 
@@ -174,6 +189,11 @@ namespace UnitsNet
         public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>
+        /// </summary>
+        public double MetersPerCubicMeter => As(FuelEfficiencyUnit.MeterPerCubicMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
         public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
@@ -194,17 +214,19 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: FuelEfficiencyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => quantity.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers));
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => quantity.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers));
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => quantity.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MeterPerCubicMeter, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => quantity);
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> FuelEfficiencyUnit
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUkGallon));
-            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUsGallon));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => quantity.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MeterPerCubicMeter, quantity => quantity.ToUnit(FuelEfficiencyUnit.MeterPerCubicMeter));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MilePerUkGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUkGallon));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MilePerUsGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUsGallon));
         }
 
         /// <summary>
@@ -246,6 +268,14 @@ namespace UnitsNet
         public static FuelEfficiency FromLitersPer100Kilometers(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>.
+        /// </summary>
+        public static FuelEfficiency FromMetersPerCubicMeter(double value)
+        {
+            return new FuelEfficiency(value, FuelEfficiencyUnit.MeterPerCubicMeter);
         }
 
         /// <summary>
@@ -462,7 +492,7 @@ namespace UnitsNet
         /// <summary>Get ratio value from dividing <see cref="FuelEfficiency"/> by <see cref="FuelEfficiency"/>.</summary>
         public static double operator /(FuelEfficiency left, FuelEfficiency right)
         {
-            return left.LitersPer100Kilometers / right.LitersPer100Kilometers;
+            return left.KilometersPerLiter / right.KilometersPerLiter;
         }
 
         #endregion
@@ -730,14 +760,16 @@ namespace UnitsNet
             FuelEfficiency? convertedOrNull = (Unit, unit) switch
             {
                 // FuelEfficiencyUnit -> BaseUnit
-                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.LiterPer100Kilometers),
-                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * _value), FuelEfficiencyUnit.LiterPer100Kilometers),
-                (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * _value), FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.KilometerPerLiter),
+                (FuelEfficiencyUnit.MeterPerCubicMeter, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(_value / 1e6, FuelEfficiencyUnit.KilometerPerLiter),
+                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(_value * 1.609344 / 4.54609, FuelEfficiencyUnit.KilometerPerLiter),
+                (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(_value * 1.609344 / 3.785411784, FuelEfficiencyUnit.KilometerPerLiter),
 
                 // BaseUnit -> FuelEfficiencyUnit
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.KilometerPerLiter),
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * _value), FuelEfficiencyUnit.MilePerUkGallon),
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * _value), FuelEfficiencyUnit.MilePerUsGallon),
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MeterPerCubicMeter) => new FuelEfficiency(_value * 1e6, FuelEfficiencyUnit.MeterPerCubicMeter),
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency(_value * 4.54609 / 1.609344, FuelEfficiencyUnit.MilePerUkGallon),
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency(_value * 3.785411784 / 1.609344, FuelEfficiencyUnit.MilePerUsGallon),
 
                 _ => null
             };
