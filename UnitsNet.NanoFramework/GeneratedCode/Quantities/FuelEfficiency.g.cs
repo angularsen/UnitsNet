@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Fuel efficiency is a form of thermal efficiency, meaning the ratio from effort to result of a process that converts chemical potential energy contained in a carrier (fuel) into kinetic energy or work. Fuel economy is stated as "fuel consumption" in liters per 100 kilometers (L/100 km). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).
+    ///     In the context of transport, fuel economy is the energy efficiency of a particular vehicle, given as a ratio of distance traveled per unit of fuel consumed. In most countries, using the metric system, fuel economy is stated as "fuel consumption" in liters per 100 kilometers (L/100 km) or kilometers per liter (km/L or kmpl). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
@@ -63,7 +63,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of FuelEfficiency, which is Second. All conversions go via this value.
         /// </summary>
-        public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
+        public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.KilometerPerLiter;
 
         /// <summary>
         /// Represents the largest possible value of FuelEfficiency.
@@ -92,6 +92,11 @@ namespace UnitsNet
         public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>
+        /// </summary>
+        public double MetersPerCubicMeter => As(FuelEfficiencyUnit.MeterPerCubicMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
         public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
@@ -114,6 +119,11 @@ namespace UnitsNet
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
         public static FuelEfficiency FromLitersPer100Kilometers(double litersper100kilometers) => new FuelEfficiency(litersper100kilometers, FuelEfficiencyUnit.LiterPer100Kilometers);
+
+        /// <summary>
+        ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>.
+        /// </summary>
+        public static FuelEfficiency FromMetersPerCubicMeter(double meterspercubicmeter) => new FuelEfficiency(meterspercubicmeter, FuelEfficiencyUnit.MeterPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
@@ -165,10 +175,11 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        FuelEfficiencyUnit.KilometerPerLiter => 100 / _value,
-                        FuelEfficiencyUnit.LiterPer100Kilometers => _value,
-                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * _value),
-                        FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * _value),
+                        FuelEfficiencyUnit.KilometerPerLiter => _value,
+                        FuelEfficiencyUnit.LiterPer100Kilometers => 100 / _value,
+                        FuelEfficiencyUnit.MeterPerCubicMeter => _value / 1e6,
+                        FuelEfficiencyUnit.MilePerUkGallon => _value * 1.609344 / 4.54609,
+                        FuelEfficiencyUnit.MilePerUsGallon => _value * 1.609344 / 3.785411784,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -182,10 +193,11 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        FuelEfficiencyUnit.KilometerPerLiter => 100 / baseUnitValue,
-                        FuelEfficiencyUnit.LiterPer100Kilometers => baseUnitValue,
-                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * baseUnitValue),
-                        FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * baseUnitValue),
+                        FuelEfficiencyUnit.KilometerPerLiter => baseUnitValue,
+                        FuelEfficiencyUnit.LiterPer100Kilometers => 100 / baseUnitValue,
+                        FuelEfficiencyUnit.MeterPerCubicMeter => baseUnitValue * 1e6,
+                        FuelEfficiencyUnit.MilePerUkGallon => baseUnitValue * 4.54609 / 1.609344,
+                        FuelEfficiencyUnit.MilePerUsGallon => baseUnitValue * 3.785411784 / 1.609344,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

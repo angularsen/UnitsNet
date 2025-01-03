@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(FuelEfficiency.FromLitersPer100Kilometers(2), 2.LitersPer100Kilometers());
 
         [Fact]
+        public void NumberToMetersPerCubicMeterTest() =>
+            Assert.Equal(FuelEfficiency.FromMetersPerCubicMeter(2), 2.MetersPerCubicMeter());
+
+        [Fact]
         public void NumberToMilesPerUkGallonTest() =>
             Assert.Equal(FuelEfficiency.FromMilesPerUkGallon(2), 2.MilesPerUkGallon());
 

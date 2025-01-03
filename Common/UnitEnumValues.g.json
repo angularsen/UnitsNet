@@ -533,7 +533,8 @@
     "KilometerPerLiter": 1,
     "LiterPer100Kilometers": 2,
     "MilePerUkGallon": 3,
-    "MilePerUsGallon": 4
+    "MilePerUsGallon": 4,
+    "MeterPerCubicMeter": 7
   },
   "HeatFlux": {
     "BtuPerHourSquareFoot": 1,

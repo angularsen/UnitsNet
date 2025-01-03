@@ -17,25 +17,22 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class FuelEfficiencyTests : FuelEfficiencyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-        protected override double KilometersPerLiterInOneLiterPer100Kilometers => 100;
-        protected override double LitersPer100KilometersInOneLiterPer100Kilometers => 1;
-        protected override double MilesPerUkGallonInOneLiterPer100Kilometers => 282.4809363;
-        protected override double MilesPerUsGallonInOneLiterPer100Kilometers => 235.2145833;
-        
-        [Theory(Skip = "Conversion from 0 km/L results in infinity")]
-        [MemberData(nameof(UnitTypes))]
-        public override void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
+        protected override double MetersPerCubicMeterInOneKilometerPerLiter => 1e6;
+        protected override double KilometersPerLiterInOneKilometerPerLiter => 1;
+        protected override double LitersPer100KilometersInOneKilometerPerLiter => 100;
+        protected override double MilesPerUkGallonInOneKilometerPerLiter => 2.824809363318222;
+        protected override double MilesPerUsGallonInOneKilometerPerLiter => 2.352145833333333;
+
+        [Fact(Skip = "See about changing this to MetersPerCubicMeter")]
+        public override void BaseUnit_HasSIBase()
         {
-            base.ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(unit);
+            base.BaseUnit_HasSIBase();
         }
     }
 }
