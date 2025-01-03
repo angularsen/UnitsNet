@@ -36,11 +36,11 @@ namespace UnitsNet.Units
         KilotonneSquareCentimeter = 9,
         KilotonneSquareDecimeter = 10,
         KilotonneSquareMeter = 11,
-        KilotonneSquareMillimeter = 30,
+        KilotonneSquareMillimeter = 12,
         MegatonneSquareCentimeter = 13,
         MegatonneSquareDecimeter = 14,
         MegatonneSquareMeter = 15,
-        MegatonneSquareMillimeter = 37,
+        MegatonneSquareMillimeter = 16,
         MilligramSquareCentimeter = 17,
         MilligramSquareDecimeter = 18,
         MilligramSquareMeter = 19,
@@ -52,7 +52,7 @@ namespace UnitsNet.Units
         TonneSquareCentimeter = 25,
         TonneSquareDecimeter = 26,
         TonneSquareMeter = 27,
-        TonneSquareMillimeter = 32,
+        TonneSquareMillimeter = 28,
     }
 
     #pragma warning restore 1591
