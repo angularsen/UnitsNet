@@ -965,7 +965,10 @@
     "TonneSquareCentimeter": 25,
     "TonneSquareDecimeter": 26,
     "TonneSquareMeter": 27,
-    "TonneSquareMilimeter": 28
+    "TonneSquareMilimeter": 28,
+    "KilotonneSquareMillimeter": 30,
+    "MegatonneSquareMillimeter": 37,
+    "TonneSquareMillimeter": 32
   },
   "MolarEnergy": {
     "JoulePerMole": 1,

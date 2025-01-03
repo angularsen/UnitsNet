@@ -107,7 +107,7 @@ namespace UnitsNet.Tests
             Assertion(3, MassFlowUnit.TonnePerHour, Quantity.From(3, MassFlowUnit.TonnePerHour));
             Assertion(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, Quantity.From(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
             Assertion(3, MassFractionUnit.Percent, Quantity.From(3, MassFractionUnit.Percent));
-            Assertion(3, MassMomentOfInertiaUnit.TonneSquareMilimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMilimeter));
+            Assertion(3, MassMomentOfInertiaUnit.TonneSquareMillimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMillimeter));
             Assertion(3, MolalityUnit.MolePerKilogram, Quantity.From(3, MolalityUnit.MolePerKilogram));
             Assertion(3, MolarEnergyUnit.MegajoulePerMole, Quantity.From(3, MolarEnergyUnit.MegajoulePerMole));
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
