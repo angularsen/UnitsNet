@@ -1334,7 +1334,9 @@
     "GramPerKiloNewtonSecond": 1,
     "KilogramPerKilogramForceHour": 2,
     "KilogramPerKiloNewtonSecond": 3,
-    "PoundMassPerPoundForceHour": 4
+    "PoundMassPerPoundForceHour": 4,
+    "GramPerKilonewtonSecond": 11,
+    "KilogramPerKilonewtonSecond": 6
   },
   "SpecificVolume": {
     "CubicFootPerPound": 1,

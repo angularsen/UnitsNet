@@ -32,13 +32,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
     /// </summary>
     public static class NumberToSpecificFuelConsumptionExtensions
     {
-        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double)" />
-        public static SpecificFuelConsumption GramsPerKiloNewtonSecond<T>(this T value)
+        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double)" />
+        public static SpecificFuelConsumption GramsPerKilonewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(Convert.ToDouble(value));
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
         public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value)
@@ -48,13 +48,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
 #endif
             => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(double)" />
-        public static SpecificFuelConsumption KilogramsPerKiloNewtonSecond<T>(this T value)
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double)" />
+        public static SpecificFuelConsumption KilogramsPerKilonewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(Convert.ToDouble(value));
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
         public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value)

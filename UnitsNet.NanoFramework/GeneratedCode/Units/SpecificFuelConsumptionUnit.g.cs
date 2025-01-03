@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum SpecificFuelConsumptionUnit
     {
-        GramPerKiloNewtonSecond = 1,
+        GramPerKilonewtonSecond = 11,
         KilogramPerKilogramForceHour = 2,
-        KilogramPerKiloNewtonSecond = 3,
+        KilogramPerKilonewtonSecond = 6,
         PoundMassPerPoundForceHour = 4,
     }
 
