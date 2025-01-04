@@ -108,7 +108,7 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonsPerMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "ForcePerLength"),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonsPerMeter", BaseUnits.Undefined, "ForcePerLength"),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonsPerMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "ForcePerLength"),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonsPerMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "ForcePerLength"),

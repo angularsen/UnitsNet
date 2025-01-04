@@ -79,7 +79,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricSusceptance"),

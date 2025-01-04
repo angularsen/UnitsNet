@@ -80,7 +80,7 @@ namespace UnitsNet
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),

@@ -87,7 +87,7 @@ namespace UnitsNet
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined, "HeatFlux"),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "HeatFlux"),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "HeatFlux"),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined, "HeatFlux"),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined, "HeatFlux"),

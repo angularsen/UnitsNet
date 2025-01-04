@@ -83,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined, "Luminosity"),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Luminosity"),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Luminosity"),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Luminosity"),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Luminosity"),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "Luminosity"),

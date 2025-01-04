@@ -120,7 +120,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
