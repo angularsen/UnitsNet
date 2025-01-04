@@ -606,12 +606,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RadiationExposureUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RadiationExposure.Units.First(u => u != RadiationExposure.BaseUnit);
-
-            var quantity = RadiationExposure.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(RadiationExposure.Units.Where(u => u != RadiationExposure.BaseUnit), fromUnit =>
+            {
+                var quantity = RadiationExposure.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -621,6 +621,25 @@ namespace UnitsNet.Tests
             var quantity = default(RadiationExposure);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RadiationExposureUnit unit)
+        {
+            var quantity = RadiationExposure.From(3, RadiationExposure.BaseUnit);
+            RadiationExposure expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RadiationExposureUnit> quantityToConvert = quantity;
+                IQuantity<RadiationExposureUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -988,6 +1007,13 @@ namespace UnitsNet.Tests
         {
             var quantity = RadiationExposure.FromCoulombsPerKilogram(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = RadiationExposure.FromCoulombsPerKilogram(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

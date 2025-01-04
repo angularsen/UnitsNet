@@ -612,12 +612,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RadiationEquivalentDoseUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RadiationEquivalentDose.Units.First(u => u != RadiationEquivalentDose.BaseUnit);
-
-            var quantity = RadiationEquivalentDose.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(RadiationEquivalentDose.Units.Where(u => u != RadiationEquivalentDose.BaseUnit), fromUnit =>
+            {
+                var quantity = RadiationEquivalentDose.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -627,6 +627,25 @@ namespace UnitsNet.Tests
             var quantity = default(RadiationEquivalentDose);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RadiationEquivalentDoseUnit unit)
+        {
+            var quantity = RadiationEquivalentDose.From(3, RadiationEquivalentDose.BaseUnit);
+            RadiationEquivalentDose expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RadiationEquivalentDoseUnit> quantityToConvert = quantity;
+                IQuantity<RadiationEquivalentDoseUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -988,6 +1007,13 @@ namespace UnitsNet.Tests
         {
             var quantity = RadiationEquivalentDose.FromSieverts(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = RadiationEquivalentDose.FromSieverts(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

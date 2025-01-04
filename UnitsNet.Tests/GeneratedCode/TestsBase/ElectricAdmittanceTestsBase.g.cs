@@ -830,12 +830,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricAdmittance.Units.First(u => u != ElectricAdmittance.BaseUnit);
-
-            var quantity = ElectricAdmittance.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricAdmittance.Units.Where(u => u != ElectricAdmittance.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricAdmittance.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -845,6 +845,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricAdmittance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricAdmittanceUnit unit)
+        {
+            var quantity = ElectricAdmittance.From(3, ElectricAdmittance.BaseUnit);
+            ElectricAdmittance expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricAdmittanceUnit> quantityToConvert = quantity;
+                IQuantity<ElectricAdmittanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1236,6 +1255,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricAdmittance.FromSiemens(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricAdmittance.FromSiemens(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

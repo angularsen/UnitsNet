@@ -773,12 +773,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(KinematicViscosityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = KinematicViscosity.Units.First(u => u != KinematicViscosity.BaseUnit);
-
-            var quantity = KinematicViscosity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(KinematicViscosity.Units.Where(u => u != KinematicViscosity.BaseUnit), fromUnit =>
+            {
+                var quantity = KinematicViscosity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -788,6 +788,25 @@ namespace UnitsNet.Tests
             var quantity = default(KinematicViscosity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(KinematicViscosityUnit unit)
+        {
+            var quantity = KinematicViscosity.From(3, KinematicViscosity.BaseUnit);
+            KinematicViscosity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<KinematicViscosityUnit> quantityToConvert = quantity;
+                IQuantity<KinematicViscosityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1158,6 +1177,13 @@ namespace UnitsNet.Tests
         {
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
