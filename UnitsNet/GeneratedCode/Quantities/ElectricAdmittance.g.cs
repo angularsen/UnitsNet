@@ -80,7 +80,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricAdmittance"),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricAdmittance"),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricAdmittance"),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricAdmittance"),
+                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricAdmittance"),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricAdmittance"),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricAdmittance"),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricAdmittance"),

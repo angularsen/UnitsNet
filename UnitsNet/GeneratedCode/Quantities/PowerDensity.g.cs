@@ -99,7 +99,7 @@ namespace UnitsNet
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, "MicrowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, "MilliwattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, "MilliwattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, "NanowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, "NanowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),

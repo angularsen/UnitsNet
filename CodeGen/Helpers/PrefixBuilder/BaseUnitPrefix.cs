@@ -6,12 +6,13 @@ using CodeGen.JsonTypes;
 namespace CodeGen.Helpers.PrefixBuilder;
 
 /// <summary>
-///     Represents a unique key that combines a base unit and a prefix.
+///     Represents a unique combination of a base unit and an optional prefix, used to identify a prefixed unit.
 /// </summary>
 /// <param name="BaseUnit">
-///     The base unit associated with the prefix. For example, "Gram".
+///     The base unit associated with the prefix, such as "Gram".
 /// </param>
 /// <param name="Prefix">
-///     The prefix applied to the base unit. For example, <see cref="JsonTypes.Prefix.Kilo" />.
+///     The prefix applied to the base unit, such as <see cref="JsonTypes.Prefix.Kilo" />.
+///     <para>If the prefix exponent value is 0, this parameter will be <c>null</c>.</para>
 /// </param>
-internal readonly record struct BaseUnitPrefix(string BaseUnit, Prefix Prefix);
+internal readonly record struct BaseUnitPrefix(string BaseUnit, Prefix? Prefix);

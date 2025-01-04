@@ -83,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),

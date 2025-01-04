@@ -77,7 +77,7 @@ namespace UnitsNet
                 new UnitInfo<ElectricCapacitanceUnit>[]
                 {
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined, "ElectricCapacitance"),
+                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Kilofarad, "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Megafarad, "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Microfarad, "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCapacitance"),
                     new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined, "ElectricCapacitance"),
