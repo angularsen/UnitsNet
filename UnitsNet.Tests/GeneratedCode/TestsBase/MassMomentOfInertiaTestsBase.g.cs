@@ -1226,12 +1226,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassMomentOfInertiaUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassMomentOfInertia.Units.First(u => u != MassMomentOfInertia.BaseUnit);
-
-            var quantity = MassMomentOfInertia.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(MassMomentOfInertia.Units.Where(u => u != MassMomentOfInertia.BaseUnit), fromUnit =>
+            {
+                var quantity = MassMomentOfInertia.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1241,6 +1241,25 @@ namespace UnitsNet.Tests
             var quantity = default(MassMomentOfInertia);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(MassMomentOfInertiaUnit unit)
+        {
+            var quantity = MassMomentOfInertia.From(3, MassMomentOfInertia.BaseUnit);
+            MassMomentOfInertia expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<MassMomentOfInertiaUnit> quantityToConvert = quantity;
+                IQuantity<MassMomentOfInertiaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1668,6 +1687,13 @@ namespace UnitsNet.Tests
         {
             var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

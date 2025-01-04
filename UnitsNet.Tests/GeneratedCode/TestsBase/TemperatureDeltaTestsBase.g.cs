@@ -637,12 +637,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureDeltaUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = TemperatureDelta.Units.First(u => u != TemperatureDelta.BaseUnit);
-
-            var quantity = TemperatureDelta.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(TemperatureDelta.Units.Where(u => u != TemperatureDelta.BaseUnit), fromUnit =>
+            {
+                var quantity = TemperatureDelta.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -652,6 +652,25 @@ namespace UnitsNet.Tests
             var quantity = default(TemperatureDelta);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(TemperatureDeltaUnit unit)
+        {
+            var quantity = TemperatureDelta.From(3, TemperatureDelta.BaseUnit);
+            TemperatureDelta expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<TemperatureDeltaUnit> quantityToConvert = quantity;
+                IQuantity<TemperatureDeltaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1022,6 +1041,13 @@ namespace UnitsNet.Tests
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = TemperatureDelta.FromKelvins(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -482,12 +482,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricReactivePowerUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricReactivePower.Units.First(u => u != ElectricReactivePower.BaseUnit);
-
-            var quantity = ElectricReactivePower.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricReactivePower.Units.Where(u => u != ElectricReactivePower.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricReactivePower.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -497,6 +497,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricReactivePower);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricReactivePowerUnit unit)
+        {
+            var quantity = ElectricReactivePower.From(3, ElectricReactivePower.BaseUnit);
+            ElectricReactivePower expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricReactivePowerUnit> quantityToConvert = quantity;
+                IQuantity<ElectricReactivePowerUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -852,6 +871,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricReactivePower.FromVoltamperesReactive(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricReactivePower.FromVoltamperesReactive(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -513,12 +513,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PorousMediumPermeabilityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = PorousMediumPermeability.Units.First(u => u != PorousMediumPermeability.BaseUnit);
-
-            var quantity = PorousMediumPermeability.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(PorousMediumPermeability.Units.Where(u => u != PorousMediumPermeability.BaseUnit), fromUnit =>
+            {
+                var quantity = PorousMediumPermeability.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -528,6 +528,25 @@ namespace UnitsNet.Tests
             var quantity = default(PorousMediumPermeability);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(PorousMediumPermeabilityUnit unit)
+        {
+            var quantity = PorousMediumPermeability.From(3, PorousMediumPermeability.BaseUnit);
+            PorousMediumPermeability expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<PorousMediumPermeabilityUnit> quantityToConvert = quantity;
+                IQuantity<PorousMediumPermeabilityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -886,6 +905,13 @@ namespace UnitsNet.Tests
         {
             var quantity = PorousMediumPermeability.FromSquareMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = PorousMediumPermeability.FromSquareMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -730,12 +730,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFluxUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassFlux.Units.First(u => u != MassFlux.BaseUnit);
-
-            var quantity = MassFlux.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(MassFlux.Units.Where(u => u != MassFlux.BaseUnit), fromUnit =>
+            {
+                var quantity = MassFlux.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -745,6 +745,25 @@ namespace UnitsNet.Tests
             var quantity = default(MassFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(MassFluxUnit unit)
+        {
+            var quantity = MassFlux.From(3, MassFlux.BaseUnit);
+            MassFlux expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<MassFluxUnit> quantityToConvert = quantity;
+                IQuantity<MassFluxUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1124,6 +1143,13 @@ namespace UnitsNet.Tests
         {
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

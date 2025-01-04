@@ -670,12 +670,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(WarpingMomentOfInertiaUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = WarpingMomentOfInertia.Units.First(u => u != WarpingMomentOfInertia.BaseUnit);
-
-            var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(WarpingMomentOfInertia.Units.Where(u => u != WarpingMomentOfInertia.BaseUnit), fromUnit =>
+            {
+                var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -685,6 +685,25 @@ namespace UnitsNet.Tests
             var quantity = default(WarpingMomentOfInertia);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(WarpingMomentOfInertiaUnit unit)
+        {
+            var quantity = WarpingMomentOfInertia.From(3, WarpingMomentOfInertia.BaseUnit);
+            WarpingMomentOfInertia expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<WarpingMomentOfInertiaUnit> quantityToConvert = quantity;
+                IQuantity<WarpingMomentOfInertiaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1046,6 +1065,13 @@ namespace UnitsNet.Tests
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

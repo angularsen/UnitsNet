@@ -422,12 +422,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = FuelEfficiency.Units.First(u => u != FuelEfficiency.BaseUnit);
-
-            var quantity = FuelEfficiency.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(FuelEfficiency.Units.Where(u => u != FuelEfficiency.BaseUnit), fromUnit =>
+            {
+                var quantity = FuelEfficiency.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -437,6 +437,25 @@ namespace UnitsNet.Tests
             var quantity = default(FuelEfficiency);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(FuelEfficiencyUnit unit)
+        {
+            var quantity = FuelEfficiency.From(3, FuelEfficiency.BaseUnit);
+            FuelEfficiency expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<FuelEfficiencyUnit> quantityToConvert = quantity;
+                IQuantity<FuelEfficiencyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -792,6 +811,13 @@ namespace UnitsNet.Tests
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
