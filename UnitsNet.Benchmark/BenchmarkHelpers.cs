@@ -18,7 +18,7 @@ public static class BenchmarkHelpers
     public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, double value, TUnit[] options,
         int nbConversions)
         where TQuantity : IQuantity<TUnit>
-        where TUnit : Enum
+        where TUnit : struct, Enum
     {
         var quantities = GetRandomQuantities<TQuantity, TUnit>(random, value, options, nbConversions);
         TUnit[] units = random.GetItems(options, nbConversions);
@@ -26,7 +26,7 @@ public static class BenchmarkHelpers
     }
 
     public static IEnumerable<TQuantity> GetRandomQuantities<TQuantity, TUnit>(this Random random, double value, TUnit[] units, int nbQuantities)
-        where TQuantity : IQuantity<TUnit> where TUnit : Enum
+        where TQuantity : IQuantity<TUnit> where TUnit : struct, Enum
     {
         IEnumerable<TQuantity> quantities = random.GetItems(units, nbQuantities).Select(unit => (TQuantity)Quantity.From(value, unit));
         return quantities;
