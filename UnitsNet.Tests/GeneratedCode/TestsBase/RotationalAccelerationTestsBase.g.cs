@@ -503,12 +503,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RotationalAcceleration.Units.First(u => u != RotationalAcceleration.BaseUnit);
-
-            var quantity = RotationalAcceleration.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(RotationalAcceleration.Units.Where(u => u != RotationalAcceleration.BaseUnit), fromUnit =>
+            {
+                var quantity = RotationalAcceleration.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -518,6 +518,25 @@ namespace UnitsNet.Tests
             var quantity = default(RotationalAcceleration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RotationalAccelerationUnit unit)
+        {
+            var quantity = RotationalAcceleration.From(3, RotationalAcceleration.BaseUnit);
+            RotationalAcceleration expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantityToConvert = quantity;
+                IQuantity<RotationalAccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -873,6 +892,13 @@ namespace UnitsNet.Tests
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

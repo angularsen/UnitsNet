@@ -1073,12 +1073,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LinearPowerDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LinearPowerDensity.Units.First(u => u != LinearPowerDensity.BaseUnit);
-
-            var quantity = LinearPowerDensity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(LinearPowerDensity.Units.Where(u => u != LinearPowerDensity.BaseUnit), fromUnit =>
+            {
+                var quantity = LinearPowerDensity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1088,6 +1088,25 @@ namespace UnitsNet.Tests
             var quantity = default(LinearPowerDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(LinearPowerDensityUnit unit)
+        {
+            var quantity = LinearPowerDensity.From(3, LinearPowerDensity.BaseUnit);
+            LinearPowerDensity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<LinearPowerDensityUnit> quantityToConvert = quantity;
+                IQuantity<LinearPowerDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1506,6 +1525,13 @@ namespace UnitsNet.Tests
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

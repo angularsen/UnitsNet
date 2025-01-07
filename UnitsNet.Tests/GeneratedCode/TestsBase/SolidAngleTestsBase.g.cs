@@ -325,16 +325,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SolidAngleUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SolidAngle.Units.First(u => u != SolidAngle.BaseUnit);
-
-            var quantity = SolidAngle.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(SolidAngle.Units.Where(u => u != SolidAngle.BaseUnit), fromUnit =>
+            {
+                var quantity = SolidAngle.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -344,6 +344,25 @@ namespace UnitsNet.Tests
             var quantity = default(SolidAngle);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(SolidAngleUnit unit)
+        {
+            var quantity = SolidAngle.From(3, SolidAngle.BaseUnit);
+            SolidAngle expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<SolidAngleUnit> quantityToConvert = quantity;
+                IQuantity<SolidAngleUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -689,6 +708,13 @@ namespace UnitsNet.Tests
         {
             var quantity = SolidAngle.FromSteradians(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = SolidAngle.FromSteradians(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

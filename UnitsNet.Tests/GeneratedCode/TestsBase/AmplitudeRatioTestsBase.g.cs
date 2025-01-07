@@ -422,12 +422,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AmplitudeRatioUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = AmplitudeRatio.Units.First(u => u != AmplitudeRatio.BaseUnit);
-
-            var quantity = AmplitudeRatio.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(AmplitudeRatio.Units.Where(u => u != AmplitudeRatio.BaseUnit), fromUnit =>
+            {
+                var quantity = AmplitudeRatio.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -437,6 +437,25 @@ namespace UnitsNet.Tests
             var quantity = default(AmplitudeRatio);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(AmplitudeRatioUnit unit)
+        {
+            var quantity = AmplitudeRatio.From(3, AmplitudeRatio.BaseUnit);
+            AmplitudeRatio expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<AmplitudeRatioUnit> quantityToConvert = quantity;
+                IQuantity<AmplitudeRatioUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -796,6 +815,13 @@ namespace UnitsNet.Tests
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

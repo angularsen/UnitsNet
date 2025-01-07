@@ -420,12 +420,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ThermalConductivityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ThermalConductivity.Units.First(u => u != ThermalConductivity.BaseUnit);
-
-            var quantity = ThermalConductivity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ThermalConductivity.Units.Where(u => u != ThermalConductivity.BaseUnit), fromUnit =>
+            {
+                var quantity = ThermalConductivity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -435,6 +435,25 @@ namespace UnitsNet.Tests
             var quantity = default(ThermalConductivity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ThermalConductivityUnit unit)
+        {
+            var quantity = ThermalConductivity.From(3, ThermalConductivity.BaseUnit);
+            ThermalConductivity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ThermalConductivityUnit> quantityToConvert = quantity;
+                IQuantity<ThermalConductivityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -784,6 +803,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

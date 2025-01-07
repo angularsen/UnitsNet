@@ -702,12 +702,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(HeatTransferCoefficientUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = HeatTransferCoefficient.Units.First(u => u != HeatTransferCoefficient.BaseUnit);
-
-            var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(HeatTransferCoefficient.Units.Where(u => u != HeatTransferCoefficient.BaseUnit), fromUnit =>
+            {
+                var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -717,6 +717,25 @@ namespace UnitsNet.Tests
             var quantity = default(HeatTransferCoefficient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(HeatTransferCoefficientUnit unit)
+        {
+            var quantity = HeatTransferCoefficient.From(3, HeatTransferCoefficient.BaseUnit);
+            HeatTransferCoefficient expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<HeatTransferCoefficientUnit> quantityToConvert = quantity;
+                IQuantity<HeatTransferCoefficientUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1075,6 +1094,13 @@ namespace UnitsNet.Tests
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
