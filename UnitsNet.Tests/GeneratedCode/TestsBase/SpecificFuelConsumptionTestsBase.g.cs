@@ -876,7 +876,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_GetTypeCode_Returns_Object()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1.0);
             Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
