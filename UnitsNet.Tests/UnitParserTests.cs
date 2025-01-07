@@ -115,8 +115,8 @@ namespace UnitsNet.Tests
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt", CultureInfo.InvariantCulture));
 
             // Assert
-            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
-            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
+            Assert.Equal("""Cannot parse "pt" since it matches multiple units: DtpPoint ("pt"), PrinterPoint ("pt").""", exception1.Message);
+            Assert.Equal("""Cannot parse "pt" since it matches multiple units: DtpPoint ("pt"), PrinterPoint ("pt").""", exception2.Message);
         }
 
         [Theory]
@@ -142,6 +142,13 @@ namespace UnitsNet.Tests
             var parsedUnit = unitParser.Parse<HowMuchUnit>("fooh");
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
+        }
+        
+        [Fact]
+        public void Parse_LengthUnit_MM_ThrowsExceptionDescribingTheAmbiguity()
+        {
+            var ex = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("MM"));
+            Assert.Equal("""Cannot parse "MM" since it matches multiple units: Megameter ("Mm"), Millimeter ("mm").""", ex.Message);
         }
         
         [Fact]

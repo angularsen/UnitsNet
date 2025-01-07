@@ -637,12 +637,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(StandardVolumeFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = StandardVolumeFlow.Units.First(u => u != StandardVolumeFlow.BaseUnit);
-
-            var quantity = StandardVolumeFlow.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(StandardVolumeFlow.Units.Where(u => u != StandardVolumeFlow.BaseUnit), fromUnit =>
+            {
+                var quantity = StandardVolumeFlow.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -652,6 +652,25 @@ namespace UnitsNet.Tests
             var quantity = default(StandardVolumeFlow);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(StandardVolumeFlowUnit unit)
+        {
+            var quantity = StandardVolumeFlow.From(3, StandardVolumeFlow.BaseUnit);
+            StandardVolumeFlow expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<StandardVolumeFlowUnit> quantityToConvert = quantity;
+                IQuantity<StandardVolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1022,6 +1041,13 @@ namespace UnitsNet.Tests
         {
             var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

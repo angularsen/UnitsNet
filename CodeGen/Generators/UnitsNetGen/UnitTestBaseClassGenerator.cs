@@ -797,16 +797,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }}
 
-        [Theory{(_quantity.Units.Length == 1 ? "(Skip = \"Multiple units required\")" : string.Empty)}]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
         {{
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = {_quantity.Name}.Units.First(u => u != {_quantity.Name}.BaseUnit);
-
-            var quantity = {_quantity.Name}.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All({_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit), fromUnit =>
+            {{
+                var quantity = {_quantity.Name}.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            }});
         }}
 
         [Theory]
@@ -816,6 +816,25 @@ namespace UnitsNet.Tests
             var quantity = default({_quantity.Name});
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }}
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity({_unitEnumName} unit)
+        {{
+            var quantity = {_quantity.Name}.From(3, {_quantity.Name}.BaseUnit);
+            {_quantity.Name} expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {{
+                IQuantity<{_unitEnumName}> quantityToConvert = quantity;
+                IQuantity<{_unitEnumName}> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }}, () =>
+            {{
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }});
         }}
 
         [Fact]
@@ -1211,6 +1230,13 @@ namespace UnitsNet.Tests
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }}
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }}
 
         [Fact]

@@ -768,12 +768,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricResistivityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricResistivity.Units.First(u => u != ElectricResistivity.BaseUnit);
-
-            var quantity = ElectricResistivity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricResistivity.Units.Where(u => u != ElectricResistivity.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricResistivity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -783,6 +783,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricResistivity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricResistivityUnit unit)
+        {
+            var quantity = ElectricResistivity.From(3, ElectricResistivity.BaseUnit);
+            ElectricResistivity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricResistivityUnit> quantityToConvert = quantity;
+                IQuantity<ElectricResistivityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1168,6 +1187,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
