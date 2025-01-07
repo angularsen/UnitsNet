@@ -420,12 +420,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RatioChangeRate.Units.First(u => u != RatioChangeRate.BaseUnit);
-
-            var quantity = RatioChangeRate.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(RatioChangeRate.Units.Where(u => u != RatioChangeRate.BaseUnit), fromUnit =>
+            {
+                var quantity = RatioChangeRate.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -435,6 +435,25 @@ namespace UnitsNet.Tests
             var quantity = default(RatioChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RatioChangeRateUnit unit)
+        {
+            var quantity = RatioChangeRate.From(3, RatioChangeRate.BaseUnit);
+            RatioChangeRate expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RatioChangeRateUnit> quantityToConvert = quantity;
+                IQuantity<RatioChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -784,6 +803,13 @@ namespace UnitsNet.Tests
         {
             var quantity = RatioChangeRate.FromDecimalFractionsPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = RatioChangeRate.FromDecimalFractionsPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -637,12 +637,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumetricHeatCapacityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumetricHeatCapacity.Units.First(u => u != VolumetricHeatCapacity.BaseUnit);
-
-            var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(VolumetricHeatCapacity.Units.Where(u => u != VolumetricHeatCapacity.BaseUnit), fromUnit =>
+            {
+                var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -652,6 +652,25 @@ namespace UnitsNet.Tests
             var quantity = default(VolumetricHeatCapacity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(VolumetricHeatCapacityUnit unit)
+        {
+            var quantity = VolumetricHeatCapacity.From(3, VolumetricHeatCapacity.BaseUnit);
+            VolumetricHeatCapacity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<VolumetricHeatCapacityUnit> quantityToConvert = quantity;
+                IQuantity<VolumetricHeatCapacityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1022,6 +1041,13 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

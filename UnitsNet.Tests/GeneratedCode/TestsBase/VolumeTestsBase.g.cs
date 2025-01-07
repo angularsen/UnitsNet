@@ -2780,12 +2780,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Volume.Units.First(u => u != Volume.BaseUnit);
-
-            var quantity = Volume.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Volume.Units.Where(u => u != Volume.BaseUnit), fromUnit =>
+            {
+                var quantity = Volume.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -2795,6 +2795,25 @@ namespace UnitsNet.Tests
             var quantity = default(Volume);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(VolumeUnit unit)
+        {
+            var quantity = Volume.From(3, Volume.BaseUnit);
+            Volume expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<VolumeUnit> quantityToConvert = quantity;
+                IQuantity<VolumeUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -3300,6 +3319,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Volume.FromCubicMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -87,8 +87,8 @@ namespace UnitsNet
                         formatProvider = UnitAbbreviationsCache.FallbackCulture;
                         continue;
                     default:
-                        var unitsCsv = string.Join(", ", matches.Select(x => Enum.GetName(unitType, x.Unit)).ToArray());
-                        throw new AmbiguousUnitParseException($"Cannot parse \"{unitAbbreviation}\" since it could be either of these: {unitsCsv}");
+                        var unitsCsv = string.Join(", ", matches.Select(x => $"{Enum.GetName(unitType, x.Unit)} (\"{x.Abbreviation}\")").OrderBy(x => x));
+                        throw new AmbiguousUnitParseException($"Cannot parse \"{unitAbbreviation}\" since it matches multiple units: {unitsCsv}.");
                 }
             }
         }
@@ -216,21 +216,26 @@ namespace UnitsNet
             // TODO see about optimizing this method: both Parse and TryParse only care about having one match (in case of a failure we could return the number of matches)
             List<(Enum Unit, string Abbreviation)> stringUnitPairs = _unitAbbreviationsCache.GetStringUnitPairs(enumValues, formatProvider);
             (Enum Unit, string Abbreviation)[] matches =
-                stringUnitPairs.Where(pair => pair.Item2.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
+                stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
             if (matches.Length == 0)
             {
-                unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                matches = stringUnitPairs.Where(pair => pair.Item2.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
+                var normalizeUnitString = NormalizeUnitString(unitAbbreviation);
+                if (unitAbbreviation != normalizeUnitString)
+                {
+                    unitAbbreviation = normalizeUnitString;
+                    matches = stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
+                }
             }
 
-            // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
-            if (matches.Length > 1)
+            if (matches.Length == 1)
             {
-                matches = stringUnitPairs.Where(pair => pair.Item2.Equals(unitAbbreviation)).ToArray();
+                return matches;
             }
-
-            return matches;
+            
+            // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
+            (Enum Unit, string Abbreviation)[] caseSensitiveMatches = stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation)).ToArray();
+            return caseSensitiveMatches.Length == 0 ? matches : caseSensitiveMatches;
         }
     }
 }

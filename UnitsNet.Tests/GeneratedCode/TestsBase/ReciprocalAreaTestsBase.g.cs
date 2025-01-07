@@ -699,12 +699,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalAreaUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ReciprocalArea.Units.First(u => u != ReciprocalArea.BaseUnit);
-
-            var quantity = ReciprocalArea.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ReciprocalArea.Units.Where(u => u != ReciprocalArea.BaseUnit), fromUnit =>
+            {
+                var quantity = ReciprocalArea.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -714,6 +714,25 @@ namespace UnitsNet.Tests
             var quantity = default(ReciprocalArea);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ReciprocalAreaUnit unit)
+        {
+            var quantity = ReciprocalArea.From(3, ReciprocalArea.BaseUnit);
+            ReciprocalArea expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ReciprocalAreaUnit> quantityToConvert = quantity;
+                IQuantity<ReciprocalAreaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1090,6 +1109,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ReciprocalArea.FromInverseSquareMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ReciprocalArea.FromInverseSquareMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

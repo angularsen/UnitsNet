@@ -1222,12 +1222,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Power.Units.First(u => u != Power.BaseUnit);
-
-            var quantity = Power.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Power.Units.Where(u => u != Power.BaseUnit), fromUnit =>
+            {
+                var quantity = Power.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1237,6 +1237,25 @@ namespace UnitsNet.Tests
             var quantity = default(Power);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(PowerUnit unit)
+        {
+            var quantity = Power.From(3, Power.BaseUnit);
+            Power expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<PowerUnit> quantityToConvert = quantity;
+                IQuantity<PowerUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1661,6 +1680,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Power.FromWatts(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

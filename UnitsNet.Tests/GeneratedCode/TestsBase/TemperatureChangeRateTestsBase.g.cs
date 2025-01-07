@@ -885,12 +885,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = TemperatureChangeRate.Units.First(u => u != TemperatureChangeRate.BaseUnit);
-
-            var quantity = TemperatureChangeRate.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(TemperatureChangeRate.Units.Where(u => u != TemperatureChangeRate.BaseUnit), fromUnit =>
+            {
+                var quantity = TemperatureChangeRate.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -900,6 +900,25 @@ namespace UnitsNet.Tests
             var quantity = default(TemperatureChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(TemperatureChangeRateUnit unit)
+        {
+            var quantity = TemperatureChangeRate.From(3, TemperatureChangeRate.BaseUnit);
+            TemperatureChangeRate expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<TemperatureChangeRateUnit> quantityToConvert = quantity;
+                IQuantity<TemperatureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1294,6 +1313,13 @@ namespace UnitsNet.Tests
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
