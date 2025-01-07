@@ -910,7 +910,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_GetTypeCode_Returns_Object()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
