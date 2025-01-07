@@ -9,7 +9,8 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
+    // Disable parallelization due to manipulating global state, like UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation().
+    [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitAbbreviationsCacheTests
     {
         private const string AmericanCultureName = "en-US";
@@ -20,26 +21,33 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider NorwegianCulture = CultureInfo.GetCultureInfo(NorwegianCultureName);
         private static readonly IFormatProvider RussianCulture = CultureInfo.GetCultureInfo(RussianCultureName);
 
-        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
+        // The default, parameterless ToString() method represents the result with all significant digits, without a group separator.
         [Theory]
+        #if NET
+        [InlineData(double.MinValue, "-1.7976931348623157E+308 m")]
+        #else
+        [InlineData(double.MinValue, "-1.79769313486232E+308 m")]
+        #endif
+        [InlineData(-0.819999999999, "-0.819999999999 m")]
+        [InlineData(-0.111234, "-0.111234 m")]
+        [InlineData(-0.1, "-0.1 m")]
+        [InlineData(-0.0000012345, "-1.2345E-06 m")]
+        [InlineData(-0.000001, "-1E-06 m")]
         [InlineData(0, "0 m")]
+        [InlineData(0.000001, "1E-06 m")]
+        [InlineData(0.0000012345, "1.2345E-06 m")]
         [InlineData(0.1, "0.1 m")]
-        [InlineData(0.11, "0.11 m")]
-        [InlineData(0.111234, "0.11 m")]
-        [InlineData(0.115, "0.12 m")]
+        [InlineData(0.111234, "0.111234 m")]
+        [InlineData(0.819999999999, "0.819999999999 m")]
+        #if NET
+        [InlineData(double.MaxValue, "1.7976931348623157E+308 m")]
+        #else
+        [InlineData(double.MaxValue, "1.79769313486232E+308 m")]
+        #endif
         public void DefaultToStringFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
-        }
-
-        private enum CustomUnit
-        {
-            // ReSharper disable UnusedMember.Local
-            Undefined = 0,
-            Unit1,
-            Unit2
-            // ReSharper restore UnusedMember.Local
         }
 
         [Theory]
@@ -57,7 +65,25 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = GetCulture(cultureName);
             string ds = culture.NumberFormat.NumberDecimalSeparator;
-            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(culture));
+            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToString(culture));
+        }
+
+        [Theory]
+        [InlineData("de-DE")]
+        [InlineData("da-DK")]
+        [InlineData("es-AR")]
+        [InlineData("es-ES")]
+        [InlineData("it-IT")]
+        [InlineData("en-CA")]
+        [InlineData("en-US")]
+        [InlineData("ar-EG")]
+        [InlineData("en-GB")]
+        [InlineData("es-MX")]
+        public void ToString_SFormat_DecimalSeparator_ForCulture(string cultureName)
+        {
+            CultureInfo culture = GetCulture(cultureName);
+            string ds = culture.NumberFormat.NumberDecimalSeparator;
+            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToString("s2", culture));
         }
 
         [Theory]
@@ -73,33 +99,98 @@ namespace UnitsNet.Tests
         [InlineData("es-AR")]
         [InlineData("es-ES")]
         [InlineData("it-IT")]
-        public void DigitGroupingCultureFormatting(string cultureName)
+        public void ToString_WithCultureWithoutGroupingSeparator(string cultureName)
+        {
+            CultureInfo culture = GetCulture(cultureName);
+            Assert.Equal("1111 m", Length.FromMeters(1111).ToString(culture));
+        }
+
+        [Theory]
+        [InlineData("en-CA")]
+        [InlineData("en-GB")]
+        [InlineData("en-US")]
+        [InlineData("ar-EG")]
+        [InlineData("es-MX")]
+        [InlineData("nn-NO")]
+        [InlineData("fr-FR")]
+        [InlineData("de-DE")]
+        [InlineData("da-DK")]
+        [InlineData("es-AR")]
+        [InlineData("es-ES")]
+        [InlineData("it-IT")]
+        public void ToString_SFormat_UsesGroupingSeparator_ForCulture(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
 
-            Assert.Equal($"1{gs}111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(culture));
+            Assert.Equal($"1{gs}111 m", Length.FromMeters(1111).ToString("S", culture));
+        }
+
+        [Theory]
+        [InlineData("en-CA")]
+        [InlineData("en-GB")]
+        [InlineData("en-US")]
+        [InlineData("ar-EG")]
+        [InlineData("es-MX")]
+        [InlineData("nn-NO")]
+        [InlineData("fr-FR")]
+        [InlineData("de-DE")]
+        [InlineData("da-DK")]
+        [InlineData("es-AR")]
+        [InlineData("es-ES")]
+        [InlineData("it-IT")]
+        public void FeetInches_UseGroupingSeparator_ForCulture(string cultureName)
+        {
+            CultureInfo culture = GetCulture(cultureName);
+            string gs = culture.NumberFormat.NumberGroupSeparator;
 
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
-            Assert.Equal($"2{gs}222 ft 3 in",
-                Length.FromFeetInches(2222, 3).FeetInches.ToString(culture));
-            Assert.Equal($"3{gs}333 st 7 lb",
-                Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
+            Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
+        }
+
+        [Theory]
+        [InlineData("en-CA")]
+        [InlineData("en-GB")]
+        [InlineData("en-US")]
+        [InlineData("ar-EG")]
+        [InlineData("es-MX")]
+        [InlineData("nn-NO")]
+        [InlineData("fr-FR")]
+        [InlineData("de-DE")]
+        [InlineData("da-DK")]
+        [InlineData("es-AR")]
+        [InlineData("es-ES")]
+        [InlineData("it-IT")]
+        public void StonePounds_UseGroupingSeparator_ForCulture(string cultureName)
+        {
+            CultureInfo culture = GetCulture(cultureName);
+            string gs = culture.NumberFormat.NumberGroupSeparator;
+
+            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
+            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
+            Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
 
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
+        [InlineData(-0.819999999999, "S", "-0.819999999999 m")]
+        [InlineData(-0.819999999999, "s2", "-0.82 m")]
+        [InlineData(-0.819999999999, "s4", "-0.82 m")]
+        [InlineData(-0.8, "s4", "-0.8 m")]
+        [InlineData(0.819999999999, "S", "0.819999999999 m")]
+        [InlineData(0.819999999999, "s", "0.819999999999 m")]
         [InlineData(0.819999999999, "s2", "0.82 m")]
         [InlineData(0.819999999999, "s4", "0.82 m")]
+        [InlineData(0.8, "s4", "0.8 m")]
         [InlineData(0.00299999999, "s2", "0.003 m")]
         [InlineData(0.00299999999, "s4", "0.003 m")]
         [InlineData(0.0003000001, "s2", "3e-04 m")]
         [InlineData(0.0003000001, "s4", "3e-04 m")]
-        public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
+        public void ToString_SFormat_RoundsToSignificantDigitsAfterRadix(double value,
             string significantDigitsAfterRadixFormatString, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
+            string actual = Length.FromMeters(value).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -109,9 +200,9 @@ namespace UnitsNet.Tests
         [InlineData(1.23e-120, "1.23e-120 m")]
         [InlineData(0.0000111, "1.11e-05 m")]
         [InlineData(1.99e-4, "1.99e-04 m")]
-        public void ScientificNotationLowerInterval(double value, string expected)
+        public void ToString_SFormat_BelowMilli_UsesScientificNotation(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString("s2", AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -120,9 +211,9 @@ namespace UnitsNet.Tests
         [InlineData(1e-3, "0.001 m")]
         [InlineData(1.1, "1.1 m")]
         [InlineData(999.99, "999.99 m")]
-        public void FixedPointNotationIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_BetweenMilliAndKilo_UsesFixedPointFormat(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -132,9 +223,9 @@ namespace UnitsNet.Tests
         [InlineData(11000, "11,000 m")]
         [InlineData(111000, "111,000 m")]
         [InlineData(999999.99, "999,999.99 m")]
-        public void FixedPointNotationWithDigitGroupingIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_From1e3To1e5_UsesFixedPointFormatWithDigitGrouping(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -143,9 +234,9 @@ namespace UnitsNet.Tests
         [InlineData(1e6, "1e+06 m")]
         [InlineData(11100000, "1.11e+07 m")]
         [InlineData(double.MaxValue, "1.8e+308 m")]
-        public void ScientificNotationUpperIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_Above1e6_UsesScientificNotation(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -207,7 +298,7 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
         {
             var unitAbbreviationCache = new UnitAbbreviationsCache();
-            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1));
+            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(HowMuchUnit.AShitTon));
         }
 
         [Fact]
@@ -217,13 +308,12 @@ namespace UnitsNet.Tests
             // CurrentCulture also affects localization of unit abbreviations.
             // Zulu (South Africa)
             var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
-            // CultureInfo.CurrentCulture = zuluCulture;
 
             var abbreviationsCache = new UnitAbbreviationsCache();
-            abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
+            abbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.AShitTon, AmericanCulture, "US english abbreviation for Unit1");
 
             // Act
-            string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+            string abbreviation = abbreviationsCache.GetDefaultAbbreviation(HowMuchUnit.AShitTon, zuluCulture);
 
             // Assert
             Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -235,10 +325,10 @@ namespace UnitsNet.Tests
             var culture = AmericanCulture;
             var unit = AreaUnit.SquareMeter;
 
-            var cache1 = new UnitAbbreviationsCache();
+            var cache1 = UnitAbbreviationsCache.CreateDefault();
             cache1.MapUnitToAbbreviation(unit, culture, "m^2");
 
-            var cache2 = new UnitAbbreviationsCache();
+            var cache2 = UnitAbbreviationsCache.CreateDefault();
             cache2.MapUnitToAbbreviation(unit, culture, "m2");
 
             Assert.Equal(new[] { "m²", "m^2" }, cache1.GetUnitAbbreviations(unit, culture));
@@ -250,7 +340,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            var cache = new UnitAbbreviationsCache();
+            var cache = UnitAbbreviationsCache.CreateDefault();
             cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
             Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));
@@ -270,7 +360,7 @@ namespace UnitsNet.Tests
         {
             // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
             var newZealandCulture = GetCulture("en-NZ");
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
         }
@@ -310,25 +400,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapAndLookup_WithSpecificEnumType()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some));
-        }
-
-        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
-        [Fact]
-        public void MapAndLookup_WithEnumType()
-        {
-            Enum valueAsEnumType = HowMuchUnit.Some;
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(valueAsEnumType));
-        }
-
-        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
-        [Fact]
-        public void MapAndLookup_MapWithSpecificEnumType_LookupWithEnumType()
-        {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
 
         /// <summary>

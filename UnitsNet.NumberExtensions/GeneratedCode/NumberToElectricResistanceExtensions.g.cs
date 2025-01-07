@@ -72,6 +72,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
 #endif
             => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricResistance.FromNanoohms(double)" />
+        public static ElectricResistance Nanoohms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricResistance.FromNanoohms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricResistance.FromOhms(double)" />
         public static ElectricResistance Ohms<T>(this T value)
             where T : notnull

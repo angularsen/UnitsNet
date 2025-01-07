@@ -9,6 +9,9 @@
     {
       "SingularName": "RadianPerSecondSquared",
       "PluralName": "RadiansPerSecondSquared",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

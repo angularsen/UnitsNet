@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -135,18 +136,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new EnergyDensity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (EnergyDensity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new EnergyDensity(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new EnergyDensity(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -271,20 +272,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = EnergyDensity.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(EnergyDensity.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+            var expectedUnit = EnergyDensity.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                EnergyDensity quantityToConvert = quantity;
+
+                EnergyDensity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<EnergyDensityUnit> quantityToConvert = quantity;
+
+                IQuantity<EnergyDensityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyDensityUnit> quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyDensityUnit> quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -453,146 +543,166 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("GJ/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.GigajoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("GWh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.GigawattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("J/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("kJ/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.KilojoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("kWh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.KilowattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("MJ/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.MegajoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("MWh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.MegawattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("PJ/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.PetajoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("PWh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.PetawattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("TJ/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.TerajoulePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("TWh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.TerawattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyDensity.ParseUnit("Wh/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyDensityUnit.WattHourPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            EnergyDensityUnit parsedUnit = EnergyDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyDensityUnit expectedUnit)
         {
-            {
-                Assert.True(EnergyDensity.TryParseUnit("GJ/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.GigajoulePerCubicMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            EnergyDensityUnit parsedUnit = EnergyDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("GWh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.GigawattHourPerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("en-US", "GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("en-US", "J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("en-US", "kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("en-US", "kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("en-US", "MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("en-US", "MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("en-US", "PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("en-US", "PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("en-US", "TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("en-US", "TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("en-US", "Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            EnergyDensityUnit parsedUnit = EnergyDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("J/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("en-US", "GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("en-US", "J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("en-US", "kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("en-US", "kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("en-US", "MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("en-US", "MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("en-US", "PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("en-US", "PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("en-US", "TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("en-US", "TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("en-US", "Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            EnergyDensityUnit parsedUnit = EnergyDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("kJ/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.KilojoulePerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(EnergyDensity.TryParseUnit(abbreviation, out EnergyDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("kWh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.KilowattHourPerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(EnergyDensity.TryParseUnit(abbreviation, out EnergyDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("MJ/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.MegajoulePerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("en-US", "GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("en-US", "J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("en-US", "kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("en-US", "kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("en-US", "MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("en-US", "MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("en-US", "PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("en-US", "PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("en-US", "TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("en-US", "TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("en-US", "Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(EnergyDensity.TryParseUnit(abbreviation, out EnergyDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(EnergyDensity.TryParseUnit("MWh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.MegawattHourPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyDensity.TryParseUnit("PJ/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.PetajoulePerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyDensity.TryParseUnit("PWh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.PetawattHourPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyDensity.TryParseUnit("TJ/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.TerajoulePerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyDensity.TryParseUnit("TWh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.TerawattHourPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyDensity.TryParseUnit("Wh/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyDensityUnit.WattHourPerCubicMeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "GJ/m³", EnergyDensityUnit.GigajoulePerCubicMeter)]
+        [InlineData("en-US", "GWh/m³", EnergyDensityUnit.GigawattHourPerCubicMeter)]
+        [InlineData("en-US", "J/m³", EnergyDensityUnit.JoulePerCubicMeter)]
+        [InlineData("en-US", "kJ/m³", EnergyDensityUnit.KilojoulePerCubicMeter)]
+        [InlineData("en-US", "kWh/m³", EnergyDensityUnit.KilowattHourPerCubicMeter)]
+        [InlineData("en-US", "MJ/m³", EnergyDensityUnit.MegajoulePerCubicMeter)]
+        [InlineData("en-US", "MWh/m³", EnergyDensityUnit.MegawattHourPerCubicMeter)]
+        [InlineData("en-US", "PJ/m³", EnergyDensityUnit.PetajoulePerCubicMeter)]
+        [InlineData("en-US", "PWh/m³", EnergyDensityUnit.PetawattHourPerCubicMeter)]
+        [InlineData("en-US", "TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter)]
+        [InlineData("en-US", "TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter)]
+        [InlineData("en-US", "Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, EnergyDensityUnit expectedUnit)
+        {
+            Assert.True(EnergyDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EnergyDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -620,12 +730,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = EnergyDensity.Units.First(u => u != EnergyDensity.BaseUnit);
-
-            var quantity = EnergyDensity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(EnergyDensity.Units.Where(u => u != EnergyDensity.BaseUnit), fromUnit =>
+            {
+                var quantity = EnergyDensity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -635,6 +745,25 @@ namespace UnitsNet.Tests
             var quantity = default(EnergyDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(EnergyDensityUnit unit)
+        {
+            var quantity = EnergyDensity.From(3, EnergyDensity.BaseUnit);
+            EnergyDensity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<EnergyDensityUnit> quantityToConvert = quantity;
+                IQuantity<EnergyDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -786,7 +915,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(EnergyDensityUnit)).Cast<EnergyDensityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -799,26 +928,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString());
-                Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString());
-                Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString());
-                Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString());
-                Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString());
-                Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString());
-                Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString());
-                Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString());
-                Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString());
+            Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString());
+            Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString());
+            Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString());
+            Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString());
+            Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString());
+            Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString());
+            Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString());
+            Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString());
         }
 
         [Fact]
@@ -844,19 +966,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4"));
         }
 
         [Fact]
@@ -879,7 +993,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1029,6 +1143,13 @@ namespace UnitsNet.Tests
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

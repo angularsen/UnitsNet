@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -44,13 +43,12 @@ namespace UnitsNet
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Area, KinematicViscosity, Duration>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
-        IDivisionOperators<Area, Duration, KinematicViscosity>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
         IDivisionOperators<Area, Length, Length>,
         IMultiplyOperators<Area, Density, LinearDensity>,
+        IMultiplyOperators<Area, Illuminance, LuminousFlux>,
         IMultiplyOperators<Area, Luminance, LuminousIntensity>,
         IMultiplyOperators<Area, AreaDensity, Mass>,
         IMultiplyOperators<Area, MassFlux, MassFlow>,
@@ -61,6 +59,10 @@ namespace UnitsNet
         IMultiplyOperators<Area, Length, Volume>,
         IDivisionOperators<Area, ReciprocalLength, Volume>,
         IMultiplyOperators<Area, Speed, VolumeFlow>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Area, Area, bool>,
+        IParsable<Area>,
 #endif
         IComparable,
         IComparable<Area>,
@@ -131,13 +133,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Area(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -337,7 +334,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AreaUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -523,7 +520,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Area Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Area, AreaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Area, AreaUnit>(
                 str,
                 provider,
                 From);
@@ -537,7 +534,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Area result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Area result)
         {
             return TryParse(str, null, out result);
         }
@@ -552,9 +549,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Area result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Area result)
         {
-            return QuantityParser.Default.TryParse<Area, AreaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Area, AreaUnit>(
                 str,
                 provider,
                 From,
@@ -587,11 +584,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static AreaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<AreaUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<AreaUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AreaUnit)"/>
-        public static bool TryParseUnit(string str, out AreaUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out AreaUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -606,9 +603,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out AreaUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaUnit unit)
         {
-            return UnitParser.Default.TryParse<AreaUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<AreaUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -668,12 +665,6 @@ namespace UnitsNet
             return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
         }
 
-        /// <summary>Get <see cref="Duration"/> from <see cref="Area"/> / <see cref="KinematicViscosity"/>.</summary>
-        public static Duration operator /(Area area, KinematicViscosity kinematicViscosity)
-        {
-            return Duration.FromSeconds(area.SquareMeters / kinematicViscosity.SquareMetersPerSecond);
-        }
-
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
         public static Force operator *(Area area, Pressure pressure)
         {
@@ -684,12 +675,6 @@ namespace UnitsNet
         public static ForcePerLength operator *(Area area, SpecificWeight specificWeight)
         {
             return ForcePerLength.FromNewtonsPerMeter(area.SquareMeters * specificWeight.NewtonsPerCubicMeter);
-        }
-
-        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Area"/> / <see cref="Duration"/>.</summary>
-        public static KinematicViscosity operator /(Area area, Duration duration)
-        {
-            return KinematicViscosity.FromSquareMetersPerSecond(area.SquareMeters / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Area"/> * <see cref="ReciprocalLength"/>.</summary>
@@ -708,6 +693,12 @@ namespace UnitsNet
         public static LinearDensity operator *(Area area, Density density)
         {
             return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="LuminousFlux"/> from <see cref="Area"/> * <see cref="Illuminance"/>.</summary>
+        public static LuminousFlux operator *(Area area, Illuminance illuminance)
+        {
+            return LuminousFlux.FromLumens(area.SquareMeters * illuminance.Lux);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="Area"/> * <see cref="Luminance"/>.</summary>
@@ -974,25 +965,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is AreaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1095,6 +1068,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Area ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not AreaUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1102,21 +1091,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Area ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1130,6 +1104,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1138,7 +1114,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1148,7 +1124,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1159,7 +1135,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1240,7 +1216,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

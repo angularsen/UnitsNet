@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -91,18 +92,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new Permeability(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Permeability) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new Permeability(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new Permeability(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -161,20 +162,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = Permeability.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(Permeability.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            var expectedUnit = Permeability.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                Permeability quantityToConvert = quantity;
+
+                Permeability convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<PermeabilityUnit> quantityToConvert = quantity;
+
+                IQuantity<PermeabilityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<PermeabilityUnit> quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<PermeabilityUnit> quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -200,25 +290,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermeabilityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Permeability.ParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermeabilityUnit expectedUnit)
         {
-            {
-                Assert.True(Permeability.TryParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            Assert.True(Permeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -242,16 +385,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermeabilityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Permeability.Units.First(u => u != Permeability.BaseUnit);
-
-            var quantity = Permeability.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Permeability.Units.Where(u => u != Permeability.BaseUnit), fromUnit =>
+            {
+                var quantity = Permeability.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -261,6 +404,25 @@ namespace UnitsNet.Tests
             var quantity = default(Permeability);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(PermeabilityUnit unit)
+        {
+            var quantity = Permeability.From(3, Permeability.BaseUnit);
+            Permeability expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<PermeabilityUnit> quantityToConvert = quantity;
+                IQuantity<PermeabilityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -400,7 +562,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -413,15 +575,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 H/m", new Permeability(1, PermeabilityUnit.HenryPerMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 H/m", new Permeability(1, PermeabilityUnit.HenryPerMeter).ToString());
         }
 
         [Fact]
@@ -436,19 +591,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s1"));
-                Assert.Equal("0.12 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s2"));
-                Assert.Equal("0.123 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s1"));
+            Assert.Equal("0.12 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s2"));
+            Assert.Equal("0.123 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s4"));
         }
 
         [Fact]
@@ -471,7 +618,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -621,6 +768,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Permeability.FromHenriesPerMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Permeability.FromHenriesPerMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,10 +44,15 @@ namespace UnitsNet
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
+        IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>,
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
         IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>,
         IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
         IDivisionOperators<AmountOfSubstance, Molarity, Volume>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<AmountOfSubstance, AmountOfSubstance, bool>,
+        IParsable<AmountOfSubstance>,
 #endif
         IComparable,
         IComparable<AmountOfSubstance>,
@@ -77,22 +81,22 @@ namespace UnitsNet
             Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
                 new UnitInfo<AmountOfSubstanceUnit>[]
                 {
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Femtomole, "Femtomoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Centimole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.CentipoundMole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Decimole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.DecipoundMole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Femtomole, "Femtomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Femtomole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Kilomole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.KilopoundMole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", new BaseUnits(amount: AmountOfSubstanceUnit.Megamole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", new BaseUnits(amount: AmountOfSubstanceUnit.Micromole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MicropoundMole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Millimole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MillipoundMole), "AmountOfSubstance"),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Picomole, "Picomoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Nanomole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.NanopoundMole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Picomole, "Picomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Picomole), "AmountOfSubstance"),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole), "AmountOfSubstance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -122,13 +126,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public AmountOfSubstance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -349,7 +348,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AmountOfSubstanceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -559,7 +558,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static AmountOfSubstance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From);
@@ -573,7 +572,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out AmountOfSubstance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out AmountOfSubstance result)
         {
             return TryParse(str, null, out result);
         }
@@ -588,9 +587,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out AmountOfSubstance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out AmountOfSubstance result)
         {
-            return QuantityParser.Default.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From,
@@ -623,11 +622,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static AmountOfSubstanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<AmountOfSubstanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<AmountOfSubstanceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AmountOfSubstanceUnit)"/>
-        public static bool TryParseUnit(string str, out AmountOfSubstanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out AmountOfSubstanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -642,9 +641,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out AmountOfSubstanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AmountOfSubstanceUnit unit)
         {
-            return UnitParser.Default.TryParse<AmountOfSubstanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<AmountOfSubstanceUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -700,19 +699,25 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from <see cref="AmountOfSubstance"/> / <see cref="MolarFlow"/>.</summary>
         public static Duration operator /(AmountOfSubstance amountOfSubstance, MolarFlow molarFlow)
         {
-            return Duration.FromSeconds(amountOfSubstance.Kilomoles / molarFlow.KilomolesPerSecond);
+            return Duration.FromSeconds(amountOfSubstance.Moles / molarFlow.MolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarEnergy"/>.</summary>
+        public static Energy operator *(AmountOfSubstance amountOfSubstance, MolarEnergy molarEnergy)
+        {
+            return Energy.FromJoules(amountOfSubstance.Moles * molarEnergy.JoulesPerMole);
         }
 
         /// <summary>Get <see cref="Mass"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarMass"/>.</summary>
         public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
         {
-            return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+            return Mass.FromKilograms(amountOfSubstance.Moles * molarMass.KilogramsPerMole);
         }
 
         /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> / <see cref="Duration"/>.</summary>
         public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, Duration duration)
         {
-            return MolarFlow.FromKilomolesPerSecond(amountOfSubstance.Kilomoles / duration.Seconds);
+            return MolarFlow.FromMolesPerSecond(amountOfSubstance.Moles / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Molarity"/> from <see cref="AmountOfSubstance"/> / <see cref="Volume"/>.</summary>
@@ -931,25 +936,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is AmountOfSubstanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1058,6 +1045,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public AmountOfSubstance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not AmountOfSubstanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1065,21 +1068,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AmountOfSubstance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1093,6 +1081,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1101,7 +1091,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1111,7 +1101,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1122,7 +1112,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1203,7 +1193,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

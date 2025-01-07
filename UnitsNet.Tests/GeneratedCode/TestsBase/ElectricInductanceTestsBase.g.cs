@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -107,18 +108,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricInductance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricInductance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricInductance(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -201,20 +202,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricInductance.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricInductance.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+            var expectedUnit = ElectricInductance.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricInductance quantityToConvert = quantity;
+
+                ElectricInductance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricInductanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricInductanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricInductanceUnit> quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricInductanceUnit> quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -292,69 +382,110 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricInductanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("H", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("µH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("mH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("nH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("pH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricInductanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricInductance.TryParseUnit("H", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("µH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("mH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("nH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
-            }
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("pH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
-            }
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -382,12 +513,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricInductanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricInductance.Units.First(u => u != ElectricInductance.BaseUnit);
-
-            var quantity = ElectricInductance.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricInductance.Units.Where(u => u != ElectricInductance.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricInductance.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -397,6 +528,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricInductance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricInductanceUnit unit)
+        {
+            var quantity = ElectricInductance.From(3, ElectricInductance.BaseUnit);
+            ElectricInductance expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricInductanceUnit> quantityToConvert = quantity;
+                IQuantity<ElectricInductanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -541,7 +691,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -554,19 +704,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString());
-                Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString());
-                Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString());
-                Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
-                Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString());
+            Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString());
+            Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString());
+            Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
+            Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
         }
 
         [Fact]
@@ -585,19 +728,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s1"));
-                Assert.Equal("0.12 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s2"));
-                Assert.Equal("0.123 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s3"));
-                Assert.Equal("0.1235 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s1"));
+            Assert.Equal("0.12 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s2"));
+            Assert.Equal("0.123 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s3"));
+            Assert.Equal("0.1235 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s4"));
         }
 
         [Fact]
@@ -620,7 +755,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -770,6 +905,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricInductance.FromHenries(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricInductance.FromHenries(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

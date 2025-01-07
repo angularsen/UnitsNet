@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -32,6 +33,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond => 0.03529827;
 
-        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03529827;        
+        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03529827;
     }
 }

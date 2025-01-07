@@ -11,6 +11,10 @@
     {
       "SingularName": "JoulePerSquareMeter",
       "PluralName": "JoulesPerSquareMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo" ],

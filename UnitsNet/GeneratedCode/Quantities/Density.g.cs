@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -54,7 +53,10 @@ namespace UnitsNet
         IMultiplyOperators<Density, VolumeFlow, MassFlow>,
         IMultiplyOperators<Density, Speed, MassFlux>,
         IMultiplyOperators<Density, Acceleration, SpecificWeight>,
-        IMultiplyOperators<Density, SpecificVolume, double>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Density, Density, bool>,
+        IParsable<Density>,
 #endif
         IComparable,
         IComparable<Density>,
@@ -84,43 +86,43 @@ namespace UnitsNet
                 new UnitInfo<DensityUnit>[]
                 {
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Centigram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.DecigramPerDeciliter, "DecigramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, "DecigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Decigram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Decigram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.FemtogramPerDeciliter, "FemtogramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.FemtogramPerLiter, "FemtogramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.FemtogramPerMilliliter, "FemtogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.FemtogramPerLiter, "FemtogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Femtogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.FemtogramPerMilliliter, "FemtogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Femtogram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicFoot, "GramsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicInch, "GramsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Gram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, "GramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, "GramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, "GramsPerMilliliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram), "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicYard, "KilopoundsPerCubicYard", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilopound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicYard, "KilopoundsPerCubicYard", new BaseUnits(length: LengthUnit.Yard, mass: MassUnit.Kilopound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerDeciliter, "MicrogramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, "MicrogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Microgram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.MilligramPerDeciliter, "MilligramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, "MilligramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Milligram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.NanogramPerDeciliter, "NanogramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, "NanogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Nanogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Nanogram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, "PicogramsPerDeciliter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined, "Density"),
-                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, "PicogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Picogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Picogram), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicCentimeter, "PoundsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Pound), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "Density"),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "Density"),
@@ -167,13 +169,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Density(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -667,7 +664,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1189,7 +1186,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Density Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Density, DensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Density, DensityUnit>(
                 str,
                 provider,
                 From);
@@ -1203,7 +1200,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Density result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Density result)
         {
             return TryParse(str, null, out result);
         }
@@ -1218,9 +1215,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Density result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Density result)
         {
-            return QuantityParser.Default.TryParse<Density, DensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Density, DensityUnit>(
                 str,
                 provider,
                 From,
@@ -1253,11 +1250,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<DensityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<DensityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DensityUnit)"/>
-        public static bool TryParseUnit(string str, out DensityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out DensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1272,9 +1269,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out DensityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DensityUnit unit)
         {
-            return UnitParser.Default.TryParse<DensityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<DensityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1327,6 +1324,13 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="SpecificVolume"/>.</returns>
+        public SpecificVolume Inverse()
+        {
+            return KilogramsPerCubicMeter == 0.0 ? SpecificVolume.Zero : SpecificVolume.FromCubicMetersPerKilogram(1 / KilogramsPerCubicMeter);
+        }
+
         /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="Density"/> * <see cref="KinematicViscosity"/>.</summary>
         public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
         {
@@ -1363,22 +1367,10 @@ namespace UnitsNet
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="SpecificVolume"/> from <see cref="double"/> / <see cref="Density"/>.</summary>
-        public static SpecificVolume operator /(double value, Density density)
-        {
-            return SpecificVolume.FromCubicMetersPerKilogram(value / density.KilogramsPerCubicMeter);
-        }
-
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Density"/> * <see cref="Acceleration"/>.</summary>
         public static SpecificWeight operator *(Density density, Acceleration acceleration)
         {
             return SpecificWeight.FromNewtonsPerCubicMeter(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="Density"/> * <see cref="SpecificVolume"/>.</summary>
-        public static double operator *(Density density, SpecificVolume specificVolume)
-        {
-            return density.KilogramsPerCubicMeter * specificVolume.CubicMetersPerKilogram;
         }
 
         #endregion
@@ -1585,25 +1577,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is DensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1790,6 +1764,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Density ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not DensityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1797,21 +1787,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Density ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1825,6 +1800,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1833,7 +1810,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1843,7 +1820,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1854,7 +1831,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1935,7 +1912,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

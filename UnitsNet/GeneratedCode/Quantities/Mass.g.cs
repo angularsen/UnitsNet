@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -61,6 +60,10 @@ namespace UnitsNet
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
 #endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Mass, Mass, bool>,
+        IParsable<Mass>,
+#endif
         IComparable,
         IComparable<Mass>,
         IConvertible,
@@ -88,26 +91,26 @@ namespace UnitsNet
             Info = new QuantityInfo<MassUnit>("Mass",
                 new UnitInfo<MassUnit>[]
                 {
-                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined, "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", new BaseUnits(mass: MassUnit.Centigram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", new BaseUnits(mass: MassUnit.Decagram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", new BaseUnits(mass: MassUnit.Decigram), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Femtogram, "Femtograms", BaseUnits.Undefined, "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Femtogram, "Femtograms", new BaseUnits(mass: MassUnit.Femtogram), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", BaseUnits.Undefined, "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", new BaseUnits(mass: MassUnit.Hectogram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", new BaseUnits(mass: MassUnit.Kilogram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined, "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", new BaseUnits(mass: MassUnit.Megapound), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", new BaseUnits(mass: MassUnit.Microgram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", new BaseUnits(mass: MassUnit.Milligram), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", new BaseUnits(mass: MassUnit.Nanogram), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Picogram, "Picograms", BaseUnits.Undefined, "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.Picogram, "Picograms", new BaseUnits(mass: MassUnit.Picogram), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon), "Mass"),
@@ -143,13 +146,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Mass(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -440,7 +438,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -730,7 +728,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Mass Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Mass, MassUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Mass, MassUnit>(
                 str,
                 provider,
                 From);
@@ -744,7 +742,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Mass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Mass result)
         {
             return TryParse(str, null, out result);
         }
@@ -759,9 +757,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Mass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Mass result)
         {
-            return QuantityParser.Default.TryParse<Mass, MassUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Mass, MassUnit>(
                 str,
                 provider,
                 From,
@@ -794,11 +792,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassUnit)"/>
-        public static bool TryParseUnit(string str, out MassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MassUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -813,9 +811,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassUnit unit)
         {
-            return UnitParser.Default.TryParse<MassUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -871,7 +869,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Mass"/> / <see cref="MolarMass"/>.</summary>
         public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
         {
-            return AmountOfSubstance.FromMoles(mass.Grams / molarMass.GramsPerMole);
+            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Mass"/> / <see cref="AreaDensity"/>.</summary>
@@ -949,7 +947,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarMass"/> from <see cref="Mass"/> / <see cref="AmountOfSubstance"/>.</summary>
         public static MolarMass operator /(Mass mass, AmountOfSubstance amountOfSubstance)
         {
-            return MolarMass.FromGramsPerMole(mass.Grams / amountOfSubstance.Moles);
+            return MolarMass.FromKilogramsPerMole(mass.Kilograms / amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>
@@ -1168,25 +1166,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1315,6 +1295,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Mass ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1322,21 +1318,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Mass ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1350,6 +1331,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1358,7 +1341,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1368,7 +1351,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1379,7 +1362,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1460,7 +1443,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

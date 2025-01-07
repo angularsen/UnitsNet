@@ -28,15 +28,53 @@ namespace UnitsNet.Tests
         [InlineData(0, 0, 0, 0, 1, 0, 0)]
         [InlineData(0, 0, 0, 0, 0, 1, 0)]
         [InlineData(0, 0, 0, 0, 0, 0, 1)]
-        public void IsBaseQuantityImplementedProperly(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        public void IsBaseQuantity_ForBaseQuantity_ReturnsTrue(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             var baseDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
-            var derivedDimensions = new BaseDimensions(length * 2, mass * 2, time * 2, current * 2, temperature * 2, amount * 2, luminousIntensity * 2);
-
             Assert.True(baseDimensions.IsBaseQuantity());
+        }
+
+        [Theory]
+        [InlineData(2, 0, 0, 0, 0, 0, 0)]
+        [InlineData(0, 2, 0, 0, 0, 0, 0)]
+        [InlineData(0, 0, 2, 0, 0, 0, 0)]
+        [InlineData(0, 0, 0, 2, 0, 0, 0)]
+        [InlineData(0, 0, 0, 0, 2, 0, 0)]
+        [InlineData(0, 0, 0, 0, 0, 2, 0)]
+        [InlineData(0, 0, 0, 0, 0, 0, 2)]
+        public void IsBaseQuantity_ForDerivedQuantity_ReturnsFalse(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var derivedDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
             Assert.False(derivedDimensions.IsBaseQuantity());
         }
 
+        [Theory]
+        [InlineData(1, 1, 0, 0, 0, 0, 0)]
+        [InlineData(0, 2, 1, 0, 0, 0, 0)]
+        [InlineData(0, 2, 1, 1, 0, 0, 0)]
+        [InlineData(1, 2, 1, 1, 1, 1, 1)]
+        [InlineData(0, 0, 1, 2,-2, 0, 0)]
+        [InlineData(0, 0, 2,-1, 0, 0, 0)]
+        [InlineData(0, 0, 0,-3, 1, 0, 0)]
+        [InlineData(0, 0, 0, 0,-4,-4, 0)]
+        public void IsBaseQuantity_ForMultipleDimensions_ReturnsFalse(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var derivedDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
+            Assert.False(derivedDimensions.IsBaseQuantity());
+        }
+
+        [Fact]
+        public void IsBaseQuantity_ForDimensionless_ReturnsFalse()
+        {
+            Assert.False(BaseDimensions.Dimensionless.IsBaseQuantity());
+        }
+
+        [Fact]
+        public void IsBaseQuantity_ForAcceleration_ReturnsFalse()
+        {
+            Assert.False(Acceleration.BaseDimensions.IsBaseQuantity());
+        }
+        
         [Theory]
         [InlineData(2, 0, 0, 0, 0, 0, 0)]
         [InlineData(0, 2, 0, 0, 0, 0, 0)]
@@ -695,7 +733,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void CheckToStringUsingMolarEntropy()
         {
-            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
+            Assert.Equal("[Length^2][Mass][Time^-2][Temperature^-1][Amount^-1]", MolarEntropy.BaseDimensions.ToString());
+        }
+
+        [Fact]
+        public void CheckToStringUsingSpeed()
+        {
+            Assert.Equal("[Length][Time^-1]", Speed.BaseDimensions.ToString());
         }
 
         [Fact]
@@ -738,5 +782,6 @@ namespace UnitsNet.Tests
             // Example case
             Assert.True(Level.BaseDimensions.IsDimensionless());
         }
+
     }
 }

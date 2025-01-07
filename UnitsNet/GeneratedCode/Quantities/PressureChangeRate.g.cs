@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,6 +44,10 @@ namespace UnitsNet
         IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<PressureChangeRate, PressureChangeRate, bool>,
+        IParsable<PressureChangeRate>,
 #endif
         IComparable,
         IComparable<PressureChangeRate>,
@@ -76,14 +79,14 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerMinute, "BarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerSecond, "BarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundsForcePerSquareInchPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerMinute, "MegapascalsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Second), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerMinute, "MegapascalsPerMinute", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Second), "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerMinute, "MillibarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerSecond, "MillibarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
@@ -119,13 +122,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public PressureChangeRate(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -353,7 +351,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(PressureChangeRateUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -571,7 +569,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static PressureChangeRate Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<PressureChangeRate, PressureChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<PressureChangeRate, PressureChangeRateUnit>(
                 str,
                 provider,
                 From);
@@ -585,7 +583,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out PressureChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out PressureChangeRate result)
         {
             return TryParse(str, null, out result);
         }
@@ -600,9 +598,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out PressureChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out PressureChangeRate result)
         {
-            return QuantityParser.Default.TryParse<PressureChangeRate, PressureChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<PressureChangeRate, PressureChangeRateUnit>(
                 str,
                 provider,
                 From,
@@ -635,11 +633,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PressureChangeRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<PressureChangeRateUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<PressureChangeRateUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PressureChangeRateUnit)"/>
-        public static bool TryParseUnit(string str, out PressureChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out PressureChangeRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -654,9 +652,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out PressureChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PressureChangeRateUnit unit)
         {
-            return UnitParser.Default.TryParse<PressureChangeRateUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<PressureChangeRateUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -919,25 +917,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is PressureChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1048,6 +1028,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public PressureChangeRate ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not PressureChangeRateUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1055,21 +1051,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public PressureChangeRate ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1083,6 +1064,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1091,7 +1074,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1101,7 +1084,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1112,7 +1095,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1193,7 +1176,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

@@ -11,6 +11,11 @@
     {
       "SingularName": "GramPerSecondPerSquareMeter",
       "PluralName": "GramsPerSecondPerSquareMeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Second",
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
       "Prefixes": [ "Kilo" ],
@@ -24,6 +29,11 @@
     {
       "SingularName": "GramPerSecondPerSquareCentimeter",
       "PluralName": "GramsPerSecondPerSquareCentimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Second",
+        "L": "Centimeter"
+      },
       "FromUnitToBaseFunc": "{x} / 1e-1",
       "FromBaseToUnitFunc": "{x} * 1e-1",
       "Prefixes": [ "Kilo" ],
@@ -37,6 +47,11 @@
     {
       "SingularName": "GramPerSecondPerSquareMillimeter",
       "PluralName": "GramsPerSecondPerSquareMillimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Second",
+        "L": "Millimeter"
+      },
       "FromUnitToBaseFunc": "{x} / 1e-3",
       "FromBaseToUnitFunc": "{x} * 1e-3",
       "Prefixes": [ "Kilo" ],
@@ -50,6 +65,11 @@
     {
       "SingularName": "GramPerHourPerSquareMeter",
       "PluralName": "GramsPerHourPerSquareMeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Hour",
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "{x} / 3.6e6",
       "FromBaseToUnitFunc": "{x} * 3.6e6",
       "Prefixes": [ "Kilo" ],
@@ -63,6 +83,11 @@
     {
       "SingularName": "GramPerHourPerSquareCentimeter",
       "PluralName": "GramsPerHourPerSquareCentimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Hour",
+        "L": "Centimeter"
+      },
       "FromUnitToBaseFunc": "{x} / 3.6e2",
       "FromBaseToUnitFunc": "{x} * 3.6e2",
       "Prefixes": [ "Kilo" ],
@@ -76,6 +101,11 @@
     {
       "SingularName": "GramPerHourPerSquareMillimeter",
       "PluralName": "GramsPerHourPerSquareMillimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Hour",
+        "L": "Millimeter"
+      },
       "FromUnitToBaseFunc": "{x} / 3.6e0",
       "FromBaseToUnitFunc": "{x} * 3.6e0",
       "Prefixes": [ "Kilo" ],

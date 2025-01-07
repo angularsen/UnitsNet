@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotentialChangeRate :
         IArithmeticQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<ElectricPotentialChangeRate, ElectricPotentialChangeRate, bool>,
+        IParsable<ElectricPotentialChangeRate>,
+#endif
         IComparable,
         IComparable<ElectricPotentialChangeRate>,
         IConvertible,
@@ -67,22 +73,22 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
                 new UnitInfo<ElectricPotentialChangeRateUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHour", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicrosecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinute", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHour", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicrosecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinute", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHour", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicrosecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinute", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHour", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicrosecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinute", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSecond", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Milliampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Milliampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Microampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Microampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Microampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Kiloampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Kiloampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Kiloampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Kiloampere), "ElectricPotentialChangeRate"),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerHour, "VoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
@@ -115,13 +121,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricPotentialChangeRate(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -363,7 +364,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ElectricPotentialChangeRateUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -597,7 +598,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricPotentialChangeRate Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(
                 str,
                 provider,
                 From);
@@ -611,7 +612,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricPotentialChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricPotentialChangeRate result)
         {
             return TryParse(str, null, out result);
         }
@@ -626,9 +627,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricPotentialChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricPotentialChangeRate result)
         {
-            return QuantityParser.Default.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(
                 str,
                 provider,
                 From,
@@ -661,11 +662,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ElectricPotentialChangeRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ElectricPotentialChangeRateUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ElectricPotentialChangeRateUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricPotentialChangeRateUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricPotentialChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricPotentialChangeRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -680,9 +681,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricPotentialChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricPotentialChangeRateUnit unit)
         {
-            return UnitParser.Default.TryParse<ElectricPotentialChangeRateUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ElectricPotentialChangeRateUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -935,25 +936,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricPotentialChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialChangeRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1068,6 +1051,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricPotentialChangeRate ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricPotentialChangeRateUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1075,21 +1074,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialChangeRateUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricPotentialChangeRate ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1103,6 +1087,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1111,7 +1097,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1121,7 +1107,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1132,7 +1118,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1213,7 +1199,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

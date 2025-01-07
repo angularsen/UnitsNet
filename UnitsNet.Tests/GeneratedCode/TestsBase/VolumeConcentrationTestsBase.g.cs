@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -158,27 +159,6 @@ namespace UnitsNet.Tests
             var exception = Record.Exception(() => new VolumeConcentration(double.NaN, VolumeConcentrationUnit.DecimalFraction));
 
             Assert.Null(exception);
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new VolumeConcentration(value: 1, unitSystem: null));
-        }
-
-        [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            Func<object> TestCode = () => new VolumeConcentration(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (VolumeConcentration) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
         }
 
         [Fact]
@@ -351,20 +331,70 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
 
-            if (SupportsSIUnitSystem)
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
+
+                VolumeConcentration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<VolumeConcentrationUnit> quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
+
+                IQuantity<VolumeConcentrationUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<VolumeConcentrationUnit> quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
@@ -650,245 +680,238 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("%", VolumeConcentrationUnit.Percent)]
+        [InlineData("% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeConcentrationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("cl/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("cl/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("dl/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("dl/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("l/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("l/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("µl/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("µl/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("ml/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("ml/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("nl/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("nl/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("‰", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("%", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("% (v/v)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("pl/l", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeConcentration.ParseUnit("pl/ml", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VolumeConcentrationUnit parsedUnit = VolumeConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("%", VolumeConcentrationUnit.Percent)]
+        [InlineData("% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeConcentrationUnit expectedUnit)
         {
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("cl/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VolumeConcentrationUnit parsedUnit = VolumeConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("cl/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("en-US", "cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("en-US", "dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("en-US", "dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("en-US", "", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("en-US", "l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("en-US", "l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("en-US", "µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("en-US", "µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("en-US", "ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("en-US", "ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("en-US", "nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("en-US", "nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("en-US", "ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("en-US", "pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VolumeConcentrationUnit parsedUnit = VolumeConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("dl/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("en-US", "cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("en-US", "dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("en-US", "dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("en-US", "", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("en-US", "l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("en-US", "l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("en-US", "µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("en-US", "µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("en-US", "ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("en-US", "ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("en-US", "nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("en-US", "nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("en-US", "ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("en-US", "pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            VolumeConcentrationUnit parsedUnit = VolumeConcentration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("dl/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("%", VolumeConcentrationUnit.Percent)]
+        [InlineData("% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VolumeConcentration.TryParseUnit(abbreviation, out VolumeConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("%", VolumeConcentrationUnit.Percent)]
+        [InlineData("% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(VolumeConcentration.TryParseUnit(abbreviation, out VolumeConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("l/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("en-US", "cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("en-US", "dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("en-US", "dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("en-US", "", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("en-US", "l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("en-US", "l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("en-US", "µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("en-US", "µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("en-US", "ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("en-US", "ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("en-US", "nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("en-US", "nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("en-US", "ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("en-US", "pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VolumeConcentration.TryParseUnit(abbreviation, out VolumeConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("l/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("µl/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("µl/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("ml/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("ml/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("nl/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("nl/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("‰", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("%", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("% (v/v)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("pl/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeConcentration.TryParseUnit("pl/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cl/l", VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData("en-US", "cl/ml", VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData("en-US", "dl/l", VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData("en-US", "dl/ml", VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData("en-US", "", VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData("en-US", "l/l", VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData("en-US", "l/ml", VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData("en-US", "µl/l", VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData("en-US", "µl/ml", VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData("en-US", "ml/l", VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData("en-US", "ml/ml", VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData("en-US", "nl/l", VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData("en-US", "nl/ml", VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData("en-US", "ppb", VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "% (v/v)", VolumeConcentrationUnit.Percent)]
+        [InlineData("en-US", "pl/l", VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData("en-US", "pl/ml", VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VolumeConcentrationUnit expectedUnit)
+        {
+            Assert.True(VolumeConcentration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -916,12 +939,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeConcentrationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumeConcentration.Units.First(u => u != VolumeConcentration.BaseUnit);
-
-            var quantity = VolumeConcentration.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(VolumeConcentration.Units.Where(u => u != VolumeConcentration.BaseUnit), fromUnit =>
+            {
+                var quantity = VolumeConcentration.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -931,6 +954,25 @@ namespace UnitsNet.Tests
             var quantity = default(VolumeConcentration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(VolumeConcentrationUnit unit)
+        {
+            var quantity = VolumeConcentration.From(3, VolumeConcentration.BaseUnit);
+            VolumeConcentration expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<VolumeConcentrationUnit> quantityToConvert = quantity;
+                IQuantity<VolumeConcentrationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1090,7 +1132,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1103,34 +1145,27 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerLiter).ToString());
-                Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString());
-                Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString());
-                Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString());
-                Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
-                Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString());
-                Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString());
-                Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString());
-                Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerMililiter).ToString());
-                Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerLiter).ToString());
-                Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerMililiter).ToString());
-                Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerLiter).ToString());
-                Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerMililiter).ToString());
-                Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString());
-                Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString());
-                Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString());
-                Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString());
-                Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString());
-                Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerLiter).ToString());
-                Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerMililiter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerLiter).ToString());
+            Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString());
+            Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString());
+            Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString());
+            Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
+            Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString());
+            Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString());
+            Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString());
+            Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerMililiter).ToString());
+            Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerLiter).ToString());
+            Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MillilitersPerMililiter).ToString());
+            Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerLiter).ToString());
+            Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanolitersPerMililiter).ToString());
+            Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString());
+            Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString());
+            Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString());
+            Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString());
+            Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString());
+            Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerLiter).ToString());
+            Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerMililiter).ToString());
         }
 
         [Fact]
@@ -1164,19 +1199,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
+            Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
+            Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
+            Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
         }
 
         [Fact]
@@ -1199,7 +1226,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1349,6 +1376,13 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

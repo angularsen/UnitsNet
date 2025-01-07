@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -155,18 +156,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new SpecificWeight(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (SpecificWeight) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new SpecificWeight(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new SpecificWeight(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -321,20 +322,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = SpecificWeight.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(SpecificWeight.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+            var expectedUnit = SpecificWeight.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                SpecificWeight quantityToConvert = quantity;
+
+                SpecificWeight convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<SpecificWeightUnit> quantityToConvert = quantity;
+
+                IQuantity<SpecificWeightUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<SpecificWeightUnit> quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<SpecificWeightUnit> quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -568,201 +658,206 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificWeightUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kgf/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kgf/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kgf/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kN/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kN/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kN/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kipf/ft³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("kipf/in³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("MN/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("N/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("N/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("N/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("lbf/ft³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("lbf/in³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("tf/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("tf/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificWeight.ParseUnit("tf/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            SpecificWeightUnit parsedUnit = SpecificWeight.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificWeightUnit expectedUnit)
         {
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kgf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            SpecificWeightUnit parsedUnit = SpecificWeight.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kgf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("en-US", "kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("en-US", "kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("en-US", "kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("en-US", "kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("en-US", "kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("en-US", "kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("en-US", "kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("en-US", "MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("en-US", "N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("en-US", "N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("en-US", "N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("en-US", "lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("en-US", "lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("en-US", "tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("en-US", "tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("en-US", "tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            SpecificWeightUnit parsedUnit = SpecificWeight.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kgf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("en-US", "kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("en-US", "kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("en-US", "kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("en-US", "kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("en-US", "kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("en-US", "kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("en-US", "kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("en-US", "MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("en-US", "N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("en-US", "N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("en-US", "N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("en-US", "lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("en-US", "lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("en-US", "tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("en-US", "tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("en-US", "tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            SpecificWeightUnit parsedUnit = SpecificWeight.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kN/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(SpecificWeight.TryParseUnit(abbreviation, out SpecificWeightUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(SpecificWeight.TryParseUnit(abbreviation, out SpecificWeightUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kN/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("en-US", "kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("en-US", "kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("en-US", "kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("en-US", "kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("en-US", "kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("en-US", "kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("en-US", "kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("en-US", "MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("en-US", "N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("en-US", "N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("en-US", "N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("en-US", "lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("en-US", "lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("en-US", "tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("en-US", "tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("en-US", "tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(SpecificWeight.TryParseUnit(abbreviation, out SpecificWeightUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kipf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("kipf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("MN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("N/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("N/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("N/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("lbf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("lbf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("tf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("tf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(SpecificWeight.TryParseUnit("tf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "kgf/cm³", SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData("en-US", "kgf/m³", SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData("en-US", "kgf/mm³", SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData("en-US", "kN/cm³", SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData("en-US", "kN/m³", SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData("en-US", "kN/mm³", SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData("en-US", "kipf/ft³", SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData("en-US", "kipf/in³", SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData("en-US", "MN/m³", SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData("en-US", "N/cm³", SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData("en-US", "N/m³", SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData("en-US", "N/mm³", SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData("en-US", "lbf/ft³", SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData("en-US", "lbf/in³", SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData("en-US", "tf/cm³", SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData("en-US", "tf/m³", SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData("en-US", "tf/mm³", SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, SpecificWeightUnit expectedUnit)
+        {
+            Assert.True(SpecificWeight.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificWeightUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -790,12 +885,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificWeightUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificWeight.Units.First(u => u != SpecificWeight.BaseUnit);
-
-            var quantity = SpecificWeight.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(SpecificWeight.Units.Where(u => u != SpecificWeight.BaseUnit), fromUnit =>
+            {
+                var quantity = SpecificWeight.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -805,6 +900,25 @@ namespace UnitsNet.Tests
             var quantity = default(SpecificWeight);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(SpecificWeightUnit unit)
+        {
+            var quantity = SpecificWeight.From(3, SpecificWeight.BaseUnit);
+            SpecificWeight expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<SpecificWeightUnit> quantityToConvert = quantity;
+                IQuantity<SpecificWeightUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -961,7 +1075,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -974,31 +1088,24 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kgf/cm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).ToString());
-                Assert.Equal("1 kgf/m³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMeter).ToString());
-                Assert.Equal("1 kgf/mm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).ToString());
-                Assert.Equal("1 kN/cm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).ToString());
-                Assert.Equal("1 kN/m³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMeter).ToString());
-                Assert.Equal("1 kN/mm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).ToString());
-                Assert.Equal("1 kipf/ft³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).ToString());
-                Assert.Equal("1 kipf/in³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicInch).ToString());
-                Assert.Equal("1 MN/m³", new SpecificWeight(1, SpecificWeightUnit.MeganewtonPerCubicMeter).ToString());
-                Assert.Equal("1 N/cm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicCentimeter).ToString());
-                Assert.Equal("1 N/m³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter).ToString());
-                Assert.Equal("1 N/mm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMillimeter).ToString());
-                Assert.Equal("1 lbf/ft³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicFoot).ToString());
-                Assert.Equal("1 lbf/in³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicInch).ToString());
-                Assert.Equal("1 tf/cm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).ToString());
-                Assert.Equal("1 tf/m³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMeter).ToString());
-                Assert.Equal("1 tf/mm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kgf/cm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).ToString());
+            Assert.Equal("1 kgf/m³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMeter).ToString());
+            Assert.Equal("1 kgf/mm³", new SpecificWeight(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).ToString());
+            Assert.Equal("1 kN/cm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).ToString());
+            Assert.Equal("1 kN/m³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMeter).ToString());
+            Assert.Equal("1 kN/mm³", new SpecificWeight(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).ToString());
+            Assert.Equal("1 kipf/ft³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).ToString());
+            Assert.Equal("1 kipf/in³", new SpecificWeight(1, SpecificWeightUnit.KilopoundForcePerCubicInch).ToString());
+            Assert.Equal("1 MN/m³", new SpecificWeight(1, SpecificWeightUnit.MeganewtonPerCubicMeter).ToString());
+            Assert.Equal("1 N/cm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicCentimeter).ToString());
+            Assert.Equal("1 N/m³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter).ToString());
+            Assert.Equal("1 N/mm³", new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMillimeter).ToString());
+            Assert.Equal("1 lbf/ft³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicFoot).ToString());
+            Assert.Equal("1 lbf/in³", new SpecificWeight(1, SpecificWeightUnit.PoundForcePerCubicInch).ToString());
+            Assert.Equal("1 tf/cm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).ToString());
+            Assert.Equal("1 tf/m³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMeter).ToString());
+            Assert.Equal("1 tf/mm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).ToString());
         }
 
         [Fact]
@@ -1029,19 +1136,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s4"));
         }
 
         [Fact]
@@ -1064,7 +1163,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1214,6 +1313,13 @@ namespace UnitsNet.Tests
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

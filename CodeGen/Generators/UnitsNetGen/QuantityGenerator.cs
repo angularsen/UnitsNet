@@ -38,14 +38,12 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;");
-            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
-                Writer.WL(@"#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif");
-            Writer.WL(@"using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
+using System.Linq;
+using System.Runtime.Serialization;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -101,6 +99,10 @@ namespace UnitsNet
             }
 
             Writer.WL(@$"
+#if NET7_0_OR_GREATER
+        IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
+        IParsable<{_quantity.Name}>,
+#endif
         IComparable,
         IComparable<{_quantity.Name}>,
         IConvertible,
@@ -212,7 +214,10 @@ namespace UnitsNet
             Writer.WL($@"
             _unit = unit;
         }}
-
+");
+            if (!_isDimensionless)
+            {
+                Writer.WL($@"
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref=""UnitSystem""/>.
         /// If multiple compatible units were found, the first match is used.
@@ -223,18 +228,11 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
         public {_quantity.Name}(double value, UnitSystem unitSystem)
         {{
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-");
-
-            Writer.WL(@"
-            _value = value;");
-            Writer.WL($@"
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }}
 ");
+            }
         }
 
         private void GenerateStaticProperties()
@@ -401,7 +399,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use for localization. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public static string GetAbbreviation({_unitEnumName} unit, IFormatProvider? provider)
         {{
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }}
 
         #endregion
@@ -503,7 +501,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public static {_quantity.Name} Parse(string str, IFormatProvider? provider)
         {{
-            return QuantityParser.Default.Parse<{_quantity.Name}, {_unitEnumName}>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<{_quantity.Name}, {_unitEnumName}>(
                 str,
                 provider,
                 From);
@@ -517,7 +515,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
-        public static bool TryParse(string? str, out {_quantity.Name} result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out {_quantity.Name} result)
         {{
             return TryParse(str, null, out result);
         }}
@@ -532,9 +530,9 @@ namespace UnitsNet
         ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out {_quantity.Name} result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out {_quantity.Name} result)
         {{
-            return QuantityParser.Default.TryParse<{_quantity.Name}, {_unitEnumName}>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<{_quantity.Name}, {_unitEnumName}>(
                 str,
                 provider,
                 From,
@@ -567,11 +565,11 @@ namespace UnitsNet
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str, IFormatProvider? provider)
         {{
-            return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<{_unitEnumName}>(str, provider);
         }}
 
         /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out UnitsNet.Units.{_unitEnumName})""/>
-        public static bool TryParseUnit(string str, out {_unitEnumName} unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out {_unitEnumName} unit)
         {{
             return TryParseUnit(str, null, out unit);
         }}
@@ -586,9 +584,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit(""m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out {_unitEnumName} unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out {_unitEnumName} unit)
         {{
-            return UnitParser.Default.TryParse<{_unitEnumName}>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<{_unitEnumName}>(str, provider, out unit);
         }}
 
         #endregion
@@ -998,34 +996,16 @@ namespace UnitsNet
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL( $@"
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
         public double As(UnitSystem unitSystem)
         {{
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
+            return As(Info.GetDefaultUnit(unitSystem));
         }}
 ");
 
             Writer.WL($@"
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {{
-            if (!(unit is {_unitEnumName} typedUnit))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return As(typedUnit);
-        }}
-
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
         /// </summary>
@@ -1121,6 +1101,25 @@ namespace UnitsNet
             converted = convertedOrNull.Value;
             return true;
         }}
+");
+            Writer.WL($@"
+        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
+        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
+        {{
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }}
+");
+
+            Writer.WL($@"
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {{
+            if (unit is not {_unitEnumName} typedUnit)
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return As(typedUnit);
+        }}
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
@@ -1131,21 +1130,6 @@ namespace UnitsNet
             return ToUnit(typedUnit, DefaultConversionFunctions);
         }}
 
-        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
-        {{
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
-        }}
-
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
@@ -1154,6 +1138,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 ");
@@ -1170,7 +1156,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {{
-            return ToString(""g"");
+            return ToString(null, null);
         }}
 
         /// <summary>
@@ -1180,7 +1166,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {{
-            return ToString(""g"", provider);
+            return ToString(null, provider);
         }}
 
         /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
@@ -1191,7 +1177,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {{
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }}
 
         /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
@@ -1277,7 +1263,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {{
-            return ToString(""g"", provider);
+            return ToString(null, provider);
         }}
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

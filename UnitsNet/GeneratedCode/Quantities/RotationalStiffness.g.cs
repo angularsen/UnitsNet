@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,6 +46,10 @@ namespace UnitsNet
         IDivisionOperators<RotationalStiffness, RotationalStiffnessPerLength, Length>,
         IDivisionOperators<RotationalStiffness, Length, RotationalStiffnessPerLength>,
         IMultiplyOperators<RotationalStiffness, Angle, Torque>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<RotationalStiffness, RotationalStiffness, bool>,
+        IParsable<RotationalStiffness>,
 #endif
         IComparable,
         IComparable<RotationalStiffness>,
@@ -90,7 +93,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, "KilonewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, "KilopoundForceFeetPerDegrees", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerDegree, "MeganewtonMetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, "MeganewtonMetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, "MeganewtonMetersPerRadian", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, "MeganewtonMillimetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, "MeganewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMeterPerDegree, "MicronewtonMetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
@@ -103,7 +106,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, "NanonewtonMillimetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, "NanonewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerDegree, "NewtonMetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerRadian, "NewtonMetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerRadian, "NewtonMetersPerRadian", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerDegree, "NewtonMillimetersPerDegree", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, "NewtonMillimetersPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, "PoundForceFeetPerRadian", BaseUnits.Undefined, "RotationalStiffness"),
@@ -136,13 +139,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public RotationalStiffness(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -475,7 +473,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(RotationalStiffnessUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -813,7 +811,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static RotationalStiffness Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RotationalStiffness, RotationalStiffnessUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<RotationalStiffness, RotationalStiffnessUnit>(
                 str,
                 provider,
                 From);
@@ -827,7 +825,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out RotationalStiffness result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out RotationalStiffness result)
         {
             return TryParse(str, null, out result);
         }
@@ -842,9 +840,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out RotationalStiffness result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out RotationalStiffness result)
         {
-            return QuantityParser.Default.TryParse<RotationalStiffness, RotationalStiffnessUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<RotationalStiffness, RotationalStiffnessUnit>(
                 str,
                 provider,
                 From,
@@ -877,11 +875,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static RotationalStiffnessUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<RotationalStiffnessUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<RotationalStiffnessUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RotationalStiffnessUnit)"/>
-        public static bool TryParseUnit(string str, out RotationalStiffnessUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out RotationalStiffnessUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -896,9 +894,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out RotationalStiffnessUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RotationalStiffnessUnit unit)
         {
-            return UnitParser.Default.TryParse<RotationalStiffnessUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<RotationalStiffnessUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1173,25 +1171,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is RotationalStiffnessUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1332,6 +1312,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public RotationalStiffness ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not RotationalStiffnessUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1339,21 +1335,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RotationalStiffness ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1367,6 +1348,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1375,7 +1358,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1385,7 +1368,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1396,7 +1379,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1477,7 +1460,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

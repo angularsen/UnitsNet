@@ -381,8 +381,8 @@
     {
       "SingularName": "SolarRadius",
       "PluralName": "SolarRadiuses",
-      "FromUnitToBaseFunc": "{x} * 6.95510000E+08",
-      "FromBaseToUnitFunc": "{x} / 6.95510000E+08",
+      "FromUnitToBaseFunc": "{x} * 6.95700e8",
+      "FromBaseToUnitFunc": "{x} / 6.95700e8",
       "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
       "Localization": [
@@ -410,6 +410,9 @@
     {
       "SingularName": "Angstrom",
       "PluralName": "Angstroms",
+      "BaseUnits": {
+        "L": "Angstrom"
+      },
       "FromUnitToBaseFunc": "{x} * 1e-10",
       "FromBaseToUnitFunc": "{x} / 1e-10",
       "XmlDocSummary": "Angstrom is a metric unit of length equal to 1e-10 meter",

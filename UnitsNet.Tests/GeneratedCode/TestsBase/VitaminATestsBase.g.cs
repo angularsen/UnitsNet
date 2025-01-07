@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -85,27 +86,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new VitaminA(value: 1, unitSystem: null));
-        }
-
-        [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            Func<object> TestCode = () => new VitaminA(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (VitaminA) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
-        }
-
-        [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
@@ -161,20 +141,70 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            var quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             var quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
 
-            if (SupportsSIUnitSystem)
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                var quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
+
+                VitaminA convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<VitaminAUnit> quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
+
+                IQuantity<VitaminAUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<VitaminAUnit> quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
@@ -200,25 +230,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VitaminAUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VitaminA.ParseUnit("IU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VitaminAUnit expectedUnit)
         {
-            {
-                Assert.True(VitaminA.TryParseUnit("IU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VitaminAUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VitaminAUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            Assert.True(VitaminA.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -242,16 +325,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VitaminAUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VitaminA.Units.First(u => u != VitaminA.BaseUnit);
-
-            var quantity = VitaminA.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(VitaminA.Units.Where(u => u != VitaminA.BaseUnit), fromUnit =>
+            {
+                var quantity = VitaminA.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -261,6 +344,25 @@ namespace UnitsNet.Tests
             var quantity = default(VitaminA);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(VitaminAUnit unit)
+        {
+            var quantity = VitaminA.From(3, VitaminA.BaseUnit);
+            VitaminA expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<VitaminAUnit> quantityToConvert = quantity;
+                IQuantity<VitaminAUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -400,7 +502,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -413,15 +515,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString());
         }
 
         [Fact]
@@ -436,19 +531,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1"));
-                Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
-                Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
-                Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1"));
+            Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
+            Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
+            Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
         }
 
         [Fact]
@@ -471,7 +558,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -621,6 +708,13 @@ namespace UnitsNet.Tests
         {
             var quantity = VitaminA.FromInternationalUnits(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = VitaminA.FromInternationalUnits(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

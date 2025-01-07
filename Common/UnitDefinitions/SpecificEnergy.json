@@ -11,6 +11,10 @@
     {
       "SingularName": "JoulePerKilogram",
       "PluralName": "JoulesPerKilogram",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

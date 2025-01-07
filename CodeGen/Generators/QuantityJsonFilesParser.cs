@@ -6,123 +6,89 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
-using CodeGen.Helpers;
+using CodeGen.Helpers.PrefixBuilder;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
+using static CodeGen.Helpers.PrefixBuilder.BaseUnitPrefixes;
 
-namespace CodeGen.Generators
+namespace CodeGen.Generators;
+
+/// <summary>
+///     Parses JSON files that define quantities and their units.
+///     This will later be used to generate source code and can be reused for different targets such as .NET framework,
+///     .NET Core, .NET nanoFramework and even other programming languages.
+/// </summary>
+internal static class QuantityJsonFilesParser
 {
+    private static readonly JsonSerializerSettings JsonSerializerSettings = new()
+    {
+        // Don't override the C# default assigned values if no value is set in JSON
+        NullValueHandling = NullValueHandling.Ignore
+    };
+
+    private static readonly string[] BaseQuantityFileNames =
+        ["Length", "Mass", "Duration", "ElectricCurrent", "Temperature", "AmountOfSubstance", "LuminousIntensity"];
+
     /// <summary>
     ///     Parses JSON files that define quantities and their units.
-    ///     This will later be used to generate source code and can be reused for different targets such as .NET framework,
-    ///     .NET Core, .NET nanoFramework and even other programming languages.
     /// </summary>
-    internal static class QuantityJsonFilesParser
+    /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\UnitsNet".</param>
+    /// <returns>The parsed quantities and their units.</returns>
+    public static Quantity[] ParseQuantities(string rootDir)
     {
-        private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
-        {
-            // Don't override the C# default assigned values if no value is set in JSON
-            NullValueHandling = NullValueHandling.Ignore
-        };
+        var jsonDir = Path.Combine(rootDir, "Common/UnitDefinitions");
+        var baseQuantityFiles = BaseQuantityFileNames.Select(baseQuantityName => Path.Combine(jsonDir, baseQuantityName + ".json")).ToArray();
 
-        /// <summary>
-        ///     Parses JSON files that define quantities and their units.
-        /// </summary>
-        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\UnitsNet".</param>
-        /// <returns>The parsed quantities and their units.</returns>
-        public static Quantity[] ParseQuantities(string rootDir)
+        Quantity[] baseQuantities = ParseQuantities(baseQuantityFiles);
+        Quantity[] derivedQuantities = ParseQuantities(Directory.GetFiles(jsonDir, "*.json").Except(baseQuantityFiles));
+
+        return BuildQuantities(baseQuantities, derivedQuantities);
+    }
+
+    private static Quantity[] ParseQuantities(IEnumerable<string> jsonFiles)
+    {
+        return jsonFiles.Select(ParseQuantity).ToArray();
+    }
+
+    private static Quantity ParseQuantity(string jsonFileName)
+    {
+        try
         {
-            var jsonDir = Path.Combine(rootDir, "Common/UnitDefinitions");
-            var jsonFileNames = Directory.GetFiles(jsonDir, "*.json");
-            return jsonFileNames
-                .OrderBy(fn => fn, StringComparer.InvariantCultureIgnoreCase)
-                .Select(ParseQuantityFile)
-                .ToArray();
+            return JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
+                   ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
         }
-
-        private static Quantity ParseQuantityFile(string jsonFileName)
+        catch (Exception e)
         {
-            try
-            {
-                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
-                               ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
-
-                AddPrefixUnits(quantity);
-                OrderUnitsByName(quantity);
-                return quantity;
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Error parsing quantity JSON file: {jsonFileName}", e);
-            }
+            throw new Exception($"Error parsing quantity JSON file: {jsonFileName}", e);
         }
+    }
 
-        private static void OrderUnitsByName(Quantity quantity)
+    /// <summary>
+    ///     Combines base quantities and derived quantities into a single collection,
+    ///     while generating prefixed units for each quantity.
+    /// </summary>
+    /// <param name="baseQuantities">
+    ///     The array of base quantities, each containing its respective units.
+    /// </param>
+    /// <param name="derivedQuantities">
+    ///     The array of derived quantities, each containing its respective units.
+    /// </param>
+    /// <returns>
+    ///     An ordered array of all quantities, including both base and derived quantities,
+    ///     with prefixed units generated and added to their respective unit collections.
+    /// </returns>
+    /// <remarks>
+    ///     This method utilizes the <see cref="UnitPrefixBuilder" /> to generate prefixed units
+    ///     for each quantity. The resulting quantities are sorted alphabetically by their names.
+    /// </remarks>
+    private static Quantity[] BuildQuantities(Quantity[] baseQuantities, Quantity[] derivedQuantities)
+    {
+        var prefixBuilder = new UnitPrefixBuilder(FromBaseUnits(baseQuantities.SelectMany(x => x.Units)));
+        return baseQuantities.Concat(derivedQuantities).Select(quantity =>
         {
-            quantity.Units = quantity.Units.OrderBy(u => u.SingularName, StringComparer.OrdinalIgnoreCase).ToArray();
-        }
-
-        private static void AddPrefixUnits(Quantity quantity)
-        {
-            var unitsToAdd = new List<Unit>();
-            foreach (Unit unit in quantity.Units)
-            foreach (Prefix prefix in unit.Prefixes)
-            {
-                try
-                {
-                    var prefixInfo = PrefixInfo.Entries[prefix];
-
-                    unitsToAdd.Add(new Unit
-                    {
-                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = null, // Can we determine this somehow?
-                        FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
-                        FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
-                        Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
-                        ObsoleteText = unit.ObsoleteText,
-                        SkipConversionGeneration = unit.SkipConversionGeneration,
-                        AllowAbbreviationLookup = unit.AllowAbbreviationLookup
-                    } );
-                }
-                catch (Exception e)
-                {
-                    throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
-                }
-            }
-
-            quantity.Units = quantity.Units.Concat(unitsToAdd).ToArray();
-        }
-
-        /// <summary>
-        ///     Create unit abbreviations for a prefix unit, given a unit and the prefix.
-        ///     The unit abbreviations are either prefixed with the SI prefix or an explicitly configured abbreviation via
-        ///     <see cref="Localization.AbbreviationsForPrefixes" />.
-        /// </summary>
-        private static Localization[] GetLocalizationForPrefixUnit(IEnumerable<Localization> localizations, PrefixInfo prefixInfo)
-        {
-            return localizations.Select(loc =>
-            {
-                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[]? unitAbbreviationsForPrefix))
-                {
-                    return new Localization
-                    {
-                        Culture = loc.Culture,
-                        Abbreviations = unitAbbreviationsForPrefix
-                    };
-                }
-
-                // No prefix unit abbreviations are specified, so fall back to prepending the default SI prefix to each unit abbreviation:
-                // kilo ("k") + meter ("m") => kilometer ("km")
-                var prefix = prefixInfo.GetPrefixForCultureOrSiPrefix(loc.Culture);
-                unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
-
-                return new Localization
-                {
-                    Culture = loc.Culture,
-                    Abbreviations = unitAbbreviationsForPrefix
-                };
-            }).ToArray();
-        }
+            List<Unit> prefixedUnits = prefixBuilder.GeneratePrefixUnits(quantity);
+            quantity.Units = quantity.Units.Concat(prefixedUnits).OrderBy(unit => unit.SingularName, StringComparer.OrdinalIgnoreCase).ToArray();
+            return quantity;
+        }).OrderBy(quantity => quantity.Name, StringComparer.InvariantCultureIgnoreCase).ToArray();
     }
 }

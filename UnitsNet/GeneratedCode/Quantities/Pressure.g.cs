@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -54,6 +53,10 @@ namespace UnitsNet
         IDivisionOperators<Pressure, Force, ReciprocalArea>,
         IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>,
         IDivisionOperators<Pressure, Length, SpecificWeight>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Pressure, Pressure, bool>,
+        IParsable<Pressure>,
 #endif
         IComparable,
         IComparable<Pressure>,
@@ -86,50 +89,50 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, "FeetOfElevation", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareMil, "KilopoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareMil, "PoundsForcePerSquareMil", new BaseUnits(length: LengthUnit.Mil, mass: MassUnit.Pound, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareMil, "PoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
                     new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined, "Pressure"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -159,13 +162,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Pressure(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -610,7 +608,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(PressureUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1076,7 +1074,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Pressure Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Pressure, PressureUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Pressure, PressureUnit>(
                 str,
                 provider,
                 From);
@@ -1090,7 +1088,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Pressure result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Pressure result)
         {
             return TryParse(str, null, out result);
         }
@@ -1105,9 +1103,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Pressure result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Pressure result)
         {
-            return QuantityParser.Default.TryParse<Pressure, PressureUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Pressure, PressureUnit>(
                 str,
                 provider,
                 From,
@@ -1140,11 +1138,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PressureUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<PressureUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<PressureUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PressureUnit)"/>
-        public static bool TryParseUnit(string str, out PressureUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out PressureUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1159,9 +1157,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out PressureUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PressureUnit unit)
         {
-            return UnitParser.Default.TryParse<PressureUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<PressureUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1478,25 +1476,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is PressureUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1669,6 +1649,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Pressure ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not PressureUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1676,21 +1672,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Pressure ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1704,6 +1685,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1712,7 +1695,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1722,7 +1705,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1733,7 +1716,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1814,7 +1797,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

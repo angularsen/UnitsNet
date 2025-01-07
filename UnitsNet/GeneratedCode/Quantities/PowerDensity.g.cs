@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct PowerDensity :
         IArithmeticQuantity<PowerDensity, PowerDensityUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<PowerDensity, PowerDensity, bool>,
+        IParsable<PowerDensity>,
+#endif
         IComparable,
         IComparable<PowerDensity>,
         IConvertible,
@@ -69,43 +75,43 @@ namespace UnitsNet
                 {
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, "DecawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, "DecawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, "DecawattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, "DecawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, "DeciwattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, "DeciwattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, "GigawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, "GigawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, "GigawattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, "GigawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, "GigawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, "KilowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, "KilowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, "KilowattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, "KilowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, "KilowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, "MegawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, "MegawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, "MegawattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, "MegawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, "MegawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, "MicrowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, "MicrowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, "MilliwattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, "MilliwattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, "NanowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, "NanowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, "NanowattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, "NanowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, "NanowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, "PicowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, "PicowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, "PicowattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, "PicowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, "PicowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, "TerawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, "TerawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, "TerawattsPerCubicMeter", BaseUnits.Undefined, "PowerDensity"),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, "TerawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, "TerawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, "WattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
@@ -139,13 +145,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public PowerDensity(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -555,7 +556,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(PowerDensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -981,7 +982,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static PowerDensity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<PowerDensity, PowerDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<PowerDensity, PowerDensityUnit>(
                 str,
                 provider,
                 From);
@@ -995,7 +996,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out PowerDensity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out PowerDensity result)
         {
             return TryParse(str, null, out result);
         }
@@ -1010,9 +1011,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out PowerDensity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerDensity result)
         {
-            return QuantityParser.Default.TryParse<PowerDensity, PowerDensityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<PowerDensity, PowerDensityUnit>(
                 str,
                 provider,
                 From,
@@ -1045,11 +1046,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PowerDensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<PowerDensityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<PowerDensityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerDensityUnit)"/>
-        public static bool TryParseUnit(string str, out PowerDensityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out PowerDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1064,9 +1065,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out PowerDensityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerDensityUnit unit)
         {
-            return UnitParser.Default.TryParse<PowerDensityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<PowerDensityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1319,25 +1320,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is PowerDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1500,6 +1483,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public PowerDensity ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not PowerDensityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1507,21 +1506,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public PowerDensity ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1535,6 +1519,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1543,7 +1529,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1553,7 +1539,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1564,7 +1550,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1645,7 +1631,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

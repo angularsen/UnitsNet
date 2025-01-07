@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Radioactivity :
         IArithmeticQuantity<Radioactivity, RadioactivityUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Radioactivity, Radioactivity, bool>,
+        IParsable<Radioactivity>,
+#endif
         IComparable,
         IComparable<Radioactivity>,
         IConvertible,
@@ -70,15 +76,15 @@ namespace UnitsNet
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Becquerel, "Becquerels", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Curie, "Curies", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Exabecquerel, "Exabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigabecquerel, "Gigabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigacurie, "Gigacuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigarutherford, "Gigarutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilobecquerel, "Kilobecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilocurie, "Kilocuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilorutherford, "Kilorutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megabecquerel, "Megabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megacurie, "Megacuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megarutherford, "Megarutherfords", BaseUnits.Undefined, "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigabecquerel, "Gigabecquerels", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigacurie, "Gigacuries", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigarutherford, "Gigarutherfords", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilobecquerel, "Kilobecquerels", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilocurie, "Kilocuries", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilorutherford, "Kilorutherfords", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megabecquerel, "Megabecquerels", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megacurie, "Megacuries", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megarutherford, "Megarutherfords", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microbecquerel, "Microbecquerels", BaseUnits.Undefined, "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microcurie, "Microcuries", BaseUnits.Undefined, "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microrutherford, "Microrutherfords", BaseUnits.Undefined, "Radioactivity"),
@@ -124,13 +130,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Radioactivity(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -435,7 +436,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(RadioactivityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -741,7 +742,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Radioactivity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Radioactivity, RadioactivityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Radioactivity, RadioactivityUnit>(
                 str,
                 provider,
                 From);
@@ -755,7 +756,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Radioactivity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Radioactivity result)
         {
             return TryParse(str, null, out result);
         }
@@ -770,9 +771,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Radioactivity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Radioactivity result)
         {
-            return QuantityParser.Default.TryParse<Radioactivity, RadioactivityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Radioactivity, RadioactivityUnit>(
                 str,
                 provider,
                 From,
@@ -805,11 +806,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static RadioactivityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<RadioactivityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<RadioactivityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RadioactivityUnit)"/>
-        public static bool TryParseUnit(string str, out RadioactivityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out RadioactivityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -824,9 +825,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out RadioactivityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadioactivityUnit unit)
         {
-            return UnitParser.Default.TryParse<RadioactivityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<RadioactivityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1079,25 +1080,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is RadioactivityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1230,6 +1213,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Radioactivity ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not RadioactivityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1237,21 +1236,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Radioactivity ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1265,6 +1249,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1273,7 +1259,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1283,7 +1269,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1294,7 +1280,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1375,7 +1361,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

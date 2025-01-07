@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -29,5 +30,27 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => false;
         protected override double LumensInOneLumen => 1;
+
+        [Fact]
+        public void LuminousFluxDividedByAreaEqualsIlluminance()
+        {
+            var luminousFlux = LuminousFlux.FromLumens(100);
+            var area = Area.FromSquareMeters(10);
+            
+            var illuminance = luminousFlux / area;
+
+            Assert.Equal(Illuminance.FromLux(10), illuminance);
+        }
+
+        [Fact]
+        public void LuniousFluxDividedByIlluminanceEqualsArea()
+        {
+            var luminousFlux = LuminousFlux.FromLumens(100);
+            var illuminance = Illuminance.FromLux(10);
+
+            var area = luminousFlux / illuminance;
+
+            Assert.Equal(Area.FromSquareMeters(10), area);
+        }
     }
 }

@@ -10,6 +10,10 @@
     {
       "SingularName": "DegreeCelsiusPerSecond",
       "PluralName": "DegreesCelsiusPerSecond",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
@@ -23,12 +27,103 @@
     {
       "SingularName": "DegreeCelsiusPerMinute",
       "PluralName": "DegreesCelsiusPerMinute",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "°C/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeKelvinPerMinute",
+      "PluralName": "DegreesKelvinPerMinute",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheitPerMinute",
+      "PluralName": "DegreesFahrenheitPerMinute",
+      "FromUnitToBaseFunc": "{x} * 5 / 9 / 60",
+      "FromBaseToUnitFunc": "{x} * 9 / 5 * 60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°F/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheitPerSecond",
+      "PluralName": "DegreesFahrenheitPerSecond",
+      "FromUnitToBaseFunc": "{x} * 5 / 9",
+      "FromBaseToUnitFunc": "{x} * 9 / 5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°F/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeKelvinPerSecond",
+      "PluralName": "DegreesKelvinPerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerHour",
+      "PluralName": "DegreesCelsiusPerHour",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeKelvinPerHour",
+      "PluralName": "DegreesKelvinPerHour",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheitPerHour",
+      "PluralName": "DegreesFahrenheitPerHour",
+      "FromUnitToBaseFunc": "{x} * 5 / 9 / 3600",
+      "FromBaseToUnitFunc": "{x} * 9 / 5 * 3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°F/h" ]
         }
       ]
     }

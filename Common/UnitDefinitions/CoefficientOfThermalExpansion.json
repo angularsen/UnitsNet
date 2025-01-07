@@ -54,9 +54,6 @@
     {
       "SingularName": "PpmPerKelvin",
       "PluralName": "PpmPerKelvin",
-      "BaseUnits": {
-        "Θ": "Kelvin"
-      },
       "FromUnitToBaseFunc": "{x} / 1e6",
       "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
@@ -69,9 +66,6 @@
     {
       "SingularName": "PpmPerDegreeCelsius",
       "PluralName": "PpmPerDegreeCelsius",
-      "BaseUnits": {
-        "Θ": "DegreeCelsius"
-      },
       "FromUnitToBaseFunc": "{x} / 1e6",
       "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
@@ -84,9 +78,6 @@
     {
       "SingularName": "PpmPerDegreeFahrenheit",
       "PluralName": "PpmPerDegreeFahrenheit",
-      "BaseUnits": {
-        "Θ": "DegreeFahrenheit"
-      },
       "FromUnitToBaseFunc": "{x} * 9 / 5e6",
       "FromBaseToUnitFunc": "{x} * 5e6 / 9",
       "Localization": [

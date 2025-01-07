@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,6 +46,10 @@ namespace UnitsNet
         IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
         IDivisionOperators<Entropy, SpecificEntropy, Mass>,
         IDivisionOperators<Entropy, Mass, SpecificEntropy>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Entropy, Entropy, bool>,
+        IParsable<Entropy>,
 #endif
         IComparable,
         IComparable<Entropy>,
@@ -76,12 +79,12 @@ namespace UnitsNet
                 new UnitInfo<EntropyUnit>[]
                 {
                     new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "Entropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -110,13 +113,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Entropy(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -267,7 +265,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(EntropyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -397,7 +395,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Entropy Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Entropy, EntropyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Entropy, EntropyUnit>(
                 str,
                 provider,
                 From);
@@ -411,7 +409,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Entropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Entropy result)
         {
             return TryParse(str, null, out result);
         }
@@ -426,9 +424,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Entropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Entropy result)
         {
-            return QuantityParser.Default.TryParse<Entropy, EntropyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Entropy, EntropyUnit>(
                 str,
                 provider,
                 From,
@@ -461,11 +459,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static EntropyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<EntropyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<EntropyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EntropyUnit)"/>
-        public static bool TryParseUnit(string str, out EntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out EntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -480,9 +478,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out EntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out EntropyUnit unit)
         {
-            return UnitParser.Default.TryParse<EntropyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<EntropyUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -757,25 +755,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is EntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -864,6 +844,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Entropy ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not EntropyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -871,21 +867,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Entropy ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -899,6 +880,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -907,7 +890,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -917,7 +900,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -928,7 +911,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1009,7 +992,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

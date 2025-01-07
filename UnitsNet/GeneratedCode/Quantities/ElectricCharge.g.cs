@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -50,6 +49,10 @@ namespace UnitsNet
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
         IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<ElectricCharge, ElectricCharge, bool>,
+        IParsable<ElectricCharge>,
 #endif
         IComparable,
         IComparable<ElectricCharge>,
@@ -78,17 +81,17 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[]
                 {
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Megacoulomb, "Megacoulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Microcoulomb, "Microcoulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Millicoulomb, "Millicoulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Nanocoulomb, "Nanocoulombs", BaseUnits.Undefined, "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Picocoulomb, "Picocoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Kiloampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Kiloampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Megaampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Megacoulomb, "Megacoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Megaampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Microcoulomb, "Microcoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Millicoulomb, "Millicoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Nanocoulomb, "Nanocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere), "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Picocoulomb, "Picocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere), "ElectricCharge"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -117,13 +120,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricCharge(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -302,7 +300,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ElectricChargeUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -464,7 +462,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricCharge Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricCharge, ElectricChargeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricCharge, ElectricChargeUnit>(
                 str,
                 provider,
                 From);
@@ -478,7 +476,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricCharge result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricCharge result)
         {
             return TryParse(str, null, out result);
         }
@@ -493,9 +491,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCharge result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricCharge result)
         {
-            return QuantityParser.Default.TryParse<ElectricCharge, ElectricChargeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricCharge, ElectricChargeUnit>(
                 str,
                 provider,
                 From,
@@ -528,11 +526,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ElectricChargeUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ElectricChargeUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ElectricChargeUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricChargeUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricChargeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricChargeUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -547,9 +545,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricChargeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricChargeUnit unit)
         {
-            return UnitParser.Default.TryParse<ElectricChargeUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ElectricChargeUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -824,25 +822,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricChargeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -903,25 +883,25 @@ namespace UnitsNet
             ElectricCharge? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricChargeUnit -> BaseUnit
-                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value * 3600, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Kilocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e3d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Megacoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Microcoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-6d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Millicoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Nanocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-9d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Picocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-12d, ElectricChargeUnit.Coulomb),
 
                 // BaseUnit -> ElectricChargeUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value / 3600, ElectricChargeUnit.AmpereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value / 3600) / 1e3d, ElectricChargeUnit.KiloampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Kilocoulomb) => new ElectricCharge((_value) / 1e3d, ElectricChargeUnit.Kilocoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value / 3600) / 1e6d, ElectricChargeUnit.MegaampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Megacoulomb) => new ElectricCharge((_value) / 1e6d, ElectricChargeUnit.Megacoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Microcoulomb) => new ElectricCharge((_value) / 1e-6d, ElectricChargeUnit.Microcoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value / 3600) / 1e-3d, ElectricChargeUnit.MilliampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Millicoulomb) => new ElectricCharge((_value) / 1e-3d, ElectricChargeUnit.Millicoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Nanocoulomb) => new ElectricCharge((_value) / 1e-9d, ElectricChargeUnit.Nanocoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Picocoulomb) => new ElectricCharge((_value) / 1e-12d, ElectricChargeUnit.Picocoulomb),
@@ -939,6 +919,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricCharge ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricChargeUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -946,21 +942,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricCharge ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -974,6 +955,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -982,7 +965,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -992,7 +975,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1003,7 +986,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1084,7 +1067,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

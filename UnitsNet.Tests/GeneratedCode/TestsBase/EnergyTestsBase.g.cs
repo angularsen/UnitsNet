@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -247,18 +248,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new Energy(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Energy) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new Energy(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new Energy(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -551,20 +552,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = Energy.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(Energy.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+            var expectedUnit = Energy.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                Energy quantityToConvert = quantity;
+
+                Energy convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<EnergyUnit> quantityToConvert = quantity;
+
+                IQuantity<EnergyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyUnit> quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyUnit> quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -1358,675 +1448,474 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("BTU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.BritishThermalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("cal", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Calorie, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Dth (E.C.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.DecathermEc, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Европейский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.DecathermEc, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Dth (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.DecathermImperial, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Английский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.DecathermImperial, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Dth (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.DecathermUs, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Американский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.DecathermUs, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("eV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.ElectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("эВ", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.ElectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("erg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Erg, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ft·lb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.FootPound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("GBTU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.GigabritishThermalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("GeV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ГэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("GJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Gigajoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("GWd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.GigawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ГВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.GigawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("GWh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.GigawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ГВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.GigawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("hp·h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.HorsepowerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("J", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Joule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("kBTU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.KilobritishThermalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("kcal", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Kilocalorie, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("keV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("кэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("kJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Kilojoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("kWd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.KilowattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("кВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.KilowattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("kWh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.KilowattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("кВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.KilowattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("MBTU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.MegabritishThermalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Mcal", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Megacalorie, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("MeV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("МэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("MJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Megajoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("MWd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.MegawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("МВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.MegawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("MWh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.MegawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("МВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.MegawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("µJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Microjoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("mJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Millijoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("nJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Nanojoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("PJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Petajoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("TeV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ТэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("TJ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.Terajoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("TWd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.TerawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ТВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.TerawattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("TWh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.TerawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("ТВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.TerawattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("th (E.C.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.ThermEc, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Европейский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.ThermEc, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("th (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.ThermImperial, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Английский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.ThermImperial, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("th (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.ThermUs, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Американский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.ThermUs, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Wd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.WattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Вт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.WattDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Wh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyUnit.WattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Energy.ParseUnit("Вт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(EnergyUnit.WattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyUnit expectedUnit)
         {
-            {
-                Assert.True(Energy.TryParseUnit("BTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.BritishThermalUnit, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("cal", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Calorie, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("Dth (E.C.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermEc, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("Европейский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermEc, parsedUnit);
-            }
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("Dth (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermImperial, parsedUnit);
-            }
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("Английский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermImperial, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Energy.TryParseUnit("Dth (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermUs, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Американский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.DecathermUs, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("eV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ElectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("эВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ElectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("erg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Erg, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ft·lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.FootPound, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("GBTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigabritishThermalUnit, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("GeV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ГэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("GJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Gigajoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("GWd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ГВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("GWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ГВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.GigawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("hp·h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.HorsepowerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("J", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Joule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("kBTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KilobritishThermalUnit, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("kcal", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Kilocalorie, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("keV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("кэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("kJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Kilojoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("kWd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KilowattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("кВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KilowattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("kWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KilowattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("кВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.KilowattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("MBTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegabritishThermalUnit, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Mcal", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Megacalorie, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("MeV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("МэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("MWd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("МВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("MWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("МВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.MegawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("µJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Microjoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("nJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Nanojoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("PJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Petajoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("TeV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ТэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("TJ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.Terajoule, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("TWd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TerawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ТВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TerawattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("TWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TerawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("ТВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.TerawattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("th (E.C.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermEc, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Европейский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermEc, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("th (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermImperial, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Английский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermImperial, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("th (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermUs, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Американский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.ThermUs, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Wd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.WattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Вт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.WattDay, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Wh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.WattHour, parsedUnit);
-            }
-
-            {
-                Assert.True(Energy.TryParseUnit("Вт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(EnergyUnit.WattHour, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            Assert.True(Energy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -2054,12 +1943,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Energy.Units.First(u => u != Energy.BaseUnit);
-
-            var quantity = Energy.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Energy.Units.Where(u => u != Energy.BaseUnit), fromUnit =>
+            {
+                var quantity = Energy.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -2069,6 +1958,25 @@ namespace UnitsNet.Tests
             var quantity = default(Energy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(EnergyUnit unit)
+        {
+            var quantity = Energy.From(3, Energy.BaseUnit);
+            Energy expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<EnergyUnit> quantityToConvert = quantity;
+                IQuantity<EnergyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -2248,7 +2156,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -2261,54 +2169,47 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString());
-                Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString());
-                Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString());
-                Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString());
-                Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString());
-                Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString());
-                Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString());
-                Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString());
-                Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString());
-                Assert.Equal("1 GeV", new Energy(1, EnergyUnit.GigaelectronVolt).ToString());
-                Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString());
-                Assert.Equal("1 GWd", new Energy(1, EnergyUnit.GigawattDay).ToString());
-                Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString());
-                Assert.Equal("1 hp·h", new Energy(1, EnergyUnit.HorsepowerHour).ToString());
-                Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString());
-                Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString());
-                Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString());
-                Assert.Equal("1 keV", new Energy(1, EnergyUnit.KiloelectronVolt).ToString());
-                Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString());
-                Assert.Equal("1 kWd", new Energy(1, EnergyUnit.KilowattDay).ToString());
-                Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString());
-                Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString());
-                Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString());
-                Assert.Equal("1 MeV", new Energy(1, EnergyUnit.MegaelectronVolt).ToString());
-                Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString());
-                Assert.Equal("1 MWd", new Energy(1, EnergyUnit.MegawattDay).ToString());
-                Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString());
-                Assert.Equal("1 µJ", new Energy(1, EnergyUnit.Microjoule).ToString());
-                Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString());
-                Assert.Equal("1 nJ", new Energy(1, EnergyUnit.Nanojoule).ToString());
-                Assert.Equal("1 PJ", new Energy(1, EnergyUnit.Petajoule).ToString());
-                Assert.Equal("1 TeV", new Energy(1, EnergyUnit.TeraelectronVolt).ToString());
-                Assert.Equal("1 TJ", new Energy(1, EnergyUnit.Terajoule).ToString());
-                Assert.Equal("1 TWd", new Energy(1, EnergyUnit.TerawattDay).ToString());
-                Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString());
-                Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString());
-                Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString());
-                Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString());
-                Assert.Equal("1 Wd", new Energy(1, EnergyUnit.WattDay).ToString());
-                Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString());
+            Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString());
+            Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString());
+            Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString());
+            Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString());
+            Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString());
+            Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString());
+            Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString());
+            Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString());
+            Assert.Equal("1 GeV", new Energy(1, EnergyUnit.GigaelectronVolt).ToString());
+            Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString());
+            Assert.Equal("1 GWd", new Energy(1, EnergyUnit.GigawattDay).ToString());
+            Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString());
+            Assert.Equal("1 hp·h", new Energy(1, EnergyUnit.HorsepowerHour).ToString());
+            Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString());
+            Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString());
+            Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString());
+            Assert.Equal("1 keV", new Energy(1, EnergyUnit.KiloelectronVolt).ToString());
+            Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString());
+            Assert.Equal("1 kWd", new Energy(1, EnergyUnit.KilowattDay).ToString());
+            Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString());
+            Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString());
+            Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString());
+            Assert.Equal("1 MeV", new Energy(1, EnergyUnit.MegaelectronVolt).ToString());
+            Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString());
+            Assert.Equal("1 MWd", new Energy(1, EnergyUnit.MegawattDay).ToString());
+            Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString());
+            Assert.Equal("1 µJ", new Energy(1, EnergyUnit.Microjoule).ToString());
+            Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString());
+            Assert.Equal("1 nJ", new Energy(1, EnergyUnit.Nanojoule).ToString());
+            Assert.Equal("1 PJ", new Energy(1, EnergyUnit.Petajoule).ToString());
+            Assert.Equal("1 TeV", new Energy(1, EnergyUnit.TeraelectronVolt).ToString());
+            Assert.Equal("1 TJ", new Energy(1, EnergyUnit.Terajoule).ToString());
+            Assert.Equal("1 TWd", new Energy(1, EnergyUnit.TerawattDay).ToString());
+            Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString());
+            Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString());
+            Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString());
+            Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString());
+            Assert.Equal("1 Wd", new Energy(1, EnergyUnit.WattDay).ToString());
+            Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
         }
 
         [Fact]
@@ -2362,19 +2263,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1"));
-                Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
-                Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
-                Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1"));
+            Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
+            Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
+            Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
         }
 
         [Fact]
@@ -2397,7 +2290,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -2547,6 +2440,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Energy.FromJoules(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Energy.FromJoules(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

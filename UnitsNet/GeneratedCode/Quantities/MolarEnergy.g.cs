@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,13 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarEnergy :
         IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MolarEnergy, MolarEnergy, bool>,
+        IParsable<MolarEnergy>,
+#endif
         IComparable,
         IComparable<MolarEnergy>,
         IConvertible,
@@ -67,9 +76,9 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[]
                 {
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole), "MolarEnergy"),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Millimole), "MolarEnergy"),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Micromole), "MolarEnergy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -98,13 +107,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarEnergy(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -227,7 +231,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MolarEnergyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -325,7 +329,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MolarEnergy Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarEnergy, MolarEnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MolarEnergy, MolarEnergyUnit>(
                 str,
                 provider,
                 From);
@@ -339,7 +343,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MolarEnergy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MolarEnergy result)
         {
             return TryParse(str, null, out result);
         }
@@ -354,9 +358,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MolarEnergy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarEnergy result)
         {
-            return QuantityParser.Default.TryParse<MolarEnergy, MolarEnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MolarEnergy, MolarEnergyUnit>(
                 str,
                 provider,
                 From,
@@ -389,11 +393,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MolarEnergyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MolarEnergyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MolarEnergyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarEnergyUnit)"/>
-        public static bool TryParseUnit(string str, out MolarEnergyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MolarEnergyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -408,9 +412,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MolarEnergyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarEnergyUnit unit)
         {
-            return UnitParser.Default.TryParse<MolarEnergyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MolarEnergyUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -457,6 +461,16 @@ namespace UnitsNet
         public static double operator /(MolarEnergy left, MolarEnergy right)
         {
             return left.JoulesPerMole / right.JoulesPerMole;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="MolarEnergy"/> * <see cref="AmountOfSubstance"/>.</summary>
+        public static Energy operator *(MolarEnergy molarEnergy, AmountOfSubstance amountOfSubstance)
+        {
+            return Energy.FromJoules(molarEnergy.JoulesPerMole * amountOfSubstance.Moles);
         }
 
         #endregion
@@ -663,25 +677,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MolarEnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -762,6 +758,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MolarEnergy ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MolarEnergyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -769,21 +781,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarEnergy ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -797,6 +794,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -805,7 +804,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -815,7 +814,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -826,7 +825,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -907,7 +906,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

@@ -10,6 +10,10 @@
     {
       "SingularName": "WattPerSquareMeter",
       "PluralName": "WattsPerSquareMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],

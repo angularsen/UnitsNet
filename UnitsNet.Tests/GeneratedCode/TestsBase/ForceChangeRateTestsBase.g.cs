@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -147,18 +148,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ForceChangeRate(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ForceChangeRate) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ForceChangeRate(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -301,20 +302,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ForceChangeRate.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ForceChangeRate.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+            var expectedUnit = ForceChangeRate.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ForceChangeRate quantityToConvert = quantity;
+
+                ForceChangeRate convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ForceChangeRateUnit> quantityToConvert = quantity;
+
+                IQuantity<ForceChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ForceChangeRateUnit> quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ForceChangeRateUnit> quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -574,223 +664,222 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ForceChangeRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("cN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("daN/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("daN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("dN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kN/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kipf/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kip/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("k/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kipf/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("kip/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("k/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("µN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("mN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("nN/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("N/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("N/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("lbf/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForceChangeRate.ParseUnit("lbf/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ForceChangeRateUnit parsedUnit = ForceChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ForceChangeRateUnit expectedUnit)
         {
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("cN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ForceChangeRateUnit parsedUnit = ForceChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("daN/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("en-US", "daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("en-US", "daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("en-US", "dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("en-US", "kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("en-US", "kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("en-US", "kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("en-US", "mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("en-US", "nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("en-US", "N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("en-US", "N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("en-US", "lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("en-US", "lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ForceChangeRateUnit parsedUnit = ForceChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("daN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("en-US", "daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("en-US", "daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("en-US", "dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("en-US", "kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("en-US", "kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("en-US", "kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("en-US", "mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("en-US", "nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("en-US", "N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("en-US", "N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("en-US", "lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("en-US", "lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            ForceChangeRateUnit parsedUnit = ForceChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("dN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ForceChangeRate.TryParseUnit(abbreviation, out ForceChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kN/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ForceChangeRate.TryParseUnit(abbreviation, out ForceChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("en-US", "daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("en-US", "daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("en-US", "dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("en-US", "kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("en-US", "kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("en-US", "kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("en-US", "mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("en-US", "nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("en-US", "N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("en-US", "N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("en-US", "lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("en-US", "lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ForceChangeRate.TryParseUnit(abbreviation, out ForceChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kipf/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kip/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("k/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kipf/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("kip/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("k/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("µN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("mN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("nN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("N/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("N/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("lbf/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ForceChangeRate.TryParseUnit("lbf/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cN/s", ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData("en-US", "daN/min", ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData("en-US", "daN/s", ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData("en-US", "dN/s", ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData("en-US", "kN/min", ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData("en-US", "kN/s", ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData("en-US", "kipf/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kip/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "k/min", ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData("en-US", "kipf/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "kip/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "k/s", ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData("en-US", "µN/s", ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData("en-US", "mN/s", ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData("en-US", "nN/s", ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData("en-US", "N/min", ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData("en-US", "N/s", ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData("en-US", "lbf/min", ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData("en-US", "lbf/s", ForceChangeRateUnit.PoundForcePerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ForceChangeRateUnit expectedUnit)
+        {
+            Assert.True(ForceChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ForceChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -818,12 +907,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForceChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ForceChangeRate.Units.First(u => u != ForceChangeRate.BaseUnit);
-
-            var quantity = ForceChangeRate.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ForceChangeRate.Units.Where(u => u != ForceChangeRate.BaseUnit), fromUnit =>
+            {
+                var quantity = ForceChangeRate.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -833,6 +922,25 @@ namespace UnitsNet.Tests
             var quantity = default(ForceChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ForceChangeRateUnit unit)
+        {
+            var quantity = ForceChangeRate.From(3, ForceChangeRate.BaseUnit);
+            ForceChangeRate expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ForceChangeRateUnit> quantityToConvert = quantity;
+                IQuantity<ForceChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -987,7 +1095,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1000,29 +1108,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString());
-                Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString());
-                Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString());
-                Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString());
-                Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString());
-                Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString());
-                Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString());
-                Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString());
-                Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString());
-                Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString());
-                Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString());
-                Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString());
-                Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString());
-                Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
-                Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString());
+            Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString());
+            Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString());
+            Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString());
+            Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString());
+            Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString());
+            Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString());
+            Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString());
+            Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString());
+            Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString());
+            Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString());
+            Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString());
+            Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString());
+            Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
+            Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
         }
 
         [Fact]
@@ -1051,19 +1152,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s1"));
-                Assert.Equal("0.12 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s2"));
-                Assert.Equal("0.123 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s1"));
+            Assert.Equal("0.12 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s2"));
+            Assert.Equal("0.123 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s4"));
         }
 
         [Fact]
@@ -1086,7 +1179,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1236,6 +1329,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

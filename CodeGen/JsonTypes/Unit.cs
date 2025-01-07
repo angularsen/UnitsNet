@@ -2,9 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 
 namespace CodeGen.JsonTypes
 {
+    [DebuggerDisplay("{SingularName})")]
     internal class Unit
     {
         // 0649 Field is never assigned to

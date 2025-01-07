@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -131,18 +132,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new Jerk(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Jerk) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new Jerk(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new Jerk(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -261,20 +262,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = Jerk.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(Jerk.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+            var expectedUnit = Jerk.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                Jerk quantityToConvert = quantity;
+
+                Jerk convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<JerkUnit> quantityToConvert = quantity;
+
+                IQuantity<JerkUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<JerkUnit> quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<JerkUnit> quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -573,256 +663,202 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, JerkUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("cm/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.CentimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("см/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.CentimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("dm/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.DecimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("дм/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.DecimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("ft/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.FootPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("фут/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.FootPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("in/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.InchPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("дюйм/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.InchPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("km/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.KilometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("км/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.KilometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("m/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.MeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("м/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.MeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("µm/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.MicrometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("мкм/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.MicrometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("mm/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.MillimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("мм/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.MillimeterPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("mg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.MillistandardGravitiesPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("мg/s", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.MillistandardGravitiesPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("nm/s³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.NanometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("нм/с³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.NanometerPerSecondCubed, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("g/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(JerkUnit.StandardGravitiesPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Jerk.ParseUnit("g/s", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(JerkUnit.StandardGravitiesPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            JerkUnit parsedUnit = Jerk.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, JerkUnit expectedUnit)
         {
-            {
-                Assert.True(Jerk.TryParseUnit("cm/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.CentimeterPerSecondCubed, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            JerkUnit parsedUnit = Jerk.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("см/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.CentimeterPerSecondCubed, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("en-US", "dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("en-US", "ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("en-US", "in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("en-US", "km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("en-US", "m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("en-US", "µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("en-US", "mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("en-US", "mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("en-US", "nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("en-US", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "см/с³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("ru-RU", "дм/с³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ru-RU", "фут/с³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("ru-RU", "дюйм/с³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("ru-RU", "км/с³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("ru-RU", "м/с³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("ru-RU", "мкм/с³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("ru-RU", "мм/с³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("ru-RU", "мg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "нм/с³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("ru-RU", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, JerkUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            JerkUnit parsedUnit = Jerk.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("dm/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.DecimeterPerSecondCubed, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("en-US", "dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("en-US", "ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("en-US", "in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("en-US", "km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("en-US", "m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("en-US", "µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("en-US", "mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("en-US", "mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("en-US", "nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("en-US", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "см/с³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("ru-RU", "дм/с³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ru-RU", "фут/с³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("ru-RU", "дюйм/с³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("ru-RU", "км/с³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("ru-RU", "м/с³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("ru-RU", "мкм/с³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("ru-RU", "мм/с³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("ru-RU", "мg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "нм/с³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("ru-RU", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, JerkUnit expectedUnit)
+        {
+            JerkUnit parsedUnit = Jerk.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("дм/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.DecimeterPerSecondCubed, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, JerkUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Jerk.TryParseUnit(abbreviation, out JerkUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("ft/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.FootPerSecondCubed, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, JerkUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Jerk.TryParseUnit(abbreviation, out JerkUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("фут/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.FootPerSecondCubed, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("en-US", "dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("en-US", "ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("en-US", "in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("en-US", "km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("en-US", "m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("en-US", "µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("en-US", "mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("en-US", "mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("en-US", "nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("en-US", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "см/с³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("ru-RU", "дм/с³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ru-RU", "фут/с³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("ru-RU", "дюйм/с³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("ru-RU", "км/с³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("ru-RU", "м/с³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("ru-RU", "мкм/с³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("ru-RU", "мм/с³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("ru-RU", "мg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "нм/с³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("ru-RU", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, JerkUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Jerk.TryParseUnit(abbreviation, out JerkUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Jerk.TryParseUnit("in/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.InchPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("дюйм/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.InchPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("km/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.KilometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("км/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.KilometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("m/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MeterPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("м/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MeterPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("µm/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MicrometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("мкм/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MicrometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("mm/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MillimeterPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("мм/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MillimeterPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("mg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MillistandardGravitiesPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("мg/s", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.MillistandardGravitiesPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("nm/s³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.NanometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("нм/с³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.NanometerPerSecondCubed, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("g/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(JerkUnit.StandardGravitiesPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(Jerk.TryParseUnit("g/s", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(JerkUnit.StandardGravitiesPerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cm/s³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("en-US", "dm/s³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("en-US", "ft/s³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("en-US", "in/s³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("en-US", "km/s³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("en-US", "m/s³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("en-US", "µm/s³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("en-US", "mm/s³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("en-US", "mg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("en-US", "nm/s³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("en-US", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "см/с³", JerkUnit.CentimeterPerSecondCubed)]
+        [InlineData("ru-RU", "дм/с³", JerkUnit.DecimeterPerSecondCubed)]
+        [InlineData("ru-RU", "фут/с³", JerkUnit.FootPerSecondCubed)]
+        [InlineData("ru-RU", "дюйм/с³", JerkUnit.InchPerSecondCubed)]
+        [InlineData("ru-RU", "км/с³", JerkUnit.KilometerPerSecondCubed)]
+        [InlineData("ru-RU", "м/с³", JerkUnit.MeterPerSecondCubed)]
+        [InlineData("ru-RU", "мкм/с³", JerkUnit.MicrometerPerSecondCubed)]
+        [InlineData("ru-RU", "мм/с³", JerkUnit.MillimeterPerSecondCubed)]
+        [InlineData("ru-RU", "мg/s", JerkUnit.MillistandardGravitiesPerSecond)]
+        [InlineData("ru-RU", "нм/с³", JerkUnit.NanometerPerSecondCubed)]
+        [InlineData("ru-RU", "g/s", JerkUnit.StandardGravitiesPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, JerkUnit expectedUnit)
+        {
+            Assert.True(Jerk.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out JerkUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -850,12 +886,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(JerkUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Jerk.Units.First(u => u != Jerk.BaseUnit);
-
-            var quantity = Jerk.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Jerk.Units.Where(u => u != Jerk.BaseUnit), fromUnit =>
+            {
+                var quantity = Jerk.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -865,6 +901,25 @@ namespace UnitsNet.Tests
             var quantity = default(Jerk);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(JerkUnit unit)
+        {
+            var quantity = Jerk.From(3, Jerk.BaseUnit);
+            Jerk expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<JerkUnit> quantityToConvert = quantity;
+                IQuantity<JerkUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1015,7 +1070,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(JerkUnit)).Cast<JerkUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1028,25 +1083,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString());
-                Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString());
-                Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString());
-                Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString());
-                Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString());
-                Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString());
-                Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString());
-                Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString());
-                Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString());
-                Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString());
-                Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString());
+            Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString());
+            Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString());
+            Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString());
+            Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString());
+            Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString());
+            Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString());
+            Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString());
+            Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString());
+            Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString());
+            Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString());
         }
 
         [Fact]
@@ -1071,19 +1119,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s1"));
-                Assert.Equal("0.12 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s2"));
-                Assert.Equal("0.123 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s3"));
-                Assert.Equal("0.1235 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s1"));
+            Assert.Equal("0.12 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s2"));
+            Assert.Equal("0.123 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s3"));
+            Assert.Equal("0.1235 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s4"));
         }
 
         [Fact]
@@ -1106,7 +1146,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1256,6 +1296,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Jerk.FromMetersPerSecondCubed(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Jerk.FromMetersPerSecondCubed(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

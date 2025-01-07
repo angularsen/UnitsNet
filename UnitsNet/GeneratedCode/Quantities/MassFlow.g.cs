@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -54,6 +53,10 @@ namespace UnitsNet
         IMultiplyOperators<MassFlow, SpecificEnergy, Power>,
         IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>,
         IDivisionOperators<MassFlow, Density, VolumeFlow>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MassFlow, MassFlow, bool>,
+        IParsable<MassFlow>,
 #endif
         IComparable,
         IComparable<MassFlow>,
@@ -82,39 +85,39 @@ namespace UnitsNet
             Info = new QuantityInfo<MassFlowUnit>("MassFlow",
                 new UnitInfo<MassFlowUnit>[]
                 {
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "MassFlow"),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day), "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour), "MassFlow"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -143,13 +146,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassFlow(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -482,7 +480,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassFlowUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -820,7 +818,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassFlow Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassFlow, MassFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MassFlow, MassFlowUnit>(
                 str,
                 provider,
                 From);
@@ -834,7 +832,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MassFlow result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MassFlow result)
         {
             return TryParse(str, null, out result);
         }
@@ -849,9 +847,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MassFlow result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlow result)
         {
-            return QuantityParser.Default.TryParse<MassFlow, MassFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MassFlow, MassFlowUnit>(
                 str,
                 provider,
                 From,
@@ -884,11 +882,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassFlowUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassFlowUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassFlowUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFlowUnit)"/>
-        public static bool TryParseUnit(string str, out MassFlowUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MassFlowUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -903,9 +901,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassFlowUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlowUnit unit)
         {
-            return UnitParser.Default.TryParse<MassFlowUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassFlowUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1222,25 +1220,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1381,6 +1361,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MassFlow ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassFlowUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1388,21 +1384,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassFlow ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1416,6 +1397,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1424,7 +1407,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1434,7 +1417,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1445,7 +1428,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1526,7 +1509,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

@@ -3,7 +3,6 @@
 
 using System;
 using System.Text;
-using System.Linq;
 
 namespace UnitsNet
 {
@@ -30,9 +29,13 @@ namespace UnitsNet
         /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
         public bool IsBaseQuantity()
         {
-            var dimensionsArray = new[] { Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity };
-            bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
-            return onlyOneEqualsOne;
+            return (Length == 1 && Mass == 0 && Time == 0 && Current == 0 && Temperature == 0 && Amount == 0 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 1 && Time == 0 && Current == 0 && Temperature == 0 && Amount == 0 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 0 && Time == 1 && Current == 0 && Temperature == 0 && Amount == 0 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 0 && Time == 0 && Current == 1 && Temperature == 0 && Amount == 0 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 0 && Time == 0 && Current == 0 && Temperature == 1 && Amount == 0 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 0 && Time == 0 && Current == 0 && Temperature == 0 && Amount == 1 && LuminousIntensity == 0) ||
+                   (Length == 0 && Mass == 0 && Time == 0 && Current == 0 && Temperature == 0 && Amount == 0 && LuminousIntensity == 1);
         }
 
         /// <summary>
@@ -71,7 +74,11 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
+#if NET
+            return HashCode.Combine(Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity);
+#else
+            return new { Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity }.GetHashCode();
+#endif
         }
 
         /// <summary>
@@ -182,14 +189,16 @@ namespace UnitsNet
 
         private static void AppendDimensionString(StringBuilder sb, string name, int value)
         {
-            var absoluteValue = Math.Abs(value);
-
-            if(absoluteValue > 0)
+            switch (value)
             {
-                sb.AppendFormat("[{0}]", name);
-
-                if(absoluteValue > 1)
-                    sb.AppendFormat("^{0}", value);
+                case 0:
+                    return;
+                case 1:
+                    sb.AppendFormat("[{0}]", name);
+                    break;
+                default:
+                    sb.AppendFormat("[{0}^{1}]", name, value);
+                    break;
             }
         }
 

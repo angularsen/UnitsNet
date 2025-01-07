@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -43,6 +45,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificFuelConsumption :
         IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<SpecificFuelConsumption, SpecificFuelConsumption, bool>,
+        IParsable<SpecificFuelConsumption>,
+#endif
         IComparable,
         IComparable<SpecificFuelConsumption>,
         IConvertible,
@@ -63,16 +69,16 @@ namespace UnitsNet
 
         static SpecificFuelConsumption()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseDimensions = new BaseDimensions(-1, 0, 1, 0, 0, 0, 0);
             BaseUnit = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
             Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().ToArray();
             Zero = new SpecificFuelConsumption(0, BaseUnit);
             Info = new QuantityInfo<SpecificFuelConsumptionUnit>("SpecificFuelConsumption",
                 new UnitInfo<SpecificFuelConsumptionUnit>[]
                 {
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", BaseUnits.Undefined, "SpecificFuelConsumption"),
+                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "SpecificFuelConsumption"),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined, "SpecificFuelConsumption"),
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined, "SpecificFuelConsumption"),
+                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "SpecificFuelConsumption"),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined, "SpecificFuelConsumption"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -102,13 +108,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificFuelConsumption(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -238,7 +239,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(SpecificFuelConsumptionUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -344,7 +345,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static SpecificFuelConsumption Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SpecificFuelConsumption, SpecificFuelConsumptionUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<SpecificFuelConsumption, SpecificFuelConsumptionUnit>(
                 str,
                 provider,
                 From);
@@ -358,7 +359,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out SpecificFuelConsumption result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out SpecificFuelConsumption result)
         {
             return TryParse(str, null, out result);
         }
@@ -373,9 +374,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out SpecificFuelConsumption result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificFuelConsumption result)
         {
-            return QuantityParser.Default.TryParse<SpecificFuelConsumption, SpecificFuelConsumptionUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<SpecificFuelConsumption, SpecificFuelConsumptionUnit>(
                 str,
                 provider,
                 From,
@@ -408,11 +409,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static SpecificFuelConsumptionUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<SpecificFuelConsumptionUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<SpecificFuelConsumptionUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificFuelConsumptionUnit)"/>
-        public static bool TryParseUnit(string str, out SpecificFuelConsumptionUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out SpecificFuelConsumptionUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -427,9 +428,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out SpecificFuelConsumptionUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificFuelConsumptionUnit unit)
         {
-            return UnitParser.Default.TryParse<SpecificFuelConsumptionUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<SpecificFuelConsumptionUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -682,25 +683,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is SpecificFuelConsumptionUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -783,6 +766,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public SpecificFuelConsumption ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not SpecificFuelConsumptionUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -790,21 +789,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public SpecificFuelConsumption ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -818,6 +802,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -826,7 +812,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -836,7 +822,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -847,7 +833,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -928,7 +914,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

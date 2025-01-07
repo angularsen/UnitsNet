@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -57,6 +56,10 @@ namespace UnitsNet
         IDivisionOperators<Force, Area, Pressure>,
         IMultiplyOperators<Force, Length, Torque>,
 #endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Force, Force, bool>,
+        IParsable<Force>,
+#endif
         IComparable,
         IComparable<Force>,
         IConvertible,
@@ -84,18 +87,18 @@ namespace UnitsNet
             Info = new QuantityInfo<ForceUnit>("Force",
                 new UnitInfo<ForceUnit>[]
                 {
-                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined, "Force"),
@@ -127,13 +130,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Force(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -340,7 +338,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ForceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -534,7 +532,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Force Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Force, ForceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Force, ForceUnit>(
                 str,
                 provider,
                 From);
@@ -548,7 +546,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Force result)
         {
             return TryParse(str, null, out result);
         }
@@ -563,9 +561,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Force result)
         {
-            return QuantityParser.Default.TryParse<Force, ForceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Force, ForceUnit>(
                 str,
                 provider,
                 From,
@@ -598,11 +596,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ForceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ForceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ForceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ForceUnit)"/>
-        public static bool TryParseUnit(string str, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ForceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -617,9 +615,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ForceUnit unit)
         {
-            return UnitParser.Default.TryParse<ForceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ForceUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -948,25 +946,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ForceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1071,6 +1051,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Force ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ForceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1078,21 +1074,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Force ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1106,6 +1087,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1114,7 +1097,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1124,7 +1107,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1135,7 +1118,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1216,7 +1199,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

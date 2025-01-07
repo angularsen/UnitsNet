@@ -43,20 +43,21 @@ namespace UnitsNet
             { "AmountOfSubstance", AmountOfSubstance.Info },
             { "AmplitudeRatio", AmplitudeRatio.Info },
             { "Angle", Angle.Info },
-            { "ApparentEnergy", ApparentEnergy.Info },
-            { "ApparentPower", ApparentPower.Info },
             { "Area", Area.Info },
             { "AreaDensity", AreaDensity.Info },
             { "AreaMomentOfInertia", AreaMomentOfInertia.Info },
             { "BitRate", BitRate.Info },
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
-            { "Capacitance", Capacitance.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
+            { "DoseAreaProduct", DoseAreaProduct.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
             { "ElectricAdmittance", ElectricAdmittance.Info },
+            { "ElectricApparentEnergy", ElectricApparentEnergy.Info },
+            { "ElectricApparentPower", ElectricApparentPower.Info },
+            { "ElectricCapacitance", ElectricCapacitance.Info },
             { "ElectricCharge", ElectricCharge.Info },
             { "ElectricChargeDensity", ElectricChargeDensity.Info },
             { "ElectricConductance", ElectricConductance.Info },
@@ -65,14 +66,17 @@ namespace UnitsNet
             { "ElectricCurrentDensity", ElectricCurrentDensity.Info },
             { "ElectricCurrentGradient", ElectricCurrentGradient.Info },
             { "ElectricField", ElectricField.Info },
+            { "ElectricImpedance", ElectricImpedance.Info },
             { "ElectricInductance", ElectricInductance.Info },
             { "ElectricPotential", ElectricPotential.Info },
-            { "ElectricPotentialAc", ElectricPotentialAc.Info },
             { "ElectricPotentialChangeRate", ElectricPotentialChangeRate.Info },
-            { "ElectricPotentialDc", ElectricPotentialDc.Info },
+            { "ElectricReactance", ElectricReactance.Info },
+            { "ElectricReactiveEnergy", ElectricReactiveEnergy.Info },
+            { "ElectricReactivePower", ElectricReactivePower.Info },
             { "ElectricResistance", ElectricResistance.Info },
             { "ElectricResistivity", ElectricResistivity.Info },
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
+            { "ElectricSusceptance", ElectricSusceptance.Info },
             { "Energy", Energy.Info },
             { "EnergyDensity", EnergyDensity.Info },
             { "Entropy", Entropy.Info },
@@ -123,12 +127,11 @@ namespace UnitsNet
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
             { "RadiationEquivalentDose", RadiationEquivalentDose.Info },
+            { "RadiationEquivalentDoseRate", RadiationEquivalentDoseRate.Info },
             { "RadiationExposure", RadiationExposure.Info },
             { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
             { "RatioChangeRate", RatioChangeRate.Info },
-            { "ReactiveEnergy", ReactiveEnergy.Info },
-            { "ReactivePower", ReactivePower.Info },
             { "ReciprocalArea", ReciprocalArea.Info },
             { "ReciprocalLength", ReciprocalLength.Info },
             { "RelativeHumidity", RelativeHumidity.Info },
@@ -150,9 +153,8 @@ namespace UnitsNet
             { "TemperatureDelta", TemperatureDelta.Info },
             { "TemperatureGradient", TemperatureGradient.Info },
             { "ThermalConductivity", ThermalConductivity.Info },
-            { "ThermalResistance", ThermalResistance.Info },
+            { "ThermalInsulance", ThermalInsulance.Info },
             { "Torque", Torque.Info },
-            { "TorquePerLength", TorquePerLength.Info },
             { "Turbidity", Turbidity.Info },
             { "VitaminA", VitaminA.Info },
             { "Volume", Volume.Info },
@@ -179,20 +181,21 @@ namespace UnitsNet
                 "AmountOfSubstance" => AmountOfSubstance.From(value, AmountOfSubstance.BaseUnit),
                 "AmplitudeRatio" => AmplitudeRatio.From(value, AmplitudeRatio.BaseUnit),
                 "Angle" => Angle.From(value, Angle.BaseUnit),
-                "ApparentEnergy" => ApparentEnergy.From(value, ApparentEnergy.BaseUnit),
-                "ApparentPower" => ApparentPower.From(value, ApparentPower.BaseUnit),
                 "Area" => Area.From(value, Area.BaseUnit),
                 "AreaDensity" => AreaDensity.From(value, AreaDensity.BaseUnit),
                 "AreaMomentOfInertia" => AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit),
                 "BitRate" => BitRate.From(value, BitRate.BaseUnit),
                 "BrakeSpecificFuelConsumption" => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
-                "Capacitance" => Capacitance.From(value, Capacitance.BaseUnit),
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
+                "DoseAreaProduct" => DoseAreaProduct.From(value, DoseAreaProduct.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
                 "ElectricAdmittance" => ElectricAdmittance.From(value, ElectricAdmittance.BaseUnit),
+                "ElectricApparentEnergy" => ElectricApparentEnergy.From(value, ElectricApparentEnergy.BaseUnit),
+                "ElectricApparentPower" => ElectricApparentPower.From(value, ElectricApparentPower.BaseUnit),
+                "ElectricCapacitance" => ElectricCapacitance.From(value, ElectricCapacitance.BaseUnit),
                 "ElectricCharge" => ElectricCharge.From(value, ElectricCharge.BaseUnit),
                 "ElectricChargeDensity" => ElectricChargeDensity.From(value, ElectricChargeDensity.BaseUnit),
                 "ElectricConductance" => ElectricConductance.From(value, ElectricConductance.BaseUnit),
@@ -201,14 +204,17 @@ namespace UnitsNet
                 "ElectricCurrentDensity" => ElectricCurrentDensity.From(value, ElectricCurrentDensity.BaseUnit),
                 "ElectricCurrentGradient" => ElectricCurrentGradient.From(value, ElectricCurrentGradient.BaseUnit),
                 "ElectricField" => ElectricField.From(value, ElectricField.BaseUnit),
+                "ElectricImpedance" => ElectricImpedance.From(value, ElectricImpedance.BaseUnit),
                 "ElectricInductance" => ElectricInductance.From(value, ElectricInductance.BaseUnit),
                 "ElectricPotential" => ElectricPotential.From(value, ElectricPotential.BaseUnit),
-                "ElectricPotentialAc" => ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit),
                 "ElectricPotentialChangeRate" => ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit),
-                "ElectricPotentialDc" => ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit),
+                "ElectricReactance" => ElectricReactance.From(value, ElectricReactance.BaseUnit),
+                "ElectricReactiveEnergy" => ElectricReactiveEnergy.From(value, ElectricReactiveEnergy.BaseUnit),
+                "ElectricReactivePower" => ElectricReactivePower.From(value, ElectricReactivePower.BaseUnit),
                 "ElectricResistance" => ElectricResistance.From(value, ElectricResistance.BaseUnit),
                 "ElectricResistivity" => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
+                "ElectricSusceptance" => ElectricSusceptance.From(value, ElectricSusceptance.BaseUnit),
                 "Energy" => Energy.From(value, Energy.BaseUnit),
                 "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
@@ -259,12 +265,11 @@ namespace UnitsNet
                 "Pressure" => Pressure.From(value, Pressure.BaseUnit),
                 "PressureChangeRate" => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
                 "RadiationEquivalentDose" => RadiationEquivalentDose.From(value, RadiationEquivalentDose.BaseUnit),
+                "RadiationEquivalentDoseRate" => RadiationEquivalentDoseRate.From(value, RadiationEquivalentDoseRate.BaseUnit),
                 "RadiationExposure" => RadiationExposure.From(value, RadiationExposure.BaseUnit),
                 "Radioactivity" => Radioactivity.From(value, Radioactivity.BaseUnit),
                 "Ratio" => Ratio.From(value, Ratio.BaseUnit),
                 "RatioChangeRate" => RatioChangeRate.From(value, RatioChangeRate.BaseUnit),
-                "ReactiveEnergy" => ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit),
-                "ReactivePower" => ReactivePower.From(value, ReactivePower.BaseUnit),
                 "ReciprocalArea" => ReciprocalArea.From(value, ReciprocalArea.BaseUnit),
                 "ReciprocalLength" => ReciprocalLength.From(value, ReciprocalLength.BaseUnit),
                 "RelativeHumidity" => RelativeHumidity.From(value, RelativeHumidity.BaseUnit),
@@ -286,9 +291,8 @@ namespace UnitsNet
                 "TemperatureDelta" => TemperatureDelta.From(value, TemperatureDelta.BaseUnit),
                 "TemperatureGradient" => TemperatureGradient.From(value, TemperatureGradient.BaseUnit),
                 "ThermalConductivity" => ThermalConductivity.From(value, ThermalConductivity.BaseUnit),
-                "ThermalResistance" => ThermalResistance.From(value, ThermalResistance.BaseUnit),
+                "ThermalInsulance" => ThermalInsulance.From(value, ThermalInsulance.BaseUnit),
                 "Torque" => Torque.From(value, Torque.BaseUnit),
-                "TorquePerLength" => TorquePerLength.From(value, TorquePerLength.BaseUnit),
                 "Turbidity" => Turbidity.From(value, Turbidity.BaseUnit),
                 "VitaminA" => VitaminA.From(value, VitaminA.BaseUnit),
                 "Volume" => Volume.From(value, Volume.BaseUnit),
@@ -318,20 +322,21 @@ namespace UnitsNet
                 AmountOfSubstanceUnit amountOfSubstanceUnit => AmountOfSubstance.From(value, amountOfSubstanceUnit),
                 AmplitudeRatioUnit amplitudeRatioUnit => AmplitudeRatio.From(value, amplitudeRatioUnit),
                 AngleUnit angleUnit => Angle.From(value, angleUnit),
-                ApparentEnergyUnit apparentEnergyUnit => ApparentEnergy.From(value, apparentEnergyUnit),
-                ApparentPowerUnit apparentPowerUnit => ApparentPower.From(value, apparentPowerUnit),
                 AreaUnit areaUnit => Area.From(value, areaUnit),
                 AreaDensityUnit areaDensityUnit => AreaDensity.From(value, areaDensityUnit),
                 AreaMomentOfInertiaUnit areaMomentOfInertiaUnit => AreaMomentOfInertia.From(value, areaMomentOfInertiaUnit),
                 BitRateUnit bitRateUnit => BitRate.From(value, bitRateUnit),
                 BrakeSpecificFuelConsumptionUnit brakeSpecificFuelConsumptionUnit => BrakeSpecificFuelConsumption.From(value, brakeSpecificFuelConsumptionUnit),
-                CapacitanceUnit capacitanceUnit => Capacitance.From(value, capacitanceUnit),
                 CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit => CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit),
                 CompressibilityUnit compressibilityUnit => Compressibility.From(value, compressibilityUnit),
                 DensityUnit densityUnit => Density.From(value, densityUnit),
+                DoseAreaProductUnit doseAreaProductUnit => DoseAreaProduct.From(value, doseAreaProductUnit),
                 DurationUnit durationUnit => Duration.From(value, durationUnit),
                 DynamicViscosityUnit dynamicViscosityUnit => DynamicViscosity.From(value, dynamicViscosityUnit),
                 ElectricAdmittanceUnit electricAdmittanceUnit => ElectricAdmittance.From(value, electricAdmittanceUnit),
+                ElectricApparentEnergyUnit electricApparentEnergyUnit => ElectricApparentEnergy.From(value, electricApparentEnergyUnit),
+                ElectricApparentPowerUnit electricApparentPowerUnit => ElectricApparentPower.From(value, electricApparentPowerUnit),
+                ElectricCapacitanceUnit electricCapacitanceUnit => ElectricCapacitance.From(value, electricCapacitanceUnit),
                 ElectricChargeUnit electricChargeUnit => ElectricCharge.From(value, electricChargeUnit),
                 ElectricChargeDensityUnit electricChargeDensityUnit => ElectricChargeDensity.From(value, electricChargeDensityUnit),
                 ElectricConductanceUnit electricConductanceUnit => ElectricConductance.From(value, electricConductanceUnit),
@@ -340,14 +345,17 @@ namespace UnitsNet
                 ElectricCurrentDensityUnit electricCurrentDensityUnit => ElectricCurrentDensity.From(value, electricCurrentDensityUnit),
                 ElectricCurrentGradientUnit electricCurrentGradientUnit => ElectricCurrentGradient.From(value, electricCurrentGradientUnit),
                 ElectricFieldUnit electricFieldUnit => ElectricField.From(value, electricFieldUnit),
+                ElectricImpedanceUnit electricImpedanceUnit => ElectricImpedance.From(value, electricImpedanceUnit),
                 ElectricInductanceUnit electricInductanceUnit => ElectricInductance.From(value, electricInductanceUnit),
                 ElectricPotentialUnit electricPotentialUnit => ElectricPotential.From(value, electricPotentialUnit),
-                ElectricPotentialAcUnit electricPotentialAcUnit => ElectricPotentialAc.From(value, electricPotentialAcUnit),
                 ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit => ElectricPotentialChangeRate.From(value, electricPotentialChangeRateUnit),
-                ElectricPotentialDcUnit electricPotentialDcUnit => ElectricPotentialDc.From(value, electricPotentialDcUnit),
+                ElectricReactanceUnit electricReactanceUnit => ElectricReactance.From(value, electricReactanceUnit),
+                ElectricReactiveEnergyUnit electricReactiveEnergyUnit => ElectricReactiveEnergy.From(value, electricReactiveEnergyUnit),
+                ElectricReactivePowerUnit electricReactivePowerUnit => ElectricReactivePower.From(value, electricReactivePowerUnit),
                 ElectricResistanceUnit electricResistanceUnit => ElectricResistance.From(value, electricResistanceUnit),
                 ElectricResistivityUnit electricResistivityUnit => ElectricResistivity.From(value, electricResistivityUnit),
                 ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit => ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit),
+                ElectricSusceptanceUnit electricSusceptanceUnit => ElectricSusceptance.From(value, electricSusceptanceUnit),
                 EnergyUnit energyUnit => Energy.From(value, energyUnit),
                 EnergyDensityUnit energyDensityUnit => EnergyDensity.From(value, energyDensityUnit),
                 EntropyUnit entropyUnit => Entropy.From(value, entropyUnit),
@@ -398,12 +406,11 @@ namespace UnitsNet
                 PressureUnit pressureUnit => Pressure.From(value, pressureUnit),
                 PressureChangeRateUnit pressureChangeRateUnit => PressureChangeRate.From(value, pressureChangeRateUnit),
                 RadiationEquivalentDoseUnit radiationEquivalentDoseUnit => RadiationEquivalentDose.From(value, radiationEquivalentDoseUnit),
+                RadiationEquivalentDoseRateUnit radiationEquivalentDoseRateUnit => RadiationEquivalentDoseRate.From(value, radiationEquivalentDoseRateUnit),
                 RadiationExposureUnit radiationExposureUnit => RadiationExposure.From(value, radiationExposureUnit),
                 RadioactivityUnit radioactivityUnit => Radioactivity.From(value, radioactivityUnit),
                 RatioUnit ratioUnit => Ratio.From(value, ratioUnit),
                 RatioChangeRateUnit ratioChangeRateUnit => RatioChangeRate.From(value, ratioChangeRateUnit),
-                ReactiveEnergyUnit reactiveEnergyUnit => ReactiveEnergy.From(value, reactiveEnergyUnit),
-                ReactivePowerUnit reactivePowerUnit => ReactivePower.From(value, reactivePowerUnit),
                 ReciprocalAreaUnit reciprocalAreaUnit => ReciprocalArea.From(value, reciprocalAreaUnit),
                 ReciprocalLengthUnit reciprocalLengthUnit => ReciprocalLength.From(value, reciprocalLengthUnit),
                 RelativeHumidityUnit relativeHumidityUnit => RelativeHumidity.From(value, relativeHumidityUnit),
@@ -425,9 +432,8 @@ namespace UnitsNet
                 TemperatureDeltaUnit temperatureDeltaUnit => TemperatureDelta.From(value, temperatureDeltaUnit),
                 TemperatureGradientUnit temperatureGradientUnit => TemperatureGradient.From(value, temperatureGradientUnit),
                 ThermalConductivityUnit thermalConductivityUnit => ThermalConductivity.From(value, thermalConductivityUnit),
-                ThermalResistanceUnit thermalResistanceUnit => ThermalResistance.From(value, thermalResistanceUnit),
+                ThermalInsulanceUnit thermalInsulanceUnit => ThermalInsulance.From(value, thermalInsulanceUnit),
                 TorqueUnit torqueUnit => Torque.From(value, torqueUnit),
-                TorquePerLengthUnit torquePerLengthUnit => TorquePerLength.From(value, torquePerLengthUnit),
                 TurbidityUnit turbidityUnit => Turbidity.From(value, turbidityUnit),
                 VitaminAUnit vitaminAUnit => VitaminA.From(value, vitaminAUnit),
                 VolumeUnit volumeUnit => Volume.From(value, volumeUnit),
@@ -451,14 +457,14 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, [NotNullWhen(true)] string? quantityString, [NotNullWhen(true)] out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 
             if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
-            var parser = QuantityParser.Default;
+            var parser = UnitsNetSetup.Default.QuantityParser;
 
             return quantityType switch
             {
@@ -467,20 +473,21 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(AmountOfSubstance) => parser.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(quantityString, formatProvider, AmountOfSubstance.From, out quantity),
                 Type _ when quantityType == typeof(AmplitudeRatio) => parser.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(quantityString, formatProvider, AmplitudeRatio.From, out quantity),
                 Type _ when quantityType == typeof(Angle) => parser.TryParse<Angle, AngleUnit>(quantityString, formatProvider, Angle.From, out quantity),
-                Type _ when quantityType == typeof(ApparentEnergy) => parser.TryParse<ApparentEnergy, ApparentEnergyUnit>(quantityString, formatProvider, ApparentEnergy.From, out quantity),
-                Type _ when quantityType == typeof(ApparentPower) => parser.TryParse<ApparentPower, ApparentPowerUnit>(quantityString, formatProvider, ApparentPower.From, out quantity),
                 Type _ when quantityType == typeof(Area) => parser.TryParse<Area, AreaUnit>(quantityString, formatProvider, Area.From, out quantity),
                 Type _ when quantityType == typeof(AreaDensity) => parser.TryParse<AreaDensity, AreaDensityUnit>(quantityString, formatProvider, AreaDensity.From, out quantity),
                 Type _ when quantityType == typeof(AreaMomentOfInertia) => parser.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(quantityString, formatProvider, AreaMomentOfInertia.From, out quantity),
                 Type _ when quantityType == typeof(BitRate) => parser.TryParse<BitRate, BitRateUnit>(quantityString, formatProvider, BitRate.From, out quantity),
                 Type _ when quantityType == typeof(BrakeSpecificFuelConsumption) => parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity),
-                Type _ when quantityType == typeof(Capacitance) => parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity),
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
                 Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
+                Type _ when quantityType == typeof(DoseAreaProduct) => parser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(quantityString, formatProvider, DoseAreaProduct.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricAdmittance) => parser.TryParse<ElectricAdmittance, ElectricAdmittanceUnit>(quantityString, formatProvider, ElectricAdmittance.From, out quantity),
+                Type _ when quantityType == typeof(ElectricApparentEnergy) => parser.TryParse<ElectricApparentEnergy, ElectricApparentEnergyUnit>(quantityString, formatProvider, ElectricApparentEnergy.From, out quantity),
+                Type _ when quantityType == typeof(ElectricApparentPower) => parser.TryParse<ElectricApparentPower, ElectricApparentPowerUnit>(quantityString, formatProvider, ElectricApparentPower.From, out quantity),
+                Type _ when quantityType == typeof(ElectricCapacitance) => parser.TryParse<ElectricCapacitance, ElectricCapacitanceUnit>(quantityString, formatProvider, ElectricCapacitance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricCharge) => parser.TryParse<ElectricCharge, ElectricChargeUnit>(quantityString, formatProvider, ElectricCharge.From, out quantity),
                 Type _ when quantityType == typeof(ElectricChargeDensity) => parser.TryParse<ElectricChargeDensity, ElectricChargeDensityUnit>(quantityString, formatProvider, ElectricChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricConductance) => parser.TryParse<ElectricConductance, ElectricConductanceUnit>(quantityString, formatProvider, ElectricConductance.From, out quantity),
@@ -489,14 +496,17 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricCurrentDensity) => parser.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(quantityString, formatProvider, ElectricCurrentDensity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricCurrentGradient) => parser.TryParse<ElectricCurrentGradient, ElectricCurrentGradientUnit>(quantityString, formatProvider, ElectricCurrentGradient.From, out quantity),
                 Type _ when quantityType == typeof(ElectricField) => parser.TryParse<ElectricField, ElectricFieldUnit>(quantityString, formatProvider, ElectricField.From, out quantity),
+                Type _ when quantityType == typeof(ElectricImpedance) => parser.TryParse<ElectricImpedance, ElectricImpedanceUnit>(quantityString, formatProvider, ElectricImpedance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricInductance) => parser.TryParse<ElectricInductance, ElectricInductanceUnit>(quantityString, formatProvider, ElectricInductance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotential) => parser.TryParse<ElectricPotential, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential.From, out quantity),
-                Type _ when quantityType == typeof(ElectricPotentialAc) => parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotentialChangeRate) => parser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate.From, out quantity),
-                Type _ when quantityType == typeof(ElectricPotentialDc) => parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity),
+                Type _ when quantityType == typeof(ElectricReactance) => parser.TryParse<ElectricReactance, ElectricReactanceUnit>(quantityString, formatProvider, ElectricReactance.From, out quantity),
+                Type _ when quantityType == typeof(ElectricReactiveEnergy) => parser.TryParse<ElectricReactiveEnergy, ElectricReactiveEnergyUnit>(quantityString, formatProvider, ElectricReactiveEnergy.From, out quantity),
+                Type _ when quantityType == typeof(ElectricReactivePower) => parser.TryParse<ElectricReactivePower, ElectricReactivePowerUnit>(quantityString, formatProvider, ElectricReactivePower.From, out quantity),
                 Type _ when quantityType == typeof(ElectricResistance) => parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricResistivity) => parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
+                Type _ when quantityType == typeof(ElectricSusceptance) => parser.TryParse<ElectricSusceptance, ElectricSusceptanceUnit>(quantityString, formatProvider, ElectricSusceptance.From, out quantity),
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
                 Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
@@ -547,12 +557,11 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Pressure) => parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity),
                 Type _ when quantityType == typeof(PressureChangeRate) => parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationEquivalentDose) => parser.TryParse<RadiationEquivalentDose, RadiationEquivalentDoseUnit>(quantityString, formatProvider, RadiationEquivalentDose.From, out quantity),
+                Type _ when quantityType == typeof(RadiationEquivalentDoseRate) => parser.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(quantityString, formatProvider, RadiationEquivalentDoseRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationExposure) => parser.TryParse<RadiationExposure, RadiationExposureUnit>(quantityString, formatProvider, RadiationExposure.From, out quantity),
                 Type _ when quantityType == typeof(Radioactivity) => parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity),
                 Type _ when quantityType == typeof(Ratio) => parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity),
                 Type _ when quantityType == typeof(RatioChangeRate) => parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity),
-                Type _ when quantityType == typeof(ReactiveEnergy) => parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity),
-                Type _ when quantityType == typeof(ReactivePower) => parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity),
                 Type _ when quantityType == typeof(ReciprocalArea) => parser.TryParse<ReciprocalArea, ReciprocalAreaUnit>(quantityString, formatProvider, ReciprocalArea.From, out quantity),
                 Type _ when quantityType == typeof(ReciprocalLength) => parser.TryParse<ReciprocalLength, ReciprocalLengthUnit>(quantityString, formatProvider, ReciprocalLength.From, out quantity),
                 Type _ when quantityType == typeof(RelativeHumidity) => parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity),
@@ -574,9 +583,8 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(TemperatureDelta) => parser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(quantityString, formatProvider, TemperatureDelta.From, out quantity),
                 Type _ when quantityType == typeof(TemperatureGradient) => parser.TryParse<TemperatureGradient, TemperatureGradientUnit>(quantityString, formatProvider, TemperatureGradient.From, out quantity),
                 Type _ when quantityType == typeof(ThermalConductivity) => parser.TryParse<ThermalConductivity, ThermalConductivityUnit>(quantityString, formatProvider, ThermalConductivity.From, out quantity),
-                Type _ when quantityType == typeof(ThermalResistance) => parser.TryParse<ThermalResistance, ThermalResistanceUnit>(quantityString, formatProvider, ThermalResistance.From, out quantity),
+                Type _ when quantityType == typeof(ThermalInsulance) => parser.TryParse<ThermalInsulance, ThermalInsulanceUnit>(quantityString, formatProvider, ThermalInsulance.From, out quantity),
                 Type _ when quantityType == typeof(Torque) => parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity),
-                Type _ when quantityType == typeof(TorquePerLength) => parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity),
                 Type _ when quantityType == typeof(Turbidity) => parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity),
                 Type _ when quantityType == typeof(VitaminA) => parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity),
                 Type _ when quantityType == typeof(Volume) => parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity),
@@ -597,20 +605,21 @@ namespace UnitsNet
             yield return typeof(AmountOfSubstance);
             yield return typeof(AmplitudeRatio);
             yield return typeof(Angle);
-            yield return typeof(ApparentEnergy);
-            yield return typeof(ApparentPower);
             yield return typeof(Area);
             yield return typeof(AreaDensity);
             yield return typeof(AreaMomentOfInertia);
             yield return typeof(BitRate);
             yield return typeof(BrakeSpecificFuelConsumption);
-            yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
             yield return typeof(Density);
+            yield return typeof(DoseAreaProduct);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
             yield return typeof(ElectricAdmittance);
+            yield return typeof(ElectricApparentEnergy);
+            yield return typeof(ElectricApparentPower);
+            yield return typeof(ElectricCapacitance);
             yield return typeof(ElectricCharge);
             yield return typeof(ElectricChargeDensity);
             yield return typeof(ElectricConductance);
@@ -619,14 +628,17 @@ namespace UnitsNet
             yield return typeof(ElectricCurrentDensity);
             yield return typeof(ElectricCurrentGradient);
             yield return typeof(ElectricField);
+            yield return typeof(ElectricImpedance);
             yield return typeof(ElectricInductance);
             yield return typeof(ElectricPotential);
-            yield return typeof(ElectricPotentialAc);
             yield return typeof(ElectricPotentialChangeRate);
-            yield return typeof(ElectricPotentialDc);
+            yield return typeof(ElectricReactance);
+            yield return typeof(ElectricReactiveEnergy);
+            yield return typeof(ElectricReactivePower);
             yield return typeof(ElectricResistance);
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
+            yield return typeof(ElectricSusceptance);
             yield return typeof(Energy);
             yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
@@ -677,12 +689,11 @@ namespace UnitsNet
             yield return typeof(Pressure);
             yield return typeof(PressureChangeRate);
             yield return typeof(RadiationEquivalentDose);
+            yield return typeof(RadiationEquivalentDoseRate);
             yield return typeof(RadiationExposure);
             yield return typeof(Radioactivity);
             yield return typeof(Ratio);
             yield return typeof(RatioChangeRate);
-            yield return typeof(ReactiveEnergy);
-            yield return typeof(ReactivePower);
             yield return typeof(ReciprocalArea);
             yield return typeof(ReciprocalLength);
             yield return typeof(RelativeHumidity);
@@ -704,9 +715,8 @@ namespace UnitsNet
             yield return typeof(TemperatureDelta);
             yield return typeof(TemperatureGradient);
             yield return typeof(ThermalConductivity);
-            yield return typeof(ThermalResistance);
+            yield return typeof(ThermalInsulance);
             yield return typeof(Torque);
-            yield return typeof(TorquePerLength);
             yield return typeof(Turbidity);
             yield return typeof(VitaminA);
             yield return typeof(Volume);

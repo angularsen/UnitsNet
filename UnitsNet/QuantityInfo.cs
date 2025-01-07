@@ -130,7 +130,7 @@ namespace UnitsNet
     /// </remarks>
     /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
     public class QuantityInfo<TUnit> : QuantityInfo
-        where TUnit : Enum
+        where TUnit : struct, Enum
     {
         /// <inheritdoc />
         public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)

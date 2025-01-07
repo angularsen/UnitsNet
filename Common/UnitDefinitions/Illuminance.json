@@ -11,6 +11,10 @@
     {
       "SingularName": "Lux",
       "PluralName": "Lux",
+      "BaseUnits": {
+        "L": "Meter",
+        "J": "Candela"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Milli", "Kilo", "Mega" ],

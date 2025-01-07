@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,6 +46,10 @@ namespace UnitsNet
         IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
         IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
         IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MolarMass, MolarMass, bool>,
+        IParsable<MolarMass>,
 #endif
         IComparable,
         IComparable<MolarMass>,
@@ -75,19 +78,19 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarMassUnit>("MolarMass",
                 new UnitInfo<MolarMassUnit>[]
                 {
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined, "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -116,13 +119,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarMass(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -315,7 +313,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MolarMassUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -493,7 +491,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MolarMass Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarMass, MolarMassUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MolarMass, MolarMassUnit>(
                 str,
                 provider,
                 From);
@@ -507,7 +505,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MolarMass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MolarMass result)
         {
             return TryParse(str, null, out result);
         }
@@ -522,9 +520,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MolarMass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMass result)
         {
-            return QuantityParser.Default.TryParse<MolarMass, MolarMassUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MolarMass, MolarMassUnit>(
                 str,
                 provider,
                 From,
@@ -557,11 +555,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MolarMassUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MolarMassUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MolarMassUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarMassUnit)"/>
-        public static bool TryParseUnit(string str, out MolarMassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MolarMassUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -576,9 +574,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MolarMassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMassUnit unit)
         {
-            return UnitParser.Default.TryParse<MolarMassUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MolarMassUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -634,7 +632,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Mass"/> from <see cref="MolarMass"/> * <see cref="AmountOfSubstance"/>.</summary>
         public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
         {
-            return Mass.FromGrams(molarMass.GramsPerMole * amountOfSubstance.Moles);
+            return Mass.FromKilograms(molarMass.KilogramsPerMole * amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from <see cref="MolarMass"/> * <see cref="Molarity"/>.</summary>
@@ -853,25 +851,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MolarMassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -972,6 +952,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MolarMass ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MolarMassUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -979,21 +975,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarMass ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1007,6 +988,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1015,7 +998,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1025,7 +1008,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1036,7 +1019,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1117,7 +1100,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

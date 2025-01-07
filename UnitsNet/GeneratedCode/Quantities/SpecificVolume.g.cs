@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,7 +44,10 @@ namespace UnitsNet
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
-        IMultiplyOperators<SpecificVolume, Density, double>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<SpecificVolume, SpecificVolume, bool>,
+        IParsable<SpecificVolume>,
 #endif
         IComparable,
         IComparable<SpecificVolume>,
@@ -74,9 +76,9 @@ namespace UnitsNet
             Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
                 new UnitInfo<SpecificVolumeUnit>[]
                 {
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined, "SpecificVolume"),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined, "SpecificVolume"),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined, "SpecificVolume"),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "SpecificVolume"),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "SpecificVolume"),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram), "SpecificVolume"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -105,13 +107,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificVolume(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -234,7 +231,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(SpecificVolumeUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -332,7 +329,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static SpecificVolume Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SpecificVolume, SpecificVolumeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<SpecificVolume, SpecificVolumeUnit>(
                 str,
                 provider,
                 From);
@@ -346,7 +343,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out SpecificVolume result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out SpecificVolume result)
         {
             return TryParse(str, null, out result);
         }
@@ -361,9 +358,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out SpecificVolume result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificVolume result)
         {
-            return QuantityParser.Default.TryParse<SpecificVolume, SpecificVolumeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<SpecificVolume, SpecificVolumeUnit>(
                 str,
                 provider,
                 From,
@@ -396,11 +393,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static SpecificVolumeUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<SpecificVolumeUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<SpecificVolumeUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificVolumeUnit)"/>
-        public static bool TryParseUnit(string str, out SpecificVolumeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out SpecificVolumeUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -415,9 +412,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out SpecificVolumeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificVolumeUnit unit)
         {
-            return UnitParser.Default.TryParse<SpecificVolumeUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<SpecificVolumeUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -470,22 +467,17 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="Density"/> from <see cref="double"/> / <see cref="SpecificVolume"/>.</summary>
-        public static Density operator /(double value, SpecificVolume specificVolume)
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Density"/>.</returns>
+        public Density Inverse()
         {
-            return Density.FromKilogramsPerCubicMeter(value / specificVolume.CubicMetersPerKilogram);
+            return CubicMetersPerKilogram == 0.0 ? Density.Zero : Density.FromKilogramsPerCubicMeter(1 / CubicMetersPerKilogram);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> * <see cref="Mass"/>.</summary>
         public static Volume operator *(SpecificVolume specificVolume, Mass mass)
         {
             return Volume.FromCubicMeters(specificVolume.CubicMetersPerKilogram * mass.Kilograms);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificVolume"/> * <see cref="Density"/>.</summary>
-        public static double operator *(SpecificVolume specificVolume, Density density)
-        {
-            return specificVolume.CubicMetersPerKilogram * density.KilogramsPerCubicMeter;
         }
 
         #endregion
@@ -692,25 +684,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is SpecificVolumeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -791,6 +765,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public SpecificVolume ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not SpecificVolumeUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -798,21 +788,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public SpecificVolume ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -826,6 +801,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -834,7 +811,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -844,7 +821,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -855,7 +832,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -936,7 +913,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

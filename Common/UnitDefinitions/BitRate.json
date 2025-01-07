@@ -3,11 +3,16 @@
   "BaseUnit": "BitPerSecond",
   "XmlDocSummary": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Bit_rate",
-  "BaseDimensions": { "T": -1 },
+  "BaseDimensions": {
+    "T": -1
+  },
   "Units": [
     {
       "SingularName": "BitPerSecond",
       "PluralName": "BitsPerSecond",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],

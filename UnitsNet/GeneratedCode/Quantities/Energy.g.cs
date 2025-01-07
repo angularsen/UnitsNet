@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -44,17 +43,23 @@ namespace UnitsNet
     public readonly partial struct Energy :
         IArithmeticQuantity<Energy, EnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>,
         IDivisionOperators<Energy, Power, Duration>,
         IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
         IDivisionOperators<Energy, ElectricCharge, ElectricPotential>,
         IDivisionOperators<Energy, Volume, EnergyDensity>,
         IDivisionOperators<Energy, TemperatureDelta, Entropy>,
         IDivisionOperators<Energy, SpecificEnergy, Mass>,
+        IDivisionOperators<Energy, AmountOfSubstance, MolarEnergy>,
         IMultiplyOperators<Energy, Frequency, Power>,
         IDivisionOperators<Energy, Duration, Power>,
         IDivisionOperators<Energy, Mass, SpecificEnergy>,
         IDivisionOperators<Energy, Entropy, TemperatureDelta>,
         IDivisionOperators<Energy, EnergyDensity, Volume>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Energy, Energy, bool>,
+        IParsable<Energy>,
 #endif
         IComparable,
         IComparable<Energy>,
@@ -107,15 +112,15 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Microjoule, "Microjoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Microjoule, "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Nanojoule, "Nanojoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Nanojoule, "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined, "Energy"),
@@ -151,13 +156,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Energy(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -539,7 +539,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(EnergyUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -933,7 +933,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Energy Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Energy, EnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Energy, EnergyUnit>(
                 str,
                 provider,
                 From);
@@ -947,7 +947,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Energy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Energy result)
         {
             return TryParse(str, null, out result);
         }
@@ -962,9 +962,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Energy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Energy result)
         {
-            return QuantityParser.Default.TryParse<Energy, EnergyUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Energy, EnergyUnit>(
                 str,
                 provider,
                 From,
@@ -997,11 +997,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static EnergyUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<EnergyUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<EnergyUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EnergyUnit)"/>
-        public static bool TryParseUnit(string str, out EnergyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out EnergyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1016,9 +1016,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out EnergyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out EnergyUnit unit)
         {
-            return UnitParser.Default.TryParse<EnergyUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<EnergyUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1071,6 +1071,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Energy"/> / <see cref="MolarEnergy"/>.</summary>
+        public static AmountOfSubstance operator /(Energy energy, MolarEnergy molarEnergy)
+        {
+            return AmountOfSubstance.FromMoles(energy.Joules / molarEnergy.JoulesPerMole);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="Energy"/> / <see cref="Power"/>.</summary>
         public static Duration operator /(Energy energy, Power power)
         {
@@ -1105,6 +1111,12 @@ namespace UnitsNet
         public static Mass operator /(Energy energy, SpecificEnergy specificEnergy)
         {
             return Mass.FromKilograms(energy.Joules / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="MolarEnergy"/> from <see cref="Energy"/> / <see cref="AmountOfSubstance"/>.</summary>
+        public static MolarEnergy operator /(Energy energy, AmountOfSubstance amountOfSubstance)
+        {
+            return MolarEnergy.FromJoulesPerMole(energy.Joules / amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> * <see cref="Frequency"/>.</summary>
@@ -1341,25 +1353,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is EnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1514,6 +1508,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Energy ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not EnergyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1521,21 +1531,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Energy ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1549,6 +1544,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1557,7 +1554,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1567,7 +1564,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1578,7 +1575,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1659,7 +1656,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

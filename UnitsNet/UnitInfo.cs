@@ -82,7 +82,7 @@ namespace UnitsNet
     /// </remarks>
     /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
     public class UnitInfo<TUnit> : UnitInfo
-        where TUnit : Enum
+        where TUnit : struct, Enum
     {
         /// <inheritdoc />
         [Obsolete("Use the constructor that also takes a quantityName parameter.")]

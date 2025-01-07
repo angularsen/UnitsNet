@@ -1,7 +1,9 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -40,7 +42,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsUnitNotFoundException()
+        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsAmbiguousUnitParseException()
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache();
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
@@ -52,7 +54,8 @@ namespace UnitsNet.Tests
                 quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
             }
 
-            Assert.Throws<UnitNotFoundException>(Act);
+            var ex = Assert.Throws<AmbiguousUnitParseException>(Act);
+            Assert.Equal("""Cannot parse "Foo" since it matches multiple units: ATon ("FOO"), Some ("foo").""", ex.Message);
         }
 
         [Fact]
@@ -87,5 +90,24 @@ namespace UnitsNet.Tests
             Assert.Equal(1, q.Value);
         }
 
+        [Fact]
+        public void TryParse_NullString_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>(null, null, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
+
+        [Fact]
+        public void TryParse_WithInvalidValue_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>("XX kg", CultureInfo.InvariantCulture, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
     }
 }

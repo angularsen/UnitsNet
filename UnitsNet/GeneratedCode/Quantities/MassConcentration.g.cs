@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -52,6 +51,10 @@ namespace UnitsNet
         IDivisionOperators<MassConcentration, Molarity, MolarMass>,
         IDivisionOperators<MassConcentration, MolarMass, Molarity>,
         IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MassConcentration, MassConcentration, bool>,
+        IParsable<MassConcentration>,
 #endif
         IComparable,
         IComparable<MassConcentration>,
@@ -81,46 +84,46 @@ namespace UnitsNet
                 new UnitInfo<MassConcentrationUnit>[]
                 {
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, "CentigramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMicroliter, "CentigramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Centigram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerDeciliter, "DecigramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerLiter, "DecigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Decigram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMicroliter, "DecigramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Decigram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, "GramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerLiter, "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram), "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMicroliter, "GramsPerMicroliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMicroliter, "GramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMilliliter, "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, "KilogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilopound), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerDeciliter, "MicrogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerLiter, "MicrogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Microgram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMicroliter, "MicrogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerDeciliter, "MilligramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerLiter, "MilligramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Milligram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMicroliter, "MilligramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerDeciliter, "NanogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, "NanogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Nanogram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMicroliter, "NanogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Nanogram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerImperialGallon, "OuncesPerImperialGallon", BaseUnits.Undefined, "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerUSGallon, "OuncesPerUSGallon", BaseUnits.Undefined, "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerDeciliter, "PicogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, "PicogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Picogram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMicroliter, "PicogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Picogram), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "MassConcentration"),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined, "MassConcentration"),
@@ -157,13 +160,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassConcentration(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -608,7 +606,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassConcentrationUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1074,7 +1072,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassConcentration Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassConcentration, MassConcentrationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MassConcentration, MassConcentrationUnit>(
                 str,
                 provider,
                 From);
@@ -1088,7 +1086,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MassConcentration result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MassConcentration result)
         {
             return TryParse(str, null, out result);
         }
@@ -1103,9 +1101,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassConcentration result)
         {
-            return QuantityParser.Default.TryParse<MassConcentration, MassConcentrationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MassConcentration, MassConcentrationUnit>(
                 str,
                 provider,
                 From,
@@ -1138,11 +1136,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassConcentrationUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassConcentrationUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassConcentrationUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassConcentrationUnit)"/>
-        public static bool TryParseUnit(string str, out MassConcentrationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MassConcentrationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1157,9 +1155,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassConcentrationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassConcentrationUnit unit)
         {
-            return UnitParser.Default.TryParse<MassConcentrationUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassConcentrationUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1446,25 +1444,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassConcentrationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1637,6 +1617,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MassConcentration ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassConcentrationUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1644,21 +1640,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassConcentration ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1672,6 +1653,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1680,7 +1663,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1690,7 +1673,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1701,7 +1684,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1782,7 +1765,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

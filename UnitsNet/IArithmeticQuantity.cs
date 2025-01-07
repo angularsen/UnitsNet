@@ -21,7 +21,7 @@ public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitT
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : IArithmeticQuantity<TSelf, TUnitType>
-    where TUnitType : Enum
+    where TUnitType : struct, Enum
 {
 #if NET7_0_OR_GREATER
     /// <summary>

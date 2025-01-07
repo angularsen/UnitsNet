@@ -2,7 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Text;
+using System.Collections.Generic;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -46,14 +46,6 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
-
-            IsFullyDefined = Length is not null &&
-                             Mass is not null &&
-                             Time is not null &&
-                             Current is not null &&
-                             Temperature is not null &&
-                             Amount is not null &&
-                             LuminousIntensity is not null;
         }
 
         /// <inheritdoc />
@@ -71,6 +63,9 @@ namespace UnitsNet
         {
             if (other is null)
                 return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
 
             return Length == other.Length &&
                 Mass == other.Mass &&
@@ -108,7 +103,11 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
+            #if NET 
+            return HashCode.Combine(Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity);
+            #else
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
+            #endif
         }
 
         /// <summary>
@@ -134,31 +133,47 @@ namespace UnitsNet
         {
             return !(left == right);
         }
-
+        
         /// <inheritdoc />
         public override string ToString()
         {
-            if(!Equals(Undefined))
-            {
-                var sb = new StringBuilder();
-
-                string GetDefaultAbbreviation<TUnitType>(TUnitType? unitOrNull) where TUnitType : struct, Enum => unitOrNull is { } unit
-                    ? UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit)
-                    : "N/A";
-
-                sb.AppendFormat("[Length]: {0}, ", GetDefaultAbbreviation(Length));
-                sb.AppendFormat("[Mass]: {0}, ", GetDefaultAbbreviation(Mass));
-                sb.AppendFormat("[Time]: {0}, ", GetDefaultAbbreviation(Time));
-                sb.AppendFormat("[Current]: {0}, ", GetDefaultAbbreviation(Current));
-                sb.AppendFormat("[Temperature]: {0}, ", GetDefaultAbbreviation(Temperature));
-                sb.AppendFormat("[Amount]: {0}, ", GetDefaultAbbreviation(Amount));
-                sb.AppendFormat("[LuminousIntensity]: {0}", GetDefaultAbbreviation(LuminousIntensity));
-
-                return sb.ToString();
-            }
-            else
+            if (Equals(Undefined))
             {
                 return "Undefined";
+            }
+
+            return string.Join(", ", GetUnitsDefined());
+
+            IEnumerable<string> GetUnitsDefined()
+            {
+                if (Length is not null)
+                {
+                    yield return $"L={Length}";
+                }
+                if (Mass is not null)
+                {
+                    yield return $"M={Mass}";
+                }
+                if (Time is not null)
+                {
+                    yield return $"T={Time}";
+                }
+                if (Current is not null)
+                {
+                    yield return $"I={Current}";
+                }
+                if (Temperature is not null)
+                {
+                    yield return $"Θ={Temperature}";
+                }
+                if (Amount is not null)
+                {
+                    yield return $"N={Amount}";
+                }
+                if (LuminousIntensity is not null)
+                {
+                    yield return $"J={LuminousIntensity}";
+                }
             }
         }
 
@@ -198,8 +213,19 @@ namespace UnitsNet
         public LuminousIntensityUnit? LuminousIntensity{ get; }
 
         /// <summary>
-        /// Gets whether or not all of the base units are defined.
+        ///     Gets a value indicating whether all base units are defined.
         /// </summary>
-        public bool IsFullyDefined { get; }
+        /// <remarks>
+        ///     This property returns <c>true</c> if all seven base units 
+        ///     (Length, Mass, Time, Current, Temperature, Amount, and LuminousIntensity) 
+        ///     are non-null; otherwise, it returns <c>false</c>.
+        /// </remarks>
+        public bool IsFullyDefined => Length is not null &&
+                                      Mass is not null &&
+                                      Time is not null &&
+                                      Current is not null &&
+                                      Temperature is not null &&
+                                      Amount is not null &&
+                                      LuminousIntensity is not null;
     }
 }

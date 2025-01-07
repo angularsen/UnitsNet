@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,10 +46,14 @@ namespace UnitsNet
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
+        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, Ratio>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
         IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>,
         IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
-        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, double>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<TemperatureDelta, TemperatureDelta, bool>,
+        IParsable<TemperatureDelta>,
 #endif
         IComparable,
         IComparable<TemperatureDelta>,
@@ -79,14 +82,14 @@ namespace UnitsNet
             Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[]
                 {
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, "DegreesCelsius", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, "DegreesDelisle", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeFahrenheit, "DegreesFahrenheit", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeNewton, "DegreesNewton", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRankine, "DegreesRankine", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, "DegreesReaumur", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", BaseUnits.Undefined, "TemperatureDelta"),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined, "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer), "TemperatureDelta"),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin), "TemperatureDelta"),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined, "TemperatureDelta"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -116,13 +119,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public TemperatureDelta(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -287,7 +285,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(TemperatureDeltaUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -433,7 +431,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static TemperatureDelta Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<TemperatureDelta, TemperatureDeltaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<TemperatureDelta, TemperatureDeltaUnit>(
                 str,
                 provider,
                 From);
@@ -447,7 +445,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out TemperatureDelta result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out TemperatureDelta result)
         {
             return TryParse(str, null, out result);
         }
@@ -462,9 +460,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out TemperatureDelta result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out TemperatureDelta result)
         {
-            return QuantityParser.Default.TryParse<TemperatureDelta, TemperatureDeltaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(
                 str,
                 provider,
                 From,
@@ -497,11 +495,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static TemperatureDeltaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<TemperatureDeltaUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<TemperatureDeltaUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TemperatureDeltaUnit)"/>
-        public static bool TryParseUnit(string str, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out TemperatureDeltaUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -516,9 +514,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out TemperatureDeltaUnit unit)
         {
-            return UnitParser.Default.TryParse<TemperatureDeltaUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<TemperatureDeltaUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -571,12 +569,6 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="CoefficientOfThermalExpansion"/> from <see cref="double"/> / <see cref="TemperatureDelta"/>.</summary>
-        public static CoefficientOfThermalExpansion operator /(double value, TemperatureDelta temperatureDelta)
-        {
-            return CoefficientOfThermalExpansion.FromPerKelvin(value / temperatureDelta.Kelvins);
-        }
-
         /// <summary>Get <see cref="Duration"/> from <see cref="TemperatureDelta"/> / <see cref="TemperatureChangeRate"/>.</summary>
         public static Duration operator /(TemperatureDelta temperatureDelta, TemperatureChangeRate temperatureChangeRate)
         {
@@ -595,6 +587,12 @@ namespace UnitsNet
             return Length.FromKilometers(temperatureDelta.DegreesCelsius / temperatureGradient.DegreesCelsiusPerKilometer);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
+        public static Ratio operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
+        {
+            return Ratio.FromDecimalFractions(temperatureDelta.Kelvins * coefficientOfThermalExpansion.PerKelvin);
+        }
+
         /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="TemperatureDelta"/> * <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
         {
@@ -611,12 +609,6 @@ namespace UnitsNet
         public static TemperatureGradient operator /(TemperatureDelta temperatureDelta, Length length)
         {
             return TemperatureGradient.FromDegreesCelsiusPerKilometer(temperatureDelta.DegreesCelsius / length.Kilometers);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
-        {
-            return temperatureDelta.Kelvins * coefficientOfThermalExpansion.PerKelvin;
         }
 
         #endregion
@@ -823,25 +815,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is TemperatureDeltaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -934,6 +908,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public TemperatureDelta ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not TemperatureDeltaUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -941,21 +931,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public TemperatureDelta ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -969,6 +944,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -977,7 +954,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -987,7 +964,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -998,7 +975,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1079,7 +1056,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

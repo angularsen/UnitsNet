@@ -40,7 +40,6 @@ namespace UnitsNet.Units
         NatoMil = 13,
         Radian = 14,
         Revolution = 15,
-        Tilt = 16,
     }
 
     #pragma warning restore 1591

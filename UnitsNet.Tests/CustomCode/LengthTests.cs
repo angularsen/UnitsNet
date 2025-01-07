@@ -8,10 +8,6 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    // Avoid accessing static prop DefaultToString in parallel from multiple tests:
-    // UnitSystemTests.DefaultToStringFormatting()
-    // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class LengthTests : LengthTestsBase
     {
         protected override bool SupportsSIUnitSystem => true;
@@ -77,7 +73,7 @@ namespace UnitsNet.Tests
 
         protected override double ParsecsInOneMeter => 3.2407790389471100000000000E-17;
 
-        protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
+        protected override double SolarRadiusesInOneMeter => 1.4374011786689664E-09;
 
         protected override double ChainsInOneMeter => 0.0497096953789867;
 
@@ -205,13 +201,6 @@ namespace UnitsNet.Tests
         {
             var length = new Length(1.0, UnitSystem.SI);
             Assert.Equal(LengthUnit.Meter, length.Unit);
-        }
-
-        [Fact]
-        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
-        {
-            // AmplitudeRatio is unitless. Can't have any matches :)
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
         }
 
         [Fact]

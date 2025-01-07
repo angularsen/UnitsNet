@@ -66,6 +66,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void TemperatureDeltaTimesCoefficientOfThermalExpansionEqualsRatio()
+        {
+            Ratio expansionRatio = TemperatureDelta.FromDegreesCelsius(0.001) * CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
+            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
+        }
+
+        [Fact]
         public void TemperatureDeltaDividedByTimeSpanEqualsTemperatureChangeRate()
         {
             TemperatureChangeRate changeRate = TemperatureDelta.FromKelvins(20) / TimeSpan.FromSeconds(2);
@@ -77,6 +84,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             TemperatureChangeRate changeRate = TemperatureDelta.FromKelvins(20) / Duration.FromSeconds(2);
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(10), changeRate);
+        }
+
+        [Fact]
+        public void TemperatureDeltaDividedByTemperatureChangeRateEqualsDuration()
+        {
+            Duration duration = TemperatureDelta.FromKelvins(20) / TemperatureChangeRate.FromDegreesCelsiusPerSecond(10);
+            Assert.Equal(Duration.FromSeconds(2), duration);
         }
     }
 }

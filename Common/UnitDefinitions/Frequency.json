@@ -9,6 +9,9 @@
     {
       "SingularName": "Hertz",
       "PluralName": "Hertz",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
@@ -43,6 +46,9 @@
     {
       "SingularName": "CyclePerMinute",
       "PluralName": "CyclesPerMinute",
+      "BaseUnits": {
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
@@ -55,6 +61,9 @@
     {
       "SingularName": "CyclePerHour",
       "PluralName": "CyclesPerHour",
+      "BaseUnits": {
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
@@ -67,6 +76,9 @@
     {
       "SingularName": "BeatPerMinute",
       "PluralName": "BeatsPerMinute",
+      "BaseUnits": {
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
@@ -79,6 +91,9 @@
     {
       "SingularName": "PerSecond",
       "PluralName": "PerSecond",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

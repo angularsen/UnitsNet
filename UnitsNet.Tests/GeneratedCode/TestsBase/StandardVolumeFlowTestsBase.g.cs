@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -123,18 +124,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new StandardVolumeFlow(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (StandardVolumeFlow) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new StandardVolumeFlow(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new StandardVolumeFlow(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -241,20 +242,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = StandardVolumeFlow.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(StandardVolumeFlow.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+            var expectedUnit = StandardVolumeFlow.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                StandardVolumeFlow quantityToConvert = quantity;
+
+                StandardVolumeFlow convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<StandardVolumeFlowUnit> quantityToConvert = quantity;
+
+                IQuantity<StandardVolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<StandardVolumeFlowUnit> quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<StandardVolumeFlowUnit> quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -384,113 +474,142 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("sccm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("scfh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("scfm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("Sft³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = StandardVolumeFlow.ParseUnit("slm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("sccm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("scfh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("scfm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("Sft³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsedUnit);
-            }
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParseUnit("slm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -518,12 +637,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(StandardVolumeFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = StandardVolumeFlow.Units.First(u => u != StandardVolumeFlow.BaseUnit);
-
-            var quantity = StandardVolumeFlow.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(StandardVolumeFlow.Units.Where(u => u != StandardVolumeFlow.BaseUnit), fromUnit =>
+            {
+                var quantity = StandardVolumeFlow.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -533,6 +652,25 @@ namespace UnitsNet.Tests
             var quantity = default(StandardVolumeFlow);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(StandardVolumeFlowUnit unit)
+        {
+            var quantity = StandardVolumeFlow.From(3, StandardVolumeFlow.BaseUnit);
+            StandardVolumeFlow expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<StandardVolumeFlowUnit> quantityToConvert = quantity;
+                IQuantity<StandardVolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -681,7 +819,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -694,23 +832,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString());
-                Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString());
-                Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString());
-                Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString());
-                Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString());
-                Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString());
-                Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString());
-                Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString());
-                Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString());
+            Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString());
+            Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString());
+            Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString());
+            Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString());
+            Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString());
+            Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString());
+            Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString());
+            Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString());
         }
 
         [Fact]
@@ -733,19 +864,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1"));
-                Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2"));
-                Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1"));
+            Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2"));
+            Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4"));
         }
 
         [Fact]
@@ -768,7 +891,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -918,6 +1041,13 @@ namespace UnitsNet.Tests
         {
             var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

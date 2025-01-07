@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -57,6 +56,10 @@ namespace UnitsNet
         IDivisionOperators<Volume, SpecificVolume, Mass>,
         IDivisionOperators<Volume, Mass, SpecificVolume>,
         IDivisionOperators<Volume, Duration, VolumeFlow>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Volume, Volume, bool>,
+        IParsable<Volume>,
 #endif
         IComparable,
         IComparable<Volume>,
@@ -89,17 +92,17 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, "AuTablespoons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.BoardFoot, "BoardFeet", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, "Centiliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, "CubicCentimeters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, "CubicDecimeters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicFoot, "CubicFeet", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicFoot, "CubicFeet", new BaseUnits(length: LengthUnit.Foot), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicHectometer, "CubicHectometers", new BaseUnits(length: LengthUnit.Hectometer), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, "CubicInches", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, "CubicKilometers", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, "CubicInches", new BaseUnits(length: LengthUnit.Inch), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, "CubicKilometers", new BaseUnits(length: LengthUnit.Kilometer), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, "CubicMeters", new BaseUnits(length: LengthUnit.Meter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, "CubicMicrometers", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, "CubicMiles", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, "CubicMillimeters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, "CubicYards", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, "CubicMicrometers", new BaseUnits(length: LengthUnit.Micrometer), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, "CubicMiles", new BaseUnits(length: LengthUnit.Mile), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, "CubicMillimeters", new BaseUnits(length: LengthUnit.Millimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, "CubicYards", new BaseUnits(length: LengthUnit.Yard), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Decaliter, "Decaliters", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.DecausGallon, "DecausGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Deciliter, "Deciliters", BaseUnits.Undefined, "Volume"),
@@ -111,22 +114,22 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrels", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, "ImperialGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, "ImperialOunces", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, "ImperialPints", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, "ImperialPints", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialQuart, "ImperialQuarts", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, "KilocubicFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, "KiloimperialGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Kiloliter, "Kiloliters", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilousGallon, "KilousGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Liter, "Liters", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Liter, "Liters", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MegacubicFoot, "MegacubicFeet", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MegaimperialGallon, "MegaimperialGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Megaliter, "Megaliters", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Megaliter, "Megaliters", new BaseUnits(length: LengthUnit.Decameter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MegausGallon, "MegausGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MetricCup, "MetricCups", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MetricTeaspoon, "MetricTeaspoons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, "Microliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, "Milliliters", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, "Microliters", new BaseUnits(length: LengthUnit.Millimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, "Milliliters", new BaseUnits(length: LengthUnit.Centimeter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Nanoliter, "Nanoliters", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.OilBarrel, "OilBarrels", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UkTablespoon, "UkTablespoons", BaseUnits.Undefined, "Volume"),
@@ -167,13 +170,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Volume(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -653,7 +651,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(VolumeUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1159,7 +1157,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Volume Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Volume, VolumeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Volume, VolumeUnit>(
                 str,
                 provider,
                 From);
@@ -1173,7 +1171,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Volume result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Volume result)
         {
             return TryParse(str, null, out result);
         }
@@ -1188,9 +1186,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Volume result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Volume result)
         {
-            return QuantityParser.Default.TryParse<Volume, VolumeUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Volume, VolumeUnit>(
                 str,
                 provider,
                 From,
@@ -1223,11 +1221,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static VolumeUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<VolumeUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<VolumeUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumeUnit)"/>
-        public static bool TryParseUnit(string str, out VolumeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out VolumeUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -1242,9 +1240,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out VolumeUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out VolumeUnit unit)
         {
-            return UnitParser.Default.TryParse<VolumeUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<VolumeUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1579,25 +1577,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is VolumeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1780,6 +1760,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Volume ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not VolumeUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1787,21 +1783,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Volume ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1815,6 +1796,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1823,7 +1806,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1833,7 +1816,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1844,7 +1827,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1925,7 +1908,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

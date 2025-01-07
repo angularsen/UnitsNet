@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Impulse :
         IArithmeticQuantity<Impulse, ImpulseUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Impulse, Impulse, bool>,
+        IParsable<Impulse>,
+#endif
         IComparable,
         IComparable<Impulse>,
         IConvertible,
@@ -67,19 +73,19 @@ namespace UnitsNet
             Info = new QuantityInfo<ImpulseUnit>("Impulse",
                 new UnitInfo<ImpulseUnit>[]
                 {
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second), "Impulse"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -108,13 +114,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Impulse(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -307,7 +308,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ImpulseUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -485,7 +486,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Impulse Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Impulse, ImpulseUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Impulse, ImpulseUnit>(
                 str,
                 provider,
                 From);
@@ -499,7 +500,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Impulse result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Impulse result)
         {
             return TryParse(str, null, out result);
         }
@@ -514,9 +515,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Impulse result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Impulse result)
         {
-            return QuantityParser.Default.TryParse<Impulse, ImpulseUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Impulse, ImpulseUnit>(
                 str,
                 provider,
                 From,
@@ -549,11 +550,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ImpulseUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ImpulseUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ImpulseUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ImpulseUnit)"/>
-        public static bool TryParseUnit(string str, out ImpulseUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ImpulseUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -568,9 +569,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ImpulseUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ImpulseUnit unit)
         {
-            return UnitParser.Default.TryParse<ImpulseUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ImpulseUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -823,25 +824,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ImpulseUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -942,6 +925,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Impulse ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ImpulseUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -949,21 +948,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Impulse ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -977,6 +961,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -985,7 +971,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -995,7 +981,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1006,7 +992,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1087,7 +1073,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

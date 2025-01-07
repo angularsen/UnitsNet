@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,6 +44,10 @@ namespace UnitsNet
         IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<TemperatureChangeRate, TemperatureChangeRate, bool>,
+        IParsable<TemperatureChangeRate>,
 #endif
         IComparable,
         IComparable<TemperatureChangeRate>,
@@ -76,10 +79,17 @@ namespace UnitsNet
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerHour, "DegreesCelsiusPerHour", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, "DegreesFahrenheitPerHour", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, "DegreesFahrenheitPerMinute", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, "DegreesFahrenheitPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerHour, "DegreesKelvinPerHour", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerMinute, "DegreesKelvinPerMinute", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerSecond, "DegreesKelvinPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Millisecond, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
@@ -111,13 +121,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public TemperatureChangeRate(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -201,6 +206,11 @@ namespace UnitsNet
         public double DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerHour"/>
+        /// </summary>
+        public double DegreesCelsiusPerHour => As(TemperatureChangeRateUnit.DegreeCelsiusPerHour);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>
         /// </summary>
         public double DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
@@ -209,6 +219,36 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>
         /// </summary>
         public double DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerHour"/>
+        /// </summary>
+        public double DegreesFahrenheitPerHour => As(TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerMinute"/>
+        /// </summary>
+        public double DegreesFahrenheitPerMinute => As(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerSecond"/>
+        /// </summary>
+        public double DegreesFahrenheitPerSecond => As(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerHour"/>
+        /// </summary>
+        public double DegreesKelvinPerHour => As(TemperatureChangeRateUnit.DegreeKelvinPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerMinute"/>
+        /// </summary>
+        public double DegreesKelvinPerMinute => As(TemperatureChangeRateUnit.DegreeKelvinPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerSecond"/>
+        /// </summary>
+        public double DegreesKelvinPerSecond => As(TemperatureChangeRateUnit.DegreeKelvinPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>
@@ -249,7 +289,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeKelvinPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeKelvinPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeKelvinPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
@@ -263,7 +310,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerHour, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerHour));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerMinute, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerMinute));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerHour, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeFahrenheitPerHour));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerHour, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeKelvinPerHour));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerMinute, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeKelvinPerMinute));
+            unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.DegreeKelvinPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond));
@@ -289,7 +343,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(TemperatureChangeRateUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -321,6 +375,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerHour"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesCelsiusPerHour(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerHour);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
         /// </summary>
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double value)
@@ -334,6 +396,54 @@ namespace UnitsNet
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerHour"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesFahrenheitPerHour(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerMinute"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesFahrenheitPerMinute(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerSecond"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesFahrenheitPerSecond(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerHour"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesKelvinPerHour(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerHour);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerMinute"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesKelvinPerMinute(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerSecond"/>.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesKelvinPerSecond(double value)
+        {
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerSecond);
         }
 
         /// <summary>
@@ -443,7 +553,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static TemperatureChangeRate Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(
                 str,
                 provider,
                 From);
@@ -457,7 +567,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out TemperatureChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out TemperatureChangeRate result)
         {
             return TryParse(str, null, out result);
         }
@@ -472,9 +582,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out TemperatureChangeRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out TemperatureChangeRate result)
         {
-            return QuantityParser.Default.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(
                 str,
                 provider,
                 From,
@@ -507,11 +617,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static TemperatureChangeRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<TemperatureChangeRateUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<TemperatureChangeRateUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TemperatureChangeRateUnit)"/>
-        public static bool TryParseUnit(string str, out TemperatureChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out TemperatureChangeRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -526,9 +636,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out TemperatureChangeRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out TemperatureChangeRateUnit unit)
         {
-            return UnitParser.Default.TryParse<TemperatureChangeRateUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<TemperatureChangeRateUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -791,25 +901,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is TemperatureChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -873,7 +965,14 @@ namespace UnitsNet
                 (TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e-2d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e1d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e-1d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value / 3600, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value / 60, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeFahrenheitPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value * 5 / 9 / 3600, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value * 5 / 9 / 60, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value * 5 / 9, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeKelvinPerHour, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value / 3600, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeKelvinPerMinute, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value / 60, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeKelvinPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate(_value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e2d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e3d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e-6d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
@@ -884,7 +983,14 @@ namespace UnitsNet
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e-2d, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e1d, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e-1d, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerHour) => new TemperatureChangeRate(_value * 3600, TemperatureChangeRateUnit.DegreeCelsiusPerHour),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerMinute) => new TemperatureChangeRate(_value * 60, TemperatureChangeRateUnit.DegreeCelsiusPerMinute),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerHour) => new TemperatureChangeRate(_value * 9 / 5 * 3600, TemperatureChangeRateUnit.DegreeFahrenheitPerHour),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute) => new TemperatureChangeRate(_value * 9 / 5 * 60, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond) => new TemperatureChangeRate(_value * 9 / 5, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerHour) => new TemperatureChangeRate(_value * 3600, TemperatureChangeRateUnit.DegreeKelvinPerHour),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerMinute) => new TemperatureChangeRate(_value * 60, TemperatureChangeRateUnit.DegreeKelvinPerMinute),
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeKelvinPerSecond) => new TemperatureChangeRate(_value, TemperatureChangeRateUnit.DegreeKelvinPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e2d, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e3d, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond),
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e-6d, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond),
@@ -904,6 +1010,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public TemperatureChangeRate ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not TemperatureChangeRateUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -911,21 +1033,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public TemperatureChangeRate ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -939,6 +1046,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -947,7 +1056,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -957,7 +1066,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -968,7 +1077,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1049,7 +1158,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

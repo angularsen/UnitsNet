@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -41,8 +42,15 @@ namespace UnitsNet.Tests
         protected abstract double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesFahrenheitPerHourInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesFahrenheitPerMinuteInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesFahrenheitPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesKelvinPerHourInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesKelvinPerMinuteInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
@@ -53,8 +61,15 @@ namespace UnitsNet.Tests
         protected virtual double CentidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecadegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelsiusPerHourTolerance { get { return 1e-5; } }
         protected virtual double DegreesCelsiusPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double DegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DegreesFahrenheitPerHourTolerance { get { return 1e-5; } }
+        protected virtual double DegreesFahrenheitPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double DegreesFahrenheitPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DegreesKelvinPerHourTolerance { get { return 1e-5; } }
+        protected virtual double DegreesKelvinPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double DegreesKelvinPerSecondTolerance { get { return 1e-5; } }
         protected virtual double HectodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
@@ -69,8 +84,15 @@ namespace UnitsNet.Tests
                 TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance),
                 TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance),
                 TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DegreeCelsiusPerHour => (DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond, DegreesCelsiusPerHourTolerance),
                 TemperatureChangeRateUnit.DegreeCelsiusPerMinute => (DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance),
                 TemperatureChangeRateUnit.DegreeCelsiusPerSecond => (DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DegreeFahrenheitPerHour => (DegreesFahrenheitPerHourInOneDegreeCelsiusPerSecond, DegreesFahrenheitPerHourTolerance),
+                TemperatureChangeRateUnit.DegreeFahrenheitPerMinute => (DegreesFahrenheitPerMinuteInOneDegreeCelsiusPerSecond, DegreesFahrenheitPerMinuteTolerance),
+                TemperatureChangeRateUnit.DegreeFahrenheitPerSecond => (DegreesFahrenheitPerSecondInOneDegreeCelsiusPerSecond, DegreesFahrenheitPerSecondTolerance),
+                TemperatureChangeRateUnit.DegreeKelvinPerHour => (DegreesKelvinPerHourInOneDegreeCelsiusPerSecond, DegreesKelvinPerHourTolerance),
+                TemperatureChangeRateUnit.DegreeKelvinPerMinute => (DegreesKelvinPerMinuteInOneDegreeCelsiusPerSecond, DegreesKelvinPerMinuteTolerance),
+                TemperatureChangeRateUnit.DegreeKelvinPerSecond => (DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond, DegreesKelvinPerSecondTolerance),
                 TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance),
                 TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance),
                 TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance),
@@ -85,8 +107,15 @@ namespace UnitsNet.Tests
             new object[] { TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond },
             new object[] { TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond },
             new object[] { TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerHour },
             new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerMinute },
             new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DegreeFahrenheitPerHour },
+            new object[] { TemperatureChangeRateUnit.DegreeFahrenheitPerMinute },
+            new object[] { TemperatureChangeRateUnit.DegreeFahrenheitPerSecond },
+            new object[] { TemperatureChangeRateUnit.DegreeKelvinPerHour },
+            new object[] { TemperatureChangeRateUnit.DegreeKelvinPerMinute },
+            new object[] { TemperatureChangeRateUnit.DegreeKelvinPerSecond },
             new object[] { TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond },
             new object[] { TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond },
             new object[] { TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond },
@@ -127,18 +156,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new TemperatureChangeRate(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (TemperatureChangeRate) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new TemperatureChangeRate(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -162,8 +191,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesCelsiusPerHour, DegreesCelsiusPerHourTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesFahrenheitPerHour, DegreesFahrenheitPerHourTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesFahrenheitPerMinute, DegreesFahrenheitPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesFahrenheitPerSecond, DegreesFahrenheitPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesKelvinPerHour, DegreesKelvinPerHourTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesKelvinPerMinute, DegreesKelvinPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesKelvinPerSecond, DegreesKelvinPerSecondTolerance);
             AssertEx.EqualTolerance(HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
@@ -186,33 +222,61 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
             Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, quantity02.Unit);
 
-            var quantity03 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
-            AssertEx.EqualTolerance(1, quantity03.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, quantity03.Unit);
+            var quantity03 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour);
+            AssertEx.EqualTolerance(1, quantity03.DegreesCelsiusPerHour, DegreesCelsiusPerHourTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerHour, quantity03.Unit);
 
-            var quantity04 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity04.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity04.Unit);
+            var quantity04 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
+            AssertEx.EqualTolerance(1, quantity04.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, quantity04.Unit);
 
-            var quantity05 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, quantity05.Unit);
+            var quantity05 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity05.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity05.Unit);
 
-            var quantity06 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity06.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, quantity06.Unit);
+            var quantity06 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
+            AssertEx.EqualTolerance(1, quantity06.DegreesFahrenheitPerHour, DegreesFahrenheitPerHourTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, quantity06.Unit);
 
-            var quantity07 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, quantity07.Unit);
+            var quantity07 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
+            AssertEx.EqualTolerance(1, quantity07.DegreesFahrenheitPerMinute, DegreesFahrenheitPerMinuteTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, quantity07.Unit);
 
-            var quantity08 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, quantity08.Unit);
+            var quantity08 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
+            AssertEx.EqualTolerance(1, quantity08.DegreesFahrenheitPerSecond, DegreesFahrenheitPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, quantity08.Unit);
 
-            var quantity09 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(1, quantity09.NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, quantity09.Unit);
+            var quantity09 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerHour);
+            AssertEx.EqualTolerance(1, quantity09.DegreesKelvinPerHour, DegreesKelvinPerHourTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerHour, quantity09.Unit);
+
+            var quantity10 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute);
+            AssertEx.EqualTolerance(1, quantity10.DegreesKelvinPerMinute, DegreesKelvinPerMinuteTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerMinute, quantity10.Unit);
+
+            var quantity11 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond);
+            AssertEx.EqualTolerance(1, quantity11.DegreesKelvinPerSecond, DegreesKelvinPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerSecond, quantity11.Unit);
+
+            var quantity12 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity12.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, quantity12.Unit);
+
+            var quantity13 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity13.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, quantity13.Unit);
+
+            var quantity14 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity14.MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, quantity14.Unit);
+
+            var quantity15 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity15.MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, quantity15.Unit);
+
+            var quantity16 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+            AssertEx.EqualTolerance(1, quantity16.NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
+            Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, quantity16.Unit);
 
         }
 
@@ -241,8 +305,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond), CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond), DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond), DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeCelsiusPerHour), DegreesCelsiusPerHourTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute), DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond), DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeFahrenheitPerHour), DegreesFahrenheitPerHourTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute), DegreesFahrenheitPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond), DegreesFahrenheitPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerHourInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeKelvinPerHour), DegreesKelvinPerHourTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeKelvinPerMinute), DegreesKelvinPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeKelvinPerSecond), DegreesKelvinPerSecondTolerance);
             AssertEx.EqualTolerance(HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond), HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond), KilodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond), MicrodegreesCelsiusPerSecondTolerance);
@@ -251,20 +322,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = TemperatureChangeRate.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(TemperatureChangeRate.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            var expectedUnit = TemperatureChangeRate.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                TemperatureChangeRate quantityToConvert = quantity;
+
+                TemperatureChangeRate convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<TemperatureChangeRateUnit> quantityToConvert = quantity;
+
+                IQuantity<TemperatureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<TemperatureChangeRateUnit> quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<TemperatureChangeRateUnit> quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -293,6 +453,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = TemperatureChangeRate.Parse("1 °C/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerHour, DegreesCelsiusPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = TemperatureChangeRate.Parse("1 °C/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
                 Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsed.Unit);
@@ -303,6 +470,48 @@ namespace UnitsNet.Tests
                 var parsed = TemperatureChangeRate.Parse("1 °C/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
                 Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 °F/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerHour, DegreesFahrenheitPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 °F/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerMinute, DegreesFahrenheitPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 °F/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerSecond, DegreesFahrenheitPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 K/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerHour, DegreesKelvinPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 K/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerMinute, DegreesKelvinPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 K/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerSecond, DegreesKelvinPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -364,6 +573,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(TemperatureChangeRate.TryParse("1 °C/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerHour, DegreesCelsiusPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerHour, parsed.Unit);
+            }
+
+            {
                 Assert.True(TemperatureChangeRate.TryParse("1 °C/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
                 Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsed.Unit);
@@ -373,6 +588,42 @@ namespace UnitsNet.Tests
                 Assert.True(TemperatureChangeRate.TryParse("1 °C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
                 Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 °F/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerHour, DegreesFahrenheitPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 °F/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerMinute, DegreesFahrenheitPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 °F/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerSecond, DegreesFahrenheitPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 K/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerHour, DegreesKelvinPerHourTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 K/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerMinute, DegreesKelvinPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerMinute, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 K/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesKelvinPerSecond, DegreesKelvinPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerSecond, parsed.Unit);
             }
 
             {
@@ -407,124 +658,206 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("c°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("da°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("d°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("°C/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("h°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("k°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("µ°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("m°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureChangeRate.ParseUnit("n°C/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("c°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("da°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("en-US", "°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("en-US", "°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("en-US", "K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("en-US", "K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("en-US", "K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("d°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("en-US", "°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("en-US", "°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("en-US", "K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("en-US", "K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("en-US", "K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("°C/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsedUnit);
-            }
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("h°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("en-US", "°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("en-US", "°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("en-US", "K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("en-US", "K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("en-US", "K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("k°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("µ°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("m°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(TemperatureChangeRate.TryParseUnit("n°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/h", TemperatureChangeRateUnit.DegreeCelsiusPerHour)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°F/h", TemperatureChangeRateUnit.DegreeFahrenheitPerHour)]
+        [InlineData("en-US", "°F/min", TemperatureChangeRateUnit.DegreeFahrenheitPerMinute)]
+        [InlineData("en-US", "°F/s", TemperatureChangeRateUnit.DegreeFahrenheitPerSecond)]
+        [InlineData("en-US", "K/h", TemperatureChangeRateUnit.DegreeKelvinPerHour)]
+        [InlineData("en-US", "K/min", TemperatureChangeRateUnit.DegreeKelvinPerMinute)]
+        [InlineData("en-US", "K/s", TemperatureChangeRateUnit.DegreeKelvinPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -552,12 +885,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = TemperatureChangeRate.Units.First(u => u != TemperatureChangeRate.BaseUnit);
-
-            var quantity = TemperatureChangeRate.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(TemperatureChangeRate.Units.Where(u => u != TemperatureChangeRate.BaseUnit), fromUnit =>
+            {
+                var quantity = TemperatureChangeRate.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -569,6 +902,25 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(TemperatureChangeRateUnit unit)
+        {
+            var quantity = TemperatureChangeRate.From(3, TemperatureChangeRate.BaseUnit);
+            TemperatureChangeRate expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<TemperatureChangeRateUnit> quantityToConvert = quantity;
+                IQuantity<TemperatureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {
@@ -576,8 +928,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(degreecelsiuspersecond.CentidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(degreecelsiuspersecond.DecadegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(degreecelsiuspersecond.DecidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerHour(degreecelsiuspersecond.DegreesCelsiusPerHour).DegreesCelsiusPerSecond, DegreesCelsiusPerHourTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerMinute(degreecelsiuspersecond.DegreesCelsiusPerMinute).DegreesCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerSecond(degreecelsiuspersecond.DegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesFahrenheitPerHour(degreecelsiuspersecond.DegreesFahrenheitPerHour).DegreesCelsiusPerSecond, DegreesFahrenheitPerHourTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesFahrenheitPerMinute(degreecelsiuspersecond.DegreesFahrenheitPerMinute).DegreesCelsiusPerSecond, DegreesFahrenheitPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesFahrenheitPerSecond(degreecelsiuspersecond.DegreesFahrenheitPerSecond).DegreesCelsiusPerSecond, DegreesFahrenheitPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesKelvinPerHour(degreecelsiuspersecond.DegreesKelvinPerHour).DegreesCelsiusPerSecond, DegreesKelvinPerHourTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesKelvinPerMinute(degreecelsiuspersecond.DegreesKelvinPerMinute).DegreesCelsiusPerSecond, DegreesKelvinPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesKelvinPerSecond(degreecelsiuspersecond.DegreesKelvinPerSecond).DegreesCelsiusPerSecond, DegreesKelvinPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(degreecelsiuspersecond.HectodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(degreecelsiuspersecond.KilodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(degreecelsiuspersecond.MicrodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
@@ -716,7 +1075,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -729,24 +1088,24 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 c°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 da°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 d°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 °C/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).ToString());
-                Assert.Equal("1 °C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 h°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 k°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 µ°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 m°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).ToString());
-                Assert.Equal("1 n°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 c°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 da°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 d°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 °C/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour).ToString());
+            Assert.Equal("1 °C/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).ToString());
+            Assert.Equal("1 °C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 °F/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour).ToString());
+            Assert.Equal("1 °F/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute).ToString());
+            Assert.Equal("1 °F/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond).ToString());
+            Assert.Equal("1 K/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerHour).ToString());
+            Assert.Equal("1 K/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute).ToString());
+            Assert.Equal("1 K/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond).ToString());
+            Assert.Equal("1 h°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 k°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 µ°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 m°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).ToString());
+            Assert.Equal("1 n°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).ToString());
         }
 
         [Fact]
@@ -758,8 +1117,15 @@ namespace UnitsNet.Tests
             Assert.Equal("1 c°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).ToString(swedishCulture));
             Assert.Equal("1 da°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).ToString(swedishCulture));
             Assert.Equal("1 d°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 °C/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour).ToString(swedishCulture));
             Assert.Equal("1 °C/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).ToString(swedishCulture));
             Assert.Equal("1 °C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 °F/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour).ToString(swedishCulture));
+            Assert.Equal("1 °F/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 °F/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 K/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerHour).ToString(swedishCulture));
+            Assert.Equal("1 K/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 K/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond).ToString(swedishCulture));
             Assert.Equal("1 h°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).ToString(swedishCulture));
             Assert.Equal("1 k°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).ToString(swedishCulture));
             Assert.Equal("1 µ°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).ToString(swedishCulture));
@@ -770,19 +1136,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s1"));
-                Assert.Equal("0.12 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s2"));
-                Assert.Equal("0.123 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s1"));
+            Assert.Equal("0.12 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s2"));
+            Assert.Equal("0.123 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s4"));
         }
 
         [Fact]
@@ -805,7 +1163,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -955,6 +1313,13 @@ namespace UnitsNet.Tests
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

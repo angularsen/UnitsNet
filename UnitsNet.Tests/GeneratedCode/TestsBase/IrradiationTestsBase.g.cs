@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -123,18 +124,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new Irradiation(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Irradiation) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new Irradiation(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new Irradiation(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -241,20 +242,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = Irradiation.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(Irradiation.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+            var expectedUnit = Irradiation.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                Irradiation quantityToConvert = quantity;
+
+                Irradiation convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<IrradiationUnit> quantityToConvert = quantity;
+
+                IQuantity<IrradiationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<IrradiationUnit> quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<IrradiationUnit> quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -384,113 +474,142 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradiationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("Btu/ft²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.BtuPerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("J/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.JoulePerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("J/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.JoulePerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("J/mm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.JoulePerSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("kBtu/ft²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.KilobtuPerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("kJ/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.KilojoulePerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("kWh/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.KilowattHourPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("mJ/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.MillijoulePerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiation.ParseUnit("Wh/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradiationUnit expectedUnit)
         {
-            {
-                Assert.True(Irradiation.TryParseUnit("Btu/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.BtuPerSquareFoot, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("J/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.JoulePerSquareCentimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("J/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.JoulePerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("J/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.JoulePerSquareMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradiationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("kBtu/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.KilobtuPerSquareFoot, parsedUnit);
-            }
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradiationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("kJ/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.KilojoulePerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiation.TryParseUnit("kWh/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.KilowattHourPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiation.TryParseUnit("mJ/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.MillijoulePerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiation.TryParseUnit("Wh/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            Assert.True(Irradiation.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -518,12 +637,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IrradiationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Irradiation.Units.First(u => u != Irradiation.BaseUnit);
-
-            var quantity = Irradiation.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Irradiation.Units.Where(u => u != Irradiation.BaseUnit), fromUnit =>
+            {
+                var quantity = Irradiation.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -533,6 +652,25 @@ namespace UnitsNet.Tests
             var quantity = default(Irradiation);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(IrradiationUnit unit)
+        {
+            var quantity = Irradiation.From(3, Irradiation.BaseUnit);
+            Irradiation expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<IrradiationUnit> quantityToConvert = quantity;
+                IQuantity<IrradiationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -681,7 +819,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -694,23 +832,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString());
-                Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString());
-                Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString());
-                Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString());
-                Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString());
-                Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString());
-                Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString());
-                Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString());
-                Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString());
+            Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString());
+            Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString());
+            Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString());
+            Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString());
+            Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString());
+            Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString());
+            Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString());
+            Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString());
         }
 
         [Fact]
@@ -733,19 +864,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1"));
+            Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
+            Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
         }
 
         [Fact]
@@ -768,7 +891,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -918,6 +1041,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Irradiance :
         IArithmeticQuantity<Irradiance, IrradianceUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Irradiance, Irradiance, bool>,
+        IParsable<Irradiance>,
+#endif
         IComparable,
         IComparable<Irradiance>,
         IConvertible,
@@ -72,15 +78,15 @@ namespace UnitsNet
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second), "Irradiance"),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "Irradiance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -109,13 +115,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Irradiance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -315,7 +316,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(IrradianceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -501,7 +502,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Irradiance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Irradiance, IrradianceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Irradiance, IrradianceUnit>(
                 str,
                 provider,
                 From);
@@ -515,7 +516,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Irradiance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Irradiance result)
         {
             return TryParse(str, null, out result);
         }
@@ -530,9 +531,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Irradiance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Irradiance result)
         {
-            return QuantityParser.Default.TryParse<Irradiance, IrradianceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Irradiance, IrradianceUnit>(
                 str,
                 provider,
                 From,
@@ -565,11 +566,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static IrradianceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<IrradianceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<IrradianceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IrradianceUnit)"/>
-        public static bool TryParseUnit(string str, out IrradianceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out IrradianceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -584,9 +585,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out IrradianceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out IrradianceUnit unit)
         {
-            return UnitParser.Default.TryParse<IrradianceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<IrradianceUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -839,25 +840,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is IrradianceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -960,6 +943,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Irradiance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not IrradianceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -967,21 +966,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Irradiance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -995,6 +979,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -1003,7 +989,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1013,7 +999,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1024,7 +1010,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1105,7 +1091,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

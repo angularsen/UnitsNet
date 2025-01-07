@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -49,6 +48,10 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>,
         IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<DynamicViscosity, DynamicViscosity, bool>,
+        IParsable<DynamicViscosity>,
 #endif
         IComparable,
         IComparable<DynamicViscosity>,
@@ -80,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined, "DynamicViscosity"),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "DynamicViscosity"),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined, "DynamicViscosity"),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined, "DynamicViscosity"),
@@ -115,13 +118,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public DynamicViscosity(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -293,7 +291,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DynamicViscosityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -447,7 +445,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static DynamicViscosity Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<DynamicViscosity, DynamicViscosityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<DynamicViscosity, DynamicViscosityUnit>(
                 str,
                 provider,
                 From);
@@ -461,7 +459,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out DynamicViscosity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out DynamicViscosity result)
         {
             return TryParse(str, null, out result);
         }
@@ -476,9 +474,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out DynamicViscosity result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out DynamicViscosity result)
         {
-            return QuantityParser.Default.TryParse<DynamicViscosity, DynamicViscosityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<DynamicViscosity, DynamicViscosityUnit>(
                 str,
                 provider,
                 From,
@@ -511,11 +509,11 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DynamicViscosityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<DynamicViscosityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<DynamicViscosityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DynamicViscosityUnit)"/>
-        public static bool TryParseUnit(string str, out DynamicViscosityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out DynamicViscosityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -530,9 +528,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out DynamicViscosityUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DynamicViscosityUnit unit)
         {
-            return UnitParser.Default.TryParse<DynamicViscosityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<DynamicViscosityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -801,25 +799,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is DynamicViscosityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -914,6 +894,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public DynamicViscosity ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not DynamicViscosityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -921,21 +917,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public DynamicViscosity ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -949,6 +930,8 @@ namespace UnitsNet
 
         #endregion
 
+        #endregion
+
         #region ToString Methods
 
         /// <summary>
@@ -957,7 +940,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -967,7 +950,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -978,7 +961,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1059,7 +1042,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
