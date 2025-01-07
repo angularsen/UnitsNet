@@ -385,16 +385,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagnetizationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Magnetization.Units.First(u => u != Magnetization.BaseUnit);
-
-            var quantity = Magnetization.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Magnetization.Units.Where(u => u != Magnetization.BaseUnit), fromUnit =>
+            {
+                var quantity = Magnetization.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -404,6 +404,25 @@ namespace UnitsNet.Tests
             var quantity = default(Magnetization);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(MagnetizationUnit unit)
+        {
+            var quantity = Magnetization.From(3, Magnetization.BaseUnit);
+            Magnetization expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<MagnetizationUnit> quantityToConvert = quantity;
+                IQuantity<MagnetizationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -749,6 +768,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Magnetization.FromAmperesPerMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Magnetization.FromAmperesPerMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

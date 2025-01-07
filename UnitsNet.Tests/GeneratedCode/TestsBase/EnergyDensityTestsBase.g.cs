@@ -730,12 +730,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = EnergyDensity.Units.First(u => u != EnergyDensity.BaseUnit);
-
-            var quantity = EnergyDensity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(EnergyDensity.Units.Where(u => u != EnergyDensity.BaseUnit), fromUnit =>
+            {
+                var quantity = EnergyDensity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -745,6 +745,25 @@ namespace UnitsNet.Tests
             var quantity = default(EnergyDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(EnergyDensityUnit unit)
+        {
+            var quantity = EnergyDensity.From(3, EnergyDensity.BaseUnit);
+            EnergyDensity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<EnergyDensityUnit> quantityToConvert = quantity;
+                IQuantity<EnergyDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1124,6 +1143,13 @@ namespace UnitsNet.Tests
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

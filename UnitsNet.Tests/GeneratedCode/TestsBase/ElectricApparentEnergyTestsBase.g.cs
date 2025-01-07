@@ -451,12 +451,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricApparentEnergyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricApparentEnergy.Units.First(u => u != ElectricApparentEnergy.BaseUnit);
-
-            var quantity = ElectricApparentEnergy.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricApparentEnergy.Units.Where(u => u != ElectricApparentEnergy.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricApparentEnergy.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -466,6 +466,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricApparentEnergy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricApparentEnergyUnit unit)
+        {
+            var quantity = ElectricApparentEnergy.From(3, ElectricApparentEnergy.BaseUnit);
+            ElectricApparentEnergy expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricApparentEnergyUnit> quantityToConvert = quantity;
+                IQuantity<ElectricApparentEnergyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -818,6 +837,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricApparentEnergy.FromVoltampereHours(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricApparentEnergy.FromVoltampereHours(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
