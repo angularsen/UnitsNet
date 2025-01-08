@@ -152,7 +152,6 @@ namespace UnitsNet.Tests
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
             Assertion(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter, Quantity.From(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter));
             Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));
-            Assertion(3, VascularResistanceUnit.WoodUnit, Quantity.From(3, VascularResistanceUnit.WoodUnit));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));
             Assertion(3, VolumeUnit.UsTeaspoon, Quantity.From(3, VolumeUnit.UsTeaspoon));
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
@@ -286,7 +285,6 @@ namespace UnitsNet.Tests
             Assertion(Torque.Info, Torque.Zero);
             Assertion(TorquePerLength.Info, TorquePerLength.Zero);
             Assertion(Turbidity.Info, Turbidity.Zero);
-            Assertion(VascularResistance.Info, VascularResistance.Zero);
             Assertion(VitaminA.Info, VitaminA.Zero);
             Assertion(Volume.Info, Volume.Zero);
             Assertion(VolumeConcentration.Info, VolumeConcentration.Zero);
@@ -420,7 +418,6 @@ namespace UnitsNet.Tests
             Assertion(Torque.BaseDimensions, Torque.Zero);
             Assertion(TorquePerLength.BaseDimensions, TorquePerLength.Zero);
             Assertion(Turbidity.BaseDimensions, Turbidity.Zero);
-            Assertion(VascularResistance.BaseDimensions, VascularResistance.Zero);
             Assertion(VitaminA.BaseDimensions, VitaminA.Zero);
             Assertion(Volume.BaseDimensions, Volume.Zero);
             Assertion(VolumeConcentration.BaseDimensions, VolumeConcentration.Zero);
