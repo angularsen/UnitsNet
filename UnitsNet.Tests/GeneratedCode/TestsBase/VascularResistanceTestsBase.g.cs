@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VascularResistance.Parse("1 ЕГС", CultureInfo.GetCultureInfo("ru-RU"));
+                var parsed = VascularResistance.Parse("1 ГИЕ", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
                 Assert.Equal(VascularResistanceUnit.WoodUnit, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VascularResistance.TryParse("1 ЕГС", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                Assert.True(VascularResistance.TryParse("1 ГИЕ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
                 Assert.Equal(VascularResistanceUnit.WoodUnit, parsed.Unit);
             }
@@ -418,7 +418,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = VascularResistance.ParseUnit("ЕГС", CultureInfo.GetCultureInfo("ru-RU"));
+                var parsedUnit = VascularResistance.ParseUnit("ГИЕ", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VascularResistanceUnit.WoodUnit, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -484,7 +484,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VascularResistance.TryParseUnit("ЕГС", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.True(VascularResistance.TryParseUnit("ГИЕ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(VascularResistanceUnit.WoodUnit, parsedUnit);
             }
 
