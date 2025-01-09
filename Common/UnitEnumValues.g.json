@@ -1903,5 +1903,26 @@
     "MilligraySquareDecimeter": 17,
     "MilligraySquareMeter": 11,
     "MilligraySquareMillimeter": 12
+  },
+  "FluidResistance": {
+    "DyneSecondPerCentimeterToTheFifth": 6,
+    "MegapascalSecondPerCubicMeter": 7,
+    "MillimeterMercuryMinutePerCubicCentimeter": 3,
+    "MillimeterMercuryMinutePerCubicMeter": 5,
+    "MillimeterMercuryMinutePerLiter": 2,
+    "MillimeterMercuryMinutePerMilliliter": 9,
+    "MillimeterMercurySecondPerCubicCentimeter": 8,
+    "MillimeterMercurySecondPerCubicMeter": 10,
+    "MillimeterMercurySecondPerLiter": 4,
+    "MillimeterMercurySecondPerMilliliter": 1,
+    "PascalMinutePerCubicCentimeter": 19,
+    "PascalMinutePerCubicMeter": 16,
+    "PascalMinutePerLiter": 15,
+    "PascalMinutePerMilliliter": 12,
+    "PascalSecondPerCubicCentimeter": 18,
+    "PascalSecondPerCubicMeter": 13,
+    "PascalSecondPerLiter": 11,
+    "PascalSecondPerMilliliter": 20,
+    "WoodUnit": 17
   }
 }
