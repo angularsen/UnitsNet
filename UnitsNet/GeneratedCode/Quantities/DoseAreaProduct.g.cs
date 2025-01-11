@@ -367,7 +367,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DoseAreaProductUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -641,7 +641,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static DoseAreaProduct Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<DoseAreaProduct, DoseAreaProductUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<DoseAreaProduct, DoseAreaProductUnit>(
                 str,
                 provider,
                 From);
@@ -672,7 +672,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out DoseAreaProduct result)
         {
-            return QuantityParser.Default.TryParse<DoseAreaProduct, DoseAreaProductUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(
                 str,
                 provider,
                 From,
@@ -705,7 +705,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DoseAreaProductUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<DoseAreaProductUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<DoseAreaProductUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DoseAreaProductUnit)"/>
@@ -726,7 +726,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out DoseAreaProductUnit unit)
         {
-            return UnitParser.Default.TryParse<DoseAreaProductUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<DoseAreaProductUnit>(str, provider, out unit);
         }
 
         #endregion

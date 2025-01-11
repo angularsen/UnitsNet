@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -520,7 +521,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -533,18 +534,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 °/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.DegreePerSecondSquared).ToString());
-                Assert.Equal("1 rad/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared).ToString());
-                Assert.Equal("1 rpm/s", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).ToString());
-                Assert.Equal("1 r/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 °/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.DegreePerSecondSquared).ToString());
+            Assert.Equal("1 rad/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared).ToString());
+            Assert.Equal("1 rpm/s", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).ToString());
+            Assert.Equal("1 r/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).ToString());
         }
 
         [Fact]
@@ -562,19 +556,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s1"));
-                Assert.Equal("0.12 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s2"));
-                Assert.Equal("0.123 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s3"));
-                Assert.Equal("0.1235 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s1"));
+            Assert.Equal("0.12 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s2"));
+            Assert.Equal("0.123 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s3"));
+            Assert.Equal("0.1235 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s4"));
         }
 
         [Fact]

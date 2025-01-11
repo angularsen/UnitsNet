@@ -215,7 +215,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(LuminousFluxUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static LuminousFlux Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<LuminousFlux, LuminousFluxUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<LuminousFlux, LuminousFluxUnit>(
                 str,
                 provider,
                 From);
@@ -330,7 +330,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out LuminousFlux result)
         {
-            return QuantityParser.Default.TryParse<LuminousFlux, LuminousFluxUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<LuminousFlux, LuminousFluxUnit>(
                 str,
                 provider,
                 From,
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static LuminousFluxUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<LuminousFluxUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<LuminousFluxUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminousFluxUnit)"/>
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out LuminousFluxUnit unit)
         {
-            return UnitParser.Default.TryParse<LuminousFluxUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<LuminousFluxUnit>(str, provider, out unit);
         }
 
         #endregion

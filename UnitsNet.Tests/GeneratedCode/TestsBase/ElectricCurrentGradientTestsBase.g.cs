@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -601,7 +602,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -614,21 +615,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString());
-                Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString());
-                Assert.Equal("1 A/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMinute).ToString());
-                Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString());
-                Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString());
-                Assert.Equal("1 mA/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerMinute).ToString());
-                Assert.Equal("1 mA/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString());
+            Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString());
+            Assert.Equal("1 A/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMinute).ToString());
+            Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString());
+            Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString());
+            Assert.Equal("1 mA/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerMinute).ToString());
+            Assert.Equal("1 mA/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerSecond).ToString());
         }
 
         [Fact]
@@ -649,19 +643,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s1"));
-                Assert.Equal("0.12 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s2"));
-                Assert.Equal("0.123 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s3"));
-                Assert.Equal("0.1235 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s1"));
+            Assert.Equal("0.12 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s2"));
+            Assert.Equal("0.123 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s3"));
+            Assert.Equal("0.1235 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s4"));
         }
 
         [Fact]

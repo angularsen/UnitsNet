@@ -32,9 +32,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double FaradsInOneFarad => 1;
 
         protected override double MillifaradsInOneFarad => 1e3;
+
         protected override double MicrofaradsInOneFarad => 1e6;
 
         protected override double NanofaradsInOneFarad => 1e9;
+
         protected override double PicofaradsInOneFarad => 1e12;
 
         protected override double KilofaradsInOneFarad => 1e-3;

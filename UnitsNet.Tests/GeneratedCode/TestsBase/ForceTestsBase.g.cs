@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1295,7 +1296,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -1308,29 +1309,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString());
-                Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString());
-                Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString());
-                Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString());
-                Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString());
-                Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString());
-                Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString());
-                Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString());
-                Assert.Equal("1 mN", new Force(1, ForceUnit.Millinewton).ToString());
-                Assert.Equal("1 N", new Force(1, ForceUnit.Newton).ToString());
-                Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString());
-                Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString());
-                Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString());
-                Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString());
-                Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString());
+            Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString());
+            Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString());
+            Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString());
+            Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString());
+            Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString());
+            Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString());
+            Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString());
+            Assert.Equal("1 mN", new Force(1, ForceUnit.Millinewton).ToString());
+            Assert.Equal("1 N", new Force(1, ForceUnit.Newton).ToString());
+            Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString());
+            Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString());
+            Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString());
+            Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString());
+            Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString());
         }
 
         [Fact]
@@ -1359,19 +1353,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N", new Force(0.123456, ForceUnit.Newton).ToString("s1"));
-                Assert.Equal("0.12 N", new Force(0.123456, ForceUnit.Newton).ToString("s2"));
-                Assert.Equal("0.123 N", new Force(0.123456, ForceUnit.Newton).ToString("s3"));
-                Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N", new Force(0.123456, ForceUnit.Newton).ToString("s1"));
+            Assert.Equal("0.12 N", new Force(0.123456, ForceUnit.Newton).ToString("s2"));
+            Assert.Equal("0.123 N", new Force(0.123456, ForceUnit.Newton).ToString("s3"));
+            Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4"));
         }
 
         [Fact]

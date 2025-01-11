@@ -9,7 +9,6 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitParserTests
     {
         [Theory]
@@ -31,7 +30,7 @@ namespace UnitsNet.Tests
         {
             var abbreviation = "years";
             var expected = DurationUnit.Year365;
-            var parser = UnitParser.Default;
+            var parser = UnitsNetSetup.Default.UnitParser;
 
             var actual = parser.Parse<DurationUnit>(abbreviation);
 
@@ -43,7 +42,7 @@ namespace UnitsNet.Tests
         {
             var abbreviation = "Years";
             var expected = DurationUnit.Year365;
-            var parser = UnitParser.Default;
+            var parser = UnitsNetSetup.Default.UnitParser;
 
             var actual = parser.Parse<DurationUnit>(abbreviation);
 
@@ -60,7 +59,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
-            Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
+            Assert.Throws<UnitNotFoundException>(() => UnitsNetSetup.Default.UnitParser.Parse<AreaUnit>("nonexistingunit"));
         }
 
         [Theory]
@@ -78,7 +77,7 @@ namespace UnitsNet.Tests
         [InlineData("kg·s^-1·m^-2", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
         public void Parse_CanParseUnitsWithPowers(string unitAbbreviation, Type unitType, Enum resultUnitType)
         {
-            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
+            Assert.Equal(resultUnitType, UnitsNetSetup.Default.UnitParser.Parse(unitAbbreviation, unitType));
         }
 
         [Theory]
@@ -87,7 +86,7 @@ namespace UnitsNet.Tests
         [InlineData("kg·s⁻¹*m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
         public void Parse_CanParseMultiplySigns(string unitAbbreviation, Type unitType, Enum resultUnitType)
         {
-            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
+            Assert.Equal(resultUnitType, UnitsNetSetup.Default.UnitParser.Parse(unitAbbreviation, unitType));
         }
 
         [Theory]
@@ -97,14 +96,14 @@ namespace UnitsNet.Tests
         [InlineData("   k   g   ·   s   ⁻   ¹   ·   m   ⁻   ²   ", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
         public void Parse_CanParseWithWithspacesInUnit(string unitAbbreviation, Type unitType, Enum resultUnitType)
         {
-            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
+            Assert.Equal(resultUnitType, UnitsNetSetup.Default.UnitParser.Parse(unitAbbreviation, unitType));
         }
 
         [Fact]
         public void Parse_AmbiguousUnitsThrowsException()
         {
             // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt"));
+            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("pt"));
 
             // Act 2
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt", CultureInfo.InvariantCulture));
@@ -123,7 +122,7 @@ namespace UnitsNet.Tests
         [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
         public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
         {
-            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, CultureInfo.GetCultureInfo(cultureName)));
+            Assert.Equal(expectedUnit, UnitsNetSetup.Default.UnitParser.Parse<MassUnit>(str, CultureInfo.GetCultureInfo(cultureName)));
         }
 
         [Fact]
@@ -137,5 +136,13 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
         }
+
+        [Fact]
+        public void Parse_LengthUnit_MM_ThrowsExceptionDescribingTheAmbiguity()
+        {
+            var ex = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("MM"));
+            Assert.Contains("Cannot parse \"MM\" since it matched multiple units [Millimeter, Megameter] with case-insensitive comparison, but zero units with case-sensitive comparison. To resolve the ambiguity, pass a unit abbreviation with the correct casing.", ex.Message);
+        }
+
     }
 }

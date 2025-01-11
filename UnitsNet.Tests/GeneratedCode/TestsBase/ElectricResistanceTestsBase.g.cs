@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -43,6 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double MegaohmsInOneOhm { get; }
         protected abstract double MicroohmsInOneOhm { get; }
         protected abstract double MilliohmsInOneOhm { get; }
+        protected abstract double NanoohmsInOneOhm { get; }
         protected abstract double OhmsInOneOhm { get; }
         protected abstract double TeraohmsInOneOhm { get; }
 
@@ -52,6 +54,7 @@ namespace UnitsNet.Tests
         protected virtual double MegaohmsTolerance { get { return 1e-5; } }
         protected virtual double MicroohmsTolerance { get { return 1e-5; } }
         protected virtual double MilliohmsTolerance { get { return 1e-5; } }
+        protected virtual double NanoohmsTolerance { get { return 1e-5; } }
         protected virtual double OhmsTolerance { get { return 1e-5; } }
         protected virtual double TeraohmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -65,6 +68,7 @@ namespace UnitsNet.Tests
                 ElectricResistanceUnit.Megaohm => (MegaohmsInOneOhm, MegaohmsTolerance),
                 ElectricResistanceUnit.Microohm => (MicroohmsInOneOhm, MicroohmsTolerance),
                 ElectricResistanceUnit.Milliohm => (MilliohmsInOneOhm, MilliohmsTolerance),
+                ElectricResistanceUnit.Nanoohm => (NanoohmsInOneOhm, NanoohmsTolerance),
                 ElectricResistanceUnit.Ohm => (OhmsInOneOhm, OhmsTolerance),
                 ElectricResistanceUnit.Teraohm => (TeraohmsInOneOhm, TeraohmsTolerance),
                 _ => throw new NotSupportedException()
@@ -78,6 +82,7 @@ namespace UnitsNet.Tests
             new object[] { ElectricResistanceUnit.Megaohm },
             new object[] { ElectricResistanceUnit.Microohm },
             new object[] { ElectricResistanceUnit.Milliohm },
+            new object[] { ElectricResistanceUnit.Nanoohm },
             new object[] { ElectricResistanceUnit.Ohm },
             new object[] { ElectricResistanceUnit.Teraohm },
         };
@@ -147,6 +152,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.Megaohms, MegaohmsTolerance);
             AssertEx.EqualTolerance(MicroohmsInOneOhm, ohm.Microohms, MicroohmsTolerance);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, ohm.Milliohms, MilliohmsTolerance);
+            AssertEx.EqualTolerance(NanoohmsInOneOhm, ohm.Nanoohms, NanoohmsTolerance);
             AssertEx.EqualTolerance(OhmsInOneOhm, ohm.Ohms, OhmsTolerance);
             AssertEx.EqualTolerance(TeraohmsInOneOhm, ohm.Teraohms, TeraohmsTolerance);
         }
@@ -174,13 +180,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity04.Milliohms, MilliohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Milliohm, quantity04.Unit);
 
-            var quantity05 = ElectricResistance.From(1, ElectricResistanceUnit.Ohm);
-            AssertEx.EqualTolerance(1, quantity05.Ohms, OhmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Ohm, quantity05.Unit);
+            var quantity05 = ElectricResistance.From(1, ElectricResistanceUnit.Nanoohm);
+            AssertEx.EqualTolerance(1, quantity05.Nanoohms, NanoohmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Nanoohm, quantity05.Unit);
 
-            var quantity06 = ElectricResistance.From(1, ElectricResistanceUnit.Teraohm);
-            AssertEx.EqualTolerance(1, quantity06.Teraohms, TeraohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Teraohm, quantity06.Unit);
+            var quantity06 = ElectricResistance.From(1, ElectricResistanceUnit.Ohm);
+            AssertEx.EqualTolerance(1, quantity06.Ohms, OhmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Ohm, quantity06.Unit);
+
+            var quantity07 = ElectricResistance.From(1, ElectricResistanceUnit.Teraohm);
+            AssertEx.EqualTolerance(1, quantity07.Teraohms, TeraohmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Teraohm, quantity07.Unit);
 
         }
 
@@ -206,6 +216,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Megaohm), MegaohmsTolerance);
             AssertEx.EqualTolerance(MicroohmsInOneOhm, ohm.As(ElectricResistanceUnit.Microohm), MicroohmsTolerance);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, ohm.As(ElectricResistanceUnit.Milliohm), MilliohmsTolerance);
+            AssertEx.EqualTolerance(NanoohmsInOneOhm, ohm.As(ElectricResistanceUnit.Nanoohm), NanoohmsTolerance);
             AssertEx.EqualTolerance(OhmsInOneOhm, ohm.As(ElectricResistanceUnit.Ohm), OhmsTolerance);
             AssertEx.EqualTolerance(TeraohmsInOneOhm, ohm.As(ElectricResistanceUnit.Teraohm), TeraohmsTolerance);
         }
@@ -267,6 +278,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = ElectricResistance.Parse("1 nΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanoohms, NanoohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Nanoohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = ElectricResistance.Parse("1 Ω", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Ohms, OhmsTolerance);
                 Assert.Equal(ElectricResistanceUnit.Ohm, parsed.Unit);
@@ -300,6 +318,12 @@ namespace UnitsNet.Tests
                 Assert.True(ElectricResistance.TryParse("1 µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microohms, MicroohmsTolerance);
                 Assert.Equal(ElectricResistanceUnit.Microohm, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParse("1 nΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanoohms, NanoohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Nanoohm, parsed.Unit);
             }
 
             {
@@ -351,6 +375,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = ElectricResistance.ParseUnit("nΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Nanoohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = ElectricResistance.ParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricResistanceUnit.Ohm, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -379,6 +409,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(ElectricResistance.TryParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricResistanceUnit.Microohm, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParseUnit("nΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricResistanceUnit.Nanoohm, parsedUnit);
             }
 
             {
@@ -444,6 +479,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricResistance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromMicroohms(ohm.Microohms).Ohms, MicroohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance.FromNanoohms(ohm.Nanoohms).Ohms, NanoohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromTeraohms(ohm.Teraohms).Ohms, TeraohmsTolerance);
         }
@@ -579,7 +615,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -592,21 +628,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString());
-                Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString());
-                Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString());
-                Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString());
-                Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString());
-                Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString());
-                Assert.Equal("1 TΩ", new ElectricResistance(1, ElectricResistanceUnit.Teraohm).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString());
+            Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString());
+            Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString());
+            Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString());
+            Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString());
+            Assert.Equal("1 nΩ", new ElectricResistance(1, ElectricResistanceUnit.Nanoohm).ToString());
+            Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString());
+            Assert.Equal("1 TΩ", new ElectricResistance(1, ElectricResistanceUnit.Teraohm).ToString());
         }
 
         [Fact]
@@ -620,6 +650,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString(swedishCulture));
             Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString(swedishCulture));
             Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString(swedishCulture));
+            Assert.Equal("1 nΩ", new ElectricResistance(1, ElectricResistanceUnit.Nanoohm).ToString(swedishCulture));
             Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString(swedishCulture));
             Assert.Equal("1 TΩ", new ElectricResistance(1, ElectricResistanceUnit.Teraohm).ToString(swedishCulture));
         }
@@ -627,19 +658,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s1"));
-                Assert.Equal("0.12 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s2"));
-                Assert.Equal("0.123 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s3"));
-                Assert.Equal("0.1235 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s1"));
+            Assert.Equal("0.12 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s2"));
+            Assert.Equal("0.123 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s3"));
+            Assert.Equal("0.1235 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s4"));
         }
 
         [Fact]

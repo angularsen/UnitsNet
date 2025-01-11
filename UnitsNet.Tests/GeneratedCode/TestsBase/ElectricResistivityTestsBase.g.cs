@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -802,7 +803,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -815,28 +816,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmCentimeter).ToString());
-                Assert.Equal("1 kΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmMeter).ToString());
-                Assert.Equal("1 MΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmCentimeter).ToString());
-                Assert.Equal("1 MΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmMeter).ToString());
-                Assert.Equal("1 µΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmCentimeter).ToString());
-                Assert.Equal("1 µΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmMeter).ToString());
-                Assert.Equal("1 mΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmCentimeter).ToString());
-                Assert.Equal("1 mΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmMeter).ToString());
-                Assert.Equal("1 nΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmCentimeter).ToString());
-                Assert.Equal("1 nΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmMeter).ToString());
-                Assert.Equal("1 Ω·cm", new ElectricResistivity(1, ElectricResistivityUnit.OhmCentimeter).ToString());
-                Assert.Equal("1 Ω·m", new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter).ToString());
-                Assert.Equal("1 pΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmCentimeter).ToString());
-                Assert.Equal("1 pΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmCentimeter).ToString());
+            Assert.Equal("1 kΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmMeter).ToString());
+            Assert.Equal("1 MΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmCentimeter).ToString());
+            Assert.Equal("1 MΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmMeter).ToString());
+            Assert.Equal("1 µΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmCentimeter).ToString());
+            Assert.Equal("1 µΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmMeter).ToString());
+            Assert.Equal("1 mΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmCentimeter).ToString());
+            Assert.Equal("1 mΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmMeter).ToString());
+            Assert.Equal("1 nΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmCentimeter).ToString());
+            Assert.Equal("1 nΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmMeter).ToString());
+            Assert.Equal("1 Ω·cm", new ElectricResistivity(1, ElectricResistivityUnit.OhmCentimeter).ToString());
+            Assert.Equal("1 Ω·m", new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter).ToString());
+            Assert.Equal("1 pΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmCentimeter).ToString());
+            Assert.Equal("1 pΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmMeter).ToString());
         }
 
         [Fact]
@@ -864,19 +858,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s1"));
-                Assert.Equal("0.12 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s2"));
-                Assert.Equal("0.123 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s3"));
-                Assert.Equal("0.1235 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s1"));
+            Assert.Equal("0.12 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s2"));
+            Assert.Equal("0.123 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s3"));
+            Assert.Equal("0.1235 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s4"));
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -968,7 +969,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -981,34 +982,27 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerHour).ToString());
-                Assert.Equal("1 kV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond).ToString());
-                Assert.Equal("1 kV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMinute).ToString());
-                Assert.Equal("1 kV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerSecond).ToString());
-                Assert.Equal("1 MV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerHour).ToString());
-                Assert.Equal("1 MV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond).ToString());
-                Assert.Equal("1 MV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMinute).ToString());
-                Assert.Equal("1 MV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerSecond).ToString());
-                Assert.Equal("1 µV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerHour).ToString());
-                Assert.Equal("1 µV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond).ToString());
-                Assert.Equal("1 µV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMinute).ToString());
-                Assert.Equal("1 µV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerSecond).ToString());
-                Assert.Equal("1 mV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerHour).ToString());
-                Assert.Equal("1 mV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond).ToString());
-                Assert.Equal("1 mV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMinute).ToString());
-                Assert.Equal("1 mV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerSecond).ToString());
-                Assert.Equal("1 V/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerHour).ToString());
-                Assert.Equal("1 V/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMicrosecond).ToString());
-                Assert.Equal("1 V/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMinute).ToString());
-                Assert.Equal("1 V/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerHour).ToString());
+            Assert.Equal("1 kV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond).ToString());
+            Assert.Equal("1 kV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMinute).ToString());
+            Assert.Equal("1 kV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerSecond).ToString());
+            Assert.Equal("1 MV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerHour).ToString());
+            Assert.Equal("1 MV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond).ToString());
+            Assert.Equal("1 MV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMinute).ToString());
+            Assert.Equal("1 MV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerSecond).ToString());
+            Assert.Equal("1 µV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerHour).ToString());
+            Assert.Equal("1 µV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond).ToString());
+            Assert.Equal("1 µV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMinute).ToString());
+            Assert.Equal("1 µV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerSecond).ToString());
+            Assert.Equal("1 mV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerHour).ToString());
+            Assert.Equal("1 mV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond).ToString());
+            Assert.Equal("1 mV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMinute).ToString());
+            Assert.Equal("1 mV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerSecond).ToString());
+            Assert.Equal("1 V/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerHour).ToString());
+            Assert.Equal("1 V/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMicrosecond).ToString());
+            Assert.Equal("1 V/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMinute).ToString());
+            Assert.Equal("1 V/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString());
         }
 
         [Fact]
@@ -1042,19 +1036,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s1"));
-                Assert.Equal("0.12 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s2"));
-                Assert.Equal("0.123 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s1"));
+            Assert.Equal("0.12 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s2"));
+            Assert.Equal("0.123 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s4"));
         }
 
         [Fact]

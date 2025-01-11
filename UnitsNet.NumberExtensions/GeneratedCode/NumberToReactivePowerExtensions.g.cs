@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
     /// <summary>
     /// A number to ReactivePower Extensions
     /// </summary>
+    [Obsolete("ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.")]
     public static class NumberToReactivePowerExtensions
     {
         /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.")]
         public static ReactivePower GigavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
             => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.")]
         public static ReactivePower KilovoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
             => ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.")]
         public static ReactivePower MegavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -57,6 +61,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
             => ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.")]
         public static ReactivePower VoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

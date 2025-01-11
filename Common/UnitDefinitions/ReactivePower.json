@@ -2,6 +2,8 @@
   "Name": "ReactivePower",
   "BaseUnit": "VoltampereReactive",
   "XmlDocSummary": "Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.",
+  "XmlDocRemarks": "<c>ReactivePower</c> has been renamed to <c>ElectricReactivePower</c>, and will be removed in a later major version.",
+  "ObsoleteText": "ReactivePower has been renamed to ElectricReactivePower, and will be removed in a later major version.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,

@@ -242,11 +242,12 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-
+            // Act
+            using var _ = new CultureScope(Culture);
             string convertedQuantityCurrentCulture = (string)converter.ConvertTo(length, typeof(string))!;
             string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string))!;
 
+            // Assert
             Assert.Equal("1 m", convertedQuantityCurrentCulture);
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
@@ -259,8 +260,9 @@ namespace UnitsNet.Tests
             QuantityTypeConverter<Length> converter = new();
             var attributes = useDisplayAsAttribute ? new Attribute[] { new DisplayAsUnitAttribute(Units.LengthUnit.Meter) } : Array.Empty<Attribute>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", attributes);
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-AT"); // uses comma as decimal separator
-            CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture; // uses dot as decimal separator
+            using var _ = new CultureScope(
+                culture: CultureInfo.GetCultureInfo("de-AT"), // uses comma as decimal separator
+                uiCulture: CultureInfo.InvariantCulture); // uses dot as decimal separator
             Length length = Length.FromMeters(1.5);
             string expectedResult = length.ToString(CultureInfo.CurrentCulture);
 

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -566,7 +567,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -579,20 +580,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString());
-                Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
-                Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString());
-                Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString());
-                Assert.Equal("1 ppt", new Ratio(1, RatioUnit.PartPerTrillion).ToString());
-                Assert.Equal("1 %", new Ratio(1, RatioUnit.Percent).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString());
+            Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
+            Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString());
+            Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString());
+            Assert.Equal("1 ppt", new Ratio(1, RatioUnit.PartPerTrillion).ToString());
+            Assert.Equal("1 %", new Ratio(1, RatioUnit.Percent).ToString());
         }
 
         [Fact]
@@ -612,19 +606,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
+            Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
+            Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
+            Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
         }
 
         [Fact]

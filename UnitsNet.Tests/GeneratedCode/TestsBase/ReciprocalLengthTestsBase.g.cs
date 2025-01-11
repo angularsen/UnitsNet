@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -946,7 +947,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
@@ -959,24 +960,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseCentimeter).ToString());
-                Assert.Equal("1 ft⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseFoot).ToString());
-                Assert.Equal("1 in⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseInch).ToString());
-                Assert.Equal("1 m⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter).ToString());
-                Assert.Equal("1 µin⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMicroinch).ToString());
-                Assert.Equal("1 mil⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMil).ToString());
-                Assert.Equal("1 mi⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMile).ToString());
-                Assert.Equal("1 mm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMillimeter).ToString());
-                Assert.Equal("1 ftUS⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseUsSurveyFoot).ToString());
-                Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseCentimeter).ToString());
+            Assert.Equal("1 ft⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseFoot).ToString());
+            Assert.Equal("1 in⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseInch).ToString());
+            Assert.Equal("1 m⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter).ToString());
+            Assert.Equal("1 µin⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMicroinch).ToString());
+            Assert.Equal("1 mil⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMil).ToString());
+            Assert.Equal("1 mi⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMile).ToString());
+            Assert.Equal("1 mm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMillimeter).ToString());
+            Assert.Equal("1 ftUS⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseUsSurveyFoot).ToString());
+            Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString());
         }
 
         [Fact]
@@ -1000,19 +994,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s1"));
-                Assert.Equal("0.12 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s2"));
-                Assert.Equal("0.123 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s3"));
-                Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s1"));
+            Assert.Equal("0.12 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s2"));
+            Assert.Equal("0.123 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s3"));
+            Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4"));
         }
 
         [Fact]

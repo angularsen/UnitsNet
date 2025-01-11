@@ -73,7 +73,7 @@ public sealed class UnitsNetSetup
     /// <summary>
     ///     Parses quantities from strings, such as parsing <see cref="Mass" /> from "1.2 kg".
     /// </summary>
-    internal QuantityParser QuantityParser { get; }
+    public QuantityParser QuantityParser { get; }
 
     /// <summary>
     ///     The quantities and units that are loaded.

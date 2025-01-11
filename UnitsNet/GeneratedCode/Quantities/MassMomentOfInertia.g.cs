@@ -428,7 +428,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassMomentOfInertiaUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -782,7 +782,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassMomentOfInertia Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassMomentOfInertia, MassMomentOfInertiaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MassMomentOfInertia, MassMomentOfInertiaUnit>(
                 str,
                 provider,
                 From);
@@ -813,7 +813,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MassMomentOfInertia result)
         {
-            return QuantityParser.Default.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(
                 str,
                 provider,
                 From,
@@ -846,7 +846,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassMomentOfInertiaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassMomentOfInertiaUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassMomentOfInertiaUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassMomentOfInertiaUnit)"/>
@@ -867,7 +867,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MassMomentOfInertiaUnit unit)
         {
-            return UnitParser.Default.TryParse<MassMomentOfInertiaUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassMomentOfInertiaUnit>(str, provider, out unit);
         }
 
         #endregion

@@ -252,7 +252,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(WarpingMomentOfInertiaUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -386,7 +386,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static WarpingMomentOfInertia Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
                 str,
                 provider,
                 From);
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out WarpingMomentOfInertia result)
         {
-            return QuantityParser.Default.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
                 str,
                 provider,
                 From,
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static WarpingMomentOfInertiaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<WarpingMomentOfInertiaUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<WarpingMomentOfInertiaUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.WarpingMomentOfInertiaUnit)"/>
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out WarpingMomentOfInertiaUnit unit)
         {
-            return UnitParser.Default.TryParse<WarpingMomentOfInertiaUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<WarpingMomentOfInertiaUnit>(str, provider, out unit);
         }
 
         #endregion

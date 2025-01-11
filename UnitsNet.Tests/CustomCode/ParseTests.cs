@@ -15,7 +15,6 @@ namespace UnitsNet.Tests
     ///     reasonable to assume that testing one unit class would cover
     ///     all of them. Obviously, that can change in the future.
     /// </remarks>
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class ParseTests
     {
         [Theory]

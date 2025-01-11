@@ -35,19 +35,21 @@ namespace UnitsNet
         private readonly UnitParser _unitParser;
 
         /// <summary>
-        ///     The default instance of <see cref="QuantityParser"/>, which uses <see cref="UnitAbbreviationsCache.Default"/> unit abbreviations.
+        ///     The default singleton instance for parsing quantities.
         /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.QuantityParser instead.")]
+        /// <remarks>
+        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.QuantityParser"/>.
+        /// </remarks>
         public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
 
         /// <summary>
         ///     Creates an instance of <see cref="QuantityParser"/>, optionally specifying an <see cref="UnitAbbreviationsCache"/>
         ///     with unit abbreviations to use when parsing.
         /// </summary>
-        /// <param name="unitAbbreviationsCache">(Optional) The unit abbreviations cache, or specify <c>null</c> to use <see cref="UnitAbbreviationsCache.Default"/>.</param>
+        /// <param name="unitAbbreviationsCache">(Optional) The unit abbreviations cache, or specify <c>null</c> to use <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitAbbreviations"/>.</param>
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache = null)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitsNetSetup.Default.UnitAbbreviations;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
         }
 
