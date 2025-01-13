@@ -267,7 +267,28 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = SpecificEntropy.Parse("1 Btu/(lb·°F)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = SpecificEntropy.Parse("1 Btu/(lbm·°F)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = SpecificEntropy.Parse("1 cal/g.K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = SpecificEntropy.Parse("1 cal/(g·K)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -281,7 +302,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = SpecificEntropy.Parse("1 J/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramDegreeCelsius, JoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = SpecificEntropy.Parse("1 J/kg.K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = SpecificEntropy.Parse("1 J/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -295,7 +330,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = SpecificEntropy.Parse("1 kcal/(g·K)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerGramKelvin, KilocaloriesPerGramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = SpecificEntropy.Parse("1 kJ/kg.C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = SpecificEntropy.Parse("1 kJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
                 Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -309,6 +358,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = SpecificEntropy.Parse("1 kJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = SpecificEntropy.Parse("1 MJ/kg.C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsed.Unit);
@@ -316,7 +372,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = SpecificEntropy.Parse("1 MJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = SpecificEntropy.Parse("1 MJ/kg.K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = SpecificEntropy.Parse("1 MJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -339,7 +409,25 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParse("1 Btu/(lb·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsed.Unit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParse("1 Btu/(lbm·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsed.Unit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParse("1 cal/g.K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsed.Unit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParse("1 cal/(g·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsed.Unit);
             }
@@ -351,7 +439,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParse("1 J/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramDegreeCelsius, JoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, parsed.Unit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParse("1 J/kg.K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsed.Unit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParse("1 J/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsed.Unit);
             }
@@ -363,7 +463,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParse("1 kcal/(g·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerGramKelvin, KilocaloriesPerGramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, parsed.Unit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParse("1 kJ/kg.C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsed.Unit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParse("1 kJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
                 Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsed.Unit);
             }
@@ -375,13 +487,31 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParse("1 kJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, parsed.Unit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParse("1 MJ/kg.C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsed.Unit);
             }
 
             {
+                Assert.True(SpecificEntropy.TryParse("1 MJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsed.Unit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParse("1 MJ/kg.K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsed.Unit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParse("1 MJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsed.Unit);
             }
@@ -405,7 +535,25 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = SpecificEntropy.ParseUnit("Btu/(lb·°F)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = SpecificEntropy.ParseUnit("Btu/(lbm·°F)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = SpecificEntropy.ParseUnit("cal/g.K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = SpecificEntropy.ParseUnit("cal/(g·K)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -417,7 +565,19 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = SpecificEntropy.ParseUnit("J/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = SpecificEntropy.ParseUnit("J/kg.K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = SpecificEntropy.ParseUnit("J/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -429,7 +589,19 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = SpecificEntropy.ParseUnit("kcal/(g·K)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = SpecificEntropy.ParseUnit("kJ/kg.C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = SpecificEntropy.ParseUnit("kJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -441,13 +613,31 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = SpecificEntropy.ParseUnit("kJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = SpecificEntropy.ParseUnit("MJ/kg.C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
+                var parsedUnit = SpecificEntropy.ParseUnit("MJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = SpecificEntropy.ParseUnit("MJ/kg.K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = SpecificEntropy.ParseUnit("MJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -467,7 +657,22 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParseUnit("Btu/(lb·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsedUnit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParseUnit("Btu/(lbm·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, parsedUnit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParseUnit("cal/g.K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsedUnit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParseUnit("cal/(g·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, parsedUnit);
             }
 
@@ -477,7 +682,17 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParseUnit("J/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, parsedUnit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParseUnit("J/kg.K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsedUnit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParseUnit("J/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, parsedUnit);
             }
 
@@ -487,7 +702,17 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParseUnit("kcal/(g·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, parsedUnit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParseUnit("kJ/kg.C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsedUnit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParseUnit("kJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, parsedUnit);
             }
 
@@ -497,12 +722,27 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(SpecificEntropy.TryParseUnit("kJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, parsedUnit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParseUnit("MJ/kg.C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsedUnit);
             }
 
             {
+                Assert.True(SpecificEntropy.TryParseUnit("MJ/(kg·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, parsedUnit);
+            }
+
+            {
                 Assert.True(SpecificEntropy.TryParseUnit("MJ/kg.K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsedUnit);
+            }
+
+            {
+                Assert.True(SpecificEntropy.TryParseUnit("MJ/(kg·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, parsedUnit);
             }
 
