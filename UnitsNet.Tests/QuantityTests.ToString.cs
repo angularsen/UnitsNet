@@ -24,7 +24,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.0069 dB", Level.FromDecibels(0.0069).ToString(culture));
                 Assert.Equal("0.011 kWh/kg", SpecificEnergy.FromKilowattHoursPerKilogram(0.011).ToString(culture));
                 //                Assert.Equal("0.1 MJ/kg·C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
-                Assert.Equal("0.1 MJ/kg.C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
+                Assert.Equal("0.1 MJ/(kg·°C)", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
                 Assert.Equal("5 cm", Length.FromCentimeters(5).ToString(culture));
             }
 

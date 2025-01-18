@@ -17,7 +17,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/kg.K", "J/(kg·K)" ]
+          "Abbreviations": [ "J/(kg·K)", "J/kg.K" ]
         }
       ]
     },
@@ -30,7 +30,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/kg.C", "J/(kg·°C)" ]
+          "Abbreviations": [ "J/(kg·°C)", "J/kg.C" ]
         }
       ]
     },
@@ -43,7 +43,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal/g.K", "cal/(g·K)" ]
+          "Abbreviations": [ "cal/(g·K)", "cal/g.K" ]
         }
       ]
     },
@@ -55,7 +55,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/lb·°F", "BTU/lbm·°F", "Btu/(lb·°F)", "Btu/(lbm·°F)" ]
+          "Abbreviations": [ "Btu/(lb·°F)", "Btu/(lbm·°F)", "BTU/lb·°F", "BTU/lbm·°F" ]
         }
       ]
     }
