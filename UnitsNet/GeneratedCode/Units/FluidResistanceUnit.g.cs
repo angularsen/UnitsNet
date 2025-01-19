@@ -27,7 +27,6 @@ namespace UnitsNet.Units
     {
         /// <remarks>https://en.wikipedia.org/wiki/Vascular_resistance</remarks>
         DyneSecondPerCentimeterToTheFifth = 6,
-        /// <remarks>https://en.wikipedia.org/wiki/Vascular_resistance</remarks>
         MegapascalSecondPerCubicMeter = 7,
         MillimeterMercuryMinutePerCubicCentimeter = 3,
         MillimeterMercuryMinutePerCubicMeter = 5,

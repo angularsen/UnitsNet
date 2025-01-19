@@ -103,6 +103,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -178,28 +179,6 @@
       ]
     },
     {
-      "SingularName": "MegapascalSecondPerCubicMeter",
-      "PluralName": "MegapascalSecondsPerCubicMeter",
-      "BaseUnits": {
-        "M": "Kilogram",
-        "L": "Meter",
-        "T": "Second"
-      },
-      "FromUnitToBaseFunc": "{x} * 1e6",
-      "FromBaseToUnitFunc": "{x} / 1e6",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Vascular_resistance",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "MPa·s/m³" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "МПа·с/м³" ]
-        }
-      ]
-    },
-    {
       "SingularName": "DyneSecondPerCentimeterToTheFifth",
       "PluralName": "DyneSecondsPerCentimeterToTheFifth",
       "BaseUnits": {
@@ -207,8 +186,8 @@
         "L": "Meter",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 1e-5",
-      "FromBaseToUnitFunc": "{x} / 1e-5",
+      "FromUnitToBaseFunc": "{x} * 1e5",
+      "FromBaseToUnitFunc": "{x} / 1e5",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Vascular_resistance",
       "Localization": [
         {

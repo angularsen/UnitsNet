@@ -71,7 +71,7 @@ namespace UnitsNet
                 new UnitInfo<FluidResistanceUnit>[]
                 {
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondsPerCentimeterToTheFifth", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
+                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondsPerCubicMeter", BaseUnits.Undefined, "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "MillimeterMercuryMinutesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "MillimeterMercuryMinutesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "MillimeterMercuryMinutesPerLiter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
@@ -359,7 +359,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(FluidResistanceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -623,7 +623,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static FluidResistance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<FluidResistance, FluidResistanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<FluidResistance, FluidResistanceUnit>(
                 str,
                 provider,
                 From);
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out FluidResistance result)
         {
-            return QuantityParser.Default.TryParse<FluidResistance, FluidResistanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<FluidResistance, FluidResistanceUnit>(
                 str,
                 provider,
                 From,
@@ -687,7 +687,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static FluidResistanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<FluidResistanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<FluidResistanceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.FluidResistanceUnit)"/>
@@ -708,7 +708,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out FluidResistanceUnit unit)
         {
-            return UnitParser.Default.TryParse<FluidResistanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<FluidResistanceUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -1049,8 +1049,8 @@ namespace UnitsNet
             FluidResistance? convertedOrNull = (Unit, unit) switch
             {
                 // FluidResistanceUnit -> BaseUnit
-                (FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 1e-5, FluidResistanceUnit.PascalSecondPerCubicMeter),
-                (FluidResistanceUnit.MegapascalSecondPerCubicMeter, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 1e6, FluidResistanceUnit.PascalSecondPerCubicMeter),
+                (FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 1e5, FluidResistanceUnit.PascalSecondPerCubicMeter),
+                (FluidResistanceUnit.MegapascalSecondPerCubicMeter, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance((_value) * 1e6d, FluidResistanceUnit.PascalSecondPerCubicMeter),
                 (FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 7.99934208e9, FluidResistanceUnit.PascalSecondPerCubicMeter),
                 (FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 7.99934208e3, FluidResistanceUnit.PascalSecondPerCubicMeter),
                 (FluidResistanceUnit.MillimeterMercuryMinutePerLiter, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 7.99934208e6, FluidResistanceUnit.PascalSecondPerCubicMeter),
@@ -1069,8 +1069,8 @@ namespace UnitsNet
                 (FluidResistanceUnit.WoodUnit, FluidResistanceUnit.PascalSecondPerCubicMeter) => new FluidResistance(_value * 7.99934208e6, FluidResistanceUnit.PascalSecondPerCubicMeter),
 
                 // BaseUnit -> FluidResistanceUnit
-                (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth) => new FluidResistance(_value / 1e-5, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth),
-                (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.MegapascalSecondPerCubicMeter) => new FluidResistance(_value / 1e6, FluidResistanceUnit.MegapascalSecondPerCubicMeter),
+                (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth) => new FluidResistance(_value / 1e5, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth),
+                (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.MegapascalSecondPerCubicMeter) => new FluidResistance((_value) / 1e6d, FluidResistanceUnit.MegapascalSecondPerCubicMeter),
                 (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter) => new FluidResistance(_value / 7.99934208e9, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter),
                 (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter) => new FluidResistance(_value / 7.99934208e3, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter),
                 (FluidResistanceUnit.PascalSecondPerCubicMeter, FluidResistanceUnit.MillimeterMercuryMinutePerLiter) => new FluidResistance(_value / 7.99934208e6, FluidResistanceUnit.MillimeterMercuryMinutePerLiter),

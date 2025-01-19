@@ -335,8 +335,8 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => _value * 1e-5,
-                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => _value * 1e6,
+                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => _value * 1e5,
+                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => (_value) * 1e6d,
                         FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => _value * 7.99934208e9,
                         FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => _value * 7.99934208e3,
                         FluidResistanceUnit.MillimeterMercuryMinutePerLiter => _value * 7.99934208e6,
@@ -367,8 +367,8 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => baseUnitValue / 1e-5,
-                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => baseUnitValue / 1e6,
+                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => baseUnitValue / 1e5,
+                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => (baseUnitValue) / 1e6d,
                         FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => baseUnitValue / 7.99934208e9,
                         FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => baseUnitValue / 7.99934208e3,
                         FluidResistanceUnit.MillimeterMercuryMinutePerLiter => baseUnitValue / 7.99934208e6,

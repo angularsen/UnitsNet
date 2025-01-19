@@ -26,7 +26,7 @@ namespace UnitsNet.Tests.CustomCode
         // https://www.vcalc.com/wiki/Fluid-Resistance-Unit-Conversion
 
         protected override bool SupportsSIUnitSystem => false;
-        protected override double DyneSecondsPerCentimeterToTheFifthInOnePascalSecondPerCubicMeter => 1e5; // dyn·s/cm⁵
+        protected override double DyneSecondsPerCentimeterToTheFifthInOnePascalSecondPerCubicMeter => 1e-5; // dyn·s/cm⁵
         protected override double MegapascalSecondsPerCubicMeterInOnePascalSecondPerCubicMeter => 1e-6; // MPa·s/m³
         protected override double MillimeterMercuryMinutesPerCubicCentimeterInOnePascalSecondPerCubicMeter => 1.25010625903202e-10; // mmHg·min/cm³
         protected override double MillimeterMercuryMinutesPerCubicMeterInOnePascalSecondPerCubicMeter => 1.25010625903202e-4; // mmHg·min/m³
