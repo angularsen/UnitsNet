@@ -172,9 +172,9 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => _value * 5.6782633411134878,
-                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (_value * 4.1868) / 3600,
-                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((_value * 4.1868) / 3600) * 1e3d,
+                        HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => _value * ((1055.05585262 / (0.3048 * 0.3048 * 3600)) * 1.8),
+                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (_value * 4.184) / 3600,
+                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((_value * 4.184) / 3600) * 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => _value,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -190,9 +190,9 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => baseUnitValue / 5.6782633411134878,
-                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (baseUnitValue / 4.1868) * 3600,
-                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((baseUnitValue / 4.1868) * 3600) / 1e3d,
+                        HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => baseUnitValue / ((1055.05585262 / (0.3048 * 0.3048 * 3600)) * 1.8),
+                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (baseUnitValue / 4.184) * 3600,
+                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((baseUnitValue / 4.184) * 3600) / 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => baseUnitValue,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

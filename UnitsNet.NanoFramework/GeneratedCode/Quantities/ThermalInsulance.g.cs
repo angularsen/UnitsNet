@@ -182,8 +182,8 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * 176.1121482159839,
-                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * 0.0859779507590433,
+                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8),
+                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * (0.0001 * 3600) / 4.184,
                         ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => _value * 0.1,
                         ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.0,
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => _value,
@@ -201,8 +201,8 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue / 176.1121482159839,
-                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue / 0.0859779507590433,
+                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600),
+                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue * 4.184 / (0.0001 * 3600),
                         ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue / 0.1,
                         ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.0,
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,

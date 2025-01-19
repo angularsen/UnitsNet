@@ -773,15 +773,15 @@ namespace UnitsNet
             ThermalInsulance? convertedOrNull = (Unit, unit) switch
             {
                 // ThermalInsulanceUnit -> BaseUnit
-                (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 176.1121482159839, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
-                (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.0859779507590433, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8), ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * (0.0001 * 3600) / 4.184, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
                 (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
                 (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000.0, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
 
                 // BaseUnit -> ThermalInsulanceUnit
-                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalInsulance(_value / 176.1121482159839, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
-                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie) => new ThermalInsulance(_value / 0.0859779507590433, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalInsulance(_value * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600), ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie) => new ThermalInsulance(_value * 4.184 / (0.0001 * 3600), ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt) => new ThermalInsulance(_value / 0.1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt) => new ThermalInsulance(_value / 1000.0, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt) => new ThermalInsulance(_value / 1000, ThermalInsulanceUnit.SquareMeterKelvinPerWatt),

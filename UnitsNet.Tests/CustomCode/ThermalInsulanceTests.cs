@@ -24,18 +24,17 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ThermalInsulanceTests : ThermalInsulanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-        protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt => 0.0056782d;
-        protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt => 11.63088897992627d;
-        protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 10;
-        protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt => 1e-3;
-        protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt => 1;
-        protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 0.001;
-        
-        [Fact(Skip = "See about changing the BaseUnit to SquareMeterKelvinPerWatt")]
-        public override void BaseUnit_HasSIBase()
-        {
-            base.BaseUnit_HasSIBase();
-        }
+       protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt => 0.005678263341113488;
+       protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt => 11.62222222222222;
+       protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 10;
+       protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt => 1e-3;
+       protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt => 1;
+       protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 0.001;
+
+       [Fact(Skip = "See about changing the BaseUnit to SquareMeterKelvinPerWatt")]
+       public override void BaseUnit_HasSIBase()
+       {
+           base.BaseUnit_HasSIBase();
+       } 
     }
 }
