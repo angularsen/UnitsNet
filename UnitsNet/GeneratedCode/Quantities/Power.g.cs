@@ -109,7 +109,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined, "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "Power"),

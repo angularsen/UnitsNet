@@ -63,7 +63,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificFuelConsumption, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
+        public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKilonewtonSecond;
 
         /// <summary>
         /// Represents the largest possible value of SpecificFuelConsumption.
@@ -82,9 +82,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.GramPerKilonewtonSecond"/>
         /// </summary>
-        public double GramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
+        public double GramsPerKilonewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>
@@ -92,9 +92,9 @@ namespace UnitsNet
         public double KilogramsPerKilogramForceHour => As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond"/>
         /// </summary>
-        public double KilogramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
+        public double KilogramsPerKilonewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>
@@ -106,9 +106,9 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKilonewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(double gramsperkilonewtonsecond) => new SpecificFuelConsumption(gramsperkilonewtonsecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
+        public static SpecificFuelConsumption FromGramsPerKilonewtonSecond(double gramsperkilonewtonsecond) => new SpecificFuelConsumption(gramsperkilonewtonsecond, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
 
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
@@ -116,9 +116,9 @@ namespace UnitsNet
         public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(double kilogramsperkilogramforcehour) => new SpecificFuelConsumption(kilogramsperkilogramforcehour, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
-        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(double kilogramsperkilonewtonsecond) => new SpecificFuelConsumption(kilogramsperkilonewtonsecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
+        public static SpecificFuelConsumption FromKilogramsPerKilonewtonSecond(double kilogramsperkilonewtonsecond) => new SpecificFuelConsumption(kilogramsperkilonewtonsecond, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond);
 
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
@@ -165,9 +165,9 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond => _value,
+                        SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => _value,
                         SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => _value * 28.33,
-                        SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond => (_value) * 1e3d,
+                        SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (_value) * 1e3d,
                         SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => _value * 28.33,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -182,9 +182,9 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond => baseUnitValue,
+                        SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => baseUnitValue,
                         SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => baseUnitValue / 28.33,
-                        SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond => (baseUnitValue) / 1e3d,
+                        SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (baseUnitValue) / 1e3d,
                         SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => baseUnitValue / 28.33,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

@@ -80,7 +80,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Megavoltampere, "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Microvoltampere, "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
+                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Millivoltampere, "Millivoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "ElectricApparentPower"),
                     new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Voltampere, "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
                 },
                 BaseUnit, Zero, BaseDimensions);

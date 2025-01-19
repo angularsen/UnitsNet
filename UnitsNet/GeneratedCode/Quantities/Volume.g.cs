@@ -119,7 +119,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, "KilocubicFeet", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, "KiloimperialGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Kiloliter, "Kiloliters", BaseUnits.Undefined, "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Kiloliter, "Kiloliters", new BaseUnits(length: LengthUnit.Meter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilousGallon, "KilousGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Liter, "Liters", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.MegacubicFoot, "MegacubicFeet", BaseUnits.Undefined, "Volume"),

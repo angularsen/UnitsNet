@@ -79,7 +79,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricConductance"),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricConductance"),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricConductance"),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricConductance"),

@@ -81,8 +81,8 @@ namespace UnitsNet
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur), "Temperature"),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer), "Temperature"),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined, "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.MillidegreeCelsius), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", new BaseUnits(temperature: TemperatureUnit.SolarTemperature), "Temperature"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
