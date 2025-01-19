@@ -936,14 +936,14 @@ namespace UnitsNet
                 (ForceChangeRateUnit.DecinewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-1d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.KilonewtonPerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value / 60) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.KilonewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
-                (ForceChangeRateUnit.KilopoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value * 4.4482216152605095551842641431421 / 60) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
-                (ForceChangeRateUnit.KilopoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value * 4.4482216152605095551842641431421) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
+                (ForceChangeRateUnit.KilopoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value * 4.4482216152605 / 60) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
+                (ForceChangeRateUnit.KilopoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value * 4.4482216152605) * 1e3d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.MicronewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-6d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.MillinewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-3d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.NanonewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-9d, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.NewtonPerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value / 60, ForceChangeRateUnit.NewtonPerSecond),
-                (ForceChangeRateUnit.PoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605095551842641431421 / 60, ForceChangeRateUnit.NewtonPerSecond),
-                (ForceChangeRateUnit.PoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605095551842641431421, ForceChangeRateUnit.NewtonPerSecond),
+                (ForceChangeRateUnit.PoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605 / 60, ForceChangeRateUnit.NewtonPerSecond),
+                (ForceChangeRateUnit.PoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605, ForceChangeRateUnit.NewtonPerSecond),
 
                 // BaseUnit -> ForceChangeRateUnit
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.CentinewtonPerSecond) => new ForceChangeRate((_value) / 1e-2d, ForceChangeRateUnit.CentinewtonPerSecond),
@@ -952,14 +952,14 @@ namespace UnitsNet
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.DecinewtonPerSecond) => new ForceChangeRate((_value) / 1e-1d, ForceChangeRateUnit.DecinewtonPerSecond),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilonewtonPerMinute) => new ForceChangeRate((_value * 60) / 1e3d, ForceChangeRateUnit.KilonewtonPerMinute),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilonewtonPerSecond) => new ForceChangeRate((_value) / 1e3d, ForceChangeRateUnit.KilonewtonPerSecond),
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilopoundForcePerMinute) => new ForceChangeRate((_value / 4.4482216152605095551842641431421 * 60) / 1e3d, ForceChangeRateUnit.KilopoundForcePerMinute),
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilopoundForcePerSecond) => new ForceChangeRate((_value / 4.4482216152605095551842641431421) / 1e3d, ForceChangeRateUnit.KilopoundForcePerSecond),
+                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilopoundForcePerMinute) => new ForceChangeRate((_value / 4.4482216152605 * 60) / 1e3d, ForceChangeRateUnit.KilopoundForcePerMinute),
+                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.KilopoundForcePerSecond) => new ForceChangeRate((_value / 4.4482216152605) / 1e3d, ForceChangeRateUnit.KilopoundForcePerSecond),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.MicronewtonPerSecond) => new ForceChangeRate((_value) / 1e-6d, ForceChangeRateUnit.MicronewtonPerSecond),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.MillinewtonPerSecond) => new ForceChangeRate((_value) / 1e-3d, ForceChangeRateUnit.MillinewtonPerSecond),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NanonewtonPerSecond) => new ForceChangeRate((_value) / 1e-9d, ForceChangeRateUnit.NanonewtonPerSecond),
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NewtonPerMinute) => new ForceChangeRate(_value * 60, ForceChangeRateUnit.NewtonPerMinute),
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerMinute) => new ForceChangeRate(_value / 4.4482216152605095551842641431421 * 60, ForceChangeRateUnit.PoundForcePerMinute),
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerSecond) => new ForceChangeRate(_value / 4.4482216152605095551842641431421, ForceChangeRateUnit.PoundForcePerSecond),
+                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerMinute) => new ForceChangeRate(_value / 4.4482216152605 * 60, ForceChangeRateUnit.PoundForcePerMinute),
+                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerSecond) => new ForceChangeRate(_value / 4.4482216152605, ForceChangeRateUnit.PoundForcePerSecond),
 
                 _ => null
             };

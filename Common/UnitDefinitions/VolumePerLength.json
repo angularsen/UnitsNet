@@ -67,8 +67,8 @@
     {
       "SingularName": "OilBarrelPerFoot",
       "PluralName": "OilBarrelsPerFoot",
-      "FromUnitToBaseFunc": "{x} / 1.91713408",
-      "FromBaseToUnitFunc": "{x} * 1.91713408",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.158987294928",
       "Prefixes": [],
       "Localization": [
         {
@@ -80,8 +80,8 @@
     {
       "SingularName": "CubicYardPerFoot",
       "PluralName": "CubicYardsPerFoot",
-      "FromUnitToBaseFunc": "{x} * 2.50838208",
-      "FromBaseToUnitFunc": "{x} / 2.50838208",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.764554857984",
       "Localization": [
         {
           "Culture": "en-US",
@@ -92,8 +92,8 @@
     {
       "SingularName": "CubicYardPerUsSurveyFoot",
       "PluralName": "CubicYardsPerUsSurveyFoot",
-      "FromUnitToBaseFunc": "{x} * 2.50837706323584",
-      "FromBaseToUnitFunc": "{x} / 2.50837706323584",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984 * 3937 / 1200",
+      "FromBaseToUnitFunc": "{x} * 1200 / (0.764554857984 * 3937)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -104,8 +104,8 @@
     {
       "SingularName": "UsGallonPerMile",
       "PluralName": "UsGallonsPerMile",
-      "FromUnitToBaseFunc": "{x} / (1000 * 1609.344 / 3.785411784)",
-      "FromBaseToUnitFunc": "{x} * (1000 * 1609.344 / 3.785411784)",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784 / 1609.344",
+      "FromBaseToUnitFunc": "{x} * 1609.344 / 0.003785411784",
       "Localization": [
         {
           "Culture": "en-US",
@@ -116,8 +116,8 @@
     {
       "SingularName": "ImperialGallonPerMile",
       "PluralName": "ImperialGallonsPerMile",
-      "FromUnitToBaseFunc": "{x} / (1000 * 1609.344 / 4.54609)",
-      "FromBaseToUnitFunc": "{x} * (1000 * 1609.344 / 4.54609)",
+      "FromUnitToBaseFunc": "{x} * 0.00454609 / 1609.344",
+      "FromBaseToUnitFunc": "{x} * 1609.344 / 0.00454609",
       "Localization": [
         {
           "Culture": "en-US",

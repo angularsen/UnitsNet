@@ -822,9 +822,9 @@ namespace UnitsNet
             {
                 // StandardVolumeFlowUnit -> BaseUnit
                 (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 6e7, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
-                (StandardVolumeFlowUnit.StandardCubicFootPerHour, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value * 7.8657907199999087346816086183876e-6, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
-                (StandardVolumeFlowUnit.StandardCubicFootPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 2118.88000326, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
-                (StandardVolumeFlowUnit.StandardCubicFootPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 35.314666721, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
+                (StandardVolumeFlowUnit.StandardCubicFootPerHour, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value * 0.028316846592 / 3600, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
+                (StandardVolumeFlowUnit.StandardCubicFootPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value * 0.028316846592 / 60, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
+                (StandardVolumeFlowUnit.StandardCubicFootPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value * 0.028316846592, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerDay, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 86400, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerHour, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 3600, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 60, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
@@ -832,9 +832,9 @@ namespace UnitsNet
 
                 // BaseUnit -> StandardVolumeFlowUnit
                 (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute) => new StandardVolumeFlow(_value * 6e7, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute),
-                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerHour) => new StandardVolumeFlow(_value / 7.8657907199999087346816086183876e-6, StandardVolumeFlowUnit.StandardCubicFootPerHour),
-                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerMinute) => new StandardVolumeFlow(_value * 2118.88000326, StandardVolumeFlowUnit.StandardCubicFootPerMinute),
-                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerSecond) => new StandardVolumeFlow(_value * 35.314666721, StandardVolumeFlowUnit.StandardCubicFootPerSecond),
+                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerHour) => new StandardVolumeFlow(_value / (0.028316846592 / 3600), StandardVolumeFlowUnit.StandardCubicFootPerHour),
+                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerMinute) => new StandardVolumeFlow(_value / (0.028316846592 / 60), StandardVolumeFlowUnit.StandardCubicFootPerMinute),
+                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicFootPerSecond) => new StandardVolumeFlow(_value / 0.028316846592, StandardVolumeFlowUnit.StandardCubicFootPerSecond),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerDay) => new StandardVolumeFlow(_value * 86400, StandardVolumeFlowUnit.StandardCubicMeterPerDay),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerHour) => new StandardVolumeFlow(_value * 3600, StandardVolumeFlowUnit.StandardCubicMeterPerHour),
                 (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerMinute) => new StandardVolumeFlow(_value * 60, StandardVolumeFlowUnit.StandardCubicMeterPerMinute),

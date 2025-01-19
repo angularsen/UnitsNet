@@ -66,8 +66,8 @@
         "M": "Pound",
         "L": "Inch"
       },
-      "FromUnitToBaseFunc": "{x} / 5.5997415e-2",
-      "FromBaseToUnitFunc": "{x} * 5.5997415e-2",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 / 2.54e-2",
+      "FromBaseToUnitFunc": "{x} * 2.54e-2 / 0.45359237",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
         "M": "Pound",
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "{x} * 1.48816394",
-      "FromBaseToUnitFunc": "{x} / 1.48816394",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.45359237",
       "Localization": [
         {
           "Culture": "en-US",

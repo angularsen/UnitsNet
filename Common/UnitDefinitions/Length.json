@@ -90,6 +90,8 @@
       "FromUnitToBaseFunc": "{x} * 0.3048",
       "FromBaseToUnitFunc": "{x} / 0.3048",
       "Prefixes": [ "Kilo" ],
+      "XmlDocSummary": "The foot (pl. feet; standard symbol: ft) is a unit of length in the British imperial and United States customary systems of measurement. The prime symbol, ′, is commonly used to represent the foot. In both customary and imperial units, one foot comprises 12 inches, and one yard comprises three feet. Since an international agreement in 1959, the foot is defined as equal to exactly 0.3048 meters.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Foot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -130,6 +132,8 @@
       },
       "FromUnitToBaseFunc": "{x} * 2.54e-2",
       "FromBaseToUnitFunc": "{x} / 2.54e-2",
+      "XmlDocSummary": "The inch (symbol: in or ″) is a unit of length in the British Imperial and the United States customary systems of measurement. It is equal to 1/36 yard or 1/12 of a foot. Derived from the Roman uncia (\"twelfth\"), the word inch is also sometimes used to translate similar units in other measurement systems, usually understood as deriving from the width of the human thumb.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inch",
       "Localization": [
         {
           "Culture": "en-US",
@@ -250,8 +254,10 @@
       "BaseUnits": {
         "L": "PrinterPoint"
       },
-      "FromUnitToBaseFunc": "({x} / 72.27) * 2.54e-2",
-      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 72.27",
+      "XmlDocSummary": "In typography, the point is the smallest unit of measure. It is used for measuring font size, leading, and other items on a printed page. In modern times this size of the point has been approximated as exactly 1⁄72.27 (0.01383700013837) of the inch by Donald Knuth for the default unit of his TeX computer typesetting system and is thus sometimes known as the TeX point.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Point_(typography)",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 / 72.27 ",
+      "FromBaseToUnitFunc": "{x} * 72.27 / 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -265,8 +271,10 @@
       "BaseUnits": {
         "L": "DtpPoint"
       },
-      "FromUnitToBaseFunc": "({x} / 72) * 2.54e-2",
-      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 72",
+      "XmlDocSummary": "The desktop publishing point (DTP) is defined as 1⁄72 of an inch (1/72 × 25.4 mm ≈ 0.353 mm) and, as with earlier American point sizes, is considered to be 1⁄12 of a pica.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Point_(typography)",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 / 72",
+      "FromBaseToUnitFunc": "{x} * 72 / 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -280,8 +288,10 @@
       "BaseUnits": {
         "L": "PrinterPica"
       },
-      "FromUnitToBaseFunc": "{x} / 237.106301584",
-      "FromBaseToUnitFunc": "{x} * 237.106301584",
+      "XmlDocSummary": "The American pica of 0.16604 inches (~4.217 mm) was established by the United States Type Founders' Association in 1886. In TeX one pica is 400⁄2409 of an inch.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pica_(typography)",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 * 400 / 2409",
+      "FromBaseToUnitFunc": "{x} / (2.54e-2 * 400 / 2409)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -295,8 +305,10 @@
       "BaseUnits": {
         "L": "DtpPica"
       },
-      "FromUnitToBaseFunc": "{x} / 236.220472441",
-      "FromBaseToUnitFunc": "{x} * 236.220472441",
+      "XmlDocSummary": "The pica is a typographic unit of measure corresponding to approximately 1⁄6 of an inch, or from 1⁄68 to 1⁄73 of a foot. One pica is further divided into 12 points.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pica_(typography)",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 / 6",
+      "FromBaseToUnitFunc": "{x} * 6 / 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -310,8 +322,10 @@
       "BaseUnits": {
         "L": "Twip"
       },
-      "FromUnitToBaseFunc": "{x} / 56692.913385826",
-      "FromBaseToUnitFunc": "{x} * 56692.913385826",
+      "XmlDocSummary": "A twip (abbreviating \"twentieth of a point\" or \"twentieth of an inch point\") is a typographical measurement, defined as 1⁄20 of a typographical point. One twip is 1⁄1440 inch, or ~17.64 μm.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Twip",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 / 1440",
+      "FromBaseToUnitFunc": "{x} * 1440 / 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -325,6 +339,8 @@
       "BaseUnits": {
         "L": "Hand"
       },
+      "XmlDocSummary": "The hand is a non-SI unit of measurement of length standardized to 4 in (101.6 mm). It is used to measure the height of horses in many English-speaking countries, including Australia, Canada, Ireland, the United Kingdom, and the United States. It was originally based on the breadth of a human hand.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Hand_(unit)",
       "FromUnitToBaseFunc": "{x} * 1.016e-1",
       "FromBaseToUnitFunc": "{x} / 1.016e-1",
       "Localization": [
@@ -410,6 +426,8 @@
       "BaseUnits": {
         "L": "Chain"
       },
+      "XmlDocSummary": "The chain (abbreviated ch) is a unit of length equal to 66 feet (22 yards), used in both the US customary and Imperial unit systems. It is subdivided into 100 links. There are 10 chains in a furlong, and 80 chains in one statute mile. In metric terms, it is 20.1168 m long.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Chain_(unit)",
       "FromUnitToBaseFunc": "{x} * 20.1168",
       "FromBaseToUnitFunc": "{x} / 20.1168",
       "Localization": [

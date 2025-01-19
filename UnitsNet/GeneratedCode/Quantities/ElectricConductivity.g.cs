@@ -790,15 +790,15 @@ namespace UnitsNet
                 (ElectricConductivityUnit.MicrosiemensPerCentimeter, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity((_value * 1e2) * 1e-6d, ElectricConductivityUnit.SiemensPerMeter),
                 (ElectricConductivityUnit.MillisiemensPerCentimeter, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity((_value * 1e2) * 1e-3d, ElectricConductivityUnit.SiemensPerMeter),
                 (ElectricConductivityUnit.SiemensPerCentimeter, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 1e2, ElectricConductivityUnit.SiemensPerMeter),
-                (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
-                (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
+                (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value / 0.3048, ElectricConductivityUnit.SiemensPerMeter),
+                (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value / 2.54e-2, ElectricConductivityUnit.SiemensPerMeter),
 
                 // BaseUnit -> ElectricConductivityUnit
                 (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.MicrosiemensPerCentimeter) => new ElectricConductivity((_value / 1e2) / 1e-6d, ElectricConductivityUnit.MicrosiemensPerCentimeter),
                 (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.MillisiemensPerCentimeter) => new ElectricConductivity((_value / 1e2) / 1e-3d, ElectricConductivityUnit.MillisiemensPerCentimeter),
                 (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerCentimeter) => new ElectricConductivity(_value / 1e2, ElectricConductivityUnit.SiemensPerCentimeter),
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(_value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch) => new ElectricConductivity(_value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch),
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(_value * 0.3048, ElectricConductivityUnit.SiemensPerFoot),
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch) => new ElectricConductivity(_value * 2.54e-2, ElectricConductivityUnit.SiemensPerInch),
 
                 _ => null
             };

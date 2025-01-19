@@ -103,8 +103,8 @@
       "BaseUnits": {
         "L": "Mile"
       },
-      "FromUnitToBaseFunc": "{x} / 2.59e6",
-      "FromBaseToUnitFunc": "{x} * 2.59e6",
+      "FromUnitToBaseFunc": "{x} / (1609.344 * 1609.344)",
+      "FromBaseToUnitFunc": "{x} * (1609.344 * 1609.344)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -118,8 +118,8 @@
       "BaseUnits": {
         "L": "Yard"
       },
-      "FromUnitToBaseFunc": "{x} / 0.836127",
-      "FromBaseToUnitFunc": "{x} * 0.836127",
+      "FromUnitToBaseFunc": "{x} / (0.9144 * 0.9144)",
+      "FromBaseToUnitFunc": "{x} * (0.9144 * 0.9144)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -133,8 +133,8 @@
       "BaseUnits": {
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "{x} / 0.092903",
-      "FromBaseToUnitFunc": "{x} * 0.092903",
+      "FromUnitToBaseFunc": "{x} / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} * 9.290304e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -148,8 +148,8 @@
       "BaseUnits": {
         "L": "UsSurveyFoot"
       },
-      "FromUnitToBaseFunc": "{x} / 0.09290341161",
-      "FromBaseToUnitFunc": "{x} * 0.09290341161",
+      "FromUnitToBaseFunc": "{x} / (1200.0 / 3937.0) / (1200.0 / 3937.0)",
+      "FromBaseToUnitFunc": "{x} * (1200.0 / 3937.0) * (1200.0 / 3937.0)",
       "Localization": [
         {
           "Culture": "en-US",

@@ -908,7 +908,7 @@ namespace UnitsNet
                 (FrequencyUnit.Microhertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e-6d, FrequencyUnit.Hertz),
                 (FrequencyUnit.Millihertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e-3d, FrequencyUnit.Hertz),
                 (FrequencyUnit.PerSecond, FrequencyUnit.Hertz) => new Frequency(_value, FrequencyUnit.Hertz),
-                (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value / 6.2831853072, FrequencyUnit.Hertz),
+                (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value / (2 * Math.PI), FrequencyUnit.Hertz),
                 (FrequencyUnit.Terahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e12d, FrequencyUnit.Hertz),
 
                 // BaseUnit -> FrequencyUnit
@@ -922,7 +922,7 @@ namespace UnitsNet
                 (FrequencyUnit.Hertz, FrequencyUnit.Microhertz) => new Frequency((_value) / 1e-6d, FrequencyUnit.Microhertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.Millihertz) => new Frequency((_value) / 1e-3d, FrequencyUnit.Millihertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.PerSecond) => new Frequency(_value, FrequencyUnit.PerSecond),
-                (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * 6.2831853072, FrequencyUnit.RadianPerSecond),
+                (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * (2 * Math.PI), FrequencyUnit.RadianPerSecond),
                 (FrequencyUnit.Hertz, FrequencyUnit.Terahertz) => new Frequency((_value) / 1e12d, FrequencyUnit.Terahertz),
 
                 _ => null

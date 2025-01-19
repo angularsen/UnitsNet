@@ -36,6 +36,11 @@ namespace UnitsNet.Units
         Microhertz = 16,
         Millihertz = 21,
         PerSecond = 9,
+
+        /// <summary>
+        ///     In SI units, angular frequency is normally presented with the unit radian per second, and need not express a rotational value. The unit hertz (Hz) is dimensionally equivalent, but by convention it is only used for frequency f, never for angular frequency ω. This convention is used to help avoid the confusion that arises when dealing with quantities such as frequency and angular quantities because the units of measure (such as cycle or radian) are considered to be one and hence may be omitted when expressing quantities in terms of SI units.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Angular_frequency</remarks>
         RadianPerSecond = 10,
         Terahertz = 11,
     }
