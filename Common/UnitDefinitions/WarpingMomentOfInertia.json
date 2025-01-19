@@ -17,7 +17,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m⁶", "m^6" ]
+          "Abbreviations": [ "m⁶" ]
         }
       ]
     },
@@ -32,7 +32,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dm⁶", "dm^6" ]
+          "Abbreviations": [ "dm⁶" ]
         }
       ]
     },
@@ -47,7 +47,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cm⁶", "cm^6" ]
+          "Abbreviations": [ "cm⁶" ]
         }
       ]
     },
@@ -62,7 +62,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mm⁶", "mm^6" ]
+          "Abbreviations": [ "mm⁶" ]
         }
       ]
     },
@@ -77,7 +77,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft⁶", "ft^6" ]
+          "Abbreviations": [ "ft⁶"]
         }
       ]
     },
@@ -92,7 +92,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in⁶", "in^6" ]
+          "Abbreviations": [ "in⁶" ]
         }
       ]
     }
