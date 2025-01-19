@@ -29,16 +29,16 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.FromCentilitersPerLiter(2), 2.CentilitersPerLiter());
 
         [Fact]
-        public void NumberToCentilitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromCentilitersPerMililiter(2), 2.CentilitersPerMililiter());
+        public void NumberToCentilitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromCentilitersPerMilliliter(2), 2.CentilitersPerMilliliter());
 
         [Fact]
         public void NumberToDecilitersPerLiterTest() =>
             Assert.Equal(VolumeConcentration.FromDecilitersPerLiter(2), 2.DecilitersPerLiter());
 
         [Fact]
-        public void NumberToDecilitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromDecilitersPerMililiter(2), 2.DecilitersPerMililiter());
+        public void NumberToDecilitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromDecilitersPerMilliliter(2), 2.DecilitersPerMilliliter());
 
         [Fact]
         public void NumberToDecimalFractionsTest() =>
@@ -49,32 +49,32 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.FromLitersPerLiter(2), 2.LitersPerLiter());
 
         [Fact]
-        public void NumberToLitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromLitersPerMililiter(2), 2.LitersPerMililiter());
+        public void NumberToLitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromLitersPerMilliliter(2), 2.LitersPerMilliliter());
 
         [Fact]
         public void NumberToMicrolitersPerLiterTest() =>
             Assert.Equal(VolumeConcentration.FromMicrolitersPerLiter(2), 2.MicrolitersPerLiter());
 
         [Fact]
-        public void NumberToMicrolitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromMicrolitersPerMililiter(2), 2.MicrolitersPerMililiter());
+        public void NumberToMicrolitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromMicrolitersPerMilliliter(2), 2.MicrolitersPerMilliliter());
 
         [Fact]
         public void NumberToMillilitersPerLiterTest() =>
             Assert.Equal(VolumeConcentration.FromMillilitersPerLiter(2), 2.MillilitersPerLiter());
 
         [Fact]
-        public void NumberToMillilitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromMillilitersPerMililiter(2), 2.MillilitersPerMililiter());
+        public void NumberToMillilitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromMillilitersPerMilliliter(2), 2.MillilitersPerMilliliter());
 
         [Fact]
         public void NumberToNanolitersPerLiterTest() =>
             Assert.Equal(VolumeConcentration.FromNanolitersPerLiter(2), 2.NanolitersPerLiter());
 
         [Fact]
-        public void NumberToNanolitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromNanolitersPerMililiter(2), 2.NanolitersPerMililiter());
+        public void NumberToNanolitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromNanolitersPerMilliliter(2), 2.NanolitersPerMilliliter());
 
         [Fact]
         public void NumberToPartsPerBillionTest() =>
@@ -101,8 +101,8 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.FromPicolitersPerLiter(2), 2.PicolitersPerLiter());
 
         [Fact]
-        public void NumberToPicolitersPerMililiterTest() =>
-            Assert.Equal(VolumeConcentration.FromPicolitersPerMililiter(2), 2.PicolitersPerMililiter());
+        public void NumberToPicolitersPerMilliliterTest() =>
+            Assert.Equal(VolumeConcentration.FromPicolitersPerMilliliter(2), 2.PicolitersPerMilliliter());
 
     }
 }

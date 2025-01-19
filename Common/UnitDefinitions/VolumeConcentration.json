@@ -30,8 +30,8 @@
       ]
     },
 	{
-      "SingularName": "LitersPerMililiter",
-      "PluralName": "LitersPerMililiter",
+      "SingularName": "LitersPerMilliliter",
+      "PluralName": "LitersPerMilliliter",
       "FromUnitToBaseFunc": "{x} / 1e-3",
       "FromBaseToUnitFunc": "{x} * 1e-3",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],

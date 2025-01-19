@@ -31,13 +31,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override bool SupportsSIUnitSystem => false;
 
         #region Unit Conversion Coefficients
-        protected override double LitersPerMililiterInOneDecimalFraction => 1E-3;
-        protected override double DecilitersPerMililiterInOneDecimalFraction => 1E-2;
-        protected override double CentilitersPerMililiterInOneDecimalFraction => 1E-1;
-        protected override double MillilitersPerMililiterInOneDecimalFraction => 1;
-        protected override double MicrolitersPerMililiterInOneDecimalFraction => 1E3;
-        protected override double NanolitersPerMililiterInOneDecimalFraction => 1E6;
-        protected override double PicolitersPerMililiterInOneDecimalFraction => 1E9;
+        protected override double LitersPerMilliliterInOneDecimalFraction => 1E-3;
+        protected override double DecilitersPerMilliliterInOneDecimalFraction => 1E-2;
+        protected override double CentilitersPerMilliliterInOneDecimalFraction => 1E-1;
+        protected override double MillilitersPerMilliliterInOneDecimalFraction => 1;
+        protected override double MicrolitersPerMilliliterInOneDecimalFraction => 1E3;
+        protected override double NanolitersPerMilliliterInOneDecimalFraction => 1E6;
+        protected override double PicolitersPerMilliliterInOneDecimalFraction => 1E9;
 
         protected override double LitersPerLiterInOneDecimalFraction => 1;
         protected override double DecilitersPerLiterInOneDecimalFraction => 10;
