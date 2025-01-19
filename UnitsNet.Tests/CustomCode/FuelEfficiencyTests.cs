@@ -23,16 +23,36 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class FuelEfficiencyTests : FuelEfficiencyTestsBase
     {
-        protected override double MetersPerCubicMeterInOneKilometerPerLiter => 1e6;
+        protected override bool SupportsSIUnitSystem => false;
+        
         protected override double KilometersPerLiterInOneKilometerPerLiter => 1;
         protected override double LitersPer100KilometersInOneKilometerPerLiter => 100;
         protected override double MilesPerUkGallonInOneKilometerPerLiter => 2.824809363318222;
         protected override double MilesPerUsGallonInOneKilometerPerLiter => 2.352145833333333;
+        
 
-        [Fact(Skip = "See about changing this to MetersPerCubicMeter")]
+        [Fact(Skip = "The SI unit would have to be MeterPerCubicMeter")]
         public override void BaseUnit_HasSIBase()
         {
             base.BaseUnit_HasSIBase();
+        }
+        
+        [Fact(Skip = "NoThe SI unit would have to be MeterPerCubicMeter")]
+        public override void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
+        {
+            base.Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits();
+        }
+
+        [Fact(Skip = "NoThe SI unit would have to be MeterPerCubicMeter")]
+        public override void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.As_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+
+        [Fact(Skip = "NoThe SI unit would have to be MeterPerCubicMeter")]
+        public override void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
         }
     }
 }

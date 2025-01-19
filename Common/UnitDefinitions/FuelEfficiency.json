@@ -62,23 +62,6 @@
           ]
         }
       ]
-    },
-    {
-      "SingularName": "MeterPerCubicMeter",
-      "PluralName": "MetersPerCubicMeter",
-      "BaseUnits": {
-        "L": "Meter"
-      },
-      "FromUnitToBaseFunc": "{x} / 1e6",
-      "FromBaseToUnitFunc": "{x} * 1e6",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [
-            "m/m³"
-          ]
-        }
-      ]
     }
   ]
 }

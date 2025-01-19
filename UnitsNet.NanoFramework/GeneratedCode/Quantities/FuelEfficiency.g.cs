@@ -92,11 +92,6 @@ namespace UnitsNet
         public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>
-        /// </summary>
-        public double MetersPerCubicMeter => As(FuelEfficiencyUnit.MeterPerCubicMeter);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
         public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
@@ -119,11 +114,6 @@ namespace UnitsNet
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
         public static FuelEfficiency FromLitersPer100Kilometers(double litersper100kilometers) => new FuelEfficiency(litersper100kilometers, FuelEfficiencyUnit.LiterPer100Kilometers);
-
-        /// <summary>
-        ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MeterPerCubicMeter"/>.
-        /// </summary>
-        public static FuelEfficiency FromMetersPerCubicMeter(double meterspercubicmeter) => new FuelEfficiency(meterspercubicmeter, FuelEfficiencyUnit.MeterPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
@@ -177,7 +167,6 @@ namespace UnitsNet
                     {
                         FuelEfficiencyUnit.KilometerPerLiter => _value,
                         FuelEfficiencyUnit.LiterPer100Kilometers => 100 / _value,
-                        FuelEfficiencyUnit.MeterPerCubicMeter => _value / 1e6,
                         FuelEfficiencyUnit.MilePerUkGallon => _value * 1.609344 / 4.54609,
                         FuelEfficiencyUnit.MilePerUsGallon => _value * 1.609344 / 3.785411784,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -195,7 +184,6 @@ namespace UnitsNet
                     {
                         FuelEfficiencyUnit.KilometerPerLiter => baseUnitValue,
                         FuelEfficiencyUnit.LiterPer100Kilometers => 100 / baseUnitValue,
-                        FuelEfficiencyUnit.MeterPerCubicMeter => baseUnitValue * 1e6,
                         FuelEfficiencyUnit.MilePerUkGallon => baseUnitValue * 4.54609 / 1.609344,
                         FuelEfficiencyUnit.MilePerUsGallon => baseUnitValue * 3.785411784 / 1.609344,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

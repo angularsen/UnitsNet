@@ -48,14 +48,6 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
 #endif
             => FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="FuelEfficiency.FromMetersPerCubicMeter(double)" />
-        public static FuelEfficiency MetersPerCubicMeter<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-#endif
-            => FuelEfficiency.FromMetersPerCubicMeter(Convert.ToDouble(value));
-
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(double)" />
         public static FuelEfficiency MilesPerUkGallon<T>(this T value)
             where T : notnull
