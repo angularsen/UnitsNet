@@ -25,16 +25,16 @@ namespace UnitsNet.Tests
     public class NumberToSpecificFuelConsumptionExtensionsTests
     {
         [Fact]
-        public void NumberToGramsPerKiloNewtonSecondTest() =>
-            Assert.Equal(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(2), 2.GramsPerKiloNewtonSecond());
+        public void NumberToGramsPerKilonewtonSecondTest() =>
+            Assert.Equal(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(2), 2.GramsPerKilonewtonSecond());
 
         [Fact]
         public void NumberToKilogramsPerKilogramForceHourTest() =>
             Assert.Equal(SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(2), 2.KilogramsPerKilogramForceHour());
 
         [Fact]
-        public void NumberToKilogramsPerKiloNewtonSecondTest() =>
-            Assert.Equal(SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(2), 2.KilogramsPerKiloNewtonSecond());
+        public void NumberToKilogramsPerKilonewtonSecondTest() =>
+            Assert.Equal(SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(2), 2.KilogramsPerKilonewtonSecond());
 
         [Fact]
         public void NumberToPoundsMassPerPoundForceHourTest() =>
