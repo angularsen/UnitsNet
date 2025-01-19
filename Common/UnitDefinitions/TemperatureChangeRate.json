@@ -43,6 +43,10 @@
     {
       "SingularName": "DegreeKelvinPerMinute",
       "PluralName": "DegreesKelvinPerMinute",
+      "BaseUnits": {
+        "Θ": "Kelvin",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Prefixes": [],
@@ -56,6 +60,10 @@
     {
       "SingularName": "DegreeFahrenheitPerMinute",
       "PluralName": "DegreesFahrenheitPerMinute",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} * 5 / 9 / 60",
       "FromBaseToUnitFunc": "{x} * 9 / 5 * 60",
       "Localization": [
@@ -68,6 +76,10 @@
     {
       "SingularName": "DegreeFahrenheitPerSecond",
       "PluralName": "DegreesFahrenheitPerSecond",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 5 / 9",
       "FromBaseToUnitFunc": "{x} * 9 / 5",
       "Localization": [
@@ -80,6 +92,10 @@
     {
       "SingularName": "DegreeKelvinPerSecond",
       "PluralName": "DegreesKelvinPerSecond",
+      "BaseUnits": {
+        "Θ": "Kelvin",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [],
@@ -93,6 +109,10 @@
     {
       "SingularName": "DegreeCelsiusPerHour",
       "PluralName": "DegreesCelsiusPerHour",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
@@ -105,6 +125,10 @@
     {
       "SingularName": "DegreeKelvinPerHour",
       "PluralName": "DegreesKelvinPerHour",
+      "BaseUnits": {
+        "Θ": "Kelvin",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Prefixes": [],
@@ -118,6 +142,10 @@
     {
       "SingularName": "DegreeFahrenheitPerHour",
       "PluralName": "DegreesFahrenheitPerHour",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} * 5 / 9 / 3600",
       "FromBaseToUnitFunc": "{x} * 9 / 5 * 3600",
       "Localization": [

@@ -47,6 +47,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegamolesInOneMole => 1e-6;
         protected override double PicomolesInOneMole => 1e12;
         protected override double FemtomolesInOneMole => 1e15;
+        
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(AmountOfSubstance.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(amount: unitInfo.Value), unitInfo.BaseUnits));
+        }
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
