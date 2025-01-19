@@ -77,6 +77,7 @@ internal class BaseUnitPrefixes
         {
             var unitName = baseUnit.SingularName;
             prefixedStringFactors[unitName] = new PrefixScaleFactor(unitName, 0);
+            baseUnitPrefixConversions[new BaseUnitPrefix(unitName, null)] = unitName;
             foreach (Prefix prefix in baseUnit.Prefixes)
             {
                 var prefixedUnitName = prefix + unitName.ToCamelCase();
@@ -123,10 +124,20 @@ internal class BaseUnitPrefixes
         {
             var (quotient, remainder) = int.DivRem(prefixFactor, exponent);
             // Ensure the prefix factor is divisible by the exponent without a remainder and that there is a valid prefix matching the target scale
-            if (remainder == 0 && TryGetPrefixWithScale(targetPrefixFactor.ScaleFactor + quotient, out Prefix calculatedPrefix))
+            if (remainder == 0)
             {
-                matchingPrefix = new BaseUnitPrefix(targetPrefixFactor.BaseUnit, calculatedPrefix);
-                return true;
+                if (targetPrefixFactor.ScaleFactor + quotient == 0)
+                {
+                    // when the resulting exponent is 0: return the non-prefixed BaseUnit
+                    matchingPrefix = new BaseUnitPrefix(targetPrefixFactor.BaseUnit, null);
+                    return true;
+                }
+
+                if (TryGetPrefixWithScale(targetPrefixFactor.ScaleFactor + quotient, out Prefix calculatedPrefix))
+                {
+                    matchingPrefix = new BaseUnitPrefix(targetPrefixFactor.BaseUnit, calculatedPrefix);
+                    return true;
+                }
             }
         }
 

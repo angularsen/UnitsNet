@@ -116,7 +116,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Microjoule, "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Nanojoule, "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined, "Energy"),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined, "Energy"),
