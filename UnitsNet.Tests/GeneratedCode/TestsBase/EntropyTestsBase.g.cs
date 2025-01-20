@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Entropy.Parse("1 J/C", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Entropy.Parse("1 J/°C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -261,7 +261,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Entropy.Parse("1 kJ/C", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Entropy.Parse("1 kJ/°C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -292,7 +292,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Entropy.TryParse("1 J/C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Entropy.TryParse("1 J/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
             }
@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Entropy.TryParse("1 kJ/C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Entropy.TryParse("1 kJ/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
             }
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Entropy.ParseUnit("J/C", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Entropy.ParseUnit("J/°C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -358,7 +358,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Entropy.ParseUnit("kJ/C", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Entropy.ParseUnit("kJ/°C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -385,7 +385,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Entropy.TryParseUnit("J/C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Entropy.TryParseUnit("J/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsedUnit);
             }
 
@@ -400,7 +400,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Entropy.TryParseUnit("kJ/C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Entropy.TryParseUnit("kJ/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsedUnit);
             }
 
@@ -617,10 +617,10 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 cal/K", new Entropy(1, EntropyUnit.CaloriePerKelvin).ToString());
-            Assert.Equal("1 J/C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString());
+            Assert.Equal("1 J/°C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString());
             Assert.Equal("1 J/K", new Entropy(1, EntropyUnit.JoulePerKelvin).ToString());
             Assert.Equal("1 kcal/K", new Entropy(1, EntropyUnit.KilocaloriePerKelvin).ToString());
-            Assert.Equal("1 kJ/C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString());
+            Assert.Equal("1 kJ/°C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString());
             Assert.Equal("1 kJ/K", new Entropy(1, EntropyUnit.KilojoulePerKelvin).ToString());
             Assert.Equal("1 MJ/K", new Entropy(1, EntropyUnit.MegajoulePerKelvin).ToString());
         }
@@ -632,10 +632,10 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cal/K", new Entropy(1, EntropyUnit.CaloriePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 J/C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 J/°C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 J/K", new Entropy(1, EntropyUnit.JoulePerKelvin).ToString(swedishCulture));
             Assert.Equal("1 kcal/K", new Entropy(1, EntropyUnit.KilocaloriePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 kJ/C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 kJ/°C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 kJ/K", new Entropy(1, EntropyUnit.KilojoulePerKelvin).ToString(swedishCulture));
             Assert.Equal("1 MJ/K", new Entropy(1, EntropyUnit.MegajoulePerKelvin).ToString(swedishCulture));
         }
