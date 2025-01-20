@@ -25,7 +25,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/L" ]
+          "Abbreviations": [ "l/l" ]
         }
       ]
     },
@@ -38,7 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/mL" ]
+          "Abbreviations": [ "l/ml" ]
         }
       ]
     },
