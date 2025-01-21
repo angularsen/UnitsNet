@@ -60,7 +60,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(50, VolumeConcentrationUnit.Percent,
                     10, DensityUnit.GramPerCubicMeter,
                     5, MassConcentrationUnit.GramPerCubicMeter)]    // synthetic data
-        [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
+        [InlineData(29.19419518377693, VolumeConcentrationUnit.MilliliterPerLiter,
                     KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
                     23.03422, MassConcentrationUnit.GramPerLiter)]  // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
         public void MassConcentrationFromVolumeConcentrationAndComponentDensity(
@@ -78,7 +78,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
+        [InlineData(29.19419518377693, VolumeConcentrationUnit.MilliliterPerLiter,
                     KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
                     KnownQuantities.MolarMassOfEthanolInGramsPerMole, MolarMassUnit.GramPerMole,
                     0.5, MolarityUnit.MolePerLiter)]   // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
