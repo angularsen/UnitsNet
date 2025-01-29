@@ -1024,7 +1024,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1038,7 +1052,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1052,7 +1080,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1405,7 +1447,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
             }
@@ -1417,7 +1471,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
             }
@@ -1429,7 +1495,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
             }
@@ -1771,7 +1849,19 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Density.ParseUnit("lbm/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Density.ParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lbm/ft³", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1783,7 +1873,19 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Density.ParseUnit("lbm/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Density.ParseUnit("lb/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lbm/m³", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1795,7 +1897,19 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Density.ParseUnit("lbm/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Density.ParseUnit("lb/yd³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lbm/yd³", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -2092,7 +2206,17 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParseUnit("lbm/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsedUnit);
+            }
+
+            {
                 Assert.True(Density.TryParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Density.TryParseUnit("lbm/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
             }
 
@@ -2102,7 +2226,17 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParseUnit("lbm/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsedUnit);
+            }
+
+            {
                 Assert.True(Density.TryParseUnit("lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Density.TryParseUnit("lbm/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
             }
 
@@ -2112,7 +2246,17 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParseUnit("lbm/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsedUnit);
+            }
+
+            {
                 Assert.True(Density.TryParseUnit("lb/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsedUnit);
+            }
+
+            {
+                Assert.True(Density.TryParseUnit("lbm/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsedUnit);
             }
 
