@@ -158,21 +158,6 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => new FluidResistance(value: 1, unitSystem: null));
         }
 
-        //[Fact]
-        //public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        //{
-        //    Func<object> TestCode = () => new FluidResistance(value: 1, unitSystem: UnitSystem.SI);
-        //    if (SupportsSIUnitSystem)
-        //    {
-        //        var quantity = (FluidResistance) TestCode();
-        //        Assert.Equal(1, quantity.Value);
-        //    }
-        //    else
-        //    {
-        //        Assert.Throws<ArgumentException>(TestCode);
-        //    }
-        //}
-
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
@@ -330,23 +315,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PascalSecondsPerMilliliterInOnePascalSecondPerCubicMeter, pascalsecondpercubicmeter.As(FluidResistanceUnit.PascalSecondPerMilliliter), PascalSecondsPerMilliliterTolerance);
             AssertEx.EqualTolerance(WoodUnitsInOnePascalSecondPerCubicMeter, pascalsecondpercubicmeter.As(FluidResistanceUnit.WoodUnit), WoodUnitsTolerance);
         }
-
-        //[Fact]
-        //public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        //{
-        //    var quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
-        //    Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
-
-        //    if (SupportsSIUnitSystem)
-        //    {
-        //        var value = Convert.ToDouble(AsWithSIUnitSystem());
-        //        Assert.Equal(1, value);
-        //    }
-        //    else
-        //    {
-        //        Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-        //    }
-        //}
 
         [Fact]
         public void Parse()
