@@ -22,19 +22,19 @@ public class QuantityFromUnitNameBenchmarks
         _unitNames = _random.GetItems(Mass.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
     }
 
-    [GlobalSetup(Target = nameof(FromVolumeUnitAbbreviation))]
+    [GlobalSetup(Target = nameof(FromVolumeUnitName))]
     public void PrepareVolumeUnits()
     {
         _unitNames = _random.GetItems(Volume.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
     }
 
-    [GlobalSetup(Target = nameof(FromPressureUnitAbbreviation))]
+    [GlobalSetup(Target = nameof(FromPressureUnitName))]
     public void PreparePressureUnits()
     {
         _unitNames = _random.GetItems(Pressure.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
     }
 
-    [GlobalSetup(Target = nameof(FromVolumeFlowUnitAbbreviation))]
+    [GlobalSetup(Target = nameof(FromVolumeFlowUnitName))]
     public void PrepareVolumeFlowUnits()
     {
         _unitNames = _random.GetItems(VolumeFlow.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
@@ -53,7 +53,7 @@ public class QuantityFromUnitNameBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromVolumeUnitAbbreviation()
+    public IQuantity FromVolumeUnitName()
     {
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
@@ -65,7 +65,7 @@ public class QuantityFromUnitNameBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromPressureUnitAbbreviation()
+    public IQuantity FromPressureUnitName()
     {
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
@@ -77,7 +77,7 @@ public class QuantityFromUnitNameBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromVolumeFlowUnitAbbreviation()
+    public IQuantity FromVolumeFlowUnitName()
     {
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)

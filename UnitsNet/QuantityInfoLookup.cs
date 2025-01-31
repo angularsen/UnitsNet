@@ -29,7 +29,7 @@ internal class QuantityInfoLookup
     ///     Initializes a new instance of the <see cref="QuantityInfoLookup" /> class.
     /// </summary>
     /// <param name="quantityInfos">A collection of quantity information objects.</param>
-    public QuantityInfoLookup(ICollection<QuantityInfo> quantityInfos)
+    public QuantityInfoLookup(IReadOnlyCollection<QuantityInfo> quantityInfos)
     {
         _quantitiesByName = new Lazy<SortedDictionary<string, QuantityInfo>>(() =>
             new SortedDictionary<string, QuantityInfo>(quantityInfos.ToDictionary(info => info.Name), StringComparer.OrdinalIgnoreCase));
