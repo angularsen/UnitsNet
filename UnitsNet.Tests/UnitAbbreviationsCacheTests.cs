@@ -295,10 +295,10 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
+        public void GetDefaultAbbreviationThrowsUnitNotFoundExceptionIfNoneExist()
         {
             var unitAbbreviationCache = new UnitAbbreviationsCache();
-            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(HowMuchUnit.AShitTon));
+            Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation(HowMuchUnit.AShitTon));
         }
 
         [Fact]

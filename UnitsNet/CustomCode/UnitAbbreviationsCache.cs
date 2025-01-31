@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -20,6 +19,16 @@ namespace UnitsNet
     /// </summary>
     public sealed class UnitAbbreviationsCache
     {
+        /// <summary>
+        ///     This key is used in the <see cref="UnitAbbreviationsCache.AbbreviationsMap" /> to uniquely identify a particular
+        ///     pair of (unit, culture), while avoiding the hash-collisions that are likely to occur when mixing different unit-types.
+        /// </summary>
+#if NET
+        private readonly record struct AbbreviationMapKey(UnitKey Unit, string CultureName);
+#else
+        private record struct AbbreviationMapKey(UnitKey Unit, string CultureName);
+#endif
+        
         /// <summary>
         ///     Fallback culture used by <see cref="GetUnitAbbreviations{TUnitType}" /> and <see cref="GetDefaultAbbreviation{TUnitType}" />
         ///     if no abbreviations are found with a given culture.
@@ -161,43 +170,49 @@ namespace UnitsNet
             if(!QuantityInfoLookup.TryGetUnitInfo(unitValue, out UnitInfo? unitInfo))
             {
                 unitInfo = new UnitInfo(unitValue, unitValue.ToString(), BaseUnits.Undefined);
-                QuantityInfoLookup.AddUnitInfo(unitValue, unitInfo);
+                QuantityInfoLookup.AddUnitInfo(unitInfo);
             }
 
             AddAbbreviation(unitInfo, formatProvider, setAsDefault, abbreviations);
         }
-
+        
         /// <summary>
-        /// Gets the default abbreviation for a given unit. If a unit has more than one abbreviation defined, then it returns the first one.
-        /// Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(LengthUnit.Kilometer) => "km"
+        ///     Gets the default abbreviation for a given unit type and its numeric enum value.
+        ///     If a unit has more than one abbreviation defined, then it returns the first one.
+        ///     Example: GetDefaultAbbreviation(LengthUnit.Centimeters, 1) => "cm"
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        /// <returns>The default unit abbreviation string.</returns>
         public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : struct, Enum
         {
-            Type unitType = typeof(TUnitType);
-
-            // Edge-case: If the value was cast to Enum, it still satisfies the generic constraint so we must get the type from the value instead.
-            if (unitType == typeof(Enum)) unitType = unit.GetType();
-
-            return GetDefaultAbbreviation(unitType, Convert.ToInt32(unit), formatProvider);
+            return GetDefaultAbbreviation(UnitKey.ForUnit(unit), formatProvider);
         }
-
+        
         /// <summary>
-        /// Gets the default abbreviation for a given unit type and its numeric enum value.
-        /// If a unit has more than one abbreviation defined, then it returns the first one.
-        /// Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(typeof(LengthUnit), 1) => "cm"
+        ///     Gets the default abbreviation for a given unit type and its numeric enum value.
+        ///     If a unit has more than one abbreviation defined, then it returns the first one.
+        ///     Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(typeof(LengthUnit), 1) => "cm"
         /// </summary>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <returns>The default unit abbreviation string.</returns>
         public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            var abbreviations = GetUnitAbbreviations(unitType, unitValue, formatProvider);
-            return abbreviations.Length > 0 ? abbreviations[0] : string.Empty;
+            return GetDefaultAbbreviation(new UnitKey(unitType, unitValue), formatProvider);
+        }
+        
+        /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}"/>
+        /// <param name="unitKey">The key representing the unit type and value.</param>
+        /// <param name="formatProvider">
+        ///     The format provider to use for lookup. Defaults to
+        ///     <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// </param>
+        /// <returns>The default unit abbreviation string.</returns>
+        public string GetDefaultAbbreviation(UnitKey unitKey, IFormatProvider? formatProvider = null)
+        {
+            var abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
+            return abbreviations.Count > 0 ? abbreviations[0] : string.Empty;
         }
 
         /// <summary>
@@ -209,7 +224,7 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : struct, Enum
         {
-            return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
+            return GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider).ToArray();  // TODO can we change this to return an IReadonlyCollection (as the GetAbbreviations)?
         }
 
         /// <summary>
@@ -221,36 +236,37 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            formatProvider ??= CultureInfo.CurrentCulture;
-
-            return TryGetUnitAbbreviations(unitType, unitValue, formatProvider, out var abbreviations)
-                ? abbreviations
-                : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+            return GetUnitAbbreviations(new UnitKey(unitType, unitValue), formatProvider).ToArray(); // TODO can we change this to return an IReadOnlyList (as the GetAbbreviations)?
+        }
+        
+        /// <summary>
+        /// Retrieves the unit abbreviations for a specified unit key and optional format provider.
+        /// </summary>
+        /// <param name="unitKey">The key representing the unit type and value.</param> 
+        /// <param name="formatProvider">An optional format provider to use for culture-specific formatting.</param>
+        /// <returns>A read-only collection of unit abbreviation strings.</returns>
+        public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider = null)
+        {
+            return GetAbbreviations(QuantityInfoLookup.GetUnitInfo(unitKey), formatProvider);
         }
 
         /// <summary>
         ///     Get all abbreviations for unit.
         /// </summary>
-        /// <param name="unitType">Enum type for unit.</param>
-        /// <param name="unitValue">Enum value for unit.</param>
+        /// <param name="unitKey">The unit-enum type as a hash-friendly type.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">The unit abbreviations associated with unit.</param>
         /// <returns>True if found, otherwise false.</returns>
-        private bool TryGetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider, out string[] abbreviations)
+        private bool TryGetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider, out IReadOnlyList<string> abbreviations)
         {
-            var name = Enum.GetName(unitType, unitValue);
-            var enumInstance = (Enum)Enum.Parse(unitType, name!);
-
-            if(QuantityInfoLookup.TryGetUnitInfo(enumInstance, out var unitInfo))
+            if(QuantityInfoLookup.TryGetUnitInfo(unitKey, out UnitInfo? unitInfo))
             {
-                abbreviations = GetAbbreviations(unitInfo, formatProvider!).ToArray();
+                abbreviations = GetAbbreviations(unitInfo, formatProvider);
                 return true;
             }
-            else
-            {
-                abbreviations = Array.Empty<string>();
-                return false;
-            }
+
+            abbreviations = [];
+            return false;
         }
 
         /// <summary>
@@ -261,28 +277,42 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
-            var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
-            var all = GetStringUnitPairs(enumValues, formatProvider);
-            return all.Select(pair => pair.Item2).ToList();
+            var allAbbreviations = new List<string>();
+            if (!QuantityInfoLookup.TryGetQuantityByUnitType(unitEnumType, out QuantityInfo? quantityInfo))
+            {
+                var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
+                var all = GetStringUnitPairs(enumValues, formatProvider);
+                return all.Select(pair => pair.Item2).ToList();
+            }
+            
+            foreach(UnitInfo unitInfo in quantityInfo.UnitInfos)
+            {
+                if(TryGetUnitAbbreviations(unitInfo.UnitKey, formatProvider, out IReadOnlyList<string> abbreviations))
+                {
+                    allAbbreviations.AddRange(abbreviations);
+                }
+            }
+
+            return allAbbreviations;
         }
 
         internal List<(Enum Unit, string Abbreviation)> GetStringUnitPairs(IEnumerable<Enum> enumValues, IFormatProvider? formatProvider = null)
         {
-            var ret = new List<(Enum, string)>();
+            var unitAbbreviationsPairs = new List<(Enum, string)>();
             formatProvider ??= CultureInfo.CurrentCulture;
 
             foreach(var enumValue in enumValues)
             {
-                if(TryGetUnitAbbreviations(enumValue.GetType(), Convert.ToInt32(enumValue), formatProvider, out var abbreviations))
+                if(TryGetUnitAbbreviations(enumValue, formatProvider, out var abbreviations))
                 {
                     foreach(var abbrev in abbreviations)
                     {
-                        ret.Add((enumValue, abbrev));
+                        unitAbbreviationsPairs.Add((enumValue, abbrev));
                     }
                 }
             }
 
-            return ret;
+            return unitAbbreviationsPairs;
         }
 
         /// <summary>
@@ -360,14 +390,7 @@ namespace UnitsNet
 
         private static AbbreviationMapKey GetAbbreviationMapKey(UnitInfo unitInfo, string cultureName)
         {
-            // TODO Enforce quantity name for custom units, optional value was required for backwards compatibility in v5.
-            // TODO Support non-enum units, using quantity name and unit name instead.
-            var unitTypeName = unitInfo.Value.GetType().FullName ?? throw new InvalidOperationException("Could not resolve unit enum type name."); // .QuantityName ?? "MissingQuantityName";
-
-            return new AbbreviationMapKey(
-                UnitTypeName: unitTypeName,
-                UnitName: unitInfo.Name,
-                CultureName: cultureName);
+            return new AbbreviationMapKey(unitInfo.UnitKey, cultureName);
         }
 
         private static string GetCultureNameOrEnglish(CultureInfo culture)
@@ -395,77 +418,33 @@ namespace UnitsNet
             return abbreviationsList.AsReadOnly();
         }
 
-#if NETCOREAPP
         /// <summary>
-        ///     Key for looking up unit abbreviations for a given unit and culture.
+        ///     Retrieves a list of unit information objects that match the specified unit abbreviation.
         /// </summary>
+        /// <param name="formatProvider">An optional format provider to use for culture-specific formatting.</param>
+        /// <param name="unitAbbreviation">The unit abbreviation to search for.</param>
+        /// <returns>A list of <see cref="UnitInfo" /> objects that match the specified unit abbreviation.</returns>
         /// <remarks>
-        ///     TODO Use quantity name instead of unit enum name, as part of moving from enums to string-based lookups.
+        ///     This method performs a case-sensitive match to reduce ambiguity. For example, "cm" could match both
+        ///     <c>LengthUnit.Centimeter</c> (cm) and
+        ///     <c>MolarityUnit.CentimolePerLiter</c> (cM).
         /// </remarks>
-        /// <param name="UnitTypeName">The unit enum type name, such as "UnitsNet.Units.LengthUnit" or "MyApp.HowMuchUnit".</param>
-        /// <param name="UnitName">The unit name, such as "Centimeter".</param>
-        /// <param name="CultureName">The culture name, such as "en-US".</param>
-        [SuppressMessage("ReSharper", "NotAccessedPositionalProperty.Local", Justification = "Only used for hashing and equality.")]
-        private record AbbreviationMapKey(string UnitTypeName, string UnitName, string CultureName);
-#else
-        /// <summary>
-        ///     Key for looking up unit abbreviations for a given unit and culture.
-        /// </summary>
-        /// <remarks>
-        ///     TODO Use quantity name instead of unit enum name, as part of moving from enums to string-based lookups.
-        /// </remarks>
-        private class AbbreviationMapKey : IEquatable<AbbreviationMapKey>
+        internal List<UnitInfo> GetUnitsForAbbreviation(IFormatProvider? formatProvider, string unitAbbreviation)
         {
-            /// <summary>
-            ///     The unit enum type name, such as "UnitsNet.Units.LengthUnit" or "MyApp.HowMuchUnit".
-            /// </summary>
-            public string UnitTypeName { get; }
-
-            /// <summary>
-            ///     The unit name, such as "Centimeter".
-            /// </summary>
-            public string UnitName { get; }
-
-            /// <summary>
-            ///     The culture name, such as "en-US".
-            /// </summary>
-            public string CultureName { get; }
-
-            [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Matches record naming.")]
-            public AbbreviationMapKey(string UnitTypeName, string UnitName, string CultureName)
-            {
-                this.UnitTypeName = UnitTypeName;
-                this.UnitName = UnitName;
-                this.CultureName = CultureName;
-            }
-
-            public bool Equals(AbbreviationMapKey? other)
-            {
-                if (ReferenceEquals(null, other)) return false;
-                if (ReferenceEquals(this, other)) return true;
-                return UnitTypeName == other.UnitTypeName && UnitName == other.UnitName && CultureName == other.CultureName;
-            }
-
-            public override bool Equals(object? obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != GetType()) return false;
-                return Equals((AbbreviationMapKey)obj);
-            }
-
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    int hashCode = UnitTypeName.GetHashCode();
-                    hashCode = (hashCode * 397) ^ UnitName.GetHashCode();
-                    hashCode = (hashCode * 397) ^ CultureName.GetHashCode();
-                    return hashCode;
-                }
-            }
+            // TODO this is certain to have terrible performance (especially on the first run)
+            // TODO we should consider adding a (lazy) dictionary for these
+            // Use case-sensitive match to reduce ambiguity.
+            // Don't use UnitParser.TryParse() here, since it allows case-insensitive match per quantity as long as there are no ambiguous abbreviations for
+            // units of that quantity, but here we try all quantities and this results in too high of a chance for ambiguous matches,
+            // such as "cm" matching both LengthUnit.Centimeter (cm) and MolarityUnit.CentimolePerLiter (cM).
+            return QuantityInfoLookup.Infos
+                .SelectMany(quantityInfo => quantityInfo.UnitInfos)
+                .Select(unitInfo => GetAbbreviations(unitInfo, formatProvider).Contains(unitAbbreviation, StringComparer.Ordinal)
+                    ? unitInfo
+                    : null)
+                .Where(unitValue => unitValue != null)
+                .Select(unitValue => unitValue!)
+                .ToList();
         }
-#endif
-
     }
 }
