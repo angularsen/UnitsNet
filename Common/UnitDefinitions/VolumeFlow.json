@@ -185,7 +185,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/s", "LPS" ]
+          "Abbreviations": [ "l/s", "LPS" ]
         },
         {
           "Culture": "ru-RU",
@@ -202,7 +202,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/min", "LPM" ]
+          "Abbreviations": [ "l/min", "LPM" ]
         },
         {
           "Culture": "ru-RU",
@@ -219,7 +219,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/h", "LPH" ]
+          "Abbreviations": [ "l/h", "LPH" ]
         },
         {
           "Culture": "ru-RU",
@@ -236,7 +236,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "l/day", "L/d", "LPD" ]
+          "Abbreviations": [ "l/day", "l/d", "LPD" ]
         }
       ]
     },
