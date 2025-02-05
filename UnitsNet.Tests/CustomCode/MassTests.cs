@@ -91,6 +91,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MassDividedByMassFlowEqualsTimeSpan()
+        {
+            TimeSpan timeSpan = Mass.FromKilograms(20) / MassFlow.FromKilogramsPerSecond(2);
+            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
+        }
+
+        [Fact]
         public void MassDividedByVolumeEqualsDensity()
         {
             Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);

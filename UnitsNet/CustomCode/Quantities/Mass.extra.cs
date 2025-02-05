@@ -58,6 +58,12 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
         }
 
+        /// <summary>Get <see cref="TimeSpan"/> from <see cref="Mass"/> divided by <see cref="MassFlow"/>.</summary>
+        public static TimeSpan operator /(Mass mass, MassFlow massFlow)
+        {
+            return TimeSpan.FromSeconds(mass.Kilograms/massFlow.KilogramsPerSecond);
+        }
+
         /// <summary>Get <see cref="Density"/> from <see cref="MassFlow"/> divided by <see cref="Volume"/>.</summary>
         public static Density operator /(Mass mass, Volume volume)
         {
