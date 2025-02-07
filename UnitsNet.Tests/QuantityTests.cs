@@ -139,10 +139,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void From_InvalidQuantityNameOrUnitName_ThrowsUnitNotFoundException()
+        public void From_InvalidQuantityName_ThrowsQuantityNotFoundException()
+        {
+            Assert.Throws<QuantityNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
+        }
+        
+        [Fact]
+        public void From_InvalidUnitName_ThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "Length", "InvalidUnit"));
-            Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
         }
 
         [Fact]

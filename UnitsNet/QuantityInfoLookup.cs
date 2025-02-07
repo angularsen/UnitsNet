@@ -1,168 +1,261 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
+#if NET8_0_OR_GREATER
+using System.Collections.Frozen;
+using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
+using QuantityByNameLookupDictionary = System.Collections.Frozen.FrozenDictionary<string, UnitsNet.QuantityInfo>;
+#else
+using QuantityByTypeLookupDictionary = System.Collections.Generic.Dictionary<System.Type, UnitsNet.QuantityInfo>;
+using QuantityByNameLookupDictionary = System.Collections.Generic.Dictionary<string, UnitsNet.QuantityInfo>;
+#endif
+using UnitByKeyLookupDictionary = System.Collections.Generic.Dictionary<UnitsNet.UnitKey, UnitsNet.UnitInfo>;
 
-namespace UnitsNet
+namespace UnitsNet;
+
+/// <summary>
+///     A collection of <see cref="QuantityInfo" />.
+/// </summary>
+/// <remarks>
+///     Access type is <c>internal</c> until this class is matured and ready for external use.
+/// </remarks>
+internal class QuantityInfoLookup
 {
-    /// <summary>
-    /// A collection of <see cref="QuantityInfo"/>.
-    /// </summary>
-    /// <remarks>
-    ///     Access type is <c>internal</c> until this class is matured and ready for external use.
-    /// </remarks>
-    internal class QuantityInfoLookup
+    private readonly QuantityInfo[] _quantities;
+    private readonly Lazy<QuantityByNameLookupDictionary> _quantitiesByName;
+    private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByUnitType;
+    private readonly Lazy<UnitByKeyLookupDictionary> _unitsByKey;
+
+    private QuantityByNameLookupDictionary GroupQuantitiesByName()
     {
-        private readonly Lazy<QuantityInfo[]> _infosLazy;
-        private readonly Lazy<Dictionary<(Type, string), UnitInfo>> _unitTypeAndNameToUnitInfoLazy;
+#if NET8_0_OR_GREATER
+        return _quantities.ToFrozenDictionary(info => info.Name, StringComparer.OrdinalIgnoreCase);
+#else
+        return _quantities.ToDictionary(info => info.Name, StringComparer.OrdinalIgnoreCase);
+#endif
+    }
 
-        /// <summary>
-        /// New instance.
-        /// </summary>
-        /// <param name="quantityInfos"></param>
-        public QuantityInfoLookup(ICollection<QuantityInfo> quantityInfos)
+    private QuantityByTypeLookupDictionary GroupQuantitiesByUnitType()
+    {
+#if NET8_0_OR_GREATER
+        return _quantities.ToFrozenDictionary(info => info.UnitType);
+#else
+        return _quantities.ToDictionary(info => info.UnitType);
+#endif
+    }
+
+    private UnitByKeyLookupDictionary GroupUnitsByKey()
+    {
+        return _quantities.SelectMany(quantityInfo => quantityInfo.UnitInfos).ToDictionary(x => x.UnitKey);
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="QuantityInfoLookup" /> class.
+    /// </summary>
+    /// <param name="quantityInfos">
+    ///     A collection of <see cref="QuantityInfo" /> objects representing the quantities to be managed by this lookup.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown when the <paramref name="quantityInfos" /> parameter is <c>null</c>.
+    /// </exception>
+    /// <remarks>
+    ///     This constructor organizes the provided quantity information into internal lookup structures
+    ///     for efficient access by name, unit type, and unit key.
+    /// </remarks>
+    public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
+    {
+        _quantities = quantityInfos.ToArray();
+        _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
+        _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByUnitType);
+        _unitsByKey = new Lazy<UnitByKeyLookupDictionary>(GroupUnitsByKey);
+    }
+
+    /// <summary>
+    ///     All enum value names of <see cref="Infos" />, such as "Length" and "Mass".
+    /// </summary>
+    public IReadOnlyCollection<string> Names => _quantitiesByName.Value.Keys;
+
+    /// <summary>
+    ///     A read-only dictionary that maps quantity names to their corresponding <see cref="QuantityInfo" />.
+    /// </summary>
+    public IReadOnlyDictionary<string, QuantityInfo> ByName => _quantitiesByName.Value;
+
+    /// <summary>
+    ///     All quantity information objects, such as <see cref="Length.Info" /> and <see cref="Mass.Info" />.
+    /// </summary>
+    public IReadOnlyList<QuantityInfo> Infos => _quantities;
+
+    /// <summary>
+    ///     Retrieves the <see cref="UnitInfo" /> for a specified <see cref="UnitKey" />.
+    /// </summary>
+    /// <param name="unitKey">The key representing the unit for which information is being requested.</param>
+    /// <returns>The <see cref="UnitInfo" /> associated with the specified <paramref name="unitKey" />.</returns>
+    /// <exception cref="UnitNotFoundException">
+    ///     Thrown when no unit information is found for the specified
+    ///     <paramref name="unitKey" />.
+    /// </exception>
+    public UnitInfo GetUnitInfo(UnitKey unitKey)
+    {
+        if (!TryGetUnitInfo(unitKey, out UnitInfo? unitInfo))
         {
-            Names = quantityInfos.Select(qt => qt.Name).ToArray();
-
-            _infosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
-                .OrderBy(quantityInfo => quantityInfo.Name)
-                .ToArray());
-
-            _unitTypeAndNameToUnitInfoLazy = new Lazy<Dictionary<(Type, string), UnitInfo>>(() =>
-            {
-                return Infos
-                    .SelectMany(quantityInfo => quantityInfo.UnitInfos
-                        .Select(unitInfo => new KeyValuePair<(Type, string), UnitInfo>(
-                            (unitInfo.Value.GetType(), unitInfo.Name),
-                            unitInfo)))
-                    .ToDictionary(x => x.Key, x => x.Value);
-            });
+            throw new UnitNotFoundException($"No unit information found for the specified enum value: {unitKey}.");
         }
 
-        /// <summary>
-        /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
-        /// </summary>
-        public string[] Names { get; }
+        return unitInfo;
+    }
 
-        /// <summary>
-        /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
-        /// </summary>
-        public QuantityInfo[] Infos => _infosLazy.Value;
+    /// <summary>
+    ///     Try to get <see cref="UnitInfo" /> for a given unit enum value.
+    /// </summary>
+    public bool TryGetUnitInfo(UnitKey unitKey, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        return _unitsByKey.Value.TryGetValue(unitKey, out unitInfo);
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="unitInfo"></param>
+    public void AddUnitInfo(UnitInfo unitInfo)
+    {
+        _unitsByKey.Value.Add(unitInfo.UnitKey, unitInfo);
+    }
+    
+    /// <summary>
+    ///     Dynamically construct a quantity.
+    /// </summary>
+    /// <param name="value">Numeric value.</param>
+    /// <param name="unit">Unit enum value.</param>
+    /// <returns>An <see cref="IQuantity" /> object.</returns>
+    /// <exception cref="UnitNotFoundException">Unit value is not a know unit enum type.</exception>
+    public IQuantity From(double value, UnitKey unit)
+    {
+        // TODO Support custom units, currently only hardcoded built-in quantities are supported.
+        return Quantity.TryFrom(value, (Enum)unit, out IQuantity? quantity)
+            ? quantity
+            : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
+    }
+    
+    /// <summary>
+    ///     Attempts to create a quantity from the specified value and unit.
+    /// </summary>
+    /// <param name="value">The value of the quantity.</param>
+    /// <param name="unit">The unit of the quantity, represented as an <see cref="Enum" />.</param>
+    /// <param name="quantity">
+    ///     When this method returns, contains the created quantity if the conversion succeeded,
+    ///     or <c>null</c> if the conversion failed. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the quantity was successfully created; otherwise, <c>false</c>.
+    /// </returns>
+    public bool TryFrom(double value, [NotNullWhen(true)] Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
+    {
+        // TODO Support custom units, currently only hardcoded built-in quantities are supported.
+        return Quantity.TryFrom(value, unit, out quantity);
+    }
 
-        /// <summary>
-        /// Gets the <see cref="QuantityInfo"/> for a given unit.
-        /// </summary>
-        public QuantityInfo GetQuantityInfo(UnitInfo unitInfo)
+    /// <summary>
+    ///     Retrieves the <see cref="QuantityInfo" /> associated with the specified quantity name.
+    /// </summary>
+    /// <param name="quantityName">The name of the quantity to retrieve information for.</param>
+    /// <returns>The <see cref="QuantityInfo" /> associated with the specified quantity name.</returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    internal QuantityInfo GetQuantityByName(string quantityName)
+    {
+        if (!ByName.TryGetValue(quantityName, out QuantityInfo? quantityInfo))
         {
-            Type unitType = unitInfo.Value.GetType();
-            return _infosLazy.Value.First(i => i.UnitType == unitType);
+            throw new QuantityNotFoundException($"No quantity information was found for the type: {quantityName}.")
+            {
+                Data = { ["quantityName"] = quantityName }
+            };
         }
 
-        /// <summary>
-        /// Try to get the <see cref="QuantityInfo"/> for a given unit.
-        /// </summary>
-        public bool TryGetQuantityInfo(UnitInfo unitInfo, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
-        {
-            Type unitType = unitInfo.Value.GetType();
-            if (_infosLazy.Value.FirstOrDefault(i => i.UnitType == unitType) is { } qi)
-            {
-                quantityInfo = qi;
-                return true;
-            }
+        return quantityInfo;
+    }
 
-            quantityInfo = default;
+    /// <summary>
+    ///     Attempts to retrieve the <see cref="QuantityInfo" /> associated with the specified quantity name.
+    /// </summary>
+    /// <param name="quantityName">The name of the quantity to look up.</param>
+    /// <param name="quantityInfo">
+    ///     When this method returns, contains the <see cref="QuantityInfo" /> associated with the specified quantity name,
+    ///     if the name is found; otherwise, <c>null</c>. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the quantity name was found; otherwise, <c>false</c>.
+    /// </returns>
+    internal bool TryGetQuantityByName(string quantityName, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
+    {
+        return ByName.TryGetValue(quantityName, out quantityInfo);
+    }
+
+    /// <summary>
+    ///     Attempts to parse a unit information object based on its quantity and unit names.
+    /// </summary>
+    /// <param name="quantityName">
+    ///     The invariant quantity name, such as "Length". This parameter does not support localization.
+    /// </param>
+    /// <param name="unitName">
+    ///     The invariant unit enum name, such as "Meter". This parameter does not support localization.
+    /// </param>
+    /// <returns>
+    ///     The <see cref="UnitInfo" /> object representing the unit information.
+    /// </returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    /// <exception cref="UnitNotFoundException">
+    ///     Thrown when no unit is found for the specified quantity name and unit name.
+    /// </exception>
+    internal UnitInfo GetUnitByName(string quantityName, string unitName)
+    {
+        QuantityInfo quantityInfo = GetQuantityByName(quantityName);
+        UnitInfo? unitInfo = quantityInfo.UnitInfos.FirstOrDefault(unit => string.Equals(unit.Name, unitName, StringComparison.OrdinalIgnoreCase));
+        return unitInfo ??
+               throw new UnitNotFoundException($"No unit was found for quantity '{quantityName}' with the name: '{unitName}'.")
+               {
+                   Data = { ["quantityName"] = quantityName, ["unitName"] = unitName }
+               };
+    }
+    
+    /// <summary>
+    ///     Attempts to parse unit information based on its quantity and unit names.
+    /// </summary>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". This parameter does not support localization.</param>
+    /// <param name="unitName">The invariant unit name, such as "Meter". This parameter does not support localization.</param>
+    /// <param name="unitInfo">
+    ///     When this method returns, contains the parsed unit information if the parsing succeeded, or <c>null</c> if the
+    ///     parsing failed.
+    /// </param>
+    /// <returns><c>true</c> if the unit information was successfully parsed; otherwise, <c>false</c>.</returns>
+    internal bool TryGetUnitByName(string quantityName, string unitName, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        if (!TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo))
+        {
+            unitInfo = null;
             return false;
         }
 
-        /// <summary>
-        /// Get <see cref="UnitInfo"/> for a given unit enum value.
-        /// </summary>
-        public UnitInfo GetUnitInfo(Enum unitEnum) => _unitTypeAndNameToUnitInfoLazy.Value[(unitEnum.GetType(), unitEnum.ToString())];
+        unitInfo = quantityInfo.UnitInfos.FirstOrDefault(unit => string.Equals(unit.Name, unitName, StringComparison.OrdinalIgnoreCase));
+        return unitInfo is not null;
+    }
 
-        /// <summary>
-        /// Try to get <see cref="UnitInfo"/> for a given unit enum value.
-        /// </summary>
-        public bool TryGetUnitInfo(Enum unitEnum, [NotNullWhen(true)] out UnitInfo? unitInfo) =>
-            _unitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="unitInfo"></param>
-        public void AddUnitInfo(Enum unit, UnitInfo unitInfo)
+    public bool TryGetQuantityByUnitType(Type unitType, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
+    {
+        return _quantitiesByUnitType.Value.TryGetValue(unitType, out quantityInfo);
+    }
+
+    public QuantityInfo GetQuantityByUnitType(Type unitType)
+    {
+        if (TryGetQuantityByUnitType(unitType, out QuantityInfo? quantityInfo))
         {
-            _unitTypeAndNameToUnitInfoLazy.Value.Add((unit.GetType(), unit.ToString()), unitInfo);
+            return quantityInfo;
         }
 
-        /// <summary>
-        ///     Dynamically construct a quantity.
-        /// </summary>
-        /// <param name="value">Numeric value.</param>
-        /// <param name="unit">Unit enum value.</param>
-        /// <returns>An <see cref="IQuantity"/> object.</returns>
-        /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public IQuantity From(double value, Enum unit)
-        {
-            // TODO Support custom units, currently only hardcoded built-in quantities are supported.
-            return Quantity.TryFrom(value, unit, out IQuantity? quantity)
-                ? quantity
-                : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
-        }
-
-        /// <inheritdoc cref="Quantity.TryFrom(double,System.Enum,out UnitsNet.IQuantity)"/>
-        public bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
-        {
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                quantity = default(IQuantity);
-                return false;
-            }
-
-            // TODO Support custom units, currently only hardcoded built-in quantities are supported.
-            return Quantity.TryFrom(value, unit, out quantity);
-        }
-
-        /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-        public IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
-
-        /// <summary>
-        ///     Dynamically parse a quantity string representation.
-        /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
-        /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
-        /// <returns>The parsed quantity.</returns>
-        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        public IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
-        {
-            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            // TODO Support custom units, currently only hardcoded built-in quantities are supported.
-            if (Quantity.TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
-                return quantity;
-
-            throw new UnitNotFoundException($"Quantity string '{quantityString}' could not be parsed to quantity '{quantityType}'.");
-        }
-
-        /// <inheritdoc cref="Quantity.TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public bool TryParse(Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
-        {
-            // TODO Support custom units, currently only hardcoded built-in quantities are supported.
-            return Quantity.TryParse(null, quantityType, quantityString, out quantity);
-        }
-
-        /// <summary>
-        ///     Get a list of quantities that has the given base dimensions.
-        /// </summary>
-        /// <param name="baseDimensions">The base dimensions to match.</param>
-        public IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
-        {
-            return _infosLazy.Value.Where(info => info.BaseDimensions.Equals(baseDimensions));
-        }
+        throw new UnitNotFoundException($"No quantity was found with the specified unit type: '{unitType}'.") { Data = { ["unitType"] = unitType.Name } };
     }
 }
