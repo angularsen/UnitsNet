@@ -21,7 +21,6 @@ namespace UnitsNet;
 internal class QuantityInfoLookup
 {
     private readonly Lazy<SortedDictionary<string, QuantityInfo>> _quantitiesByName;
-    private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByType;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByUnitType;
     private readonly Lazy<UnitByKeyLookupDictionary> _unitsByKey;
 
@@ -32,13 +31,19 @@ internal class QuantityInfoLookup
     public QuantityInfoLookup(IReadOnlyCollection<QuantityInfo> quantityInfos)
     {
         _quantitiesByName = new Lazy<SortedDictionary<string, QuantityInfo>>(() =>
-            new SortedDictionary<string, QuantityInfo>(quantityInfos.ToDictionary(info => info.Name), StringComparer.OrdinalIgnoreCase));
+        {
+            var sortedDictionary = new SortedDictionary<string, QuantityInfo>(StringComparer.OrdinalIgnoreCase);
+            foreach (QuantityInfo quantityInfo in quantityInfos)
+            {
+                sortedDictionary.Add(quantityInfo.Name, quantityInfo);
+            }
+
+            return sortedDictionary;
+        });
 
 #if NET8_0_OR_GREATER
-        _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToFrozenDictionary(info => info.QuantityType));
         _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToFrozenDictionary(info => info.UnitType));
 #else
-        _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToDictionary(info => info.QuantityType));
         _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToDictionary(info => info.UnitType));
 #endif
         _unitsByKey = new Lazy<UnitByKeyLookupDictionary>(() => quantityInfos.SelectMany(quantityInfo => quantityInfo.UnitInfos).ToDictionary(x => x.UnitKey));
