@@ -127,6 +127,14 @@ public class UnitKeyTest
         Assert.Throws<InvalidOperationException>(() => defaultUnitKey.ToUnit<TestUnit>());
     }
 
+    [Fact]
+    public void Deconstruct_ShouldReturnTheUnitTypeAndUnitValue()
+    {
+        (Type unitType, var unitValue) = UnitKey.ForUnit(TestUnit.Unit1);
+        Assert.Equal(typeof(TestUnit), unitType);
+        Assert.Equal(1, unitValue);
+    }
+
     [Theory]
     [InlineData(TestUnit.Unit1, "TestUnit.Unit1")]
     [InlineData(TestUnit.Unit2, "TestUnit.Unit2")]
