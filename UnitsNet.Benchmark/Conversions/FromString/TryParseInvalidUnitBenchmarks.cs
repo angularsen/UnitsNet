@@ -2,11 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
-using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark.Conversions.FromString;
 
@@ -15,16 +15,22 @@ namespace UnitsNet.Benchmark.Conversions.FromString;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class TryParseInvalidUnitBenchmarks
 {
+    private const int NbAbbreviations = 1000;
+
+    private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
     private readonly Random _random = new(42);
     private string[] _invalidUnits = [];
-
-    [Params(1000)]
-    public int NbAbbreviations { get; set; }
 
     [GlobalSetup]
     public void Setup()
     {
         _invalidUnits = Enumerable.Range(0, NbAbbreviations).Select(_ => GenerateInvalidUnit()).ToArray();
+        // initializes the QuantityInfoLookup and the abbreviations cache
+        Mass.TryParseUnit("_invalid", Culture, out _);
+        Volume.TryParseUnit("_invalid", Culture, out _);
+        Density.TryParseUnit("_invalid", Culture, out _);
+        Pressure.TryParseUnit("_invalid", Culture, out _);
+        VolumeFlow.TryParseUnit("_invalid", Culture, out _);
     }
 
     private string GenerateInvalidUnit()
@@ -46,7 +52,7 @@ public class TryParseInvalidUnitBenchmarks
         var success = true;
         foreach (var unitToParse in _invalidUnits)
         {
-            success = Mass.TryParseUnit(unitToParse, out MassUnit _);
+            success = Mass.TryParseUnit(unitToParse, Culture, out _);
         }
 
         return success;
@@ -58,43 +64,43 @@ public class TryParseInvalidUnitBenchmarks
         var success = true;
         foreach (var unitToParse in _invalidUnits)
         {
-            success = Volume.TryParseUnit(unitToParse, out _);
+            success = Volume.TryParseUnit(unitToParse, Culture, out _);
         }
 
         return success;
     }
 
     [Benchmark(Baseline = false)]
-    public bool ParseDensityUnit()
+    public bool TryParseDensityUnit()
     {
         var success = true;
         foreach (var unitToParse in _invalidUnits)
         {
-            success = Density.TryParseUnit(unitToParse, out _);
+            success = Density.TryParseUnit(unitToParse, Culture, out _);
         }
 
         return success;
     }
 
     [Benchmark(Baseline = false)]
-    public bool ParsePressureUnit()
+    public bool TryParsePressureUnit()
     {
         var success = true;
         foreach (var unitToParse in _invalidUnits)
         {
-            success = Pressure.TryParseUnit(unitToParse, out _);
+            success = Pressure.TryParseUnit(unitToParse, Culture, out _);
         }
 
         return success;
     }
 
     [Benchmark(Baseline = false)]
-    public bool ParseVolumeFlowUnit()
+    public bool TryParseVolumeFlowUnit()
     {
         var success = true;
         foreach (var unitToParse in _invalidUnits)
         {
-            success = VolumeFlow.TryParseUnit(unitToParse, out _);
+            success = VolumeFlow.TryParseUnit(unitToParse, Culture, out _);
         }
 
         return success;

@@ -35,14 +35,6 @@ public class UnitKeyTest
         Assert.Equal(0, unitKey.UnitValue);
     }
 
-    [Fact]
-    public void ConstructingWithInitializer_ShouldAssignFields()
-    {
-        var unitKey = new UnitKey { UnitType = typeof(TestUnit), UnitValue = 42 };
-        Assert.Equal(typeof(TestUnit), unitKey.UnitType);
-        Assert.Equal(42, unitKey.UnitValue);
-    }
-
     [Theory]
     [InlineData(TestUnit.Unit1)]
     [InlineData(TestUnit.Unit2)]

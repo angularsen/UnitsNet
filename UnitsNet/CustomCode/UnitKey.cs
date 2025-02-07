@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
+// ReSharper disable ConvertToAutoPropertyWhenPossible
+
 namespace UnitsNet;
 
 /// <summary>
@@ -12,12 +14,49 @@ namespace UnitsNet;
 ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
 /// </remarks>
 [DebuggerDisplay("{GetDebuggerDisplay(),nq}")]
-#if NET
-public readonly record struct UnitKey(Type UnitType, int UnitValue)
-#else
-public record struct UnitKey(Type UnitType, int UnitValue)
-#endif
+public readonly record struct UnitKey
 {
+    // apparently, on netstandard, the use of auto-properties is significantly slower
+    private readonly Type _unitType;
+    private readonly int _unitValue;
+
+    /// <summary>
+    ///     Represents a unique key for a unit type and its corresponding value.
+    /// </summary>
+    /// <remarks>
+    ///     This key is particularly useful when using an enum-based unit in a hash-based collection,
+    ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
+    /// </remarks>
+    public UnitKey(Type UnitType, int UnitValue)
+    {
+        _unitType = UnitType;
+        _unitValue = UnitValue;
+    }
+
+    /// <summary>
+    ///     Gets the type of the unit represented by this <see cref="UnitKey" />.
+    /// </summary>
+    /// <remarks>
+    ///     This property holds the <see cref="Type" /> of the unit enumeration associated with this key.
+    ///     It is particularly useful for identifying the unit type in scenarios where multiple unit types are used.
+    /// </remarks>
+    public Type UnitType
+    {
+        get => _unitType;
+    }
+
+    /// <summary>
+    ///     Gets the integer value associated with the unit type.
+    /// </summary>
+    /// <remarks>
+    ///     This property represents the unique value of the unit within its type, typically corresponding to the underlying
+    ///     integer value of an enumeration.
+    /// </remarks>
+    public int UnitValue
+    {
+        get => _unitValue;
+    }
+
     /// <summary>
     ///     Creates a new instance of the <see cref="UnitKey" /> struct for the specified unit.
     /// </summary>
@@ -72,7 +111,7 @@ public record struct UnitKey(Type UnitType, int UnitValue)
     /// </remarks>
     public static explicit operator Enum(UnitKey unitKey)
     {
-        return (Enum)Enum.ToObject(unitKey.UnitType, unitKey.UnitValue);
+        return (Enum)Enum.ToObject(unitKey._unitType, unitKey._unitValue);
     }
 
     /// <summary>
@@ -90,12 +129,12 @@ public record struct UnitKey(Type UnitType, int UnitValue)
     /// </remarks>
     public TUnit ToUnit<TUnit>() where TUnit : struct, Enum
     {
-        if (typeof(TUnit) != UnitType)
+        if (typeof(TUnit) != _unitType)
         {
-            throw new InvalidOperationException($"Cannot convert UnitKey of type {UnitType} to {typeof(TUnit)}.");
+            throw new InvalidOperationException($"Cannot convert UnitKey of type {_unitType} to {typeof(TUnit)}.");
         }
 
-        var unitValue = UnitValue;
+        var unitValue = _unitValue;
         return Unsafe.As<int, TUnit>(ref unitValue);
     }
 
@@ -103,12 +142,53 @@ public record struct UnitKey(Type UnitType, int UnitValue)
     {
         try
         {
-            var unitName = Enum.GetName(UnitType, UnitValue);
-            return string.IsNullOrEmpty(unitName) ? $"{nameof(UnitType)}: {UnitType}, {nameof(UnitValue)} = {UnitValue}" : $"{UnitType.Name}.{unitName}";
+            var unitName = Enum.GetName(_unitType, _unitValue);
+            return string.IsNullOrEmpty(unitName) ? $"{nameof(UnitType)}: {_unitType}, {nameof(UnitValue)} = {_unitValue}" : $"{_unitType.Name}.{unitName}";
         }
         catch
         {
-            return $"{nameof(UnitType)}: {UnitType}, {nameof(UnitValue)} = {UnitValue}";
+            return $"{nameof(UnitType)}: {_unitType}, {nameof(UnitValue)} = {_unitValue}";
         }
     }
+
+    /// <summary>
+    ///     Deconstructs the <see cref="UnitKey" /> into its component parts.
+    /// </summary>
+    /// <param name="unitType">The type of the unit.</param>
+    /// <param name="unitValue">The value of the unit.</param>
+    /// <remarks>
+    ///     This method allows for the use of deconstruction syntax to extract the unit type and value
+    ///     from a <see cref="UnitKey" /> instance.
+    /// </remarks>
+    public void Deconstruct(out Type unitType, out int unitValue)
+    {
+        unitType = _unitType;
+        unitValue = _unitValue;
+    }
+
+    #region Equality members
+
+    /// <inheritdoc />
+    public bool Equals(UnitKey other)
+    {
+        // implementing the Equality members on net48 is 5x faster than the default
+        return _unitType == other._unitType && _unitValue == other._unitValue;
+    }
+
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        // implementing the Equality members on net48 is 5x faster than the default
+        if (_unitType == null)
+        {
+            return _unitValue;
+        }
+
+        unchecked
+        {
+            return (_unitType.GetHashCode() * 397) ^ _unitValue;
+        }
+    }
+
+    #endregion
 }
