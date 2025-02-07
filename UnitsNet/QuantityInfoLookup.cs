@@ -5,8 +5,10 @@ using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
+using QuantityByNameLookupDictionary = System.Collections.Frozen.FrozenDictionary<string, UnitsNet.QuantityInfo>;
 #else
 using QuantityByTypeLookupDictionary = System.Collections.Generic.Dictionary<System.Type, UnitsNet.QuantityInfo>;
+using QuantityByNameLookupDictionary = System.Collections.Generic.Dictionary<string, UnitsNet.QuantityInfo>;
 #endif
 using UnitByKeyLookupDictionary = System.Collections.Generic.Dictionary<UnitsNet.UnitKey, UnitsNet.UnitInfo>;
 
@@ -20,33 +22,53 @@ namespace UnitsNet;
 /// </remarks>
 internal class QuantityInfoLookup
 {
-    private readonly Lazy<SortedDictionary<string, QuantityInfo>> _quantitiesByName;
+    private readonly QuantityInfo[] _quantities;
+    private readonly Lazy<QuantityByNameLookupDictionary> _quantitiesByName;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByUnitType;
     private readonly Lazy<UnitByKeyLookupDictionary> _unitsByKey;
+
+    private QuantityByNameLookupDictionary GroupQuantitiesByName()
+    {
+#if NET8_0_OR_GREATER
+        return _quantities.ToFrozenDictionary(info => info.Name, StringComparer.OrdinalIgnoreCase);
+#else
+        return _quantities.ToDictionary(info => info.Name, StringComparer.OrdinalIgnoreCase);
+#endif
+    }
+
+    private QuantityByTypeLookupDictionary GroupQuantitiesByUnitType()
+    {
+#if NET8_0_OR_GREATER
+        return _quantities.ToFrozenDictionary(info => info.UnitType);
+#else
+        return _quantities.ToDictionary(info => info.UnitType);
+#endif
+    }
+
+    private UnitByKeyLookupDictionary GroupUnitsByKey()
+    {
+        return _quantities.SelectMany(quantityInfo => quantityInfo.UnitInfos).ToDictionary(x => x.UnitKey);
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityInfoLookup" /> class.
     /// </summary>
-    /// <param name="quantityInfos">A collection of quantity information objects.</param>
-    public QuantityInfoLookup(IReadOnlyCollection<QuantityInfo> quantityInfos)
+    /// <param name="quantityInfos">
+    ///     A collection of <see cref="QuantityInfo" /> objects representing the quantities to be managed by this lookup.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown when the <paramref name="quantityInfos" /> parameter is <c>null</c>.
+    /// </exception>
+    /// <remarks>
+    ///     This constructor organizes the provided quantity information into internal lookup structures
+    ///     for efficient access by name, unit type, and unit key.
+    /// </remarks>
+    public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
-        _quantitiesByName = new Lazy<SortedDictionary<string, QuantityInfo>>(() =>
-        {
-            var sortedDictionary = new SortedDictionary<string, QuantityInfo>(StringComparer.OrdinalIgnoreCase);
-            foreach (QuantityInfo quantityInfo in quantityInfos)
-            {
-                sortedDictionary.Add(quantityInfo.Name, quantityInfo);
-            }
-
-            return sortedDictionary;
-        });
-
-#if NET8_0_OR_GREATER
-        _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToFrozenDictionary(info => info.UnitType));
-#else
-        _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(() => quantityInfos.ToDictionary(info => info.UnitType));
-#endif
-        _unitsByKey = new Lazy<UnitByKeyLookupDictionary>(() => quantityInfos.SelectMany(quantityInfo => quantityInfo.UnitInfos).ToDictionary(x => x.UnitKey));
+        _quantities = quantityInfos.ToArray();
+        _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
+        _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByUnitType);
+        _unitsByKey = new Lazy<UnitByKeyLookupDictionary>(GroupUnitsByKey);
     }
 
     /// <summary>
@@ -62,7 +84,7 @@ internal class QuantityInfoLookup
     /// <summary>
     ///     All quantity information objects, such as <see cref="Length.Info" /> and <see cref="Mass.Info" />.
     /// </summary>
-    public IReadOnlyCollection<QuantityInfo> Infos => _quantitiesByName.Value.Values;
+    public IReadOnlyList<QuantityInfo> Infos => _quantities;
 
     /// <summary>
     ///     Retrieves the <see cref="UnitInfo" /> for a specified <see cref="UnitKey" />.

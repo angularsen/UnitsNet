@@ -12,14 +12,14 @@ namespace UnitsNet
         private static UnitParser UnitParser => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
-        /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
+        /// All quantity names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
-        public static IReadOnlyCollection<string> Names { get => Quantities.Names; }
+        public static IReadOnlyCollection<string> Names => Quantities.Names;
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
-        public static IReadOnlyCollection<QuantityInfo> Infos => Quantities.Infos;
+        public static IReadOnlyList<QuantityInfo> Infos => Quantities.Infos;
 
         /// <summary>
         /// Get <see cref="UnitInfo"/> for a given unit enum value.

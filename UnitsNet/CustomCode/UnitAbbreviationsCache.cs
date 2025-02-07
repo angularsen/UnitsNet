@@ -59,7 +59,7 @@ namespace UnitsNet
         ///     Creates an instance of the cache using the specified set of quantities.
         /// </summary>
         /// <returns>Instance for mapping the units of the provided quantities.</returns>
-        public UnitAbbreviationsCache(IReadOnlyCollection<QuantityInfo> quantities)
+        public UnitAbbreviationsCache(IEnumerable<QuantityInfo> quantities)
             :this(new QuantityInfoLookup(quantities))
         {
         }
