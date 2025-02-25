@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework electricconductivity unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.1" />
     </dependencies>
   </metadata>
   <files>
