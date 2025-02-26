@@ -37,8 +37,10 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Scalar.FromAmount(double.CreateChecked(value));
+#else
             => Scalar.FromAmount(Convert.ToDouble(value));
+#endif
 
     }
 }

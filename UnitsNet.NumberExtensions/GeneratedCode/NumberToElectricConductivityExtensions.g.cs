@@ -37,48 +37,60 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromMicrosiemensPerCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
         public static ElectricConductivity MillisiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromMillisiemensPerCentimeter(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromMillisiemensPerCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
         public static ElectricConductivity SiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromSiemensPerCentimeter(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromSiemensPerCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
         public static ElectricConductivity SiemensPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromSiemensPerFoot(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
         public static ElectricConductivity SiemensPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromSiemensPerInch(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromSiemensPerInch(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
         public static ElectricConductivity SiemensPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricConductivity.FromSiemensPerMeter(double.CreateChecked(value));
+#else
             => ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

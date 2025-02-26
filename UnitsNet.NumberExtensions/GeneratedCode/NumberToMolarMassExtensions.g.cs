@@ -37,104 +37,130 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromCentigramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromCentigramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)" />
         public static MolarMass DecagramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromDecagramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromDecagramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)" />
         public static MolarMass DecigramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromDecigramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromDecigramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)" />
         public static MolarMass GramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromGramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromGramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)" />
         public static MolarMass HectogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromHectogramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(double)" />
         public static MolarMass KilogramsPerKilomole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromKilogramsPerKilomole(double.CreateChecked(value));
+#else
             => MolarMass.FromKilogramsPerKilomole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)" />
         public static MolarMass KilogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromKilogramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)" />
         public static MolarMass KilopoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromKilopoundsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromKilopoundsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)" />
         public static MolarMass MegapoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromMegapoundsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromMegapoundsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)" />
         public static MolarMass MicrogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromMicrogramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromMicrogramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)" />
         public static MolarMass MilligramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromMilligramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromMilligramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)" />
         public static MolarMass NanogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromNanogramsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromNanogramsPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)" />
         public static MolarMass PoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarMass.FromPoundsPerMole(double.CreateChecked(value));
+#else
             => MolarMass.FromPoundsPerMole(Convert.ToDouble(value));
+#endif
 
     }
 }

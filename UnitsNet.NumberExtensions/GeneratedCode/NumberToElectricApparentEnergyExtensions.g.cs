@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricApparentEnergy.FromKilovoltampereHours(double.CreateChecked(value));
+#else
             => ElectricApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(double)" />
         public static ElectricApparentEnergy MegavoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricApparentEnergy.FromMegavoltampereHours(double.CreateChecked(value));
+#else
             => ElectricApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(double)" />
         public static ElectricApparentEnergy VoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricApparentEnergy.FromVoltampereHours(double.CreateChecked(value));
+#else
             => ElectricApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
+#endif
 
     }
 }

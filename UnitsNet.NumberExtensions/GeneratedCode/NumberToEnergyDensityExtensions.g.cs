@@ -37,96 +37,120 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromGigajoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromGigajoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromGigawattHoursPerCubicMeter(double)" />
         public static EnergyDensity GigawattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromGigawattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromGigawattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromJoulesPerCubicMeter(double)" />
         public static EnergyDensity JoulesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromJoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromJoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromKilojoulesPerCubicMeter(double)" />
         public static EnergyDensity KilojoulesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromKilojoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromKilojoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromKilowattHoursPerCubicMeter(double)" />
         public static EnergyDensity KilowattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromKilowattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromKilowattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromMegajoulesPerCubicMeter(double)" />
         public static EnergyDensity MegajoulesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromMegajoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromMegajoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromMegawattHoursPerCubicMeter(double)" />
         public static EnergyDensity MegawattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromMegawattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromMegawattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromPetajoulesPerCubicMeter(double)" />
         public static EnergyDensity PetajoulesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromPetajoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromPetajoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromPetawattHoursPerCubicMeter(double)" />
         public static EnergyDensity PetawattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromPetawattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromPetawattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromTerajoulesPerCubicMeter(double)" />
         public static EnergyDensity TerajoulesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromTerajoulesPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromTerajoulesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromTerawattHoursPerCubicMeter(double)" />
         public static EnergyDensity TerawattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromTerawattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromTerawattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="EnergyDensity.FromWattHoursPerCubicMeter(double)" />
         public static EnergyDensity WattHoursPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => EnergyDensity.FromWattHoursPerCubicMeter(double.CreateChecked(value));
+#else
             => EnergyDensity.FromWattHoursPerCubicMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

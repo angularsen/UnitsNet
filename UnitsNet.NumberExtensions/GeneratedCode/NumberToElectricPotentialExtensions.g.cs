@@ -37,48 +37,60 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromKilovolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromKilovolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricPotential.FromMegavolts(double)" />
         public static ElectricPotential Megavolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromMegavolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromMegavolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricPotential.FromMicrovolts(double)" />
         public static ElectricPotential Microvolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromMicrovolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromMicrovolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricPotential.FromMillivolts(double)" />
         public static ElectricPotential Millivolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromMillivolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromMillivolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricPotential.FromNanovolts(double)" />
         public static ElectricPotential Nanovolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromNanovolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromNanovolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricPotential.FromVolts(double)" />
         public static ElectricPotential Volts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricPotential.FromVolts(double.CreateChecked(value));
+#else
             => ElectricPotential.FromVolts(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,96 +37,120 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromDays(double.CreateChecked(value));
+#else
             => Duration.FromDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromHours(double)" />
         public static Duration Hours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromHours(double.CreateChecked(value));
+#else
             => Duration.FromHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromJulianYears(double)" />
         public static Duration JulianYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromJulianYears(double.CreateChecked(value));
+#else
             => Duration.FromJulianYears(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
         public static Duration Microseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromMicroseconds(double.CreateChecked(value));
+#else
             => Duration.FromMicroseconds(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
         public static Duration Milliseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromMilliseconds(double.CreateChecked(value));
+#else
             => Duration.FromMilliseconds(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromMinutes(double)" />
         public static Duration Minutes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromMinutes(double.CreateChecked(value));
+#else
             => Duration.FromMinutes(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromMonths30(double)" />
         public static Duration Months30<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromMonths30(double.CreateChecked(value));
+#else
             => Duration.FromMonths30(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
         public static Duration Nanoseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromNanoseconds(double.CreateChecked(value));
+#else
             => Duration.FromNanoseconds(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromSeconds(double)" />
         public static Duration Seconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromSeconds(double.CreateChecked(value));
+#else
             => Duration.FromSeconds(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromSols(double)" />
         public static Duration Sols<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromSols(double.CreateChecked(value));
+#else
             => Duration.FromSols(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromWeeks(double)" />
         public static Duration Weeks<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromWeeks(double.CreateChecked(value));
+#else
             => Duration.FromWeeks(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Duration.FromYears365(double)" />
         public static Duration Years365<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Duration.FromYears365(double.CreateChecked(value));
+#else
             => Duration.FromYears365(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(double.CreateChecked(value));
+#else
             => ElectricCurrentDensity.FromAmperesPerSquareFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
         public static ElectricCurrentDensity AmperesPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(double.CreateChecked(value));
+#else
             => ElectricCurrentDensity.FromAmperesPerSquareInch(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.CreateChecked(value));
+#else
             => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

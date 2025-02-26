@@ -37,8 +37,10 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Permeability.FromHenriesPerMeter(double.CreateChecked(value));
+#else
             => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

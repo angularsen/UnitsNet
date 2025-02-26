@@ -37,56 +37,70 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromFarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromFarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromKilofarads(double)" />
         public static ElectricCapacitance Kilofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromKilofarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromKilofarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMegafarads(double)" />
         public static ElectricCapacitance Megafarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromMegafarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromMegafarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMicrofarads(double)" />
         public static ElectricCapacitance Microfarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromMicrofarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromMicrofarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMillifarads(double)" />
         public static ElectricCapacitance Millifarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromMillifarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromMillifarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromNanofarads(double)" />
         public static ElectricCapacitance Nanofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromNanofarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromNanofarads(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromPicofarads(double)" />
         public static ElectricCapacitance Picofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCapacitance.FromPicofarads(double.CreateChecked(value));
+#else
             => ElectricCapacitance.FromPicofarads(Convert.ToDouble(value));
+#endif
 
     }
 }

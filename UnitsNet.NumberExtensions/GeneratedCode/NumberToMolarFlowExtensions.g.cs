@@ -37,72 +37,90 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromKilomolesPerHour(double.CreateChecked(value));
+#else
             => MolarFlow.FromKilomolesPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerMinute(double)" />
         public static MolarFlow KilomolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromKilomolesPerMinute(double.CreateChecked(value));
+#else
             => MolarFlow.FromKilomolesPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerSecond(double)" />
         public static MolarFlow KilomolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromKilomolesPerSecond(double.CreateChecked(value));
+#else
             => MolarFlow.FromKilomolesPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerHour(double)" />
         public static MolarFlow MolesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromMolesPerHour(double.CreateChecked(value));
+#else
             => MolarFlow.FromMolesPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(double)" />
         public static MolarFlow MolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromMolesPerMinute(double.CreateChecked(value));
+#else
             => MolarFlow.FromMolesPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(double)" />
         public static MolarFlow MolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromMolesPerSecond(double.CreateChecked(value));
+#else
             => MolarFlow.FromMolesPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(double)" />
         public static MolarFlow PoundMolesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromPoundMolesPerHour(double.CreateChecked(value));
+#else
             => MolarFlow.FromPoundMolesPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(double)" />
         public static MolarFlow PoundMolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromPoundMolesPerMinute(double.CreateChecked(value));
+#else
             => MolarFlow.FromPoundMolesPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(double)" />
         public static MolarFlow PoundMolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarFlow.FromPoundMolesPerSecond(double.CreateChecked(value));
+#else
             => MolarFlow.FromPoundMolesPerSecond(Convert.ToDouble(value));
+#endif
 
     }
 }

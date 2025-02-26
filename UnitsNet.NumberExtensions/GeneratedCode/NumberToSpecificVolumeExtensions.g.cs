@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificVolume.FromCubicFeetPerPound(double.CreateChecked(value));
+#else
             => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
         public static SpecificVolume CubicMetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificVolume.FromCubicMetersPerKilogram(double.CreateChecked(value));
+#else
             => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
         public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
+#else
             => SpecificVolume.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
+#endif
 
     }
 }

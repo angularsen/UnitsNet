@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double.CreateChecked(value));
+#else
             => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
         public static ElectricReactiveEnergy MegavoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double.CreateChecked(value));
+#else
             => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(double)" />
         public static ElectricReactiveEnergy VoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricReactiveEnergy.FromVoltampereReactiveHours(double.CreateChecked(value));
+#else
             => ElectricReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
+#endif
 
     }
 }

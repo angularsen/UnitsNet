@@ -37,88 +37,110 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromAmpereHours(double.CreateChecked(value));
+#else
             => ElectricCharge.FromAmpereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)" />
         public static ElectricCharge Coulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromCoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(double)" />
         public static ElectricCharge KiloampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromKiloampereHours(double.CreateChecked(value));
+#else
             => ElectricCharge.FromKiloampereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(double)" />
         public static ElectricCharge Kilocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromKilocoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromKilocoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(double)" />
         public static ElectricCharge MegaampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromMegaampereHours(double.CreateChecked(value));
+#else
             => ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(double)" />
         public static ElectricCharge Megacoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromMegacoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromMegacoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(double)" />
         public static ElectricCharge Microcoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromMicrocoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromMicrocoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(double)" />
         public static ElectricCharge MilliampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromMilliampereHours(double.CreateChecked(value));
+#else
             => ElectricCharge.FromMilliampereHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(double)" />
         public static ElectricCharge Millicoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromMillicoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromMillicoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(double)" />
         public static ElectricCharge Nanocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromNanocoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromNanocoulombs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(double)" />
         public static ElectricCharge Picocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricCharge.FromPicocoulombs(double.CreateChecked(value));
+#else
             => ElectricCharge.FromPicocoulombs(Convert.ToDouble(value));
+#endif
 
     }
 }

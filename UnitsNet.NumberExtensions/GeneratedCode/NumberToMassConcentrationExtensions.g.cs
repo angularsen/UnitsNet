@@ -37,392 +37,490 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromCentigramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromCentigramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerLiter(double)" />
         public static MassConcentration CentigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromCentigramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromCentigramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerMicroliter(double)" />
         public static MassConcentration CentigramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromCentigramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromCentigramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerMilliliter(double)" />
         public static MassConcentration CentigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromCentigramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromCentigramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerDeciliter(double)" />
         public static MassConcentration DecigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromDecigramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromDecigramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerLiter(double)" />
         public static MassConcentration DecigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromDecigramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromDecigramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerMicroliter(double)" />
         public static MassConcentration DecigramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromDecigramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromDecigramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerMilliliter(double)" />
         public static MassConcentration DecigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromDecigramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromDecigramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicCentimeter(double)" />
         public static MassConcentration GramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerCubicCentimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMeter(double)" />
         public static MassConcentration GramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerCubicMeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMillimeter(double)" />
         public static MassConcentration GramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerCubicMillimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerDeciliter(double)" />
         public static MassConcentration GramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerLiter(double)" />
         public static MassConcentration GramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerMicroliter(double)" />
         public static MassConcentration GramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerMilliliter(double)" />
         public static MassConcentration GramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromGramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromGramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicCentimeter(double)" />
         public static MassConcentration KilogramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilogramsPerCubicCentimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMeter(double)" />
         public static MassConcentration KilogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilogramsPerCubicMeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMillimeter(double)" />
         public static MassConcentration KilogramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilogramsPerCubicMillimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerLiter(double)" />
         public static MassConcentration KilogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilogramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilogramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicFoot(double)" />
         public static MassConcentration KilopoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilopoundsPerCubicFoot(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicInch(double)" />
         public static MassConcentration KilopoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromKilopoundsPerCubicInch(double.CreateChecked(value));
+#else
             => MassConcentration.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerCubicMeter(double)" />
         public static MassConcentration MicrogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMicrogramsPerCubicMeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerDeciliter(double)" />
         public static MassConcentration MicrogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMicrogramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerLiter(double)" />
         public static MassConcentration MicrogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMicrogramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMicrogramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMicroliter(double)" />
         public static MassConcentration MicrogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMicrogramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMicrogramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMilliliter(double)" />
         public static MassConcentration MicrogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMicrogramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerCubicMeter(double)" />
         public static MassConcentration MilligramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMilligramsPerCubicMeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerDeciliter(double)" />
         public static MassConcentration MilligramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMilligramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMilligramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerLiter(double)" />
         public static MassConcentration MilligramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMilligramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMilligramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerMicroliter(double)" />
         public static MassConcentration MilligramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMilligramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMilligramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerMilliliter(double)" />
         public static MassConcentration MilligramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromMilligramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromMilligramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerDeciliter(double)" />
         public static MassConcentration NanogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromNanogramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromNanogramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerLiter(double)" />
         public static MassConcentration NanogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromNanogramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromNanogramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerMicroliter(double)" />
         public static MassConcentration NanogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromNanogramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromNanogramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerMilliliter(double)" />
         public static MassConcentration NanogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromNanogramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromNanogramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromOuncesPerImperialGallon(double)" />
         public static MassConcentration OuncesPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromOuncesPerImperialGallon(double.CreateChecked(value));
+#else
             => MassConcentration.FromOuncesPerImperialGallon(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromOuncesPerUSGallon(double)" />
         public static MassConcentration OuncesPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromOuncesPerUSGallon(double.CreateChecked(value));
+#else
             => MassConcentration.FromOuncesPerUSGallon(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(double)" />
         public static MassConcentration PicogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPicogramsPerDeciliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromPicogramsPerDeciliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerLiter(double)" />
         public static MassConcentration PicogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPicogramsPerLiter(double.CreateChecked(value));
+#else
             => MassConcentration.FromPicogramsPerLiter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerMicroliter(double)" />
         public static MassConcentration PicogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPicogramsPerMicroliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromPicogramsPerMicroliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerMilliliter(double)" />
         public static MassConcentration PicogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPicogramsPerMilliliter(double.CreateChecked(value));
+#else
             => MassConcentration.FromPicogramsPerMilliliter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicFoot(double)" />
         public static MassConcentration PoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPoundsPerCubicFoot(double.CreateChecked(value));
+#else
             => MassConcentration.FromPoundsPerCubicFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicInch(double)" />
         public static MassConcentration PoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPoundsPerCubicInch(double.CreateChecked(value));
+#else
             => MassConcentration.FromPoundsPerCubicInch(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerImperialGallon(double)" />
         public static MassConcentration PoundsPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPoundsPerImperialGallon(double.CreateChecked(value));
+#else
             => MassConcentration.FromPoundsPerImperialGallon(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerUSGallon(double)" />
         public static MassConcentration PoundsPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromPoundsPerUSGallon(double.CreateChecked(value));
+#else
             => MassConcentration.FromPoundsPerUSGallon(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromSlugsPerCubicFoot(double)" />
         public static MassConcentration SlugsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromSlugsPerCubicFoot(double.CreateChecked(value));
+#else
             => MassConcentration.FromSlugsPerCubicFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicCentimeter(double)" />
         public static MassConcentration TonnesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromTonnesPerCubicCentimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMeter(double)" />
         public static MassConcentration TonnesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromTonnesPerCubicMeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromTonnesPerCubicMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMillimeter(double)" />
         public static MassConcentration TonnesPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassConcentration.FromTonnesPerCubicMillimeter(double.CreateChecked(value));
+#else
             => MassConcentration.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
+#endif
 
     }
 }

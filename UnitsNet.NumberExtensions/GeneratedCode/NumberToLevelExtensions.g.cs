@@ -37,16 +37,20 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Level.FromDecibels(double.CreateChecked(value));
+#else
             => Level.FromDecibels(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Level.FromNepers(double)" />
         public static Level Nepers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Level.FromNepers(double.CreateChecked(value));
+#else
             => Level.FromNepers(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,32 +37,40 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => RotationalAcceleration.FromDegreesPerSecondSquared(double.CreateChecked(value));
+#else
             => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => RotationalAcceleration.FromRadiansPerSecondSquared(double.CreateChecked(value));
+#else
             => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double.CreateChecked(value));
+#else
             => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(double.CreateChecked(value));
+#else
             => RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
+#endif
 
     }
 }

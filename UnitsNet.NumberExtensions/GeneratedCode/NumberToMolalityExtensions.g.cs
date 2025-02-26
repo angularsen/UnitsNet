@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Molality.FromMillimolesPerKilogram(double.CreateChecked(value));
+#else
             => Molality.FromMillimolesPerKilogram(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
         public static Molality MolesPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Molality.FromMolesPerGram(double.CreateChecked(value));
+#else
             => Molality.FromMolesPerGram(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
         public static Molality MolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Molality.FromMolesPerKilogram(double.CreateChecked(value));
+#else
             => Molality.FromMolesPerKilogram(Convert.ToDouble(value));
+#endif
 
     }
 }

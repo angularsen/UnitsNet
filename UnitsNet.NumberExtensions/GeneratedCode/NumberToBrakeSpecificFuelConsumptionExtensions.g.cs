@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(double.CreateChecked(value));
+#else
             => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double)" />
         public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double.CreateChecked(value));
+#else
             => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double)" />
         public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double.CreateChecked(value));
+#else
             => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
+#endif
 
     }
 }

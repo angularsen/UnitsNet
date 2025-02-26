@@ -37,48 +37,60 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromDecimalFractions(double.CreateChecked(value));
+#else
             => Ratio.FromDecimalFractions(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(double)" />
         public static Ratio PartsPerBillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromPartsPerBillion(double.CreateChecked(value));
+#else
             => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerMillion(double)" />
         public static Ratio PartsPerMillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromPartsPerMillion(double.CreateChecked(value));
+#else
             => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerThousand(double)" />
         public static Ratio PartsPerThousand<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromPartsPerThousand(double.CreateChecked(value));
+#else
             => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerTrillion(double)" />
         public static Ratio PartsPerTrillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromPartsPerTrillion(double.CreateChecked(value));
+#else
             => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Ratio.FromPercent(double)" />
         public static Ratio Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Ratio.FromPercent(double.CreateChecked(value));
+#else
             => Ratio.FromPercent(Convert.ToDouble(value));
+#endif
 
     }
 }

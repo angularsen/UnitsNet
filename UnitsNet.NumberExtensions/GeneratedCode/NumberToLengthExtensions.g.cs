@@ -37,336 +37,420 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromAngstroms(double.CreateChecked(value));
+#else
             => Length.FromAngstroms(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromAstronomicalUnits(double)" />
         public static Length AstronomicalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromAstronomicalUnits(double.CreateChecked(value));
+#else
             => Length.FromAstronomicalUnits(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromCentimeters(double)" />
         public static Length Centimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromCentimeters(double.CreateChecked(value));
+#else
             => Length.FromCentimeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromChains(double)" />
         public static Length Chains<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromChains(double.CreateChecked(value));
+#else
             => Length.FromChains(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromDataMiles(double)" />
         public static Length DataMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromDataMiles(double.CreateChecked(value));
+#else
             => Length.FromDataMiles(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromDecameters(double)" />
         public static Length Decameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromDecameters(double.CreateChecked(value));
+#else
             => Length.FromDecameters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromDecimeters(double)" />
         public static Length Decimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromDecimeters(double.CreateChecked(value));
+#else
             => Length.FromDecimeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromDtpPicas(double)" />
         public static Length DtpPicas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromDtpPicas(double.CreateChecked(value));
+#else
             => Length.FromDtpPicas(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromDtpPoints(double)" />
         public static Length DtpPoints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromDtpPoints(double.CreateChecked(value));
+#else
             => Length.FromDtpPoints(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromFathoms(double)" />
         public static Length Fathoms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromFathoms(double.CreateChecked(value));
+#else
             => Length.FromFathoms(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromFemtometers(double)" />
         public static Length Femtometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromFemtometers(double.CreateChecked(value));
+#else
             => Length.FromFemtometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromFeet(double)" />
         public static Length Feet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromFeet(double.CreateChecked(value));
+#else
             => Length.FromFeet(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromGigameters(double)" />
         public static Length Gigameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromGigameters(double.CreateChecked(value));
+#else
             => Length.FromGigameters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromHands(double)" />
         public static Length Hands<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromHands(double.CreateChecked(value));
+#else
             => Length.FromHands(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromHectometers(double)" />
         public static Length Hectometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromHectometers(double.CreateChecked(value));
+#else
             => Length.FromHectometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromInches(double)" />
         public static Length Inches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromInches(double.CreateChecked(value));
+#else
             => Length.FromInches(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromKilofeet(double)" />
         public static Length Kilofeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromKilofeet(double.CreateChecked(value));
+#else
             => Length.FromKilofeet(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromKilolightYears(double)" />
         public static Length KilolightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromKilolightYears(double.CreateChecked(value));
+#else
             => Length.FromKilolightYears(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromKilometers(double)" />
         public static Length Kilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromKilometers(double.CreateChecked(value));
+#else
             => Length.FromKilometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromKiloparsecs(double)" />
         public static Length Kiloparsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromKiloparsecs(double.CreateChecked(value));
+#else
             => Length.FromKiloparsecs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromKiloyards(double)" />
         public static Length Kiloyards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromKiloyards(double.CreateChecked(value));
+#else
             => Length.FromKiloyards(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromLightYears(double)" />
         public static Length LightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromLightYears(double.CreateChecked(value));
+#else
             => Length.FromLightYears(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMegalightYears(double)" />
         public static Length MegalightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMegalightYears(double.CreateChecked(value));
+#else
             => Length.FromMegalightYears(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMegameters(double)" />
         public static Length Megameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMegameters(double.CreateChecked(value));
+#else
             => Length.FromMegameters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMegaparsecs(double)" />
         public static Length Megaparsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMegaparsecs(double.CreateChecked(value));
+#else
             => Length.FromMegaparsecs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMeters(double)" />
         public static Length Meters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMeters(double.CreateChecked(value));
+#else
             => Length.FromMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMicroinches(double)" />
         public static Length Microinches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMicroinches(double.CreateChecked(value));
+#else
             => Length.FromMicroinches(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMicrometers(double)" />
         public static Length Micrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMicrometers(double.CreateChecked(value));
+#else
             => Length.FromMicrometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMils(double)" />
         public static Length Mils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMils(double.CreateChecked(value));
+#else
             => Length.FromMils(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMiles(double)" />
         public static Length Miles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMiles(double.CreateChecked(value));
+#else
             => Length.FromMiles(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromMillimeters(double)" />
         public static Length Millimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromMillimeters(double.CreateChecked(value));
+#else
             => Length.FromMillimeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromNanometers(double)" />
         public static Length Nanometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromNanometers(double.CreateChecked(value));
+#else
             => Length.FromNanometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromNauticalMiles(double)" />
         public static Length NauticalMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromNauticalMiles(double.CreateChecked(value));
+#else
             => Length.FromNauticalMiles(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromParsecs(double)" />
         public static Length Parsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromParsecs(double.CreateChecked(value));
+#else
             => Length.FromParsecs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromPicometers(double)" />
         public static Length Picometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromPicometers(double.CreateChecked(value));
+#else
             => Length.FromPicometers(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromPrinterPicas(double)" />
         public static Length PrinterPicas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromPrinterPicas(double.CreateChecked(value));
+#else
             => Length.FromPrinterPicas(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromPrinterPoints(double)" />
         public static Length PrinterPoints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromPrinterPoints(double.CreateChecked(value));
+#else
             => Length.FromPrinterPoints(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromShackles(double)" />
         public static Length Shackles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromShackles(double.CreateChecked(value));
+#else
             => Length.FromShackles(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromSolarRadiuses(double)" />
         public static Length SolarRadiuses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromSolarRadiuses(double.CreateChecked(value));
+#else
             => Length.FromSolarRadiuses(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromTwips(double)" />
         public static Length Twips<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromTwips(double.CreateChecked(value));
+#else
             => Length.FromTwips(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromUsSurveyFeet(double)" />
         public static Length UsSurveyFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromUsSurveyFeet(double.CreateChecked(value));
+#else
             => Length.FromUsSurveyFeet(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Length.FromYards(double)" />
         public static Length Yards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Length.FromYards(double.CreateChecked(value));
+#else
             => Length.FromYards(Convert.ToDouble(value));
+#endif
 
     }
 }

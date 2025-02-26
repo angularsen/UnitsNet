@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEnergy.FromJoulesPerMole(double.CreateChecked(value));
+#else
             => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)" />
         public static MolarEnergy KilojoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEnergy.FromKilojoulesPerMole(double.CreateChecked(value));
+#else
             => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)" />
         public static MolarEnergy MegajoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEnergy.FromMegajoulesPerMole(double.CreateChecked(value));
+#else
             => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
+#endif
 
     }
 }

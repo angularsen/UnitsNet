@@ -37,32 +37,40 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => AmplitudeRatio.FromDecibelMicrovolts(double.CreateChecked(value));
+#else
             => AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(double)" />
         public static AmplitudeRatio DecibelMillivolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => AmplitudeRatio.FromDecibelMillivolts(double.CreateChecked(value));
+#else
             => AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)" />
         public static AmplitudeRatio DecibelsUnloaded<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => AmplitudeRatio.FromDecibelsUnloaded(double.CreateChecked(value));
+#else
             => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(double)" />
         public static AmplitudeRatio DecibelVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => AmplitudeRatio.FromDecibelVolts(double.CreateChecked(value));
+#else
             => AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
+#endif
 
     }
 }

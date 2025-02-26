@@ -37,8 +37,10 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SolidAngle.FromSteradians(double.CreateChecked(value));
+#else
             => SolidAngle.FromSteradians(Convert.ToDouble(value));
+#endif
 
     }
 }

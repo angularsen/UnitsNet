@@ -37,120 +37,150 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromCentinewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(double)" />
         public static ForceChangeRate DecanewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromDecanewtonsPerMinute(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)" />
         public static ForceChangeRate DecanewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromDecanewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)" />
         public static ForceChangeRate DecinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromDecinewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(double)" />
         public static ForceChangeRate KilonewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromKilonewtonsPerMinute(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(double)" />
         public static ForceChangeRate KilonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromKilonewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(double)" />
         public static ForceChangeRate KilopoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromKilopoundsForcePerMinute(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromKilopoundsForcePerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(double)" />
         public static ForceChangeRate KilopoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromKilopoundsForcePerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromKilopoundsForcePerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(double)" />
         public static ForceChangeRate MicronewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromMicronewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(double)" />
         public static ForceChangeRate MillinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromMillinewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(double)" />
         public static ForceChangeRate NanonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromNanonewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(double)" />
         public static ForceChangeRate NewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromNewtonsPerMinute(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(double)" />
         public static ForceChangeRate NewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromNewtonsPerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(double)" />
         public static ForceChangeRate PoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromPoundsForcePerMinute(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromPoundsForcePerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(double)" />
         public static ForceChangeRate PoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ForceChangeRate.FromPoundsForcePerSecond(double.CreateChecked(value));
+#else
             => ForceChangeRate.FromPoundsForcePerSecond(Convert.ToDouble(value));
+#endif
 
     }
 }

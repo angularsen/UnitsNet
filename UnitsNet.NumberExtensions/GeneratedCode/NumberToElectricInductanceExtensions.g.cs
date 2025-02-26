@@ -37,40 +37,50 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricInductance.FromHenries(double.CreateChecked(value));
+#else
             => ElectricInductance.FromHenries(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricInductance.FromMicrohenries(double)" />
         public static ElectricInductance Microhenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricInductance.FromMicrohenries(double.CreateChecked(value));
+#else
             => ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricInductance.FromMillihenries(double)" />
         public static ElectricInductance Millihenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricInductance.FromMillihenries(double.CreateChecked(value));
+#else
             => ElectricInductance.FromMillihenries(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricInductance.FromNanohenries(double)" />
         public static ElectricInductance Nanohenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricInductance.FromNanohenries(double.CreateChecked(value));
+#else
             => ElectricInductance.FromNanohenries(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricInductance.FromPicohenries(double)" />
         public static ElectricInductance Picohenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricInductance.FromPicohenries(double.CreateChecked(value));
+#else
             => ElectricInductance.FromPicohenries(Convert.ToDouble(value));
+#endif
 
     }
 }

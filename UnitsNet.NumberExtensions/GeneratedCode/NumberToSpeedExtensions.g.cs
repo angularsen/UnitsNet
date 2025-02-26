@@ -37,264 +37,330 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromCentimetersPerHour(double.CreateChecked(value));
+#else
             => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromCentimetersPerMinute(double)" />
         public static Speed CentimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromCentimetersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromCentimetersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromCentimetersPerSecond(double)" />
         public static Speed CentimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromCentimetersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromDecimetersPerMinute(double)" />
         public static Speed DecimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromDecimetersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromDecimetersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromDecimetersPerSecond(double)" />
         public static Speed DecimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromDecimetersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromDecimetersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromFeetPerHour(double)" />
         public static Speed FeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromFeetPerHour(double.CreateChecked(value));
+#else
             => Speed.FromFeetPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromFeetPerMinute(double)" />
         public static Speed FeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromFeetPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromFeetPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromFeetPerSecond(double)" />
         public static Speed FeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromFeetPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromFeetPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromInchesPerHour(double)" />
         public static Speed InchesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromInchesPerHour(double.CreateChecked(value));
+#else
             => Speed.FromInchesPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromInchesPerMinute(double)" />
         public static Speed InchesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromInchesPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromInchesPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromInchesPerSecond(double)" />
         public static Speed InchesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromInchesPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromInchesPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerHour(double)" />
         public static Speed KilometersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromKilometersPerHour(double.CreateChecked(value));
+#else
             => Speed.FromKilometersPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerMinute(double)" />
         public static Speed KilometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromKilometersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromKilometersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerSecond(double)" />
         public static Speed KilometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromKilometersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromKilometersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromKnots(double)" />
         public static Speed Knots<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromKnots(double.CreateChecked(value));
+#else
             => Speed.FromKnots(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMach(double)" />
         public static Speed Mach<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMach(double.CreateChecked(value));
+#else
             => Speed.FromMach(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMetersPerHour(double)" />
         public static Speed MetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMetersPerHour(double.CreateChecked(value));
+#else
             => Speed.FromMetersPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMetersPerMinute(double)" />
         public static Speed MetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMetersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromMetersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMetersPerSecond(double)" />
         public static Speed MetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMetersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromMetersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMicrometersPerMinute(double)" />
         public static Speed MicrometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMicrometersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromMicrometersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMicrometersPerSecond(double)" />
         public static Speed MicrometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMicrometersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromMicrometersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMilesPerHour(double)" />
         public static Speed MilesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMilesPerHour(double.CreateChecked(value));
+#else
             => Speed.FromMilesPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)" />
         public static Speed MillimetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMillimetersPerHour(double.CreateChecked(value));
+#else
             => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerMinute(double)" />
         public static Speed MillimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMillimetersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromMillimetersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerSecond(double)" />
         public static Speed MillimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromMillimetersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromNanometersPerMinute(double)" />
         public static Speed NanometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromNanometersPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromNanometersPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(double)" />
         public static Speed NanometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromNanometersPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromNanometersPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(double)" />
         public static Speed UsSurveyFeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromUsSurveyFeetPerHour(double.CreateChecked(value));
+#else
             => Speed.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(double)" />
         public static Speed UsSurveyFeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromUsSurveyFeetPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(double)" />
         public static Speed UsSurveyFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromUsSurveyFeetPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromYardsPerHour(double)" />
         public static Speed YardsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromYardsPerHour(double.CreateChecked(value));
+#else
             => Speed.FromYardsPerHour(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromYardsPerMinute(double)" />
         public static Speed YardsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromYardsPerMinute(double.CreateChecked(value));
+#else
             => Speed.FromYardsPerMinute(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Speed.FromYardsPerSecond(double)" />
         public static Speed YardsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Speed.FromYardsPerSecond(double.CreateChecked(value));
+#else
             => Speed.FromYardsPerSecond(Convert.ToDouble(value));
+#endif
 
     }
 }

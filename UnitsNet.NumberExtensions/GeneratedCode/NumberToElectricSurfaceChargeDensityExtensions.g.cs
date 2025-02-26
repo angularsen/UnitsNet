@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double.CreateChecked(value));
+#else
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double.CreateChecked(value));
+#else
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.CreateChecked(value));
+#else
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

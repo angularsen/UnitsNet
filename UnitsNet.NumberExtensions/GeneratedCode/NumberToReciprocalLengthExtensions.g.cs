@@ -37,80 +37,100 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseCentimeters(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseCentimeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(double)" />
         public static ReciprocalLength InverseFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseFeet(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseFeet(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseInches(double)" />
         public static ReciprocalLength InverseInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseInches(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseInches(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(double)" />
         public static ReciprocalLength InverseMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseMeters(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(double)" />
         public static ReciprocalLength InverseMicroinches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseMicroinches(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseMicroinches(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMils(double)" />
         public static ReciprocalLength InverseMils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseMils(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseMils(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(double)" />
         public static ReciprocalLength InverseMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseMiles(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseMiles(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(double)" />
         public static ReciprocalLength InverseMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseMillimeters(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseMillimeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(double)" />
         public static ReciprocalLength InverseUsSurveyFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseUsSurveyFeet(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseUsSurveyFeet(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseYards(double)" />
         public static ReciprocalLength InverseYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ReciprocalLength.FromInverseYards(double.CreateChecked(value));
+#else
             => ReciprocalLength.FromInverseYards(Convert.ToDouble(value));
+#endif
 
     }
 }

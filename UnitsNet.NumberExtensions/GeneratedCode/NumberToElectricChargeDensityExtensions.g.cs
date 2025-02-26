@@ -37,8 +37,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricChargeDensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.CreateChecked(value));
+#else
             => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,24 +37,30 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEntropy.FromJoulesPerMoleKelvin(double.CreateChecked(value));
+#else
             => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(double)" />
         public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(double.CreateChecked(value));
+#else
             => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(double)" />
         public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(double.CreateChecked(value));
+#else
             => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
+#endif
 
     }
 }

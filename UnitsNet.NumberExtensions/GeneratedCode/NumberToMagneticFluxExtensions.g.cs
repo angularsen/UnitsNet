@@ -37,8 +37,10 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticFlux
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MagneticFlux.FromWebers(double.CreateChecked(value));
+#else
             => MagneticFlux.FromWebers(Convert.ToDouble(value));
+#endif
 
     }
 }

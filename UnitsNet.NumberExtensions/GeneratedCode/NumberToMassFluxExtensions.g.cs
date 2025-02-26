@@ -37,96 +37,120 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerHourPerSquareCentimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMeter(double)" />
         public static MassFlux GramsPerHourPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerHourPerSquareMeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerHourPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMillimeter(double)" />
         public static MassFlux GramsPerHourPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerHourPerSquareMillimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareCentimeter(double)" />
         public static MassFlux GramsPerSecondPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(double)" />
         public static MassFlux GramsPerSecondPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerSecondPerSquareMeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMillimeter(double)" />
         public static MassFlux GramsPerSecondPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromGramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromGramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareCentimeter(double)" />
         public static MassFlux KilogramsPerHourPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerHourPerSquareCentimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMeter(double)" />
         public static MassFlux KilogramsPerHourPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerHourPerSquareMeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerHourPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMillimeter(double)" />
         public static MassFlux KilogramsPerHourPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerHourPerSquareMillimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double)" />
         public static MassFlux KilogramsPerSecondPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(double)" />
         public static MassFlux KilogramsPerSecondPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double)" />
         public static MassFlux KilogramsPerSecondPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
+#else
             => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,32 +37,40 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Illuminance.FromKilolux(double.CreateChecked(value));
+#else
             => Illuminance.FromKilolux(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Illuminance.FromLux(double)" />
         public static Illuminance Lux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Illuminance.FromLux(double.CreateChecked(value));
+#else
             => Illuminance.FromLux(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
         public static Illuminance Megalux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Illuminance.FromMegalux(double.CreateChecked(value));
+#else
             => Illuminance.FromMegalux(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
         public static Illuminance Millilux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Illuminance.FromMillilux(double.CreateChecked(value));
+#else
             => Illuminance.FromMillilux(Convert.ToDouble(value));
+#endif
 
     }
 }

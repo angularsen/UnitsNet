@@ -37,112 +37,140 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistivity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromKiloohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromKiloohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromKiloohmMeters(double)" />
         public static ElectricResistivity KiloohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromKiloohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromKiloohmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMegaohmsCentimeter(double)" />
         public static ElectricResistivity MegaohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMegaohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMegaohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMegaohmMeters(double)" />
         public static ElectricResistivity MegaohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMegaohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMegaohmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMicroohmsCentimeter(double)" />
         public static ElectricResistivity MicroohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMicroohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMicroohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)" />
         public static ElectricResistivity MicroohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMicroohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMicroohmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMilliohmsCentimeter(double)" />
         public static ElectricResistivity MilliohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMilliohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMilliohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)" />
         public static ElectricResistivity MilliohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromMilliohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromMilliohmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromNanoohmsCentimeter(double)" />
         public static ElectricResistivity NanoohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromNanoohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromNanoohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)" />
         public static ElectricResistivity NanoohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromNanoohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromNanoohmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromOhmsCentimeter(double)" />
         public static ElectricResistivity OhmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromOhmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromOhmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)" />
         public static ElectricResistivity OhmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromOhmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromOhmMeters(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromPicoohmsCentimeter(double)" />
         public static ElectricResistivity PicoohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromPicoohmsCentimeter(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromPicoohmsCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="ElectricResistivity.FromPicoohmMeters(double)" />
         public static ElectricResistivity PicoohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => ElectricResistivity.FromPicoohmMeters(double.CreateChecked(value));
+#else
             => ElectricResistivity.FromPicoohmMeters(Convert.ToDouble(value));
+#endif
 
     }
 }

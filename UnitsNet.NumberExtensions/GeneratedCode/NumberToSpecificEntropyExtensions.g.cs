@@ -37,72 +37,90 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEntropy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromBtusPerPoundFahrenheit(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromBtusPerPoundFahrenheit(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(double)" />
         public static SpecificEntropy CaloriesPerGramKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromCaloriesPerGramKelvin(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromCaloriesPerGramKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(double)" />
         public static SpecificEntropy JoulesPerKilogramDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(double)" />
         public static SpecificEntropy JoulesPerKilogramKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromJoulesPerKilogramKelvin(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromJoulesPerKilogramKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(double)" />
         public static SpecificEntropy KilocaloriesPerGramKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromKilocaloriesPerGramKelvin(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromKilocaloriesPerGramKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(double)" />
         public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(double)" />
         public static SpecificEntropy KilojoulesPerKilogramKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromKilojoulesPerKilogramKelvin(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromKilojoulesPerKilogramKelvin(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(double)" />
         public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(double)" />
         public static SpecificEntropy MegajoulesPerKilogramKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => SpecificEntropy.FromMegajoulesPerKilogramKelvin(double.CreateChecked(value));
+#else
             => SpecificEntropy.FromMegajoulesPerKilogramKelvin(Convert.ToDouble(value));
+#endif
 
     }
 }

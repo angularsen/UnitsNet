@@ -37,72 +37,90 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromBtusPerSquareFoot(double.CreateChecked(value));
+#else
             => Irradiation.FromBtusPerSquareFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(double)" />
         public static Irradiation JoulesPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromJoulesPerSquareCentimeter(double.CreateChecked(value));
+#else
             => Irradiation.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)" />
         public static Irradiation JoulesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromJoulesPerSquareMeter(double.CreateChecked(value));
+#else
             => Irradiation.FromJoulesPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(double)" />
         public static Irradiation JoulesPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromJoulesPerSquareMillimeter(double.CreateChecked(value));
+#else
             => Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromKilobtusPerSquareFoot(double)" />
         public static Irradiation KilobtusPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromKilobtusPerSquareFoot(double.CreateChecked(value));
+#else
             => Irradiation.FromKilobtusPerSquareFoot(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(double)" />
         public static Irradiation KilojoulesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromKilojoulesPerSquareMeter(double.CreateChecked(value));
+#else
             => Irradiation.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)" />
         public static Irradiation KilowattHoursPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromKilowattHoursPerSquareMeter(double.CreateChecked(value));
+#else
             => Irradiation.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(double)" />
         public static Irradiation MillijoulesPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromMillijoulesPerSquareCentimeter(double.CreateChecked(value));
+#else
             => Irradiation.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)" />
         public static Irradiation WattHoursPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Irradiation.FromWattHoursPerSquareMeter(double.CreateChecked(value));
+#else
             => Irradiation.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
+#endif
 
     }
 }

@@ -37,320 +37,400 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromBritishThermalUnits(double.CreateChecked(value));
+#else
             => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromCalories(double)" />
         public static Energy Calories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromCalories(double.CreateChecked(value));
+#else
             => Energy.FromCalories(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(double)" />
         public static Energy DecathermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromDecathermsEc(double.CreateChecked(value));
+#else
             => Energy.FromDecathermsEc(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromDecathermsImperial(double)" />
         public static Energy DecathermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromDecathermsImperial(double.CreateChecked(value));
+#else
             => Energy.FromDecathermsImperial(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromDecathermsUs(double)" />
         public static Energy DecathermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromDecathermsUs(double.CreateChecked(value));
+#else
             => Energy.FromDecathermsUs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromElectronVolts(double)" />
         public static Energy ElectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromElectronVolts(double.CreateChecked(value));
+#else
             => Energy.FromElectronVolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromErgs(double)" />
         public static Energy Ergs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromErgs(double.CreateChecked(value));
+#else
             => Energy.FromErgs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromFootPounds(double)" />
         public static Energy FootPounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromFootPounds(double.CreateChecked(value));
+#else
             => Energy.FromFootPounds(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)" />
         public static Energy GigabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromGigabritishThermalUnits(double.CreateChecked(value));
+#else
             => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromGigaelectronVolts(double)" />
         public static Energy GigaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromGigaelectronVolts(double.CreateChecked(value));
+#else
             => Energy.FromGigaelectronVolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromGigajoules(double)" />
         public static Energy Gigajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromGigajoules(double.CreateChecked(value));
+#else
             => Energy.FromGigajoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromGigawattDays(double)" />
         public static Energy GigawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromGigawattDays(double.CreateChecked(value));
+#else
             => Energy.FromGigawattDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromGigawattHours(double)" />
         public static Energy GigawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromGigawattHours(double.CreateChecked(value));
+#else
             => Energy.FromGigawattHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromHorsepowerHours(double)" />
         public static Energy HorsepowerHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromHorsepowerHours(double.CreateChecked(value));
+#else
             => Energy.FromHorsepowerHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromJoules(double)" />
         public static Energy Joules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromJoules(double.CreateChecked(value));
+#else
             => Energy.FromJoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(double)" />
         public static Energy KilobritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKilobritishThermalUnits(double.CreateChecked(value));
+#else
             => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKilocalories(double)" />
         public static Energy Kilocalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKilocalories(double.CreateChecked(value));
+#else
             => Energy.FromKilocalories(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKiloelectronVolts(double)" />
         public static Energy KiloelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKiloelectronVolts(double.CreateChecked(value));
+#else
             => Energy.FromKiloelectronVolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKilojoules(double)" />
         public static Energy Kilojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKilojoules(double.CreateChecked(value));
+#else
             => Energy.FromKilojoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKilowattDays(double)" />
         public static Energy KilowattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKilowattDays(double.CreateChecked(value));
+#else
             => Energy.FromKilowattDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromKilowattHours(double)" />
         public static Energy KilowattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromKilowattHours(double.CreateChecked(value));
+#else
             => Energy.FromKilowattHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(double)" />
         public static Energy MegabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegabritishThermalUnits(double.CreateChecked(value));
+#else
             => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegacalories(double)" />
         public static Energy Megacalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegacalories(double.CreateChecked(value));
+#else
             => Energy.FromMegacalories(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegaelectronVolts(double)" />
         public static Energy MegaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegaelectronVolts(double.CreateChecked(value));
+#else
             => Energy.FromMegaelectronVolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegajoules(double)" />
         public static Energy Megajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegajoules(double.CreateChecked(value));
+#else
             => Energy.FromMegajoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegawattDays(double)" />
         public static Energy MegawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegawattDays(double.CreateChecked(value));
+#else
             => Energy.FromMegawattDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMegawattHours(double)" />
         public static Energy MegawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMegawattHours(double.CreateChecked(value));
+#else
             => Energy.FromMegawattHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMicrojoules(double)" />
         public static Energy Microjoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMicrojoules(double.CreateChecked(value));
+#else
             => Energy.FromMicrojoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromMillijoules(double)" />
         public static Energy Millijoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromMillijoules(double.CreateChecked(value));
+#else
             => Energy.FromMillijoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromNanojoules(double)" />
         public static Energy Nanojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromNanojoules(double.CreateChecked(value));
+#else
             => Energy.FromNanojoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromPetajoules(double)" />
         public static Energy Petajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromPetajoules(double.CreateChecked(value));
+#else
             => Energy.FromPetajoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(double)" />
         public static Energy TeraelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromTeraelectronVolts(double.CreateChecked(value));
+#else
             => Energy.FromTeraelectronVolts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromTerajoules(double)" />
         public static Energy Terajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromTerajoules(double.CreateChecked(value));
+#else
             => Energy.FromTerajoules(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromTerawattDays(double)" />
         public static Energy TerawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromTerawattDays(double.CreateChecked(value));
+#else
             => Energy.FromTerawattDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromTerawattHours(double)" />
         public static Energy TerawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromTerawattHours(double.CreateChecked(value));
+#else
             => Energy.FromTerawattHours(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromThermsEc(double)" />
         public static Energy ThermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromThermsEc(double.CreateChecked(value));
+#else
             => Energy.FromThermsEc(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromThermsImperial(double)" />
         public static Energy ThermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromThermsImperial(double.CreateChecked(value));
+#else
             => Energy.FromThermsImperial(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromThermsUs(double)" />
         public static Energy ThermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromThermsUs(double.CreateChecked(value));
+#else
             => Energy.FromThermsUs(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromWattDays(double)" />
         public static Energy WattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromWattDays(double.CreateChecked(value));
+#else
             => Energy.FromWattDays(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="Energy.FromWattHours(double)" />
         public static Energy WattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => Energy.FromWattHours(double.CreateChecked(value));
+#else
             => Energy.FromWattHours(Convert.ToDouble(value));
+#endif
 
     }
 }

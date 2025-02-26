@@ -37,16 +37,20 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => PowerRatio.FromDecibelMilliwatts(double.CreateChecked(value));
+#else
             => PowerRatio.FromDecibelMilliwatts(Convert.ToDouble(value));
+#endif
 
         /// <inheritdoc cref="PowerRatio.FromDecibelWatts(double)" />
         public static PowerRatio DecibelWatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-#endif
+            => PowerRatio.FromDecibelWatts(double.CreateChecked(value));
+#else
             => PowerRatio.FromDecibelWatts(Convert.ToDouble(value));
+#endif
 
     }
 }
