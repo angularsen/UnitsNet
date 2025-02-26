@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromBecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromBecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromBecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromCuries(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromCuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromCuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromCuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromExabecquerels(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromExabecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromExabecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromExabecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromGigabecquerels(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromGigabecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromGigabecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromGigabecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromGigacuries(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromGigacuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromGigacuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromGigacuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromGigarutherfords(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromGigarutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromGigarutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromGigarutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromKilobecquerels(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromKilobecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromKilobecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromKilobecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromKilocuries(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromKilocuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromKilocuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromKilocuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromKilorutherfords(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromKilorutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromKilorutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromKilorutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMegabecquerels(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMegabecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMegabecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMegabecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMegacuries(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMegacuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMegacuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMegacuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMegarutherfords(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMegarutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMegarutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMegarutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMicrobecquerels(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMicrobecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMicrobecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMicrobecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMicrocuries(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMicrocuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMicrocuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMicrocuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMicrorutherfords(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMicrorutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMicrorutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMicrorutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMillibecquerels(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMillibecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMillibecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMillibecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMillicuries(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMillicuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMillicuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMillicuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromMillirutherfords(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromMillirutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromMillirutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromMillirutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromNanobecquerels(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromNanobecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromNanobecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromNanobecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromNanocuries(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromNanocuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromNanocuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromNanocuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromNanorutherfords(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromNanorutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromNanorutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromNanorutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromPetabecquerels(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromPetabecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromPetabecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromPetabecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromPicobecquerels(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromPicobecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromPicobecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromPicobecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromPicocuries(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromPicocuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromPicocuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromPicocuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromPicorutherfords(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromPicorutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromPicorutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromPicorutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromRutherfords(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromRutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromRutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromRutherfords(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromTerabecquerels(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromTerabecquerels(double.CreateChecked(value));
 #else
-            => Radioactivity.FromTerabecquerels(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromTerabecquerels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromTeracuries(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromTeracuries(double.CreateChecked(value));
 #else
-            => Radioactivity.FromTeracuries(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromTeracuries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Radioactivity.FromTerarutherfords(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , INumber<T>
             => Radioactivity.FromTerarutherfords(double.CreateChecked(value));
 #else
-            => Radioactivity.FromTerarutherfords(Convert.ToDouble(value));
+            , IConvertible
+            => Radioactivity.FromTerarutherfords(value.ToDouble(null));
 #endif
 
     }

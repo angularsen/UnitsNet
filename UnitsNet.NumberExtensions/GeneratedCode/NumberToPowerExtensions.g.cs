@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromBoilerHorsepower(double.CreateChecked(value));
 #else
-            => Power.FromBoilerHorsepower(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromBoilerHorsepower(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromBritishThermalUnitsPerHour(double.CreateChecked(value));
 #else
-            => Power.FromBritishThermalUnitsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromBritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromDecawatts(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromDecawatts(double.CreateChecked(value));
 #else
-            => Power.FromDecawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromDecawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromDeciwatts(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromDeciwatts(double.CreateChecked(value));
 #else
-            => Power.FromDeciwatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromDeciwatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromElectricalHorsepower(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromElectricalHorsepower(double.CreateChecked(value));
 #else
-            => Power.FromElectricalHorsepower(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromElectricalHorsepower(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromFemtowatts(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromFemtowatts(double.CreateChecked(value));
 #else
-            => Power.FromFemtowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromFemtowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromGigajoulesPerHour(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromGigajoulesPerHour(double.CreateChecked(value));
 #else
-            => Power.FromGigajoulesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromGigajoulesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromGigawatts(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromGigawatts(double.CreateChecked(value));
 #else
-            => Power.FromGigawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromGigawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromHydraulicHorsepower(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromHydraulicHorsepower(double.CreateChecked(value));
 #else
-            => Power.FromHydraulicHorsepower(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromHydraulicHorsepower(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromJoulesPerHour(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromJoulesPerHour(double.CreateChecked(value));
 #else
-            => Power.FromJoulesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromJoulesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromKilobritishThermalUnitsPerHour(double.CreateChecked(value));
 #else
-            => Power.FromKilobritishThermalUnitsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromKilobritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromKilojoulesPerHour(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromKilojoulesPerHour(double.CreateChecked(value));
 #else
-            => Power.FromKilojoulesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromKilojoulesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromKilowatts(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromKilowatts(double.CreateChecked(value));
 #else
-            => Power.FromKilowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromKilowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMechanicalHorsepower(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMechanicalHorsepower(double.CreateChecked(value));
 #else
-            => Power.FromMechanicalHorsepower(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMechanicalHorsepower(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMegabritishThermalUnitsPerHour(double.CreateChecked(value));
 #else
-            => Power.FromMegabritishThermalUnitsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMegabritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMegajoulesPerHour(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMegajoulesPerHour(double.CreateChecked(value));
 #else
-            => Power.FromMegajoulesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMegajoulesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMegawatts(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMegawatts(double.CreateChecked(value));
 #else
-            => Power.FromMegawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMegawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMetricHorsepower(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMetricHorsepower(double.CreateChecked(value));
 #else
-            => Power.FromMetricHorsepower(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMetricHorsepower(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMicrowatts(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMicrowatts(double.CreateChecked(value));
 #else
-            => Power.FromMicrowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMicrowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMillijoulesPerHour(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMillijoulesPerHour(double.CreateChecked(value));
 #else
-            => Power.FromMillijoulesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMillijoulesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMilliwatts(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromMilliwatts(double.CreateChecked(value));
 #else
-            => Power.FromMilliwatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromMilliwatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromNanowatts(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromNanowatts(double.CreateChecked(value));
 #else
-            => Power.FromNanowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromNanowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromPetawatts(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromPetawatts(double.CreateChecked(value));
 #else
-            => Power.FromPetawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromPetawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromPicowatts(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromPicowatts(double.CreateChecked(value));
 #else
-            => Power.FromPicowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromPicowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromTerawatts(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromTerawatts(double.CreateChecked(value));
 #else
-            => Power.FromTerawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromTerawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromTonsOfRefrigeration(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromTonsOfRefrigeration(double.CreateChecked(value));
 #else
-            => Power.FromTonsOfRefrigeration(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromTonsOfRefrigeration(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromWatts(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , INumber<T>
             => Power.FromWatts(double.CreateChecked(value));
 #else
-            => Power.FromWatts(Convert.ToDouble(value));
+            , IConvertible
+            => Power.FromWatts(value.ToDouble(null));
 #endif
 
     }

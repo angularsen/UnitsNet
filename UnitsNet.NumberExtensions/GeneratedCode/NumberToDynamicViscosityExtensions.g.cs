@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromCentipoise(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromCentipoise(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromCentipoise(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromMicropascalSeconds(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromMicropascalSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromMillipascalSeconds(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromMillipascalSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromMillipascalSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromNewtonSecondsPerMeterSquared(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromPascalSeconds(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromPascalSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromPascalSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromPoise(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromPoise(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromPoise(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromPoise(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareFoot(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromPoundsForceSecondPerSquareFoot(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromPoundsForceSecondPerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromPoundsForceSecondPerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareInch(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromPoundsForceSecondPerSquareInch(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromPoundsForceSecondPerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromPoundsForceSecondPerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromPoundsPerFootSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromPoundsPerFootSecond(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromPoundsPerFootSecond(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromPoundsPerFootSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DynamicViscosity.FromReyns(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
             , INumber<T>
             => DynamicViscosity.FromReyns(double.CreateChecked(value));
 #else
-            => DynamicViscosity.FromReyns(Convert.ToDouble(value));
+            , IConvertible
+            => DynamicViscosity.FromReyns(value.ToDouble(null));
 #endif
 
     }

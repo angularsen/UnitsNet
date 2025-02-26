@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromCentimetersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromCentimetersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromCentimetersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromDecimetersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromDecimetersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromDecimetersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromFeetPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromFeetPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromFeetPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromInchesPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromInchesPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromInchesPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromKilometersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromKilometersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromKilometersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromKnotsPerHour(double.CreateChecked(value));
 #else
-            => Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromKnotsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromKnotsPerMinute(double.CreateChecked(value));
 #else
-            => Acceleration.FromKnotsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromKnotsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromKnotsPerSecond(double.CreateChecked(value));
 #else
-            => Acceleration.FromKnotsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromKnotsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromMetersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromMetersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromMetersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromMicrometersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromMicrometersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromMicrometersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromMillimetersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromMillimetersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromMillistandardGravity(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromMillistandardGravity(double.CreateChecked(value));
 #else
-            => Acceleration.FromMillistandardGravity(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromMillistandardGravity(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromNanometersPerSecondSquared(double.CreateChecked(value));
 #else
-            => Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromNanometersPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Acceleration.FromStandardGravity(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , INumber<T>
             => Acceleration.FromStandardGravity(double.CreateChecked(value));
 #else
-            => Acceleration.FromStandardGravity(Convert.ToDouble(value));
+            , IConvertible
+            => Acceleration.FromStandardGravity(value.ToDouble(null));
 #endif
 
     }

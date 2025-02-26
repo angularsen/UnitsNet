@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
             , INumber<T>
             => ElectricCurrentDensity.FromAmperesPerSquareFoot(double.CreateChecked(value));
 #else
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
             , INumber<T>
             => ElectricCurrentDensity.FromAmperesPerSquareInch(double.CreateChecked(value));
 #else
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
             , INumber<T>
             => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.CreateChecked(value));
 #else
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

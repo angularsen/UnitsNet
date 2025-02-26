@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromCentimolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromCentimolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromCentimolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromDecimolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromDecimolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromFemtomolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromFemtomolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromFemtomolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromKilomolesPerCubicMeter(double.CreateChecked(value));
 #else
-            => Molarity.FromKilomolesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromKilomolesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromMicromolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromMicromolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromMillimolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromMillimolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromMillimolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromMolesPerCubicMeter(double.CreateChecked(value));
 #else
-            => Molarity.FromMolesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromMolesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromMolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromMolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromMolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromNanomolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromNanomolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromNanomolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromPicomolesPerLiter(double.CreateChecked(value));
 #else
-            => Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromPicomolesPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , INumber<T>
             => Molarity.FromPoundMolesPerCubicFoot(double.CreateChecked(value));
 #else
-            => Molarity.FromPoundMolesPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Molarity.FromPoundMolesPerCubicFoot(value.ToDouble(null));
 #endif
 
     }

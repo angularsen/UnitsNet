@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerHourPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerHourPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerHourPerSquareMeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerHourPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerHourPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMillimeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerHourPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerHourPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareCentimeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerSecondPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerSecondPerSquareMeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerSecondPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMillimeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromGramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromGramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromGramsPerSecondPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareCentimeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerHourPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerHourPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerHourPerSquareMeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerHourPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerHourPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMillimeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerHourPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerHourPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerSecondPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , INumber<T>
             => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(value.ToDouble(null));
 #endif
 
     }

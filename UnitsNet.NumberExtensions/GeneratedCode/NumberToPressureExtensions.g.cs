@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromAtmospheres(double.CreateChecked(value));
 #else
-            => Pressure.FromAtmospheres(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromAtmospheres(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromBars(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromBars(double.CreateChecked(value));
 #else
-            => Pressure.FromBars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromBars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromCentibars(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromCentibars(double.CreateChecked(value));
 #else
-            => Pressure.FromCentibars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromCentibars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromCentimetersOfWaterColumn(double.CreateChecked(value));
 #else
-            => Pressure.FromCentimetersOfWaterColumn(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromCentimetersOfWaterColumn(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromDecapascals(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromDecapascals(double.CreateChecked(value));
 #else
-            => Pressure.FromDecapascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromDecapascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromDecibars(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromDecibars(double.CreateChecked(value));
 #else
-            => Pressure.FromDecibars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromDecibars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromDynesPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromDynesPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromFeetOfElevation(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromFeetOfElevation(double.CreateChecked(value));
 #else
-            => Pressure.FromFeetOfElevation(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromFeetOfElevation(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromFeetOfHead(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromFeetOfHead(double.CreateChecked(value));
 #else
-            => Pressure.FromFeetOfHead(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromFeetOfHead(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromGigapascals(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromGigapascals(double.CreateChecked(value));
 #else
-            => Pressure.FromGigapascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromGigapascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromHectopascals(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromHectopascals(double.CreateChecked(value));
 #else
-            => Pressure.FromHectopascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromHectopascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromInchesOfMercury(double.CreateChecked(value));
 #else
-            => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromInchesOfMercury(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromInchesOfWaterColumn(double.CreateChecked(value));
 #else
-            => Pressure.FromInchesOfWaterColumn(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromInchesOfWaterColumn(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilobars(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilobars(double.CreateChecked(value));
 #else
-            => Pressure.FromKilobars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilobars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilogramsForcePerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilogramsForcePerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilogramsForcePerSquareMeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilogramsForcePerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilogramsForcePerSquareMillimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilogramsForcePerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilonewtonsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilonewtonsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilonewtonsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilonewtonsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilonewtonsPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilonewtonsPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilopascals(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilopascals(double.CreateChecked(value));
 #else
-            => Pressure.FromKilopascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilopascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilopoundsForcePerSquareFoot(double.CreateChecked(value));
 #else
-            => Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilopoundsForcePerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilopoundsForcePerSquareInch(double.CreateChecked(value));
 #else
-            => Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilopoundsForcePerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromKilopoundsForcePerSquareMil(double.CreateChecked(value));
 #else
-            => Pressure.FromKilopoundsForcePerSquareMil(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromKilopoundsForcePerSquareMil(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMegabars(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMegabars(double.CreateChecked(value));
 #else
-            => Pressure.FromMegabars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMegabars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMeganewtonsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMeganewtonsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMegapascals(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMegapascals(double.CreateChecked(value));
 #else
-            => Pressure.FromMegapascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMegapascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMetersOfElevation(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMetersOfElevation(double.CreateChecked(value));
 #else
-            => Pressure.FromMetersOfElevation(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMetersOfElevation(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMetersOfHead(double.CreateChecked(value));
 #else
-            => Pressure.FromMetersOfHead(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMetersOfHead(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMetersOfWaterColumn(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMetersOfWaterColumn(double.CreateChecked(value));
 #else
-            => Pressure.FromMetersOfWaterColumn(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMetersOfWaterColumn(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMicrobars(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMicrobars(double.CreateChecked(value));
 #else
-            => Pressure.FromMicrobars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMicrobars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMicropascals(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMicropascals(double.CreateChecked(value));
 #else
-            => Pressure.FromMicropascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMicropascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillibars(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMillibars(double.CreateChecked(value));
 #else
-            => Pressure.FromMillibars(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMillibars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMillimetersOfMercury(double.CreateChecked(value));
 #else
-            => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMillimetersOfMercury(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfWaterColumn(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMillimetersOfWaterColumn(double.CreateChecked(value));
 #else
-            => Pressure.FromMillimetersOfWaterColumn(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMillimetersOfWaterColumn(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillipascals(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromMillipascals(double.CreateChecked(value));
 #else
-            => Pressure.FromMillipascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromMillipascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromNewtonsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromNewtonsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromNewtonsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromNewtonsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromNewtonsPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromNewtonsPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPascals(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromPascals(double.CreateChecked(value));
 #else
-            => Pressure.FromPascals(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromPascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromPoundsForcePerSquareFoot(double.CreateChecked(value));
 #else
-            => Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromPoundsForcePerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromPoundsForcePerSquareInch(double.CreateChecked(value));
 #else
-            => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromPoundsForcePerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromPoundsForcePerSquareMil(double.CreateChecked(value));
 #else
-            => Pressure.FromPoundsForcePerSquareMil(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromPoundsForcePerSquareMil(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromPoundsPerInchSecondSquared(double.CreateChecked(value));
 #else
-            => Pressure.FromPoundsPerInchSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromPoundsPerInchSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(double)" />
@@ -479,7 +523,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromTechnicalAtmospheres(double.CreateChecked(value));
 #else
-            => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromTechnicalAtmospheres(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(double)" />
@@ -489,7 +534,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromTonnesForcePerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromTonnesForcePerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(double)" />
@@ -499,7 +545,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromTonnesForcePerSquareMeter(double.CreateChecked(value));
 #else
-            => Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromTonnesForcePerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(double)" />
@@ -509,7 +556,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromTonnesForcePerSquareMillimeter(double.CreateChecked(value));
 #else
-            => Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromTonnesForcePerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromTorrs(double)" />
@@ -519,7 +567,8 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             , INumber<T>
             => Pressure.FromTorrs(double.CreateChecked(value));
 #else
-            => Pressure.FromTorrs(Convert.ToDouble(value));
+            , IConvertible
+            => Pressure.FromTorrs(value.ToDouble(null));
 #endif
 
     }

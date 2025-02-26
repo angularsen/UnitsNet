@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromFarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromFarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromFarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromKilofarads(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromKilofarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromKilofarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromKilofarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMegafarads(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromMegafarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromMegafarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromMegafarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMicrofarads(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromMicrofarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromMicrofarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromMicrofarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromMillifarads(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromMillifarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromMillifarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromMillifarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromNanofarads(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromNanofarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromNanofarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromNanofarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCapacitance.FromPicofarads(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
             , INumber<T>
             => ElectricCapacitance.FromPicofarads(double.CreateChecked(value));
 #else
-            => ElectricCapacitance.FromPicofarads(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCapacitance.FromPicofarads(value.ToDouble(null));
 #endif
 
     }

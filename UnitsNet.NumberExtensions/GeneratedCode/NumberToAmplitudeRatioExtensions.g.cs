@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
             , INumber<T>
             => AmplitudeRatio.FromDecibelMicrovolts(double.CreateChecked(value));
 #else
-            => AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
+            , IConvertible
+            => AmplitudeRatio.FromDecibelMicrovolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
             , INumber<T>
             => AmplitudeRatio.FromDecibelMillivolts(double.CreateChecked(value));
 #else
-            => AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
+            , IConvertible
+            => AmplitudeRatio.FromDecibelMillivolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
             , INumber<T>
             => AmplitudeRatio.FromDecibelsUnloaded(double.CreateChecked(value));
 #else
-            => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
+            , IConvertible
+            => AmplitudeRatio.FromDecibelsUnloaded(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
             , INumber<T>
             => AmplitudeRatio.FromDecibelVolts(double.CreateChecked(value));
 #else
-            => AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
+            , IConvertible
+            => AmplitudeRatio.FromDecibelVolts(value.ToDouble(null));
 #endif
 
     }

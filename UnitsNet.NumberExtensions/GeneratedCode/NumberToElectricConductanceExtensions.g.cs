@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromGigamhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromGigamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromGigamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromGigasiemens(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromGigasiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromGigasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromGigasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromKilomhos(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromKilomhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromKilomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromKilomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromKilosiemens(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromKilosiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromKilosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMegamhos(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMegamhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMegamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMegamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMegasiemens(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMegasiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMegasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMegasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMhos(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMicromhos(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMicromhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMicromhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMicromhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMicrosiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMicrosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMillimhos(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMillimhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMillimhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMillimhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromMillisiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromMillisiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromNanomhos(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromNanomhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromNanomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromNanomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromNanosiemens(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromNanosiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromNanosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromNanosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromSiemens(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromSiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromSiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromSiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromTeramhos(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromTeramhos(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromTeramhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromTeramhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductance.FromTerasiemens(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
             => ElectricConductance.FromTerasiemens(double.CreateChecked(value));
 #else
-            => ElectricConductance.FromTerasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductance.FromTerasiemens(value.ToDouble(null));
 #endif
 
     }

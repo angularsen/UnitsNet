@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromCentimetersToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromCentimetersToTheFourth(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromDecimetersToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromDecimetersToTheFourth(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromFeetToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromFeetToTheFourth(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromInchesToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromInchesToTheFourth(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromMetersToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromMetersToTheFourth(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , INumber<T>
             => AreaMomentOfInertia.FromMillimetersToTheFourth(double.CreateChecked(value));
 #else
-            => AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
+            , IConvertible
+            => AreaMomentOfInertia.FromMillimetersToTheFourth(value.ToDouble(null));
 #endif
 
     }

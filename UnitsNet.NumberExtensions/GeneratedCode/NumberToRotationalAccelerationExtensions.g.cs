@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             , INumber<T>
             => RotationalAcceleration.FromDegreesPerSecondSquared(double.CreateChecked(value));
 #else
-            => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             , INumber<T>
             => RotationalAcceleration.FromRadiansPerSecondSquared(double.CreateChecked(value));
 #else
-            => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             , INumber<T>
             => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double.CreateChecked(value));
 #else
-            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             , INumber<T>
             => RotationalAcceleration.FromRevolutionsPerSecondSquared(double.CreateChecked(value));
 #else
-            => RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToDouble(null));
 #endif
 
     }

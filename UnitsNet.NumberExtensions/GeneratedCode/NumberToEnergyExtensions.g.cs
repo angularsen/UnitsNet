@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromBritishThermalUnits(double.CreateChecked(value));
 #else
-            => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromBritishThermalUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromCalories(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromCalories(double.CreateChecked(value));
 #else
-            => Energy.FromCalories(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromCalories(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromDecathermsEc(double.CreateChecked(value));
 #else
-            => Energy.FromDecathermsEc(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromDecathermsEc(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromDecathermsImperial(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromDecathermsImperial(double.CreateChecked(value));
 #else
-            => Energy.FromDecathermsImperial(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromDecathermsImperial(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromDecathermsUs(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromDecathermsUs(double.CreateChecked(value));
 #else
-            => Energy.FromDecathermsUs(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromDecathermsUs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromElectronVolts(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromElectronVolts(double.CreateChecked(value));
 #else
-            => Energy.FromElectronVolts(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromElectronVolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromErgs(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromErgs(double.CreateChecked(value));
 #else
-            => Energy.FromErgs(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromErgs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromFootPounds(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromFootPounds(double.CreateChecked(value));
 #else
-            => Energy.FromFootPounds(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromFootPounds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromGigabritishThermalUnits(double.CreateChecked(value));
 #else
-            => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromGigabritishThermalUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromGigaelectronVolts(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromGigaelectronVolts(double.CreateChecked(value));
 #else
-            => Energy.FromGigaelectronVolts(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromGigaelectronVolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromGigajoules(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromGigajoules(double.CreateChecked(value));
 #else
-            => Energy.FromGigajoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromGigajoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromGigawattDays(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromGigawattDays(double.CreateChecked(value));
 #else
-            => Energy.FromGigawattDays(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromGigawattDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromGigawattHours(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromGigawattHours(double.CreateChecked(value));
 #else
-            => Energy.FromGigawattHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromGigawattHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromHorsepowerHours(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromHorsepowerHours(double.CreateChecked(value));
 #else
-            => Energy.FromHorsepowerHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromHorsepowerHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromJoules(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromJoules(double.CreateChecked(value));
 #else
-            => Energy.FromJoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromJoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKilobritishThermalUnits(double.CreateChecked(value));
 #else
-            => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKilobritishThermalUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKilocalories(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKilocalories(double.CreateChecked(value));
 #else
-            => Energy.FromKilocalories(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKilocalories(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKiloelectronVolts(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKiloelectronVolts(double.CreateChecked(value));
 #else
-            => Energy.FromKiloelectronVolts(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKiloelectronVolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKilojoules(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKilojoules(double.CreateChecked(value));
 #else
-            => Energy.FromKilojoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKilojoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKilowattDays(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKilowattDays(double.CreateChecked(value));
 #else
-            => Energy.FromKilowattDays(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKilowattDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromKilowattHours(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromKilowattHours(double.CreateChecked(value));
 #else
-            => Energy.FromKilowattHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromKilowattHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegabritishThermalUnits(double.CreateChecked(value));
 #else
-            => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegabritishThermalUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegacalories(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegacalories(double.CreateChecked(value));
 #else
-            => Energy.FromMegacalories(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegacalories(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegaelectronVolts(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegaelectronVolts(double.CreateChecked(value));
 #else
-            => Energy.FromMegaelectronVolts(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegaelectronVolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegajoules(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegajoules(double.CreateChecked(value));
 #else
-            => Energy.FromMegajoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegajoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegawattDays(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegawattDays(double.CreateChecked(value));
 #else
-            => Energy.FromMegawattDays(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegawattDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMegawattHours(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMegawattHours(double.CreateChecked(value));
 #else
-            => Energy.FromMegawattHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMegawattHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMicrojoules(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMicrojoules(double.CreateChecked(value));
 #else
-            => Energy.FromMicrojoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMicrojoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromMillijoules(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromMillijoules(double.CreateChecked(value));
 #else
-            => Energy.FromMillijoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromMillijoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromNanojoules(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromNanojoules(double.CreateChecked(value));
 #else
-            => Energy.FromNanojoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromNanojoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromPetajoules(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromPetajoules(double.CreateChecked(value));
 #else
-            => Energy.FromPetajoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromPetajoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromTeraelectronVolts(double.CreateChecked(value));
 #else
-            => Energy.FromTeraelectronVolts(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromTeraelectronVolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromTerajoules(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromTerajoules(double.CreateChecked(value));
 #else
-            => Energy.FromTerajoules(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromTerajoules(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromTerawattDays(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromTerawattDays(double.CreateChecked(value));
 #else
-            => Energy.FromTerawattDays(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromTerawattDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromTerawattHours(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromTerawattHours(double.CreateChecked(value));
 #else
-            => Energy.FromTerawattHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromTerawattHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromThermsEc(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromThermsEc(double.CreateChecked(value));
 #else
-            => Energy.FromThermsEc(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromThermsEc(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromThermsImperial(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromThermsImperial(double.CreateChecked(value));
 #else
-            => Energy.FromThermsImperial(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromThermsImperial(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromThermsUs(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromThermsUs(double.CreateChecked(value));
 #else
-            => Energy.FromThermsUs(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromThermsUs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromWattDays(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromWattDays(double.CreateChecked(value));
 #else
-            => Energy.FromWattDays(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromWattDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Energy.FromWattHours(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
             => Energy.FromWattHours(double.CreateChecked(value));
 #else
-            => Energy.FromWattHours(Convert.ToDouble(value));
+            , IConvertible
+            => Energy.FromWattHours(value.ToDouble(null));
 #endif
 
     }

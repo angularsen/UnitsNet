@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
             , INumber<T>
             => ElectricField.FromVoltsPerMeter(double.CreateChecked(value));
 #else
-            => ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricField.FromVoltsPerMeter(value.ToDouble(null));
 #endif
 
     }

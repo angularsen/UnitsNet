@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInverseAtmospheres(double.CreateChecked(value));
 #else
-            => Compressibility.FromInverseAtmospheres(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInverseAtmospheres(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInverseBars(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInverseBars(double.CreateChecked(value));
 #else
-            => Compressibility.FromInverseBars(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInverseBars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInverseKilopascals(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInverseKilopascals(double.CreateChecked(value));
 #else
-            => Compressibility.FromInverseKilopascals(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInverseKilopascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInverseMegapascals(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInverseMegapascals(double.CreateChecked(value));
 #else
-            => Compressibility.FromInverseMegapascals(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInverseMegapascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInverseMillibars(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInverseMillibars(double.CreateChecked(value));
 #else
-            => Compressibility.FromInverseMillibars(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInverseMillibars(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInversePascals(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInversePascals(double.CreateChecked(value));
 #else
-            => Compressibility.FromInversePascals(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInversePascals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , INumber<T>
             => Compressibility.FromInversePoundsForcePerSquareInch(double.CreateChecked(value));
 #else
-            => Compressibility.FromInversePoundsForcePerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => Compressibility.FromInversePoundsForcePerSquareInch(value.ToDouble(null));
 #endif
 
     }

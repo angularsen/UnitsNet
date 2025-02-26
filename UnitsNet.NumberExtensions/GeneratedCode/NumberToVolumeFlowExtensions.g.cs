@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromAcreFeetPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromAcreFeetPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromAcreFeetPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromAcreFeetPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromAcreFeetPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromAcreFeetPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromAcreFeetPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromAcreFeetPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromAcreFeetPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromAcreFeetPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromAcreFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromAcreFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCentilitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCentilitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCentilitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerHour(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCentilitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCentilitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCentilitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCentilitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCentilitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCentilitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCentilitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCentilitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCentilitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicCentimetersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicCentimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicCentimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicDecimetersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicDecimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicFeetPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicFeetPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicFeetPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicFeetPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicFeetPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicFeetPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicFeetPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicMetersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicMetersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicMetersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicMetersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicMetersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicMetersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicMetersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicMetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicMetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicMetersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicMillimetersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicMillimetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicMillimetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicYardsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicYardsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicYardsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicYardsPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicYardsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicYardsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicYardsPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicYardsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicYardsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromCubicYardsPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromCubicYardsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromCubicYardsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecalitersPerDay(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecalitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecalitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecalitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecalitersPerHour(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecalitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecalitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecalitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecalitersPerMinute(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecalitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecalitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecalitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecalitersPerSecond(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecalitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecalitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecalitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecilitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecilitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecilitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerHour(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecilitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecilitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecilitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecilitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecilitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecilitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromDecilitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromDecilitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromDecilitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromHectolitersPerDay(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromHectolitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromHectolitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromHectolitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromHectolitersPerHour(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromHectolitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromHectolitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromHectolitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromHectolitersPerMinute(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromHectolitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromHectolitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromHectolitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromHectolitersPerSecond(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromHectolitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromHectolitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromHectolitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromKilolitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromKilolitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromKilolitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerHour(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromKilolitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromKilolitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromKilolitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromKilolitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromKilolitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromKilolitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerSecond(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromKilolitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromKilolitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromKilolitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromKilousGallonsPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromKilousGallonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromKilousGallonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromLitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromLitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromLitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromLitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromLitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromLitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromLitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromLitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromLitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromLitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromLitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromLitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegalitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegalitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegalitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(double)" />
@@ -479,7 +523,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegalitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegalitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegalitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(double)" />
@@ -489,7 +534,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegalitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegalitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegalitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(double)" />
@@ -499,7 +545,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegalitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegalitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegalitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerDay(double)" />
@@ -509,7 +556,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegaukGallonsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegaukGallonsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegaukGallonsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)" />
@@ -519,7 +567,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegaukGallonsPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegaukGallonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegaukGallonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMegausGallonsPerDay(double)" />
@@ -529,7 +578,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMegausGallonsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMegausGallonsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMegausGallonsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)" />
@@ -539,7 +589,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMicrolitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMicrolitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMicrolitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerHour(double)" />
@@ -549,7 +600,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMicrolitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMicrolitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMicrolitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(double)" />
@@ -559,7 +611,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMicrolitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMicrolitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMicrolitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerSecond(double)" />
@@ -569,7 +622,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMicrolitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMicrolitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMicrolitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)" />
@@ -579,7 +633,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMillilitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMillilitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMillilitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerHour(double)" />
@@ -589,7 +644,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMillilitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMillilitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMillilitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(double)" />
@@ -599,7 +655,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMillilitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMillilitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMillilitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerSecond(double)" />
@@ -609,7 +666,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMillilitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMillilitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMillilitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(double)" />
@@ -619,7 +677,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromMillionUsGallonsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromMillionUsGallonsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)" />
@@ -629,7 +688,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromNanolitersPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromNanolitersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromNanolitersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerHour(double)" />
@@ -639,7 +699,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromNanolitersPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromNanolitersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromNanolitersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(double)" />
@@ -649,7 +710,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromNanolitersPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromNanolitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromNanolitersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerSecond(double)" />
@@ -659,7 +721,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromNanolitersPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromNanolitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromNanolitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(double)" />
@@ -669,7 +732,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromOilBarrelsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromOilBarrelsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromOilBarrelsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(double)" />
@@ -679,7 +743,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromOilBarrelsPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromOilBarrelsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromOilBarrelsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(double)" />
@@ -689,7 +754,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromOilBarrelsPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromOilBarrelsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromOilBarrelsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)" />
@@ -699,7 +765,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromOilBarrelsPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromOilBarrelsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromOilBarrelsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)" />
@@ -709,7 +776,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUkGallonsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUkGallonsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUkGallonsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerHour(double)" />
@@ -719,7 +787,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUkGallonsPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUkGallonsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUkGallonsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)" />
@@ -729,7 +798,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUkGallonsPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUkGallonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUkGallonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)" />
@@ -739,7 +809,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUkGallonsPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUkGallonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUkGallonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)" />
@@ -749,7 +820,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUsGallonsPerDay(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUsGallonsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUsGallonsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(double)" />
@@ -759,7 +831,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUsGallonsPerHour(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUsGallonsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUsGallonsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(double)" />
@@ -769,7 +842,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUsGallonsPerMinute(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUsGallonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUsGallonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(double)" />
@@ -779,7 +853,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , INumber<T>
             => VolumeFlow.FromUsGallonsPerSecond(double.CreateChecked(value));
 #else
-            => VolumeFlow.FromUsGallonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlow.FromUsGallonsPerSecond(value.ToDouble(null));
 #endif
 
     }

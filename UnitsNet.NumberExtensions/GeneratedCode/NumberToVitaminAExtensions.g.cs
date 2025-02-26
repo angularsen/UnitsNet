@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
             , INumber<T>
             => VitaminA.FromInternationalUnits(double.CreateChecked(value));
 #else
-            => VitaminA.FromInternationalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => VitaminA.FromInternationalUnits(value.ToDouble(null));
 #endif
 
     }

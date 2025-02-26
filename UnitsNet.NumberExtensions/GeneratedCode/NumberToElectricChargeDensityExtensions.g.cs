@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricChargeDensity
             , INumber<T>
             => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.CreateChecked(value));
 #else
-            => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricChargeDensity.FromCoulombsPerCubicMeter(value.ToDouble(null));
 #endif
 
     }

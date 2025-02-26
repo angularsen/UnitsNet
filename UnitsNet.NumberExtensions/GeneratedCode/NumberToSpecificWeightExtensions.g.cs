@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilogramsForcePerCubicCentimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilogramsForcePerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilogramsForcePerCubicMeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilogramsForcePerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMillimeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilogramsForcePerCubicMillimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilogramsForcePerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicCentimeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilonewtonsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilonewtonsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilonewtonsPerCubicMeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilonewtonsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMillimeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilonewtonsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilonewtonsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicFoot(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilopoundsForcePerCubicFoot(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilopoundsForcePerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilopoundsForcePerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromKilopoundsForcePerCubicInch(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromKilopoundsForcePerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromKilopoundsForcePerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromMeganewtonsPerCubicMeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromMeganewtonsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromMeganewtonsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromNewtonsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromNewtonsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromNewtonsPerCubicMeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromNewtonsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMillimeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromNewtonsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromNewtonsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicFoot(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromPoundsForcePerCubicFoot(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromPoundsForcePerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromPoundsForcePerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicInch(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromPoundsForcePerCubicInch(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromPoundsForcePerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromPoundsForcePerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicCentimeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromTonnesForcePerCubicCentimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromTonnesForcePerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMeter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromTonnesForcePerCubicMeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromTonnesForcePerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMillimeter(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , INumber<T>
             => SpecificWeight.FromTonnesForcePerCubicMillimeter(double.CreateChecked(value));
 #else
-            => SpecificWeight.FromTonnesForcePerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicMillimeter(value.ToDouble(null));
 #endif
 
     }

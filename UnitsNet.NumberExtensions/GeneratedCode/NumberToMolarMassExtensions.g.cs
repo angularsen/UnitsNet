@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromCentigramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromCentigramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromCentigramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromDecagramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromDecagramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromDecagramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromDecigramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromDecigramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromDecigramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromGramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromGramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromGramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromHectogramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromHectogramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromKilogramsPerKilomole(double.CreateChecked(value));
 #else
-            => MolarMass.FromKilogramsPerKilomole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromKilogramsPerKilomole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromKilogramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromKilogramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromKilopoundsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromKilopoundsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromKilopoundsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromMegapoundsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromMegapoundsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromMegapoundsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromMicrogramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromMicrogramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromMicrogramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromMilligramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromMilligramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromMilligramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromNanogramsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromNanogramsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromNanogramsPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , INumber<T>
             => MolarMass.FromPoundsPerMole(double.CreateChecked(value));
 #else
-            => MolarMass.FromPoundsPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarMass.FromPoundsPerMole(value.ToDouble(null));
 #endif
 
     }

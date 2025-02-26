@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromKilovoltsPerHour(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromKilovoltsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromKilovoltsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMinute(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromKilovoltsPerMinute(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromKilovoltsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromKilovoltsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromKilovoltsPerSecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromKilovoltsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromKilovoltsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerHour(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMegavoltsPerHour(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMegavoltsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMegavoltsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMegavoltsPerMinute(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMegavoltsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMegavoltsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMegavoltsPerSecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMegavoltsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMegavoltsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerHour(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMicrovoltsPerHour(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMicrovoltsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMicrovoltsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMinute(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerSecond(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerHour(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMillivoltsPerHour(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMillivoltsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMillivoltsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMinute(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMillivoltsPerMinute(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMillivoltsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMillivoltsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerSecond(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromMillivoltsPerSecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromMillivoltsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromMillivoltsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerHour(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromVoltsPerHour(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromVoltsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromVoltsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMicrosecond(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMinute(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromVoltsPerMinute(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromVoltsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromVoltsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerSecond(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , INumber<T>
             => ElectricPotentialChangeRate.FromVoltsPerSecond(double.CreateChecked(value));
 #else
-            => ElectricPotentialChangeRate.FromVoltsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotentialChangeRate.FromVoltsPerSecond(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromAmperesPerMicrosecond(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromAmperesPerMicrosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromAmperesPerMillisecond(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromAmperesPerMillisecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromAmperesPerMinute(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromAmperesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromAmperesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromAmperesPerNanosecond(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromAmperesPerNanosecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromAmperesPerSecond(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromAmperesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromMilliamperesPerMinute(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromMilliamperesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromMilliamperesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             , INumber<T>
             => ElectricCurrentGradient.FromMilliamperesPerSecond(double.CreateChecked(value));
 #else
-            => ElectricCurrentGradient.FromMilliamperesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrentGradient.FromMilliamperesPerSecond(value.ToDouble(null));
 #endif
 
     }

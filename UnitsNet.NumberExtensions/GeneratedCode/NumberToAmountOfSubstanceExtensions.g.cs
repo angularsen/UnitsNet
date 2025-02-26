@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromCentimoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromCentimoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromCentimoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromCentipoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromCentipoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromCentipoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromDecimoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromDecimoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromDecimoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromDecipoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromDecipoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromFemtomoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromFemtomoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromFemtomoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromKilomoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromKilomoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromKilopoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromKilopoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromKilopoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMegamoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMegamoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMegamoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMicromoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMicromoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMicromoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMicropoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMicropoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMicropoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMillimoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMillimoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMillimoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMillipoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMillipoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMillipoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromMoles(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromNanomoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromNanomoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromNanomoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromNanopoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromNanopoundMoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromPicomoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromPicomoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromPicomoles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
             => AmountOfSubstance.FromPoundMoles(double.CreateChecked(value));
 #else
-            => AmountOfSubstance.FromPoundMoles(Convert.ToDouble(value));
+            , IConvertible
+            => AmountOfSubstance.FromPoundMoles(value.ToDouble(null));
 #endif
 
     }

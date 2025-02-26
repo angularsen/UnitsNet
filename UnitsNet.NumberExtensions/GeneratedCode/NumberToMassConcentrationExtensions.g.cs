@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromCentigramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromCentigramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromCentigramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerLiter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromCentigramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromCentigramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromCentigramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerMicroliter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromCentigramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromCentigramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromCentigramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromCentigramsPerMilliliter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromCentigramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromCentigramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromCentigramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerDeciliter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromDecigramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromDecigramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromDecigramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerLiter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromDecigramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromDecigramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromDecigramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerMicroliter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromDecigramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromDecigramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromDecigramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromDecigramsPerMilliliter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromDecigramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromDecigramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromDecigramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicCentimeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMillimeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerDeciliter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerLiter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerMicroliter(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromGramsPerMilliliter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromGramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromGramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromGramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicCentimeter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilogramsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilogramsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMeter(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilogramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilogramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMillimeter(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilogramsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilogramsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilogramsPerLiter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilogramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicFoot(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilopoundsPerCubicFoot(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilopoundsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicInch(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromKilopoundsPerCubicInch(double.CreateChecked(value));
 #else
-            => MassConcentration.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromKilopoundsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerCubicMeter(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMicrogramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMicrogramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerDeciliter(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMicrogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMicrogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerLiter(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMicrogramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMicrogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMicrogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMicroliter(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMicrogramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMicrogramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMicrogramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMilliliter(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMicrogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMicrogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerCubicMeter(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMilligramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMilligramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerDeciliter(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMilligramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMilligramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMilligramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerLiter(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMilligramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMilligramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMilligramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerMicroliter(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMilligramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMilligramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMilligramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromMilligramsPerMilliliter(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromMilligramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromMilligramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromMilligramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerDeciliter(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromNanogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromNanogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromNanogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerLiter(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromNanogramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromNanogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromNanogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerMicroliter(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromNanogramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromNanogramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromNanogramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromNanogramsPerMilliliter(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromNanogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromNanogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromNanogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromOuncesPerImperialGallon(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromOuncesPerImperialGallon(double.CreateChecked(value));
 #else
-            => MassConcentration.FromOuncesPerImperialGallon(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromOuncesPerImperialGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromOuncesPerUSGallon(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromOuncesPerUSGallon(double.CreateChecked(value));
 #else
-            => MassConcentration.FromOuncesPerUSGallon(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromOuncesPerUSGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPicogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPicogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPicogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerLiter(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPicogramsPerLiter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPicogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPicogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerMicroliter(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPicogramsPerMicroliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPicogramsPerMicroliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPicogramsPerMicroliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerMilliliter(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPicogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPicogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPicogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicFoot(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPoundsPerCubicFoot(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPoundsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPoundsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicInch(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPoundsPerCubicInch(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPoundsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPoundsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerImperialGallon(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPoundsPerImperialGallon(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPoundsPerImperialGallon(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPoundsPerImperialGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromPoundsPerUSGallon(double)" />
@@ -479,7 +523,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromPoundsPerUSGallon(double.CreateChecked(value));
 #else
-            => MassConcentration.FromPoundsPerUSGallon(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromPoundsPerUSGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromSlugsPerCubicFoot(double)" />
@@ -489,7 +534,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromSlugsPerCubicFoot(double.CreateChecked(value));
 #else
-            => MassConcentration.FromSlugsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromSlugsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicCentimeter(double)" />
@@ -499,7 +545,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromTonnesPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromTonnesPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMeter(double)" />
@@ -509,7 +556,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromTonnesPerCubicMeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromTonnesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromTonnesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMillimeter(double)" />
@@ -519,7 +567,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
             , INumber<T>
             => MassConcentration.FromTonnesPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => MassConcentration.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => MassConcentration.FromTonnesPerCubicMillimeter(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromMicrosieverts(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromMicrosieverts(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromMicrosieverts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromMillisieverts(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromMillisieverts(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromMillisieverts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromNanosieverts(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromNanosieverts(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromNanosieverts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromRoentgensEquivalentMan(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromRoentgensEquivalentMan(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , INumber<T>
             => RadiationEquivalentDose.FromSieverts(double.CreateChecked(value));
 #else
-            => RadiationEquivalentDose.FromSieverts(Convert.ToDouble(value));
+            , IConvertible
+            => RadiationEquivalentDose.FromSieverts(value.ToDouble(null));
 #endif
 
     }

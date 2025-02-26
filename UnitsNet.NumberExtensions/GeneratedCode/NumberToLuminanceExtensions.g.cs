@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromCandelasPerSquareFoot(double.CreateChecked(value));
 #else
-            => Luminance.FromCandelasPerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromCandelasPerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromCandelasPerSquareInch(double.CreateChecked(value));
 #else
-            => Luminance.FromCandelasPerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromCandelasPerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromCandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromCandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromCandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromCenticandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromCenticandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromCenticandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromDecicandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromDecicandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromDecicandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromKilocandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromKilocandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromKilocandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromMicrocandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromMicrocandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromMicrocandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromMillicandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromMillicandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromMillicandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromNanocandelasPerSquareMeter(double.CreateChecked(value));
 #else
-            => Luminance.FromNanocandelasPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromNanocandelasPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminance.FromNits(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , INumber<T>
             => Luminance.FromNits(double.CreateChecked(value));
 #else
-            => Luminance.FromNits(Convert.ToDouble(value));
+            , IConvertible
+            => Luminance.FromNits(value.ToDouble(null));
 #endif
 
     }

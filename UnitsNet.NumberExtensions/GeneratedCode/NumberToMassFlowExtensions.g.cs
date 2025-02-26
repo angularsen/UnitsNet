@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromCentigramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromCentigramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromCentigramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromCentigramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromCentigramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromCentigramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromDecagramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromDecagramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromDecagramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromDecagramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromDecagramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromDecagramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromDecigramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromDecigramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromDecigramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromDecigramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromDecigramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromDecigramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromGramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromGramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromGramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromGramsPerHour(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromGramsPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromGramsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromGramsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromGramsPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromGramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromGramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromGramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromHectogramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromHectogramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromHectogramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromHectogramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromHectogramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromHectogramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromKilogramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromKilogramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromKilogramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromKilogramsPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromKilogramsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromKilogramsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromKilogramsPerMinute(double.CreateChecked(value));
 #else
-            => MassFlow.FromKilogramsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromKilogramsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromKilogramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromKilogramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromKilogramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMegagramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromMegagramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMegagramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMegapoundsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromMegapoundsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMegapoundsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMegapoundsPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromMegapoundsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMegapoundsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMegapoundsPerMinute(double.CreateChecked(value));
 #else
-            => MassFlow.FromMegapoundsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMegapoundsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerSecond(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMegapoundsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromMegapoundsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMegapoundsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMicrogramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromMicrogramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMicrogramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMicrogramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromMicrogramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMicrogramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMilligramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromMilligramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMilligramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromMilligramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromMilligramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromMilligramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromNanogramsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromNanogramsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromNanogramsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromNanogramsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromNanogramsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromNanogramsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromPoundsPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromPoundsPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromPoundsPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromPoundsPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromPoundsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromPoundsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromPoundsPerMinute(double.CreateChecked(value));
 #else
-            => MassFlow.FromPoundsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromPoundsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerSecond(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromPoundsPerSecond(double.CreateChecked(value));
 #else
-            => MassFlow.FromPoundsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromPoundsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromShortTonsPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromShortTonsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromShortTonsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromTonnesPerDay(double.CreateChecked(value));
 #else
-            => MassFlow.FromTonnesPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromTonnesPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
             , INumber<T>
             => MassFlow.FromTonnesPerHour(double.CreateChecked(value));
 #else
-            => MassFlow.FromTonnesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MassFlow.FromTonnesPerHour(value.ToDouble(null));
 #endif
 
     }

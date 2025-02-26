@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , INumber<T>
             => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(double.CreateChecked(value));
 #else
-            => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(Convert.ToDouble(value));
+            , IConvertible
+            => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , INumber<T>
             => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(double.CreateChecked(value));
 #else
-            => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , INumber<T>
             => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(double.CreateChecked(value));
 #else
-            => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , INumber<T>
             => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double.CreateChecked(value));
 #else
-            => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , INumber<T>
             => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.CreateChecked(value));
 #else
-            => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(Convert.ToDouble(value));
+            , IConvertible
+            => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value.ToDouble(null));
 #endif
 
     }

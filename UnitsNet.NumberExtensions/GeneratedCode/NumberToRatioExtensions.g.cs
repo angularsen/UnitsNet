@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromDecimalFractions(double.CreateChecked(value));
 #else
-            => Ratio.FromDecimalFractions(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromDecimalFractions(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromPartsPerBillion(double.CreateChecked(value));
 #else
-            => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromPartsPerBillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerMillion(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromPartsPerMillion(double.CreateChecked(value));
 #else
-            => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromPartsPerMillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerThousand(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromPartsPerThousand(double.CreateChecked(value));
 #else
-            => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromPartsPerThousand(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Ratio.FromPartsPerTrillion(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromPartsPerTrillion(double.CreateChecked(value));
 #else
-            => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromPartsPerTrillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Ratio.FromPercent(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , INumber<T>
             => Ratio.FromPercent(double.CreateChecked(value));
 #else
-            => Ratio.FromPercent(Convert.ToDouble(value));
+            , IConvertible
+            => Ratio.FromPercent(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromKilowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromKilowattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromKilowattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromKilowattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromKilowattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMegawattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMegawattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMegawattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMegawattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMegawattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMegawattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMicrowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMicrowattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMicrowattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMicrowattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMicrowattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMilliwattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMilliwattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMilliwattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromMilliwattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromMilliwattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromNanowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromNanowattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromNanowattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromNanowattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromNanowattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromPicowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromPicowattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromPicowattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromPicowattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromPicowattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromPicowattsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromWattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromWattsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromWattsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , INumber<T>
             => Irradiance.FromWattsPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiance.FromWattsPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

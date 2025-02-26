@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
             , INumber<T>
             => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double.CreateChecked(value));
 #else
-            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
             , INumber<T>
             => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double.CreateChecked(value));
 #else
-            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
             , INumber<T>
             => ElectricReactiveEnergy.FromVoltampereReactiveHours(double.CreateChecked(value));
 #else
-            => ElectricReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactiveEnergy.FromVoltampereReactiveHours(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
             , INumber<T>
             => Permeability.FromHenriesPerMeter(double.CreateChecked(value));
 #else
-            => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Permeability.FromHenriesPerMeter(value.ToDouble(null));
 #endif
 
     }

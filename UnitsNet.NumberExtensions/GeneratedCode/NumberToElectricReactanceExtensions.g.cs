@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromGigaohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromGigaohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromGigaohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromKiloohms(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromKiloohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromKiloohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromKiloohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromMegaohms(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromMegaohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromMegaohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromMegaohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromMicroohms(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromMicroohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromMicroohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromMicroohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromMilliohms(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromMilliohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromMilliohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromMilliohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromNanoohms(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromNanoohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromNanoohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromNanoohms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromOhms(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromOhms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromOhms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromOhms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactance.FromTeraohms(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , INumber<T>
             => ElectricReactance.FromTeraohms(double.CreateChecked(value));
 #else
-            => ElectricReactance.FromTeraohms(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactance.FromTeraohms(value.ToDouble(null));
 #endif
 
     }

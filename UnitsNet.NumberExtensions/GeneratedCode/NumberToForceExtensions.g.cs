@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromDecanewtons(double.CreateChecked(value));
 #else
-            => Force.FromDecanewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromDecanewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromDyne(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromDyne(double.CreateChecked(value));
 #else
-            => Force.FromDyne(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromDyne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromKilogramsForce(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromKilogramsForce(double.CreateChecked(value));
 #else
-            => Force.FromKilogramsForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromKilogramsForce(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromKilonewtons(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromKilonewtons(double.CreateChecked(value));
 #else
-            => Force.FromKilonewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromKilonewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromKiloPonds(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromKiloPonds(double.CreateChecked(value));
 #else
-            => Force.FromKiloPonds(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromKiloPonds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromKilopoundsForce(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromKilopoundsForce(double.CreateChecked(value));
 #else
-            => Force.FromKilopoundsForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromKilopoundsForce(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromMeganewtons(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromMeganewtons(double.CreateChecked(value));
 #else
-            => Force.FromMeganewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromMeganewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromMicronewtons(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromMicronewtons(double.CreateChecked(value));
 #else
-            => Force.FromMicronewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromMicronewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromMillinewtons(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromMillinewtons(double.CreateChecked(value));
 #else
-            => Force.FromMillinewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromMillinewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromNewtons(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromNewtons(double.CreateChecked(value));
 #else
-            => Force.FromNewtons(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromNewtons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromOunceForce(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromOunceForce(double.CreateChecked(value));
 #else
-            => Force.FromOunceForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromOunceForce(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromPoundals(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromPoundals(double.CreateChecked(value));
 #else
-            => Force.FromPoundals(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromPoundals(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromPoundsForce(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromPoundsForce(double.CreateChecked(value));
 #else
-            => Force.FromPoundsForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromPoundsForce(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromShortTonsForce(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromShortTonsForce(double.CreateChecked(value));
 #else
-            => Force.FromShortTonsForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromShortTonsForce(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromTonnesForce(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , INumber<T>
             => Force.FromTonnesForce(double.CreateChecked(value));
 #else
-            => Force.FromTonnesForce(Convert.ToDouble(value));
+            , IConvertible
+            => Force.FromTonnesForce(value.ToDouble(null));
 #endif
 
     }

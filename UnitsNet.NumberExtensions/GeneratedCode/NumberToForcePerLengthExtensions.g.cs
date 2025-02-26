@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromCentinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromCentinewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromCentinewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromCentinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromCentinewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecanewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecanewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecanewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecanewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecanewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecanewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecinewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecinewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromDecinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromDecinewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilogramsForcePerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilogramsForcePerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilogramsForcePerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilogramsForcePerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilogramsForcePerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilonewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilonewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilonewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilonewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilonewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilopoundsForcePerFoot(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilopoundsForcePerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilopoundsForcePerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromKilopoundsForcePerInch(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromKilopoundsForcePerInch(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromKilopoundsForcePerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMeganewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMeganewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMeganewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMeganewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMeganewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMicronewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMicronewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMicronewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMicronewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMicronewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMillinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMillinewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMillinewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromMillinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromMillinewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNanonewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNanonewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNanonewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNanonewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNanonewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNewtonsPerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNewtonsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNewtonsPerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromNewtonsPerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromNewtonsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromPoundsForcePerFoot(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromPoundsForcePerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromPoundsForcePerInch(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromPoundsForcePerInch(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromPoundsForcePerYard(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromPoundsForcePerYard(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerYard(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromTonnesForcePerCentimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromTonnesForcePerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromTonnesForcePerMeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromTonnesForcePerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , INumber<T>
             => ForcePerLength.FromTonnesForcePerMillimeter(double.CreateChecked(value));
 #else
-            => ForcePerLength.FromTonnesForcePerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerMillimeter(value.ToDouble(null));
 #endif
 
     }

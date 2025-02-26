@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromDecawatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromDecawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromDecawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromDeciwatts(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromDeciwatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromDeciwatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromDeciwatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromFemtowatts(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromFemtowatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromFemtowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromFemtowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromGigawatts(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromGigawatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromGigawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromGigawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromKilowatts(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromKilowatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromKilowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromKilowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromMegawatts(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromMegawatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromMegawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromMegawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromMicrowatts(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromMicrowatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromMicrowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromMicrowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromMilliwatts(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromMilliwatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromMilliwatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromMilliwatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromNanowatts(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromNanowatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromNanowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromNanowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromPetawatts(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromPetawatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromPetawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromPetawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromPicowatts(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromPicowatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromPicowatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromPicowatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromSolarLuminosities(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromSolarLuminosities(double.CreateChecked(value));
 #else
-            => Luminosity.FromSolarLuminosities(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromSolarLuminosities(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromTerawatts(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromTerawatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromTerawatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromTerawatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Luminosity.FromWatts(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , INumber<T>
             => Luminosity.FromWatts(double.CreateChecked(value));
 #else
-            => Luminosity.FromWatts(Convert.ToDouble(value));
+            , IConvertible
+            => Luminosity.FromWatts(value.ToDouble(null));
 #endif
 
     }

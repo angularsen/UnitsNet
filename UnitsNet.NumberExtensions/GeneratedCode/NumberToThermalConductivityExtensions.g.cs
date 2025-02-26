@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
             , INumber<T>
             => ThermalConductivity.FromBtusPerHourFootFahrenheit(double.CreateChecked(value));
 #else
-            => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
+            , IConvertible
+            => ThermalConductivity.FromBtusPerHourFootFahrenheit(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
             , INumber<T>
             => ThermalConductivity.FromWattsPerMeterKelvin(double.CreateChecked(value));
 #else
-            => ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
+            , IConvertible
+            => ThermalConductivity.FromWattsPerMeterKelvin(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
             , INumber<T>
             => Level.FromDecibels(double.CreateChecked(value));
 #else
-            => Level.FromDecibels(Convert.ToDouble(value));
+            , IConvertible
+            => Level.FromDecibels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Level.FromNepers(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
             , INumber<T>
             => Level.FromNepers(double.CreateChecked(value));
 #else
-            => Level.FromNepers(Convert.ToDouble(value));
+            , IConvertible
+            => Level.FromNepers(value.ToDouble(null));
 #endif
 
     }

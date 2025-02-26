@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
             , INumber<T>
             => MolarEnergy.FromJoulesPerMole(double.CreateChecked(value));
 #else
-            => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEnergy.FromJoulesPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
             , INumber<T>
             => MolarEnergy.FromKilojoulesPerMole(double.CreateChecked(value));
 #else
-            => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEnergy.FromKilojoulesPerMole(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
             , INumber<T>
             => MolarEnergy.FromMegajoulesPerMole(double.CreateChecked(value));
 #else
-            => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEnergy.FromMegajoulesPerMole(value.ToDouble(null));
 #endif
 
     }

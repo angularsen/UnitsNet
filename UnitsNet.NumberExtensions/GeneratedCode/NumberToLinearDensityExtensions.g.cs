@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromGramsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromGramsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromGramsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromGramsPerFoot(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromGramsPerFoot(double.CreateChecked(value));
 #else
-            => LinearDensity.FromGramsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromGramsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromGramsPerMeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromGramsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromGramsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromGramsPerMillimeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromGramsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromGramsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromGramsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerCentimeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromKilogramsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromKilogramsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromKilogramsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerFoot(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromKilogramsPerFoot(double.CreateChecked(value));
 #else
-            => LinearDensity.FromKilogramsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromKilogramsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromKilogramsPerMeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromKilogramsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromKilogramsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerMillimeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromKilogramsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromKilogramsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromKilogramsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMicrogramsPerCentimeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMicrogramsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMicrogramsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMicrogramsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMicrogramsPerFoot(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMicrogramsPerFoot(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMicrogramsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMicrogramsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMicrogramsPerMeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMicrogramsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMicrogramsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMillimeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMicrogramsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMicrogramsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMicrogramsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMilligramsPerCentimeter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMilligramsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMilligramsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMilligramsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMilligramsPerFoot(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMilligramsPerFoot(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMilligramsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMilligramsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMilligramsPerMeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMilligramsPerMeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMilligramsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMilligramsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromMilligramsPerMillimeter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromMilligramsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearDensity.FromMilligramsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromMilligramsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromPoundsPerFoot(double.CreateChecked(value));
 #else
-            => LinearDensity.FromPoundsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromPoundsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearDensity.FromPoundsPerInch(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , INumber<T>
             => LinearDensity.FromPoundsPerInch(double.CreateChecked(value));
 #else
-            => LinearDensity.FromPoundsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearDensity.FromPoundsPerInch(value.ToDouble(null));
 #endif
 
     }

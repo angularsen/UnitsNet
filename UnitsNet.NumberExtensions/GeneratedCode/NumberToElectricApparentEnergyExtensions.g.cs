@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
             , INumber<T>
             => ElectricApparentEnergy.FromKilovoltampereHours(double.CreateChecked(value));
 #else
-            => ElectricApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentEnergy.FromKilovoltampereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
             , INumber<T>
             => ElectricApparentEnergy.FromMegavoltampereHours(double.CreateChecked(value));
 #else
-            => ElectricApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentEnergy.FromMegavoltampereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
             , INumber<T>
             => ElectricApparentEnergy.FromVoltampereHours(double.CreateChecked(value));
 #else
-            => ElectricApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentEnergy.FromVoltampereHours(value.ToDouble(null));
 #endif
 
     }

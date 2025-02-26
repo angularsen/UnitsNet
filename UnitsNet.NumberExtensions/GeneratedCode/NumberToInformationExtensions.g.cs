@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromBits(double.CreateChecked(value));
 #else
-            => Information.FromBits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromBits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromBytes(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromBytes(double.CreateChecked(value));
 #else
-            => Information.FromBytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromBytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromExabits(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromExabits(double.CreateChecked(value));
 #else
-            => Information.FromExabits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromExabits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromExabytes(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromExabytes(double.CreateChecked(value));
 #else
-            => Information.FromExabytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromExabytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromExbibits(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromExbibits(double.CreateChecked(value));
 #else
-            => Information.FromExbibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromExbibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromExbibytes(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromExbibytes(double.CreateChecked(value));
 #else
-            => Information.FromExbibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromExbibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromGibibits(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromGibibits(double.CreateChecked(value));
 #else
-            => Information.FromGibibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromGibibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromGibibytes(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromGibibytes(double.CreateChecked(value));
 #else
-            => Information.FromGibibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromGibibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromGigabits(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromGigabits(double.CreateChecked(value));
 #else
-            => Information.FromGigabits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromGigabits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromGigabytes(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromGigabytes(double.CreateChecked(value));
 #else
-            => Information.FromGigabytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromGigabytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromKibibits(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromKibibits(double.CreateChecked(value));
 #else
-            => Information.FromKibibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromKibibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromKibibytes(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromKibibytes(double.CreateChecked(value));
 #else
-            => Information.FromKibibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromKibibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromKilobits(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromKilobits(double.CreateChecked(value));
 #else
-            => Information.FromKilobits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromKilobits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromKilobytes(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromKilobytes(double.CreateChecked(value));
 #else
-            => Information.FromKilobytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromKilobytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromMebibits(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromMebibits(double.CreateChecked(value));
 #else
-            => Information.FromMebibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromMebibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromMebibytes(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromMebibytes(double.CreateChecked(value));
 #else
-            => Information.FromMebibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromMebibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromMegabits(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromMegabits(double.CreateChecked(value));
 #else
-            => Information.FromMegabits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromMegabits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromMegabytes(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromMegabytes(double.CreateChecked(value));
 #else
-            => Information.FromMegabytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromMegabytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromPebibits(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromPebibits(double.CreateChecked(value));
 #else
-            => Information.FromPebibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromPebibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromPebibytes(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromPebibytes(double.CreateChecked(value));
 #else
-            => Information.FromPebibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromPebibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromPetabits(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromPetabits(double.CreateChecked(value));
 #else
-            => Information.FromPetabits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromPetabits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromPetabytes(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromPetabytes(double.CreateChecked(value));
 #else
-            => Information.FromPetabytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromPetabytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromTebibits(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromTebibits(double.CreateChecked(value));
 #else
-            => Information.FromTebibits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromTebibits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromTebibytes(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromTebibytes(double.CreateChecked(value));
 #else
-            => Information.FromTebibytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromTebibytes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromTerabits(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromTerabits(double.CreateChecked(value));
 #else
-            => Information.FromTerabits(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromTerabits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Information.FromTerabytes(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , INumber<T>
             => Information.FromTerabytes(double.CreateChecked(value));
 #else
-            => Information.FromTerabytes(Convert.ToDouble(value));
+            , IConvertible
+            => Information.FromTerabytes(value.ToDouble(null));
 #endif
 
     }

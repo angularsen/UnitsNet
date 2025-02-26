@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromMicrosiemensPerCentimeter(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromMicrosiemensPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromMillisiemensPerCentimeter(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromMillisiemensPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromSiemensPerCentimeter(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromSiemensPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromSiemensPerFoot(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromSiemensPerInch(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromSiemensPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , INumber<T>
             => ElectricConductivity.FromSiemensPerMeter(double.CreateChecked(value));
 #else
-            => ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerMeter(value.ToDouble(null));
 #endif
 
     }

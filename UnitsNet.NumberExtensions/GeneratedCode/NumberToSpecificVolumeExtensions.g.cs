@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             , INumber<T>
             => SpecificVolume.FromCubicFeetPerPound(double.CreateChecked(value));
 #else
-            => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificVolume.FromCubicFeetPerPound(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             , INumber<T>
             => SpecificVolume.FromCubicMetersPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificVolume.FromCubicMetersPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             , INumber<T>
             => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificVolume.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToDouble(null));
 #endif
 
     }

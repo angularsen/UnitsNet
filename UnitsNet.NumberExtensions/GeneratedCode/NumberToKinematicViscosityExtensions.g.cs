@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromCentistokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromCentistokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromCentistokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromDecistokes(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromDecistokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromDecistokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromDecistokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromKilostokes(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromKilostokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromKilostokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromKilostokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromMicrostokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromMicrostokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromMicrostokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromMillistokes(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromMillistokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromMillistokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromMillistokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromNanostokes(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromNanostokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromNanostokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromNanostokes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromSquareFeetPerSecond(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromSquareFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromSquareFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromSquareMetersPerSecond(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromSquareMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromSquareMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="KinematicViscosity.FromStokes(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
             , INumber<T>
             => KinematicViscosity.FromStokes(double.CreateChecked(value));
 #else
-            => KinematicViscosity.FromStokes(Convert.ToDouble(value));
+            , IConvertible
+            => KinematicViscosity.FromStokes(value.ToDouble(null));
 #endif
 
     }

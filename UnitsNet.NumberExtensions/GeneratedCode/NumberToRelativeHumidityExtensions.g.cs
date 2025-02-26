@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRelativeHumidity
             , INumber<T>
             => RelativeHumidity.FromPercent(double.CreateChecked(value));
 #else
-            => RelativeHumidity.FromPercent(Convert.ToDouble(value));
+            , IConvertible
+            => RelativeHumidity.FromPercent(value.ToDouble(null));
 #endif
 
     }

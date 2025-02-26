@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
             , INumber<T>
             => MolarEntropy.FromJoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-            => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEntropy.FromJoulesPerMoleKelvin(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
             , INumber<T>
             => MolarEntropy.FromKilojoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-            => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
             , INumber<T>
             => MolarEntropy.FromMegajoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-            => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
+            , IConvertible
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToDouble(null));
 #endif
 
     }

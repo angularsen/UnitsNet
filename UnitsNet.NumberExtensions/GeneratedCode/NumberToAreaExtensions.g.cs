@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromAcres(double.CreateChecked(value));
 #else
-            => Area.FromAcres(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromAcres(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromHectares(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromHectares(double.CreateChecked(value));
 #else
-            => Area.FromHectares(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromHectares(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareCentimeters(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareCentimeters(double.CreateChecked(value));
 #else
-            => Area.FromSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareDecimeters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareDecimeters(double.CreateChecked(value));
 #else
-            => Area.FromSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareFeet(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareFeet(double.CreateChecked(value));
 #else
-            => Area.FromSquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareInches(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareInches(double.CreateChecked(value));
 #else
-            => Area.FromSquareInches(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareKilometers(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareKilometers(double.CreateChecked(value));
 #else
-            => Area.FromSquareKilometers(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareKilometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareMeters(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareMeters(double.CreateChecked(value));
 #else
-            => Area.FromSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareMicrometers(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareMicrometers(double.CreateChecked(value));
 #else
-            => Area.FromSquareMicrometers(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareMiles(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareMiles(double.CreateChecked(value));
 #else
-            => Area.FromSquareMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareMillimeters(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareMillimeters(double.CreateChecked(value));
 #else
-            => Area.FromSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareNauticalMiles(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareNauticalMiles(double.CreateChecked(value));
 #else
-            => Area.FromSquareNauticalMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareNauticalMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromSquareYards(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromSquareYards(double.CreateChecked(value));
 #else
-            => Area.FromSquareYards(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromSquareYards(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , INumber<T>
             => Area.FromUsSurveySquareFeet(double.CreateChecked(value));
 #else
-            => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Area.FromUsSurveySquareFeet(value.ToDouble(null));
 #endif
 
     }

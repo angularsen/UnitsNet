@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromBitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromBitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromBytesPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromBytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromBytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromExabitsPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromExabitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromExabitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromExabytesPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromExabytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromExabytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromExbibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromExbibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromExbibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromExbibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromGibibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromGibibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromGibibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromGibibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromGigabitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromGigabitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromGigabytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromGigabytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromKibibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromKibibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromKibibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromKibibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromKilobitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromKilobitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromKilobytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromKilobytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromMebibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromMebibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromMebibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromMebibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromMegabitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromMegabitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromMegabytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromMegabytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromPebibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromPebibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromPebibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromPebibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromPetabitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromPetabitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromPetabytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromPetabytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromTebibitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromTebibitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromTebibytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromTebibytesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromTerabitsPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromTerabitsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             , INumber<T>
             => BitRate.FromTerabytesPerSecond(double.CreateChecked(value));
 #else
-            => BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => BitRate.FromTerabytesPerSecond(value.ToDouble(null));
 #endif
 
     }

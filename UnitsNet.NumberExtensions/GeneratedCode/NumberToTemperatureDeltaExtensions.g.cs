@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesCelsius(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesDelisle(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesDelisle(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesDelisle(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesFahrenheit(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesFahrenheit(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesFahrenheit(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesNewton(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesNewton(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesNewton(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesRankine(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesRankine(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesRankine(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesReaumur(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesReaumur(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesReaumur(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromDegreesRoemer(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromDegreesRoemer(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromKelvins(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromKelvins(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromKelvins(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
             , INumber<T>
             => TemperatureDelta.FromMillidegreesCelsius(double.CreateChecked(value));
 #else
-            => TemperatureDelta.FromMillidegreesCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureDelta.FromMillidegreesCelsius(value.ToDouble(null));
 #endif
 
     }

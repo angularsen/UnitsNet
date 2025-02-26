@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromCentigramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromCentigramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromCentigramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromCentigramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromCentigramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromCentigramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromDecagramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromDecagramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromDecagramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromDecagramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromDecagramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromDecagramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromDecigramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromDecigramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromDecigramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromDecigramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromDecigramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromDecigramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromDecimalFractions(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromDecimalFractions(double.CreateChecked(value));
 #else
-            => MassFraction.FromDecimalFractions(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromDecimalFractions(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromGramsPerGram(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromGramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromGramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromGramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromGramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromGramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromGramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromHectogramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromHectogramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromHectogramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromHectogramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromHectogramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromHectogramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromKilogramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromKilogramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromKilogramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromKilogramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromKilogramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromKilogramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromMicrogramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromMicrogramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromMicrogramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromMicrogramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromMicrogramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromMicrogramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromMilligramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromMilligramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromMilligramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromMilligramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromMilligramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromMilligramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromNanogramsPerGram(double.CreateChecked(value));
 #else
-            => MassFraction.FromNanogramsPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromNanogramsPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromNanogramsPerKilogram(double.CreateChecked(value));
 #else
-            => MassFraction.FromNanogramsPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromNanogramsPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromPartsPerBillion(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromPartsPerBillion(double.CreateChecked(value));
 #else
-            => MassFraction.FromPartsPerBillion(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromPartsPerBillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromPartsPerMillion(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromPartsPerMillion(double.CreateChecked(value));
 #else
-            => MassFraction.FromPartsPerMillion(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromPartsPerMillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromPartsPerThousand(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromPartsPerThousand(double.CreateChecked(value));
 #else
-            => MassFraction.FromPartsPerThousand(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromPartsPerThousand(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromPartsPerTrillion(double.CreateChecked(value));
 #else
-            => MassFraction.FromPartsPerTrillion(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromPartsPerTrillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassFraction.FromPercent(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
             , INumber<T>
             => MassFraction.FromPercent(double.CreateChecked(value));
 #else
-            => MassFraction.FromPercent(Convert.ToDouble(value));
+            , IConvertible
+            => MassFraction.FromPercent(value.ToDouble(null));
 #endif
 
     }

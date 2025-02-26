@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             , INumber<T>
             => FuelEfficiency.FromKilometersPerLiter(double.CreateChecked(value));
 #else
-            => FuelEfficiency.FromKilometersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => FuelEfficiency.FromKilometersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             , INumber<T>
             => FuelEfficiency.FromLitersPer100Kilometers(double.CreateChecked(value));
 #else
-            => FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
+            , IConvertible
+            => FuelEfficiency.FromLitersPer100Kilometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             , INumber<T>
             => FuelEfficiency.FromMilesPerUkGallon(double.CreateChecked(value));
 #else
-            => FuelEfficiency.FromMilesPerUkGallon(Convert.ToDouble(value));
+            , IConvertible
+            => FuelEfficiency.FromMilesPerUkGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             , INumber<T>
             => FuelEfficiency.FromMilesPerUsGallon(double.CreateChecked(value));
 #else
-            => FuelEfficiency.FromMilesPerUsGallon(Convert.ToDouble(value));
+            , IConvertible
+            => FuelEfficiency.FromMilesPerUsGallon(value.ToDouble(null));
 #endif
 
     }

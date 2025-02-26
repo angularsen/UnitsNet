@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromAcreFeet(double.CreateChecked(value));
 #else
-            => Volume.FromAcreFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromAcreFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromAuTablespoons(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromAuTablespoons(double.CreateChecked(value));
 #else
-            => Volume.FromAuTablespoons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromAuTablespoons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromBoardFeet(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromBoardFeet(double.CreateChecked(value));
 #else
-            => Volume.FromBoardFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromBoardFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCentiliters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCentiliters(double.CreateChecked(value));
 #else
-            => Volume.FromCentiliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCentiliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicCentimeters(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicCentimeters(double.CreateChecked(value));
 #else
-            => Volume.FromCubicCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicDecimeters(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicDecimeters(double.CreateChecked(value));
 #else
-            => Volume.FromCubicDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicFeet(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicFeet(double.CreateChecked(value));
 #else
-            => Volume.FromCubicFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicHectometers(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicHectometers(double.CreateChecked(value));
 #else
-            => Volume.FromCubicHectometers(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicHectometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicInches(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicInches(double.CreateChecked(value));
 #else
-            => Volume.FromCubicInches(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicKilometers(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicKilometers(double.CreateChecked(value));
 #else
-            => Volume.FromCubicKilometers(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicKilometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicMeters(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicMeters(double.CreateChecked(value));
 #else
-            => Volume.FromCubicMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicMicrometers(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicMicrometers(double.CreateChecked(value));
 #else
-            => Volume.FromCubicMicrometers(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicMiles(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicMiles(double.CreateChecked(value));
 #else
-            => Volume.FromCubicMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicMillimeters(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicMillimeters(double.CreateChecked(value));
 #else
-            => Volume.FromCubicMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromCubicYards(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromCubicYards(double.CreateChecked(value));
 #else
-            => Volume.FromCubicYards(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromCubicYards(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromDecaliters(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromDecaliters(double.CreateChecked(value));
 #else
-            => Volume.FromDecaliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromDecaliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromDecausGallons(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromDecausGallons(double.CreateChecked(value));
 #else
-            => Volume.FromDecausGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromDecausGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromDeciliters(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromDeciliters(double.CreateChecked(value));
 #else
-            => Volume.FromDeciliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromDeciliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromDeciusGallons(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromDeciusGallons(double.CreateChecked(value));
 #else
-            => Volume.FromDeciusGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromDeciusGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromHectocubicFeet(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromHectocubicFeet(double.CreateChecked(value));
 #else
-            => Volume.FromHectocubicFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromHectocubicFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromHectocubicMeters(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromHectocubicMeters(double.CreateChecked(value));
 #else
-            => Volume.FromHectocubicMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromHectocubicMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromHectoliters(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromHectoliters(double.CreateChecked(value));
 #else
-            => Volume.FromHectoliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromHectoliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromHectousGallons(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromHectousGallons(double.CreateChecked(value));
 #else
-            => Volume.FromHectousGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromHectousGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromImperialBeerBarrels(double.CreateChecked(value));
 #else
-            => Volume.FromImperialBeerBarrels(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromImperialBeerBarrels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialGallons(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromImperialGallons(double.CreateChecked(value));
 #else
-            => Volume.FromImperialGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromImperialGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialOunces(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromImperialOunces(double.CreateChecked(value));
 #else
-            => Volume.FromImperialOunces(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromImperialOunces(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialPints(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromImperialPints(double.CreateChecked(value));
 #else
-            => Volume.FromImperialPints(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromImperialPints(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialQuarts(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromImperialQuarts(double.CreateChecked(value));
 #else
-            => Volume.FromImperialQuarts(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromImperialQuarts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromKilocubicFeet(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromKilocubicFeet(double.CreateChecked(value));
 #else
-            => Volume.FromKilocubicFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromKilocubicFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromKilocubicMeters(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromKilocubicMeters(double.CreateChecked(value));
 #else
-            => Volume.FromKilocubicMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromKilocubicMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromKiloimperialGallons(double.CreateChecked(value));
 #else
-            => Volume.FromKiloimperialGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromKiloimperialGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromKiloliters(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromKiloliters(double.CreateChecked(value));
 #else
-            => Volume.FromKiloliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromKiloliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromKilousGallons(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromKilousGallons(double.CreateChecked(value));
 #else
-            => Volume.FromKilousGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromKilousGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromLiters(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromLiters(double.CreateChecked(value));
 #else
-            => Volume.FromLiters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromLiters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMegacubicFeet(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMegacubicFeet(double.CreateChecked(value));
 #else
-            => Volume.FromMegacubicFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMegacubicFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMegaimperialGallons(double.CreateChecked(value));
 #else
-            => Volume.FromMegaimperialGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMegaimperialGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMegaliters(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMegaliters(double.CreateChecked(value));
 #else
-            => Volume.FromMegaliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMegaliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMegausGallons(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMegausGallons(double.CreateChecked(value));
 #else
-            => Volume.FromMegausGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMegausGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMetricCups(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMetricCups(double.CreateChecked(value));
 #else
-            => Volume.FromMetricCups(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMetricCups(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMetricTeaspoons(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMetricTeaspoons(double.CreateChecked(value));
 #else
-            => Volume.FromMetricTeaspoons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMetricTeaspoons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMicroliters(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMicroliters(double.CreateChecked(value));
 #else
-            => Volume.FromMicroliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMicroliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMilliliters(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromMilliliters(double.CreateChecked(value));
 #else
-            => Volume.FromMilliliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromMilliliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromNanoliters(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromNanoliters(double.CreateChecked(value));
 #else
-            => Volume.FromNanoliters(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromNanoliters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromOilBarrels(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromOilBarrels(double.CreateChecked(value));
 #else
-            => Volume.FromOilBarrels(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromOilBarrels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(double)" />
@@ -479,7 +523,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUkTablespoons(double.CreateChecked(value));
 #else
-            => Volume.FromUkTablespoons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUkTablespoons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)" />
@@ -489,7 +534,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsBeerBarrels(double.CreateChecked(value));
 #else
-            => Volume.FromUsBeerBarrels(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsBeerBarrels(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsCustomaryCups(double)" />
@@ -499,7 +545,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsCustomaryCups(double.CreateChecked(value));
 #else
-            => Volume.FromUsCustomaryCups(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsCustomaryCups(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsGallons(double)" />
@@ -509,7 +556,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsGallons(double.CreateChecked(value));
 #else
-            => Volume.FromUsGallons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsGallons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsLegalCups(double)" />
@@ -519,7 +567,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsLegalCups(double.CreateChecked(value));
 #else
-            => Volume.FromUsLegalCups(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsLegalCups(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsOunces(double)" />
@@ -529,7 +578,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsOunces(double.CreateChecked(value));
 #else
-            => Volume.FromUsOunces(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsOunces(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsPints(double)" />
@@ -539,7 +589,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsPints(double.CreateChecked(value));
 #else
-            => Volume.FromUsPints(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsPints(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsQuarts(double)" />
@@ -549,7 +600,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsQuarts(double.CreateChecked(value));
 #else
-            => Volume.FromUsQuarts(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsQuarts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsTablespoons(double)" />
@@ -559,7 +611,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsTablespoons(double.CreateChecked(value));
 #else
-            => Volume.FromUsTablespoons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsTablespoons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUsTeaspoons(double)" />
@@ -569,7 +622,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             , INumber<T>
             => Volume.FromUsTeaspoons(double.CreateChecked(value));
 #else
-            => Volume.FromUsTeaspoons(Convert.ToDouble(value));
+            , IConvertible
+            => Volume.FromUsTeaspoons(value.ToDouble(null));
 #endif
 
     }

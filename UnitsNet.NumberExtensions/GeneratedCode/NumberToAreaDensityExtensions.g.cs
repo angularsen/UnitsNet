@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             , INumber<T>
             => AreaDensity.FromGramsPerSquareMeter(double.CreateChecked(value));
 #else
-            => AreaDensity.FromGramsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => AreaDensity.FromGramsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             , INumber<T>
             => AreaDensity.FromKilogramsPerSquareMeter(double.CreateChecked(value));
 #else
-            => AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => AreaDensity.FromKilogramsPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             , INumber<T>
             => AreaDensity.FromMilligramsPerSquareMeter(double.CreateChecked(value));
 #else
-            => AreaDensity.FromMilligramsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

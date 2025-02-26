@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
             , INumber<T>
             => ElectricReactivePower.FromGigavoltamperesReactive(double.CreateChecked(value));
 #else
-            => ElectricReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactivePower.FromGigavoltamperesReactive(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactivePower.FromKilovoltamperesReactive(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
             , INumber<T>
             => ElectricReactivePower.FromKilovoltamperesReactive(double.CreateChecked(value));
 #else
-            => ElectricReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactivePower.FromKilovoltamperesReactive(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactivePower.FromMegavoltamperesReactive(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
             , INumber<T>
             => ElectricReactivePower.FromMegavoltamperesReactive(double.CreateChecked(value));
 #else
-            => ElectricReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactivePower.FromMegavoltamperesReactive(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricReactivePower.FromVoltamperesReactive(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
             , INumber<T>
             => ElectricReactivePower.FromVoltamperesReactive(double.CreateChecked(value));
 #else
-            => ElectricReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricReactivePower.FromVoltamperesReactive(value.ToDouble(null));
 #endif
 
     }

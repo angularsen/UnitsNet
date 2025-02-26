@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
             , INumber<T>
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
             , INumber<T>
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double.CreateChecked(value));
 #else
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
             , INumber<T>
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.CreateChecked(value));
 #else
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

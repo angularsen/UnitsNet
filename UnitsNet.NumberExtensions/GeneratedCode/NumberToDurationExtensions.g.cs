@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromDays(double.CreateChecked(value));
 #else
-            => Duration.FromDays(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromDays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromHours(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromHours(double.CreateChecked(value));
 #else
-            => Duration.FromHours(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromJulianYears(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromJulianYears(double.CreateChecked(value));
 #else
-            => Duration.FromJulianYears(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromJulianYears(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromMicroseconds(double.CreateChecked(value));
 #else
-            => Duration.FromMicroseconds(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromMicroseconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromMilliseconds(double.CreateChecked(value));
 #else
-            => Duration.FromMilliseconds(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromMilliseconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromMinutes(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromMinutes(double.CreateChecked(value));
 #else
-            => Duration.FromMinutes(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromMinutes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromMonths30(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromMonths30(double.CreateChecked(value));
 #else
-            => Duration.FromMonths30(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromMonths30(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromNanoseconds(double.CreateChecked(value));
 #else
-            => Duration.FromNanoseconds(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromNanoseconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromSeconds(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromSeconds(double.CreateChecked(value));
 #else
-            => Duration.FromSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromSols(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromSols(double.CreateChecked(value));
 #else
-            => Duration.FromSols(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromSols(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromWeeks(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromWeeks(double.CreateChecked(value));
 #else
-            => Duration.FromWeeks(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromWeeks(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Duration.FromYears365(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , INumber<T>
             => Duration.FromYears365(double.CreateChecked(value));
 #else
-            => Duration.FromYears365(Convert.ToDouble(value));
+            , IConvertible
+            => Duration.FromYears365(value.ToDouble(null));
 #endif
 
     }

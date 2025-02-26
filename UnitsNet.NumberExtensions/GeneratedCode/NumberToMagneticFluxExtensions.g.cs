@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticFlux
             , INumber<T>
             => MagneticFlux.FromWebers(double.CreateChecked(value));
 #else
-            => MagneticFlux.FromWebers(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticFlux.FromWebers(value.ToDouble(null));
 #endif
 
     }

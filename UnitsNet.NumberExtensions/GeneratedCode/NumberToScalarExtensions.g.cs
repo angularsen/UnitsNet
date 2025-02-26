@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
             , INumber<T>
             => Scalar.FromAmount(double.CreateChecked(value));
 #else
-            => Scalar.FromAmount(Convert.ToDouble(value));
+            , IConvertible
+            => Scalar.FromAmount(value.ToDouble(null));
 #endif
 
     }

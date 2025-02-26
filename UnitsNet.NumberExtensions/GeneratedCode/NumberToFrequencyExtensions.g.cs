@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromBeatsPerMinute(double.CreateChecked(value));
 #else
-            => Frequency.FromBeatsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromBeatsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromBUnits(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromBUnits(double.CreateChecked(value));
 #else
-            => Frequency.FromBUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromBUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromCyclesPerHour(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromCyclesPerHour(double.CreateChecked(value));
 #else
-            => Frequency.FromCyclesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromCyclesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromCyclesPerMinute(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromCyclesPerMinute(double.CreateChecked(value));
 #else
-            => Frequency.FromCyclesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromCyclesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromGigahertz(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromGigahertz(double.CreateChecked(value));
 #else
-            => Frequency.FromGigahertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromGigahertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromHertz(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromHertz(double.CreateChecked(value));
 #else
-            => Frequency.FromHertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromHertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromKilohertz(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromKilohertz(double.CreateChecked(value));
 #else
-            => Frequency.FromKilohertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromKilohertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromMegahertz(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromMegahertz(double.CreateChecked(value));
 #else
-            => Frequency.FromMegahertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromMegahertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromMicrohertz(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromMicrohertz(double.CreateChecked(value));
 #else
-            => Frequency.FromMicrohertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromMicrohertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromMillihertz(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromMillihertz(double.CreateChecked(value));
 #else
-            => Frequency.FromMillihertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromMillihertz(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromPerSecond(double.CreateChecked(value));
 #else
-            => Frequency.FromPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromRadiansPerSecond(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromRadiansPerSecond(double.CreateChecked(value));
 #else
-            => Frequency.FromRadiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromRadiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Frequency.FromTerahertz(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , INumber<T>
             => Frequency.FromTerahertz(double.CreateChecked(value));
 #else
-            => Frequency.FromTerahertz(Convert.ToDouble(value));
+            , IConvertible
+            => Frequency.FromTerahertz(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromCentilitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromCentilitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromCentilitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMilliliter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromCentilitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromCentilitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromCentilitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromDecilitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromDecilitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromDecilitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMilliliter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromDecilitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromDecilitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromDecilitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromDecimalFractions(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromDecimalFractions(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromDecimalFractions(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromLitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromLitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromLitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromLitersPerMilliliter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromLitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromLitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromLitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromMicrolitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromMicrolitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromMicrolitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMilliliter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromMicrolitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromMicrolitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromMicrolitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromMillilitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromMillilitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromMillilitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMilliliter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromMillilitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromMillilitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromMillilitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromNanolitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromNanolitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromNanolitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMilliliter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromNanolitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromNanolitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromNanolitersPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPartsPerBillion(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPartsPerBillion(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPartsPerBillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPartsPerMillion(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPartsPerMillion(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPartsPerMillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPartsPerThousand(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPartsPerThousand(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPartsPerThousand(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPartsPerTrillion(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPartsPerTrillion(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPartsPerTrillion(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPercent(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPercent(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPercent(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPercent(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPicolitersPerLiter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPicolitersPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPicolitersPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMilliliter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , INumber<T>
             => VolumeConcentration.FromPicolitersPerMilliliter(double.CreateChecked(value));
 #else
-            => VolumeConcentration.FromPicolitersPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeConcentration.FromPicolitersPerMilliliter(value.ToDouble(null));
 #endif
 
     }

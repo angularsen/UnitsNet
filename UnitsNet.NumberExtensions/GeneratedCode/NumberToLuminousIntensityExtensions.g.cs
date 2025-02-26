@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
             , INumber<T>
             => LuminousIntensity.FromCandela(double.CreateChecked(value));
 #else
-            => LuminousIntensity.FromCandela(Convert.ToDouble(value));
+            , IConvertible
+            => LuminousIntensity.FromCandela(value.ToDouble(null));
 #endif
 
     }

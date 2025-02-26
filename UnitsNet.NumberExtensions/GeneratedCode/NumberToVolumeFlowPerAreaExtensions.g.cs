@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlowPerArea
             , INumber<T>
             => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(double.CreateChecked(value));
 #else
-            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlowPerArea
             , INumber<T>
             => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.CreateChecked(value));
 #else
-            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

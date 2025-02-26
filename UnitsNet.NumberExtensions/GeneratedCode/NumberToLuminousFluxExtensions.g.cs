@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
             , INumber<T>
             => LuminousFlux.FromLumens(double.CreateChecked(value));
 #else
-            => LuminousFlux.FromLumens(Convert.ToDouble(value));
+            , IConvertible
+            => LuminousFlux.FromLumens(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromGausses(double.CreateChecked(value));
 #else
-            => MagneticField.FromGausses(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromGausses(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MagneticField.FromMicroteslas(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromMicroteslas(double.CreateChecked(value));
 #else
-            => MagneticField.FromMicroteslas(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromMicroteslas(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MagneticField.FromMilligausses(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromMilligausses(double.CreateChecked(value));
 #else
-            => MagneticField.FromMilligausses(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromMilligausses(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MagneticField.FromMilliteslas(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromMilliteslas(double.CreateChecked(value));
 #else
-            => MagneticField.FromMilliteslas(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromMilliteslas(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MagneticField.FromNanoteslas(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromNanoteslas(double.CreateChecked(value));
 #else
-            => MagneticField.FromNanoteslas(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromNanoteslas(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MagneticField.FromTeslas(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , INumber<T>
             => MagneticField.FromTeslas(double.CreateChecked(value));
 #else
-            => MagneticField.FromTeslas(Convert.ToDouble(value));
+            , IConvertible
+            => MagneticField.FromTeslas(value.ToDouble(null));
 #endif
 
     }

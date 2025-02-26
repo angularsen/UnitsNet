@@ -41,7 +41,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromGigamhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromGigamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromGigamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromGigasiemens(double)" />
@@ -52,7 +53,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromGigasiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromGigasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromGigasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(double)" />
@@ -63,7 +65,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromKilomhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromKilomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromKilomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromKilosiemens(double)" />
@@ -74,7 +77,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromKilosiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromKilosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromKilosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMegamhos(double)" />
@@ -85,7 +89,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMegamhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMegamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMegamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMegasiemens(double)" />
@@ -96,7 +101,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMegasiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMegasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMegasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMhos(double)" />
@@ -107,7 +113,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(double)" />
@@ -118,7 +125,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMicromhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMicromhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMicromhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)" />
@@ -129,7 +137,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMicrosiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMicrosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(double)" />
@@ -140,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMillimhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMillimhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMillimhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)" />
@@ -151,7 +161,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromMillisiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromMillisiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(double)" />
@@ -162,7 +173,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromNanomhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromNanomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromNanomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)" />
@@ -173,7 +185,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromNanosiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromNanosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)" />
@@ -184,7 +197,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromSiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromSiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromTeramhos(double)" />
@@ -195,7 +209,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromTeramhos(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromTeramhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromTeramhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricAdmittance.FromTerasiemens(double)" />
@@ -206,7 +221,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
             => ElectricAdmittance.FromTerasiemens(double.CreateChecked(value));
 #else
-            => ElectricAdmittance.FromTerasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricAdmittance.FromTerasiemens(value.ToDouble(null));
 #endif
 
     }

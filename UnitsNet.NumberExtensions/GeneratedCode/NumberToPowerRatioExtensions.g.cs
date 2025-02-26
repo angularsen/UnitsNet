@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
             , INumber<T>
             => PowerRatio.FromDecibelMilliwatts(double.CreateChecked(value));
 #else
-            => PowerRatio.FromDecibelMilliwatts(Convert.ToDouble(value));
+            , IConvertible
+            => PowerRatio.FromDecibelMilliwatts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerRatio.FromDecibelWatts(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
             , INumber<T>
             => PowerRatio.FromDecibelWatts(double.CreateChecked(value));
 #else
-            => PowerRatio.FromDecibelWatts(Convert.ToDouble(value));
+            , IConvertible
+            => PowerRatio.FromDecibelWatts(value.ToDouble(null));
 #endif
 
     }

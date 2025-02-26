@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
             , INumber<T>
             => Turbidity.FromNTU(double.CreateChecked(value));
 #else
-            => Turbidity.FromNTU(Convert.ToDouble(value));
+            , IConvertible
+            => Turbidity.FromNTU(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
             , INumber<T>
             => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
 #else
-            => RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
             , INumber<T>
             => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
 #else
-            => RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareCentimeters(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareDecimeters(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareDecimeters(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareFeet(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareFeet(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareInches(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareInches(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareInches(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareKilometers(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareKilometers(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareKilometers(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareKilometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMeters(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareMeters(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMicrometers(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareMicrometers(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareMicrometers(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMiles(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareMiles(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareMiles(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMillimeters(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareMillimeters(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseSquareYards(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseSquareYards(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseSquareYards(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseSquareYards(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalArea.FromInverseUsSurveySquareFeet(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
             , INumber<T>
             => ReciprocalArea.FromInverseUsSurveySquareFeet(double.CreateChecked(value));
 #else
-            => ReciprocalArea.FromInverseUsSurveySquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalArea.FromInverseUsSurveySquareFeet(value.ToDouble(null));
 #endif
 
     }

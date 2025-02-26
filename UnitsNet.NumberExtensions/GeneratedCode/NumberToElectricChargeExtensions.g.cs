@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromAmpereHours(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromAmpereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromAmpereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromCoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromCoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromKiloampereHours(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromKiloampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromKiloampereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromKilocoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromKilocoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromKilocoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromMegaampereHours(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromMegaampereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromMegacoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromMegacoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromMegacoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromMicrocoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromMicrocoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromMicrocoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromMilliampereHours(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromMilliampereHours(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromMilliampereHours(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromMillicoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromMillicoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromMillicoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromNanocoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromNanocoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromNanocoulombs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , INumber<T>
             => ElectricCharge.FromPicocoulombs(double.CreateChecked(value));
 #else
-            => ElectricCharge.FromPicocoulombs(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCharge.FromPicocoulombs(value.ToDouble(null));
 #endif
 
     }

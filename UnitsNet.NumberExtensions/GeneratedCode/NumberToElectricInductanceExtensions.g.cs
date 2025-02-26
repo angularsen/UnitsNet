@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , INumber<T>
             => ElectricInductance.FromHenries(double.CreateChecked(value));
 #else
-            => ElectricInductance.FromHenries(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricInductance.FromHenries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricInductance.FromMicrohenries(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , INumber<T>
             => ElectricInductance.FromMicrohenries(double.CreateChecked(value));
 #else
-            => ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricInductance.FromMicrohenries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricInductance.FromMillihenries(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , INumber<T>
             => ElectricInductance.FromMillihenries(double.CreateChecked(value));
 #else
-            => ElectricInductance.FromMillihenries(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricInductance.FromMillihenries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricInductance.FromNanohenries(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , INumber<T>
             => ElectricInductance.FromNanohenries(double.CreateChecked(value));
 #else
-            => ElectricInductance.FromNanohenries(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricInductance.FromNanohenries(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricInductance.FromPicohenries(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , INumber<T>
             => ElectricInductance.FromPicohenries(double.CreateChecked(value));
 #else
-            => ElectricInductance.FromPicohenries(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricInductance.FromPicohenries(value.ToDouble(null));
 #endif
 
     }

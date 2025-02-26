@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromCubicMetersPerMeter(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromCubicMetersPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromCubicMetersPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromCubicYardsPerFoot(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromCubicYardsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromCubicYardsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromCubicYardsPerUsSurveyFoot(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromImperialGallonsPerMile(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromImperialGallonsPerMile(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromImperialGallonsPerMile(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromLitersPerKilometer(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromLitersPerKilometer(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromLitersPerKilometer(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromLitersPerMeter(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromLitersPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromLitersPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromLitersPerMillimeter(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromLitersPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromLitersPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromOilBarrelsPerFoot(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromOilBarrelsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromOilBarrelsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , INumber<T>
             => VolumePerLength.FromUsGallonsPerMile(double.CreateChecked(value));
 #else
-            => VolumePerLength.FromUsGallonsPerMile(Convert.ToDouble(value));
+            , IConvertible
+            => VolumePerLength.FromUsGallonsPerMile(value.ToDouble(null));
 #endif
 
     }

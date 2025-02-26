@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
             , INumber<T>
             => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(double.CreateChecked(value));
 #else
-            => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
+            , IConvertible
+            => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
             , INumber<T>
             => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double.CreateChecked(value));
 #else
-            => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
+            , IConvertible
+            => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
             , INumber<T>
             => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double.CreateChecked(value));
 #else
-            => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
+            , IConvertible
+            => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value.ToDouble(null));
 #endif
 
     }

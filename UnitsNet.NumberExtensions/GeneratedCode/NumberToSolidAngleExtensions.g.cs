@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
             , INumber<T>
             => SolidAngle.FromSteradians(double.CreateChecked(value));
 #else
-            => SolidAngle.FromSteradians(Convert.ToDouble(value));
+            , IConvertible
+            => SolidAngle.FromSteradians(value.ToDouble(null));
 #endif
 
     }

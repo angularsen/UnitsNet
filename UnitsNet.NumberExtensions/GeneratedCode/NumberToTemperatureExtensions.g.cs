@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesCelsius(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesDelisle(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesDelisle(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesDelisle(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesDelisle(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesFahrenheit(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesFahrenheit(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesFahrenheit(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesNewton(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesNewton(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesNewton(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesNewton(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesRankine(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesRankine(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesRankine(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesRankine(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesReaumur(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesReaumur(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesReaumur(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesReaumur(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromDegreesRoemer(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromDegreesRoemer(double.CreateChecked(value));
 #else
-            => Temperature.FromDegreesRoemer(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromDegreesRoemer(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromKelvins(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromKelvins(double.CreateChecked(value));
 #else
-            => Temperature.FromKelvins(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromKelvins(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromMillidegreesCelsius(double.CreateChecked(value));
 #else
-            => Temperature.FromMillidegreesCelsius(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromMillidegreesCelsius(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Temperature.FromSolarTemperatures(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , INumber<T>
             => Temperature.FromSolarTemperatures(double.CreateChecked(value));
 #else
-            => Temperature.FromSolarTemperatures(Convert.ToDouble(value));
+            , IConvertible
+            => Temperature.FromSolarTemperatures(value.ToDouble(null));
 #endif
 
     }

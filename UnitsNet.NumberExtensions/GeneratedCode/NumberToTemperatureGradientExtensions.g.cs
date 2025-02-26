@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             , INumber<T>
             => TemperatureGradient.FromDegreesCelsiusPerKilometer(double.CreateChecked(value));
 #else
-            => TemperatureGradient.FromDegreesCelsiusPerKilometer(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             , INumber<T>
             => TemperatureGradient.FromDegreesCelsiusPerMeter(double.CreateChecked(value));
 #else
-            => TemperatureGradient.FromDegreesCelsiusPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             , INumber<T>
             => TemperatureGradient.FromDegreesFahrenheitPerFoot(double.CreateChecked(value));
 #else
-            => TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             , INumber<T>
             => TemperatureGradient.FromKelvinsPerMeter(double.CreateChecked(value));
 #else
-            => TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureGradient.FromKelvinsPerMeter(value.ToDouble(null));
 #endif
 
     }

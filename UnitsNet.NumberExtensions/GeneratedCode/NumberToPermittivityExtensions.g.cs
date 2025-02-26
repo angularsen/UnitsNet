@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
             , INumber<T>
             => Permittivity.FromFaradsPerMeter(double.CreateChecked(value));
 #else
-            => Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Permittivity.FromFaradsPerMeter(value.ToDouble(null));
 #endif
 
     }

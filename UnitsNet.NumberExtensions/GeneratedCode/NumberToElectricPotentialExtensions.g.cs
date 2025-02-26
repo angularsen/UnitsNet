@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromKilovolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromKilovolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromKilovolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotential.FromMegavolts(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromMegavolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromMegavolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromMegavolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotential.FromMicrovolts(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromMicrovolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromMicrovolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromMicrovolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotential.FromMillivolts(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromMillivolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromMillivolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromMillivolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotential.FromNanovolts(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromNanovolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromNanovolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromNanovolts(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricPotential.FromVolts(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , INumber<T>
             => ElectricPotential.FromVolts(double.CreateChecked(value));
 #else
-            => ElectricPotential.FromVolts(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricPotential.FromVolts(value.ToDouble(null));
 #endif
 
     }

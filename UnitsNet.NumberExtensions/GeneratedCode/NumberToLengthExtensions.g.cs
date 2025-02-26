@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromAngstroms(double.CreateChecked(value));
 #else
-            => Length.FromAngstroms(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromAngstroms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromAstronomicalUnits(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromAstronomicalUnits(double.CreateChecked(value));
 #else
-            => Length.FromAstronomicalUnits(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromAstronomicalUnits(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromCentimeters(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromCentimeters(double.CreateChecked(value));
 #else
-            => Length.FromCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromChains(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromChains(double.CreateChecked(value));
 #else
-            => Length.FromChains(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromChains(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromDataMiles(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromDataMiles(double.CreateChecked(value));
 #else
-            => Length.FromDataMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromDataMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromDecameters(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromDecameters(double.CreateChecked(value));
 #else
-            => Length.FromDecameters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromDecameters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromDecimeters(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromDecimeters(double.CreateChecked(value));
 #else
-            => Length.FromDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromDtpPicas(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromDtpPicas(double.CreateChecked(value));
 #else
-            => Length.FromDtpPicas(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromDtpPicas(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromDtpPoints(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromDtpPoints(double.CreateChecked(value));
 #else
-            => Length.FromDtpPoints(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromDtpPoints(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromFathoms(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromFathoms(double.CreateChecked(value));
 #else
-            => Length.FromFathoms(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromFathoms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromFemtometers(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromFemtometers(double.CreateChecked(value));
 #else
-            => Length.FromFemtometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromFemtometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromFeet(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromFeet(double.CreateChecked(value));
 #else
-            => Length.FromFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromGigameters(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromGigameters(double.CreateChecked(value));
 #else
-            => Length.FromGigameters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromGigameters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromHands(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromHands(double.CreateChecked(value));
 #else
-            => Length.FromHands(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromHands(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromHectometers(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromHectometers(double.CreateChecked(value));
 #else
-            => Length.FromHectometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromHectometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromInches(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromInches(double.CreateChecked(value));
 #else
-            => Length.FromInches(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromKilofeet(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromKilofeet(double.CreateChecked(value));
 #else
-            => Length.FromKilofeet(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromKilofeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromKilolightYears(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromKilolightYears(double.CreateChecked(value));
 #else
-            => Length.FromKilolightYears(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromKilolightYears(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromKilometers(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromKilometers(double.CreateChecked(value));
 #else
-            => Length.FromKilometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromKilometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromKiloparsecs(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromKiloparsecs(double.CreateChecked(value));
 #else
-            => Length.FromKiloparsecs(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromKiloparsecs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromKiloyards(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromKiloyards(double.CreateChecked(value));
 #else
-            => Length.FromKiloyards(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromKiloyards(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromLightYears(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromLightYears(double.CreateChecked(value));
 #else
-            => Length.FromLightYears(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromLightYears(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMegalightYears(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMegalightYears(double.CreateChecked(value));
 #else
-            => Length.FromMegalightYears(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMegalightYears(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMegameters(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMegameters(double.CreateChecked(value));
 #else
-            => Length.FromMegameters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMegameters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMegaparsecs(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMegaparsecs(double.CreateChecked(value));
 #else
-            => Length.FromMegaparsecs(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMegaparsecs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMeters(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMeters(double.CreateChecked(value));
 #else
-            => Length.FromMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMicroinches(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMicroinches(double.CreateChecked(value));
 #else
-            => Length.FromMicroinches(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMicroinches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMicrometers(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMicrometers(double.CreateChecked(value));
 #else
-            => Length.FromMicrometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMils(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMils(double.CreateChecked(value));
 #else
-            => Length.FromMils(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMils(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMiles(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMiles(double.CreateChecked(value));
 #else
-            => Length.FromMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromMillimeters(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromMillimeters(double.CreateChecked(value));
 #else
-            => Length.FromMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromNanometers(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromNanometers(double.CreateChecked(value));
 #else
-            => Length.FromNanometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromNanometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromNauticalMiles(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromNauticalMiles(double.CreateChecked(value));
 #else
-            => Length.FromNauticalMiles(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromNauticalMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromParsecs(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromParsecs(double.CreateChecked(value));
 #else
-            => Length.FromParsecs(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromParsecs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromPicometers(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromPicometers(double.CreateChecked(value));
 #else
-            => Length.FromPicometers(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromPicometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromPrinterPicas(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromPrinterPicas(double.CreateChecked(value));
 #else
-            => Length.FromPrinterPicas(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromPrinterPicas(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromPrinterPoints(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromPrinterPoints(double.CreateChecked(value));
 #else
-            => Length.FromPrinterPoints(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromPrinterPoints(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromShackles(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromShackles(double.CreateChecked(value));
 #else
-            => Length.FromShackles(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromShackles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromSolarRadiuses(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromSolarRadiuses(double.CreateChecked(value));
 #else
-            => Length.FromSolarRadiuses(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromSolarRadiuses(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromTwips(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromTwips(double.CreateChecked(value));
 #else
-            => Length.FromTwips(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromTwips(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromUsSurveyFeet(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromUsSurveyFeet(double.CreateChecked(value));
 #else
-            => Length.FromUsSurveyFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromUsSurveyFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Length.FromYards(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
             => Length.FromYards(double.CreateChecked(value));
 #else
-            => Length.FromYards(Convert.ToDouble(value));
+            , IConvertible
+            => Length.FromYards(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
             , INumber<T>
             => Magnetization.FromAmperesPerMeter(double.CreateChecked(value));
 #else
-            => Magnetization.FromAmperesPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Magnetization.FromAmperesPerMeter(value.ToDouble(null));
 #endif
 
     }

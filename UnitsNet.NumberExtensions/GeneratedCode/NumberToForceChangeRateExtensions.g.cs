@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromCentinewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromCentinewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromDecanewtonsPerMinute(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromDecanewtonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromDecanewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromDecanewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromDecinewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromDecinewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromKilonewtonsPerMinute(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromKilonewtonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromKilonewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromKilonewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromKilopoundsForcePerMinute(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromKilopoundsForcePerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromKilopoundsForcePerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromKilopoundsForcePerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromKilopoundsForcePerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromKilopoundsForcePerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromMicronewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromMicronewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromMillinewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromMillinewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromNanonewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromNanonewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromNewtonsPerMinute(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromNewtonsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromNewtonsPerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromNewtonsPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromPoundsForcePerMinute(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromPoundsForcePerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromPoundsForcePerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , INumber<T>
             => ForceChangeRate.FromPoundsForcePerSecond(double.CreateChecked(value));
 #else
-            => ForceChangeRate.FromPoundsForcePerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => ForceChangeRate.FromPoundsForcePerSecond(value.ToDouble(null));
 #endif
 
     }

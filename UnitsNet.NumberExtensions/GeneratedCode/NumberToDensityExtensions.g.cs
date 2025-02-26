@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromCentigramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromCentigramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromCentigramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromCentigramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromCentigramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromCentigramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromCentigramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromCentigramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromDecigramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromDecigramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromDecigramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromDecigramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromDecigramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromDecigramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromDecigramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromDecigramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromFemtogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromFemtogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromFemtogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromFemtogramsPerLiter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromFemtogramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromFemtogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromFemtogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromFemtogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromFemtogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromFemtogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerCubicFoot(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerCubicFoot(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerCubicInch(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerCubicInch(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerDeciliter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerLiter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromGramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromGramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromGramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilogramsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => Density.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilogramsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilogramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilogramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilogramsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => Density.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilogramsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilogramsPerLiter(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilogramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromKilogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilopoundsPerCubicFoot(double.CreateChecked(value));
 #else
-            => Density.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilopoundsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilopoundsPerCubicInch(double.CreateChecked(value));
 #else
-            => Density.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilopoundsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromKilopoundsPerCubicYard(double.CreateChecked(value));
 #else
-            => Density.FromKilopoundsPerCubicYard(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromKilopoundsPerCubicYard(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMicrogramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMicrogramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMicrogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMicrogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMicrogramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromMicrogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMicrogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMicrogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMicrogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMilligramsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMilligramsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMilligramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromMilligramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMilligramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMilligramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromMilligramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMilligramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromMilligramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromMilligramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromNanogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromNanogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromNanogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromNanogramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromNanogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromNanogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromNanogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromNanogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPicogramsPerDeciliter(double.CreateChecked(value));
 #else
-            => Density.FromPicogramsPerDeciliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPicogramsPerDeciliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPicogramsPerLiter(double.CreateChecked(value));
 #else
-            => Density.FromPicogramsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPicogramsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPicogramsPerMilliliter(double.CreateChecked(value));
 #else
-            => Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPicogramsPerMilliliter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicFoot(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicInch(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicInch(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicYard(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerCubicYard(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerCubicYard(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerCubicYard(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)" />
@@ -479,7 +523,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerImperialGallon(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerImperialGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)" />
@@ -489,7 +534,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromPoundsPerUSGallon(double.CreateChecked(value));
 #else
-            => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromPoundsPerUSGallon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(double)" />
@@ -499,7 +545,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromSlugsPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => Density.FromSlugsPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromSlugsPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)" />
@@ -509,7 +556,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromSlugsPerCubicFoot(double.CreateChecked(value));
 #else
-            => Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromSlugsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicInch(double)" />
@@ -519,7 +567,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromSlugsPerCubicInch(double.CreateChecked(value));
 #else
-            => Density.FromSlugsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromSlugsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(double)" />
@@ -529,7 +578,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromSlugsPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromSlugsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromSlugsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(double)" />
@@ -539,7 +589,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromSlugsPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => Density.FromSlugsPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromSlugsPerCubicMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(double)" />
@@ -549,7 +600,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromTonnesPerCubicCentimeter(double.CreateChecked(value));
 #else
-            => Density.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromTonnesPerCubicCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(double)" />
@@ -559,7 +611,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromTonnesPerCubicFoot(double.CreateChecked(value));
 #else
-            => Density.FromTonnesPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromTonnesPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicInch(double)" />
@@ -569,7 +622,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromTonnesPerCubicInch(double.CreateChecked(value));
 #else
-            => Density.FromTonnesPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromTonnesPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(double)" />
@@ -579,7 +633,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromTonnesPerCubicMeter(double.CreateChecked(value));
 #else
-            => Density.FromTonnesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromTonnesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(double)" />
@@ -589,7 +644,8 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
             => Density.FromTonnesPerCubicMillimeter(double.CreateChecked(value));
 #else
-            => Density.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Density.FromTonnesPerCubicMillimeter(value.ToDouble(null));
 #endif
 
     }

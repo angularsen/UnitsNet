@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromGigavoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromGigavoltamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentPower.FromKilovoltamperes(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromKilovoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromKilovoltamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentPower.FromMegavoltamperes(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromMegavoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromMegavoltamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentPower.FromMicrovoltamperes(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromMicrovoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromMicrovoltamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentPower.FromMillivoltamperes(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromMillivoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromMillivoltamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricApparentPower.FromVoltamperes(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , INumber<T>
             => ElectricApparentPower.FromVoltamperes(double.CreateChecked(value));
 #else
-            => ElectricApparentPower.FromVoltamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricApparentPower.FromVoltamperes(value.ToDouble(null));
 #endif
 
     }

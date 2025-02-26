@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicFeetPerHour(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicFeetPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicFeetPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicFeetPerMinute(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicFeetPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicFeetPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicFeetPerSecond(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicMetersPerDay(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicMetersPerDay(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicMetersPerDay(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicMetersPerHour(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicMetersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicMetersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicMetersPerMinute(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicMetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicMetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardCubicMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardCubicMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , INumber<T>
             => StandardVolumeFlow.FromStandardLitersPerMinute(double.CreateChecked(value));
 #else
-            => StandardVolumeFlow.FromStandardLitersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => StandardVolumeFlow.FromStandardLitersPerMinute(value.ToDouble(null));
 #endif
 
     }

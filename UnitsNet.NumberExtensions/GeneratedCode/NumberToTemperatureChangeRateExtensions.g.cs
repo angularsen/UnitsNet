@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerHour(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesCelsiusPerHour(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesCelsiusPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesCelsiusPerMinute(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesCelsiusPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerHour(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesFahrenheitPerHour(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesFahrenheitPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerHour(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesKelvinPerHour(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesKelvinPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerMinute(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesKelvinPerMinute(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesKelvinPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerSecond(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromDegreesKelvinPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromDegreesKelvinPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , INumber<T>
             => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double.CreateChecked(value));
 #else
-            => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
 
     }

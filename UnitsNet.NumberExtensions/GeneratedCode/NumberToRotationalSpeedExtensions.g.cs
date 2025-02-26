@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromCentiradiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromCentiradiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromCentiradiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromDeciradiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromDeciradiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromDeciradiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromDegreesPerMinute(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromDegreesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromDegreesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromDegreesPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromDegreesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromDegreesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromMicrodegreesPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromMicrodegreesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromMicrodegreesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromMicroradiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromMicroradiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromMicroradiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromMillidegreesPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromMillidegreesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromMillidegreesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromMilliradiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromMilliradiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromMilliradiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromNanodegreesPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromNanodegreesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromNanodegreesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromNanoradiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromNanoradiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromNanoradiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromRadiansPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromRadiansPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromRadiansPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromRevolutionsPerMinute(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromRevolutionsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromRevolutionsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             , INumber<T>
             => RotationalSpeed.FromRevolutionsPerSecond(double.CreateChecked(value));
 #else
-            => RotationalSpeed.FromRevolutionsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => RotationalSpeed.FromRevolutionsPerSecond(value.ToDouble(null));
 #endif
 
     }

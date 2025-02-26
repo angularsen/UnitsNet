@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromBtuPerPound(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromBtuPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromBtuPerPound(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromCaloriesPerGram(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromCaloriesPerGram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromCaloriesPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromCaloriesPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerKilogram(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromGigawattDaysPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromGigawattDaysPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromGigawattDaysPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerShortTon(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromGigawattDaysPerShortTon(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromGigawattDaysPerShortTon(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromGigawattDaysPerShortTon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerTonne(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromGigawattDaysPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromGigawattDaysPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromGigawattDaysPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerKilogram(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromGigawattHoursPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromGigawattHoursPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromGigawattHoursPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerPound(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromGigawattHoursPerPound(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromGigawattHoursPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromGigawattHoursPerPound(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromJoulesPerKilogram(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromJoulesPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromJoulesPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromJoulesPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilocaloriesPerGram(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilocaloriesPerGram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilocaloriesPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilocaloriesPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilojoulesPerKilogram(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilojoulesPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilojoulesPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilojoulesPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerKilogram(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilowattDaysPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilowattDaysPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilowattDaysPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerShortTon(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilowattDaysPerShortTon(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilowattDaysPerShortTon(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilowattDaysPerShortTon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerTonne(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilowattDaysPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilowattDaysPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilowattDaysPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerKilogram(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilowattHoursPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilowattHoursPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilowattHoursPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerPound(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromKilowattHoursPerPound(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromKilowattHoursPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromKilowattHoursPerPound(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerKilogram(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegajoulesPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegajoulesPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegajoulesPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegaJoulesPerTonne(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegaJoulesPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegaJoulesPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegaJoulesPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegawattDaysPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegawattDaysPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegawattDaysPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerShortTon(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegawattDaysPerShortTon(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegawattDaysPerShortTon(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegawattDaysPerShortTon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerTonne(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegawattDaysPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegawattDaysPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegawattDaysPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerKilogram(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegawattHoursPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegawattHoursPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegawattHoursPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerPound(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromMegawattHoursPerPound(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromMegawattHoursPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromMegawattHoursPerPound(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerKilogram(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromTerawattDaysPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromTerawattDaysPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromTerawattDaysPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerShortTon(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromTerawattDaysPerShortTon(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromTerawattDaysPerShortTon(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromTerawattDaysPerShortTon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerTonne(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromTerawattDaysPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromTerawattDaysPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromTerawattDaysPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerKilogram(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromWattDaysPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromWattDaysPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromWattDaysPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerShortTon(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromWattDaysPerShortTon(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromWattDaysPerShortTon(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromWattDaysPerShortTon(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerTonne(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromWattDaysPerTonne(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromWattDaysPerTonne(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromWattDaysPerTonne(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerKilogram(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromWattHoursPerKilogram(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromWattHoursPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromWattHoursPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerPound(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , INumber<T>
             => SpecificEnergy.FromWattHoursPerPound(double.CreateChecked(value));
 #else
-            => SpecificEnergy.FromWattHoursPerPound(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificEnergy.FromWattHoursPerPound(value.ToDouble(null));
 #endif
 
     }

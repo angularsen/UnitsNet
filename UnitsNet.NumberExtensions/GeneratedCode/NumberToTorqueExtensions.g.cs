@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromGramForceCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromGramForceCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromGramForceCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromGramForceMeters(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromGramForceMeters(double.CreateChecked(value));
 #else
-            => Torque.FromGramForceMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromGramForceMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromGramForceMillimeters(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromGramForceMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromGramForceMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromGramForceMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilogramForceCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilogramForceCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilogramForceCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilogramForceMeters(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilogramForceMeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilogramForceMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilogramForceMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilogramForceMillimeters(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilogramForceMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilogramForceMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilogramForceMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilonewtonCentimeters(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilonewtonCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilonewtonCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilonewtonCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilonewtonMeters(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilonewtonMeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilonewtonMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilonewtonMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilonewtonMillimeters(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilonewtonMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromKilonewtonMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilonewtonMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilopoundForceFeet(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilopoundForceFeet(double.CreateChecked(value));
 #else
-            => Torque.FromKilopoundForceFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilopoundForceFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromKilopoundForceInches(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromKilopoundForceInches(double.CreateChecked(value));
 #else
-            => Torque.FromKilopoundForceInches(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromKilopoundForceInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromMeganewtonCentimeters(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromMeganewtonCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromMeganewtonCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromMeganewtonCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromMeganewtonMeters(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromMeganewtonMeters(double.CreateChecked(value));
 #else
-            => Torque.FromMeganewtonMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromMeganewtonMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromMeganewtonMillimeters(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromMeganewtonMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromMeganewtonMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromMeganewtonMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromMegapoundForceFeet(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromMegapoundForceFeet(double.CreateChecked(value));
 #else
-            => Torque.FromMegapoundForceFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromMegapoundForceFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromMegapoundForceInches(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromMegapoundForceInches(double.CreateChecked(value));
 #else
-            => Torque.FromMegapoundForceInches(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromMegapoundForceInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromNewtonCentimeters(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromNewtonCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromNewtonCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromNewtonCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromNewtonMeters(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromNewtonMeters(double.CreateChecked(value));
 #else
-            => Torque.FromNewtonMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromNewtonMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromNewtonMillimeters(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromNewtonMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromNewtonMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromNewtonMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromPoundalFeet(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromPoundalFeet(double.CreateChecked(value));
 #else
-            => Torque.FromPoundalFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromPoundalFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromPoundForceFeet(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromPoundForceFeet(double.CreateChecked(value));
 #else
-            => Torque.FromPoundForceFeet(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromPoundForceFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromPoundForceInches(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromPoundForceInches(double.CreateChecked(value));
 #else
-            => Torque.FromPoundForceInches(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromPoundForceInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromTonneForceCentimeters(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromTonneForceCentimeters(double.CreateChecked(value));
 #else
-            => Torque.FromTonneForceCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromTonneForceCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromTonneForceMeters(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromTonneForceMeters(double.CreateChecked(value));
 #else
-            => Torque.FromTonneForceMeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromTonneForceMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Torque.FromTonneForceMillimeters(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , INumber<T>
             => Torque.FromTonneForceMillimeters(double.CreateChecked(value));
 #else
-            => Torque.FromTonneForceMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => Torque.FromTonneForceMillimeters(value.ToDouble(null));
 #endif
 
     }

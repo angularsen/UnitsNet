@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromCentigrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromFemtograys(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGigagrays(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromGigagrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGrays(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromGrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromGrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromGrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilograys(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromKilograys(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromKilograys(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromKilograys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilorads(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromKilorads(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromKilorads(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromKilorads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegagrays(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromMegagrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegarads(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromMegarads(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromMegarads(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMegarads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMicrograys(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromMicrograys(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMilligrays(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromMilligrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromMillirads(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromMillirads(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMillirads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromNanograys(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromNanograys(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromNanograys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPetagrays(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromPetagrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPicograys(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromPicograys(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromPicograys(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromPicograys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromRads(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromRads(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromRads(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromRads(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromTeragrays(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , INumber<T>
             => AbsorbedDoseOfIonizingRadiation.FromTeragrays(double.CreateChecked(value));
 #else
-            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(Convert.ToDouble(value));
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(value.ToDouble(null));
 #endif
 
     }

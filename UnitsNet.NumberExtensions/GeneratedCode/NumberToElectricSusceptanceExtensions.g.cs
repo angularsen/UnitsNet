@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromGigamhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromGigamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromGigamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromGigasiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromGigasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromGigasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromKilomhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromKilomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromKilomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromKilosiemens(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromKilosiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromKilosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromKilosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMegamhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMegamhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMegamhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMegasiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMegasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMegasiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMhos(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMicromhos(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMicromhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMicromhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMicromhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMicrosiemens(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMicrosiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMicrosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMicrosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMillimhos(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMillimhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMillimhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMillimhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromMillisiemens(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromMillisiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromMillisiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromMillisiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromNanomhos(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromNanomhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromNanomhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromNanomhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromNanosiemens(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromNanosiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromNanosiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromNanosiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromSiemens(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromSiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromSiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromSiemens(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromTeramhos(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromTeramhos(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromTeramhos(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
             => ElectricSusceptance.FromTerasiemens(double.CreateChecked(value));
 #else
-            => ElectricSusceptance.FromTerasiemens(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricSusceptance.FromTerasiemens(value.ToDouble(null));
 #endif
 
     }

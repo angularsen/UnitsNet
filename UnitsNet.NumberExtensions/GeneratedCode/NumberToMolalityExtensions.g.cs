@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
             , INumber<T>
             => Molality.FromMillimolesPerKilogram(double.CreateChecked(value));
 #else
-            => Molality.FromMillimolesPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => Molality.FromMillimolesPerKilogram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
             , INumber<T>
             => Molality.FromMolesPerGram(double.CreateChecked(value));
 #else
-            => Molality.FromMolesPerGram(Convert.ToDouble(value));
+            , IConvertible
+            => Molality.FromMolesPerGram(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
             , INumber<T>
             => Molality.FromMolesPerKilogram(double.CreateChecked(value));
 #else
-            => Molality.FromMolesPerKilogram(Convert.ToDouble(value));
+            , IConvertible
+            => Molality.FromMolesPerKilogram(value.ToDouble(null));
 #endif
 
     }

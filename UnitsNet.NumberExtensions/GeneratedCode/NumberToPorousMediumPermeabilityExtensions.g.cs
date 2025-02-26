@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , INumber<T>
             => PorousMediumPermeability.FromDarcys(double.CreateChecked(value));
 #else
-            => PorousMediumPermeability.FromDarcys(Convert.ToDouble(value));
+            , IConvertible
+            => PorousMediumPermeability.FromDarcys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , INumber<T>
             => PorousMediumPermeability.FromMicrodarcys(double.CreateChecked(value));
 #else
-            => PorousMediumPermeability.FromMicrodarcys(Convert.ToDouble(value));
+            , IConvertible
+            => PorousMediumPermeability.FromMicrodarcys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , INumber<T>
             => PorousMediumPermeability.FromMillidarcys(double.CreateChecked(value));
 #else
-            => PorousMediumPermeability.FromMillidarcys(Convert.ToDouble(value));
+            , IConvertible
+            => PorousMediumPermeability.FromMillidarcys(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , INumber<T>
             => PorousMediumPermeability.FromSquareCentimeters(double.CreateChecked(value));
 #else
-            => PorousMediumPermeability.FromSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => PorousMediumPermeability.FromSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , INumber<T>
             => PorousMediumPermeability.FromSquareMeters(double.CreateChecked(value));
 #else
-            => PorousMediumPermeability.FromSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => PorousMediumPermeability.FromSquareMeters(value.ToDouble(null));
 #endif
 
     }

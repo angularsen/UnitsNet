@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromArcminutes(double.CreateChecked(value));
 #else
-            => Angle.FromArcminutes(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromArcminutes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromArcseconds(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromArcseconds(double.CreateChecked(value));
 #else
-            => Angle.FromArcseconds(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromArcseconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromCentiradians(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromCentiradians(double.CreateChecked(value));
 #else
-            => Angle.FromCentiradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromCentiradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromDeciradians(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromDeciradians(double.CreateChecked(value));
 #else
-            => Angle.FromDeciradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromDeciradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromDegrees(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromDegrees(double.CreateChecked(value));
 #else
-            => Angle.FromDegrees(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromDegrees(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromGradians(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromGradians(double.CreateChecked(value));
 #else
-            => Angle.FromGradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromGradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromMicrodegrees(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromMicrodegrees(double.CreateChecked(value));
 #else
-            => Angle.FromMicrodegrees(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromMicrodegrees(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromMicroradians(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromMicroradians(double.CreateChecked(value));
 #else
-            => Angle.FromMicroradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromMicroradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromMillidegrees(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromMillidegrees(double.CreateChecked(value));
 #else
-            => Angle.FromMillidegrees(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromMillidegrees(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromMilliradians(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromMilliradians(double.CreateChecked(value));
 #else
-            => Angle.FromMilliradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromMilliradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromNanodegrees(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromNanodegrees(double.CreateChecked(value));
 #else
-            => Angle.FromNanodegrees(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromNanodegrees(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromNanoradians(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromNanoradians(double.CreateChecked(value));
 #else
-            => Angle.FromNanoradians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromNanoradians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromNatoMils(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromNatoMils(double.CreateChecked(value));
 #else
-            => Angle.FromNatoMils(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromNatoMils(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromRadians(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromRadians(double.CreateChecked(value));
 #else
-            => Angle.FromRadians(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromRadians(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Angle.FromRevolutions(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , INumber<T>
             => Angle.FromRevolutions(double.CreateChecked(value));
 #else
-            => Angle.FromRevolutions(Convert.ToDouble(value));
+            , IConvertible
+            => Angle.FromRevolutions(value.ToDouble(null));
 #endif
 
     }

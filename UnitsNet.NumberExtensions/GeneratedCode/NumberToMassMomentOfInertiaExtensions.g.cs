@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromGramSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromGramSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromGramSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromGramSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromGramSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromGramSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromGramSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromGramSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromGramSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromGramSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromGramSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromGramSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilogramSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilogramSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilogramSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilogramSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilogramSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilogramSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilogramSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilogramSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilogramSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilogramSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilogramSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilogramSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilotonneSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilotonneSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilotonneSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilotonneSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilotonneSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilotonneSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilotonneSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilotonneSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilotonneSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMillimeters(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromKilotonneSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromKilotonneSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromKilotonneSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMegatonneSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMegatonneSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMegatonneSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMegatonneSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMegatonneSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMegatonneSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMegatonneSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMegatonneSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMegatonneSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMillimeters(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMegatonneSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMegatonneSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMegatonneSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMilligramSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMilligramSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMilligramSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMilligramSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMilligramSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMilligramSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMilligramSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMilligramSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMilligramSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromMilligramSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromMilligramSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromMilligramSquareMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromPoundSquareFeet(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromPoundSquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromPoundSquareFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromPoundSquareInches(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromPoundSquareInches(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromPoundSquareInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromSlugSquareFeet(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromSlugSquareFeet(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromSlugSquareFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromSlugSquareInches(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromSlugSquareInches(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromSlugSquareInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromTonneSquareCentimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromTonneSquareCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromTonneSquareCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromTonneSquareDecimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromTonneSquareDecimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromTonneSquareDecimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromTonneSquareMeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromTonneSquareMeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromTonneSquareMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMillimeters(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , INumber<T>
             => MassMomentOfInertia.FromTonneSquareMillimeters(double.CreateChecked(value));
 #else
-            => MassMomentOfInertia.FromTonneSquareMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => MassMomentOfInertia.FromTonneSquareMillimeters(value.ToDouble(null));
 #endif
 
     }

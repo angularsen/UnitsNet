@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromCentimetersPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromCentimetersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromCentimetersPerMinute(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromCentimetersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromCentimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromCentimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromCentimetersPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromCentimetersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromCentimetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromDecimetersPerMinute(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromDecimetersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromDecimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromDecimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromDecimetersPerSecond(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromDecimetersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromDecimetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromDecimetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromFeetPerHour(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromFeetPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromFeetPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromFeetPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromFeetPerMinute(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromFeetPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromFeetPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromFeetPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromFeetPerSecond(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromFeetPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromInchesPerHour(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromInchesPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromInchesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromInchesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromInchesPerMinute(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromInchesPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromInchesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromInchesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromInchesPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromInchesPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromInchesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromInchesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerHour(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromKilometersPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromKilometersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromKilometersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerMinute(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromKilometersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromKilometersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromKilometersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromKilometersPerSecond(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromKilometersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromKilometersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromKilometersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromKnots(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromKnots(double.CreateChecked(value));
 #else
-            => Speed.FromKnots(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromKnots(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMach(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMach(double.CreateChecked(value));
 #else
-            => Speed.FromMach(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMach(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMetersPerHour(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMetersPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromMetersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMetersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMetersPerMinute(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMetersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromMetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMetersPerSecond(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMetersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMicrometersPerMinute(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMicrometersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromMicrometersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMicrometersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMicrometersPerSecond(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMicrometersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromMicrometersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMicrometersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMilesPerHour(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMilesPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromMilesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMilesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMillimetersPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMillimetersPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerMinute(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMillimetersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromMillimetersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMillimetersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromMillimetersPerSecond(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromMillimetersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromMillimetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromNanometersPerMinute(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromNanometersPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromNanometersPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromNanometersPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromNanometersPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromNanometersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromNanometersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromUsSurveyFeetPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromUsSurveyFeetPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromUsSurveyFeetPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromUsSurveyFeetPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromUsSurveyFeetPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromUsSurveyFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromYardsPerHour(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromYardsPerHour(double.CreateChecked(value));
 #else
-            => Speed.FromYardsPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromYardsPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromYardsPerMinute(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromYardsPerMinute(double.CreateChecked(value));
 #else
-            => Speed.FromYardsPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromYardsPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Speed.FromYardsPerSecond(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
             , INumber<T>
             => Speed.FromYardsPerSecond(double.CreateChecked(value));
 #else
-            => Speed.FromYardsPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Speed.FromYardsPerSecond(value.ToDouble(null));
 #endif
 
     }

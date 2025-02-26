@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseCentimeters(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseCentimeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseCentimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseFeet(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseFeet(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseInches(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseInches(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseInches(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseInches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseMeters(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseMeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseMicroinches(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseMicroinches(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseMicroinches(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMils(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseMils(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseMils(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseMils(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseMiles(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseMiles(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseMiles(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseMillimeters(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseMillimeters(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseMillimeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseUsSurveyFeet(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseUsSurveyFeet(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseUsSurveyFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseYards(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , INumber<T>
             => ReciprocalLength.FromInverseYards(double.CreateChecked(value));
 #else
-            => ReciprocalLength.FromInverseYards(Convert.ToDouble(value));
+            , IConvertible
+            => ReciprocalLength.FromInverseYards(value.ToDouble(null));
 #endif
 
     }

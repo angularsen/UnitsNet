@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromGigawattsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromGigawattsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromGigawattsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerFoot(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromGigawattsPerFoot(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromGigawattsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromGigawattsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerInch(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromGigawattsPerInch(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromGigawattsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromGigawattsPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromGigawattsPerMeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromGigawattsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromGigawattsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMillimeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromGigawattsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromGigawattsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromGigawattsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerCentimeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromKilowattsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromKilowattsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromKilowattsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerFoot(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromKilowattsPerFoot(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromKilowattsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromKilowattsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerInch(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromKilowattsPerInch(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromKilowattsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromKilowattsPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromKilowattsPerMeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromKilowattsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromKilowattsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMillimeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromKilowattsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromKilowattsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromKilowattsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerCentimeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMegawattsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMegawattsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMegawattsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerFoot(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMegawattsPerFoot(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMegawattsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMegawattsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerInch(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMegawattsPerInch(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMegawattsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMegawattsPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMeter(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMegawattsPerMeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMegawattsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMegawattsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMillimeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMegawattsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMegawattsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMegawattsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerCentimeter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMilliwattsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMilliwattsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMilliwattsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerFoot(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMilliwattsPerFoot(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMilliwattsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMilliwattsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerInch(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMilliwattsPerInch(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMilliwattsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMilliwattsPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMeter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMilliwattsPerMeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMilliwattsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMilliwattsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMillimeter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromMilliwattsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromMilliwattsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromMilliwattsPerMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromWattsPerCentimeter(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromWattsPerCentimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromWattsPerCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromWattsPerCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromWattsPerFoot(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromWattsPerFoot(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromWattsPerFoot(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromWattsPerFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromWattsPerInch(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromWattsPerInch(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromWattsPerInch(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromWattsPerInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMeter(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromWattsPerMeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromWattsPerMeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromWattsPerMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMillimeter(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
             , INumber<T>
             => LinearPowerDensity.FromWattsPerMillimeter(double.CreateChecked(value));
 #else
-            => LinearPowerDensity.FromWattsPerMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => LinearPowerDensity.FromWattsPerMillimeter(value.ToDouble(null));
 #endif
 
     }

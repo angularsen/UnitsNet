@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromCentigrams(double.CreateChecked(value));
 #else
-            => Mass.FromCentigrams(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromCentigrams(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromDecagrams(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromDecagrams(double.CreateChecked(value));
 #else
-            => Mass.FromDecagrams(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromDecagrams(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromDecigrams(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromDecigrams(double.CreateChecked(value));
 #else
-            => Mass.FromDecigrams(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromDecigrams(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromEarthMasses(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromEarthMasses(double.CreateChecked(value));
 #else
-            => Mass.FromEarthMasses(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromEarthMasses(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromFemtograms(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromFemtograms(double.CreateChecked(value));
 #else
-            => Mass.FromFemtograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromFemtograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromGrains(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromGrains(double.CreateChecked(value));
 #else
-            => Mass.FromGrains(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromGrains(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromGrams(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromGrams(double.CreateChecked(value));
 #else
-            => Mass.FromGrams(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromGrams(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromHectograms(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromHectograms(double.CreateChecked(value));
 #else
-            => Mass.FromHectograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromHectograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromKilograms(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromKilograms(double.CreateChecked(value));
 #else
-            => Mass.FromKilograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromKilograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromKilopounds(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromKilopounds(double.CreateChecked(value));
 #else
-            => Mass.FromKilopounds(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromKilopounds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromKilotonnes(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromKilotonnes(double.CreateChecked(value));
 #else
-            => Mass.FromKilotonnes(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromKilotonnes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromLongHundredweight(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromLongHundredweight(double.CreateChecked(value));
 #else
-            => Mass.FromLongHundredweight(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromLongHundredweight(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromLongTons(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromLongTons(double.CreateChecked(value));
 #else
-            => Mass.FromLongTons(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromLongTons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromMegapounds(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromMegapounds(double.CreateChecked(value));
 #else
-            => Mass.FromMegapounds(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromMegapounds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromMegatonnes(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromMegatonnes(double.CreateChecked(value));
 #else
-            => Mass.FromMegatonnes(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromMegatonnes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromMicrograms(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromMicrograms(double.CreateChecked(value));
 #else
-            => Mass.FromMicrograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromMicrograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromMilligrams(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromMilligrams(double.CreateChecked(value));
 #else
-            => Mass.FromMilligrams(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromMilligrams(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromNanograms(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromNanograms(double.CreateChecked(value));
 #else
-            => Mass.FromNanograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromNanograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromOunces(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromOunces(double.CreateChecked(value));
 #else
-            => Mass.FromOunces(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromOunces(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromPicograms(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromPicograms(double.CreateChecked(value));
 #else
-            => Mass.FromPicograms(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromPicograms(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromPounds(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromPounds(double.CreateChecked(value));
 #else
-            => Mass.FromPounds(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromPounds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromShortHundredweight(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromShortHundredweight(double.CreateChecked(value));
 #else
-            => Mass.FromShortHundredweight(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromShortHundredweight(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromShortTons(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromShortTons(double.CreateChecked(value));
 #else
-            => Mass.FromShortTons(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromShortTons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromSlugs(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromSlugs(double.CreateChecked(value));
 #else
-            => Mass.FromSlugs(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromSlugs(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromSolarMasses(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromSolarMasses(double.CreateChecked(value));
 #else
-            => Mass.FromSolarMasses(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromSolarMasses(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromStone(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromStone(double.CreateChecked(value));
 #else
-            => Mass.FromStone(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromStone(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromTonnes(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
             => Mass.FromTonnes(double.CreateChecked(value));
 #else
-            => Mass.FromTonnes(Convert.ToDouble(value));
+            , IConvertible
+            => Mass.FromTonnes(value.ToDouble(null));
 #endif
 
     }

@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromBtusPerSquareFoot(double.CreateChecked(value));
 #else
-            => Irradiation.FromBtusPerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromBtusPerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromJoulesPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromJoulesPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromJoulesPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromJoulesPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromJoulesPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromJoulesPerSquareMillimeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromJoulesPerSquareMillimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromKilobtusPerSquareFoot(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromKilobtusPerSquareFoot(double.CreateChecked(value));
 #else
-            => Irradiation.FromKilobtusPerSquareFoot(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromKilobtusPerSquareFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromKilojoulesPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromKilojoulesPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromKilowattHoursPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromKilowattHoursPerSquareMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromMillijoulesPerSquareCentimeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromMillijoulesPerSquareCentimeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
             => Irradiation.FromWattHoursPerSquareMeter(double.CreateChecked(value));
 #else
-            => Irradiation.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
+            , IConvertible
+            => Irradiation.FromWattHoursPerSquareMeter(value.ToDouble(null));
 #endif
 
     }

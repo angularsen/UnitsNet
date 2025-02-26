@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDecawattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDecawattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDecawattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDecawattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDecawattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDecawattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDecawattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDecawattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDecawattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDecawattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDecawattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDecawattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDeciwattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDeciwattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDeciwattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDeciwattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDeciwattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDeciwattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDeciwattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDeciwattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDeciwattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromDeciwattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromDeciwattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromDeciwattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromGigawattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromGigawattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromGigawattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromGigawattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromGigawattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromGigawattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromGigawattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromGigawattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromGigawattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromGigawattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromGigawattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromGigawattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromKilowattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromKilowattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromKilowattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(double)" />
@@ -169,7 +182,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromKilowattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromKilowattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromKilowattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(double)" />
@@ -179,7 +193,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromKilowattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromKilowattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromKilowattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(double)" />
@@ -189,7 +204,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromKilowattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromKilowattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromKilowattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(double)" />
@@ -199,7 +215,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMegawattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMegawattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMegawattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(double)" />
@@ -209,7 +226,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMegawattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMegawattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMegawattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(double)" />
@@ -219,7 +237,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMegawattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMegawattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMegawattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(double)" />
@@ -229,7 +248,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMegawattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMegawattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMegawattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(double)" />
@@ -239,7 +259,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMicrowattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMicrowattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMicrowattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(double)" />
@@ -249,7 +270,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMicrowattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMicrowattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMicrowattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(double)" />
@@ -259,7 +281,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMicrowattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMicrowattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMicrowattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(double)" />
@@ -269,7 +292,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMicrowattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMicrowattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMicrowattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(double)" />
@@ -279,7 +303,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMilliwattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMilliwattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMilliwattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(double)" />
@@ -289,7 +314,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMilliwattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMilliwattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMilliwattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(double)" />
@@ -299,7 +325,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMilliwattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMilliwattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMilliwattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(double)" />
@@ -309,7 +336,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromMilliwattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromMilliwattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromMilliwattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(double)" />
@@ -319,7 +347,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromNanowattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromNanowattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromNanowattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(double)" />
@@ -329,7 +358,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromNanowattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromNanowattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromNanowattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(double)" />
@@ -339,7 +369,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromNanowattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromNanowattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromNanowattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(double)" />
@@ -349,7 +380,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromNanowattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromNanowattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromNanowattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(double)" />
@@ -359,7 +391,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromPicowattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromPicowattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromPicowattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(double)" />
@@ -369,7 +402,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromPicowattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromPicowattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromPicowattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(double)" />
@@ -379,7 +413,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromPicowattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromPicowattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromPicowattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(double)" />
@@ -389,7 +424,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromPicowattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromPicowattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromPicowattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(double)" />
@@ -399,7 +435,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromTerawattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromTerawattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromTerawattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(double)" />
@@ -409,7 +446,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromTerawattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromTerawattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromTerawattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(double)" />
@@ -419,7 +457,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromTerawattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromTerawattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromTerawattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(double)" />
@@ -429,7 +468,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromTerawattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromTerawattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromTerawattsPerLiter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(double)" />
@@ -439,7 +479,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromWattsPerCubicFoot(double.CreateChecked(value));
 #else
-            => PowerDensity.FromWattsPerCubicFoot(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromWattsPerCubicFoot(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(double)" />
@@ -449,7 +490,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromWattsPerCubicInch(double.CreateChecked(value));
 #else
-            => PowerDensity.FromWattsPerCubicInch(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromWattsPerCubicInch(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(double)" />
@@ -459,7 +501,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromWattsPerCubicMeter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromWattsPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromWattsPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(double)" />
@@ -469,7 +512,8 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , INumber<T>
             => PowerDensity.FromWattsPerLiter(double.CreateChecked(value));
 #else
-            => PowerDensity.FromWattsPerLiter(Convert.ToDouble(value));
+            , IConvertible
+            => PowerDensity.FromWattsPerLiter(value.ToDouble(null));
 #endif
 
     }

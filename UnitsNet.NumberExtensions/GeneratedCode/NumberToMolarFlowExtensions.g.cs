@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromKilomolesPerHour(double.CreateChecked(value));
 #else
-            => MolarFlow.FromKilomolesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromKilomolesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerMinute(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromKilomolesPerMinute(double.CreateChecked(value));
 #else
-            => MolarFlow.FromKilomolesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromKilomolesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromKilomolesPerSecond(double.CreateChecked(value));
 #else
-            => MolarFlow.FromKilomolesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromKilomolesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerHour(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromMolesPerHour(double.CreateChecked(value));
 #else
-            => MolarFlow.FromMolesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromMolesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromMolesPerMinute(double.CreateChecked(value));
 #else
-            => MolarFlow.FromMolesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromMolesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromMolesPerSecond(double.CreateChecked(value));
 #else
-            => MolarFlow.FromMolesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromMolesPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromPoundMolesPerHour(double.CreateChecked(value));
 #else
-            => MolarFlow.FromPoundMolesPerHour(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromPoundMolesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromPoundMolesPerMinute(double.CreateChecked(value));
 #else
-            => MolarFlow.FromPoundMolesPerMinute(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromPoundMolesPerMinute(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
             , INumber<T>
             => MolarFlow.FromPoundMolesPerSecond(double.CreateChecked(value));
 #else
-            => MolarFlow.FromPoundMolesPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => MolarFlow.FromPoundMolesPerSecond(value.ToDouble(null));
 #endif
 
     }

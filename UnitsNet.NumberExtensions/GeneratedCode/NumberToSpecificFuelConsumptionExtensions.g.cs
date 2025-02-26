@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             , INumber<T>
             => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double.CreateChecked(value));
 #else
-            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             , INumber<T>
             => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double.CreateChecked(value));
 #else
-            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             , INumber<T>
             => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double.CreateChecked(value));
 #else
-            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             , INumber<T>
             => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.CreateChecked(value));
 #else
-            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(Convert.ToDouble(value));
+            , IConvertible
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToDouble(null));
 #endif
 
     }

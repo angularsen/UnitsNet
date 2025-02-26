@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromCentinewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromCentinewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromCentinewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromDecanewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromDecanewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromDecanewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromDecinewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromDecinewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromDecinewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromKilogramMetersPerSecond(double.CreateChecked(value));
 #else
-            => Impulse.FromKilogramMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromKilogramMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromKilonewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromKilonewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromKilonewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromMeganewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromMeganewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromMeganewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromMicronewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromMicronewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromMicronewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromMillinewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromMillinewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromMillinewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromNanonewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromNanonewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromNanonewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromNewtonSeconds(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromNewtonSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromNewtonSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromNewtonSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromPoundFeetPerSecond(double.CreateChecked(value));
 #else
-            => Impulse.FromPoundFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromPoundFeetPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromPoundForceSeconds(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromPoundForceSeconds(double.CreateChecked(value));
 #else
-            => Impulse.FromPoundForceSeconds(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromPoundForceSeconds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(double)" />
@@ -159,7 +171,8 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , INumber<T>
             => Impulse.FromSlugFeetPerSecond(double.CreateChecked(value));
 #else
-            => Impulse.FromSlugFeetPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => Impulse.FromSlugFeetPerSecond(value.ToDouble(null));
 #endif
 
     }

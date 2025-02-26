@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromAmperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromAmperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromAmperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromCentiamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromCentiamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromFemtoamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromFemtoamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromFemtoamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromKiloamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromKiloamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromMegaamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromMegaamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromMegaamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromMicroamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromMicroamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromMicroamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromMilliamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromMilliamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromMilliamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromNanoamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromNanoamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromNanoamperes(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , INumber<T>
             => ElectricCurrent.FromPicoamperes(double.CreateChecked(value));
 #else
-            => ElectricCurrent.FromPicoamperes(Convert.ToDouble(value));
+            , IConvertible
+            => ElectricCurrent.FromPicoamperes(value.ToDouble(null));
 #endif
 
     }

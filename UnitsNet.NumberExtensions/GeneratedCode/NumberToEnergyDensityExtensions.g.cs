@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromGigajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromGigajoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromGigajoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromGigawattHoursPerCubicMeter(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromGigawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromGigawattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromGigawattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromJoulesPerCubicMeter(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromJoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromJoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromJoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromKilojoulesPerCubicMeter(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromKilojoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromKilojoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromKilojoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromKilowattHoursPerCubicMeter(double)" />
@@ -79,7 +83,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromKilowattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromKilowattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromKilowattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromMegajoulesPerCubicMeter(double)" />
@@ -89,7 +94,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromMegajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromMegajoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromMegajoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromMegawattHoursPerCubicMeter(double)" />
@@ -99,7 +105,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromMegawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromMegawattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromMegawattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromPetajoulesPerCubicMeter(double)" />
@@ -109,7 +116,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromPetajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromPetajoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromPetajoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromPetawattHoursPerCubicMeter(double)" />
@@ -119,7 +127,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromPetawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromPetawattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromPetawattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromTerajoulesPerCubicMeter(double)" />
@@ -129,7 +138,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromTerajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromTerajoulesPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromTerajoulesPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromTerawattHoursPerCubicMeter(double)" />
@@ -139,7 +149,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromTerawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromTerawattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromTerawattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="EnergyDensity.FromWattHoursPerCubicMeter(double)" />
@@ -149,7 +160,8 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , INumber<T>
             => EnergyDensity.FromWattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-            => EnergyDensity.FromWattHoursPerCubicMeter(Convert.ToDouble(value));
+            , IConvertible
+            => EnergyDensity.FromWattHoursPerCubicMeter(value.ToDouble(null));
 #endif
 
     }

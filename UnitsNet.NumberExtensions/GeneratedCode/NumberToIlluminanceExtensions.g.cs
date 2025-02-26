@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , INumber<T>
             => Illuminance.FromKilolux(double.CreateChecked(value));
 #else
-            => Illuminance.FromKilolux(Convert.ToDouble(value));
+            , IConvertible
+            => Illuminance.FromKilolux(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Illuminance.FromLux(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , INumber<T>
             => Illuminance.FromLux(double.CreateChecked(value));
 #else
-            => Illuminance.FromLux(Convert.ToDouble(value));
+            , IConvertible
+            => Illuminance.FromLux(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , INumber<T>
             => Illuminance.FromMegalux(double.CreateChecked(value));
 #else
-            => Illuminance.FromMegalux(Convert.ToDouble(value));
+            , IConvertible
+            => Illuminance.FromMegalux(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
@@ -69,7 +72,8 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , INumber<T>
             => Illuminance.FromMillilux(double.CreateChecked(value));
 #else
-            => Illuminance.FromMillilux(Convert.ToDouble(value));
+            , IConvertible
+            => Illuminance.FromMillilux(value.ToDouble(null));
 #endif
 
     }

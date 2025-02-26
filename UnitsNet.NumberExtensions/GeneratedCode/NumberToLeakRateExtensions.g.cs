@@ -39,7 +39,8 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
             , INumber<T>
             => LeakRate.FromMillibarLitersPerSecond(double.CreateChecked(value));
 #else
-            => LeakRate.FromMillibarLitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => LeakRate.FromMillibarLitersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
@@ -49,7 +50,8 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
             , INumber<T>
             => LeakRate.FromPascalCubicMetersPerSecond(double.CreateChecked(value));
 #else
-            => LeakRate.FromPascalCubicMetersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => LeakRate.FromPascalCubicMetersPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
@@ -59,7 +61,8 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
             , INumber<T>
             => LeakRate.FromTorrLitersPerSecond(double.CreateChecked(value));
 #else
-            => LeakRate.FromTorrLitersPerSecond(Convert.ToDouble(value));
+            , IConvertible
+            => LeakRate.FromTorrLitersPerSecond(value.ToDouble(null));
 #endif
 
     }
