@@ -51,7 +51,8 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
             , INumber<T>
             => {_quantityName}.From{unit.PluralName}(double.CreateChecked(value));
 #else
-            => {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
+            , IConvertible
+            => {_quantityName}.From{unit.PluralName}(value.ToDouble(null));
 #endif
 ");
             }
