@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Magnetization.FromAmperesPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Magnetization.FromAmperesPerMeter(value.ToDouble(null));
 #endif
-            => Magnetization.FromAmperesPerMeter(Convert.ToDouble(value));
 
     }
 }

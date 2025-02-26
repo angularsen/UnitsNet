@@ -37,208 +37,286 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromBits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromBits(value.ToDouble(null));
 #endif
-            => Information.FromBits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromBytes(double)" />
         public static Information Bytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromBytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromBytes(value.ToDouble(null));
 #endif
-            => Information.FromBytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabits(double)" />
         public static Information Exabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromExabits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExabits(value.ToDouble(null));
 #endif
-            => Information.FromExabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabytes(double)" />
         public static Information Exabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromExabytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExabytes(value.ToDouble(null));
 #endif
-            => Information.FromExabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibits(double)" />
         public static Information Exbibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromExbibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExbibits(value.ToDouble(null));
 #endif
-            => Information.FromExbibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibytes(double)" />
         public static Information Exbibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromExbibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExbibytes(value.ToDouble(null));
 #endif
-            => Information.FromExbibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibits(double)" />
         public static Information Gibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromGibibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGibibits(value.ToDouble(null));
 #endif
-            => Information.FromGibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibytes(double)" />
         public static Information Gibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromGibibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGibibytes(value.ToDouble(null));
 #endif
-            => Information.FromGibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabits(double)" />
         public static Information Gigabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromGigabits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGigabits(value.ToDouble(null));
 #endif
-            => Information.FromGigabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabytes(double)" />
         public static Information Gigabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromGigabytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGigabytes(value.ToDouble(null));
 #endif
-            => Information.FromGigabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibits(double)" />
         public static Information Kibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromKibibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKibibits(value.ToDouble(null));
 #endif
-            => Information.FromKibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibytes(double)" />
         public static Information Kibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromKibibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKibibytes(value.ToDouble(null));
 #endif
-            => Information.FromKibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobits(double)" />
         public static Information Kilobits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromKilobits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKilobits(value.ToDouble(null));
 #endif
-            => Information.FromKilobits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobytes(double)" />
         public static Information Kilobytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromKilobytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKilobytes(value.ToDouble(null));
 #endif
-            => Information.FromKilobytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibits(double)" />
         public static Information Mebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromMebibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMebibits(value.ToDouble(null));
 #endif
-            => Information.FromMebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibytes(double)" />
         public static Information Mebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromMebibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMebibytes(value.ToDouble(null));
 #endif
-            => Information.FromMebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabits(double)" />
         public static Information Megabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromMegabits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMegabits(value.ToDouble(null));
 #endif
-            => Information.FromMegabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabytes(double)" />
         public static Information Megabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromMegabytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMegabytes(value.ToDouble(null));
 #endif
-            => Information.FromMegabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibits(double)" />
         public static Information Pebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromPebibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPebibits(value.ToDouble(null));
 #endif
-            => Information.FromPebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibytes(double)" />
         public static Information Pebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromPebibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPebibytes(value.ToDouble(null));
 #endif
-            => Information.FromPebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabits(double)" />
         public static Information Petabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromPetabits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPetabits(value.ToDouble(null));
 #endif
-            => Information.FromPetabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabytes(double)" />
         public static Information Petabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromPetabytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPetabytes(value.ToDouble(null));
 #endif
-            => Information.FromPetabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibits(double)" />
         public static Information Tebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromTebibits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTebibits(value.ToDouble(null));
 #endif
-            => Information.FromTebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibytes(double)" />
         public static Information Tebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromTebibytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTebibytes(value.ToDouble(null));
 #endif
-            => Information.FromTebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabits(double)" />
         public static Information Terabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromTerabits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTerabits(value.ToDouble(null));
 #endif
-            => Information.FromTerabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabytes(double)" />
         public static Information Terabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Information.FromTerabytes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTerabytes(value.ToDouble(null));
 #endif
-            => Information.FromTerabytes(Convert.ToDouble(value));
 
     }
 }

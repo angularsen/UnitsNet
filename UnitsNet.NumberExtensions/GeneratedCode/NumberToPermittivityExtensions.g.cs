@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Permittivity.FromFaradsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Permittivity.FromFaradsPerMeter(value.ToDouble(null));
 #endif
-            => Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
 
     }
 }

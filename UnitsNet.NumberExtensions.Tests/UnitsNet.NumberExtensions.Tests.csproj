@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net48;net8.0</TargetFrameworks>
     <RootNamespace>UnitsNet.NumberExtensions.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>

@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Turbidity.FromNTU(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Turbidity.FromNTU(value.ToDouble(null));
 #endif
-            => Turbidity.FromNTU(Convert.ToDouble(value));
 
     }
 }

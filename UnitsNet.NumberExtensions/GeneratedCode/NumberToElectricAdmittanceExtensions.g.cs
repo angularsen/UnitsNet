@@ -39,8 +39,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromGigamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromGigamhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromGigamhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromGigasiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -48,8 +51,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromGigasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromGigasiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromGigasiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -57,8 +63,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromKilomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromKilomhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromKilomhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromKilosiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -66,8 +75,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromKilosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromKilosiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromKilosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMegamhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -75,8 +87,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMegamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMegamhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMegamhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMegasiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -84,8 +99,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMegasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMegasiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMegasiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -93,8 +111,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -102,8 +123,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMicromhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMicromhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMicromhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -111,8 +135,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMicrosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMicrosiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -120,8 +147,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMillimhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMillimhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMillimhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -129,8 +159,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromMillisiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromMillisiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -138,8 +171,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromNanomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromNanomhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromNanomhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -147,8 +183,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromNanosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromNanosiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -156,8 +195,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromSiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromSiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromTeramhos(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -165,8 +207,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromTeramhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromTeramhos(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromTeramhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromTerasiemens(double)" />
         [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
@@ -174,8 +219,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricAdmittance.FromTerasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricAdmittance.FromTerasiemens(value.ToDouble(null));
 #endif
-            => ElectricAdmittance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

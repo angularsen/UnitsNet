@@ -37,32 +37,44 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesCelsiusPerKilometer(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(double)" />
         public static TemperatureGradient DegreesCelsiusPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesCelsiusPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(double)" />
         public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(double)" />
         public static TemperatureGradient KelvinsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromKelvinsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromKelvinsPerMeter(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
 
     }
 }

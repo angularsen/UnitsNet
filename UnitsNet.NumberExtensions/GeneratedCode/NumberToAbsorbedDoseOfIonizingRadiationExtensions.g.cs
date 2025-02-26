@@ -37,128 +37,176 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(double)" />
         public static AbsorbedDoseOfIonizingRadiation Femtograys<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGigagrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Gigagrays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Grays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromGrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromGrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromGrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilograys(double)" />
         public static AbsorbedDoseOfIonizingRadiation Kilograys<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromKilograys(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromKilograys(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromKilograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilorads(double)" />
         public static AbsorbedDoseOfIonizingRadiation Kilorads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromKilorads(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromKilorads(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromKilorads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegagrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Megagrays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegarads(double)" />
         public static AbsorbedDoseOfIonizingRadiation Megarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromMegarads(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMegarads(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromMegarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMicrograys(double)" />
         public static AbsorbedDoseOfIonizingRadiation Micrograys<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMilligrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Milligrays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(double)" />
         public static AbsorbedDoseOfIonizingRadiation Millirads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromMillirads(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromMillirads(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromMillirads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(double)" />
         public static AbsorbedDoseOfIonizingRadiation Nanograys<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromNanograys(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromNanograys(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromNanograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPetagrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Petagrays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPicograys(double)" />
         public static AbsorbedDoseOfIonizingRadiation Picograys<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromPicograys(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromPicograys(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromPicograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromRads(double)" />
         public static AbsorbedDoseOfIonizingRadiation Rads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromRads(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromRads(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromRads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromTeragrays(double)" />
         public static AbsorbedDoseOfIonizingRadiation Teragrays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(value.ToDouble(null));
 #endif
-            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(Convert.ToDouble(value));
 
     }
 }
