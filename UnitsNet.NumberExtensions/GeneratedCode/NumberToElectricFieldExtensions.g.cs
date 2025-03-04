@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricField.FromVoltsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricField.FromVoltsPerMeter(value.ToDouble(null));
 #endif
-            => ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
 
     }
 }

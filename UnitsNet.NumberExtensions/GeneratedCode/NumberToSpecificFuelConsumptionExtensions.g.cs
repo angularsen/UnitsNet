@@ -37,32 +37,44 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToDouble(null));
 #endif
-            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
         public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToDouble(null));
 #endif
-            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double)" />
         public static SpecificFuelConsumption KilogramsPerKilonewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToDouble(null));
 #endif
-            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
         public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToDouble(null));
 #endif
-            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(Convert.ToDouble(value));
 
     }
 }

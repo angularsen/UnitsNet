@@ -37,136 +37,187 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilogramsForcePerCubicCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicCentimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilogramsForcePerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMeter(double)" />
         public static SpecificWeight KilogramsForcePerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilogramsForcePerCubicMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicMeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilogramsForcePerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMillimeter(double)" />
         public static SpecificWeight KilogramsForcePerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilogramsForcePerCubicMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilogramsForcePerCubicMillimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilogramsForcePerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicCentimeter(double)" />
         public static SpecificWeight KilonewtonsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilonewtonsPerCubicCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicCentimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilonewtonsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMeter(double)" />
         public static SpecificWeight KilonewtonsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilonewtonsPerCubicMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicMeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilonewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMillimeter(double)" />
         public static SpecificWeight KilonewtonsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilonewtonsPerCubicMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilonewtonsPerCubicMillimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilonewtonsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicFoot(double)" />
         public static SpecificWeight KilopoundsForcePerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilopoundsForcePerCubicFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilopoundsForcePerCubicFoot(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilopoundsForcePerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(double)" />
         public static SpecificWeight KilopoundsForcePerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromKilopoundsForcePerCubicInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromKilopoundsForcePerCubicInch(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromKilopoundsForcePerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)" />
         public static SpecificWeight MeganewtonsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromMeganewtonsPerCubicMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromMeganewtonsPerCubicMeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromMeganewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(double)" />
         public static SpecificWeight NewtonsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromNewtonsPerCubicCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicCentimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromNewtonsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMeter(double)" />
         public static SpecificWeight NewtonsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromNewtonsPerCubicMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicMeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromNewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMillimeter(double)" />
         public static SpecificWeight NewtonsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromNewtonsPerCubicMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromNewtonsPerCubicMillimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromNewtonsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicFoot(double)" />
         public static SpecificWeight PoundsForcePerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromPoundsForcePerCubicFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromPoundsForcePerCubicFoot(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromPoundsForcePerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicInch(double)" />
         public static SpecificWeight PoundsForcePerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromPoundsForcePerCubicInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromPoundsForcePerCubicInch(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromPoundsForcePerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicCentimeter(double)" />
         public static SpecificWeight TonnesForcePerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromTonnesForcePerCubicCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicCentimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromTonnesForcePerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMeter(double)" />
         public static SpecificWeight TonnesForcePerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromTonnesForcePerCubicMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicMeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromTonnesForcePerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMillimeter(double)" />
         public static SpecificWeight TonnesForcePerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => SpecificWeight.FromTonnesForcePerCubicMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => SpecificWeight.FromTonnesForcePerCubicMillimeter(value.ToDouble(null));
 #endif
-            => SpecificWeight.FromTonnesForcePerCubicMillimeter(Convert.ToDouble(value));
 
     }
 }

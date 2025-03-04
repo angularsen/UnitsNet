@@ -37,24 +37,33 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LeakRate.FromMillibarLitersPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LeakRate.FromMillibarLitersPerSecond(value.ToDouble(null));
 #endif
-            => LeakRate.FromMillibarLitersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
         public static LeakRate PascalCubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LeakRate.FromPascalCubicMetersPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LeakRate.FromPascalCubicMetersPerSecond(value.ToDouble(null));
 #endif
-            => LeakRate.FromPascalCubicMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
         public static LeakRate TorrLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LeakRate.FromTorrLitersPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LeakRate.FromTorrLitersPerSecond(value.ToDouble(null));
 #endif
-            => LeakRate.FromTorrLitersPerSecond(Convert.ToDouble(value));
 
     }
 }
