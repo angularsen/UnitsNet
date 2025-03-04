@@ -232,7 +232,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>The default abbreviation as provided by the associated <see cref="UnitAbbreviationsCache" /></returns>
         protected string GetUnitAbbreviation(Enum unit)
         {
-            return _abbreviations.GetDefaultAbbreviation(unit.GetType(), Convert.ToInt32(unit), CultureInfo.InvariantCulture);
+            return _abbreviations.GetDefaultAbbreviation(unit, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
