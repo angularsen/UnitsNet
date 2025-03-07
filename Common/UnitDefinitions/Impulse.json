@@ -51,8 +51,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} / 7.230657989877",
-      "FromBaseToUnitFunc": "{x} * 7.230657989877",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -63,8 +63,8 @@
     {
       "SingularName": "PoundForceSecond",
       "PluralName": "PoundForceSeconds",
-      "FromUnitToBaseFunc": "{x} / 0.2248089430997",
-      "FromBaseToUnitFunc": "{x} * 0.2248089430997",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605",
       "Localization": [
         {
           "Culture": "en-US",
@@ -80,8 +80,8 @@
         "M": "Slug",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} / 0.224735720691",
-      "FromBaseToUnitFunc": "{x} * 0.224735720691",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 9.80665)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",

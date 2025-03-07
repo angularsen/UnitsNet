@@ -29,8 +29,10 @@
     {
       "SingularName": "MechanicalHorsepower",
       "PluralName": "MechanicalHorsepower",
-      "FromUnitToBaseFunc": "{x} * 745.69",
-      "FromBaseToUnitFunc": "{x} / 745.69",
+      "XmlDocSummary": "Assuming the third CGPM (1901, CR 70) definition of standard gravity, gn = 9.80665 m/s2, is used to define the pound-force as well as the kilogram force, and the international avoirdupois pound (1959), one imperial horsepower is: 76.0402249 × 9.80665 kg⋅m2/s3",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Imperial_horsepower",
+      "FromUnitToBaseFunc": "{x} * 76.0402249 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / (76.0402249 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -41,6 +43,8 @@
     {
       "SingularName": "MetricHorsepower",
       "PluralName": "MetricHorsepower",
+      "XmlDocSummary": "DIN 66036 defines one metric horsepower as the power to raise a mass of 75 kilograms against the Earth's gravitational force over a distance of one metre in one second:[18] 75 kg × 9.80665 m/s2 × 1 m / 1 s = 75 kgf⋅m/s = 1 PS. This is equivalent to 735.49875 W, or 98.6% of an imperial horsepower.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower_(PS,_KM,_cv,_hk,_pk,_k,_ks,_ch)",
       "FromUnitToBaseFunc": "{x} * 735.49875",
       "FromBaseToUnitFunc": "{x} / 735.49875",
       "Localization": [
@@ -53,6 +57,8 @@
     {
       "SingularName": "ElectricalHorsepower",
       "PluralName": "ElectricalHorsepower",
+      "XmlDocSummary": "Nameplates on electrical motors show their power output, not the power input (the power delivered at the shaft, not the power consumed to drive the motor). This power output is ordinarily stated in watts or kilowatts. In the United States, the power output is stated in horsepower, which for this purpose is defined as exactly 746 W.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower",
       "FromUnitToBaseFunc": "{x} * 746",
       "FromBaseToUnitFunc": "{x} / 746",
       "Localization": [
@@ -65,6 +71,8 @@
     {
       "SingularName": "BoilerHorsepower",
       "PluralName": "BoilerHorsepower",
+      "XmlDocSummary": "Boiler horsepower is a boiler's capacity to deliver steam to a steam engine and is not the same unit of power as the 550 ft lb/s definition. One boiler horsepower is equal to the thermal energy rate required to evaporate 34.5 pounds (15.6 kg) of fresh water at 212 °F (100 °C) in one hour.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Boiler_horsepower",
       "FromUnitToBaseFunc": "{x} * 9812.5",
       "FromBaseToUnitFunc": "{x} / 9812.5",
       "Localization": [
@@ -77,6 +85,8 @@
     {
       "SingularName": "HydraulicHorsepower",
       "PluralName": "HydraulicHorsepower",
+      "XmlDocSummary": "Hydraulic horsepower can represent the power available within hydraulic machinery, power through the down-hole nozzle of a drilling rig, or can be used to estimate the mechanical power needed to generate a known hydraulic flow rate.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Hydraulic_horsepower",
       "FromUnitToBaseFunc": "{x} * 745.69988145",
       "FromBaseToUnitFunc": "{x} / 745.69988145",
       "Localization": [
@@ -89,8 +99,8 @@
     {
       "SingularName": "BritishThermalUnitPerHour",
       "PluralName": "BritishThermalUnitsPerHour",
-      "FromUnitToBaseFunc": "{x} * 0.29307107017",
-      "FromBaseToUnitFunc": "{x} / 0.29307107017",
+      "FromUnitToBaseFunc": "{x} * 1055.05585262 / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / 1055.05585262",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
