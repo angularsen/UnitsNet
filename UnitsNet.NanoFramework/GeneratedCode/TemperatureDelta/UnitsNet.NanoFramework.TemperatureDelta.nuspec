@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework temperaturedelta unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.17.1" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.7" />
     </dependencies>
   </metadata>
   <files>
