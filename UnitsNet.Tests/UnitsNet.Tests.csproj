@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn><!-- CS0618: 'member' is obsolete: 'text' (we often obsolete things before removal) -->
