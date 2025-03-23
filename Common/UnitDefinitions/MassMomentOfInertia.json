@@ -150,8 +150,8 @@
         "L": "Foot",
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} * 4.21401101e-2",
-      "FromBaseToUnitFunc": "{x} / 4.21401101e-2",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 9.290304e-2)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 9.290304e-2)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -166,8 +166,8 @@
         "L": "Inch",
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} * 2.9263965e-4",
-      "FromBaseToUnitFunc": "{x} / 2.9263965e-4",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 0.00064516)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 0.00064516)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -182,8 +182,8 @@
         "L": "Foot",
         "M": "Slug"
       },
-      "FromUnitToBaseFunc": "{x} * 1.3558179619",
-      "FromBaseToUnitFunc": "{x} / 1.3558179619",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 * 9.290304e-2 * 9.80665 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / (0.45359237 * 9.290304e-2 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -198,8 +198,8 @@
         "L": "Inch",
         "M": "Slug"
       },
-      "FromUnitToBaseFunc": "{x} * 9.41540242e-3",
-      "FromBaseToUnitFunc": "{x} / 9.41540242e-3",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 * 0.00064516 * 9.80665 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / (0.45359237 * 0.00064516 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",

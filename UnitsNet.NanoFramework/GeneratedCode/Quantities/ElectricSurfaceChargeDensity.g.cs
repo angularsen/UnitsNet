@@ -156,7 +156,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter => _value * 1.0e4,
-                        ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch => _value * 1.5500031000062000e3,
+                        ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch => _value / 0.00064516,
                         ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -172,7 +172,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter => baseUnitValue / 1.0e4,
-                        ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch => baseUnitValue / 1.5500031000062000e3,
+                        ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch => baseUnitValue * 0.00064516,
                         ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

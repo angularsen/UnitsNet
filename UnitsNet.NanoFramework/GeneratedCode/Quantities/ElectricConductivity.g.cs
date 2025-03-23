@@ -188,8 +188,8 @@ namespace UnitsNet
                         ElectricConductivityUnit.MicrosiemensPerCentimeter => (_value * 1e2) * 1e-6d,
                         ElectricConductivityUnit.MillisiemensPerCentimeter => (_value * 1e2) * 1e-3d,
                         ElectricConductivityUnit.SiemensPerCentimeter => _value * 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => _value * 3.2808398950131234,
-                        ElectricConductivityUnit.SiemensPerInch => _value * 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerFoot => _value / 0.3048,
+                        ElectricConductivityUnit.SiemensPerInch => _value / 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -207,8 +207,8 @@ namespace UnitsNet
                         ElectricConductivityUnit.MicrosiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
                         ElectricConductivityUnit.MillisiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
                         ElectricConductivityUnit.SiemensPerCentimeter => baseUnitValue / 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue / 3.2808398950131234,
-                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue / 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue * 0.3048,
+                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue * 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

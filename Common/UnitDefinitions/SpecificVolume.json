@@ -31,8 +31,8 @@
         "L": "Foot",
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} / 16.01846353",
-      "FromBaseToUnitFunc": "{x} * 16.01846353",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 / 0.45359237",
+      "FromBaseToUnitFunc": "{x} * 0.45359237 / 0.028316846592",
       "Prefixes": [],
       "Localization": [
         {

@@ -42,8 +42,8 @@
 	{
       "SingularName": "PoundForcePerMinute",
       "PluralName": "PoundsForcePerMinute",
-      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421 / 60",
-      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421 * 60",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 / 60",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605 * 60",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -56,8 +56,8 @@
 	{
       "SingularName": "PoundForcePerSecond",
       "PluralName": "PoundsForcePerSecond",
-      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421",
-      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
