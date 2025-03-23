@@ -37,16 +37,22 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(null));
 #endif
-            => RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
         public static RatioChangeRate PercentsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(null));
 #endif
-            => RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
 
     }
 }

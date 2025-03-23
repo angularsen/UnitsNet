@@ -775,15 +775,15 @@ namespace UnitsNet
                 // WarpingMomentOfInertiaUnit -> BaseUnit
                 (WarpingMomentOfInertiaUnit.CentimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value / 1e12, WarpingMomentOfInertiaUnit.MeterToTheSixth),
                 (WarpingMomentOfInertiaUnit.DecimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value / 1e6, WarpingMomentOfInertiaUnit.MeterToTheSixth),
-                (WarpingMomentOfInertiaUnit.FootToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value * Math.Pow(0.3048, 6), WarpingMomentOfInertiaUnit.MeterToTheSixth),
-                (WarpingMomentOfInertiaUnit.InchToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value * Math.Pow(2.54e-2, 6), WarpingMomentOfInertiaUnit.MeterToTheSixth),
+                (WarpingMomentOfInertiaUnit.FootToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value * 0.000801843800914862014464, WarpingMomentOfInertiaUnit.MeterToTheSixth),
+                (WarpingMomentOfInertiaUnit.InchToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value * 0.000000000268535866540096, WarpingMomentOfInertiaUnit.MeterToTheSixth),
                 (WarpingMomentOfInertiaUnit.MillimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value / 1e18, WarpingMomentOfInertiaUnit.MeterToTheSixth),
 
                 // BaseUnit -> WarpingMomentOfInertiaUnit
                 (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth) => new WarpingMomentOfInertia(_value * 1e12, WarpingMomentOfInertiaUnit.CentimeterToTheSixth),
                 (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.DecimeterToTheSixth) => new WarpingMomentOfInertia(_value * 1e6, WarpingMomentOfInertiaUnit.DecimeterToTheSixth),
-                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.FootToTheSixth) => new WarpingMomentOfInertia(_value / Math.Pow(0.3048, 6), WarpingMomentOfInertiaUnit.FootToTheSixth),
-                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.InchToTheSixth) => new WarpingMomentOfInertia(_value / Math.Pow(2.54e-2, 6), WarpingMomentOfInertiaUnit.InchToTheSixth),
+                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.FootToTheSixth) => new WarpingMomentOfInertia(_value / 0.000801843800914862014464, WarpingMomentOfInertiaUnit.FootToTheSixth),
+                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.InchToTheSixth) => new WarpingMomentOfInertia(_value / 0.000000000268535866540096, WarpingMomentOfInertiaUnit.InchToTheSixth),
                 (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth) => new WarpingMomentOfInertia(_value * 1e18, WarpingMomentOfInertiaUnit.MillimeterToTheSixth),
 
                 _ => null

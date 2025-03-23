@@ -37,56 +37,77 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInverseAtmospheres(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInverseAtmospheres(value.ToDouble(null));
 #endif
-            => Compressibility.FromInverseAtmospheres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInverseBars(double)" />
         public static Compressibility InverseBars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInverseBars(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInverseBars(value.ToDouble(null));
 #endif
-            => Compressibility.FromInverseBars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInverseKilopascals(double)" />
         public static Compressibility InverseKilopascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInverseKilopascals(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInverseKilopascals(value.ToDouble(null));
 #endif
-            => Compressibility.FromInverseKilopascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInverseMegapascals(double)" />
         public static Compressibility InverseMegapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInverseMegapascals(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInverseMegapascals(value.ToDouble(null));
 #endif
-            => Compressibility.FromInverseMegapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInverseMillibars(double)" />
         public static Compressibility InverseMillibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInverseMillibars(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInverseMillibars(value.ToDouble(null));
 #endif
-            => Compressibility.FromInverseMillibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInversePascals(double)" />
         public static Compressibility InversePascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInversePascals(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInversePascals(value.ToDouble(null));
 #endif
-            => Compressibility.FromInversePascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(double)" />
         public static Compressibility InversePoundsForcePerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Compressibility.FromInversePoundsForcePerSquareInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Compressibility.FromInversePoundsForcePerSquareInch(value.ToDouble(null));
 #endif
-            => Compressibility.FromInversePoundsForcePerSquareInch(Convert.ToDouble(value));
 
     }
 }

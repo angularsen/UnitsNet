@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LuminousFlux.FromLumens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LuminousFlux.FromLumens(value.ToDouble(null));
 #endif
-            => LuminousFlux.FromLumens(Convert.ToDouble(value));
 
     }
 }

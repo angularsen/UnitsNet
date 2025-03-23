@@ -231,10 +231,10 @@ namespace UnitsNet
                         DynamicViscosityUnit.NewtonSecondPerMeterSquared => _value,
                         DynamicViscosityUnit.PascalSecond => _value,
                         DynamicViscosityUnit.Poise => _value / 10,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.7880258980335843e1,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 6.8947572931683613e3,
-                        DynamicViscosityUnit.PoundPerFootSecond => _value * 1.4881639,
-                        DynamicViscosityUnit.Reyn => _value * 6.8947572931683613e3,
+                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.4482216152605 / 9.290304e-2,
+                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 4.4482216152605 / 0.00064516,
+                        DynamicViscosityUnit.PoundPerFootSecond => _value * 0.45359237 / 0.3048,
+                        DynamicViscosityUnit.Reyn => _value * 4.4482216152605 / 0.00064516,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -254,10 +254,10 @@ namespace UnitsNet
                         DynamicViscosityUnit.NewtonSecondPerMeterSquared => baseUnitValue,
                         DynamicViscosityUnit.PascalSecond => baseUnitValue,
                         DynamicViscosityUnit.Poise => baseUnitValue * 10,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue / 4.7880258980335843e1,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue / 6.8947572931683613e3,
-                        DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue / 1.4881639,
-                        DynamicViscosityUnit.Reyn => baseUnitValue / 6.8947572931683613e3,
+                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue * 9.290304e-2 / 4.4482216152605,
+                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue * 0.00064516 / 4.4482216152605,
+                        DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue * 0.3048 / 0.45359237,
+                        DynamicViscosityUnit.Reyn => baseUnitValue * 0.00064516 / 4.4482216152605,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

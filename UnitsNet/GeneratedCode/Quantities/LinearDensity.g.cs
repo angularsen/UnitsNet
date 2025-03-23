@@ -1010,8 +1010,8 @@ namespace UnitsNet
                 (LinearDensityUnit.MilligramPerFoot, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * ( 1e-3 / 0.3048 )) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
                 (LinearDensityUnit.MilligramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-3) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
                 (LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 1.48816394, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value / 5.5997415e-2, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 0.45359237 / 0.3048, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 0.45359237 / 2.54e-2, LinearDensityUnit.KilogramPerMeter),
 
                 // BaseUnit -> LinearDensityUnit
                 (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter) => new LinearDensity(_value / 1e-1, LinearDensityUnit.GramPerCentimeter),
@@ -1029,8 +1029,8 @@ namespace UnitsNet
                 (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerFoot) => new LinearDensity((_value / ( 1e-3 / 0.3048 )) / 1e-3d, LinearDensityUnit.MilligramPerFoot),
                 (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMeter) => new LinearDensity((_value / 1e-3) / 1e-3d, LinearDensityUnit.MilligramPerMeter),
                 (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMillimeter) => new LinearDensity((_value) / 1e-3d, LinearDensityUnit.MilligramPerMillimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot) => new LinearDensity(_value / 1.48816394, LinearDensityUnit.PoundPerFoot),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch) => new LinearDensity(_value * 5.5997415e-2, LinearDensityUnit.PoundPerInch),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot) => new LinearDensity(_value * 0.3048 / 0.45359237, LinearDensityUnit.PoundPerFoot),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch) => new LinearDensity(_value * 2.54e-2 / 0.45359237, LinearDensityUnit.PoundPerInch),
 
                 _ => null
             };

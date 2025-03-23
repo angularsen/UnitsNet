@@ -221,7 +221,7 @@ namespace UnitsNet
                         KinematicViscosityUnit.Microstokes => (_value / 1e4) * 1e-6d,
                         KinematicViscosityUnit.Millistokes => (_value / 1e4) * 1e-3d,
                         KinematicViscosityUnit.Nanostokes => (_value / 1e4) * 1e-9d,
-                        KinematicViscosityUnit.SquareFootPerSecond => _value / 10.7639,
+                        KinematicViscosityUnit.SquareFootPerSecond => _value * 9.290304e-2,
                         KinematicViscosityUnit.SquareMeterPerSecond => _value,
                         KinematicViscosityUnit.Stokes => _value / 1e4,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -243,7 +243,7 @@ namespace UnitsNet
                         KinematicViscosityUnit.Microstokes => (baseUnitValue * 1e4) / 1e-6d,
                         KinematicViscosityUnit.Millistokes => (baseUnitValue * 1e4) / 1e-3d,
                         KinematicViscosityUnit.Nanostokes => (baseUnitValue * 1e4) / 1e-9d,
-                        KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue * 10.7639,
+                        KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue / 9.290304e-2,
                         KinematicViscosityUnit.SquareMeterPerSecond => baseUnitValue,
                         KinematicViscosityUnit.Stokes => baseUnitValue * 1e4,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

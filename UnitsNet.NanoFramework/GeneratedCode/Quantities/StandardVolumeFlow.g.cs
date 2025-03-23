@@ -213,9 +213,9 @@ namespace UnitsNet
                     return Unit switch
                     {
                         StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value / 6e7,
-                        StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 7.8657907199999087346816086183876e-6,
-                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value / 2118.88000326,
-                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value / 35.314666721,
+                        StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 0.028316846592 / 3600,
+                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value * 0.028316846592 / 60,
+                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value * 0.028316846592,
                         StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value / 86400,
                         StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value / 3600,
                         StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
@@ -235,9 +235,9 @@ namespace UnitsNet
                     return unit switch
                     {
                         StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue * 6e7,
-                        StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / 7.8657907199999087346816086183876e-6,
-                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue * 2118.88000326,
-                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue * 35.314666721,
+                        StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / (0.028316846592 / 3600),
+                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue / (0.028316846592 / 60),
+                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue / 0.028316846592,
                         StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue * 86400,
                         StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue * 3600,
                         StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,

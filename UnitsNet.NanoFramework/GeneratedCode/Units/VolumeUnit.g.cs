@@ -25,20 +25,55 @@ namespace UnitsNet.Units
 
     public enum VolumeUnit
     {
+
+        /// <summary>
+        ///     An acre-foot is 43,560 cubic feet (~1,233.5 m3).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Acre-foot</remarks>
         AcreFoot = 1,
+
+        /// <summary>
+        ///     In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Tablespoon#Australia</remarks>
         AuTablespoon = 2,
+
+        /// <summary>
+        ///     The board foot or board-foot is a unit of measurement for the volume of lumber in the United States and Canada. It equals the volume of a board that is one-foot (305 mm) in length, one-foot (305 mm) in width, and one-inch (25.4 mm) in thickness.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Board_foot</remarks>
         BoardFoot = 3,
         Centiliter = 4,
         CubicCentimeter = 5,
         CubicDecimeter = 6,
+
+        /// <summary>
+        ///     The cubic foot (symbol ft3 or cu ft) is an imperial and US customary (non-metric) unit of volume, used in the United States and the United Kingdom. It is defined as the volume of a cube with sides of one foot (0.3048 m) in length.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cubic_foot</remarks>
         CubicFoot = 7,
         CubicHectometer = 8,
+
+        /// <summary>
+        ///     The cubic inch (symbol in3) is a unit of volume in the Imperial units and United States customary units systems. It is the volume of a cube with each of its three dimensions (length, width, and height) being one inch long which is equivalent to 1/231 of a US gallon.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cubic_yard</remarks>
         CubicInch = 9,
         CubicKilometer = 10,
         CubicMeter = 11,
         CubicMicrometer = 12,
+
+        /// <summary>
+        ///     A cubic mile (abbreviation: cu mi or mi3) is an imperial and US customary (non-SI non-metric) unit of volume, used in the United States, Canada and the United Kingdom. It is defined as the volume of a cube with sides of 1 mile (63360 inches, 5280 feet, 1760 yards or ~1.609 kilometres) in length.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cubic_mile</remarks>
         CubicMile = 13,
         CubicMillimeter = 14,
+
+        /// <summary>
+        ///     A cubic yard is an Imperial / U.S. customary (non-SI non-metric) unit of volume, used in Canada and the United States. It is defined as the volume of a cube with sides of 1 yard (3 feet, 36 inches, 0.9144 meters) in length.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cubic_yard</remarks>
         CubicYard = 15,
         Decaliter = 16,
         DecausGallon = 17,
@@ -48,6 +83,11 @@ namespace UnitsNet.Units
         HectocubicMeter = 21,
         Hectoliter = 22,
         HectousGallon = 23,
+
+        /// <summary>
+        ///     Fluid barrels vary depending on what is being measured and where. In the UK a beer barrel is 36 imperial gallons (43 US gal; ~164 L).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Barrel_(unit)#Fluid_barrel_in_the_US_and_UK</remarks>
         ImperialBeerBarrel = 24,
 
         /// <summary>
@@ -55,8 +95,23 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Gallon#Imperial_gallon</remarks>
         ImperialGallon = 25,
+
+        /// <summary>
+        ///     An imperial fluid ounce is 1⁄20 of an imperial pint, 1⁄160 of an imperial gallon or exactly 28.4130625 mL.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Fluid_ounce</remarks>
         ImperialOunce = 26,
+
+        /// <summary>
+        ///     The pint is a unit of volume or capacity in both the imperial and United States customary measurement systems. In both of those systems it is traditionally one eighth of a gallon. The British imperial pint is about 20% larger than the American pint because the two systems are defined differently.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pint#Imperial_pint</remarks>
         ImperialPint = 27,
+
+        /// <summary>
+        ///     The imperial quart, which is used for both liquid and dry capacity, is equal to one quarter of an imperial gallon, or exactly 1.1365225 liters.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Quart#Imperial_quart</remarks>
         ImperialQuart = 57,
         KilocubicFoot = 28,
         KilocubicMeter = 29,
@@ -68,14 +123,44 @@ namespace UnitsNet.Units
         MegaimperialGallon = 35,
         Megaliter = 36,
         MegausGallon = 37,
+
+        /// <summary>
+        ///     Australia, Canada, New Zealand, and some other members of the Commonwealth of Nations, being former British colonies that have since metricated, employ a metric cup of 250 millilitres. Although derived from the metric system, it is not an SI unit.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cup_(unit)#Metric_cup</remarks>
         MetricCup = 38,
+
+        /// <summary>
+        ///     The metric teaspoon as a unit of culinary measure is 5 ml (0.18 imp fl oz; 0.17 US fl oz),[17] equal to 5 cm3, 1⁄3 UK/Canadian metric tablespoon, or 1⁄4 Australian metric tablespoon.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Teaspoon#Metric_teaspoon</remarks>
         MetricTeaspoon = 39,
         Microliter = 40,
         Milliliter = 41,
         Nanoliter = 53,
+
+        /// <summary>
+        ///     In the oil industry, one barrel (unit symbol bbl) is a unit of volume used for measuring oil defined as exactly 42 US gallons, approximately 159 liters, or 35 imperial gallons.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Barrel_(unit)#Oil_barrel</remarks>
         OilBarrel = 42,
+
+        /// <summary>
+        ///     In nutrition labeling in the U.S. and the U.K., a tablespoon is defined as 15 ml (0.51 US fl oz). In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Tablespoon#International</remarks>
         UkTablespoon = 43,
+
+        /// <summary>
+        ///     Fluid barrels vary depending on what is being measured and where. In the US most fluid barrels (apart from oil) are 31.5 US gallons (26 imp gal; 119 L) (half a hogshead), but a beer barrel is 31 US gallons (26 imp gal; 117 L).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Barrel_(unit)#Fluid_barrel_in_the_US_and_UK</remarks>
         UsBeerBarrel = 44,
+
+        /// <summary>
+        ///     In the United States, the customary cup is half of a liquid pint or 1⁄16 US customary gallon which is 236.5882365 milliliters exactly.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cup_(unit)#Customary_cup</remarks>
         UsCustomaryCup = 45,
 
         /// <summary>
@@ -83,11 +168,41 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Gallon#US_liquid_gallon</remarks>
         UsGallon = 46,
+
+        /// <summary>
+        ///     The cup currently used in the United States for nutrition labelling is defined in United States law as 240 ml.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Cup_(unit)#Legal_cup</remarks>
         UsLegalCup = 47,
+
+        /// <summary>
+        ///     A US customary fluid ounce is 1⁄16 of a US liquid pint and 1⁄128 of a US liquid gallon or exactly 29.5735295625 mL, making it about 4.08% larger than the imperial fluid ounce.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Fluid_ounce</remarks>
         UsOunce = 48,
+
+        /// <summary>
+        ///     The pint is a unit of volume or capacity in both the imperial and United States customary measurement systems. In both of those systems it is traditionally one eighth of a gallon. The British imperial pint is about 20% larger than the American pint because the two systems are defined differently.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pint#US_liquid_pint</remarks>
         UsPint = 49,
+
+        /// <summary>
+        ///     The US liquid quart equals 57.75 cubic inches, which is exactly equal to 0.946352946 L.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Quart#US_liquid_quart</remarks>
         UsQuart = 50,
+
+        /// <summary>
+        ///     The traditional U.S. interpretation of the tablespoon as a unit of volume is: 1 US tablespoon = 4 fluid drams, or 3 teaspoons or 1/2 US fluid ounce (≈ 14.8 ml)
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Tablespoon#United_States</remarks>
         UsTablespoon = 51,
+
+        /// <summary>
+        ///     As a unit of culinary measure, one teaspoon in the United States is 1⁄3 tablespoon, exactly 4.92892159375 ml, 1 1⁄3 US fluid drams, 1⁄6 US fl oz, 1⁄48 US cup, 1⁄768 US liquid gallon, or 77⁄256 (0.30078125) cubic inches.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Teaspoon#United_States_customary_unit</remarks>
         UsTeaspoon = 52,
     }
 

@@ -37,80 +37,110 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseCentimeters(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseCentimeters(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseCentimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(double)" />
         public static ReciprocalLength InverseFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseFeet(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseInches(double)" />
         public static ReciprocalLength InverseInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseInches(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseInches(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseInches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(double)" />
         public static ReciprocalLength InverseMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseMeters(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseMeters(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(double)" />
         public static ReciprocalLength InverseMicroinches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseMicroinches(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseMicroinches(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseMicroinches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMils(double)" />
         public static ReciprocalLength InverseMils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseMils(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseMils(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseMils(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(double)" />
         public static ReciprocalLength InverseMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseMiles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseMiles(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseMiles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(double)" />
         public static ReciprocalLength InverseMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseMillimeters(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseMillimeters(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseMillimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(double)" />
         public static ReciprocalLength InverseUsSurveyFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseUsSurveyFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseUsSurveyFeet(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseUsSurveyFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseYards(double)" />
         public static ReciprocalLength InverseYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ReciprocalLength.FromInverseYards(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ReciprocalLength.FromInverseYards(value.ToDouble(null));
 #endif
-            => ReciprocalLength.FromInverseYards(Convert.ToDouble(value));
 
     }
 }

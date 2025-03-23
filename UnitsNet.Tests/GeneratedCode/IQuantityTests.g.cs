@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));
             Assertion(3, VolumeUnit.UsTeaspoon, Quantity.From(3, VolumeUnit.UsTeaspoon));
-            Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
+            Assertion(3, VolumeConcentrationUnit.PicoliterPerMilliliter, Quantity.From(3, VolumeConcentrationUnit.PicoliterPerMilliliter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
             Assertion(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, Quantity.From(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
             Assertion(3, VolumePerLengthUnit.UsGallonPerMile, Quantity.From(3, VolumePerLengthUnit.UsGallonPerMile));
