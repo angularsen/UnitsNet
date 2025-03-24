@@ -64,7 +64,7 @@
       "SingularName": "PoundForceSecond",
       "PluralName": "PoundForceSeconds",
       "FromUnitToBaseFunc": "{x} * 0.45359237 * 9.80665",
-      "FromBaseToUnitFunc": "{x} / 4.4482216152605",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",

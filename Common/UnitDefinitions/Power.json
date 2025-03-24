@@ -45,8 +45,8 @@
       "PluralName": "MetricHorsepower",
       "XmlDocSummary": "DIN 66036 defines one metric horsepower as the power to raise a mass of 75 kilograms against the Earth's gravitational force over a distance of one metre in one second:[18] 75 kg × 9.80665 m/s2 × 1 m / 1 s = 75 kgf⋅m/s = 1 PS. This is equivalent to 735.49875 W, or 98.6% of an imperial horsepower.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower_(PS,_KM,_cv,_hk,_pk,_k,_ks,_ch)",
-      "FromUnitToBaseFunc": "{x} * 735.49875",
-      "FromBaseToUnitFunc": "{x} / 735.49875",
+      "FromUnitToBaseFunc": "{x} * 75 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / (75 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +87,8 @@
       "PluralName": "HydraulicHorsepower",
       "XmlDocSummary": "Hydraulic horsepower can represent the power available within hydraulic machinery, power through the down-hole nozzle of a drilling rig, or can be used to estimate the mechanical power needed to generate a known hydraulic flow rate.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Horsepower#Hydraulic_horsepower",
-      "FromUnitToBaseFunc": "{x} * 745.69988145",
-      "FromBaseToUnitFunc": "{x} / 745.69988145",
+      "FromUnitToBaseFunc": "{x} * 745.69987158227022",
+      "FromBaseToUnitFunc": "{x} / 745.69987158227022",
       "Localization": [
         {
           "Culture": "en-US",
@@ -99,6 +99,7 @@
     {
       "SingularName": "BritishThermalUnitPerHour",
       "PluralName": "BritishThermalUnitsPerHour",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
       "FromUnitToBaseFunc": "{x} * 1055.05585262 / 3600",
       "FromBaseToUnitFunc": "{x} * 3600 / 1055.05585262",
       "Prefixes": [ "Kilo", "Mega" ],

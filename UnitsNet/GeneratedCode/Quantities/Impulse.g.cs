@@ -909,7 +909,7 @@ namespace UnitsNet
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond) => new Impulse((_value) / 1e-3d, ImpulseUnit.MillinewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond) => new Impulse((_value) / 1e-9d, ImpulseUnit.NanonewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value / (0.45359237 * 0.3048), ImpulseUnit.PoundFootPerSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value / 4.4482216152605, ImpulseUnit.PoundForceSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value / (0.45359237 * 9.80665), ImpulseUnit.PoundForceSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value / (0.45359237 * 9.80665), ImpulseUnit.SlugFootPerSecond),
 
                 _ => null

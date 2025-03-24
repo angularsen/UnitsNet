@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Boiler_horsepower</remarks>
         BoilerHorsepower = 1,
+        /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
         BritishThermalUnitPerHour = 2,
         Decawatt = 3,
         Deciwatt = 4,

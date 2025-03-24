@@ -51,6 +51,7 @@
     {
       "SingularName": "BtuPerSecondSquareInch",
       "PluralName": "BtusPerSecondSquareInch",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
       "FromUnitToBaseFunc": "{x} * 1055.05585262 / (2.54e-2 * 2.54e-2)",
       "FromBaseToUnitFunc": "{x} * (2.54e-2 * 2.54e-2) / 1055.05585262",
       "Localization": [
@@ -63,6 +64,7 @@
     {
       "SingularName": "BtuPerSecondSquareFoot",
       "PluralName": "BtusPerSecondSquareFoot",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
       "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048)",
       "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048) / 1055.05585262",
       "Localization": [
@@ -75,6 +77,7 @@
     {
       "SingularName": "BtuPerMinuteSquareFoot",
       "PluralName": "BtusPerMinuteSquareFoot",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
       "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048 * 60)",
       "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048 * 60) / 1055.05585262",
       "Localization": [
@@ -87,6 +90,7 @@
     {
       "SingularName": "BtuPerHourSquareFoot",
       "PluralName": "BtusPerHourSquareFoot",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
       "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048 * 3600)",
       "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048 * 3600) / 1055.05585262",
       "Localization": [

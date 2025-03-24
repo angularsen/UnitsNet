@@ -166,9 +166,9 @@ namespace UnitsNet
                     return Unit switch
                     {
                         SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => _value,
-                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => _value * 453.59237 / (0.0044482216152605 * 3600),
+                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => _value * 1000 / (9.80665e-3 * 3600),
                         SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (_value) * 1e3d,
-                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => _value * 453.59237 / (0.0044482216152605 * 3600),
+                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => _value * 1000 / (9.80665e-3 * 3600),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -183,9 +183,9 @@ namespace UnitsNet
                     return unit switch
                     {
                         SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => baseUnitValue,
-                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => baseUnitValue * (0.0044482216152605 * 3600) / 453.59237,
+                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
                         SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (baseUnitValue) / 1e3d,
-                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => baseUnitValue * (0.0044482216152605 * 3600) / 453.59237,
+                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }
