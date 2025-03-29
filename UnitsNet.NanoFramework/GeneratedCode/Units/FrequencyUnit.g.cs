@@ -26,7 +26,6 @@ namespace UnitsNet.Units
     public enum FrequencyUnit
     {
         BeatPerMinute = 1,
-        BUnit = 2,
         CyclePerHour = 3,
         CyclePerMinute = 4,
         Gigahertz = 5,

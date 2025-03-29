@@ -108,18 +108,6 @@
           "Abbreviations": [ "с⁻¹" ]
         }
       ]
-    },
-    {
-      "SingularName": "BUnit",
-      "PluralName": "BUnits",
-      "FromUnitToBaseFunc": "Math.Sqrt({x} * 1e3)",
-      "FromBaseToUnitFunc": "{x} * {x} * 1e-3",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "B Units" ]
-        }
-      ]
     }
   ]
 }

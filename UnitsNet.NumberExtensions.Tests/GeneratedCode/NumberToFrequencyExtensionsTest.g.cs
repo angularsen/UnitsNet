@@ -29,10 +29,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Frequency.FromBeatsPerMinute(2), 2.BeatsPerMinute());
 
         [Fact]
-        public void NumberToBUnitsTest() =>
-            Assert.Equal(Frequency.FromBUnits(2), 2.BUnits());
-
-        [Fact]
         public void NumberToCyclesPerHourTest() =>
             Assert.Equal(Frequency.FromCyclesPerHour(2), 2.CyclesPerHour());
 
