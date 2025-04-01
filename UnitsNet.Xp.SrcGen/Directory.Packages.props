@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Disable Directory.Packages.props in repo root. -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,1 @@
+[assembly: UnitsNetSrcGenInit("Length,Mass")]
