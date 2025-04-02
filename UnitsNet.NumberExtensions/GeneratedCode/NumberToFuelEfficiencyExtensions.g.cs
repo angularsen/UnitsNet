@@ -37,32 +37,44 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => FuelEfficiency.FromKilometersPerLiter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => FuelEfficiency.FromKilometersPerLiter(value.ToDouble(null));
 #endif
-            => FuelEfficiency.FromKilometersPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(double)" />
         public static FuelEfficiency LitersPer100Kilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => FuelEfficiency.FromLitersPer100Kilometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => FuelEfficiency.FromLitersPer100Kilometers(value.ToDouble(null));
 #endif
-            => FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(double)" />
         public static FuelEfficiency MilesPerUkGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => FuelEfficiency.FromMilesPerUkGallon(double.CreateChecked(value));
+#else
+            , IConvertible
+            => FuelEfficiency.FromMilesPerUkGallon(value.ToDouble(null));
 #endif
-            => FuelEfficiency.FromMilesPerUkGallon(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(double)" />
         public static FuelEfficiency MilesPerUsGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => FuelEfficiency.FromMilesPerUsGallon(double.CreateChecked(value));
+#else
+            , IConvertible
+            => FuelEfficiency.FromMilesPerUsGallon(value.ToDouble(null));
 #endif
-            => FuelEfficiency.FromMilesPerUsGallon(Convert.ToDouble(value));
 
     }
 }

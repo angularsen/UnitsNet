@@ -37,136 +37,187 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate DecadegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate DecidegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerHour(double)" />
         public static TemperatureChangeRate DegreesCelsiusPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesCelsiusPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerHour(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesCelsiusPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)" />
         public static TemperatureChangeRate DegreesCelsiusPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesCelsiusPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesCelsiusPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate DegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerHour(double)" />
         public static TemperatureChangeRate DegreesFahrenheitPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesFahrenheitPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerHour(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesFahrenheitPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double)" />
         public static TemperatureChangeRate DegreesFahrenheitPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double)" />
         public static TemperatureChangeRate DegreesFahrenheitPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerHour(double)" />
         public static TemperatureChangeRate DegreesKelvinPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesKelvinPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerHour(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesKelvinPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerMinute(double)" />
         public static TemperatureChangeRate DegreesKelvinPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesKelvinPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerMinute(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesKelvinPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerSecond(double)" />
         public static TemperatureChangeRate DegreesKelvinPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromDegreesKelvinPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromDegreesKelvinPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromDegreesKelvinPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate HectodegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate KilodegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate MicrodegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate MillidegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double)" />
         public static TemperatureChangeRate NanodegreesCelsiusPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(value.ToDouble(null));
 #endif
-            => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
     }
 }

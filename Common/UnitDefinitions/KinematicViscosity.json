@@ -52,8 +52,8 @@
         "L": "Foot",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} / 10.7639",
-      "FromBaseToUnitFunc": "{x} * 10.7639",
+      "FromUnitToBaseFunc": "{x} * 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} / 9.290304e-2",
       "Localization": [
         {
           "Culture": "en-US",

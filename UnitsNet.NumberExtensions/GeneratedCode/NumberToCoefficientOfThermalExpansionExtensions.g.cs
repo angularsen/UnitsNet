@@ -37,48 +37,66 @@ namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPerDegreeCelsius(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPerDegreeCelsius(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPerDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(double)" />
         public static CoefficientOfThermalExpansion PerDegreeFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerKelvin(double)" />
         public static CoefficientOfThermalExpansion PerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPerKelvin(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPerKelvin(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(double)" />
         public static CoefficientOfThermalExpansion PpmPerDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(double)" />
         public static CoefficientOfThermalExpansion PpmPerDegreeFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerKelvin(double)" />
         public static CoefficientOfThermalExpansion PpmPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => CoefficientOfThermalExpansion.FromPpmPerKelvin(double.CreateChecked(value));
+#else
+            , IConvertible
+            => CoefficientOfThermalExpansion.FromPpmPerKelvin(value.ToDouble(null));
 #endif
-            => CoefficientOfThermalExpansion.FromPpmPerKelvin(Convert.ToDouble(value));
 
     }
 }

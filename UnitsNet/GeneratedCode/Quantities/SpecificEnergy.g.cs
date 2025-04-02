@@ -1214,7 +1214,7 @@ namespace UnitsNet
             SpecificEnergy? convertedOrNull = (Unit, unit) switch
             {
                 // SpecificEnergyUnit -> BaseUnit
-                (SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 2326.000075362, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 1055.05585262 / 0.45359237, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.CaloriePerGram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 4.184e3, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * (24 * 3.6e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
@@ -1245,7 +1245,7 @@ namespace UnitsNet
                 (SpecificEnergyUnit.WattHourPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 7.93664e3, SpecificEnergyUnit.JoulePerKilogram),
 
                 // BaseUnit -> SpecificEnergyUnit
-                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound) => new SpecificEnergy(_value / 2326.000075362, SpecificEnergyUnit.BtuPerPound),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound) => new SpecificEnergy(_value * 0.45359237 / 1055.05585262, SpecificEnergyUnit.BtuPerPound),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.CaloriePerGram) => new SpecificEnergy(_value / 4.184e3, SpecificEnergyUnit.CaloriePerGram),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerKilogram) => new SpecificEnergy((_value / (24 * 3.6e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerKilogram),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerShortTon) => new SpecificEnergy((_value / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d, SpecificEnergyUnit.GigawattDayPerShortTon),

@@ -152,7 +152,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        SpecificVolumeUnit.CubicFootPerPound => _value / 16.01846353,
+                        SpecificVolumeUnit.CubicFootPerPound => _value * 0.028316846592 / 0.45359237,
                         SpecificVolumeUnit.CubicMeterPerKilogram => _value,
                         SpecificVolumeUnit.MillicubicMeterPerKilogram => (_value) * 1e-3d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -168,7 +168,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        SpecificVolumeUnit.CubicFootPerPound => baseUnitValue * 16.01846353,
+                        SpecificVolumeUnit.CubicFootPerPound => baseUnitValue * 0.45359237 / 0.028316846592,
                         SpecificVolumeUnit.CubicMeterPerKilogram => baseUnitValue,
                         SpecificVolumeUnit.MillicubicMeterPerKilogram => (baseUnitValue) / 1e-3d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

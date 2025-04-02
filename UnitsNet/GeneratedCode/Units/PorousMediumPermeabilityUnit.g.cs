@@ -25,6 +25,11 @@ namespace UnitsNet.Units
 
     public enum PorousMediumPermeabilityUnit
     {
+
+        /// <summary>
+        ///     The darcy (or darcy unit) and millidarcy (md or mD) are units of permeability, named after Henry Darcy. They are not SI units, but they are widely used in petroleum engineering and geology.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Darcy_(unit)</remarks>
         Darcy = 1,
         Microdarcy = 2,
         Millidarcy = 3,

@@ -55,8 +55,8 @@
     {
       "SingularName": "MillimeterOfMercuryPerSecond",
       "PluralName": "MillimetersOfMercuryPerSecond",
-      "FromUnitToBaseFunc": "{x} * 133.322",
-      "FromBaseToUnitFunc": "{x} / 133.322",
+      "FromUnitToBaseFunc": "{x} * 133.322387415",
+      "FromBaseToUnitFunc": "{x} / 133.322387415",
       "Localization": [
         {
           "Culture": "en-US",
@@ -92,8 +92,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
-      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 / 0.00064516",
+      "FromBaseToUnitFunc": "{x} * 0.00064516 / 4.4482216152605",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -116,8 +116,8 @@
         "M": "Pound",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3 / 60",
-      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3 * 60",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 0.00064516) / 60",
+      "FromBaseToUnitFunc": "{x} * 60 / (4.4482216152605 / 0.00064516)",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

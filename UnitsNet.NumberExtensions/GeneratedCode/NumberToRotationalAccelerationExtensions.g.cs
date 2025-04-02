@@ -37,32 +37,44 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalAcceleration.FromDegreesPerSecondSquared(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(null));
 #endif
-            => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalAcceleration.FromRadiansPerSecondSquared(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToDouble(null));
 #endif
-            => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToDouble(null));
 #endif
-            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToDouble(null));
 #endif
-            => RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
 
     }
 }

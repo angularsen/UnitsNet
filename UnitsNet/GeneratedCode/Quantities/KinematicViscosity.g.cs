@@ -864,7 +864,7 @@ namespace UnitsNet
                 (KinematicViscosityUnit.Microstokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((_value / 1e4) * 1e-6d, KinematicViscosityUnit.SquareMeterPerSecond),
                 (KinematicViscosityUnit.Millistokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((_value / 1e4) * 1e-3d, KinematicViscosityUnit.SquareMeterPerSecond),
                 (KinematicViscosityUnit.Nanostokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((_value / 1e4) * 1e-9d, KinematicViscosityUnit.SquareMeterPerSecond),
-                (KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(_value / 10.7639, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(_value * 9.290304e-2, KinematicViscosityUnit.SquareMeterPerSecond),
                 (KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(_value / 1e4, KinematicViscosityUnit.SquareMeterPerSecond),
 
                 // BaseUnit -> KinematicViscosityUnit
@@ -874,7 +874,7 @@ namespace UnitsNet
                 (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Microstokes) => new KinematicViscosity((_value * 1e4) / 1e-6d, KinematicViscosityUnit.Microstokes),
                 (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Millistokes) => new KinematicViscosity((_value * 1e4) / 1e-3d, KinematicViscosityUnit.Millistokes),
                 (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes) => new KinematicViscosity((_value * 1e4) / 1e-9d, KinematicViscosityUnit.Nanostokes),
-                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond) => new KinematicViscosity(_value * 10.7639, KinematicViscosityUnit.SquareFootPerSecond),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond) => new KinematicViscosity(_value / 9.290304e-2, KinematicViscosityUnit.SquareFootPerSecond),
                 (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes) => new KinematicViscosity(_value * 1e4, KinematicViscosityUnit.Stokes),
 
                 _ => null

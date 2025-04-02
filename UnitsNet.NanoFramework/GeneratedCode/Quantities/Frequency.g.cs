@@ -84,11 +84,6 @@ namespace UnitsNet
         public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.BUnit"/>
-        /// </summary>
-        public double BUnits => As(FrequencyUnit.BUnit);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.CyclePerHour"/>
         /// </summary>
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
@@ -151,11 +146,6 @@ namespace UnitsNet
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BeatPerMinute"/>.
         /// </summary>
         public static Frequency FromBeatsPerMinute(double beatsperminute) => new Frequency(beatsperminute, FrequencyUnit.BeatPerMinute);
-
-        /// <summary>
-        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BUnit"/>.
-        /// </summary>
-        public static Frequency FromBUnits(double bunits) => new Frequency(bunits, FrequencyUnit.BUnit);
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerHour"/>.
@@ -253,7 +243,6 @@ namespace UnitsNet
                     return Unit switch
                     {
                         FrequencyUnit.BeatPerMinute => _value / 60,
-                        FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
                         FrequencyUnit.CyclePerHour => _value / 3600,
                         FrequencyUnit.CyclePerMinute => _value / 60,
                         FrequencyUnit.Gigahertz => (_value) * 1e9d,
@@ -263,7 +252,7 @@ namespace UnitsNet
                         FrequencyUnit.Microhertz => (_value) * 1e-6d,
                         FrequencyUnit.Millihertz => (_value) * 1e-3d,
                         FrequencyUnit.PerSecond => _value,
-                        FrequencyUnit.RadianPerSecond => _value / 6.2831853072,
+                        FrequencyUnit.RadianPerSecond => _value / (2 * 3.1415926535897931),
                         FrequencyUnit.Terahertz => (_value) * 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -279,7 +268,6 @@ namespace UnitsNet
                     return unit switch
                     {
                         FrequencyUnit.BeatPerMinute => baseUnitValue * 60,
-                        FrequencyUnit.BUnit => baseUnitValue * baseUnitValue * 1e-3,
                         FrequencyUnit.CyclePerHour => baseUnitValue * 3600,
                         FrequencyUnit.CyclePerMinute => baseUnitValue * 60,
                         FrequencyUnit.Gigahertz => (baseUnitValue) / 1e9d,
@@ -289,7 +277,7 @@ namespace UnitsNet
                         FrequencyUnit.Microhertz => (baseUnitValue) / 1e-6d,
                         FrequencyUnit.Millihertz => (baseUnitValue) / 1e-3d,
                         FrequencyUnit.PerSecond => baseUnitValue,
-                        FrequencyUnit.RadianPerSecond => baseUnitValue * 6.2831853072,
+                        FrequencyUnit.RadianPerSecond => baseUnitValue * (2 * 3.1415926535897931),
                         FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

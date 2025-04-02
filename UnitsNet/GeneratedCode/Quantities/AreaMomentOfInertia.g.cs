@@ -795,15 +795,15 @@ namespace UnitsNet
                 // AreaMomentOfInertiaUnit -> BaseUnit
                 (AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e8, AreaMomentOfInertiaUnit.MeterToTheFourth),
                 (AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e4, AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * 0.0086309748412416, AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * 0.0000004162314256, AreaMomentOfInertiaUnit.MeterToTheFourth),
                 (AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e12, AreaMomentOfInertiaUnit.MeterToTheFourth),
 
                 // BaseUnit -> AreaMomentOfInertiaUnit
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e8, AreaMomentOfInertiaUnit.CentimeterToTheFourth),
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e4, AreaMomentOfInertiaUnit.DecimeterToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(_value / Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.FootToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(_value / Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.InchToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(_value / 0.0086309748412416, AreaMomentOfInertiaUnit.FootToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(_value / 0.0000004162314256, AreaMomentOfInertiaUnit.InchToTheFourth),
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e12, AreaMomentOfInertiaUnit.MillimeterToTheFourth),
 
                 _ => null

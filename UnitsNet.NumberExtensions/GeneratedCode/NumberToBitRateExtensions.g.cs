@@ -37,208 +37,286 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromBitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromBitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromBytesPerSecond(double)" />
         public static BitRate BytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromBytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromBytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExabitsPerSecond(double)" />
         public static BitRate ExabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromExabitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExabitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExabytesPerSecond(double)" />
         public static BitRate ExabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromExabytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExabytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(double)" />
         public static BitRate ExbibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromExbibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExbibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(double)" />
         public static BitRate ExbibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromExbibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExbibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(double)" />
         public static BitRate GibibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromGibibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGibibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(double)" />
         public static BitRate GibibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromGibibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGibibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(double)" />
         public static BitRate GigabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromGigabitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGigabitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(double)" />
         public static BitRate GigabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromGigabytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGigabytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(double)" />
         public static BitRate KibibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromKibibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKibibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(double)" />
         public static BitRate KibibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromKibibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKibibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(double)" />
         public static BitRate KilobitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromKilobitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKilobitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(double)" />
         public static BitRate KilobytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromKilobytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKilobytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(double)" />
         public static BitRate MebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromMebibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMebibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(double)" />
         public static BitRate MebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromMebibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMebibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(double)" />
         public static BitRate MegabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromMegabitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMegabitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(double)" />
         public static BitRate MegabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromMegabytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMegabytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(double)" />
         public static BitRate PebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromPebibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPebibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(double)" />
         public static BitRate PebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromPebibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPebibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(double)" />
         public static BitRate PetabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromPetabitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPetabitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(double)" />
         public static BitRate PetabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromPetabytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPetabytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(double)" />
         public static BitRate TebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromTebibitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTebibitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(double)" />
         public static BitRate TebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromTebibytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTebibytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(double)" />
         public static BitRate TerabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromTerabitsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTerabitsPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(double)" />
         public static BitRate TerabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => BitRate.FromTerabytesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTerabytesPerSecond(value.ToDouble(null));
 #endif
-            => BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
 
     }
 }

@@ -37,136 +37,187 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromCentimoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromCentimoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromCentimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(double)" />
         public static AmountOfSubstance CentipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromCentipoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromCentipoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromCentipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(double)" />
         public static AmountOfSubstance Decimoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromDecimoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromDecimoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromDecimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(double)" />
         public static AmountOfSubstance DecipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromDecipoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromDecipoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(double)" />
         public static AmountOfSubstance Femtomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromFemtomoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromFemtomoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromFemtomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(double)" />
         public static AmountOfSubstance Kilomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromKilomoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromKilomoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(double)" />
         public static AmountOfSubstance KilopoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromKilopoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromKilopoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromKilopoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(double)" />
         public static AmountOfSubstance Megamoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMegamoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMegamoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMegamoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(double)" />
         public static AmountOfSubstance Micromoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMicromoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMicromoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMicromoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(double)" />
         public static AmountOfSubstance MicropoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMicropoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMicropoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMicropoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(double)" />
         public static AmountOfSubstance Millimoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMillimoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMillimoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMillimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(double)" />
         public static AmountOfSubstance MillipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMillipoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMillipoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMillipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMoles(double)" />
         public static AmountOfSubstance Moles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(double)" />
         public static AmountOfSubstance Nanomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromNanomoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromNanomoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromNanomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(double)" />
         public static AmountOfSubstance NanopoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromNanopoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromNanopoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(double)" />
         public static AmountOfSubstance Picomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromPicomoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromPicomoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromPicomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(double)" />
         public static AmountOfSubstance PoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AmountOfSubstance.FromPoundMoles(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AmountOfSubstance.FromPoundMoles(value.ToDouble(null));
 #endif
-            => AmountOfSubstance.FromPoundMoles(Convert.ToDouble(value));
 
     }
 }

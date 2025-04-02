@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LuminousIntensity.FromCandela(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LuminousIntensity.FromCandela(value.ToDouble(null));
 #endif
-            => LuminousIntensity.FromCandela(Convert.ToDouble(value));
 
     }
 }

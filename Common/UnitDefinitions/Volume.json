@@ -166,8 +166,10 @@
       "BaseUnits": {
         "L": "Mile"
       },
-      "FromUnitToBaseFunc": "{x} * 4.16818182544058e9",
-      "FromBaseToUnitFunc": "{x} / 4.16818182544058e9",
+      "XmlDocSummary": "A cubic mile (abbreviation: cu mi or mi3) is an imperial and US customary (non-SI non-metric) unit of volume, used in the United States, Canada and the United Kingdom. It is defined as the volume of a cube with sides of 1 mile (63360 inches, 5280 feet, 1760 yards or ~1.609 kilometres) in length.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cubic_mile",
+      "FromUnitToBaseFunc": "{x} * 4.168181825440579584e9",
+      "FromBaseToUnitFunc": "{x} / 4.168181825440579584e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -185,8 +187,10 @@
       "BaseUnits": {
         "L": "Yard"
       },
-      "FromUnitToBaseFunc": "{x} * 0.764554858",
-      "FromBaseToUnitFunc": "{x} / 0.764554858",
+      "XmlDocSummary": "A cubic yard is an Imperial / U.S. customary (non-SI non-metric) unit of volume, used in Canada and the United States. It is defined as the volume of a cube with sides of 1 yard (3 feet, 36 inches, 0.9144 meters) in length.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cubic_yard",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984",
+      "FromBaseToUnitFunc": "{x} / 0.764554857984",
       "Localization": [
         {
           "Culture": "en-US",
@@ -204,8 +208,10 @@
       "BaseUnits": {
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "{x} * 2.8316846592e-2",
-      "FromBaseToUnitFunc": "{x} / 2.8316846592e-2",
+      "XmlDocSummary": "The cubic foot (symbol ft3 or cu ft) is an imperial and US customary (non-metric) unit of volume, used in the United States and the United Kingdom. It is defined as the volume of a cube with sides of one foot (0.3048 m) in length.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cubic_foot",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592",
+      "FromBaseToUnitFunc": "{x} / 0.028316846592",
       "Prefixes": [ "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -224,6 +230,8 @@
       "BaseUnits": {
         "L": "Inch"
       },
+      "XmlDocSummary": "The cubic inch (symbol in3) is a unit of volume in the Imperial units and United States customary units systems. It is the volume of a cube with each of its three dimensions (length, width, and height) being one inch long which is equivalent to 1/231 of a US gallon.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cubic_yard",
       "FromUnitToBaseFunc": "{x} * 1.6387064e-5",
       "FromBaseToUnitFunc": "{x} / 1.6387064e-5",
       "Localization": [
@@ -240,10 +248,10 @@
     {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00454609",
-      "FromBaseToUnitFunc": "{x} / 0.00454609",
       "XmlDocSummary": "The British imperial gallon (frequently called simply \"gallon\") is defined as exactly 4.54609 litres.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#Imperial_gallon",
+      "FromUnitToBaseFunc": "{x} * 0.00454609",
+      "FromBaseToUnitFunc": "{x} / 0.00454609",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -259,8 +267,10 @@
     {
       "SingularName": "ImperialOunce",
       "PluralName": "ImperialOunces",
-      "FromUnitToBaseFunc": "{x} * 2.8413062499962901241875439064617e-5",
-      "FromBaseToUnitFunc": "{x} / 2.8413062499962901241875439064617e-5",
+      "XmlDocSummary": "An imperial fluid ounce is 1⁄20 of an imperial pint, 1⁄160 of an imperial gallon or exactly 28.4130625 mL.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Fluid_ounce",
+      "FromUnitToBaseFunc": "{x} * 2.84130625e-5",
+      "FromBaseToUnitFunc": "{x} / 2.84130625e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -275,10 +285,10 @@
     {
       "SingularName": "UsGallon",
       "PluralName": "UsGallons",
-      "FromUnitToBaseFunc": "{x} * 0.003785411784",
-      "FromBaseToUnitFunc": "{x} / 0.003785411784",
       "XmlDocSummary": "The US liquid gallon (frequently called simply \"gallon\") is legally defined as 231 cubic inches, which is exactly 3.785411784 litres.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#US_liquid_gallon",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784",
+      "FromBaseToUnitFunc": "{x} / 0.003785411784",
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -294,8 +304,10 @@
     {
       "SingularName": "UsOunce",
       "PluralName": "UsOunces",
-      "FromUnitToBaseFunc": "{x} * 2.957352956253760505068307980135e-5",
-      "FromBaseToUnitFunc": "{x} / 2.957352956253760505068307980135e-5",
+      "XmlDocSummary": "A US customary fluid ounce is 1⁄16 of a US liquid pint and 1⁄128 of a US liquid gallon or exactly 29.5735295625 mL, making it about 4.08% larger than the imperial fluid ounce.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Fluid_ounce",
+      "FromUnitToBaseFunc": "{x} * 2.95735295625e-5",
+      "FromBaseToUnitFunc": "{x} / 2.95735295625e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -310,6 +322,8 @@
     {
       "SingularName": "UsTablespoon",
       "PluralName": "UsTablespoons",
+      "XmlDocSummary": "The traditional U.S. interpretation of the tablespoon as a unit of volume is: 1 US tablespoon = 4 fluid drams, or 3 teaspoons or 1/2 US fluid ounce (≈ 14.8 ml)",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Tablespoon#United_States",
       "FromUnitToBaseFunc": "{x} * 1.478676478125e-5",
       "FromBaseToUnitFunc": "{x} / 1.478676478125e-5",
       "Localization": [
@@ -330,6 +344,8 @@
     {
       "SingularName": "AuTablespoon",
       "PluralName": "AuTablespoons",
+      "XmlDocSummary": "In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Tablespoon#Australia",
       "FromUnitToBaseFunc": "{x} * 2e-5",
       "FromBaseToUnitFunc": "{x} / 2e-5",
       "Localization": [
@@ -350,6 +366,8 @@
     {
       "SingularName": "UkTablespoon",
       "PluralName": "UkTablespoons",
+      "XmlDocSummary": "In nutrition labeling in the U.S. and the U.K., a tablespoon is defined as 15 ml (0.51 US fl oz). In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Tablespoon#International",
       "FromUnitToBaseFunc": "{x} * 1.5e-5",
       "FromBaseToUnitFunc": "{x} / 1.5e-5",
       "Localization": [
@@ -370,6 +388,8 @@
     {
       "SingularName": "MetricTeaspoon",
       "PluralName": "MetricTeaspoons",
+      "XmlDocSummary": "The metric teaspoon as a unit of culinary measure is 5 ml (0.18 imp fl oz; 0.17 US fl oz),[17] equal to 5 cm3, 1⁄3 UK/Canadian metric tablespoon, or 1⁄4 Australian metric tablespoon.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Teaspoon#Metric_teaspoon",
       "FromUnitToBaseFunc": "{x} * 0.5e-5",
       "FromBaseToUnitFunc": "{x} / 0.5e-5",
       "Localization": [
@@ -390,6 +410,8 @@
     {
       "SingularName": "UsTeaspoon",
       "PluralName": "UsTeaspoons",
+      "XmlDocSummary": "As a unit of culinary measure, one teaspoon in the United States is 1⁄3 tablespoon, exactly 4.92892159375 ml, 1 1⁄3 US fluid drams, 1⁄6 US fl oz, 1⁄48 US cup, 1⁄768 US liquid gallon, or 77⁄256 (0.30078125) cubic inches.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Teaspoon#United_States_customary_unit",
       "FromUnitToBaseFunc": "{x} * 4.92892159375e-6",
       "FromBaseToUnitFunc": "{x} / 4.92892159375e-6",
       "Localization": [
@@ -410,6 +432,8 @@
     {
       "SingularName": "MetricCup",
       "PluralName": "MetricCups",
+      "XmlDocSummary": "Australia, Canada, New Zealand, and some other members of the Commonwealth of Nations, being former British colonies that have since metricated, employ a metric cup of 250 millilitres. Although derived from the metric system, it is not an SI unit.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cup_(unit)#Metric_cup",
       "FromUnitToBaseFunc": "{x} * 0.00025",
       "FromBaseToUnitFunc": "{x} / 0.00025",
       "Localization": [
@@ -422,6 +446,8 @@
     {
       "SingularName": "UsCustomaryCup",
       "PluralName": "UsCustomaryCups",
+      "XmlDocSummary": "In the United States, the customary cup is half of a liquid pint or 1⁄16 US customary gallon which is 236.5882365 milliliters exactly.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cup_(unit)#Customary_cup",
       "FromUnitToBaseFunc": "{x} * 0.0002365882365",
       "FromBaseToUnitFunc": "{x} / 0.0002365882365",
       "Localization": [
@@ -434,6 +460,8 @@
     {
       "SingularName": "UsLegalCup",
       "PluralName": "UsLegalCups",
+      "XmlDocSummary": "The cup currently used in the United States for nutrition labelling is defined in United States law as 240 ml.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cup_(unit)#Legal_cup",
       "FromUnitToBaseFunc": "{x} * 0.00024",
       "FromBaseToUnitFunc": "{x} / 0.00024",
       "Localization": [
@@ -446,6 +474,8 @@
     {
       "SingularName": "OilBarrel",
       "PluralName": "OilBarrels",
+      "XmlDocSummary": "In the oil industry, one barrel (unit symbol bbl) is a unit of volume used for measuring oil defined as exactly 42 US gallons, approximately 159 liters, or 35 imperial gallons.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Barrel_(unit)#Oil_barrel",
       "FromUnitToBaseFunc": "{x} * 0.158987294928",
       "FromBaseToUnitFunc": "{x} / 0.158987294928",
       "Localization": [
@@ -458,8 +488,10 @@
     {
       "SingularName": "UsBeerBarrel",
       "PluralName": "UsBeerBarrels",
-      "FromUnitToBaseFunc": "{x} * 0.1173477658",
-      "FromBaseToUnitFunc": "{x} / 0.1173477658",
+      "XmlDocSummary": "Fluid barrels vary depending on what is being measured and where. In the US most fluid barrels (apart from oil) are 31.5 US gallons (26 imp gal; 119 L) (half a hogshead), but a beer barrel is 31 US gallons (26 imp gal; 117 L).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Barrel_(unit)#Fluid_barrel_in_the_US_and_UK",
+      "FromUnitToBaseFunc": "{x} * 0.117347765304",
+      "FromBaseToUnitFunc": "{x} / 0.117347765304",
       "Localization": [
         {
           "Culture": "en-US",
@@ -470,6 +502,8 @@
     {
       "SingularName": "ImperialBeerBarrel",
       "PluralName": "ImperialBeerBarrels",
+      "XmlDocSummary": "Fluid barrels vary depending on what is being measured and where. In the UK a beer barrel is 36 imperial gallons (43 US gal; ~164 L).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Barrel_(unit)#Fluid_barrel_in_the_US_and_UK",
       "FromUnitToBaseFunc": "{x} * 0.16365924",
       "FromBaseToUnitFunc": "{x} / 0.16365924",
       "Localization": [
@@ -482,6 +516,8 @@
     {
       "SingularName": "UsQuart",
       "PluralName": "UsQuarts",
+      "XmlDocSummary": "The US liquid quart equals 57.75 cubic inches, which is exactly equal to 0.946352946 L.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Quart#US_liquid_quart",
       "FromUnitToBaseFunc": "{x} * 9.46352946e-4",
       "FromBaseToUnitFunc": "{x} / 9.46352946e-4",
       "Localization": [
@@ -494,6 +530,8 @@
     {
       "SingularName": "ImperialQuart",
       "PluralName": "ImperialQuarts",
+      "XmlDocSummary": "The imperial quart, which is used for both liquid and dry capacity, is equal to one quarter of an imperial gallon, or exactly 1.1365225 liters.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Quart#Imperial_quart",
       "FromUnitToBaseFunc": "{x} * 1.1365225e-3",
       "FromBaseToUnitFunc": "{x} / 1.1365225e-3",
       "Localization": [
@@ -506,6 +544,8 @@
     {
       "SingularName": "UsPint",
       "PluralName": "UsPints",
+      "XmlDocSummary": "The pint is a unit of volume or capacity in both the imperial and United States customary measurement systems. In both of those systems it is traditionally one eighth of a gallon. The British imperial pint is about 20% larger than the American pint because the two systems are defined differently.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pint#US_liquid_pint",
       "FromUnitToBaseFunc": "{x} * 4.73176473e-4",
       "FromBaseToUnitFunc": "{x} / 4.73176473e-4",
       "Localization": [
@@ -518,8 +558,10 @@
     {
       "SingularName": "AcreFoot",
       "PluralName": "AcreFeet",
-      "FromUnitToBaseFunc": "{x} / 0.000810714",
-      "FromBaseToUnitFunc": "{x} * 0.000810714",
+      "XmlDocSummary": "An acre-foot is 43,560 cubic feet (~1,233.5 m3).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Acre-foot",
+      "FromUnitToBaseFunc": "{x} * 1233.48183754752",
+      "FromBaseToUnitFunc": "{x} / 1233.48183754752",
       "Localization": [
         {
           "Culture": "en-US",
@@ -530,6 +572,8 @@
     {
       "SingularName": "ImperialPint",
       "PluralName": "ImperialPints",
+      "XmlDocSummary": "The pint is a unit of volume or capacity in both the imperial and United States customary measurement systems. In both of those systems it is traditionally one eighth of a gallon. The British imperial pint is about 20% larger than the American pint because the two systems are defined differently.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pint#Imperial_pint",
       "FromUnitToBaseFunc": "{x} * 5.6826125e-4",
       "FromBaseToUnitFunc": "{x} / 5.6826125e-4",
       "Localization": [
@@ -542,8 +586,10 @@
     {
       "SingularName": "BoardFoot",
       "PluralName": "BoardFeet",
-      "FromUnitToBaseFunc": "{x} * 2.3597372158e-3",
-      "FromBaseToUnitFunc": "{x} / 2.3597372158e-3",
+      "XmlDocSummary": "The board foot or board-foot is a unit of measurement for the volume of lumber in the United States and Canada. It equals the volume of a board that is one-foot (305 mm) in length, one-foot (305 mm) in width, and one-inch (25.4 mm) in thickness.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Board_foot",
+      "FromUnitToBaseFunc": "{x} * (0.028316846592 / 12)",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 / 12)",
       "Localization": [
         {
           "Culture": "en-US",

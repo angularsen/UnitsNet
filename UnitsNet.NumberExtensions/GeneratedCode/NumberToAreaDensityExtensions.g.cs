@@ -37,24 +37,33 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AreaDensity.FromGramsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AreaDensity.FromGramsPerSquareMeter(value.ToDouble(null));
 #endif
-            => AreaDensity.FromGramsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
         public static AreaDensity KilogramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AreaDensity.FromKilogramsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AreaDensity.FromKilogramsPerSquareMeter(value.ToDouble(null));
 #endif
-            => AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
         public static AreaDensity MilligramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => AreaDensity.FromMilligramsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(null));
 #endif
-            => AreaDensity.FromMilligramsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

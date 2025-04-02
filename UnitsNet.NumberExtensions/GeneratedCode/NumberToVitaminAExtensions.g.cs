@@ -37,8 +37,11 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => VitaminA.FromInternationalUnits(double.CreateChecked(value));
+#else
+            , IConvertible
+            => VitaminA.FromInternationalUnits(value.ToDouble(null));
 #endif
-            => VitaminA.FromInternationalUnits(Convert.ToDouble(value));
 
     }
 }

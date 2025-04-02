@@ -30,14 +30,34 @@ namespace UnitsNet.Units
         DecathermEc = 3,
         DecathermImperial = 4,
         DecathermUs = 5,
+
+        /// <summary>
+        ///     In physics, an electronvolt (symbol eV, also written electron-volt and electron volt) is the measure of an amount of kinetic energy gained by a single electron accelerating from rest through an electric potential difference of one volt in vacuum. When used as a unit of energy, the numerical value of 1 eV in joules (symbol J) is equivalent to the numerical value of the charge of an electron in coulombs (symbol C). Under the 2019 redefinition of the SI base units, this sets 1 eV equal to the exact value 1.602176634×10−19 J.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Electronvolt</remarks>
         ElectronVolt = 6,
+
+        /// <summary>
+        ///     The erg is a unit of energy equal to 10−7 joules (100 nJ). It originated in the Centimetre–gram–second system of units (CGS). It has the symbol erg. The erg is not an SI unit. Its name is derived from ergon (ἔργον), a Greek word meaning 'work' or 'task'.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Erg</remarks>
         Erg = 7,
+
+        /// <summary>
+        ///     A pound-foot (lb⋅ft), abbreviated from pound-force foot (lbf · ft), is a unit of torque representing one pound of force acting at a perpendicular distance of one foot from a pivot point. Conversely one foot pound-force (ft · lbf) is the moment about an axis that applies one pound-force at a radius of one foot.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pound-foot_(torque)</remarks>
         FootPound = 8,
         GigabritishThermalUnit = 9,
         GigaelectronVolt = 10,
         Gigajoule = 11,
         GigawattDay = 12,
         GigawattHour = 13,
+
+        /// <summary>
+        ///     A horsepower-hour (symbol: hp⋅h) is an outdated unit of energy, not used in the International System of Units. The unit represents an amount of work a horse is supposed capable of delivering during an hour (1 horsepower integrated over a time interval of an hour).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower-hour</remarks>
         HorsepowerHour = 14,
         Joule = 15,
         KilobritishThermalUnit = 16,
@@ -60,8 +80,23 @@ namespace UnitsNet.Units
         Terajoule = 37,
         TerawattDay = 30,
         TerawattHour = 31,
+
+        /// <summary>
+        ///     The therm (symbol, thm) is a non-SI unit of heat energy equal to 100,000 British thermal units (BTU), and approximately 105 megajoules, 29.3 kilowatt-hours, 25,200 kilocalories and 25.2 thermies. One therm is the energy content of approximately 100 cubic feet (2.83 cubic metres) of natural gas at standard temperature and pressure. However, the BTU is not standardised worldwide, with slightly different values in the EU, UK, and United States, meaning that the energy content of the therm also varies by territory.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Therm</remarks>
         ThermEc = 32,
+
+        /// <summary>
+        ///     The therm (symbol, thm) is a non-SI unit of heat energy equal to 100,000 British thermal units (BTU), and approximately 105 megajoules, 29.3 kilowatt-hours, 25,200 kilocalories and 25.2 thermies. One therm is the energy content of approximately 100 cubic feet (2.83 cubic metres) of natural gas at standard temperature and pressure. However, the BTU is not standardised worldwide, with slightly different values in the EU, UK, and United States, meaning that the energy content of the therm also varies by territory.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Therm</remarks>
         ThermImperial = 33,
+
+        /// <summary>
+        ///     The therm (symbol, thm) is a non-SI unit of heat energy equal to 100,000 British thermal units (BTU), and approximately 105 megajoules, 29.3 kilowatt-hours, 25,200 kilocalories and 25.2 thermies. One therm is the energy content of approximately 100 cubic feet (2.83 cubic metres) of natural gas at standard temperature and pressure. However, the BTU is not standardised worldwide, with slightly different values in the EU, UK, and United States, meaning that the energy content of the therm also varies by territory.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Therm</remarks>
         ThermUs = 34,
         WattDay = 35,
         WattHour = 36,
