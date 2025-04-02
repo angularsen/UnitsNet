@@ -43,17 +43,6 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             => Frequency.FromBeatsPerMinute(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Frequency.FromBUnits(double)" />
-        public static Frequency BUnits<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Frequency.FromBUnits(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Frequency.FromBUnits(value.ToDouble(null));
-#endif
-
         /// <inheritdoc cref="Frequency.FromCyclesPerHour(double)" />
         public static Frequency CyclesPerHour<T>(this T value)
             where T : notnull

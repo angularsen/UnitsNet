@@ -92,7 +92,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (registeredQuantity is not null)
             {
-                return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
+                return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit)!;
             }
 
             return Quantity.From(valueUnit.Value, unit);
