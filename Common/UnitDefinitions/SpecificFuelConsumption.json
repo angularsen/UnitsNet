@@ -11,8 +11,8 @@
     {
       "SingularName": "PoundMassPerPoundForceHour",
       "PluralName": "PoundsMassPerPoundForceHour",
-      "FromUnitToBaseFunc": "{x} * 28.33",
-      "FromBaseToUnitFunc": "{x} / 28.33",
+      "FromUnitToBaseFunc": "{x} * 1000 / (9.80665e-3 * 3600)",
+      "FromBaseToUnitFunc": "{x} * 9.80665e-3 * 3600 / 1000",
       "Localization": [
         {
           "Culture": "en-US",
@@ -23,8 +23,8 @@
     {
       "SingularName": "KilogramPerKilogramForceHour",
       "PluralName": "KilogramsPerKilogramForceHour",
-      "FromUnitToBaseFunc": "{x} * 28.33",
-      "FromBaseToUnitFunc": "{x} / 28.33",
+      "FromUnitToBaseFunc": "{x} * 1000 / (9.80665e-3 * 3600)",
+      "FromBaseToUnitFunc": "{x} * 9.80665e-3 * 3600 / 1000",
       "Localization": [
         {
           "Culture": "en-US",

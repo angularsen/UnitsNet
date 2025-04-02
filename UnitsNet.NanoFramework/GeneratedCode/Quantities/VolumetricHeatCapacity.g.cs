@@ -215,11 +215,11 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value / 1.4910660e-5,
-                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value / 2.388459e-7,
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value * (1055.05585262 / 0.028316846592) * 1.8,
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value * 4.184e6,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => _value,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => _value,
-                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value / 2.388459e-7) * 1e3d,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value * 4.184e6) * 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (_value) * 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (_value) * 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (_value) * 1e6d,
@@ -237,11 +237,11 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue * 1.4910660e-5,
-                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue * 2.388459e-7,
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue / ((1055.05585262 / 0.028316846592) * 1.8),
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue / 4.184e6,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => baseUnitValue,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => baseUnitValue,
-                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue * 2.388459e-7) / 1e3d,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue / 4.184e6) / 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (baseUnitValue) / 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e6d,
