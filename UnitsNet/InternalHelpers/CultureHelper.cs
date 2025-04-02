@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -10,6 +10,7 @@ namespace UnitsNet.InternalHelpers;
 /// <summary>
 ///     Helper class for <see cref="CultureInfo"/> and related operations.
 /// </summary>
+[Obsolete("string -> CultureInfo conversions are not in the scope of UnitsNet")]
 internal static class CultureHelper
 {
     private static readonly ConcurrentDictionary<string, CultureInfo> CultureCache = new();

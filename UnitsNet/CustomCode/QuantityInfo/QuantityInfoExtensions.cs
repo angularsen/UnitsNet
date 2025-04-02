@@ -10,6 +10,22 @@ namespace UnitsNet;
 internal static class QuantityInfoExtensions
 {
     /// <summary>
+    ///     Get a list of quantities having the given base dimensions.
+    /// </summary>
+    /// <param name="quantityInfos">The type of quantity mapping information.</param>
+    /// <param name="baseDimensions">The base dimensions to match.</param>
+    public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(this IEnumerable<QuantityInfo> quantityInfos,
+        BaseDimensions baseDimensions)
+    {
+        if (baseDimensions is null)
+        {
+            throw new ArgumentNullException(nameof(baseDimensions));
+        }
+
+        return quantityInfos.Where(info => info.BaseDimensions.Equals(baseDimensions));
+    }
+    
+    /// <summary>
     ///     Retrieves the default unit for a specified quantity and unit system.
     /// </summary>
     /// <typeparam name="TUnit">The type of the unit, which is a value type and an enumeration.</typeparam>
