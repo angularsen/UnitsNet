@@ -106,10 +106,6 @@ namespace UnitsNet.Tests
 
         protected override double MillipascalsInOnePascal => 1e3;
 
-        protected override double MetersOfElevationInOnePascal => 39364.9129730686;
-
-        protected override double FeetOfElevationInOnePascal => 129149.976945763;
-
         [Fact]
         public void Absolute_WithAbsolutePressureReference_IsEqual()
         {
@@ -282,6 +278,21 @@ namespace UnitsNet.Tests
         {
             PressureChangeRate pressureChangeRate = Pressure.FromPascals(50) / TimeSpan.FromSeconds(5);
             Assert.Equal(PressureChangeRate.FromPascalsPerSecond(10), pressureChangeRate);
+        }
+
+        [Fact]
+        public void PressureFromElevation_ConvertsWithRounding()
+        {
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot));
+            Assert.Equal(1, pressureFromElevation.Pascals, PascalsTolerance);
+        }
+
+        [Fact]
+        public void ElevationFromPressure_ConvertsWithRounding()
+        {
+            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation();
+            Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
+            Assert.Equal(129149.976945763, elevationFromPressure.Value, 9);
         }
     }
 }

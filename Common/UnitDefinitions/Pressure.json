@@ -400,30 +400,6 @@
           "Abbreviations": [ "inH2O", "inch wc", "wc" ]
         }
       ]
-    },
-    {
-      "SingularName": "MeterOfElevation",
-      "PluralName": "MetersOfElevation",
-      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 44307.69396), 5.2553026003237266401799415610351) * 101325.0",
-      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 44307.69396",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "m of elevation" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "FootOfElevation",
-      "PluralName": "FeetOfElevation",
-      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 145366.45), 5.2553026003237266401799415610351) * 101325.0",
-      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 145366.45",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "ft of elevation" ]
-        }
-      ]
     }
   ]
 }

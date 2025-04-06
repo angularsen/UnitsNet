@@ -114,11 +114,6 @@ namespace UnitsNet
         public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.FootOfElevation"/>
-        /// </summary>
-        public double FeetOfElevation => As(PressureUnit.FootOfElevation);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.FootOfHead"/>
         /// </summary>
         public double FeetOfHead => As(PressureUnit.FootOfHead);
@@ -212,11 +207,6 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megapascal"/>
         /// </summary>
         public double Megapascals => As(PressureUnit.Megapascal);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfElevation"/>
-        /// </summary>
-        public double MetersOfElevation => As(PressureUnit.MeterOfElevation);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfHead"/>
@@ -363,11 +353,6 @@ namespace UnitsNet
         public static Pressure FromDynesPerSquareCentimeter(double dynespersquarecentimeter) => new Pressure(dynespersquarecentimeter, PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfElevation"/>.
-        /// </summary>
-        public static Pressure FromFeetOfElevation(double feetofelevation) => new Pressure(feetofelevation, PressureUnit.FootOfElevation);
-
-        /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfHead"/>.
         /// </summary>
         public static Pressure FromFeetOfHead(double feetofhead) => new Pressure(feetofhead, PressureUnit.FootOfHead);
@@ -461,11 +446,6 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megapascal"/>.
         /// </summary>
         public static Pressure FromMegapascals(double megapascals) => new Pressure(megapascals, PressureUnit.Megapascal);
-
-        /// <summary>
-        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfElevation"/>.
-        /// </summary>
-        public static Pressure FromMetersOfElevation(double metersofelevation) => new Pressure(metersofelevation, PressureUnit.MeterOfElevation);
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfHead"/>.
@@ -619,7 +599,6 @@ namespace UnitsNet
                         PressureUnit.Decapascal => (_value) * 1e1d,
                         PressureUnit.Decibar => (_value * 1e5) * 1e-1d,
                         PressureUnit.DynePerSquareCentimeter => _value * 1.0e-1,
-                        PressureUnit.FootOfElevation => Math.Pow(1.0 - (_value / 145366.45), 5.2553026003237266401799415610351) * 101325.0,
                         PressureUnit.FootOfHead => _value * 9804.139432 * 0.3048,
                         PressureUnit.Gigapascal => (_value) * 1e9d,
                         PressureUnit.Hectopascal => (_value) * 1e2d,
@@ -639,7 +618,6 @@ namespace UnitsNet
                         PressureUnit.Megabar => (_value * 1e5) * 1e6d,
                         PressureUnit.MeganewtonPerSquareMeter => (_value) * 1e6d,
                         PressureUnit.Megapascal => (_value) * 1e6d,
-                        PressureUnit.MeterOfElevation => Math.Pow(1.0 - (_value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0,
                         PressureUnit.MeterOfHead => _value * 9804.139432,
                         PressureUnit.MeterOfWaterColumn => _value * 9.80665e3,
                         PressureUnit.Microbar => (_value * 1e5) * 1e-6d,
@@ -681,7 +659,6 @@ namespace UnitsNet
                         PressureUnit.Decapascal => (baseUnitValue) / 1e1d,
                         PressureUnit.Decibar => (baseUnitValue / 1e5) / 1e-1d,
                         PressureUnit.DynePerSquareCentimeter => baseUnitValue / 1.0e-1,
-                        PressureUnit.FootOfElevation => (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 145366.45,
                         PressureUnit.FootOfHead => baseUnitValue / (9804.139432 * 0.3048),
                         PressureUnit.Gigapascal => (baseUnitValue) / 1e9d,
                         PressureUnit.Hectopascal => (baseUnitValue) / 1e2d,
@@ -701,7 +678,6 @@ namespace UnitsNet
                         PressureUnit.Megabar => (baseUnitValue / 1e5) / 1e6d,
                         PressureUnit.MeganewtonPerSquareMeter => (baseUnitValue) / 1e6d,
                         PressureUnit.Megapascal => (baseUnitValue) / 1e6d,
-                        PressureUnit.MeterOfElevation => (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 44307.69396,
                         PressureUnit.MeterOfHead => baseUnitValue / 9804.139432,
                         PressureUnit.MeterOfWaterColumn => baseUnitValue / 9.80665e3,
                         PressureUnit.Microbar => (baseUnitValue / 1e5) / 1e-6d,

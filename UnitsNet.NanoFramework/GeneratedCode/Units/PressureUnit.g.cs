@@ -42,7 +42,6 @@ namespace UnitsNet.Units
         Decapascal = 4,
         Decibar = 5,
         DynePerSquareCentimeter = 6,
-        FootOfElevation = 7,
         FootOfHead = 8,
         Gigapascal = 9,
         Hectopascal = 10,
@@ -77,7 +76,6 @@ namespace UnitsNet.Units
         Megabar = 24,
         MeganewtonPerSquareMeter = 25,
         Megapascal = 26,
-        MeterOfElevation = 27,
         MeterOfHead = 28,
 
         /// <summary>
