@@ -8,8 +8,6 @@ namespace UnitsNet.Tests
 {
     public class PowerTests : PowerTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double FemtowattsInOneWatt => 1e15;
 
         protected override double GigajoulesPerHourInOneWatt => 3600e-9;
@@ -60,7 +58,7 @@ namespace UnitsNet.Tests
 
         protected override double HydraulicHorsepowerInOneWatt => 0.00134102207184949258114167291719;
 
-        protected override double MechanicalHorsepowerInOneWatt => 0.00134103984229371454625916935992;
+        protected override double MechanicalHorsepowerInOneWatt => 0.001341022089714951;
 
         protected override double MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425;
 

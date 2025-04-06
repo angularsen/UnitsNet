@@ -30,9 +30,10 @@
     {
       "SingularName": "SolarLuminosity",
       "PluralName": "SolarLuminosities",
-      "FromUnitToBaseFunc": "{x} * 3.846e26",
-      "FromBaseToUnitFunc": "{x} / 3.846e26",
-      "XmlDocRemarks": "https://www.britannica.com/science/luminosity",
+      "XmlDocSummary": "The IAU has defined a nominal solar luminosity of 3.828×10^26 W to promote publication of consistent and comparable values in units of the solar luminosity.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Luminosity#Measurement",
+      "FromUnitToBaseFunc": "{x} * 3.828e26",
+      "FromBaseToUnitFunc": "{x} / 3.828e26",
       "Localization": [
         {
           "Culture": "en-US",

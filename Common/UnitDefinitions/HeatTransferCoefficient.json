@@ -45,8 +45,8 @@
     {
       "SingularName": "BtuPerHourSquareFootDegreeFahrenheit",
       "PluralName": "BtusPerHourSquareFootDegreeFahrenheit",
-      "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
-      "FromBaseToUnitFunc": "{x} / 5.6782633411134878",
+      "FromUnitToBaseFunc": "{x} * ((1055.05585262 / (0.3048 * 0.3048 * 3600)) * 1.8)",
+      "FromBaseToUnitFunc": "{x} / ((1055.05585262 / (0.3048 * 0.3048 * 3600)) * 1.8)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -58,8 +58,8 @@
       "SingularName": "CaloriePerHourSquareMeterDegreeCelsius",
       "PluralName": "CaloriesPerHourSquareMeterDegreeCelsius",
       "Prefixes": [ "Kilo" ],
-      "FromUnitToBaseFunc": "({x} * 4.1868) / 3600",
-      "FromBaseToUnitFunc": "({x} / 4.1868) * 3600",
+      "FromUnitToBaseFunc": "({x} * 4.184) / 3600",
+      "FromBaseToUnitFunc": "({x} / 4.184) * 3600",
       "Localization": [
         {
           "Culture": "en-US",

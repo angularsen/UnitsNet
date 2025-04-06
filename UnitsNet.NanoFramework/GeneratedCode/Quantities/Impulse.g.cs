@@ -262,9 +262,9 @@ namespace UnitsNet
                         ImpulseUnit.MillinewtonSecond => (_value) * 1e-3d,
                         ImpulseUnit.NanonewtonSecond => (_value) * 1e-9d,
                         ImpulseUnit.NewtonSecond => _value,
-                        ImpulseUnit.PoundFootPerSecond => _value / 7.230657989877,
-                        ImpulseUnit.PoundForceSecond => _value / 0.2248089430997,
-                        ImpulseUnit.SlugFootPerSecond => _value / 0.224735720691,
+                        ImpulseUnit.PoundFootPerSecond => _value * (0.45359237 * 0.3048),
+                        ImpulseUnit.PoundForceSecond => _value * 0.45359237 * 9.80665,
+                        ImpulseUnit.SlugFootPerSecond => _value * (0.45359237 * 9.80665),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -288,9 +288,9 @@ namespace UnitsNet
                         ImpulseUnit.MillinewtonSecond => (baseUnitValue) / 1e-3d,
                         ImpulseUnit.NanonewtonSecond => (baseUnitValue) / 1e-9d,
                         ImpulseUnit.NewtonSecond => baseUnitValue,
-                        ImpulseUnit.PoundFootPerSecond => baseUnitValue * 7.230657989877,
-                        ImpulseUnit.PoundForceSecond => baseUnitValue * 0.2248089430997,
-                        ImpulseUnit.SlugFootPerSecond => baseUnitValue * 0.224735720691,
+                        ImpulseUnit.PoundFootPerSecond => baseUnitValue / (0.45359237 * 0.3048),
+                        ImpulseUnit.PoundForceSecond => baseUnitValue / (0.45359237 * 9.80665),
+                        ImpulseUnit.SlugFootPerSecond => baseUnitValue / (0.45359237 * 9.80665),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

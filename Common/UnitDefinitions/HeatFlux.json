@@ -27,8 +27,8 @@
     {
       "SingularName": "WattPerSquareInch",
       "PluralName": "WattsPerSquareInch",
-      "FromUnitToBaseFunc": "{x} * 1.5500031e3",
-      "FromBaseToUnitFunc": "{x} / 1.5500031e3",
+      "FromUnitToBaseFunc": "{x} / (2.54e-2 * 2.54e-2)",
+      "FromBaseToUnitFunc": "{x} * (2.54e-2 * 2.54e-2)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -39,8 +39,8 @@
     {
       "SingularName": "WattPerSquareFoot",
       "PluralName": "WattsPerSquareFoot",
-      "FromUnitToBaseFunc": "{x} * 1.07639e1",
-      "FromBaseToUnitFunc": "{x} / 1.07639e1",
+      "FromUnitToBaseFunc": "{x} / (0.3048 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -51,8 +51,9 @@
     {
       "SingularName": "BtuPerSecondSquareInch",
       "PluralName": "BtusPerSecondSquareInch",
-      "FromUnitToBaseFunc": "{x} * 1.63533984e6",
-      "FromBaseToUnitFunc": "{x} / 1.63533984e6",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
+      "FromUnitToBaseFunc": "{x} * 1055.05585262 / (2.54e-2 * 2.54e-2)",
+      "FromBaseToUnitFunc": "{x} * (2.54e-2 * 2.54e-2) / 1055.05585262",
       "Localization": [
         {
           "Culture": "en-US",
@@ -63,8 +64,9 @@
     {
       "SingularName": "BtuPerSecondSquareFoot",
       "PluralName": "BtusPerSecondSquareFoot",
-      "FromUnitToBaseFunc": "{x} * 1.13565267e4",
-      "FromBaseToUnitFunc": "{x} / 1.13565267e4",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
+      "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048) / 1055.05585262",
       "Localization": [
         {
           "Culture": "en-US",
@@ -75,8 +77,9 @@
     {
       "SingularName": "BtuPerMinuteSquareFoot",
       "PluralName": "BtusPerMinuteSquareFoot",
-      "FromUnitToBaseFunc": "{x} * 1.89275445e2",
-      "FromBaseToUnitFunc": "{x} / 1.89275445e2",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
+      "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048 * 60)",
+      "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048 * 60) / 1055.05585262",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +90,9 @@
     {
       "SingularName": "BtuPerHourSquareFoot",
       "PluralName": "BtusPerHourSquareFoot",
-      "FromUnitToBaseFunc": "{x} * 3.15459075",
-      "FromBaseToUnitFunc": "{x} / 3.15459075",
+      "XmlDocRemarks": "Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.",
+      "FromUnitToBaseFunc": "{x} * 1055.05585262 / (0.3048 * 0.3048 * 3600)",
+      "FromBaseToUnitFunc": "{x} * (0.3048 * 0.3048 * 3600) / 1055.05585262",
       "Localization": [
         {
           "Culture": "en-US",
@@ -99,8 +103,8 @@
     {
       "SingularName": "CaloriePerSecondSquareCentimeter",
       "PluralName": "CaloriesPerSecondSquareCentimeter",
-      "FromUnitToBaseFunc": "{x} * 4.1868e4",
-      "FromBaseToUnitFunc": "{x} / 4.1868e4",
+      "FromUnitToBaseFunc": "{x} * 4.184e4",
+      "FromBaseToUnitFunc": "{x} / 4.184e4",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -112,8 +116,8 @@
     {
       "SingularName": "KilocaloriePerHourSquareMeter",
       "PluralName": "KilocaloriesPerHourSquareMeter",
-      "FromUnitToBaseFunc": "{x} * 1.163",
-      "FromBaseToUnitFunc": "{x} / 1.163",
+      "FromUnitToBaseFunc": "{x} * 4.184e3 / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / 4.184e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -124,8 +128,8 @@
     {
       "SingularName": "PoundForcePerFootSecond",
       "PluralName": "PoundsForcePerFootSecond",
-      "FromUnitToBaseFunc": "{x} * 1.459390293720636e1",
-      "FromBaseToUnitFunc": "{x} / 1.459390293720636e1",
+      "FromUnitToBaseFunc": "{x} * 1.3558179483314004 / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} * 9.290304e-2 / 1.3558179483314004",
       "Localization": [
         {
           "Culture": "en-US",
