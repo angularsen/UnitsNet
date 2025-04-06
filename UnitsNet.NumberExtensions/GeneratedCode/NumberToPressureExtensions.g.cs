@@ -109,17 +109,6 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromDynesPerSquareCentimeter(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Pressure.FromFeetOfElevation(double)" />
-        public static Pressure FeetOfElevation<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Pressure.FromFeetOfElevation(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Pressure.FromFeetOfElevation(value.ToDouble(null));
-#endif
-
         /// <inheritdoc cref="Pressure.FromFeetOfHead(double)" />
         public static Pressure FeetOfHead<T>(this T value)
             where T : notnull
@@ -327,17 +316,6 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromMegapascals(value.ToDouble(null));
-#endif
-
-        /// <inheritdoc cref="Pressure.FromMetersOfElevation(double)" />
-        public static Pressure MetersOfElevation<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Pressure.FromMetersOfElevation(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Pressure.FromMetersOfElevation(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(double)" />

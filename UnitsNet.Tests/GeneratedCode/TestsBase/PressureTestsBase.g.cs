@@ -46,7 +46,6 @@ namespace UnitsNet.Tests
         protected abstract double DecapascalsInOnePascal { get; }
         protected abstract double DecibarsInOnePascal { get; }
         protected abstract double DynesPerSquareCentimeterInOnePascal { get; }
-        protected abstract double FeetOfElevationInOnePascal { get; }
         protected abstract double FeetOfHeadInOnePascal { get; }
         protected abstract double GigapascalsInOnePascal { get; }
         protected abstract double HectopascalsInOnePascal { get; }
@@ -66,7 +65,6 @@ namespace UnitsNet.Tests
         protected abstract double MegabarsInOnePascal { get; }
         protected abstract double MeganewtonsPerSquareMeterInOnePascal { get; }
         protected abstract double MegapascalsInOnePascal { get; }
-        protected abstract double MetersOfElevationInOnePascal { get; }
         protected abstract double MetersOfHeadInOnePascal { get; }
         protected abstract double MetersOfWaterColumnInOnePascal { get; }
         protected abstract double MicrobarsInOnePascal { get; }
@@ -97,7 +95,6 @@ namespace UnitsNet.Tests
         protected virtual double DecapascalsTolerance { get { return 1e-5; } }
         protected virtual double DecibarsTolerance { get { return 1e-5; } }
         protected virtual double DynesPerSquareCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double FeetOfElevationTolerance { get { return 1e-5; } }
         protected virtual double FeetOfHeadTolerance { get { return 1e-5; } }
         protected virtual double GigapascalsTolerance { get { return 1e-5; } }
         protected virtual double HectopascalsTolerance { get { return 1e-5; } }
@@ -117,7 +114,6 @@ namespace UnitsNet.Tests
         protected virtual double MegabarsTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double MegapascalsTolerance { get { return 1e-5; } }
-        protected virtual double MetersOfElevationTolerance { get { return 1e-5; } }
         protected virtual double MetersOfHeadTolerance { get { return 1e-5; } }
         protected virtual double MetersOfWaterColumnTolerance { get { return 1e-5; } }
         protected virtual double MicrobarsTolerance { get { return 1e-5; } }
@@ -152,7 +148,6 @@ namespace UnitsNet.Tests
                 PressureUnit.Decapascal => (DecapascalsInOnePascal, DecapascalsTolerance),
                 PressureUnit.Decibar => (DecibarsInOnePascal, DecibarsTolerance),
                 PressureUnit.DynePerSquareCentimeter => (DynesPerSquareCentimeterInOnePascal, DynesPerSquareCentimeterTolerance),
-                PressureUnit.FootOfElevation => (FeetOfElevationInOnePascal, FeetOfElevationTolerance),
                 PressureUnit.FootOfHead => (FeetOfHeadInOnePascal, FeetOfHeadTolerance),
                 PressureUnit.Gigapascal => (GigapascalsInOnePascal, GigapascalsTolerance),
                 PressureUnit.Hectopascal => (HectopascalsInOnePascal, HectopascalsTolerance),
@@ -172,7 +167,6 @@ namespace UnitsNet.Tests
                 PressureUnit.Megabar => (MegabarsInOnePascal, MegabarsTolerance),
                 PressureUnit.MeganewtonPerSquareMeter => (MeganewtonsPerSquareMeterInOnePascal, MeganewtonsPerSquareMeterTolerance),
                 PressureUnit.Megapascal => (MegapascalsInOnePascal, MegapascalsTolerance),
-                PressureUnit.MeterOfElevation => (MetersOfElevationInOnePascal, MetersOfElevationTolerance),
                 PressureUnit.MeterOfHead => (MetersOfHeadInOnePascal, MetersOfHeadTolerance),
                 PressureUnit.MeterOfWaterColumn => (MetersOfWaterColumnInOnePascal, MetersOfWaterColumnTolerance),
                 PressureUnit.Microbar => (MicrobarsInOnePascal, MicrobarsTolerance),
@@ -207,7 +201,6 @@ namespace UnitsNet.Tests
             new object[] { PressureUnit.Decapascal },
             new object[] { PressureUnit.Decibar },
             new object[] { PressureUnit.DynePerSquareCentimeter },
-            new object[] { PressureUnit.FootOfElevation },
             new object[] { PressureUnit.FootOfHead },
             new object[] { PressureUnit.Gigapascal },
             new object[] { PressureUnit.Hectopascal },
@@ -227,7 +220,6 @@ namespace UnitsNet.Tests
             new object[] { PressureUnit.Megabar },
             new object[] { PressureUnit.MeganewtonPerSquareMeter },
             new object[] { PressureUnit.Megapascal },
-            new object[] { PressureUnit.MeterOfElevation },
             new object[] { PressureUnit.MeterOfHead },
             new object[] { PressureUnit.MeterOfWaterColumn },
             new object[] { PressureUnit.Microbar },
@@ -323,7 +315,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.Decapascals, DecapascalsTolerance);
             AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.Decibars, DecibarsTolerance);
             AssertEx.EqualTolerance(DynesPerSquareCentimeterInOnePascal, pascal.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(FeetOfElevationInOnePascal, pascal.FeetOfElevation, FeetOfElevationTolerance);
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
@@ -343,7 +334,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.Megabars, MegabarsTolerance);
             AssertEx.EqualTolerance(MeganewtonsPerSquareMeterInOnePascal, pascal.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.Megapascals, MegapascalsTolerance);
-            AssertEx.EqualTolerance(MetersOfElevationInOnePascal, pascal.MetersOfElevation, MetersOfElevationTolerance);
             AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.MetersOfHead, MetersOfHeadTolerance);
             AssertEx.EqualTolerance(MetersOfWaterColumnInOnePascal, pascal.MetersOfWaterColumn, MetersOfWaterColumnTolerance);
             AssertEx.EqualTolerance(MicrobarsInOnePascal, pascal.Microbars, MicrobarsTolerance);
@@ -398,173 +388,165 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity06.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
             Assert.Equal(PressureUnit.DynePerSquareCentimeter, quantity06.Unit);
 
-            var quantity07 = Pressure.From(1, PressureUnit.FootOfElevation);
-            AssertEx.EqualTolerance(1, quantity07.FeetOfElevation, FeetOfElevationTolerance);
-            Assert.Equal(PressureUnit.FootOfElevation, quantity07.Unit);
+            var quantity07 = Pressure.From(1, PressureUnit.FootOfHead);
+            AssertEx.EqualTolerance(1, quantity07.FeetOfHead, FeetOfHeadTolerance);
+            Assert.Equal(PressureUnit.FootOfHead, quantity07.Unit);
 
-            var quantity08 = Pressure.From(1, PressureUnit.FootOfHead);
-            AssertEx.EqualTolerance(1, quantity08.FeetOfHead, FeetOfHeadTolerance);
-            Assert.Equal(PressureUnit.FootOfHead, quantity08.Unit);
+            var quantity08 = Pressure.From(1, PressureUnit.Gigapascal);
+            AssertEx.EqualTolerance(1, quantity08.Gigapascals, GigapascalsTolerance);
+            Assert.Equal(PressureUnit.Gigapascal, quantity08.Unit);
 
-            var quantity09 = Pressure.From(1, PressureUnit.Gigapascal);
-            AssertEx.EqualTolerance(1, quantity09.Gigapascals, GigapascalsTolerance);
-            Assert.Equal(PressureUnit.Gigapascal, quantity09.Unit);
+            var quantity09 = Pressure.From(1, PressureUnit.Hectopascal);
+            AssertEx.EqualTolerance(1, quantity09.Hectopascals, HectopascalsTolerance);
+            Assert.Equal(PressureUnit.Hectopascal, quantity09.Unit);
 
-            var quantity10 = Pressure.From(1, PressureUnit.Hectopascal);
-            AssertEx.EqualTolerance(1, quantity10.Hectopascals, HectopascalsTolerance);
-            Assert.Equal(PressureUnit.Hectopascal, quantity10.Unit);
+            var quantity10 = Pressure.From(1, PressureUnit.InchOfMercury);
+            AssertEx.EqualTolerance(1, quantity10.InchesOfMercury, InchesOfMercuryTolerance);
+            Assert.Equal(PressureUnit.InchOfMercury, quantity10.Unit);
 
-            var quantity11 = Pressure.From(1, PressureUnit.InchOfMercury);
-            AssertEx.EqualTolerance(1, quantity11.InchesOfMercury, InchesOfMercuryTolerance);
-            Assert.Equal(PressureUnit.InchOfMercury, quantity11.Unit);
+            var quantity11 = Pressure.From(1, PressureUnit.InchOfWaterColumn);
+            AssertEx.EqualTolerance(1, quantity11.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+            Assert.Equal(PressureUnit.InchOfWaterColumn, quantity11.Unit);
 
-            var quantity12 = Pressure.From(1, PressureUnit.InchOfWaterColumn);
-            AssertEx.EqualTolerance(1, quantity12.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
-            Assert.Equal(PressureUnit.InchOfWaterColumn, quantity12.Unit);
+            var quantity12 = Pressure.From(1, PressureUnit.Kilobar);
+            AssertEx.EqualTolerance(1, quantity12.Kilobars, KilobarsTolerance);
+            Assert.Equal(PressureUnit.Kilobar, quantity12.Unit);
 
-            var quantity13 = Pressure.From(1, PressureUnit.Kilobar);
-            AssertEx.EqualTolerance(1, quantity13.Kilobars, KilobarsTolerance);
-            Assert.Equal(PressureUnit.Kilobar, quantity13.Unit);
+            var quantity13 = Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity13.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+            Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, quantity13.Unit);
 
-            var quantity14 = Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity14.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
-            Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, quantity14.Unit);
+            var quantity14 = Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity14.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+            Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, quantity14.Unit);
 
-            var quantity15 = Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity15.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
-            Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, quantity15.Unit);
+            var quantity15 = Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity15.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+            Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, quantity15.Unit);
 
-            var quantity16 = Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity16.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
-            Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, quantity16.Unit);
+            var quantity16 = Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity16.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+            Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, quantity16.Unit);
 
-            var quantity17 = Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity17.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
-            Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, quantity17.Unit);
+            var quantity17 = Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity17.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+            Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, quantity17.Unit);
 
-            var quantity18 = Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity18.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
-            Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, quantity18.Unit);
+            var quantity18 = Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity18.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+            Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, quantity18.Unit);
 
-            var quantity19 = Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity19.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
-            Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, quantity19.Unit);
+            var quantity19 = Pressure.From(1, PressureUnit.Kilopascal);
+            AssertEx.EqualTolerance(1, quantity19.Kilopascals, KilopascalsTolerance);
+            Assert.Equal(PressureUnit.Kilopascal, quantity19.Unit);
 
-            var quantity20 = Pressure.From(1, PressureUnit.Kilopascal);
-            AssertEx.EqualTolerance(1, quantity20.Kilopascals, KilopascalsTolerance);
-            Assert.Equal(PressureUnit.Kilopascal, quantity20.Unit);
+            var quantity20 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot);
+            AssertEx.EqualTolerance(1, quantity20.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
+            Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, quantity20.Unit);
 
-            var quantity21 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot);
-            AssertEx.EqualTolerance(1, quantity21.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
-            Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, quantity21.Unit);
+            var quantity21 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch);
+            AssertEx.EqualTolerance(1, quantity21.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+            Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, quantity21.Unit);
 
-            var quantity22 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch);
-            AssertEx.EqualTolerance(1, quantity22.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
-            Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, quantity22.Unit);
+            var quantity22 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareMil);
+            AssertEx.EqualTolerance(1, quantity22.KilopoundsForcePerSquareMil, KilopoundsForcePerSquareMilTolerance);
+            Assert.Equal(PressureUnit.KilopoundForcePerSquareMil, quantity22.Unit);
 
-            var quantity23 = Pressure.From(1, PressureUnit.KilopoundForcePerSquareMil);
-            AssertEx.EqualTolerance(1, quantity23.KilopoundsForcePerSquareMil, KilopoundsForcePerSquareMilTolerance);
-            Assert.Equal(PressureUnit.KilopoundForcePerSquareMil, quantity23.Unit);
+            var quantity23 = Pressure.From(1, PressureUnit.Megabar);
+            AssertEx.EqualTolerance(1, quantity23.Megabars, MegabarsTolerance);
+            Assert.Equal(PressureUnit.Megabar, quantity23.Unit);
 
-            var quantity24 = Pressure.From(1, PressureUnit.Megabar);
-            AssertEx.EqualTolerance(1, quantity24.Megabars, MegabarsTolerance);
-            Assert.Equal(PressureUnit.Megabar, quantity24.Unit);
+            var quantity24 = Pressure.From(1, PressureUnit.MeganewtonPerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity24.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
+            Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, quantity24.Unit);
 
-            var quantity25 = Pressure.From(1, PressureUnit.MeganewtonPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity25.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
-            Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, quantity25.Unit);
+            var quantity25 = Pressure.From(1, PressureUnit.Megapascal);
+            AssertEx.EqualTolerance(1, quantity25.Megapascals, MegapascalsTolerance);
+            Assert.Equal(PressureUnit.Megapascal, quantity25.Unit);
 
-            var quantity26 = Pressure.From(1, PressureUnit.Megapascal);
-            AssertEx.EqualTolerance(1, quantity26.Megapascals, MegapascalsTolerance);
-            Assert.Equal(PressureUnit.Megapascal, quantity26.Unit);
+            var quantity26 = Pressure.From(1, PressureUnit.MeterOfHead);
+            AssertEx.EqualTolerance(1, quantity26.MetersOfHead, MetersOfHeadTolerance);
+            Assert.Equal(PressureUnit.MeterOfHead, quantity26.Unit);
 
-            var quantity27 = Pressure.From(1, PressureUnit.MeterOfElevation);
-            AssertEx.EqualTolerance(1, quantity27.MetersOfElevation, MetersOfElevationTolerance);
-            Assert.Equal(PressureUnit.MeterOfElevation, quantity27.Unit);
+            var quantity27 = Pressure.From(1, PressureUnit.MeterOfWaterColumn);
+            AssertEx.EqualTolerance(1, quantity27.MetersOfWaterColumn, MetersOfWaterColumnTolerance);
+            Assert.Equal(PressureUnit.MeterOfWaterColumn, quantity27.Unit);
 
-            var quantity28 = Pressure.From(1, PressureUnit.MeterOfHead);
-            AssertEx.EqualTolerance(1, quantity28.MetersOfHead, MetersOfHeadTolerance);
-            Assert.Equal(PressureUnit.MeterOfHead, quantity28.Unit);
+            var quantity28 = Pressure.From(1, PressureUnit.Microbar);
+            AssertEx.EqualTolerance(1, quantity28.Microbars, MicrobarsTolerance);
+            Assert.Equal(PressureUnit.Microbar, quantity28.Unit);
 
-            var quantity29 = Pressure.From(1, PressureUnit.MeterOfWaterColumn);
-            AssertEx.EqualTolerance(1, quantity29.MetersOfWaterColumn, MetersOfWaterColumnTolerance);
-            Assert.Equal(PressureUnit.MeterOfWaterColumn, quantity29.Unit);
+            var quantity29 = Pressure.From(1, PressureUnit.Micropascal);
+            AssertEx.EqualTolerance(1, quantity29.Micropascals, MicropascalsTolerance);
+            Assert.Equal(PressureUnit.Micropascal, quantity29.Unit);
 
-            var quantity30 = Pressure.From(1, PressureUnit.Microbar);
-            AssertEx.EqualTolerance(1, quantity30.Microbars, MicrobarsTolerance);
-            Assert.Equal(PressureUnit.Microbar, quantity30.Unit);
+            var quantity30 = Pressure.From(1, PressureUnit.Millibar);
+            AssertEx.EqualTolerance(1, quantity30.Millibars, MillibarsTolerance);
+            Assert.Equal(PressureUnit.Millibar, quantity30.Unit);
 
-            var quantity31 = Pressure.From(1, PressureUnit.Micropascal);
-            AssertEx.EqualTolerance(1, quantity31.Micropascals, MicropascalsTolerance);
-            Assert.Equal(PressureUnit.Micropascal, quantity31.Unit);
+            var quantity31 = Pressure.From(1, PressureUnit.MillimeterOfMercury);
+            AssertEx.EqualTolerance(1, quantity31.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+            Assert.Equal(PressureUnit.MillimeterOfMercury, quantity31.Unit);
 
-            var quantity32 = Pressure.From(1, PressureUnit.Millibar);
-            AssertEx.EqualTolerance(1, quantity32.Millibars, MillibarsTolerance);
-            Assert.Equal(PressureUnit.Millibar, quantity32.Unit);
+            var quantity32 = Pressure.From(1, PressureUnit.MillimeterOfWaterColumn);
+            AssertEx.EqualTolerance(1, quantity32.MillimetersOfWaterColumn, MillimetersOfWaterColumnTolerance);
+            Assert.Equal(PressureUnit.MillimeterOfWaterColumn, quantity32.Unit);
 
-            var quantity33 = Pressure.From(1, PressureUnit.MillimeterOfMercury);
-            AssertEx.EqualTolerance(1, quantity33.MillimetersOfMercury, MillimetersOfMercuryTolerance);
-            Assert.Equal(PressureUnit.MillimeterOfMercury, quantity33.Unit);
+            var quantity33 = Pressure.From(1, PressureUnit.Millipascal);
+            AssertEx.EqualTolerance(1, quantity33.Millipascals, MillipascalsTolerance);
+            Assert.Equal(PressureUnit.Millipascal, quantity33.Unit);
 
-            var quantity34 = Pressure.From(1, PressureUnit.MillimeterOfWaterColumn);
-            AssertEx.EqualTolerance(1, quantity34.MillimetersOfWaterColumn, MillimetersOfWaterColumnTolerance);
-            Assert.Equal(PressureUnit.MillimeterOfWaterColumn, quantity34.Unit);
+            var quantity34 = Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity34.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+            Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, quantity34.Unit);
 
-            var quantity35 = Pressure.From(1, PressureUnit.Millipascal);
-            AssertEx.EqualTolerance(1, quantity35.Millipascals, MillipascalsTolerance);
-            Assert.Equal(PressureUnit.Millipascal, quantity35.Unit);
+            var quantity35 = Pressure.From(1, PressureUnit.NewtonPerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity35.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+            Assert.Equal(PressureUnit.NewtonPerSquareMeter, quantity35.Unit);
 
-            var quantity36 = Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity36.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
-            Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, quantity36.Unit);
+            var quantity36 = Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity36.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+            Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, quantity36.Unit);
 
-            var quantity37 = Pressure.From(1, PressureUnit.NewtonPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity37.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
-            Assert.Equal(PressureUnit.NewtonPerSquareMeter, quantity37.Unit);
+            var quantity37 = Pressure.From(1, PressureUnit.Pascal);
+            AssertEx.EqualTolerance(1, quantity37.Pascals, PascalsTolerance);
+            Assert.Equal(PressureUnit.Pascal, quantity37.Unit);
 
-            var quantity38 = Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity38.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
-            Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, quantity38.Unit);
+            var quantity38 = Pressure.From(1, PressureUnit.PoundForcePerSquareFoot);
+            AssertEx.EqualTolerance(1, quantity38.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
+            Assert.Equal(PressureUnit.PoundForcePerSquareFoot, quantity38.Unit);
 
-            var quantity39 = Pressure.From(1, PressureUnit.Pascal);
-            AssertEx.EqualTolerance(1, quantity39.Pascals, PascalsTolerance);
-            Assert.Equal(PressureUnit.Pascal, quantity39.Unit);
+            var quantity39 = Pressure.From(1, PressureUnit.PoundForcePerSquareInch);
+            AssertEx.EqualTolerance(1, quantity39.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+            Assert.Equal(PressureUnit.PoundForcePerSquareInch, quantity39.Unit);
 
-            var quantity40 = Pressure.From(1, PressureUnit.PoundForcePerSquareFoot);
-            AssertEx.EqualTolerance(1, quantity40.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
-            Assert.Equal(PressureUnit.PoundForcePerSquareFoot, quantity40.Unit);
+            var quantity40 = Pressure.From(1, PressureUnit.PoundForcePerSquareMil);
+            AssertEx.EqualTolerance(1, quantity40.PoundsForcePerSquareMil, PoundsForcePerSquareMilTolerance);
+            Assert.Equal(PressureUnit.PoundForcePerSquareMil, quantity40.Unit);
 
-            var quantity41 = Pressure.From(1, PressureUnit.PoundForcePerSquareInch);
-            AssertEx.EqualTolerance(1, quantity41.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
-            Assert.Equal(PressureUnit.PoundForcePerSquareInch, quantity41.Unit);
+            var quantity41 = Pressure.From(1, PressureUnit.PoundPerInchSecondSquared);
+            AssertEx.EqualTolerance(1, quantity41.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
+            Assert.Equal(PressureUnit.PoundPerInchSecondSquared, quantity41.Unit);
 
-            var quantity42 = Pressure.From(1, PressureUnit.PoundForcePerSquareMil);
-            AssertEx.EqualTolerance(1, quantity42.PoundsForcePerSquareMil, PoundsForcePerSquareMilTolerance);
-            Assert.Equal(PressureUnit.PoundForcePerSquareMil, quantity42.Unit);
+            var quantity42 = Pressure.From(1, PressureUnit.TechnicalAtmosphere);
+            AssertEx.EqualTolerance(1, quantity42.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+            Assert.Equal(PressureUnit.TechnicalAtmosphere, quantity42.Unit);
 
-            var quantity43 = Pressure.From(1, PressureUnit.PoundPerInchSecondSquared);
-            AssertEx.EqualTolerance(1, quantity43.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
-            Assert.Equal(PressureUnit.PoundPerInchSecondSquared, quantity43.Unit);
+            var quantity43 = Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity43.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
+            Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, quantity43.Unit);
 
-            var quantity44 = Pressure.From(1, PressureUnit.TechnicalAtmosphere);
-            AssertEx.EqualTolerance(1, quantity44.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
-            Assert.Equal(PressureUnit.TechnicalAtmosphere, quantity44.Unit);
+            var quantity44 = Pressure.From(1, PressureUnit.TonneForcePerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity44.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
+            Assert.Equal(PressureUnit.TonneForcePerSquareMeter, quantity44.Unit);
 
-            var quantity45 = Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity45.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
-            Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, quantity45.Unit);
+            var quantity45 = Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity45.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
+            Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, quantity45.Unit);
 
-            var quantity46 = Pressure.From(1, PressureUnit.TonneForcePerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity46.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
-            Assert.Equal(PressureUnit.TonneForcePerSquareMeter, quantity46.Unit);
-
-            var quantity47 = Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity47.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
-            Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, quantity47.Unit);
-
-            var quantity48 = Pressure.From(1, PressureUnit.Torr);
-            AssertEx.EqualTolerance(1, quantity48.Torrs, TorrsTolerance);
-            Assert.Equal(PressureUnit.Torr, quantity48.Unit);
+            var quantity46 = Pressure.From(1, PressureUnit.Torr);
+            AssertEx.EqualTolerance(1, quantity46.Torrs, TorrsTolerance);
+            Assert.Equal(PressureUnit.Torr, quantity46.Unit);
 
         }
 
@@ -597,7 +579,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.As(PressureUnit.Decapascal), DecapascalsTolerance);
             AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.As(PressureUnit.Decibar), DecibarsTolerance);
             AssertEx.EqualTolerance(DynesPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.DynePerSquareCentimeter), DynesPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(FeetOfElevationInOnePascal, pascal.As(PressureUnit.FootOfElevation), FeetOfElevationTolerance);
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
@@ -617,7 +598,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.As(PressureUnit.Megabar), MegabarsTolerance);
             AssertEx.EqualTolerance(MeganewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.MeganewtonPerSquareMeter), MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.As(PressureUnit.Megapascal), MegapascalsTolerance);
-            AssertEx.EqualTolerance(MetersOfElevationInOnePascal, pascal.As(PressureUnit.MeterOfElevation), MetersOfElevationTolerance);
             AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.As(PressureUnit.MeterOfHead), MetersOfHeadTolerance);
             AssertEx.EqualTolerance(MetersOfWaterColumnInOnePascal, pascal.As(PressureUnit.MeterOfWaterColumn), MetersOfWaterColumnTolerance);
             AssertEx.EqualTolerance(MicrobarsInOnePascal, pascal.As(PressureUnit.Microbar), MicrobarsTolerance);
@@ -853,13 +833,6 @@ namespace UnitsNet.Tests
                 var parsed = Pressure.Parse("1 dyn/cm²", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
                 Assert.Equal(PressureUnit.DynePerSquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Pressure.Parse("1 ft of elevation", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FeetOfElevation, FeetOfElevationTolerance);
-                Assert.Equal(PressureUnit.FootOfElevation, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1119,13 +1092,6 @@ namespace UnitsNet.Tests
                 var parsed = Pressure.Parse("1 МПа", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Megapascals, MegapascalsTolerance);
                 Assert.Equal(PressureUnit.Megapascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Pressure.Parse("1 m of elevation", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetersOfElevation, MetersOfElevationTolerance);
-                Assert.Equal(PressureUnit.MeterOfElevation, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1525,12 +1491,6 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Pressure.TryParse("1 ft of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetOfElevation, FeetOfElevationTolerance);
-                Assert.Equal(PressureUnit.FootOfElevation, parsed.Unit);
-            }
-
-            {
                 Assert.True(Pressure.TryParse("1 ft of head", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.FeetOfHead, FeetOfHeadTolerance);
                 Assert.Equal(PressureUnit.FootOfHead, parsed.Unit);
@@ -1714,12 +1674,6 @@ namespace UnitsNet.Tests
                 Assert.True(Pressure.TryParse("1 МН/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
                 Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Pressure.TryParse("1 m of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersOfElevation, MetersOfElevationTolerance);
-                Assert.Equal(PressureUnit.MeterOfElevation, parsed.Unit);
             }
 
             {
@@ -1969,7 +1923,6 @@ namespace UnitsNet.Tests
         [InlineData("daPa", PressureUnit.Decapascal)]
         [InlineData("dbar", PressureUnit.Decibar)]
         [InlineData("dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("ft of head", PressureUnit.FootOfHead)]
         [InlineData("GPa", PressureUnit.Gigapascal)]
         [InlineData("hPa", PressureUnit.Hectopascal)]
@@ -1992,7 +1945,6 @@ namespace UnitsNet.Tests
         [InlineData("Mbar", PressureUnit.Megabar)]
         [InlineData("MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("MPa", PressureUnit.Megapascal)]
-        [InlineData("m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("m of head", PressureUnit.MeterOfHead)]
         [InlineData("mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2042,7 +1994,6 @@ namespace UnitsNet.Tests
         [InlineData("daPa", PressureUnit.Decapascal)]
         [InlineData("dbar", PressureUnit.Decibar)]
         [InlineData("dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("ft of head", PressureUnit.FootOfHead)]
         [InlineData("GPa", PressureUnit.Gigapascal)]
         [InlineData("hPa", PressureUnit.Hectopascal)]
@@ -2065,7 +2016,6 @@ namespace UnitsNet.Tests
         [InlineData("Mbar", PressureUnit.Megabar)]
         [InlineData("MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("MPa", PressureUnit.Megapascal)]
-        [InlineData("m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("m of head", PressureUnit.MeterOfHead)]
         [InlineData("mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2115,7 +2065,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "daPa", PressureUnit.Decapascal)]
         [InlineData("en-US", "dbar", PressureUnit.Decibar)]
         [InlineData("en-US", "dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("en-US", "ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("en-US", "ft of head", PressureUnit.FootOfHead)]
         [InlineData("en-US", "GPa", PressureUnit.Gigapascal)]
         [InlineData("en-US", "hPa", PressureUnit.Hectopascal)]
@@ -2138,7 +2087,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mbar", PressureUnit.Megabar)]
         [InlineData("en-US", "MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("en-US", "MPa", PressureUnit.Megapascal)]
-        [InlineData("en-US", "m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("en-US", "m of head", PressureUnit.MeterOfHead)]
         [InlineData("en-US", "mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("en-US", "mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2220,7 +2168,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "daPa", PressureUnit.Decapascal)]
         [InlineData("en-US", "dbar", PressureUnit.Decibar)]
         [InlineData("en-US", "dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("en-US", "ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("en-US", "ft of head", PressureUnit.FootOfHead)]
         [InlineData("en-US", "GPa", PressureUnit.Gigapascal)]
         [InlineData("en-US", "hPa", PressureUnit.Hectopascal)]
@@ -2243,7 +2190,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mbar", PressureUnit.Megabar)]
         [InlineData("en-US", "MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("en-US", "MPa", PressureUnit.Megapascal)]
-        [InlineData("en-US", "m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("en-US", "m of head", PressureUnit.MeterOfHead)]
         [InlineData("en-US", "mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("en-US", "mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2324,7 +2270,6 @@ namespace UnitsNet.Tests
         [InlineData("daPa", PressureUnit.Decapascal)]
         [InlineData("dbar", PressureUnit.Decibar)]
         [InlineData("dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("ft of head", PressureUnit.FootOfHead)]
         [InlineData("GPa", PressureUnit.Gigapascal)]
         [InlineData("hPa", PressureUnit.Hectopascal)]
@@ -2347,7 +2292,6 @@ namespace UnitsNet.Tests
         [InlineData("Mbar", PressureUnit.Megabar)]
         [InlineData("MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("MPa", PressureUnit.Megapascal)]
-        [InlineData("m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("m of head", PressureUnit.MeterOfHead)]
         [InlineData("mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2397,7 +2341,6 @@ namespace UnitsNet.Tests
         [InlineData("daPa", PressureUnit.Decapascal)]
         [InlineData("dbar", PressureUnit.Decibar)]
         [InlineData("dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("ft of head", PressureUnit.FootOfHead)]
         [InlineData("GPa", PressureUnit.Gigapascal)]
         [InlineData("hPa", PressureUnit.Hectopascal)]
@@ -2420,7 +2363,6 @@ namespace UnitsNet.Tests
         [InlineData("Mbar", PressureUnit.Megabar)]
         [InlineData("MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("MPa", PressureUnit.Megapascal)]
-        [InlineData("m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("m of head", PressureUnit.MeterOfHead)]
         [InlineData("mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2470,7 +2412,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "daPa", PressureUnit.Decapascal)]
         [InlineData("en-US", "dbar", PressureUnit.Decibar)]
         [InlineData("en-US", "dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("en-US", "ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("en-US", "ft of head", PressureUnit.FootOfHead)]
         [InlineData("en-US", "GPa", PressureUnit.Gigapascal)]
         [InlineData("en-US", "hPa", PressureUnit.Hectopascal)]
@@ -2493,7 +2434,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mbar", PressureUnit.Megabar)]
         [InlineData("en-US", "MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("en-US", "MPa", PressureUnit.Megapascal)]
-        [InlineData("en-US", "m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("en-US", "m of head", PressureUnit.MeterOfHead)]
         [InlineData("en-US", "mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("en-US", "mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2575,7 +2515,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "daPa", PressureUnit.Decapascal)]
         [InlineData("en-US", "dbar", PressureUnit.Decibar)]
         [InlineData("en-US", "dyn/cm²", PressureUnit.DynePerSquareCentimeter)]
-        [InlineData("en-US", "ft of elevation", PressureUnit.FootOfElevation)]
         [InlineData("en-US", "ft of head", PressureUnit.FootOfHead)]
         [InlineData("en-US", "GPa", PressureUnit.Gigapascal)]
         [InlineData("en-US", "hPa", PressureUnit.Hectopascal)]
@@ -2598,7 +2537,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mbar", PressureUnit.Megabar)]
         [InlineData("en-US", "MN/m²", PressureUnit.MeganewtonPerSquareMeter)]
         [InlineData("en-US", "MPa", PressureUnit.Megapascal)]
-        [InlineData("en-US", "m of elevation", PressureUnit.MeterOfElevation)]
         [InlineData("en-US", "m of head", PressureUnit.MeterOfHead)]
         [InlineData("en-US", "mH₂O", PressureUnit.MeterOfWaterColumn)]
         [InlineData("en-US", "mH2O", PressureUnit.MeterOfWaterColumn)]
@@ -2740,7 +2678,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromDecapascals(pascal.Decapascals).Pascals, DecapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromDecibars(pascal.Decibars).Pascals, DecibarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromDynesPerSquareCentimeter(pascal.DynesPerSquareCentimeter).Pascals, DynesPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(1, Pressure.FromFeetOfElevation(pascal.FeetOfElevation).Pascals, FeetOfElevationTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
@@ -2760,7 +2697,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromMegabars(pascal.Megabars).Pascals, MegabarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMeganewtonsPerSquareMeter(pascal.MeganewtonsPerSquareMeter).Pascals, MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMegapascals(pascal.Megapascals).Pascals, MegapascalsTolerance);
-            AssertEx.EqualTolerance(1, Pressure.FromMetersOfElevation(pascal.MetersOfElevation).Pascals, MetersOfElevationTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMetersOfHead(pascal.MetersOfHead).Pascals, MetersOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMetersOfWaterColumn(pascal.MetersOfWaterColumn).Pascals, MetersOfWaterColumnTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMicrobars(pascal.Microbars).Pascals, MicrobarsTolerance);
@@ -2936,7 +2872,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 daPa", new Pressure(1, PressureUnit.Decapascal).ToString());
             Assert.Equal("1 dbar", new Pressure(1, PressureUnit.Decibar).ToString());
             Assert.Equal("1 dyn/cm²", new Pressure(1, PressureUnit.DynePerSquareCentimeter).ToString());
-            Assert.Equal("1 ft of elevation", new Pressure(1, PressureUnit.FootOfElevation).ToString());
             Assert.Equal("1 ft of head", new Pressure(1, PressureUnit.FootOfHead).ToString());
             Assert.Equal("1 GPa", new Pressure(1, PressureUnit.Gigapascal).ToString());
             Assert.Equal("1 hPa", new Pressure(1, PressureUnit.Hectopascal).ToString());
@@ -2956,7 +2891,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Mbar", new Pressure(1, PressureUnit.Megabar).ToString());
             Assert.Equal("1 MN/m²", new Pressure(1, PressureUnit.MeganewtonPerSquareMeter).ToString());
             Assert.Equal("1 MPa", new Pressure(1, PressureUnit.Megapascal).ToString());
-            Assert.Equal("1 m of elevation", new Pressure(1, PressureUnit.MeterOfElevation).ToString());
             Assert.Equal("1 m of head", new Pressure(1, PressureUnit.MeterOfHead).ToString());
             Assert.Equal("1 mH₂O", new Pressure(1, PressureUnit.MeterOfWaterColumn).ToString());
             Assert.Equal("1 µbar", new Pressure(1, PressureUnit.Microbar).ToString());
@@ -2993,7 +2927,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 daPa", new Pressure(1, PressureUnit.Decapascal).ToString(swedishCulture));
             Assert.Equal("1 dbar", new Pressure(1, PressureUnit.Decibar).ToString(swedishCulture));
             Assert.Equal("1 dyn/cm²", new Pressure(1, PressureUnit.DynePerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 ft of elevation", new Pressure(1, PressureUnit.FootOfElevation).ToString(swedishCulture));
             Assert.Equal("1 ft of head", new Pressure(1, PressureUnit.FootOfHead).ToString(swedishCulture));
             Assert.Equal("1 GPa", new Pressure(1, PressureUnit.Gigapascal).ToString(swedishCulture));
             Assert.Equal("1 hPa", new Pressure(1, PressureUnit.Hectopascal).ToString(swedishCulture));
@@ -3013,7 +2946,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Mbar", new Pressure(1, PressureUnit.Megabar).ToString(swedishCulture));
             Assert.Equal("1 MN/m²", new Pressure(1, PressureUnit.MeganewtonPerSquareMeter).ToString(swedishCulture));
             Assert.Equal("1 MPa", new Pressure(1, PressureUnit.Megapascal).ToString(swedishCulture));
-            Assert.Equal("1 m of elevation", new Pressure(1, PressureUnit.MeterOfElevation).ToString(swedishCulture));
             Assert.Equal("1 m of head", new Pressure(1, PressureUnit.MeterOfHead).ToString(swedishCulture));
             Assert.Equal("1 mH₂O", new Pressure(1, PressureUnit.MeterOfWaterColumn).ToString(swedishCulture));
             Assert.Equal("1 µbar", new Pressure(1, PressureUnit.Microbar).ToString(swedishCulture));
