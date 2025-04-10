@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
             BaseUnit = SpecificVolumeUnit.CubicMeterPerKilogram;
-            Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
+            Units = EnumHelpers.GetValues<SpecificVolumeUnit>();
             Zero = new SpecificVolume(0, BaseUnit);
             Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
                 new UnitInfo<SpecificVolumeUnit>[]

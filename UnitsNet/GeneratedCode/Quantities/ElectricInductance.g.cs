@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
             BaseUnit = ElectricInductanceUnit.Henry;
-            Units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricInductanceUnit>();
             Zero = new ElectricInductance(0, BaseUnit);
             Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
                 new UnitInfo<ElectricInductanceUnit>[]

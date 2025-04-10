@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -83,7 +84,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             BaseUnit = EnergyUnit.Joule;
-            Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<EnergyUnit>();
             Zero = new Energy(0, BaseUnit);
             Info = new QuantityInfo<EnergyUnit>("Energy",
                 new UnitInfo<EnergyUnit>[]

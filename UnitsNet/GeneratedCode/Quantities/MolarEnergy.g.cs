@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
             BaseUnit = MolarEnergyUnit.JoulePerMole;
-            Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MolarEnergyUnit>();
             Zero = new MolarEnergy(0, BaseUnit);
             Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[]

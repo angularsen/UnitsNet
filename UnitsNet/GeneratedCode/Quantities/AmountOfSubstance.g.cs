@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -76,7 +77,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
             BaseUnit = AmountOfSubstanceUnit.Mole;
-            Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AmountOfSubstanceUnit>();
             Zero = new AmountOfSubstance(0, BaseUnit);
             Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
                 new UnitInfo<AmountOfSubstanceUnit>[]

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -75,7 +76,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
             BaseUnit = AccelerationUnit.MeterPerSecondSquared;
-            Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AccelerationUnit>();
             Zero = new Acceleration(0, BaseUnit);
             Info = new QuantityInfo<AccelerationUnit>("Acceleration",
                 new UnitInfo<AccelerationUnit>[]

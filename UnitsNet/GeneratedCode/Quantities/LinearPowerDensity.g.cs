@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
             BaseUnit = LinearPowerDensityUnit.WattPerMeter;
-            Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<LinearPowerDensityUnit>();
             Zero = new LinearPowerDensity(0, BaseUnit);
             Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[]

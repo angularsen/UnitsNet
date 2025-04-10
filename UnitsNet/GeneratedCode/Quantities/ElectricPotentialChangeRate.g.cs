@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -68,7 +69,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
             BaseUnit = ElectricPotentialChangeRateUnit.VoltPerSecond;
-            Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricPotentialChangeRateUnit>();
             Zero = new ElectricPotentialChangeRate(0, BaseUnit);
             Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
                 new UnitInfo<ElectricPotentialChangeRateUnit>[]

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
             BaseUnit = DoseAreaProductUnit.GraySquareMeter;
-            Units = Enum.GetValues(typeof(DoseAreaProductUnit)).Cast<DoseAreaProductUnit>().ToArray();
+            Units = EnumHelpers.GetValues<DoseAreaProductUnit>();
             Zero = new DoseAreaProduct(0, BaseUnit);
             Info = new QuantityInfo<DoseAreaProductUnit>("DoseAreaProduct",
                 new UnitInfo<DoseAreaProductUnit>[]

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
             BaseUnit = EnergyDensityUnit.JoulePerCubicMeter;
-            Units = Enum.GetValues(typeof(EnergyDensityUnit)).Cast<EnergyDensityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<EnergyDensityUnit>();
             Zero = new EnergyDensity(0, BaseUnit);
             Info = new QuantityInfo<EnergyDensityUnit>("EnergyDensity",
                 new UnitInfo<EnergyDensityUnit>[]

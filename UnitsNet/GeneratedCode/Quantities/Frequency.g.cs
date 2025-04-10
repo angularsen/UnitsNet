@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = FrequencyUnit.Hertz;
-            Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<FrequencyUnit>();
             Zero = new Frequency(0, BaseUnit);
             Info = new QuantityInfo<FrequencyUnit>("Frequency",
                 new UnitInfo<FrequencyUnit>[]

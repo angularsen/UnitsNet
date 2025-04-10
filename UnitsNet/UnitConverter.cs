@@ -85,12 +85,7 @@ namespace UnitsNet
         {
             if (unitConverter is null)
                 throw new ArgumentNullException(nameof(unitConverter));
-
-            foreach(var quantity in Quantity.GetQuantityTypes())
-            {
-                var registerMethod = quantity.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
-                registerMethod?.Invoke(null, new object[]{unitConverter});
-            }
+            Quantity.RegisterDefaultConversions(unitConverter);
         }
 
         /// <summary>
@@ -396,6 +391,7 @@ namespace UnitsNet
         /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
@@ -424,6 +420,7 @@ namespace UnitsNet
         ///     are mapped to the abbreviation.
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
         {
             if (!TryGetUnitType(quantityName, out Type? unitType))
@@ -456,6 +453,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
         {
             return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, null);
@@ -480,6 +478,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             string? culture)
         {

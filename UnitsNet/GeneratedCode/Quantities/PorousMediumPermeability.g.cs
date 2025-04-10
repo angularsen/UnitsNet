@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
             BaseUnit = PorousMediumPermeabilityUnit.SquareMeter;
-            Units = Enum.GetValues(typeof(PorousMediumPermeabilityUnit)).Cast<PorousMediumPermeabilityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<PorousMediumPermeabilityUnit>();
             Zero = new PorousMediumPermeability(0, BaseUnit);
             Info = new QuantityInfo<PorousMediumPermeabilityUnit>("PorousMediumPermeability",
                 new UnitInfo<PorousMediumPermeabilityUnit>[]

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -74,7 +75,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
             BaseUnit = ElectricResistanceUnit.Ohm;
-            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricResistanceUnit>();
             Zero = new ElectricResistance(0, BaseUnit);
             Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[]

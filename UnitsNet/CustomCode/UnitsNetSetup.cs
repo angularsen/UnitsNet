@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Units;
 
 namespace UnitsNet;
