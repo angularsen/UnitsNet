@@ -9,8 +9,6 @@ namespace UnitsNet.Tests
 {
     public class DurationTests : DurationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double DaysInOneSecond => 1.15741e-5;
 
         protected override double HoursInOneSecond => 0.0002777784;

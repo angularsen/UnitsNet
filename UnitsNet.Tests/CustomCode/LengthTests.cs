@@ -10,7 +10,6 @@ namespace UnitsNet.Tests
 {
     public class LengthTests : LengthTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CentimetersInOneMeter => 100;
 
         protected override double DecimetersInOneMeter => 10;
@@ -192,8 +191,8 @@ namespace UnitsNet.Tests
             negativeLength = Length.FromInches(-25.0);
             feetInches = negativeLength.FeetInches;
 
-            Assert.Equal(-2.0, feetInches.Feet);
-            Assert.Equal(-1.0, feetInches.Inches);
+            Assert.Equal(-2, feetInches.Feet);
+            Assert.Equal(-1, feetInches.Inches);
         }
 
         [Fact]

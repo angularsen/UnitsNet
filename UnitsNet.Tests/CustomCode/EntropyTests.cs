@@ -28,7 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class EntropyTests : EntropyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double CaloriesPerKelvinInOneJoulePerKelvin => 0.239006;
         protected override double JoulesPerDegreeCelsiusInOneJoulePerKelvin => 1e0;
         protected override double JoulesPerKelvinInOneJoulePerKelvin => 1e0;

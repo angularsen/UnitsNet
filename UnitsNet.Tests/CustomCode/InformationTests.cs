@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class InformationTests : InformationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double BitsInOneBit => 1;
 
         protected override double BytesInOneBit => 0.125;

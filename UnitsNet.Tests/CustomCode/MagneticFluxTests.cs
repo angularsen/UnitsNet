@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MagneticFluxTests : MagneticFluxTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double WebersInOneWeber => 1;
     }
 }

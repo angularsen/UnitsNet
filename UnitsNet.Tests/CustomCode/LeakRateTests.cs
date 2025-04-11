@@ -27,8 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarLitersPerSecondInOnePascalCubicMeterPerSecond => 10;
 
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double TorrLitersPerSecondInOnePascalCubicMeterPerSecond => 7.5;
 
     }

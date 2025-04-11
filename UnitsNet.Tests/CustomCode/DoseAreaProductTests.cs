@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DoseAreaProductTests : DoseAreaProductTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CentigraySquareCentimetersInOneGraySquareMeter => 1E+6;
         protected override double CentigraySquareDecimetersInOneGraySquareMeter => 1E+4;
         protected override double CentigraySquareMetersInOneGraySquareMeter => 100;
