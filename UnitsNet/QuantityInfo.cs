@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnitsNet.Units;
 
@@ -41,7 +42,7 @@ namespace UnitsNet
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
 
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
-            ValueType = zero.GetType();
+            QuantityType = zero.GetType();
         }
 
         /// <summary>
@@ -68,11 +69,19 @@ namespace UnitsNet
         ///     Unit enum type, such as <see cref="LengthUnit"/> or <see cref="MassUnit"/>.
         /// </summary>
         public Type UnitType { get; }
-
+        
         /// <summary>
-        ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
+        ///     Quantity value type, such as <see cref="Length" /> or <see cref="Mass" />.
         /// </summary>
-        public Type ValueType { get; }
+        public Type QuantityType { get; }
+
+        /// <inheritdoc cref="QuantityType" />
+        [Obsolete("Replaced by the QuantityType property.")]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public Type ValueType
+        {
+            get => QuantityType;
+        }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> for a quantity.

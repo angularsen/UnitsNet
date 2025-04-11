@@ -259,5 +259,77 @@ namespace UnitsNet
             (TEnum Unit, string Abbreviation)[] caseSensitiveMatches = stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation)).ToArray();
             return caseSensitiveMatches.Length == 0 ? matches : caseSensitiveMatches;
         }
+
+        /// <summary>
+        ///     Retrieves the unit information from the given unit abbreviation.
+        /// </summary>
+        /// <remarks>
+        ///     This method is currently not optimized for performance and will enumerate all units and their unit abbreviations
+        ///     each time.<br />
+        ///     Unit abbreviation matching in the <see cref="TryParse{TUnitType}(string?,out TUnitType)" />
+        ///     overload is case-insensitive.<br />
+        ///     <br />
+        ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br />
+        /// </remarks>
+        /// <param name="unitAbbreviation">The unit abbreviation to parse.</param>
+        /// <param name="formatProvider">The format provider to use for culture-specific formatting. Can be null.</param>
+        /// <returns>The unit information corresponding to the given unit abbreviation.</returns>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when the unit abbreviation is not recognized as a valid unit for the specified culture.
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     Thrown when multiple units are found matching the given unit abbreviation.
+        /// </exception>
+        internal UnitInfo GetUnitFromAbbreviation(string unitAbbreviation, IFormatProvider? formatProvider)
+        {
+            List<UnitInfo> units = _unitAbbreviationsCache.GetUnitsForAbbreviation(formatProvider, unitAbbreviation);
+            return units.Count switch
+            {
+                0 => throw new UnitNotFoundException(
+                    $"The unit abbreviation '{unitAbbreviation}' is not recognized as a valid unit for the specified culture."),
+                1 => units[0],
+                _ => throw new AmbiguousUnitParseException(
+                    $"Cannot parse \"{unitAbbreviation}\" since it matches multiple units: {string.Join(", ", units.Select(x => x.Name).OrderBy(x => x))}.")
+            };
+        }
+
+        /// <summary>
+        ///     Attempts to parse the specified unit abbreviation into an <see cref="UnitInfo" /> object.
+        /// </summary>
+        /// <remarks>
+        ///     This method is currently not optimized for performance and will enumerate all units and their unit abbreviations
+        ///     each time.<br />
+        ///     Unit abbreviation matching in the <see cref="TryParse{TUnitType}(string,out TUnitType)" />
+        ///     overload is case-insensitive.<br />
+        ///     <br />
+        ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br />
+        /// </remarks>
+        /// <param name="unitAbbreviation">The unit abbreviation to parse.</param>
+        /// <param name="formatProvider">The format provider to use for parsing, or <c>null</c> to use the current culture.</param>
+        /// <param name="unit">
+        ///     When this method returns, contains the parsed <see cref="UnitInfo" /> object if the parsing succeeded,
+        ///     or <c>null</c> if the parsing failed. This parameter is passed uninitialized.
+        /// </param>
+        /// <returns>
+        ///     <c>true</c> if the unit abbreviation was successfully parsed; otherwise, <c>false</c>.
+        /// </returns>
+        internal bool TryGetUnitFromAbbreviation([NotNullWhen(true)]string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unit)
+        {
+            if (unitAbbreviation == null)
+            {
+                unit = null;
+                return false;
+            }
+
+            List<UnitInfo> units = _unitAbbreviationsCache.GetUnitsForAbbreviation(formatProvider, unitAbbreviation);
+            if (units.Count == 1)
+            {
+                unit = units[0];
+                return true;
+            }
+
+            unit = null;
+            return false;
+        }
     }
 }

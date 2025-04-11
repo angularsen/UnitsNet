@@ -54,4 +54,7 @@
     <EmbeddedResource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+  </ItemGroup>
 </Project>
