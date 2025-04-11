@@ -453,6 +453,7 @@ namespace UnitsNet
         /// </exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, IFormatProvider? formatProvider)
         {
             QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
@@ -536,6 +537,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             IFormatProvider? formatProvider)
         {

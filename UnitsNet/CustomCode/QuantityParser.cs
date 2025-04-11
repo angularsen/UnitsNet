@@ -246,7 +246,7 @@ namespace UnitsNet
 
         private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : struct, Enum
         {
-            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity<TUnitType>(formatProvider);
+            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
 
             // Match entire string exactly

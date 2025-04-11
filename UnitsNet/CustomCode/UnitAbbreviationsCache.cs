@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using UnitsNet.InternalHelpers;
+using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Units;
 using AbbreviationMapKey = System.ValueTuple<UnitsNet.UnitKey, string>;
 
@@ -275,16 +276,19 @@ namespace UnitsNet
         /// <param name="unitEnumType">Enum type for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [RequiresDynamicCode("It might not be possible to create an array of the enum type at runtime. Use the GetAllUnitAbbreviationsForQuantity<TEnum> overload.")]
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when no quantity information is found for the specified unit enum type.
+        /// </exception>
         public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
             var allAbbreviations = new List<string>();
             if (!QuantityInfoLookup.TryGetQuantityByUnitType(unitEnumType, out QuantityInfo? quantityInfo))
             {
                 // TODO I think we should either return empty or throw QuantityNotFoundException here
-                var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
-                var all = GetStringUnitPairs(enumValues, formatProvider);
-                return all.Select(pair => pair.Item2).ToList();
+                // var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
+                // var all = GetStringUnitPairs(enumValues, formatProvider);
+                // return all.Select(pair => pair.Item2).ToList();
+                throw new QuantityNotFoundException("No quantity information was found for the type.");
             }
 
             foreach(UnitInfo unitInfo in quantityInfo.UnitInfos)
