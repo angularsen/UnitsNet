@@ -210,8 +210,13 @@ namespace UnitsNet
         /// <returns>The default unit abbreviation string.</returns>
         public string GetDefaultAbbreviation(UnitKey unitKey, IFormatProvider? formatProvider = null)
         {
-            var abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
-            return abbreviations.Count > 0 ? abbreviations[0] : string.Empty;
+            IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
+            if (abbreviations.Count == 0)
+            {
+                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
+            }
+
+            return abbreviations[0];
         }
 
         /// <summary>
