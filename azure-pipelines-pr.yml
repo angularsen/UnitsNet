@@ -10,6 +10,7 @@ pr:
     include:
     - master
     - release/*
+    - maintenance/*
   paths:
     exclude:
     - '*.md'
