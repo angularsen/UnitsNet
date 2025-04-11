@@ -1328,7 +1328,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="SpecificVolume"/>.</returns>
         public SpecificVolume Inverse()
         {
-            return KilogramsPerCubicMeter == 0.0 ? SpecificVolume.Zero : SpecificVolume.FromCubicMetersPerKilogram(1 / KilogramsPerCubicMeter);
+            return SpecificVolume.FromCubicMetersPerKilogram(1 / KilogramsPerCubicMeter);
         }
 
         /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="Density"/> * <see cref="KinematicViscosity"/>.</summary>

@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="Density"/>.</returns>
         public Density Inverse()
         {
-            return CubicMetersPerKilogram == 0.0 ? Density.Zero : Density.FromKilogramsPerCubicMeter(1 / CubicMetersPerKilogram);
+            return Density.FromKilogramsPerCubicMeter(1 / CubicMetersPerKilogram);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> * <see cref="Mass"/>.</summary>

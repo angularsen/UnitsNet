@@ -662,7 +662,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
         public ReciprocalArea Inverse()
         {
-            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+            return ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>

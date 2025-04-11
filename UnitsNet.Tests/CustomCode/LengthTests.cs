@@ -229,7 +229,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(-1.0, -1.0)]
         [InlineData(-2.0, -0.5)]
-        [InlineData(0.0, 0.0)]
+        [InlineData(0.0, double.PositiveInfinity)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsReciprocalLength(double value, double expected)

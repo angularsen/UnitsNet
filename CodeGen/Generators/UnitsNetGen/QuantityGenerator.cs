@@ -735,7 +735,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
         public {relation.RightQuantity.Name} Inverse()
         {{
-            return {relation.LeftUnit.PluralName} == 0.0 ? {relation.RightQuantity.Name}.Zero : {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(1 / {relation.LeftUnit.PluralName});
+            return {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(1 / {relation.LeftUnit.PluralName});
         }}
 ");
                 }

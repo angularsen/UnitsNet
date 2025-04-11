@@ -519,7 +519,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ElectricResistivity"/>.</returns>
         public ElectricResistivity Inverse()
         {
-            return SiemensPerMeter == 0.0 ? ElectricResistivity.Zero : ElectricResistivity.FromOhmMeters(1 / SiemensPerMeter);
+            return ElectricResistivity.FromOhmMeters(1 / SiemensPerMeter);
         }
 
         #endregion

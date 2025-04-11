@@ -1112,7 +1112,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ReciprocalLength"/>.</returns>
         public ReciprocalLength Inverse()
         {
-            return Meters == 0.0 ? ReciprocalLength.Zero : ReciprocalLength.FromInverseMeters(1 / Meters);
+            return ReciprocalLength.FromInverseMeters(1 / Meters);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="Length"/>.</summary>

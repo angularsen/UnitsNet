@@ -592,7 +592,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="Length"/>.</returns>
         public Length Inverse()
         {
-            return InverseMeters == 0.0 ? Length.Zero : Length.FromMeters(1 / InverseMeters);
+            return Length.FromMeters(1 / InverseMeters);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="ReciprocalLength"/> * <see cref="Volume"/>.</summary>

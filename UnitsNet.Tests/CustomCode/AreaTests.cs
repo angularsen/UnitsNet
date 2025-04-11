@@ -127,7 +127,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(-2.0, -0.5)]
         [InlineData(-1.0, -1.0)]
-        [InlineData(0.0, 0.0)]
+        [InlineData(0.0, double.PositiveInfinity)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
         public void InverseReturnsReciprocalArea(double value, double expected)
