@@ -302,21 +302,21 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsed = SpecificFuelConsumption.Parse("1 g/(kN�s)", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = SpecificFuelConsumption.Parse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerKilonewtonSecond, GramsPerKilonewtonSecondTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = SpecificFuelConsumption.Parse("1 kg/(kgf�h)", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = SpecificFuelConsumption.Parse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = SpecificFuelConsumption.Parse("1 kg/(kN�s)", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = SpecificFuelConsumption.Parse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerKilonewtonSecond, KilogramsPerKilonewtonSecondTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -334,19 +334,19 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
-                Assert.True(SpecificFuelConsumption.TryParse("1 g/(kN�s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(SpecificFuelConsumption.TryParse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerKilonewtonSecond, GramsPerKilonewtonSecondTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, parsed.Unit);
             }
 
             {
-                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kgf�h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
             }
 
             {
-                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kN�s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerKilonewtonSecond, KilogramsPerKilonewtonSecondTolerance);
                 Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, parsed.Unit);
             }
@@ -360,9 +360,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -373,9 +373,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -386,9 +386,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("en-US", "g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("en-US", "kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -398,9 +398,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("en-US", "g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("en-US", "kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -409,9 +409,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -422,9 +422,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -435,9 +435,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("en-US", "g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("en-US", "kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -447,9 +447,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
-        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
+        [InlineData("en-US", "g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond)]
+        [InlineData("en-US", "kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond)]
         [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
@@ -673,9 +673,9 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 g/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString());
-            Assert.Equal("1 kg/(kgf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString());
-            Assert.Equal("1 kg/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString());
+            Assert.Equal("1 g/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString());
+            Assert.Equal("1 kg/(kgf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString());
+            Assert.Equal("1 kg/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString());
             Assert.Equal("1 lb/(lbf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString());
         }
 
@@ -685,9 +685,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 kg/(kgf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(swedishCulture));
-            Assert.Equal("1 kg/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString(swedishCulture));
+            Assert.Equal("1 g/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString(swedishCulture));
+            Assert.Equal("1 kg/(kgf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(swedishCulture));
+            Assert.Equal("1 kg/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString(swedishCulture));
             Assert.Equal("1 lb/(lbf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString(swedishCulture));
         }
 
@@ -695,20 +695,20 @@ namespace UnitsNet.Tests
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
             var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s1"));
-            Assert.Equal("0.12 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s2"));
-            Assert.Equal("0.123 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s3"));
-            Assert.Equal("0.1235 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s4"));
+            Assert.Equal("0.1 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s1"));
+            Assert.Equal("0.12 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s2"));
+            Assert.Equal("0.123 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s3"));
+            Assert.Equal("0.1235 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s4"));
         }
 
         [Fact]
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s1", culture));
-            Assert.Equal("0.12 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s2", culture));
-            Assert.Equal("0.123 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s3", culture));
-            Assert.Equal("0.1235 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s4", culture));
+            Assert.Equal("0.1 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s1", culture));
+            Assert.Equal("0.12 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s2", culture));
+            Assert.Equal("0.123 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s3", culture));
+            Assert.Equal("0.1235 g/(kN·s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString("s4", culture));
         }
 
         [Theory]

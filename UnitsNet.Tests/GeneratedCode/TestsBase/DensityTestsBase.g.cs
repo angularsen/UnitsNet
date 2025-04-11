@@ -1123,7 +1123,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1137,7 +1151,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1151,7 +1179,21 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Density.Parse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Density.Parse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1504,7 +1546,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
             }
@@ -1516,7 +1570,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
             }
@@ -1528,7 +1594,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Density.TryParse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Density.TryParse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Density.TryParse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
                 Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
             }
@@ -1647,11 +1725,17 @@ namespace UnitsNet.Tests
         [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -1712,11 +1796,17 @@ namespace UnitsNet.Tests
         [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -1777,11 +1867,17 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -1845,11 +1941,17 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -1912,11 +2014,17 @@ namespace UnitsNet.Tests
         [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -1977,11 +2085,17 @@ namespace UnitsNet.Tests
         [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -2042,11 +2156,17 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
@@ -2110,11 +2230,17 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
         [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
         [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lbm/cm³", DensityUnit.PoundPerCubicCentimeter)]
         [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lbm/ft³", DensityUnit.PoundPerCubicFoot)]
         [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lbm/in³", DensityUnit.PoundPerCubicInch)]
         [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lbm/m³", DensityUnit.PoundPerCubicMeter)]
         [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lbm/mm³", DensityUnit.PoundPerCubicMillimeter)]
         [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "lbm/yd³", DensityUnit.PoundPerCubicYard)]
         [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
         [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
         [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]

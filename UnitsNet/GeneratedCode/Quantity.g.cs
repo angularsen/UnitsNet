@@ -80,6 +80,7 @@ namespace UnitsNet
             { "Energy", Energy.Info },
             { "EnergyDensity", EnergyDensity.Info },
             { "Entropy", Entropy.Info },
+            { "FluidResistance", FluidResistance.Info },
             { "Force", Force.Info },
             { "ForceChangeRate", ForceChangeRate.Info },
             { "ForcePerLength", ForcePerLength.Info },
@@ -218,6 +219,7 @@ namespace UnitsNet
                 "Energy" => Energy.From(value, Energy.BaseUnit),
                 "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
+                "FluidResistance" => FluidResistance.From(value, FluidResistance.BaseUnit),
                 "Force" => Force.From(value, Force.BaseUnit),
                 "ForceChangeRate" => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
                 "ForcePerLength" => ForcePerLength.From(value, ForcePerLength.BaseUnit),
@@ -359,6 +361,7 @@ namespace UnitsNet
                 EnergyUnit energyUnit => Energy.From(value, energyUnit),
                 EnergyDensityUnit energyDensityUnit => EnergyDensity.From(value, energyDensityUnit),
                 EntropyUnit entropyUnit => Entropy.From(value, entropyUnit),
+                FluidResistanceUnit fluidResistanceUnit => FluidResistance.From(value, fluidResistanceUnit),
                 ForceUnit forceUnit => Force.From(value, forceUnit),
                 ForceChangeRateUnit forceChangeRateUnit => ForceChangeRate.From(value, forceChangeRateUnit),
                 ForcePerLengthUnit forcePerLengthUnit => ForcePerLength.From(value, forcePerLengthUnit),
@@ -510,6 +513,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
                 Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
+                Type _ when quantityType == typeof(FluidResistance) => parser.TryParse<FluidResistance, FluidResistanceUnit>(quantityString, formatProvider, FluidResistance.From, out quantity),
                 Type _ when quantityType == typeof(Force) => parser.TryParse<Force, ForceUnit>(quantityString, formatProvider, Force.From, out quantity),
                 Type _ when quantityType == typeof(ForceChangeRate) => parser.TryParse<ForceChangeRate, ForceChangeRateUnit>(quantityString, formatProvider, ForceChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(ForcePerLength) => parser.TryParse<ForcePerLength, ForcePerLengthUnit>(quantityString, formatProvider, ForcePerLength.From, out quantity),
@@ -642,6 +646,7 @@ namespace UnitsNet
             yield return typeof(Energy);
             yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
+            yield return typeof(FluidResistance);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);
             yield return typeof(ForcePerLength);
