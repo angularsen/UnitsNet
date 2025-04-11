@@ -9,8 +9,6 @@ namespace UnitsNet.Tests
 {
     public class ElectricCurrentTests : ElectricCurrentTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double FemtoamperesInOneAmpere => 1e15;
 
         protected override double PicoamperesInOneAmpere => 1e12;

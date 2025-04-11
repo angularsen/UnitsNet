@@ -8,8 +8,6 @@ namespace UnitsNet.Tests
 {
     public class MassFlowTests : MassFlowTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double GramsPerSecondInOneGramPerSecond => 1;
 
         protected override double DecagramsPerSecondInOneGramPerSecond => 1E-1;
@@ -81,7 +79,7 @@ namespace UnitsNet.Tests
         {
             base.BaseUnit_HasSIBase();
         }
-
+        
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
         {

@@ -7,7 +7,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RadiationExposureTests : RadiationExposureTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CoulombsPerKilogramInOneCoulombPerKilogram => 1;
         protected override double MillicoulombsPerKilogramInOneCoulombPerKilogram => 1e+3;
         protected override double MicrocoulombsPerKilogramInOneCoulombPerKilogram => 1e+6;

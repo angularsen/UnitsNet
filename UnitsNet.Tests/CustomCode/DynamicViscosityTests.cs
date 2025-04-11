@@ -8,8 +8,6 @@ namespace UnitsNet.Tests
 {
     public class DynamicViscosityTests : DynamicViscosityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double CentipoiseInOneNewtonSecondPerMeterSquared => 1e3;
         protected override double MicropascalSecondsInOneNewtonSecondPerMeterSquared => 1e6;
         protected override double MillipascalSecondsInOneNewtonSecondPerMeterSquared => 1e3;

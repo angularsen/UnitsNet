@@ -26,7 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricSurfaceChargeDensityTests : ElectricSurfaceChargeDensityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CoulombsPerSquareMeterInOneCoulombPerSquareMeter => 1.0;
 
         protected override double CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter => 1.0e-4;

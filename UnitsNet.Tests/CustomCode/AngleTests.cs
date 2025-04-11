@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class AngleTests : AngleTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double RadiansInOneRadian => 1;
         protected override double DeciradiansInOneRadian => 1E1;
         protected override double CentiradiansInOneRadian => 1E2;

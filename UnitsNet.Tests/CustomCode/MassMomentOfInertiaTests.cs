@@ -22,14 +22,11 @@
 
 
 using System;
-using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassMomentOfInertiaTests : MassMomentOfInertiaTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double GramSquareCentimetersInOneKilogramSquareMeter => 1e7;
 
         protected override double GramSquareDecimetersInOneKilogramSquareMeter => 1e5;

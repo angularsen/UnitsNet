@@ -7,8 +7,6 @@ namespace UnitsNet.Tests
 {
     public class TorqueTests : TorqueTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double GramForceCentimetersInOneNewtonMeter => 10197.16213;
 
         protected override double GramForceMetersInOneNewtonMeter => 101.9716213;

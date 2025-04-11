@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricInductanceTests : ElectricInductanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double HenriesInOneHenry => 1;
         protected override double NanohenriesInOneHenry => 1e9;
         protected override double MicrohenriesInOneHenry => 1e6;

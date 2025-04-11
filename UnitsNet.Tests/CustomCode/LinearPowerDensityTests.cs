@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LinearPowerDensityTests : LinearPowerDensityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double GigawattsPerCentimeterInOneWattPerMeter => 1e-11;
         protected override double GigawattsPerFootInOneWattPerMeter => 3.0480e-10;
         protected override double GigawattsPerInchInOneWattPerMeter => 2.5400e-11;

@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class SpeedTests : SpeedTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double FeetPerSecondInOneMeterPerSecond => 3.28084;
 
         protected override double KilometersPerHourInOneMeterPerSecond => 3.6;

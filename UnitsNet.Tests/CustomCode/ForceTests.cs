@@ -7,7 +7,6 @@ namespace UnitsNet.Tests
 {
     public class ForceTests : ForceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
@@ -108,9 +107,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void KilogramForceDividedByNewtonEqualsStandardGravity()
         {
-            const double standardGravity = 9.80665;
-            double duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
-            Assert.Equal(standardGravity, duration);
+            var duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
+            Assert.Equal(9.80665, duration);
         }
     }
 }

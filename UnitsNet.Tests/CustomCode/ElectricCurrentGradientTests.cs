@@ -29,7 +29,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentGradientTests : ElectricCurrentGradientTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double AmperesPerSecondInOneAmperePerSecond => 1;
         protected override double AmperesPerMillisecondInOneAmperePerSecond => 1e-03;
         protected override double AmperesPerMicrosecondInOneAmperePerSecond => 1e-06;

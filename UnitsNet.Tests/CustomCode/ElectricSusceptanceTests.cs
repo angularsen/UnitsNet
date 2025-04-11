@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricSusceptanceTests : ElectricSusceptanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double NanosiemensInOneSiemens => 1E9;
         protected override double NanomhosInOneSiemens => 1E9;
 

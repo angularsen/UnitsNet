@@ -23,8 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class StandardVolumeFlowTests : StandardVolumeFlowTestsBase
     {
-        // Override properties in base class here
-        protected override bool SupportsSIUnitSystem { get; }
         protected override double StandardCubicCentimetersPerMinuteInOneStandardCubicMeterPerSecond => 6e7;
         protected override double StandardCubicFeetPerHourInOneStandardCubicMeterPerSecond => 1.271328001973604e+5;
         protected override double StandardCubicFeetPerMinuteInOneStandardCubicMeterPerSecond => 2.11888E3;

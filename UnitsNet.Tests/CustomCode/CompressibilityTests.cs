@@ -32,7 +32,5 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseBarsInOneInversePascal => 1e-5;
         protected override double InversePoundsForcePerSquareInchInOneInversePascal => 1.450377377302092151542e-4;
         protected override double InverseAtmospheresInOneInversePascal => 9.86923266716013e-6;
-
-        protected override bool SupportsSIUnitSystem => true;
     }
 }

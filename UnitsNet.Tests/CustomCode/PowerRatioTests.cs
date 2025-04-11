@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class PowerRatioTests : PowerRatioTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DecibelMilliwattsInOneDecibelWatt => 31;
 
         protected override double DecibelWattsInOneDecibelWatt => 1;
@@ -41,7 +40,7 @@ namespace UnitsNet.Tests
         public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
             Power p = Power.FromWatts(power);
-            double actual = PowerRatio.FromPower(p).DecibelWatts;
+            var actual = PowerRatio.FromPower(p).DecibelWatts;
             Assert.Equal(expected, actual);
         }
 
