@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class LevelTests : LevelTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DecibelsInOneDecibel => 1;
 
         protected override double NepersInOneDecibel => 0.115129254;

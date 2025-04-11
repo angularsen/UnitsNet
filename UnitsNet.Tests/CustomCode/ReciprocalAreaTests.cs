@@ -24,8 +24,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ReciprocalAreaTests : ReciprocalAreaTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double InverseSquareMetersInOneInverseSquareMeter => 1;
         protected override double InverseSquareKilometersInOneInverseSquareMeter => 1E6;
         protected override double InverseSquareDecimetersInOneInverseSquareMeter => 1E-2;

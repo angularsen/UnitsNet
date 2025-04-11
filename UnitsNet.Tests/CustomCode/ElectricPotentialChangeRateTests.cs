@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricPotentialChangeRateTests : ElectricPotentialChangeRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double KilovoltsPerHourInOneVoltPerSecond => 3.6;
         protected override double KilovoltsPerMicrosecondInOneVoltPerSecond => 1e-09;
         protected override double KilovoltsPerMinuteInOneVoltPerSecond => 6e-2;

@@ -8,8 +8,6 @@ namespace UnitsNet.Tests
 {
     public class BrakeSpecificFuelConsumptionTests : BrakeSpecificFuelConsumptionTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double GramsPerKiloWattHourInOneKilogramPerJoule => 3600000000;
 
         protected override double KilogramsPerJouleInOneKilogramPerJoule => 1.0;
@@ -26,15 +24,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
-            SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
+            SpecificEnergy massFlow = 2 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4);
             Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
 
         [Fact]
         public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
         {
-            double value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.Equal(200.0, value);
+            var value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20) * SpecificEnergy.FromJoulesPerKilogram(10);
+            Assert.Equal(200, value);
         }
     }
 }

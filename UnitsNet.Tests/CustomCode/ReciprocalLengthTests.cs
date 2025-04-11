@@ -24,8 +24,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ReciprocalLengthTests : ReciprocalLengthTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double InverseMetersInOneInverseMeter => 1;
         protected override double InverseCentimetersInOneInverseMeter => 1E-2;
         protected override double InverseMillimetersInOneInverseMeter => 1E-3;

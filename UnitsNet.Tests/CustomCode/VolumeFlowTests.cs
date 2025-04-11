@@ -27,8 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeFlowTests : VolumeFlowTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double AcreFeetPerDayInOneCubicMeterPerSecond => 70.0457;
 
         protected override double AcreFeetPerHourInOneCubicMeterPerSecond => 2.91857;

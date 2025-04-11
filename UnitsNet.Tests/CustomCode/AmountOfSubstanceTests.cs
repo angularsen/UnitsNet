@@ -28,8 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AmountOfSubstanceTests : AmountOfSubstanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double CentimolesInOneMole => 1e2;
         protected override double CentipoundMolesInOneMole => 0.002204622621848776 * 1e2;
         protected override double DecimolesInOneMole => 1e1;
@@ -71,9 +69,10 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
+        // 10 Moles of Oxygen weight 10 times as much as 1 Mole of Oxygen (MolarMass)
         [InlineData(10, AmountOfSubstanceUnit.Mole,
-            KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
-            10 * KnownQuantities.MolarMassOfOxygen, MassUnit.Gram)] // 10 Moles of Oxygen weight 10 times as much as 1 Mole of Oxygen (MolarMass)
+                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+                    10 * KnownQuantities.MolarMassOfOxygen, MassUnit.Gram)]
         public void MassFromAmountOfSubstanceAndMolarMass(
             double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
             double molarMassValue, MolarMassUnit molarMassUnit,
@@ -88,10 +87,11 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
+        // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
         [InlineData(5, MassUnit.Gram,
-            KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
-            1.2, VolumeUnit.Liter,
-            0.1142805, MolarityUnit.MolePerLiter)] // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
+                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+                    1.2, VolumeUnit.Liter,
+                    0.1142805, MolarityUnit.MolePerLiter)]
         public void MolarityFromComponentMassAndSolutionVolume(
             double componentMassValue, MassUnit componentMassUnit,
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
@@ -109,10 +109,11 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
+        // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
         [InlineData(5, MassUnit.Gram,
-            KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
-            0.1142805, MolarityUnit.MolePerLiter,
-            1.2, VolumeUnit.Liter)] // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
+                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+                    0.1142805, MolarityUnit.MolePerLiter,
+                    1.2, VolumeUnit.Liter)]
         public void VolumeSolutionFromComponentMassAndDesiredConcentration(
             double componentMassValue, MassUnit componentMassUnit,
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
