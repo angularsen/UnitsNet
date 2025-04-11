@@ -606,7 +606,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="Area"/>.</returns>
         public Area Inverse()
         {
-            return InverseSquareMeters == 0.0 ? Area.Zero : Area.FromSquareMeters(1 / InverseSquareMeters);
+            return Area.FromSquareMeters(1 / InverseSquareMeters);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="ReciprocalArea"/> * <see cref="Volume"/>.</summary>
