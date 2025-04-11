@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -39,7 +41,16 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Entropy :
-        IArithmeticQuantity<Entropy, EntropyUnit, double>,
+        IArithmeticQuantity<Entropy, EntropyUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
+        IDivisionOperators<Entropy, SpecificEntropy, Mass>,
+        IDivisionOperators<Entropy, Mass, SpecificEntropy>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Entropy, Entropy, bool>,
+        IParsable<Entropy>,
+#endif
         IComparable,
         IComparable<Entropy>,
         IConvertible,
@@ -68,12 +79,12 @@ namespace UnitsNet
                 new UnitInfo<EntropyUnit>[]
                 {
                     new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "Entropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -86,10 +97,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Entropy(double value, EntropyUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -103,13 +113,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Entropy(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -155,7 +160,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -270,70 +275,56 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.CaloriePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromCaloriesPerKelvin(QuantityValue caloriesperkelvin)
+        public static Entropy FromCaloriesPerKelvin(double value)
         {
-            double value = (double) caloriesperkelvin;
             return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerDegreeCelsius(QuantityValue joulesperdegreecelsius)
+        public static Entropy FromJoulesPerDegreeCelsius(double value)
         {
-            double value = (double) joulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerKelvin(QuantityValue joulesperkelvin)
+        public static Entropy FromJoulesPerKelvin(double value)
         {
-            double value = (double) joulesperkelvin;
             return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilocaloriesPerKelvin(QuantityValue kilocaloriesperkelvin)
+        public static Entropy FromKilocaloriesPerKelvin(double value)
         {
-            double value = (double) kilocaloriesperkelvin;
             return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue kilojoulesperdegreecelsius)
+        public static Entropy FromKilojoulesPerDegreeCelsius(double value)
         {
-            double value = (double) kilojoulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerKelvin(QuantityValue kilojoulesperkelvin)
+        public static Entropy FromKilojoulesPerKelvin(double value)
         {
-            double value = (double) kilojoulesperkelvin;
             return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromMegajoulesPerKelvin(QuantityValue megajoulesperkelvin)
+        public static Entropy FromMegajoulesPerKelvin(double value)
         {
-            double value = (double) megajoulesperkelvin;
             return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
         }
 
@@ -343,9 +334,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
-        public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
+        public static Entropy From(double value, EntropyUnit fromUnit)
         {
-            return new Entropy((double)value, fromUnit);
+            return new Entropy(value, fromUnit);
         }
 
         #endregion
@@ -418,7 +409,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Entropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Entropy result)
         {
             return TryParse(str, null, out result);
         }
@@ -433,7 +424,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Entropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Entropy result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<Entropy, EntropyUnit>(
                 str,
@@ -472,7 +463,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EntropyUnit)"/>
-        public static bool TryParseUnit(string str, out EntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out EntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -487,7 +478,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out EntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out EntropyUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<EntropyUnit>(str, provider, out unit);
         }
@@ -536,6 +527,28 @@ namespace UnitsNet
         public static double operator /(Entropy left, Entropy right)
         {
             return left.JoulesPerKelvin / right.JoulesPerKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Entropy"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static Energy operator *(Entropy entropy, TemperatureDelta temperatureDelta)
+        {
+            return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Entropy"/> / <see cref="SpecificEntropy"/>.</summary>
+        public static Mass operator /(Entropy entropy, SpecificEntropy specificEntropy)
+        {
+            return Mass.FromKilograms(entropy.JoulesPerKelvin / specificEntropy.JoulesPerKilogramKelvin);
+        }
+
+        /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="Entropy"/> / <see cref="Mass"/>.</summary>
+        public static SpecificEntropy operator /(Entropy entropy, Mass mass)
+        {
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(entropy.JoulesPerKelvin / mass.Kilograms);
         }
 
         #endregion
@@ -742,34 +755,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is EntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is EntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -858,6 +844,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Entropy ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not EntropyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -865,21 +867,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Entropy ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -891,17 +878,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not EntropyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -913,7 +890,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -923,7 +900,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -934,7 +911,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1015,7 +992,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

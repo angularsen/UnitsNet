@@ -80,16 +80,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception1 = Record.Exception(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception2 = Record.Exception(() => new RotationalAcceleration(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception = Record.Exception(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -99,18 +104,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new RotationalAcceleration(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (RotationalAcceleration) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new RotationalAcceleration(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -159,16 +164,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromRadiansPerSecondSquared_WithInfinityValue_ThrowsArgumentException()
+        public void FromRadiansPerSecondSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromRadiansPerSecondSquared_WithNanValue_ThrowsArgumentException()
+        public void FromRadiansPerSecondSquared_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
+            var exception = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -182,20 +192,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = RotationalAcceleration.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(RotationalAcceleration.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+            var expectedUnit = RotationalAcceleration.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                RotationalAcceleration quantityToConvert = quantity;
+
+                RotationalAcceleration convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<RotationalAccelerationUnit> quantityToConvert = quantity;
+
+                IQuantity<RotationalAccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -273,69 +372,110 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalAccelerationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalAccelerationUnit expectedUnit)
         {
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -363,12 +503,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RotationalAcceleration.Units.First(u => u != RotationalAcceleration.BaseUnit);
-
-            var quantity = RotationalAcceleration.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(RotationalAcceleration.Units.Where(u => u != RotationalAcceleration.BaseUnit), fromUnit =>
+            {
+                var quantity = RotationalAcceleration.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -378,6 +518,25 @@ namespace UnitsNet.Tests
             var quantity = default(RotationalAcceleration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RotationalAccelerationUnit unit)
+        {
+            var quantity = RotationalAcceleration.From(3, RotationalAcceleration.BaseUnit);
+            RotationalAcceleration expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantityToConvert = quantity;
+                IQuantity<RotationalAccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -490,8 +649,8 @@ namespace UnitsNet.Tests
             var v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
             Assert.True(v.Equals(RotationalAcceleration.FromRadiansPerSecondSquared(1), RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalAcceleration.Zero, RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
-            Assert.True(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), 0.3, ComparisonType.Relative));
+            Assert.False(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -583,7 +742,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -733,6 +892,13 @@ namespace UnitsNet.Tests
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

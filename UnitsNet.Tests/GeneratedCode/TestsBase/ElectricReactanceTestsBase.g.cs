@@ -96,16 +96,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricReactance(double.PositiveInfinity, ElectricReactanceUnit.Ohm));
-            Assert.Throws<ArgumentException>(() => new ElectricReactance(double.NegativeInfinity, ElectricReactanceUnit.Ohm));
+            var exception1 = Record.Exception(() => new ElectricReactance(double.PositiveInfinity, ElectricReactanceUnit.Ohm));
+            var exception2 = Record.Exception(() => new ElectricReactance(double.NegativeInfinity, ElectricReactanceUnit.Ohm));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricReactance(double.NaN, ElectricReactanceUnit.Ohm));
+            var exception = Record.Exception(() => new ElectricReactance(double.NaN, ElectricReactanceUnit.Ohm));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -115,18 +120,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricReactance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricReactance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricReactance(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricReactance(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -195,16 +200,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromOhms_WithInfinityValue_ThrowsArgumentException()
+        public void FromOhms_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricReactance.FromOhms(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricReactance.FromOhms(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricReactance.FromOhms(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricReactance.FromOhms(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromOhms_WithNanValue_ThrowsArgumentException()
+        public void FromOhms_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricReactance.FromOhms(double.NaN));
+            var exception = Record.Exception(() => ElectricReactance.FromOhms(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -222,20 +232,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricReactance.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricReactance.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+            var expectedUnit = ElectricReactance.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricReactance quantityToConvert = quantity;
+
+                ElectricReactance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricReactanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricReactanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricReactanceUnit> quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricReactanceUnit> quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -340,92 +439,134 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricReactanceUnit.Teraohm)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricReactanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Gigaohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Kiloohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("MΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Megaohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Microohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("mΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Milliohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("nΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Nanoohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Ohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricReactance.ParseUnit("TΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricReactanceUnit.Teraohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricReactanceUnit parsedUnit = ElectricReactance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricReactanceUnit.Teraohm)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricReactanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricReactance.TryParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Gigaohm, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricReactanceUnit parsedUnit = ElectricReactance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricReactance.TryParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Kiloohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("en-US", "nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("en-US", "Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricReactanceUnit.Teraohm)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricReactanceUnit parsedUnit = ElectricReactance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricReactance.TryParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Microohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("en-US", "nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("en-US", "Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricReactanceUnit.Teraohm)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            ElectricReactanceUnit parsedUnit = ElectricReactance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricReactance.TryParseUnit("nΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Nanoohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricReactanceUnit.Teraohm)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricReactance.TryParseUnit(abbreviation, out ElectricReactanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricReactance.TryParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Ohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricReactanceUnit.Teraohm)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricReactance.TryParseUnit(abbreviation, out ElectricReactanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricReactance.TryParseUnit("TΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricReactanceUnit.Teraohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("en-US", "nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("en-US", "Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricReactanceUnit.Teraohm)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricReactance.TryParseUnit(abbreviation, out ElectricReactanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricReactanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricReactanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricReactanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricReactanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricReactanceUnit.Milliohm)]
+        [InlineData("en-US", "nΩ", ElectricReactanceUnit.Nanoohm)]
+        [InlineData("en-US", "Ω", ElectricReactanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricReactanceUnit.Teraohm)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricReactanceUnit expectedUnit)
+        {
+            Assert.True(ElectricReactance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricReactanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -453,12 +594,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricReactanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricReactance.Units.First(u => u != ElectricReactance.BaseUnit);
-
-            var quantity = ElectricReactance.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricReactance.Units.Where(u => u != ElectricReactance.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricReactance.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -468,6 +609,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricReactance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricReactanceUnit unit)
+        {
+            var quantity = ElectricReactance.From(3, ElectricReactance.BaseUnit);
+            ElectricReactance expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricReactanceUnit> quantityToConvert = quantity;
+                IQuantity<ElectricReactanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -584,8 +744,8 @@ namespace UnitsNet.Tests
             var v = ElectricReactance.FromOhms(1);
             Assert.True(v.Equals(ElectricReactance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricReactance.Zero, OhmsTolerance, ComparisonType.Relative));
-            Assert.True(ElectricReactance.FromOhms(100).Equals(ElectricReactance.FromOhms(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ElectricReactance.FromOhms(100).Equals(ElectricReactance.FromOhms(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ElectricReactance.FromOhms(100).Equals(ElectricReactance.FromOhms(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricReactance.FromOhms(100).Equals(ElectricReactance.FromOhms(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -685,7 +845,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -835,6 +995,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricReactance.FromOhms(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricReactance.FromOhms(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AbsorbedDoseOfIonizingRadiation :
-        IArithmeticQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit, double>,
+        IArithmeticQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, bool>,
+        IParsable<AbsorbedDoseOfIonizingRadiation>,
+#endif
         IComparable,
         IComparable<AbsorbedDoseOfIonizingRadiation>,
         IConvertible,
@@ -70,22 +76,22 @@ namespace UnitsNet
             Info = new QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit>("AbsorbedDoseOfIonizingRadiation",
                 new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
                 {
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", new BaseUnits(length: LengthUnit.Megameter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -98,10 +104,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AbsorbedDoseOfIonizingRadiation(double value, AbsorbedDoseOfIonizingRadiationUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -115,13 +120,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public AbsorbedDoseOfIonizingRadiation(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -167,7 +167,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -345,160 +345,128 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromCentigrays(QuantityValue centigrays)
+        public static AbsorbedDoseOfIonizingRadiation FromCentigrays(double value)
         {
-            double value = (double) centigrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromFemtograys(QuantityValue femtograys)
+        public static AbsorbedDoseOfIonizingRadiation FromFemtograys(double value)
         {
-            double value = (double) femtograys;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gigagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromGigagrays(QuantityValue gigagrays)
+        public static AbsorbedDoseOfIonizingRadiation FromGigagrays(double value)
         {
-            double value = (double) gigagrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromGrays(QuantityValue grays)
+        public static AbsorbedDoseOfIonizingRadiation FromGrays(double value)
         {
-            double value = (double) grays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Gray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromKilograys(QuantityValue kilograys)
+        public static AbsorbedDoseOfIonizingRadiation FromKilograys(double value)
         {
-            double value = (double) kilograys;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilorad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromKilorads(QuantityValue kilorads)
+        public static AbsorbedDoseOfIonizingRadiation FromKilorads(double value)
         {
-            double value = (double) kilorads;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromMegagrays(QuantityValue megagrays)
+        public static AbsorbedDoseOfIonizingRadiation FromMegagrays(double value)
         {
-            double value = (double) megagrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromMegarads(QuantityValue megarads)
+        public static AbsorbedDoseOfIonizingRadiation FromMegarads(double value)
         {
-            double value = (double) megarads;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Microgray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromMicrograys(QuantityValue micrograys)
+        public static AbsorbedDoseOfIonizingRadiation FromMicrograys(double value)
         {
-            double value = (double) micrograys;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Milligray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromMilligrays(QuantityValue milligrays)
+        public static AbsorbedDoseOfIonizingRadiation FromMilligrays(double value)
         {
-            double value = (double) milligrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromMillirads(QuantityValue millirads)
+        public static AbsorbedDoseOfIonizingRadiation FromMillirads(double value)
         {
-            double value = (double) millirads;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromNanograys(QuantityValue nanograys)
+        public static AbsorbedDoseOfIonizingRadiation FromNanograys(double value)
         {
-            double value = (double) nanograys;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Petagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromPetagrays(QuantityValue petagrays)
+        public static AbsorbedDoseOfIonizingRadiation FromPetagrays(double value)
         {
-            double value = (double) petagrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Picogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromPicograys(QuantityValue picograys)
+        public static AbsorbedDoseOfIonizingRadiation FromPicograys(double value)
         {
-            double value = (double) picograys;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Rad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromRads(QuantityValue rads)
+        public static AbsorbedDoseOfIonizingRadiation FromRads(double value)
         {
-            double value = (double) rads;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Rad);
         }
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Teragray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AbsorbedDoseOfIonizingRadiation FromTeragrays(QuantityValue teragrays)
+        public static AbsorbedDoseOfIonizingRadiation FromTeragrays(double value)
         {
-            double value = (double) teragrays;
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
         }
 
@@ -508,9 +476,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AbsorbedDoseOfIonizingRadiation unit value.</returns>
-        public static AbsorbedDoseOfIonizingRadiation From(QuantityValue value, AbsorbedDoseOfIonizingRadiationUnit fromUnit)
+        public static AbsorbedDoseOfIonizingRadiation From(double value, AbsorbedDoseOfIonizingRadiationUnit fromUnit)
         {
-            return new AbsorbedDoseOfIonizingRadiation((double)value, fromUnit);
+            return new AbsorbedDoseOfIonizingRadiation(value, fromUnit);
         }
 
         #endregion
@@ -583,7 +551,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out AbsorbedDoseOfIonizingRadiation result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out AbsorbedDoseOfIonizingRadiation result)
         {
             return TryParse(str, null, out result);
         }
@@ -598,7 +566,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out AbsorbedDoseOfIonizingRadiation result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out AbsorbedDoseOfIonizingRadiation result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>(
                 str,
@@ -637,7 +605,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AbsorbedDoseOfIonizingRadiationUnit)"/>
-        public static bool TryParseUnit(string str, out AbsorbedDoseOfIonizingRadiationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out AbsorbedDoseOfIonizingRadiationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -652,7 +620,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out AbsorbedDoseOfIonizingRadiationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AbsorbedDoseOfIonizingRadiationUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<AbsorbedDoseOfIonizingRadiationUnit>(str, provider, out unit);
         }
@@ -907,34 +875,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is AbsorbedDoseOfIonizingRadiationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AbsorbedDoseOfIonizingRadiationUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AbsorbedDoseOfIonizingRadiationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AbsorbedDoseOfIonizingRadiationUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1041,6 +982,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public AbsorbedDoseOfIonizingRadiation ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not AbsorbedDoseOfIonizingRadiationUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AbsorbedDoseOfIonizingRadiationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1048,21 +1005,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AbsorbedDoseOfIonizingRadiationUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AbsorbedDoseOfIonizingRadiation ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1074,17 +1016,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AbsorbedDoseOfIonizingRadiationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AbsorbedDoseOfIonizingRadiationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1096,7 +1028,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1106,7 +1038,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1117,7 +1049,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1198,7 +1130,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

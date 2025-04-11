@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,17 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotential :
-        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>,
+        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
+        IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
+        IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
+        IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<ElectricPotential, ElectricPotential, bool>,
+        IParsable<ElectricPotential>,
+#endif
         IComparable,
         IComparable<ElectricPotential>,
         IConvertible,
@@ -70,11 +82,11 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialUnit>("ElectricPotential",
                 new UnitInfo<ElectricPotentialUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined, "ElectricPotential"),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined, "ElectricPotential"),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined, "ElectricPotential"),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined, "ElectricPotential"),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -88,10 +100,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricPotential(double value, ElectricPotentialUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -105,13 +116,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricPotential(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -157,7 +163,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -265,60 +271,48 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Kilovolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromKilovolts(QuantityValue kilovolts)
+        public static ElectricPotential FromKilovolts(double value)
         {
-            double value = (double) kilovolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Kilovolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromMegavolts(QuantityValue megavolts)
+        public static ElectricPotential FromMegavolts(double value)
         {
-            double value = (double) megavolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Megavolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromMicrovolts(QuantityValue microvolts)
+        public static ElectricPotential FromMicrovolts(double value)
         {
-            double value = (double) microvolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Microvolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromMillivolts(QuantityValue millivolts)
+        public static ElectricPotential FromMillivolts(double value)
         {
-            double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Nanovolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromNanovolts(QuantityValue nanovolts)
+        public static ElectricPotential FromNanovolts(double value)
         {
-            double value = (double) nanovolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotential FromVolts(QuantityValue volts)
+        public static ElectricPotential FromVolts(double value)
         {
-            double value = (double) volts;
             return new ElectricPotential(value, ElectricPotentialUnit.Volt);
         }
 
@@ -328,9 +322,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotential unit value.</returns>
-        public static ElectricPotential From(QuantityValue value, ElectricPotentialUnit fromUnit)
+        public static ElectricPotential From(double value, ElectricPotentialUnit fromUnit)
         {
-            return new ElectricPotential((double)value, fromUnit);
+            return new ElectricPotential(value, fromUnit);
         }
 
         #endregion
@@ -403,7 +397,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricPotential result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricPotential result)
         {
             return TryParse(str, null, out result);
         }
@@ -418,7 +412,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricPotential result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricPotential result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricPotential, ElectricPotentialUnit>(
                 str,
@@ -457,7 +451,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricPotentialUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricPotentialUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricPotentialUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -472,7 +466,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricPotentialUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricPotentialUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<ElectricPotentialUnit>(str, provider, out unit);
         }
@@ -521,6 +515,34 @@ namespace UnitsNet
         public static double operator /(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts / right.Volts;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> / <see cref="ElectricResistance"/>.</summary>
+        public static ElectricCurrent operator /(ElectricPotential electricPotential, ElectricResistance electricResistance)
+        {
+            return ElectricCurrent.FromAmperes(electricPotential.Volts / electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="ElectricResistance"/> from <see cref="ElectricPotential"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricResistance operator /(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return ElectricResistance.FromOhms(electricPotential.Volts / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCharge"/>.</summary>
+        public static Energy operator *(ElectricPotential electricPotential, ElectricCharge electricCharge)
+        {
+            return Energy.FromJoules(electricPotential.Volts * electricCharge.Coulombs);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static Power operator *(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return Power.FromWatts(electricPotential.Volts * electricCurrent.Amperes);
         }
 
         #endregion
@@ -727,34 +749,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricPotentialUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricPotentialUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -841,6 +836,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricPotential ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricPotentialUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -848,21 +859,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricPotential ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -874,17 +870,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricPotentialUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -896,7 +882,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -906,7 +892,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -917,7 +903,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -998,7 +984,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

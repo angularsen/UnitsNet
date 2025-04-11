@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -39,7 +41,25 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Force :
-        IArithmeticQuantity<Force, ForceUnit, double>,
+        IArithmeticQuantity<Force, ForceUnit>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Force, Mass, Acceleration>,
+        IDivisionOperators<Force, Pressure, Area>,
+        IDivisionOperators<Force, ForceChangeRate, Duration>,
+        IDivisionOperators<Force, Duration, ForceChangeRate>,
+        IMultiplyOperators<Force, ReciprocalLength, ForcePerLength>,
+        IDivisionOperators<Force, Length, ForcePerLength>,
+        IDivisionOperators<Force, ForcePerLength, Length>,
+        IDivisionOperators<Force, Acceleration, Mass>,
+        IMultiplyOperators<Force, Speed, Power>,
+        IMultiplyOperators<Force, ReciprocalArea, Pressure>,
+        IDivisionOperators<Force, Area, Pressure>,
+        IMultiplyOperators<Force, Length, Torque>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Force, Force, bool>,
+        IParsable<Force>,
+#endif
         IComparable,
         IComparable<Force>,
         IConvertible,
@@ -67,18 +87,18 @@ namespace UnitsNet
             Info = new QuantityInfo<ForceUnit>("Force",
                 new UnitInfo<ForceUnit>[]
                 {
-                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined, "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Force"),
+                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined, "Force"),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined, "Force"),
@@ -94,10 +114,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Force(double value, ForceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -111,13 +130,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Force(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -163,7 +177,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -334,150 +348,120 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDecanewtons(QuantityValue decanewtons)
+        public static Force FromDecanewtons(double value)
         {
-            double value = (double) decanewtons;
             return new Force(value, ForceUnit.Decanewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDyne(QuantityValue dyne)
+        public static Force FromDyne(double value)
         {
-            double value = (double) dyne;
             return new Force(value, ForceUnit.Dyn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilogramsForce(QuantityValue kilogramsforce)
+        public static Force FromKilogramsForce(double value)
         {
-            double value = (double) kilogramsforce;
             return new Force(value, ForceUnit.KilogramForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilonewtons(QuantityValue kilonewtons)
+        public static Force FromKilonewtons(double value)
         {
-            double value = (double) kilonewtons;
             return new Force(value, ForceUnit.Kilonewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKiloPonds(QuantityValue kiloponds)
+        public static Force FromKiloPonds(double value)
         {
-            double value = (double) kiloponds;
             return new Force(value, ForceUnit.KiloPond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilopoundsForce(QuantityValue kilopoundsforce)
+        public static Force FromKilopoundsForce(double value)
         {
-            double value = (double) kilopoundsforce;
             return new Force(value, ForceUnit.KilopoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMeganewtons(QuantityValue meganewtons)
+        public static Force FromMeganewtons(double value)
         {
-            double value = (double) meganewtons;
             return new Force(value, ForceUnit.Meganewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMicronewtons(QuantityValue micronewtons)
+        public static Force FromMicronewtons(double value)
         {
-            double value = (double) micronewtons;
             return new Force(value, ForceUnit.Micronewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMillinewtons(QuantityValue millinewtons)
+        public static Force FromMillinewtons(double value)
         {
-            double value = (double) millinewtons;
             return new Force(value, ForceUnit.Millinewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromNewtons(QuantityValue newtons)
+        public static Force FromNewtons(double value)
         {
-            double value = (double) newtons;
             return new Force(value, ForceUnit.Newton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromOunceForce(QuantityValue ounceforce)
+        public static Force FromOunceForce(double value)
         {
-            double value = (double) ounceforce;
             return new Force(value, ForceUnit.OunceForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundals(QuantityValue poundals)
+        public static Force FromPoundals(double value)
         {
-            double value = (double) poundals;
             return new Force(value, ForceUnit.Poundal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundsForce(QuantityValue poundsforce)
+        public static Force FromPoundsForce(double value)
         {
-            double value = (double) poundsforce;
             return new Force(value, ForceUnit.PoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromShortTonsForce(QuantityValue shorttonsforce)
+        public static Force FromShortTonsForce(double value)
         {
-            double value = (double) shorttonsforce;
             return new Force(value, ForceUnit.ShortTonForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromTonnesForce(QuantityValue tonnesforce)
+        public static Force FromTonnesForce(double value)
         {
-            double value = (double) tonnesforce;
             return new Force(value, ForceUnit.TonneForce);
         }
 
@@ -487,9 +471,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Force unit value.</returns>
-        public static Force From(QuantityValue value, ForceUnit fromUnit)
+        public static Force From(double value, ForceUnit fromUnit)
         {
-            return new Force((double)value, fromUnit);
+            return new Force(value, fromUnit);
         }
 
         #endregion
@@ -562,7 +546,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Force result)
         {
             return TryParse(str, null, out result);
         }
@@ -577,7 +561,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Force result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<Force, ForceUnit>(
                 str,
@@ -616,7 +600,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ForceUnit)"/>
-        public static bool TryParseUnit(string str, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ForceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -631,7 +615,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ForceUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<ForceUnit>(str, provider, out unit);
         }
@@ -680,6 +664,82 @@ namespace UnitsNet
         public static double operator /(Force left, Force right)
         {
             return left.Newtons / right.Newtons;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Force"/> / <see cref="Mass"/>.</summary>
+        public static Acceleration operator /(Force force, Mass mass)
+        {
+            return Acceleration.FromMetersPerSecondSquared(force.Newtons / mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Force"/> / <see cref="Pressure"/>.</summary>
+        public static Area operator /(Force force, Pressure pressure)
+        {
+            return Area.FromSquareMeters(force.Newtons / pressure.Pascals);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Force"/> / <see cref="ForceChangeRate"/>.</summary>
+        public static Duration operator /(Force force, ForceChangeRate forceChangeRate)
+        {
+            return Duration.FromSeconds(force.Newtons / forceChangeRate.NewtonsPerSecond);
+        }
+
+        /// <summary>Get <see cref="ForceChangeRate"/> from <see cref="Force"/> / <see cref="Duration"/>.</summary>
+        public static ForceChangeRate operator /(Force force, Duration duration)
+        {
+            return ForceChangeRate.FromNewtonsPerSecond(force.Newtons / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> * <see cref="ReciprocalLength"/>.</summary>
+        public static ForcePerLength operator *(Force force, ReciprocalLength reciprocalLength)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> / <see cref="Length"/>.</summary>
+        public static ForcePerLength operator /(Force force, Length length)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Force"/> / <see cref="ForcePerLength"/>.</summary>
+        public static Length operator /(Force force, ForcePerLength forcePerLength)
+        {
+            return Length.FromMeters(force.Newtons / forcePerLength.NewtonsPerMeter);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Force"/> / <see cref="Acceleration"/>.</summary>
+        public static Mass operator /(Force force, Acceleration acceleration)
+        {
+            return Mass.FromKilograms(force.Newtons / acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Force"/> * <see cref="Speed"/>.</summary>
+        public static Power operator *(Force force, Speed speed)
+        {
+            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Force"/> * <see cref="ReciprocalArea"/>.</summary>
+        public static Pressure operator *(Force force, ReciprocalArea reciprocalArea)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(force.Newtons * reciprocalArea.InverseSquareMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Force"/> / <see cref="Area"/>.</summary>
+        public static Pressure operator /(Force force, Area area)
+        {
+            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Force"/> * <see cref="Length"/>.</summary>
+        public static Torque operator *(Force force, Length length)
+        {
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
         }
 
         #endregion
@@ -886,34 +946,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ForceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ForceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1018,6 +1051,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Force ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ForceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1025,21 +1074,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Force ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1051,17 +1085,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ForceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1073,7 +1097,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1083,7 +1107,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1094,7 +1118,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1175,7 +1199,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

@@ -47,6 +47,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegamolesInOneMole => 1e-6;
         protected override double PicomolesInOneMole => 1e12;
         protected override double FemtomolesInOneMole => 1e15;
+        
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(AmountOfSubstance.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(amount: unitInfo.Value), unitInfo.BaseUnits));
+        }
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
@@ -66,8 +72,8 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData(10, AmountOfSubstanceUnit.Mole,
-                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
-                    10 * KnownQuantities.MolarMassOfOxygen, MassUnit.Gram)]     // 10 Moles of Oxygen weight 10 times as much as 1 Mole of Oxygen (MolarMass)
+            KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+            10 * KnownQuantities.MolarMassOfOxygen, MassUnit.Gram)] // 10 Moles of Oxygen weight 10 times as much as 1 Mole of Oxygen (MolarMass)
         public void MassFromAmountOfSubstanceAndMolarMass(
             double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
             double molarMassValue, MolarMassUnit molarMassUnit,
@@ -83,9 +89,9 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData(5, MassUnit.Gram,
-                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
-                    1.2, VolumeUnit.Liter,
-                    0.1142805, MolarityUnit.MolePerLiter)]     // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
+            KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+            1.2, VolumeUnit.Liter,
+            0.1142805, MolarityUnit.MolePerLiter)] // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
         public void MolarityFromComponentMassAndSolutionVolume(
             double componentMassValue, MassUnit componentMassUnit,
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
@@ -104,9 +110,9 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData(5, MassUnit.Gram,
-                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
-                    0.1142805, MolarityUnit.MolePerLiter,
-                    1.2, VolumeUnit.Liter)]     // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
+            KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+            0.1142805, MolarityUnit.MolePerLiter,
+            1.2, VolumeUnit.Liter)] // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
         public void VolumeSolutionFromComponentMassAndDesiredConcentration(
             double componentMassValue, MassUnit componentMassUnit,
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
@@ -121,6 +127,39 @@ namespace UnitsNet.Tests.CustomCode
             Volume volumeSolution = amountOfSubstance / desiredMolarity;
 
             AssertEx.EqualTolerance(expectedSolutionVolumeValue, volumeSolution.As(expectedSolutionVolumeUnit), tolerence);
+        }
+
+        [Fact]
+        public void From_Mass_And_MolarMass_ReturnsTheMassDividedByTheMolarMass()
+        {
+            var mass = Mass.From(10, MassUnit.Gram);
+            var molarMass = MolarMass.From(2, MolarMassUnit.GramPerMole);
+            var expectedAmountOfSubstance = AmountOfSubstance.From(5, AmountOfSubstanceUnit.Mole);
+
+            var amountOfSubstance = AmountOfSubstance.FromMass(mass, molarMass);
+
+            Assert.Equal(expectedAmountOfSubstance, amountOfSubstance);
+        }
+
+        [Fact]
+        public void Multiplying_AmountOfSubstance_By_MolarEnergy_ReturnsEnergy()
+        {
+            Energy energy = AmountOfSubstance.FromMoles(5) * MolarEnergy.FromJoulesPerMole(10);
+            Assert.Equal(Energy.FromJoules(50), energy);
+        }
+
+        [Fact]
+        public void Dividing_AmountOfSubstance_By_MolarFlow_Returns_Duration()
+        {
+            var duration = AmountOfSubstance.FromMoles(10) / MolarFlow.FromMolesPerSecond(2);
+            Assert.Equal(Duration.FromSeconds(5), duration);
+        }
+
+        [Fact]
+        public void Dividing_AmountOfSubstance_By_Duration_Returns_MolarFlow()
+        {
+            MolarFlow molarFlow = AmountOfSubstance.FromMoles(10) / Duration.FromSeconds(5);
+            Assert.Equal(MolarFlow.FromMolesPerSecond(2), molarFlow);
         }
     }
 }

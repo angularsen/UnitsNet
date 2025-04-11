@@ -29,12 +29,6 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => true;
 
-        protected override double InverseDegreeCelsiusInOnePerKelvin => 1.0;
-
-        protected override double InverseDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
-
-        protected override double InverseKelvinInOnePerKelvin => 1.0;
-
         protected override double PerDegreeCelsiusInOnePerKelvin => 1.0;
 
         protected override double PerDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
@@ -50,21 +44,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void CoefficientOfThermalExpansionTimesTemperatureDelta()
         {
-            double temperatureDeltaDegC = 2.0;
-            double ctePerDegC = 0.001;
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
-            AssertEx.EqualTolerance(cte * dT, ctePerDegC * temperatureDeltaDegC, 1e-10);
-        }
-
-        [Fact]
-        public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
-        {
-            double temperatureDeltaDegC = 2.0;
-            double ctePerDegC = 0.001;
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
-            AssertEx.EqualTolerance(dT * cte, temperatureDeltaDegC * ctePerDegC, 1e-10);
+            Ratio expansionRatio = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2) * TemperatureDelta.FromDegreesCelsius(0.001);
+            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
     }
 }

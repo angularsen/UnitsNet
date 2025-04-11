@@ -84,9 +84,5 @@ namespace UnitsNet.Tests
         public void NumberToRevolutionsTest() =>
             Assert.Equal(Angle.FromRevolutions(2), 2.Revolutions());
 
-        [Fact]
-        public void NumberToTiltTest() =>
-            Assert.Equal(Angle.FromTilt(2), 2.Tilt());
-
     }
 }

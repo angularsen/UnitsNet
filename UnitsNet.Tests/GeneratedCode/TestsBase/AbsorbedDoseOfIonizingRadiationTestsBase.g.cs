@@ -128,16 +128,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NegativeInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception1 = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception2 = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.NegativeInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -147,18 +152,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new AbsorbedDoseOfIonizingRadiation(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (AbsorbedDoseOfIonizingRadiation) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -267,16 +272,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromGrays_WithInfinityValue_ThrowsArgumentException()
+        public void FromGrays_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromGrays_WithNanValue_ThrowsArgumentException()
+        public void FromGrays_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
+            var exception = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -302,20 +312,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = AbsorbedDoseOfIonizingRadiation.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(AbsorbedDoseOfIonizingRadiation.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+            var expectedUnit = AbsorbedDoseOfIonizingRadiation.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                AbsorbedDoseOfIonizingRadiation quantityToConvert = quantity;
+
+                AbsorbedDoseOfIonizingRadiation convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantityToConvert = quantity;
+
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -672,306 +771,262 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("cGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("сГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("fGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("фГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("GGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("ГГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("Gy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("Гр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("kGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("кГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("krad", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("крад", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("MGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("МГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("Mrad", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("Мрад", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("µGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("мкГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("mGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Milligray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("мГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Milligray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("mrad", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Millirad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("мрад", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Millirad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("nGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("нГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("PGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Petagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("ПГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Petagray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("pGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Picogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("пГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Picogray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("rad", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("рад", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("TGy", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit("ТГр", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AbsorbedDoseOfIonizingRadiationUnit parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
         {
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("cGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AbsorbedDoseOfIonizingRadiationUnit parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("сГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("en-US", "kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("en-US", "krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("en-US", "MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("en-US", "Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("en-US", "µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("en-US", "mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("en-US", "mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("en-US", "nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("en-US", "PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("en-US", "pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("ru-RU", "кГр", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("ru-RU", "крад", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("ru-RU", "МГр", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("ru-RU", "Мрад", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("ru-RU", "мкГр", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("ru-RU", "мГр", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("ru-RU", "мрад", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("ru-RU", "нГр", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("ru-RU", "ПГр", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("ru-RU", "пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("ru-RU", "рад", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("ru-RU", "ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AbsorbedDoseOfIonizingRadiationUnit parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("fGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("en-US", "kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("en-US", "krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("en-US", "MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("en-US", "Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("en-US", "µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("en-US", "mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("en-US", "mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("en-US", "nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("en-US", "PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("en-US", "pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("ru-RU", "кГр", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("ru-RU", "крад", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("ru-RU", "МГр", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("ru-RU", "Мрад", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("ru-RU", "мкГр", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("ru-RU", "мГр", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("ru-RU", "мрад", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("ru-RU", "нГр", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("ru-RU", "ПГр", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("ru-RU", "пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("ru-RU", "рад", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("ru-RU", "ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            AbsorbedDoseOfIonizingRadiationUnit parsedUnit = AbsorbedDoseOfIonizingRadiation.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("фГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit(abbreviation, out AbsorbedDoseOfIonizingRadiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("GGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit(abbreviation, out AbsorbedDoseOfIonizingRadiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("ГГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("en-US", "kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("en-US", "krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("en-US", "MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("en-US", "Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("en-US", "µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("en-US", "mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("en-US", "mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("en-US", "nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("en-US", "PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("en-US", "pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("ru-RU", "кГр", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("ru-RU", "крад", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("ru-RU", "МГр", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("ru-RU", "Мрад", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("ru-RU", "мкГр", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("ru-RU", "мГр", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("ru-RU", "мрад", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("ru-RU", "нГр", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("ru-RU", "ПГр", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("ru-RU", "пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("ru-RU", "рад", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("ru-RU", "ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit(abbreviation, out AbsorbedDoseOfIonizingRadiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("Gy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("Гр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("kGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("кГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("krad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("крад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("µGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("мкГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("nGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("нГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("rad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("рад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("TGy", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, parsedUnit);
-            }
-
-            {
-                Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit("ТГр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("en-US", "kGy", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("en-US", "krad", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("en-US", "MGy", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("en-US", "Mrad", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("en-US", "µGy", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("en-US", "mGy", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("en-US", "mrad", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("en-US", "nGy", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("en-US", "PGy", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("en-US", "pGy", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
+        [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
+        [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
+        [InlineData("ru-RU", "кГр", AbsorbedDoseOfIonizingRadiationUnit.Kilogray)]
+        [InlineData("ru-RU", "крад", AbsorbedDoseOfIonizingRadiationUnit.Kilorad)]
+        [InlineData("ru-RU", "МГр", AbsorbedDoseOfIonizingRadiationUnit.Megagray)]
+        [InlineData("ru-RU", "Мрад", AbsorbedDoseOfIonizingRadiationUnit.Megarad)]
+        [InlineData("ru-RU", "мкГр", AbsorbedDoseOfIonizingRadiationUnit.Microgray)]
+        [InlineData("ru-RU", "мГр", AbsorbedDoseOfIonizingRadiationUnit.Milligray)]
+        [InlineData("ru-RU", "мрад", AbsorbedDoseOfIonizingRadiationUnit.Millirad)]
+        [InlineData("ru-RU", "нГр", AbsorbedDoseOfIonizingRadiationUnit.Nanogray)]
+        [InlineData("ru-RU", "ПГр", AbsorbedDoseOfIonizingRadiationUnit.Petagray)]
+        [InlineData("ru-RU", "пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray)]
+        [InlineData("ru-RU", "рад", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
+        [InlineData("ru-RU", "ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AbsorbedDoseOfIonizingRadiationUnit expectedUnit)
+        {
+            Assert.True(AbsorbedDoseOfIonizingRadiation.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AbsorbedDoseOfIonizingRadiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -999,12 +1054,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AbsorbedDoseOfIonizingRadiationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = AbsorbedDoseOfIonizingRadiation.Units.First(u => u != AbsorbedDoseOfIonizingRadiation.BaseUnit);
-
-            var quantity = AbsorbedDoseOfIonizingRadiation.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(AbsorbedDoseOfIonizingRadiation.Units.Where(u => u != AbsorbedDoseOfIonizingRadiation.BaseUnit), fromUnit =>
+            {
+                var quantity = AbsorbedDoseOfIonizingRadiation.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1014,6 +1069,25 @@ namespace UnitsNet.Tests
             var quantity = default(AbsorbedDoseOfIonizingRadiation);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(AbsorbedDoseOfIonizingRadiationUnit unit)
+        {
+            var quantity = AbsorbedDoseOfIonizingRadiation.From(3, AbsorbedDoseOfIonizingRadiation.BaseUnit);
+            AbsorbedDoseOfIonizingRadiation expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantityToConvert = quantity;
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1138,8 +1212,8 @@ namespace UnitsNet.Tests
             var v = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
             Assert.True(v.Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(1), GraysTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AbsorbedDoseOfIonizingRadiation.Zero, GraysTolerance, ComparisonType.Relative));
-            Assert.True(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), 0.3, ComparisonType.Relative));
+            Assert.False(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -1255,7 +1329,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1405,6 +1479,13 @@ namespace UnitsNet.Tests
         {
             var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

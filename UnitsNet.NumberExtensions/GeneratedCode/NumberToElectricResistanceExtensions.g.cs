@@ -32,69 +32,93 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
     /// </summary>
     public static class NumberToElectricResistanceExtensions
     {
-        /// <inheritdoc cref="ElectricResistance.FromGigaohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromGigaohms(double)" />
         public static ElectricResistance Gigaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromGigaohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromGigaohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromGigaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromKiloohms(double)" />
         public static ElectricResistance Kiloohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromKiloohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromKiloohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromKiloohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMegaohms(double)" />
         public static ElectricResistance Megaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromMegaohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromMegaohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromMegaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMicroohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMicroohms(double)" />
         public static ElectricResistance Microohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromMicroohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromMicroohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromMicroohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)" />
         public static ElectricResistance Milliohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromMilliohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromMilliohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromNanoohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromNanoohms(double)" />
         public static ElectricResistance Nanoohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromNanoohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromNanoohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromNanoohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromOhms(double)" />
         public static ElectricResistance Ohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromOhms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromOhms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromOhms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromTeraohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromTeraohms(double)" />
         public static ElectricResistance Teraohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricResistance.FromTeraohms(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricResistance.FromTeraohms(value.ToDouble(null));
 #endif
-            => ElectricResistance.FromTeraohms(Convert.ToDouble(value));
 
     }
 }

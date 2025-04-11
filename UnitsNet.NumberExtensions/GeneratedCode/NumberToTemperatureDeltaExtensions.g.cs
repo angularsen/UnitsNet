@@ -32,77 +32,104 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
     /// </summary>
     public static class NumberToTemperatureDeltaExtensions
     {
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)" />
         public static TemperatureDelta DegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesCelsius(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesCelsius(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)" />
         public static TemperatureDelta DegreesDelisle<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesDelisle(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesDelisle(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)" />
         public static TemperatureDelta DegreesFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesFahrenheit(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesFahrenheit(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)" />
         public static TemperatureDelta DegreesNewton<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesNewton(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesNewton(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)" />
         public static TemperatureDelta DegreesRankine<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesRankine(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesRankine(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesRankine(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)" />
         public static TemperatureDelta DegreesReaumur<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesReaumur(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesReaumur(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)" />
         public static TemperatureDelta DegreesRoemer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromDegreesRoemer(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromDegreesRoemer(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromKelvins(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)" />
         public static TemperatureDelta Kelvins<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromKelvins(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromKelvins(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(double)" />
         public static TemperatureDelta MillidegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureDelta.FromMillidegreesCelsius(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureDelta.FromMillidegreesCelsius(value.ToDouble(null));
 #endif
-            => TemperatureDelta.FromMillidegreesCelsius(Convert.ToDouble(value));
 
     }
 }

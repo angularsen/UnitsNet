@@ -10,6 +10,10 @@
     {
       "SingularName": "GramPerSecond",
       "PluralName": "GramsPerSecond",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
@@ -23,6 +27,10 @@
     {
       "SingularName": "GramPerDay",
       "PluralName": "GramsPerDay",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "{x} / 86400",
       "FromBaseToUnitFunc": "{x} * 86400",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
@@ -36,6 +44,10 @@
     {
       "SingularName": "GramPerHour",
       "PluralName": "GramsPerHour",
+      "BaseUnits": {
+        "M": "Gram",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
@@ -48,6 +60,10 @@
     {
       "SingularName": "KilogramPerHour",
       "PluralName": "KilogramsPerHour",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3.6",
       "FromBaseToUnitFunc": "{x} * 3.6",
       "Localization": [
@@ -64,6 +80,10 @@
     {
       "SingularName": "KilogramPerMinute",
       "PluralName": "KilogramsPerMinute",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 0.06",
       "FromBaseToUnitFunc": "{x} * 0.06",
       "Localization": [
@@ -80,7 +100,11 @@
     {
       "SingularName": "TonnePerHour",
       "PluralName": "TonnesPerHour",
-      "FromUnitToBaseFunc": "1000 * {x} / 3.6",
+      "BaseUnits": {
+        "M": "Tonne",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "{x} * 1000 / 3.6",
       "FromBaseToUnitFunc": "{x} * 3.6 / 1000",
       "Localization": [
         {
@@ -92,8 +116,12 @@
     {
       "SingularName": "PoundPerDay",
       "PluralName": "PoundsPerDay",
-      "FromUnitToBaseFunc": "{x} / 190.47936",
-      "FromBaseToUnitFunc": "{x} * 190.47936",
+      "BaseUnits": {
+        "M": "Pound",
+        "T": "Day"
+      },
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 86400",
+      "FromBaseToUnitFunc": "{x} * 86400 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -105,8 +133,12 @@
     {
       "SingularName": "PoundPerHour",
       "PluralName": "PoundsPerHour",
-      "FromUnitToBaseFunc": "{x} / 7.93664",
-      "FromBaseToUnitFunc": "{x} * 7.93664",
+      "BaseUnits": {
+        "M": "Pound",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -118,8 +150,12 @@
     {
       "SingularName": "PoundPerMinute",
       "PluralName": "PoundsPerMinute",
-      "FromUnitToBaseFunc": "{x} / 0.132277",
-      "FromBaseToUnitFunc": "{x} * 0.132277",
+      "BaseUnits": {
+        "M": "Pound",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 60",
+      "FromBaseToUnitFunc": "{x} * 60 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -131,6 +167,10 @@
     {
       "SingularName": "PoundPerSecond",
       "PluralName": "PoundsPerSecond",
+      "BaseUnits": {
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 453.59237",
       "FromBaseToUnitFunc": "{x} / 453.59237",
       "Prefixes": [ "Mega" ],
@@ -144,6 +184,10 @@
     {
       "SingularName": "TonnePerDay",
       "PluralName": "TonnesPerDay",
+      "BaseUnits": {
+        "M": "Tonne",
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "{x} / 0.0864000",
       "FromBaseToUnitFunc": "{x} * 0.0864000",
       "Localization": [
@@ -156,8 +200,12 @@
     {
       "SingularName": "ShortTonPerHour",
       "PluralName": "ShortTonsPerHour",
-      "FromUnitToBaseFunc": "{x} * 251.9957611",
-      "FromBaseToUnitFunc": "{x} / 251.9957611",
+      "BaseUnits": {
+        "M": "ShortTon",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "{x} * 907.18474 / 3.6",
+      "FromBaseToUnitFunc": "{x} * 3.6 / 907.18474",
       "Localization": [
         {
           "Culture": "en-US",

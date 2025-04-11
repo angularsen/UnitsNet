@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.SpecificEntropy</id>
-    <version>5.74.0</version>
+    <version>6.0.0-pre014</version>
     <title>Units.NET SpecificEntropy - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework specificentropy unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
     </dependencies>
   </metadata>
   <files>

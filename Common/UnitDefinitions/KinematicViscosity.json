@@ -11,6 +11,10 @@
     {
       "SingularName": "SquareMeterPerSecond",
       "PluralName": "SquareMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -44,8 +48,12 @@
     {
       "SingularName": "SquareFootPerSecond",
       "PluralName": "SquareFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 10.7639",
-      "FromBaseToUnitFunc": "{x} * 10.7639",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} / 9.290304e-2",
       "Localization": [
         {
           "Culture": "en-US",

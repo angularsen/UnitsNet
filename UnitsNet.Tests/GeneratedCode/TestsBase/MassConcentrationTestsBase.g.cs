@@ -260,16 +260,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.NegativeInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception1 = Record.Exception(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception2 = Record.Exception(() => new MassConcentration(double.NegativeInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception = Record.Exception(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -279,18 +284,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new MassConcentration(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (MassConcentration) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new MassConcentration(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new MassConcentration(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -564,16 +569,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -632,20 +642,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = MassConcentration.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(MassConcentration.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+            var expectedUnit = MassConcentration.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                MassConcentration quantityToConvert = quantity;
+
+                MassConcentration convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<MassConcentrationUnit> quantityToConvert = quantity;
+
+                IQuantity<MassConcentrationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<MassConcentrationUnit> quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<MassConcentrationUnit> quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MassConcentration(value: 1, unit: MassConcentration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -653,56 +752,56 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsed = MassConcentration.Parse("1 cg/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 cg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 cg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 cg/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 cg/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMicroliter, CentigramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 cg/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 dg/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 dg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 dg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 dg/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 dg/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMicroliter, DecigramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 dg/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -737,28 +836,28 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MassConcentration.Parse("1 g/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 g/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 g/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 g/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 g/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 g/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMicroliter, GramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 g/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 g/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -793,7 +892,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MassConcentration.Parse("1 kg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 kg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.KilogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -828,28 +927,28 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MassConcentration.Parse("1 µg/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 µg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 µg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 µg/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 µg/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMicroliter, MicrogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 µg/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -870,56 +969,56 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MassConcentration.Parse("1 mg/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 mg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 mg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 mg/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 mg/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMicroliter, MilligramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 mg/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 ng/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 ng/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 ng/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 ng/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 ng/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMicroliter, NanogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 ng/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -940,28 +1039,28 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MassConcentration.Parse("1 pg/dL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 pg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 pg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 pg/μL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 pg/μl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerMicroliter, PicogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerMicroliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = MassConcentration.Parse("1 pg/mL", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MassConcentration.Parse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerMilliliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1028,49 +1127,49 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
-                Assert.True(MassConcentration.TryParse("1 cg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 cg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 cg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 cg/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMicroliter, CentigramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 cg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.CentigramPerMilliliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 dg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 dg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 dg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 dg/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMicroliter, DecigramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 dg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.DecigramPerMilliliter, parsed.Unit);
             }
@@ -1100,25 +1199,25 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 g/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 g/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 g/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 g/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 g/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 g/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMicroliter, GramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 g/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 g/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.GramPerMilliliter, parsed.Unit);
             }
@@ -1148,7 +1247,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 kg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 kg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.KilogramPerLiter, parsed.Unit);
             }
@@ -1178,25 +1277,25 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 µg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 µg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 µg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 µg/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMicroliter, MicrogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 µg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MicrogramPerMilliliter, parsed.Unit);
             }
@@ -1214,49 +1313,49 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 mg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 mg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 mg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 mg/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMicroliter, MilligramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 mg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.MilligramPerMilliliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 ng/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 ng/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 ng/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 ng/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMicroliter, NanogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 ng/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.NanogramPerMilliliter, parsed.Unit);
             }
@@ -1274,25 +1373,25 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 pg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerDeciliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 pg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 pg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 pg/μl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerMicroliter, PicogramsPerMicroliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerMicroliter, parsed.Unit);
             }
 
             {
-                Assert.True(MassConcentration.TryParse("1 pg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MassConcentration.TryParse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
                 Assert.Equal(MassConcentrationUnit.PicogramPerMilliliter, parsed.Unit);
             }
@@ -1347,597 +1446,478 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassConcentrationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("cg/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.CentigramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.CentigramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("cg/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.CentigramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("cg/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.CentigramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("dg/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.DecigramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.DecigramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("dg/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.DecigramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("dg/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.DecigramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("г/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("g/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.GramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kg/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kg/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("кг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kg/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilogramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kip/ft³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilopoundPerCubicFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("kip/in³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.KilopoundPerCubicInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("µg/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("мкг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("µg/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("µg/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("µg/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("mg/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("мг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("mg/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("mg/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("mg/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.MilligramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ng/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.NanogramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.NanogramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ng/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.NanogramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ng/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.NanogramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("oz/gal (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.OuncePerImperialGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("oz/gal (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.OuncePerUSGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("pg/dL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PicogramPerDeciliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PicogramPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("pg/μL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PicogramPerMicroliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("pg/mL", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PicogramPerMilliliter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PoundPerCubicFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("lb/in³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PoundPerCubicInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ppg (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PoundPerImperialGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.PoundPerUSGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("slug/ft³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.SlugPerCubicFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("t/cm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("t/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassConcentration.ParseUnit("t/mm³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MassConcentrationUnit parsedUnit = MassConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassConcentrationUnit expectedUnit)
         {
-            {
-                Assert.True(MassConcentration.TryParseUnit("cg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.CentigramPerDeciliter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MassConcentrationUnit parsedUnit = MassConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.CentigramPerLiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("en-US", "cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("en-US", "dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("en-US", "g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("en-US", "g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("en-US", "µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("en-US", "mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("en-US", "ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("en-US", "oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("en-US", "pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("en-US", "pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MassConcentrationUnit parsedUnit = MassConcentration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("cg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.CentigramPerMicroliter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("en-US", "cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("en-US", "dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("en-US", "g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("en-US", "g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("en-US", "µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("en-US", "mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("en-US", "ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("en-US", "oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("en-US", "pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("en-US", "pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            MassConcentrationUnit parsedUnit = MassConcentration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("cg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.CentigramPerMilliliter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MassConcentration.TryParseUnit(abbreviation, out MassConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("dg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.DecigramPerDeciliter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(MassConcentration.TryParseUnit(abbreviation, out MassConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.DecigramPerLiter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("en-US", "cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("en-US", "dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("en-US", "g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("en-US", "g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("en-US", "µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("en-US", "mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("en-US", "ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("en-US", "oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("en-US", "pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("en-US", "pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MassConcentration.TryParseUnit(abbreviation, out MassConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassConcentration.TryParseUnit("dg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.DecigramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("dg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.DecigramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("г/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerCubicMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerDeciliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("g/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.GramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kg/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("кг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kg/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilogramPerCubicMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilogramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kip/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilopoundPerCubicFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("kip/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.KilopoundPerCubicInch, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("µg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("мкг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("µg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerDeciliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("µg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("µg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MicrogramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("mg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("мг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("mg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerDeciliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("mg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("mg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.MilligramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ng/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.NanogramPerDeciliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.NanogramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ng/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.NanogramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ng/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.NanogramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("oz/gal (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.OuncePerImperialGallon, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("oz/gal (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.OuncePerUSGallon, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("pg/dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PicogramPerDeciliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PicogramPerLiter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("pg/μL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PicogramPerMicroliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("pg/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PicogramPerMilliliter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PoundPerCubicFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("lb/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PoundPerCubicInch, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ppg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PoundPerImperialGallon, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.PoundPerUSGallon, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("slug/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.SlugPerCubicFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("t/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("t/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassConcentration.TryParseUnit("t/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassConcentrationUnit.TonnePerCubicMillimeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cg/dl", MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/μl", MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData("en-US", "cg/ml", MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/μl", MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData("en-US", "dg/ml", MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/m³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", MassConcentrationUnit.GramPerLiter)]
+        [InlineData("en-US", "g/μl", MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData("en-US", "g/ml", MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "µg/m³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/μl", MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData("en-US", "µg/ml", MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/μl", MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData("en-US", "mg/ml", MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/μl", MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData("en-US", "ng/ml", MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "oz/gal (imp.)", MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData("en-US", "oz/gal (U.S.)", MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData("en-US", "pg/dl", MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/μl", MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData("en-US", "pg/ml", MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/ft³", MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "ppg (imp.)", MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/ft³", MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "t/cm³", MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/m³", MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", MassConcentrationUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", MassConcentrationUnit.MilligramPerCubicMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MassConcentrationUnit expectedUnit)
+        {
+            Assert.True(MassConcentration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassConcentrationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -1965,12 +1945,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassConcentrationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassConcentration.Units.First(u => u != MassConcentration.BaseUnit);
-
-            var quantity = MassConcentration.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(MassConcentration.Units.Where(u => u != MassConcentration.BaseUnit), fromUnit =>
+            {
+                var quantity = MassConcentration.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1980,6 +1960,25 @@ namespace UnitsNet.Tests
             var quantity = default(MassConcentration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(MassConcentrationUnit unit)
+        {
+            var quantity = MassConcentration.From(3, MassConcentration.BaseUnit);
+            MassConcentration expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<MassConcentrationUnit> quantityToConvert = quantity;
+                IQuantity<MassConcentrationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -2137,8 +2136,8 @@ namespace UnitsNet.Tests
             var v = MassConcentration.FromKilogramsPerCubicMeter(1);
             Assert.True(v.Equals(MassConcentration.FromKilogramsPerCubicMeter(1), KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassConcentration.Zero, KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.True(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -2182,47 +2181,47 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 cg/dL", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString());
-            Assert.Equal("1 cg/L", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString());
-            Assert.Equal("1 cg/μL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMicroliter).ToString());
-            Assert.Equal("1 cg/mL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString());
-            Assert.Equal("1 dg/dL", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString());
-            Assert.Equal("1 dg/L", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString());
-            Assert.Equal("1 dg/μL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMicroliter).ToString());
-            Assert.Equal("1 dg/mL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString());
+            Assert.Equal("1 cg/dl", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString());
+            Assert.Equal("1 cg/l", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString());
+            Assert.Equal("1 cg/μl", new MassConcentration(1, MassConcentrationUnit.CentigramPerMicroliter).ToString());
+            Assert.Equal("1 cg/ml", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString());
+            Assert.Equal("1 dg/dl", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString());
+            Assert.Equal("1 dg/l", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString());
+            Assert.Equal("1 dg/μl", new MassConcentration(1, MassConcentrationUnit.DecigramPerMicroliter).ToString());
+            Assert.Equal("1 dg/ml", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString());
             Assert.Equal("1 g/cm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicCentimeter).ToString());
             Assert.Equal("1 g/m³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMeter).ToString());
             Assert.Equal("1 g/mm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMillimeter).ToString());
-            Assert.Equal("1 g/dL", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString());
-            Assert.Equal("1 g/L", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString());
-            Assert.Equal("1 g/μL", new MassConcentration(1, MassConcentrationUnit.GramPerMicroliter).ToString());
-            Assert.Equal("1 g/mL", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString());
+            Assert.Equal("1 g/dl", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString());
+            Assert.Equal("1 g/l", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString());
+            Assert.Equal("1 g/μl", new MassConcentration(1, MassConcentrationUnit.GramPerMicroliter).ToString());
+            Assert.Equal("1 g/ml", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString());
             Assert.Equal("1 kg/cm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicCentimeter).ToString());
             Assert.Equal("1 kg/m³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter).ToString());
             Assert.Equal("1 kg/mm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMillimeter).ToString());
-            Assert.Equal("1 kg/L", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString());
+            Assert.Equal("1 kg/l", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString());
             Assert.Equal("1 kip/ft³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicFoot).ToString());
             Assert.Equal("1 kip/in³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicInch).ToString());
             Assert.Equal("1 µg/m³", new MassConcentration(1, MassConcentrationUnit.MicrogramPerCubicMeter).ToString());
-            Assert.Equal("1 µg/dL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString());
-            Assert.Equal("1 µg/L", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString());
-            Assert.Equal("1 µg/μL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMicroliter).ToString());
-            Assert.Equal("1 µg/mL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString());
+            Assert.Equal("1 µg/dl", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString());
+            Assert.Equal("1 µg/l", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString());
+            Assert.Equal("1 µg/μl", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMicroliter).ToString());
+            Assert.Equal("1 µg/ml", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString());
             Assert.Equal("1 mg/m³", new MassConcentration(1, MassConcentrationUnit.MilligramPerCubicMeter).ToString());
-            Assert.Equal("1 mg/dL", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString());
-            Assert.Equal("1 mg/L", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString());
-            Assert.Equal("1 mg/μL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMicroliter).ToString());
-            Assert.Equal("1 mg/mL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString());
-            Assert.Equal("1 ng/dL", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString());
-            Assert.Equal("1 ng/L", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString());
-            Assert.Equal("1 ng/μL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMicroliter).ToString());
-            Assert.Equal("1 ng/mL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString());
+            Assert.Equal("1 mg/dl", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString());
+            Assert.Equal("1 mg/l", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString());
+            Assert.Equal("1 mg/μl", new MassConcentration(1, MassConcentrationUnit.MilligramPerMicroliter).ToString());
+            Assert.Equal("1 mg/ml", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString());
+            Assert.Equal("1 ng/dl", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString());
+            Assert.Equal("1 ng/l", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString());
+            Assert.Equal("1 ng/μl", new MassConcentration(1, MassConcentrationUnit.NanogramPerMicroliter).ToString());
+            Assert.Equal("1 ng/ml", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString());
             Assert.Equal("1 oz/gal (imp.)", new MassConcentration(1, MassConcentrationUnit.OuncePerImperialGallon).ToString());
             Assert.Equal("1 oz/gal (U.S.)", new MassConcentration(1, MassConcentrationUnit.OuncePerUSGallon).ToString());
-            Assert.Equal("1 pg/dL", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString());
-            Assert.Equal("1 pg/L", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString());
-            Assert.Equal("1 pg/μL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMicroliter).ToString());
-            Assert.Equal("1 pg/mL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString());
+            Assert.Equal("1 pg/dl", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString());
+            Assert.Equal("1 pg/l", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString());
+            Assert.Equal("1 pg/μl", new MassConcentration(1, MassConcentrationUnit.PicogramPerMicroliter).ToString());
+            Assert.Equal("1 pg/ml", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString());
             Assert.Equal("1 lb/ft³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicFoot).ToString());
             Assert.Equal("1 lb/in³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicInch).ToString());
             Assert.Equal("1 ppg (imp.)", new MassConcentration(1, MassConcentrationUnit.PoundPerImperialGallon).ToString());
@@ -2239,47 +2238,47 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cg/dL", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 cg/L", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 cg/μL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 cg/mL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 dg/dL", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 dg/L", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 dg/μL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 dg/mL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 cg/dl", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 cg/l", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 cg/μl", new MassConcentration(1, MassConcentrationUnit.CentigramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 cg/ml", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 dg/dl", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 dg/l", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 dg/μl", new MassConcentration(1, MassConcentrationUnit.DecigramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 dg/ml", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 g/cm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 g/m³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 g/mm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 g/dL", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 g/L", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 g/μL", new MassConcentration(1, MassConcentrationUnit.GramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 g/mL", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 g/dl", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 g/l", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 g/μl", new MassConcentration(1, MassConcentrationUnit.GramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 g/ml", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 kg/cm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 kg/m³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 kg/mm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg/L", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 kg/l", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 kip/ft³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicFoot).ToString(swedishCulture));
             Assert.Equal("1 kip/in³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicInch).ToString(swedishCulture));
             Assert.Equal("1 µg/m³", new MassConcentration(1, MassConcentrationUnit.MicrogramPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 µg/dL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 µg/L", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 µg/μL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 µg/mL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 µg/dl", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 µg/l", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 µg/μl", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 µg/ml", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 mg/m³", new MassConcentration(1, MassConcentrationUnit.MilligramPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 mg/dL", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 mg/L", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 mg/μL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 mg/mL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 ng/dL", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 ng/L", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 ng/μL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 ng/mL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 mg/dl", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 mg/l", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 mg/μl", new MassConcentration(1, MassConcentrationUnit.MilligramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 mg/ml", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 ng/dl", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 ng/l", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 ng/μl", new MassConcentration(1, MassConcentrationUnit.NanogramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 ng/ml", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 oz/gal (imp.)", new MassConcentration(1, MassConcentrationUnit.OuncePerImperialGallon).ToString(swedishCulture));
             Assert.Equal("1 oz/gal (U.S.)", new MassConcentration(1, MassConcentrationUnit.OuncePerUSGallon).ToString(swedishCulture));
-            Assert.Equal("1 pg/dL", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 pg/L", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 pg/μL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMicroliter).ToString(swedishCulture));
-            Assert.Equal("1 pg/mL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 pg/dl", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 pg/l", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 pg/μl", new MassConcentration(1, MassConcentrationUnit.PicogramPerMicroliter).ToString(swedishCulture));
+            Assert.Equal("1 pg/ml", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 lb/ft³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicFoot).ToString(swedishCulture));
             Assert.Equal("1 lb/in³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicInch).ToString(swedishCulture));
             Assert.Equal("1 ppg (imp.)", new MassConcentration(1, MassConcentrationUnit.PoundPerImperialGallon).ToString(swedishCulture));
@@ -2320,7 +2319,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -2470,6 +2469,13 @@ namespace UnitsNet.Tests
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

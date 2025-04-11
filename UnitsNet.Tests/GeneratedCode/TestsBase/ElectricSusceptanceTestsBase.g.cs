@@ -128,16 +128,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricSusceptance(double.PositiveInfinity, ElectricSusceptanceUnit.Siemens));
-            Assert.Throws<ArgumentException>(() => new ElectricSusceptance(double.NegativeInfinity, ElectricSusceptanceUnit.Siemens));
+            var exception1 = Record.Exception(() => new ElectricSusceptance(double.PositiveInfinity, ElectricSusceptanceUnit.Siemens));
+            var exception2 = Record.Exception(() => new ElectricSusceptance(double.NegativeInfinity, ElectricSusceptanceUnit.Siemens));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricSusceptance(double.NaN, ElectricSusceptanceUnit.Siemens));
+            var exception = Record.Exception(() => new ElectricSusceptance(double.NaN, ElectricSusceptanceUnit.Siemens));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -147,18 +152,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricSusceptance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricSusceptance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricSusceptance(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricSusceptance(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -267,16 +272,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromSiemens_WithInfinityValue_ThrowsArgumentException()
+        public void FromSiemens_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricSusceptance.FromSiemens(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricSusceptance.FromSiemens(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricSusceptance.FromSiemens(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricSusceptance.FromSiemens(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromSiemens_WithNanValue_ThrowsArgumentException()
+        public void FromSiemens_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricSusceptance.FromSiemens(double.NaN));
+            var exception = Record.Exception(() => ElectricSusceptance.FromSiemens(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -302,20 +312,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricSusceptance.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricSusceptance.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+            var expectedUnit = ElectricSusceptance.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricSusceptance quantityToConvert = quantity;
+
+                ElectricSusceptance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricSusceptanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricSusceptanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricSusceptanceUnit> quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricSusceptanceUnit> quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricSusceptance(value: 1, unit: ElectricSusceptance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -512,170 +611,198 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricSusceptanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("G℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Gigamho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("GS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Gigasiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("k℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Kilomho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("kS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Kilosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("M℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Megamho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("MS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Megasiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Mho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("µ℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Micromho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Microsiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("m℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Millimho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Millisiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("n℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Nanomho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("nS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Nanosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Siemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("T℧", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Teramho, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricSusceptance.ParseUnit("TS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricSusceptanceUnit.Terasiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricSusceptanceUnit parsedUnit = ElectricSusceptance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricSusceptanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("G℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Gigamho, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricSusceptanceUnit parsedUnit = ElectricSusceptance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("GS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Gigasiemens, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("en-US", "GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("en-US", "k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("en-US", "kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("en-US", "M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("en-US", "MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("en-US", "℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("en-US", "µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("en-US", "µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("en-US", "m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("en-US", "mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("en-US", "n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("en-US", "nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("en-US", "T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("en-US", "TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricSusceptanceUnit parsedUnit = ElectricSusceptance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("k℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Kilomho, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("en-US", "GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("en-US", "k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("en-US", "kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("en-US", "M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("en-US", "MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("en-US", "℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("en-US", "µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("en-US", "µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("en-US", "m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("en-US", "mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("en-US", "n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("en-US", "nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("en-US", "T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("en-US", "TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            ElectricSusceptanceUnit parsedUnit = ElectricSusceptance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("kS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Kilosiemens, parsedUnit);
-            }
+        [Theory]
+        [InlineData("G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricSusceptance.TryParseUnit(abbreviation, out ElectricSusceptanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Mho, parsedUnit);
-            }
+        [Theory]
+        [InlineData("G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricSusceptance.TryParseUnit(abbreviation, out ElectricSusceptanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("µ℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Micromho, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("en-US", "GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("en-US", "k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("en-US", "kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("en-US", "M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("en-US", "MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("en-US", "℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("en-US", "µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("en-US", "µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("en-US", "m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("en-US", "mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("en-US", "n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("en-US", "nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("en-US", "T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("en-US", "TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricSusceptance.TryParseUnit(abbreviation, out ElectricSusceptanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Microsiemens, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("n℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Nanomho, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("nS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Nanosiemens, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Siemens, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("T℧", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Teramho, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricSusceptance.TryParseUnit("TS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricSusceptanceUnit.Terasiemens, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "G℧", ElectricSusceptanceUnit.Gigamho)]
+        [InlineData("en-US", "GS", ElectricSusceptanceUnit.Gigasiemens)]
+        [InlineData("en-US", "k℧", ElectricSusceptanceUnit.Kilomho)]
+        [InlineData("en-US", "kS", ElectricSusceptanceUnit.Kilosiemens)]
+        [InlineData("en-US", "M℧", ElectricSusceptanceUnit.Megamho)]
+        [InlineData("en-US", "MS", ElectricSusceptanceUnit.Megasiemens)]
+        [InlineData("en-US", "℧", ElectricSusceptanceUnit.Mho)]
+        [InlineData("en-US", "µ℧", ElectricSusceptanceUnit.Micromho)]
+        [InlineData("en-US", "µS", ElectricSusceptanceUnit.Microsiemens)]
+        [InlineData("en-US", "m℧", ElectricSusceptanceUnit.Millimho)]
+        [InlineData("en-US", "mS", ElectricSusceptanceUnit.Millisiemens)]
+        [InlineData("en-US", "n℧", ElectricSusceptanceUnit.Nanomho)]
+        [InlineData("en-US", "nS", ElectricSusceptanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricSusceptanceUnit.Siemens)]
+        [InlineData("en-US", "T℧", ElectricSusceptanceUnit.Teramho)]
+        [InlineData("en-US", "TS", ElectricSusceptanceUnit.Terasiemens)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricSusceptanceUnit expectedUnit)
+        {
+            Assert.True(ElectricSusceptance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricSusceptanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -703,12 +830,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricSusceptanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricSusceptance.Units.First(u => u != ElectricSusceptance.BaseUnit);
-
-            var quantity = ElectricSusceptance.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricSusceptance.Units.Where(u => u != ElectricSusceptance.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricSusceptance.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -718,6 +845,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricSusceptance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricSusceptanceUnit unit)
+        {
+            var quantity = ElectricSusceptance.From(3, ElectricSusceptance.BaseUnit);
+            ElectricSusceptance expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricSusceptanceUnit> quantityToConvert = quantity;
+                IQuantity<ElectricSusceptanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -842,8 +988,8 @@ namespace UnitsNet.Tests
             var v = ElectricSusceptance.FromSiemens(1);
             Assert.True(v.Equals(ElectricSusceptance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricSusceptance.Zero, SiemensTolerance, ComparisonType.Relative));
-            Assert.True(ElectricSusceptance.FromSiemens(100).Equals(ElectricSusceptance.FromSiemens(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ElectricSusceptance.FromSiemens(100).Equals(ElectricSusceptance.FromSiemens(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ElectricSusceptance.FromSiemens(100).Equals(ElectricSusceptance.FromSiemens(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricSusceptance.FromSiemens(100).Equals(ElectricSusceptance.FromSiemens(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -959,7 +1105,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1109,6 +1255,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricSusceptance.FromSiemens(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricSusceptance.FromSiemens(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

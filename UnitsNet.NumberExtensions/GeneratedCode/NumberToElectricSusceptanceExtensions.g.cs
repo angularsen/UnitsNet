@@ -32,133 +32,181 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
     /// </summary>
     public static class NumberToElectricSusceptanceExtensions
     {
-        /// <inheritdoc cref="ElectricSusceptance.FromGigamhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromGigamhos(double)" />
         public static ElectricSusceptance Gigamhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromGigamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromGigamhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromGigamhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(double)" />
         public static ElectricSusceptance Gigasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromGigasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromGigasiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromGigasiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(double)" />
         public static ElectricSusceptance Kilomhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromKilomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromKilomhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromKilomhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromKilosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromKilosiemens(double)" />
         public static ElectricSusceptance Kilosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromKilosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromKilosiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromKilosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(double)" />
         public static ElectricSusceptance Megamhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMegamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMegamhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMegamhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(double)" />
         public static ElectricSusceptance Megasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMegasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMegasiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMegasiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMhos(double)" />
         public static ElectricSusceptance Mhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMicromhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMicromhos(double)" />
         public static ElectricSusceptance Micromhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMicromhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMicromhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMicromhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMicrosiemens(double)" />
         public static ElectricSusceptance Microsiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMicrosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMicrosiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMillimhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMillimhos(double)" />
         public static ElectricSusceptance Millimhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMillimhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMillimhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMillimhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromMillisiemens(double)" />
         public static ElectricSusceptance Millisiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromMillisiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromMillisiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromNanomhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromNanomhos(double)" />
         public static ElectricSusceptance Nanomhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromNanomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromNanomhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromNanomhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromNanosiemens(double)" />
         public static ElectricSusceptance Nanosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromNanosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromNanosiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromSiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromSiemens(double)" />
         public static ElectricSusceptance Siemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromSiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromSiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromSiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(double)" />
         public static ElectricSusceptance Teramhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromTeramhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromTeramhos(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromTeramhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(double)" />
         public static ElectricSusceptance Terasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricSusceptance.FromTerasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricSusceptance.FromTerasiemens(value.ToDouble(null));
 #endif
-            => ElectricSusceptance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

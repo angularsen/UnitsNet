@@ -32,13 +32,16 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
     /// </summary>
     public static class NumberToScalarExtensions
     {
-        /// <inheritdoc cref="Scalar.FromAmount(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Scalar.FromAmount(double)" />
         public static Scalar Amount<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Scalar.FromAmount(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Scalar.FromAmount(value.ToDouble(null));
 #endif
-            => Scalar.FromAmount(Convert.ToDouble(value));
 
     }
 }

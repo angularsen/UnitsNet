@@ -2,7 +2,10 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnitsNet.CustomCode.Units;
+using UnitsNet.Units;
 using UnitsNet.Wrappers;
 using Xunit;
 
@@ -10,7 +13,6 @@ namespace UnitsNet.Tests
 {
     public class PressureTests : PressureTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double AtmospheresInOnePascal => 9.8692 * 1E-6;
 
         protected override double BarsInOnePascal => 1E-5;
@@ -55,7 +57,7 @@ namespace UnitsNet.Tests
 
         protected override double PoundsForcePerSquareMilInOnePascal => 1.450377377302092e-10;
 
-        protected override double TechnicalAtmospheresInOnePascal => 1.0197 * 1E-5;
+        protected override double TechnicalAtmospheresInOnePascal => 1.019716212977928E-05;
 
         protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;
 
@@ -70,7 +72,7 @@ namespace UnitsNet.Tests
         protected override double DecapascalsInOnePascal => 1e-1;
 
         protected override double DecibarsInOnePascal => 1e-4;
-        protected override double FeetOfHeadInOnePascal => 0.000334552565551;
+        protected override double FeetOfHeadInOnePascal => 0.0003346382329391094;
 
         protected override double GigapascalsInOnePascal => 1e-9;
 
@@ -103,10 +105,6 @@ namespace UnitsNet.Tests
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
         protected override double MillipascalsInOnePascal => 1e3;
-
-        protected override double MetersOfElevationInOnePascal => 39364.9129730686;
-
-        protected override double FeetOfElevationInOnePascal => 129149.976945763;
 
         [Fact]
         public void Absolute_WithAbsolutePressureReference_IsEqual()
@@ -155,6 +153,25 @@ namespace UnitsNet.Tests
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
+        }
+
+        [Fact]
+        public void ReferencePressure_WithInvalidPressureReference_ThrowsNotImplementedException()
+        {
+            var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), (PressureReference)(-1));
+            Assert.Throws<NotImplementedException>(() => refPressure.Absolute.Atmospheres);
+            Assert.Throws<NotImplementedException>(() => refPressure.Gauge.Atmospheres);
+            Assert.Throws<NotImplementedException>(() => refPressure.Vacuum.Atmospheres);
+        }
+
+        [Fact]
+        public void ReferencePressureReferences_ReturnsTheExpectedEnumValues()
+        {
+            IEnumerable<PressureReference> expectedValues = Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>();
+
+            PressureReference[] actualValues = ReferencePressure.References;
+
+            Assert.Equal(expectedValues, actualValues);
         }
 
         [Fact]
@@ -257,10 +274,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void PressureDividedByTimeSpanEqualsPressurechangeRate()
+        public void PressureDividedByTimeSpanEqualsPressureChangeRate()
         {
             PressureChangeRate pressureChangeRate = Pressure.FromPascals(50) / TimeSpan.FromSeconds(5);
             Assert.Equal(PressureChangeRate.FromPascalsPerSecond(10), pressureChangeRate);
+        }
+
+        [Fact]
+        public void PressureFromElevation_ConvertsWithRounding()
+        {
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot));
+            Assert.Equal(1, pressureFromElevation.Pascals, PascalsTolerance);
+        }
+
+        [Fact]
+        public void ElevationFromPressure_ConvertsWithRounding()
+        {
+            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation();
+            Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
+            Assert.Equal(129149.976945763, elevationFromPressure.Value, 9);
         }
     }
 }

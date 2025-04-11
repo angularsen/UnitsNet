@@ -32,133 +32,181 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
-        /// <inheritdoc cref="ElectricConductance.FromGigamhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromGigamhos(double)" />
         public static ElectricConductance Gigamhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromGigamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromGigamhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromGigamhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromGigasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromGigasiemens(double)" />
         public static ElectricConductance Gigasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromGigasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromGigasiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromGigasiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromKilomhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromKilomhos(double)" />
         public static ElectricConductance Kilomhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromKilomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromKilomhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromKilomhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(double)" />
         public static ElectricConductance Kilosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromKilosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromKilosiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMegamhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMegamhos(double)" />
         public static ElectricConductance Megamhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMegamhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMegamhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMegamhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMegasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMegasiemens(double)" />
         public static ElectricConductance Megasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMegasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMegasiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMegasiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMhos(double)" />
         public static ElectricConductance Mhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMicromhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMicromhos(double)" />
         public static ElectricConductance Micromhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMicromhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMicromhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMicromhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)" />
         public static ElectricConductance Microsiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMicrosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMicrosiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillimhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMillimhos(double)" />
         public static ElectricConductance Millimhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMillimhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMillimhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMillimhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)" />
         public static ElectricConductance Millisiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromMillisiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromMillisiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromNanomhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromNanomhos(double)" />
         public static ElectricConductance Nanomhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromNanomhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromNanomhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromNanomhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(double)" />
         public static ElectricConductance Nanosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromNanosiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromNanosiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)" />
         public static ElectricConductance Siemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromSiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromSiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromSiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromTeramhos(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromTeramhos(double)" />
         public static ElectricConductance Teramhos<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromTeramhos(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromTeramhos(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromTeramhos(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromTerasiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromTerasiemens(double)" />
         public static ElectricConductance Terasiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductance.FromTerasiemens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductance.FromTerasiemens(value.ToDouble(null));
 #endif
-            => ElectricConductance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

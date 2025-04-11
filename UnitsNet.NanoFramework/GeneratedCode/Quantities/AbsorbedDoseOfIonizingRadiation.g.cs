@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AbsorbedDoseOfIonizingRadiation(double value, AbsorbedDoseOfIonizingRadiationUnit unit)
         {
             _value = value;
@@ -169,97 +168,81 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromCentigrays(double centigrays) => new AbsorbedDoseOfIonizingRadiation(centigrays, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromFemtograys(double femtograys) => new AbsorbedDoseOfIonizingRadiation(femtograys, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gigagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromGigagrays(double gigagrays) => new AbsorbedDoseOfIonizingRadiation(gigagrays, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromGrays(double grays) => new AbsorbedDoseOfIonizingRadiation(grays, AbsorbedDoseOfIonizingRadiationUnit.Gray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromKilograys(double kilograys) => new AbsorbedDoseOfIonizingRadiation(kilograys, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilorad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromKilorads(double kilorads) => new AbsorbedDoseOfIonizingRadiation(kilorads, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromMegagrays(double megagrays) => new AbsorbedDoseOfIonizingRadiation(megagrays, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromMegarads(double megarads) => new AbsorbedDoseOfIonizingRadiation(megarads, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Microgray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromMicrograys(double micrograys) => new AbsorbedDoseOfIonizingRadiation(micrograys, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Milligray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromMilligrays(double milligrays) => new AbsorbedDoseOfIonizingRadiation(milligrays, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromMillirads(double millirads) => new AbsorbedDoseOfIonizingRadiation(millirads, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromNanograys(double nanograys) => new AbsorbedDoseOfIonizingRadiation(nanograys, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Petagray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromPetagrays(double petagrays) => new AbsorbedDoseOfIonizingRadiation(petagrays, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Picogray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromPicograys(double picograys) => new AbsorbedDoseOfIonizingRadiation(picograys, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Rad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromRads(double rads) => new AbsorbedDoseOfIonizingRadiation(rads, AbsorbedDoseOfIonizingRadiationUnit.Rad);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Teragray"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AbsorbedDoseOfIonizingRadiation FromTeragrays(double teragrays) => new AbsorbedDoseOfIonizingRadiation(teragrays, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
 
         /// <summary>

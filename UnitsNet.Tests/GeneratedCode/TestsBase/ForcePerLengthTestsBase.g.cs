@@ -216,16 +216,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NegativeInfinity, ForcePerLengthUnit.NewtonPerMeter));
+            var exception1 = Record.Exception(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
+            var exception2 = Record.Exception(() => new ForcePerLength(double.NegativeInfinity, ForcePerLengthUnit.NewtonPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
+            var exception = Record.Exception(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -235,18 +240,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ForcePerLength(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ForcePerLength) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ForcePerLength(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ForcePerLength(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -465,16 +470,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
+            var exception = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -522,20 +532,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ForcePerLength.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ForcePerLength.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+            var expectedUnit = ForcePerLength.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ForcePerLength quantityToConvert = quantity;
+
+                ForcePerLength convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ForcePerLengthUnit> quantityToConvert = quantity;
+
+                IQuantity<ForcePerLengthUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ForcePerLengthUnit> quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ForcePerLengthUnit> quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -1136,512 +1235,430 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ForcePerLengthUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("cN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("cN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("cN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("daN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("daN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("daN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("dN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("dN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("dN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kgf/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("кгс/см", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kgf/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("кгс/м", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kgf/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("кгс/мм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kipf/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kip/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("k/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kipf/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("kip/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("k/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("MN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("MN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("MN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("µN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("µN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("µN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("mN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("mN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("mN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("nN/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("nN/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("nN/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("N/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("N/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("N/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("lbf/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("lbf/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("lbf/yd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("tf/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("тс/см", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("tf/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("тс/м", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("tf/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ForcePerLength.ParseUnit("тс/мм", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ForcePerLengthUnit parsedUnit = ForcePerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ForcePerLengthUnit expectedUnit)
         {
-            {
-                Assert.True(ForcePerLength.TryParseUnit("cN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerCentimeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ForcePerLengthUnit parsedUnit = ForcePerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("cN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("en-US", "cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("en-US", "cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("en-US", "daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("en-US", "daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("en-US", "daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("en-US", "dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("en-US", "dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("en-US", "dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("en-US", "kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("en-US", "kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("en-US", "kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("en-US", "kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("en-US", "kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("en-US", "kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("en-US", "kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("en-US", "MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("en-US", "MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("en-US", "µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("en-US", "µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("en-US", "µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("en-US", "mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("en-US", "mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("en-US", "mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("en-US", "nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("en-US", "nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("en-US", "nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("en-US", "N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("en-US", "N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("en-US", "N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("en-US", "lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("en-US", "lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("en-US", "lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("en-US", "tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("en-US", "tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("en-US", "tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        [InlineData("ru-RU", "кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("ru-RU", "кгс/м", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("ru-RU", "кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("ru-RU", "тс/см", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("ru-RU", "тс/м", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("ru-RU", "тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ForcePerLengthUnit parsedUnit = ForcePerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("cN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("en-US", "cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("en-US", "cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("en-US", "daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("en-US", "daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("en-US", "daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("en-US", "dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("en-US", "dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("en-US", "dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("en-US", "kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("en-US", "kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("en-US", "kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("en-US", "kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("en-US", "kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("en-US", "kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("en-US", "kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("en-US", "MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("en-US", "MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("en-US", "µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("en-US", "µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("en-US", "µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("en-US", "mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("en-US", "mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("en-US", "mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("en-US", "nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("en-US", "nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("en-US", "nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("en-US", "N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("en-US", "N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("en-US", "N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("en-US", "lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("en-US", "lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("en-US", "lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("en-US", "tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("en-US", "tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("en-US", "tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        [InlineData("ru-RU", "кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("ru-RU", "кгс/м", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("ru-RU", "кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("ru-RU", "тс/см", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("ru-RU", "тс/м", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("ru-RU", "тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            ForcePerLengthUnit parsedUnit = ForcePerLength.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("daN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerCentimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ForcePerLength.TryParseUnit(abbreviation, out ForcePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("daN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ForcePerLength.TryParseUnit(abbreviation, out ForcePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("daN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("en-US", "cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("en-US", "cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("en-US", "daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("en-US", "daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("en-US", "daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("en-US", "dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("en-US", "dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("en-US", "dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("en-US", "kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("en-US", "kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("en-US", "kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("en-US", "kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("en-US", "kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("en-US", "kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("en-US", "kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("en-US", "MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("en-US", "MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("en-US", "µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("en-US", "µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("en-US", "µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("en-US", "mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("en-US", "mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("en-US", "mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("en-US", "nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("en-US", "nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("en-US", "nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("en-US", "N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("en-US", "N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("en-US", "N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("en-US", "lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("en-US", "lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("en-US", "lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("en-US", "tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("en-US", "tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("en-US", "tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        [InlineData("ru-RU", "кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("ru-RU", "кгс/м", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("ru-RU", "кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("ru-RU", "тс/см", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("ru-RU", "тс/м", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("ru-RU", "тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ForcePerLength.TryParseUnit(abbreviation, out ForcePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ForcePerLength.TryParseUnit("dN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("dN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("dN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kgf/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("кгс/см", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kgf/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("кгс/м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kgf/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("кгс/мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kipf/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kip/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("k/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kipf/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("kip/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("k/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("µN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("µN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("µN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("nN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("nN/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("nN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("N/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("N/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("N/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("lbf/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("lbf/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("lbf/yd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("tf/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("тс/см", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("tf/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("тс/м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("tf/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParseUnit("тс/мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData("en-US", "cN/m", ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData("en-US", "cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData("en-US", "daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData("en-US", "daN/m", ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData("en-US", "daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData("en-US", "dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData("en-US", "dN/m", ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData("en-US", "dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData("en-US", "kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("en-US", "kgf/m", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("en-US", "kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("en-US", "kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData("en-US", "kN/m", ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData("en-US", "kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData("en-US", "kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "k/ft", ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData("en-US", "kipf/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "kip/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "k/in", ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData("en-US", "MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData("en-US", "MN/m", ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData("en-US", "MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData("en-US", "µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData("en-US", "µN/m", ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData("en-US", "µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData("en-US", "mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData("en-US", "mN/m", ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData("en-US", "mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData("en-US", "nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData("en-US", "nN/m", ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData("en-US", "nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData("en-US", "N/cm", ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData("en-US", "N/m", ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData("en-US", "N/mm", ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData("en-US", "lbf/ft", ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData("en-US", "lbf/in", ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData("en-US", "lbf/yd", ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData("en-US", "tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("en-US", "tf/m", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("en-US", "tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        [InlineData("ru-RU", "кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData("ru-RU", "кгс/м", ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData("ru-RU", "кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData("ru-RU", "тс/см", ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData("ru-RU", "тс/м", ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData("ru-RU", "тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ForcePerLengthUnit expectedUnit)
+        {
+            Assert.True(ForcePerLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ForcePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -1669,12 +1686,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForcePerLengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ForcePerLength.Units.First(u => u != ForcePerLength.BaseUnit);
-
-            var quantity = ForcePerLength.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ForcePerLength.Units.Where(u => u != ForcePerLength.BaseUnit), fromUnit =>
+            {
+                var quantity = ForcePerLength.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -1684,6 +1701,25 @@ namespace UnitsNet.Tests
             var quantity = default(ForcePerLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ForcePerLengthUnit unit)
+        {
+            var quantity = ForcePerLength.From(3, ForcePerLength.BaseUnit);
+            ForcePerLength expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ForcePerLengthUnit> quantityToConvert = quantity;
+                IQuantity<ForcePerLengthUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -1830,8 +1866,8 @@ namespace UnitsNet.Tests
             var v = ForcePerLength.FromNewtonsPerMeter(1);
             Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), NewtonsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ForcePerLength.Zero, NewtonsPerMeterTolerance, ComparisonType.Relative));
-            Assert.True(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -1991,7 +2027,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -2141,6 +2177,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

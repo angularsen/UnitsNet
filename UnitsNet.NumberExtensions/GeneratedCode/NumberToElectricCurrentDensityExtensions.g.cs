@@ -32,29 +32,38 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
     /// </summary>
     public static class NumberToElectricCurrentDensityExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(double)" />
         public static ElectricCurrentDensity AmperesPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToDouble(null));
 #endif
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
         public static ElectricCurrentDensity AmperesPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToDouble(null));
 #endif
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToDouble(null));
 #endif
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct DoseAreaProduct :
-        IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit, double>,
+        IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,
+        IParsable<DoseAreaProduct>,
+#endif
         IComparable,
         IComparable<DoseAreaProduct>,
         IConvertible,
@@ -102,10 +108,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public DoseAreaProduct(double value, DoseAreaProductUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -119,13 +124,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public DoseAreaProduct(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -171,7 +171,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -377,200 +377,160 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromCentigraySquareCentimeters(QuantityValue centigraysquarecentimeters)
+        public static DoseAreaProduct FromCentigraySquareCentimeters(double value)
         {
-            double value = (double) centigraysquarecentimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromCentigraySquareDecimeters(QuantityValue centigraysquaredecimeters)
+        public static DoseAreaProduct FromCentigraySquareDecimeters(double value)
         {
-            double value = (double) centigraysquaredecimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromCentigraySquareMeters(QuantityValue centigraysquaremeters)
+        public static DoseAreaProduct FromCentigraySquareMeters(double value)
         {
-            double value = (double) centigraysquaremeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromCentigraySquareMillimeters(QuantityValue centigraysquaremillimeters)
+        public static DoseAreaProduct FromCentigraySquareMillimeters(double value)
         {
-            double value = (double) centigraysquaremillimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromDecigraySquareCentimeters(QuantityValue decigraysquarecentimeters)
+        public static DoseAreaProduct FromDecigraySquareCentimeters(double value)
         {
-            double value = (double) decigraysquarecentimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromDecigraySquareDecimeters(QuantityValue decigraysquaredecimeters)
+        public static DoseAreaProduct FromDecigraySquareDecimeters(double value)
         {
-            double value = (double) decigraysquaredecimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromDecigraySquareMeters(QuantityValue decigraysquaremeters)
+        public static DoseAreaProduct FromDecigraySquareMeters(double value)
         {
-            double value = (double) decigraysquaremeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromDecigraySquareMillimeters(QuantityValue decigraysquaremillimeters)
+        public static DoseAreaProduct FromDecigraySquareMillimeters(double value)
         {
-            double value = (double) decigraysquaremillimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromGraySquareCentimeters(QuantityValue graysquarecentimeters)
+        public static DoseAreaProduct FromGraySquareCentimeters(double value)
         {
-            double value = (double) graysquarecentimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromGraySquareDecimeters(QuantityValue graysquaredecimeters)
+        public static DoseAreaProduct FromGraySquareDecimeters(double value)
         {
-            double value = (double) graysquaredecimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromGraySquareMeters(QuantityValue graysquaremeters)
+        public static DoseAreaProduct FromGraySquareMeters(double value)
         {
-            double value = (double) graysquaremeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromGraySquareMillimeters(QuantityValue graysquaremillimeters)
+        public static DoseAreaProduct FromGraySquareMillimeters(double value)
         {
-            double value = (double) graysquaremillimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMicrograySquareCentimeters(QuantityValue micrograysquarecentimeters)
+        public static DoseAreaProduct FromMicrograySquareCentimeters(double value)
         {
-            double value = (double) micrograysquarecentimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMicrograySquareDecimeters(QuantityValue micrograysquaredecimeters)
+        public static DoseAreaProduct FromMicrograySquareDecimeters(double value)
         {
-            double value = (double) micrograysquaredecimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMicrograySquareMeters(QuantityValue micrograysquaremeters)
+        public static DoseAreaProduct FromMicrograySquareMeters(double value)
         {
-            double value = (double) micrograysquaremeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMicrograySquareMillimeters(QuantityValue micrograysquaremillimeters)
+        public static DoseAreaProduct FromMicrograySquareMillimeters(double value)
         {
-            double value = (double) micrograysquaremillimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMilligraySquareCentimeters(QuantityValue milligraysquarecentimeters)
+        public static DoseAreaProduct FromMilligraySquareCentimeters(double value)
         {
-            double value = (double) milligraysquarecentimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMilligraySquareDecimeters(QuantityValue milligraysquaredecimeters)
+        public static DoseAreaProduct FromMilligraySquareDecimeters(double value)
         {
-            double value = (double) milligraysquaredecimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMilligraySquareMeters(QuantityValue milligraysquaremeters)
+        public static DoseAreaProduct FromMilligraySquareMeters(double value)
         {
-            double value = (double) milligraysquaremeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DoseAreaProduct FromMilligraySquareMillimeters(QuantityValue milligraysquaremillimeters)
+        public static DoseAreaProduct FromMilligraySquareMillimeters(double value)
         {
-            double value = (double) milligraysquaremillimeters;
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMillimeter);
         }
 
@@ -580,9 +540,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>DoseAreaProduct unit value.</returns>
-        public static DoseAreaProduct From(QuantityValue value, DoseAreaProductUnit fromUnit)
+        public static DoseAreaProduct From(double value, DoseAreaProductUnit fromUnit)
         {
-            return new DoseAreaProduct((double)value, fromUnit);
+            return new DoseAreaProduct(value, fromUnit);
         }
 
         #endregion
@@ -655,7 +615,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out DoseAreaProduct result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out DoseAreaProduct result)
         {
             return TryParse(str, null, out result);
         }
@@ -670,7 +630,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out DoseAreaProduct result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out DoseAreaProduct result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(
                 str,
@@ -709,7 +669,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DoseAreaProductUnit)"/>
-        public static bool TryParseUnit(string str, out DoseAreaProductUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out DoseAreaProductUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -724,7 +684,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out DoseAreaProductUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DoseAreaProductUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<DoseAreaProductUnit>(str, provider, out unit);
         }
@@ -979,34 +939,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is DoseAreaProductUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is DoseAreaProductUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1121,6 +1054,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public DoseAreaProduct ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not DoseAreaProductUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1128,21 +1077,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public DoseAreaProduct ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1154,17 +1088,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not DoseAreaProductUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1176,7 +1100,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1186,7 +1110,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1197,7 +1121,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1278,7 +1202,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

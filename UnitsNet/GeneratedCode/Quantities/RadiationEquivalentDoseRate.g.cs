@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -39,7 +41,14 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RadiationEquivalentDoseRate :
-        IArithmeticQuantity<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit, double>,
+        IArithmeticQuantity<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<RadiationEquivalentDoseRate, Duration, RadiationEquivalentDose>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, bool>,
+        IParsable<RadiationEquivalentDoseRate>,
+#endif
         IComparable,
         IComparable<RadiationEquivalentDoseRate>,
         IConvertible,
@@ -68,7 +77,7 @@ namespace UnitsNet
                 new UnitInfo<RadiationEquivalentDoseRateUnit>[]
                 {
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, "MicrosievertsPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
-                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "MicrosievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
+                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "MicrosievertsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, "MilliroentgensEquivalentManPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MillisievertPerHour, "MillisievertsPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, "MillisievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
@@ -76,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, "NanosievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, "RoentgensEquivalentManPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
                     new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.SievertPerHour, "SievertsPerHour", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
-                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.SievertPerSecond, "SievertsPerSecond", BaseUnits.Undefined, "RadiationEquivalentDoseRate"),
+                    new UnitInfo<RadiationEquivalentDoseRateUnit>(RadiationEquivalentDoseRateUnit.SievertPerSecond, "SievertsPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "RadiationEquivalentDoseRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -89,10 +98,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RadiationEquivalentDoseRate(double value, RadiationEquivalentDoseRateUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -106,13 +114,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public RadiationEquivalentDoseRate(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -158,7 +161,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -294,100 +297,80 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(QuantityValue microsievertsperhour)
+        public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(double value)
         {
-            double value = (double) microsievertsperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(QuantityValue microsievertspersecond)
+        public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(double value)
         {
-            double value = (double) microsievertspersecond;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromMilliroentgensEquivalentManPerHour(QuantityValue milliroentgensequivalentmanperhour)
+        public static RadiationEquivalentDoseRate FromMilliroentgensEquivalentManPerHour(double value)
         {
-            double value = (double) milliroentgensequivalentmanperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromMillisievertsPerHour(QuantityValue millisievertsperhour)
+        public static RadiationEquivalentDoseRate FromMillisievertsPerHour(double value)
         {
-            double value = (double) millisievertsperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MillisievertPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(QuantityValue millisievertspersecond)
+        public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(double value)
         {
-            double value = (double) millisievertspersecond;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromNanosievertsPerHour(QuantityValue nanosievertsperhour)
+        public static RadiationEquivalentDoseRate FromNanosievertsPerHour(double value)
         {
-            double value = (double) nanosievertsperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.NanosievertPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(QuantityValue nanosievertspersecond)
+        public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(double value)
         {
-            double value = (double) nanosievertspersecond;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromRoentgensEquivalentManPerHour(QuantityValue roentgensequivalentmanperhour)
+        public static RadiationEquivalentDoseRate FromRoentgensEquivalentManPerHour(double value)
         {
-            double value = (double) roentgensequivalentmanperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromSievertsPerHour(QuantityValue sievertsperhour)
+        public static RadiationEquivalentDoseRate FromSievertsPerHour(double value)
         {
-            double value = (double) sievertsperhour;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.SievertPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDoseRate FromSievertsPerSecond(QuantityValue sievertspersecond)
+        public static RadiationEquivalentDoseRate FromSievertsPerSecond(double value)
         {
-            double value = (double) sievertspersecond;
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.SievertPerSecond);
         }
 
@@ -397,9 +380,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RadiationEquivalentDoseRate unit value.</returns>
-        public static RadiationEquivalentDoseRate From(QuantityValue value, RadiationEquivalentDoseRateUnit fromUnit)
+        public static RadiationEquivalentDoseRate From(double value, RadiationEquivalentDoseRateUnit fromUnit)
         {
-            return new RadiationEquivalentDoseRate((double)value, fromUnit);
+            return new RadiationEquivalentDoseRate(value, fromUnit);
         }
 
         #endregion
@@ -472,7 +455,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out RadiationEquivalentDoseRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out RadiationEquivalentDoseRate result)
         {
             return TryParse(str, null, out result);
         }
@@ -487,7 +470,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out RadiationEquivalentDoseRate result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationEquivalentDoseRate result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(
                 str,
@@ -526,7 +509,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RadiationEquivalentDoseRateUnit)"/>
-        public static bool TryParseUnit(string str, out RadiationEquivalentDoseRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out RadiationEquivalentDoseRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -541,7 +524,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out RadiationEquivalentDoseRateUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationEquivalentDoseRateUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<RadiationEquivalentDoseRateUnit>(str, provider, out unit);
         }
@@ -590,6 +573,16 @@ namespace UnitsNet
         public static double operator /(RadiationEquivalentDoseRate left, RadiationEquivalentDoseRate right)
         {
             return left.SievertsPerSecond / right.SievertsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseRate"/> * <see cref="Duration"/>.</summary>
+        public static RadiationEquivalentDose operator *(RadiationEquivalentDoseRate radiationEquivalentDoseRate, Duration duration)
+        {
+            return RadiationEquivalentDose.FromSieverts(radiationEquivalentDoseRate.SievertsPerHour * duration.Hours);
         }
 
         #endregion
@@ -796,34 +789,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is RadiationEquivalentDoseRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationEquivalentDoseRateUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RadiationEquivalentDoseRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationEquivalentDoseRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -918,6 +884,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public RadiationEquivalentDoseRate ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not RadiationEquivalentDoseRateUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationEquivalentDoseRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -925,21 +907,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationEquivalentDoseRateUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RadiationEquivalentDoseRate ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -951,17 +918,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RadiationEquivalentDoseRateUnit> IQuantity<RadiationEquivalentDoseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RadiationEquivalentDoseRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationEquivalentDoseRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -973,7 +930,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -983,7 +940,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -994,7 +951,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1075,7 +1032,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

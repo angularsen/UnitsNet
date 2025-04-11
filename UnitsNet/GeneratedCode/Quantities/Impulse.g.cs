@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -39,7 +41,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Impulse :
-        IArithmeticQuantity<Impulse, ImpulseUnit, double>,
+        IArithmeticQuantity<Impulse, ImpulseUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Impulse, Impulse, bool>,
+        IParsable<Impulse>,
+#endif
         IComparable,
         IComparable<Impulse>,
         IConvertible,
@@ -67,19 +73,19 @@ namespace UnitsNet
             Info = new QuantityInfo<ImpulseUnit>("Impulse",
                 new UnitInfo<ImpulseUnit>[]
                 {
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second), "Impulse"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -92,10 +98,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Impulse(double value, ImpulseUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -109,13 +114,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Impulse(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -161,7 +161,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -318,130 +318,104 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.CentinewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromCentinewtonSeconds(QuantityValue centinewtonseconds)
+        public static Impulse FromCentinewtonSeconds(double value)
         {
-            double value = (double) centinewtonseconds;
             return new Impulse(value, ImpulseUnit.CentinewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.DecanewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromDecanewtonSeconds(QuantityValue decanewtonseconds)
+        public static Impulse FromDecanewtonSeconds(double value)
         {
-            double value = (double) decanewtonseconds;
             return new Impulse(value, ImpulseUnit.DecanewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.DecinewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromDecinewtonSeconds(QuantityValue decinewtonseconds)
+        public static Impulse FromDecinewtonSeconds(double value)
         {
-            double value = (double) decinewtonseconds;
             return new Impulse(value, ImpulseUnit.DecinewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.KilogramMeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromKilogramMetersPerSecond(QuantityValue kilogrammeterspersecond)
+        public static Impulse FromKilogramMetersPerSecond(double value)
         {
-            double value = (double) kilogrammeterspersecond;
             return new Impulse(value, ImpulseUnit.KilogramMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.KilonewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromKilonewtonSeconds(QuantityValue kilonewtonseconds)
+        public static Impulse FromKilonewtonSeconds(double value)
         {
-            double value = (double) kilonewtonseconds;
             return new Impulse(value, ImpulseUnit.KilonewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MeganewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromMeganewtonSeconds(QuantityValue meganewtonseconds)
+        public static Impulse FromMeganewtonSeconds(double value)
         {
-            double value = (double) meganewtonseconds;
             return new Impulse(value, ImpulseUnit.MeganewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MicronewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromMicronewtonSeconds(QuantityValue micronewtonseconds)
+        public static Impulse FromMicronewtonSeconds(double value)
         {
-            double value = (double) micronewtonseconds;
             return new Impulse(value, ImpulseUnit.MicronewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MillinewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromMillinewtonSeconds(QuantityValue millinewtonseconds)
+        public static Impulse FromMillinewtonSeconds(double value)
         {
-            double value = (double) millinewtonseconds;
             return new Impulse(value, ImpulseUnit.MillinewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.NanonewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromNanonewtonSeconds(QuantityValue nanonewtonseconds)
+        public static Impulse FromNanonewtonSeconds(double value)
         {
-            double value = (double) nanonewtonseconds;
             return new Impulse(value, ImpulseUnit.NanonewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.NewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromNewtonSeconds(QuantityValue newtonseconds)
+        public static Impulse FromNewtonSeconds(double value)
         {
-            double value = (double) newtonseconds;
             return new Impulse(value, ImpulseUnit.NewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundFootPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromPoundFeetPerSecond(QuantityValue poundfeetpersecond)
+        public static Impulse FromPoundFeetPerSecond(double value)
         {
-            double value = (double) poundfeetpersecond;
             return new Impulse(value, ImpulseUnit.PoundFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundForceSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromPoundForceSeconds(QuantityValue poundforceseconds)
+        public static Impulse FromPoundForceSeconds(double value)
         {
-            double value = (double) poundforceseconds;
             return new Impulse(value, ImpulseUnit.PoundForceSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.SlugFootPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Impulse FromSlugFeetPerSecond(QuantityValue slugfeetpersecond)
+        public static Impulse FromSlugFeetPerSecond(double value)
         {
-            double value = (double) slugfeetpersecond;
             return new Impulse(value, ImpulseUnit.SlugFootPerSecond);
         }
 
@@ -451,9 +425,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Impulse unit value.</returns>
-        public static Impulse From(QuantityValue value, ImpulseUnit fromUnit)
+        public static Impulse From(double value, ImpulseUnit fromUnit)
         {
-            return new Impulse((double)value, fromUnit);
+            return new Impulse(value, fromUnit);
         }
 
         #endregion
@@ -526,7 +500,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Impulse result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Impulse result)
         {
             return TryParse(str, null, out result);
         }
@@ -541,7 +515,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Impulse result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Impulse result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<Impulse, ImpulseUnit>(
                 str,
@@ -580,7 +554,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ImpulseUnit)"/>
-        public static bool TryParseUnit(string str, out ImpulseUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ImpulseUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -595,7 +569,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ImpulseUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ImpulseUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<ImpulseUnit>(str, provider, out unit);
         }
@@ -850,34 +824,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ImpulseUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ImpulseUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -947,9 +894,9 @@ namespace UnitsNet
                 (ImpulseUnit.MicronewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-6d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.MillinewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-3d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.NanonewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-9d, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 7.230657989877, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.2248089430997, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.224735720691, ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * (0.45359237 * 0.3048), ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * 0.45359237 * 9.80665, ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * (0.45359237 * 9.80665), ImpulseUnit.NewtonSecond),
 
                 // BaseUnit -> ImpulseUnit
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.CentinewtonSecond) => new Impulse((_value) / 1e-2d, ImpulseUnit.CentinewtonSecond),
@@ -961,9 +908,9 @@ namespace UnitsNet
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MicronewtonSecond) => new Impulse((_value) / 1e-6d, ImpulseUnit.MicronewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond) => new Impulse((_value) / 1e-3d, ImpulseUnit.MillinewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond) => new Impulse((_value) / 1e-9d, ImpulseUnit.NanonewtonSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value * 7.230657989877, ImpulseUnit.PoundFootPerSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value * 0.2248089430997, ImpulseUnit.PoundForceSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value * 0.224735720691, ImpulseUnit.SlugFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value / (0.45359237 * 0.3048), ImpulseUnit.PoundFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value / (0.45359237 * 9.80665), ImpulseUnit.PoundForceSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value / (0.45359237 * 9.80665), ImpulseUnit.SlugFootPerSecond),
 
                 _ => null
             };
@@ -978,6 +925,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Impulse ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ImpulseUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -985,21 +948,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Impulse ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1011,17 +959,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ImpulseUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1033,7 +971,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1043,7 +981,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1054,7 +992,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1135,7 +1073,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

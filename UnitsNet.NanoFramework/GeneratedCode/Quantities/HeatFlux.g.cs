@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public HeatFlux(double value, HeatFluxUnit unit)
         {
             _value = value;
@@ -176,109 +175,91 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerHourSquareFoot(double btusperhoursquarefoot) => new HeatFlux(btusperhoursquarefoot, HeatFluxUnit.BtuPerHourSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerMinuteSquareFoot(double btusperminutesquarefoot) => new HeatFlux(btusperminutesquarefoot, HeatFluxUnit.BtuPerMinuteSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareFoot(double btuspersecondsquarefoot) => new HeatFlux(btuspersecondsquarefoot, HeatFluxUnit.BtuPerSecondSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareInch(double btuspersecondsquareinch) => new HeatFlux(btuspersecondsquareinch, HeatFluxUnit.BtuPerSecondSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCaloriesPerSecondSquareCentimeter(double caloriespersecondsquarecentimeter) => new HeatFlux(caloriespersecondsquarecentimeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCentiwattsPerSquareMeter(double centiwattspersquaremeter) => new HeatFlux(centiwattspersquaremeter, HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromDeciwattsPerSquareMeter(double deciwattspersquaremeter) => new HeatFlux(deciwattspersquaremeter, HeatFluxUnit.DeciwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerHourSquareMeter(double kilocaloriesperhoursquaremeter) => new HeatFlux(kilocaloriesperhoursquaremeter, HeatFluxUnit.KilocaloriePerHourSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerSecondSquareCentimeter(double kilocaloriespersecondsquarecentimeter) => new HeatFlux(kilocaloriespersecondsquarecentimeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilowattsPerSquareMeter(double kilowattspersquaremeter) => new HeatFlux(kilowattspersquaremeter, HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMicrowattsPerSquareMeter(double microwattspersquaremeter) => new HeatFlux(microwattspersquaremeter, HeatFluxUnit.MicrowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMilliwattsPerSquareMeter(double milliwattspersquaremeter) => new HeatFlux(milliwattspersquaremeter, HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromNanowattsPerSquareMeter(double nanowattspersquaremeter) => new HeatFlux(nanowattspersquaremeter, HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsForcePerFootSecond(double poundsforceperfootsecond) => new HeatFlux(poundsforceperfootsecond, HeatFluxUnit.PoundForcePerFootSecond);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundPerSecondCubed"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsPerSecondCubed(double poundspersecondcubed) => new HeatFlux(poundspersecondcubed, HeatFluxUnit.PoundPerSecondCubed);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareFoot(double wattspersquarefoot) => new HeatFlux(wattspersquarefoot, HeatFluxUnit.WattPerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareInch(double wattspersquareinch) => new HeatFlux(wattspersquareinch, HeatFluxUnit.WattPerSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareMeter(double wattspersquaremeter) => new HeatFlux(wattspersquaremeter, HeatFluxUnit.WattPerSquareMeter);
 
         /// <summary>
@@ -321,23 +302,23 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        HeatFluxUnit.BtuPerHourSquareFoot => _value * 3.15459075,
-                        HeatFluxUnit.BtuPerMinuteSquareFoot => _value * 1.89275445e2,
-                        HeatFluxUnit.BtuPerSecondSquareFoot => _value * 1.13565267e4,
-                        HeatFluxUnit.BtuPerSecondSquareInch => _value * 1.63533984e6,
-                        HeatFluxUnit.CaloriePerSecondSquareCentimeter => _value * 4.1868e4,
+                        HeatFluxUnit.BtuPerHourSquareFoot => _value * 1055.05585262 / (0.3048 * 0.3048 * 3600),
+                        HeatFluxUnit.BtuPerMinuteSquareFoot => _value * 1055.05585262 / (0.3048 * 0.3048 * 60),
+                        HeatFluxUnit.BtuPerSecondSquareFoot => _value * 1055.05585262 / (0.3048 * 0.3048),
+                        HeatFluxUnit.BtuPerSecondSquareInch => _value * 1055.05585262 / (2.54e-2 * 2.54e-2),
+                        HeatFluxUnit.CaloriePerSecondSquareCentimeter => _value * 4.184e4,
                         HeatFluxUnit.CentiwattPerSquareMeter => (_value) * 1e-2d,
                         HeatFluxUnit.DeciwattPerSquareMeter => (_value) * 1e-1d,
-                        HeatFluxUnit.KilocaloriePerHourSquareMeter => _value * 1.163,
-                        HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (_value * 4.1868e4) * 1e3d,
+                        HeatFluxUnit.KilocaloriePerHourSquareMeter => _value * 4.184e3 / 3600,
+                        HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (_value * 4.184e4) * 1e3d,
                         HeatFluxUnit.KilowattPerSquareMeter => (_value) * 1e3d,
                         HeatFluxUnit.MicrowattPerSquareMeter => (_value) * 1e-6d,
                         HeatFluxUnit.MilliwattPerSquareMeter => (_value) * 1e-3d,
                         HeatFluxUnit.NanowattPerSquareMeter => (_value) * 1e-9d,
-                        HeatFluxUnit.PoundForcePerFootSecond => _value * 1.459390293720636e1,
+                        HeatFluxUnit.PoundForcePerFootSecond => _value * 1.3558179483314004 / 9.290304e-2,
                         HeatFluxUnit.PoundPerSecondCubed => _value * 4.5359237e-1,
-                        HeatFluxUnit.WattPerSquareFoot => _value * 1.07639e1,
-                        HeatFluxUnit.WattPerSquareInch => _value * 1.5500031e3,
+                        HeatFluxUnit.WattPerSquareFoot => _value / (0.3048 * 0.3048),
+                        HeatFluxUnit.WattPerSquareInch => _value / (2.54e-2 * 2.54e-2),
                         HeatFluxUnit.WattPerSquareMeter => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -352,23 +333,23 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        HeatFluxUnit.BtuPerHourSquareFoot => baseUnitValue / 3.15459075,
-                        HeatFluxUnit.BtuPerMinuteSquareFoot => baseUnitValue / 1.89275445e2,
-                        HeatFluxUnit.BtuPerSecondSquareFoot => baseUnitValue / 1.13565267e4,
-                        HeatFluxUnit.BtuPerSecondSquareInch => baseUnitValue / 1.63533984e6,
-                        HeatFluxUnit.CaloriePerSecondSquareCentimeter => baseUnitValue / 4.1868e4,
+                        HeatFluxUnit.BtuPerHourSquareFoot => baseUnitValue * (0.3048 * 0.3048 * 3600) / 1055.05585262,
+                        HeatFluxUnit.BtuPerMinuteSquareFoot => baseUnitValue * (0.3048 * 0.3048 * 60) / 1055.05585262,
+                        HeatFluxUnit.BtuPerSecondSquareFoot => baseUnitValue * (0.3048 * 0.3048) / 1055.05585262,
+                        HeatFluxUnit.BtuPerSecondSquareInch => baseUnitValue * (2.54e-2 * 2.54e-2) / 1055.05585262,
+                        HeatFluxUnit.CaloriePerSecondSquareCentimeter => baseUnitValue / 4.184e4,
                         HeatFluxUnit.CentiwattPerSquareMeter => (baseUnitValue) / 1e-2d,
                         HeatFluxUnit.DeciwattPerSquareMeter => (baseUnitValue) / 1e-1d,
-                        HeatFluxUnit.KilocaloriePerHourSquareMeter => baseUnitValue / 1.163,
-                        HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (baseUnitValue / 4.1868e4) / 1e3d,
+                        HeatFluxUnit.KilocaloriePerHourSquareMeter => baseUnitValue * 3600 / 4.184e3,
+                        HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (baseUnitValue / 4.184e4) / 1e3d,
                         HeatFluxUnit.KilowattPerSquareMeter => (baseUnitValue) / 1e3d,
                         HeatFluxUnit.MicrowattPerSquareMeter => (baseUnitValue) / 1e-6d,
                         HeatFluxUnit.MilliwattPerSquareMeter => (baseUnitValue) / 1e-3d,
                         HeatFluxUnit.NanowattPerSquareMeter => (baseUnitValue) / 1e-9d,
-                        HeatFluxUnit.PoundForcePerFootSecond => baseUnitValue / 1.459390293720636e1,
+                        HeatFluxUnit.PoundForcePerFootSecond => baseUnitValue * 9.290304e-2 / 1.3558179483314004,
                         HeatFluxUnit.PoundPerSecondCubed => baseUnitValue / 4.5359237e-1,
-                        HeatFluxUnit.WattPerSquareFoot => baseUnitValue / 1.07639e1,
-                        HeatFluxUnit.WattPerSquareInch => baseUnitValue / 1.5500031e3,
+                        HeatFluxUnit.WattPerSquareFoot => baseUnitValue * (0.3048 * 0.3048),
+                        HeatFluxUnit.WattPerSquareInch => baseUnitValue * (2.54e-2 * 2.54e-2),
                         HeatFluxUnit.WattPerSquareMeter => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

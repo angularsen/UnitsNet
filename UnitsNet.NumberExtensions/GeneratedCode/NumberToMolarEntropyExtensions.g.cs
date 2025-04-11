@@ -32,29 +32,38 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
     /// </summary>
     public static class NumberToMolarEntropyExtensions
     {
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(double)" />
         public static MolarEntropy JoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MolarEntropy.FromJoulesPerMoleKelvin(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MolarEntropy.FromJoulesPerMoleKelvin(value.ToDouble(null));
 #endif
-            => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(double)" />
         public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToDouble(null));
 #endif
-            => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(double)" />
         public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToDouble(null));
 #endif
-            => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
 
     }
 }

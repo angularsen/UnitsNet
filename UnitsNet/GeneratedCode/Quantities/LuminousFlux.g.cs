@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,15 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct LuminousFlux :
-        IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>,
+        IArithmeticQuantity<LuminousFlux, LuminousFluxUnit>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<LuminousFlux, Illuminance, Area>,
+        IDivisionOperators<LuminousFlux, Area, Illuminance>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<LuminousFlux, LuminousFlux, bool>,
+        IParsable<LuminousFlux>,
+#endif
         IComparable,
         IComparable<LuminousFlux>,
         IConvertible,
@@ -70,7 +80,7 @@ namespace UnitsNet
             Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[]
                 {
-                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined, "LuminousFlux"),
+                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela), "LuminousFlux"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -83,10 +93,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LuminousFlux(double value, LuminousFluxUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -100,13 +109,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public LuminousFlux(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -152,7 +156,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -225,10 +229,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LuminousFlux FromLumens(QuantityValue lumens)
+        public static LuminousFlux FromLumens(double value)
         {
-            double value = (double) lumens;
             return new LuminousFlux(value, LuminousFluxUnit.Lumen);
         }
 
@@ -238,9 +240,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LuminousFlux unit value.</returns>
-        public static LuminousFlux From(QuantityValue value, LuminousFluxUnit fromUnit)
+        public static LuminousFlux From(double value, LuminousFluxUnit fromUnit)
         {
-            return new LuminousFlux((double)value, fromUnit);
+            return new LuminousFlux(value, fromUnit);
         }
 
         #endregion
@@ -313,7 +315,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out LuminousFlux result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out LuminousFlux result)
         {
             return TryParse(str, null, out result);
         }
@@ -328,7 +330,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out LuminousFlux result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousFlux result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<LuminousFlux, LuminousFluxUnit>(
                 str,
@@ -367,7 +369,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminousFluxUnit)"/>
-        public static bool TryParseUnit(string str, out LuminousFluxUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out LuminousFluxUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -382,7 +384,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out LuminousFluxUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousFluxUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<LuminousFluxUnit>(str, provider, out unit);
         }
@@ -431,6 +433,22 @@ namespace UnitsNet
         public static double operator /(LuminousFlux left, LuminousFlux right)
         {
             return left.Lumens / right.Lumens;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="LuminousFlux"/> / <see cref="Illuminance"/>.</summary>
+        public static Area operator /(LuminousFlux luminousFlux, Illuminance illuminance)
+        {
+            return Area.FromSquareMeters(luminousFlux.Lumens / illuminance.Lux);
+        }
+
+        /// <summary>Get <see cref="Illuminance"/> from <see cref="LuminousFlux"/> / <see cref="Area"/>.</summary>
+        public static Illuminance operator /(LuminousFlux luminousFlux, Area area)
+        {
+            return Illuminance.FromLux(luminousFlux.Lumens / area.SquareMeters);
         }
 
         #endregion
@@ -637,34 +655,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is LuminousFluxUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LuminousFluxUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -741,6 +732,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public LuminousFlux ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not LuminousFluxUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -748,21 +755,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public LuminousFlux ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -774,17 +766,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LuminousFluxUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -796,7 +778,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -806,7 +788,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -817,7 +799,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -898,7 +880,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

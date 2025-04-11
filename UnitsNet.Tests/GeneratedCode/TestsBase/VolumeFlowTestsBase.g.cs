@@ -364,16 +364,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NegativeInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception1 = Record.Exception(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception2 = Record.Exception(() => new VolumeFlow(double.NegativeInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception = Record.Exception(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -383,18 +388,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new VolumeFlow(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (VolumeFlow) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new VolumeFlow(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new VolumeFlow(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -798,16 +803,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCubicMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCubicMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
+            var exception = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -892,20 +902,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = VolumeFlow.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(VolumeFlow.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+            var expectedUnit = VolumeFlow.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                VolumeFlow quantityToConvert = quantity;
+
+                VolumeFlow convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<VolumeFlowUnit> quantityToConvert = quantity;
+
+                IQuantity<VolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<VolumeFlowUnit> quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<VolumeFlowUnit> quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VolumeFlow(value: 1, unit: VolumeFlow.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -948,7 +1047,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 cL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 cl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerDay, CentilitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -962,7 +1061,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 cL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 cl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerHour, CentilitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -983,7 +1082,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 cL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 cl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerMinute, CentilitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1004,7 +1103,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 cL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 cl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerSecond, CentilitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1186,7 +1285,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 daL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dal/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerDay, DecalitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1200,7 +1299,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 daL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dal/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerHour, DecalitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1221,7 +1320,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 daL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dal/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerMinute, DecalitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1242,7 +1341,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 daL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dal/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerSecond, DecalitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1270,7 +1369,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 dL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerDay, DecilitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1284,7 +1383,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 dL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerHour, DecilitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1305,7 +1404,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 dL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerMinute, DecilitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1326,7 +1425,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 dL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 dl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerSecond, DecilitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1354,7 +1453,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 hL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 hl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerDay, HectolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1368,7 +1467,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 hL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 hl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerHour, HectolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1389,7 +1488,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 hL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 hl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerMinute, HectolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1410,7 +1509,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 hL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 hl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerSecond, HectolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1438,7 +1537,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 kL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 kl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerDay, KilolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1452,7 +1551,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 kL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 kl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerHour, KilolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1473,7 +1572,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 kL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 kl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerMinute, KilolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1494,7 +1593,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 kL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 kl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerSecond, KilolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1536,7 +1635,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 L/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 l/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPerDay, LitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1550,7 +1649,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 L/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 l/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPerHour, LitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1571,7 +1670,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 L/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 l/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPerMinute, LitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1592,7 +1691,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 L/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 l/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPerSecond, LitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1620,7 +1719,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 ML/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 Ml/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegalitersPerDay, MegalitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.MegaliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1634,7 +1733,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 ML/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 Ml/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegalitersPerHour, MegalitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.MegaliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1655,7 +1754,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 ML/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 Ml/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegalitersPerMinute, MegalitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.MegaliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1676,7 +1775,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 ML/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 Ml/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegalitersPerSecond, MegalitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.MegaliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1732,7 +1831,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 µL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 µl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerDay, MicrolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1746,7 +1845,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 µL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 µl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerHour, MicrolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1767,7 +1866,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 µL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 µl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1788,7 +1887,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 µL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 µl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerSecond, MicrolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1816,7 +1915,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 mL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 ml/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillilitersPerDay, MillilitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.MilliliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1830,7 +1929,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 mL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 ml/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillilitersPerHour, MillilitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.MilliliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1851,7 +1950,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 mL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 ml/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillilitersPerMinute, MillilitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1872,7 +1971,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 mL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 ml/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillilitersPerSecond, MillilitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1907,7 +2006,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 nL/d", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 nl/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerDay, NanolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1921,7 +2020,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 nL/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 nl/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerHour, NanolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1942,7 +2041,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 nL/min", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 nl/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerMinute, NanolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1963,7 +2062,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = VolumeFlow.Parse("1 nL/s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = VolumeFlow.Parse("1 nl/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerSecond, NanolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2137,7 +2236,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 cL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 cl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerDay, CentilitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsed.Unit);
             }
@@ -2149,7 +2248,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 cL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 cl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerHour, CentilitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsed.Unit);
             }
@@ -2167,7 +2266,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 cL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 cl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerMinute, CentilitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsed.Unit);
             }
@@ -2185,7 +2284,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 cL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 cl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentilitersPerSecond, CentilitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsed.Unit);
             }
@@ -2341,7 +2440,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 daL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dal/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerDay, DecalitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsed.Unit);
             }
@@ -2353,7 +2452,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 daL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dal/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerHour, DecalitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsed.Unit);
             }
@@ -2371,7 +2470,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 daL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dal/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerMinute, DecalitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsed.Unit);
             }
@@ -2389,7 +2488,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 daL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dal/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecalitersPerSecond, DecalitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsed.Unit);
             }
@@ -2413,7 +2512,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 dL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerDay, DecilitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsed.Unit);
             }
@@ -2425,7 +2524,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 dL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerHour, DecilitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsed.Unit);
             }
@@ -2443,7 +2542,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 dL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerMinute, DecilitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsed.Unit);
             }
@@ -2461,7 +2560,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 dL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 dl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecilitersPerSecond, DecilitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsed.Unit);
             }
@@ -2485,7 +2584,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 hL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 hl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerDay, HectolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsed.Unit);
             }
@@ -2497,7 +2596,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 hL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 hl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerHour, HectolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsed.Unit);
             }
@@ -2515,7 +2614,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 hL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 hl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerMinute, HectolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsed.Unit);
             }
@@ -2533,7 +2632,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 hL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 hl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectolitersPerSecond, HectolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsed.Unit);
             }
@@ -2557,7 +2656,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 kL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 kl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerDay, KilolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsed.Unit);
             }
@@ -2569,7 +2668,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 kL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 kl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerHour, KilolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsed.Unit);
             }
@@ -2587,7 +2686,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 kL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 kl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerMinute, KilolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsed.Unit);
             }
@@ -2605,7 +2704,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 kL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 kl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilolitersPerSecond, KilolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsed.Unit);
             }
@@ -2641,7 +2740,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 L/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 l/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPerDay, LitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerDay, parsed.Unit);
             }
@@ -2653,7 +2752,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 L/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 l/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPerHour, LitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerHour, parsed.Unit);
             }
@@ -2671,7 +2770,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 L/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 l/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPerMinute, LitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsed.Unit);
             }
@@ -2689,7 +2788,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 L/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 l/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPerSecond, LitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsed.Unit);
             }
@@ -2737,7 +2836,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 µL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 µl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerDay, MicrolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsed.Unit);
             }
@@ -2749,7 +2848,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 µL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 µl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerHour, MicrolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsed.Unit);
             }
@@ -2767,7 +2866,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 µL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 µl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsed.Unit);
             }
@@ -2785,7 +2884,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 µL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 µl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrolitersPerSecond, MicrolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsed.Unit);
             }
@@ -2815,7 +2914,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 nL/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 nl/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerDay, NanolitersPerDayTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsed.Unit);
             }
@@ -2827,7 +2926,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 nL/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 nl/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerHour, NanolitersPerHourTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsed.Unit);
             }
@@ -2845,7 +2944,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 nL/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 nl/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerMinute, NanolitersPerMinuteTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsed.Unit);
             }
@@ -2863,7 +2962,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(VolumeFlow.TryParse("1 nL/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(VolumeFlow.TryParse("1 nl/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanolitersPerSecond, NanolitersPerSecondTolerance);
                 Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsed.Unit);
             }
@@ -2984,1764 +3083,1286 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeFlowUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("af/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("af/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("af/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("af/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("сл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("сл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("сл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cm³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("см³/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dm³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дм³/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ft³/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cf/hr", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ft³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("CFM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ft³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("m³/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("m³/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("м³/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("m³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("м³/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("m³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("м³/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mm³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мм³/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("cy/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("yd³/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("yd³/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("yd³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dal/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дал/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дал/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("daLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дал/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("dLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("дл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("гл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("гл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("hLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("гл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("кл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("кл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("кл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("kgal (U.S.)/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("KGPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("l/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("L/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("LPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("L/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("LPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("л/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("L/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("LPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("л/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("L/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("LPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("л/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Ml/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ML/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("MLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ML/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("MLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Мл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ML/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("MLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Мл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ML/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("MLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Мл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MegaliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Mgal (U. K.)/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaukGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Mgal (imp.)/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegaukGallonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Mgpd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegausGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("Mgal/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MegausGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мкл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мкл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("µLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мкл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("ml/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("mLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("мл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("MGD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nl/day", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nL/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nLPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nL/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nLPH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("нл/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nL/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nLPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("нл/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nL/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("nLPS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("нл/c", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bbl/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("BOPD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bbl/hr", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bph", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bbl/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bpm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("bbl/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (U. K.)/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (imp.)/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (imp.)/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (imp.)/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gpd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (U.S.)/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (U.S.)/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("GPM", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlow.ParseUnit("gal (U.S.)/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VolumeFlowUnit parsedUnit = VolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeFlowUnit expectedUnit)
         {
-            {
-                Assert.True(VolumeFlow.TryParseUnit("af/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("af/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("af/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("af/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.AcreFootPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("сл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("сл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("сл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("см³/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дм³/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("ft³/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cf/hr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("ft³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("CFM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("ft³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicFootPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("m³/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("m³/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("м³/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("m³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("м³/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("m³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("м³/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("mm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("мм³/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("cy/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("yd³/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("yd³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("yd³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.CubicYardPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dal/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дал/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дал/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("daLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дал/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DecaliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("dLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("дл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("гл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("гл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("hLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("гл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.HectoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("кл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("кл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("кл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("kgal (U.S.)/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("KGPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("l/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("L/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("LPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("L/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("LPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("л/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("L/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("LPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("л/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("L/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("LPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("л/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.LiterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("Mgal (U. K.)/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MegaukGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("Mgal (imp.)/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MegaukGallonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("Mgpd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MegausGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("Mgal/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MegausGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("мкл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("мкл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("µLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("мкл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("MGD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nl/day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nL/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nLPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nL/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nLPH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("нл/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nL/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nLPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("нл/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nL/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("nLPS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("нл/c", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bbl/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("BOPD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bbl/hr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bph", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bbl/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bpm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("bbl/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.OilBarrelPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (U. K.)/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (imp.)/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (imp.)/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (imp.)/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UkGallonPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gpd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (U.S.)/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (U.S.)/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("GPM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(VolumeFlow.TryParseUnit("gal (U.S.)/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.UsGallonPerSecond, parsedUnit);
-            }
-
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VolumeFlowUnit parsedUnit = VolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("en-US", "af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("en-US", "af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("en-US", "af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("en-US", "cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("en-US", "dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("en-US", "ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("en-US", "yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("en-US", "yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("en-US", "dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("en-US", "Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("en-US", "Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("en-US", "nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("en-US", "gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("en-US", "gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("en-US", "gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("en-US", "gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("en-US", "gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("en-US", "gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        [InlineData("ru-RU", "сл/ч", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("ru-RU", "сл/мин", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("ru-RU", "сл/c", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("ru-RU", "см³/мин", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("ru-RU", "дм³/мин", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("ru-RU", "дал/c", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("ru-RU", "дл/ч", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("ru-RU", "дл/мин", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("ru-RU", "дл/c", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("ru-RU", "гл/ч", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("ru-RU", "гл/мин", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("ru-RU", "гл/c", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("ru-RU", "кл/ч", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("ru-RU", "кл/мин", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("ru-RU", "кл/c", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("ru-RU", "л/ч", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("ru-RU", "л/мин", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("ru-RU", "л/c", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("ru-RU", "Мл/ч", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("ru-RU", "Мл/мин", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("ru-RU", "Мл/c", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("ru-RU", "мкл/ч", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("ru-RU", "мкл/мин", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("ru-RU", "мкл/c", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ru-RU", "мл/ч", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ru-RU", "мл/мин", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ru-RU", "мл/c", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("ru-RU", "нл/ч", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("ru-RU", "нл/мин", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("ru-RU", "нл/c", VolumeFlowUnit.NanoliterPerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VolumeFlowUnit parsedUnit = VolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("en-US", "af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("en-US", "af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("en-US", "af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("en-US", "cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("en-US", "dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("en-US", "ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("en-US", "yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("en-US", "yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("en-US", "dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("en-US", "Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("en-US", "Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("en-US", "nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("en-US", "gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("en-US", "gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("en-US", "gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("en-US", "gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("en-US", "gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("en-US", "gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        [InlineData("ru-RU", "сл/ч", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("ru-RU", "сл/мин", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("ru-RU", "сл/c", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("ru-RU", "см³/мин", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("ru-RU", "дм³/мин", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("ru-RU", "дал/c", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("ru-RU", "дл/ч", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("ru-RU", "дл/мин", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("ru-RU", "дл/c", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("ru-RU", "гл/ч", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("ru-RU", "гл/мин", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("ru-RU", "гл/c", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("ru-RU", "кл/ч", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("ru-RU", "кл/мин", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("ru-RU", "кл/c", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("ru-RU", "л/ч", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("ru-RU", "л/мин", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("ru-RU", "л/c", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("ru-RU", "Мл/ч", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("ru-RU", "Мл/мин", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("ru-RU", "Мл/c", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("ru-RU", "мкл/ч", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("ru-RU", "мкл/мин", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("ru-RU", "мкл/c", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ru-RU", "мл/ч", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ru-RU", "мл/мин", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ru-RU", "мл/c", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("ru-RU", "нл/ч", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("ru-RU", "нл/мин", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("ru-RU", "нл/c", VolumeFlowUnit.NanoliterPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            VolumeFlowUnit parsedUnit = VolumeFlow.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VolumeFlow.TryParseUnit(abbreviation, out VolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(VolumeFlow.TryParseUnit(abbreviation, out VolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("en-US", "af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("en-US", "af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("en-US", "af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("en-US", "cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("en-US", "dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("en-US", "ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("en-US", "yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("en-US", "yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("en-US", "dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("en-US", "Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("en-US", "Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("en-US", "nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("en-US", "gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("en-US", "gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("en-US", "gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("en-US", "gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("en-US", "gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("en-US", "gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        [InlineData("ru-RU", "сл/ч", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("ru-RU", "сл/мин", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("ru-RU", "сл/c", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("ru-RU", "см³/мин", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("ru-RU", "дм³/мин", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("ru-RU", "дал/c", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("ru-RU", "дл/ч", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("ru-RU", "дл/мин", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("ru-RU", "дл/c", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("ru-RU", "гл/ч", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("ru-RU", "гл/мин", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("ru-RU", "гл/c", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("ru-RU", "кл/ч", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("ru-RU", "кл/мин", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("ru-RU", "кл/c", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("ru-RU", "л/ч", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("ru-RU", "л/мин", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("ru-RU", "л/c", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("ru-RU", "Мл/ч", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("ru-RU", "Мл/мин", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("ru-RU", "Мл/c", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("ru-RU", "мкл/ч", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("ru-RU", "мкл/мин", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("ru-RU", "мкл/c", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ru-RU", "мл/ч", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ru-RU", "мл/мин", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ru-RU", "мл/c", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("ru-RU", "нл/ч", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("ru-RU", "нл/мин", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("ru-RU", "нл/c", VolumeFlowUnit.NanoliterPerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VolumeFlow.TryParseUnit(abbreviation, out VolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "af/d", VolumeFlowUnit.AcreFootPerDay)]
+        [InlineData("en-US", "af/h", VolumeFlowUnit.AcreFootPerHour)]
+        [InlineData("en-US", "af/m", VolumeFlowUnit.AcreFootPerMinute)]
+        [InlineData("en-US", "af/s", VolumeFlowUnit.AcreFootPerSecond)]
+        [InlineData("en-US", "cl/day", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/d", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cLPD", VolumeFlowUnit.CentiliterPerDay)]
+        [InlineData("en-US", "cl/h", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cLPH", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("en-US", "cl/min", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cLPM", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("en-US", "cl/s", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cLPS", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("en-US", "cm³/min", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("en-US", "dm³/min", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("en-US", "ft³/h", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "cf/hr", VolumeFlowUnit.CubicFootPerHour)]
+        [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
+        [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
+        [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
+        [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
+        [InlineData("en-US", "yd³/min", VolumeFlowUnit.CubicYardPerMinute)]
+        [InlineData("en-US", "yd³/s", VolumeFlowUnit.CubicYardPerSecond)]
+        [InlineData("en-US", "dal/day", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/d", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "daLPD", VolumeFlowUnit.DecaliterPerDay)]
+        [InlineData("en-US", "dal/h", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "daLPH", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("en-US", "dal/min", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "daLPM", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("en-US", "dal/s", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "daLPS", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("en-US", "dl/day", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/d", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dLPD", VolumeFlowUnit.DeciliterPerDay)]
+        [InlineData("en-US", "dl/h", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dLPH", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("en-US", "dl/min", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dLPM", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("en-US", "dl/s", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "dLPS", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("en-US", "hl/day", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/d", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hLPD", VolumeFlowUnit.HectoliterPerDay)]
+        [InlineData("en-US", "hl/h", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hLPH", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("en-US", "hl/min", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hLPM", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("en-US", "hl/s", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "hLPS", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("en-US", "kl/day", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/d", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kLPD", VolumeFlowUnit.KiloliterPerDay)]
+        [InlineData("en-US", "kl/h", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kLPH", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("en-US", "kl/min", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kLPM", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("en-US", "kl/s", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kLPS", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("en-US", "kgal (U.S.)/min", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "KGPM", VolumeFlowUnit.KilousGallonPerMinute)]
+        [InlineData("en-US", "l/day", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/d", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "LPD", VolumeFlowUnit.LiterPerDay)]
+        [InlineData("en-US", "l/h", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "LPH", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("en-US", "l/min", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "LPM", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("en-US", "l/s", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "LPS", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("en-US", "Ml/day", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/d", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "MLPD", VolumeFlowUnit.MegaliterPerDay)]
+        [InlineData("en-US", "Ml/h", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "MLPH", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("en-US", "Ml/min", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "MLPM", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("en-US", "Ml/s", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "MLPS", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("en-US", "Mgal (U. K.)/d", VolumeFlowUnit.MegaukGallonPerDay)]
+        [InlineData("en-US", "Mgal (imp.)/s", VolumeFlowUnit.MegaukGallonPerSecond)]
+        [InlineData("en-US", "Mgpd", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "Mgal/d", VolumeFlowUnit.MegausGallonPerDay)]
+        [InlineData("en-US", "µl/day", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/d", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µLPD", VolumeFlowUnit.MicroliterPerDay)]
+        [InlineData("en-US", "µl/h", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µLPH", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("en-US", "µl/min", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µLPM", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("en-US", "µl/s", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "µLPS", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("en-US", "ml/day", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/d", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "mLPD", VolumeFlowUnit.MilliliterPerDay)]
+        [InlineData("en-US", "ml/h", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "mLPH", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("en-US", "ml/min", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "mLPM", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("en-US", "ml/s", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "mLPS", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("en-US", "MGD", VolumeFlowUnit.MillionUsGallonPerDay)]
+        [InlineData("en-US", "nl/day", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/d", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nLPD", VolumeFlowUnit.NanoliterPerDay)]
+        [InlineData("en-US", "nl/h", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nLPH", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("en-US", "nl/min", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nLPM", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("en-US", "nl/s", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "nLPS", VolumeFlowUnit.NanoliterPerSecond)]
+        [InlineData("en-US", "bbl/d", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "BOPD", VolumeFlowUnit.OilBarrelPerDay)]
+        [InlineData("en-US", "bbl/hr", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bph", VolumeFlowUnit.OilBarrelPerHour)]
+        [InlineData("en-US", "bbl/min", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bpm", VolumeFlowUnit.OilBarrelPerMinute)]
+        [InlineData("en-US", "bbl/s", VolumeFlowUnit.OilBarrelPerSecond)]
+        [InlineData("en-US", "gal (U. K.)/d", VolumeFlowUnit.UkGallonPerDay)]
+        [InlineData("en-US", "gal (imp.)/h", VolumeFlowUnit.UkGallonPerHour)]
+        [InlineData("en-US", "gal (imp.)/min", VolumeFlowUnit.UkGallonPerMinute)]
+        [InlineData("en-US", "gal (imp.)/s", VolumeFlowUnit.UkGallonPerSecond)]
+        [InlineData("en-US", "gpd", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal/d", VolumeFlowUnit.UsGallonPerDay)]
+        [InlineData("en-US", "gal (U.S.)/h", VolumeFlowUnit.UsGallonPerHour)]
+        [InlineData("en-US", "gal (U.S.)/min", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "GPM", VolumeFlowUnit.UsGallonPerMinute)]
+        [InlineData("en-US", "gal (U.S.)/s", VolumeFlowUnit.UsGallonPerSecond)]
+        [InlineData("ru-RU", "сл/ч", VolumeFlowUnit.CentiliterPerHour)]
+        [InlineData("ru-RU", "сл/мин", VolumeFlowUnit.CentiliterPerMinute)]
+        [InlineData("ru-RU", "сл/c", VolumeFlowUnit.CentiliterPerSecond)]
+        [InlineData("ru-RU", "см³/мин", VolumeFlowUnit.CubicCentimeterPerMinute)]
+        [InlineData("ru-RU", "дм³/мин", VolumeFlowUnit.CubicDecimeterPerMinute)]
+        [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
+        [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
+        [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
+        [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
+        [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
+        [InlineData("ru-RU", "дал/c", VolumeFlowUnit.DecaliterPerSecond)]
+        [InlineData("ru-RU", "дл/ч", VolumeFlowUnit.DeciliterPerHour)]
+        [InlineData("ru-RU", "дл/мин", VolumeFlowUnit.DeciliterPerMinute)]
+        [InlineData("ru-RU", "дл/c", VolumeFlowUnit.DeciliterPerSecond)]
+        [InlineData("ru-RU", "гл/ч", VolumeFlowUnit.HectoliterPerHour)]
+        [InlineData("ru-RU", "гл/мин", VolumeFlowUnit.HectoliterPerMinute)]
+        [InlineData("ru-RU", "гл/c", VolumeFlowUnit.HectoliterPerSecond)]
+        [InlineData("ru-RU", "кл/ч", VolumeFlowUnit.KiloliterPerHour)]
+        [InlineData("ru-RU", "кл/мин", VolumeFlowUnit.KiloliterPerMinute)]
+        [InlineData("ru-RU", "кл/c", VolumeFlowUnit.KiloliterPerSecond)]
+        [InlineData("ru-RU", "л/ч", VolumeFlowUnit.LiterPerHour)]
+        [InlineData("ru-RU", "л/мин", VolumeFlowUnit.LiterPerMinute)]
+        [InlineData("ru-RU", "л/c", VolumeFlowUnit.LiterPerSecond)]
+        [InlineData("ru-RU", "Мл/ч", VolumeFlowUnit.MegaliterPerHour)]
+        [InlineData("ru-RU", "Мл/мин", VolumeFlowUnit.MegaliterPerMinute)]
+        [InlineData("ru-RU", "Мл/c", VolumeFlowUnit.MegaliterPerSecond)]
+        [InlineData("ru-RU", "мкл/ч", VolumeFlowUnit.MicroliterPerHour)]
+        [InlineData("ru-RU", "мкл/мин", VolumeFlowUnit.MicroliterPerMinute)]
+        [InlineData("ru-RU", "мкл/c", VolumeFlowUnit.MicroliterPerSecond)]
+        [InlineData("ru-RU", "мл/ч", VolumeFlowUnit.MilliliterPerHour)]
+        [InlineData("ru-RU", "мл/мин", VolumeFlowUnit.MilliliterPerMinute)]
+        [InlineData("ru-RU", "мл/c", VolumeFlowUnit.MilliliterPerSecond)]
+        [InlineData("ru-RU", "нл/ч", VolumeFlowUnit.NanoliterPerHour)]
+        [InlineData("ru-RU", "нл/мин", VolumeFlowUnit.NanoliterPerMinute)]
+        [InlineData("ru-RU", "нл/c", VolumeFlowUnit.NanoliterPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VolumeFlowUnit expectedUnit)
+        {
+            Assert.True(VolumeFlow.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -4769,12 +4390,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumeFlow.Units.First(u => u != VolumeFlow.BaseUnit);
-
-            var quantity = VolumeFlow.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(VolumeFlow.Units.Where(u => u != VolumeFlow.BaseUnit), fromUnit =>
+            {
+                var quantity = VolumeFlow.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -4784,6 +4405,25 @@ namespace UnitsNet.Tests
             var quantity = default(VolumeFlow);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(VolumeFlowUnit unit)
+        {
+            var quantity = VolumeFlow.From(3, VolumeFlow.BaseUnit);
+            VolumeFlow expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<VolumeFlowUnit> quantityToConvert = quantity;
+                IQuantity<VolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -4967,8 +4607,8 @@ namespace UnitsNet.Tests
             var v = VolumeFlow.FromCubicMetersPerSecond(1);
             Assert.True(v.Equals(VolumeFlow.FromCubicMetersPerSecond(1), CubicMetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumeFlow.Zero, CubicMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.True(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -5017,9 +4657,9 @@ namespace UnitsNet.Tests
             Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString());
             Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString());
             Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString());
-            Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString());
-            Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
-            Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
+            Assert.Equal("1 cl/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString());
+            Assert.Equal("1 cl/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
+            Assert.Equal("1 cl/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
             Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
             Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString());
             Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString());
@@ -5035,46 +4675,46 @@ namespace UnitsNet.Tests
             Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString());
             Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString());
             Assert.Equal("1 dal/day", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerDay).ToString());
-            Assert.Equal("1 daL/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString());
-            Assert.Equal("1 daL/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString());
-            Assert.Equal("1 daL/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString());
+            Assert.Equal("1 dal/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString());
+            Assert.Equal("1 dal/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString());
+            Assert.Equal("1 dal/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString());
             Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString());
-            Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString());
-            Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString());
-            Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString());
+            Assert.Equal("1 dl/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString());
+            Assert.Equal("1 dl/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString());
+            Assert.Equal("1 dl/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString());
             Assert.Equal("1 hl/day", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerDay).ToString());
-            Assert.Equal("1 hL/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString());
-            Assert.Equal("1 hL/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString());
-            Assert.Equal("1 hL/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString());
+            Assert.Equal("1 hl/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString());
+            Assert.Equal("1 hl/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString());
+            Assert.Equal("1 hl/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString());
             Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString());
-            Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString());
-            Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString());
-            Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString());
+            Assert.Equal("1 kl/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString());
+            Assert.Equal("1 kl/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString());
+            Assert.Equal("1 kl/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString());
             Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString());
             Assert.Equal("1 l/day", new VolumeFlow(1, VolumeFlowUnit.LiterPerDay).ToString());
-            Assert.Equal("1 L/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString());
-            Assert.Equal("1 L/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString());
-            Assert.Equal("1 L/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString());
+            Assert.Equal("1 l/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString());
+            Assert.Equal("1 l/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString());
+            Assert.Equal("1 l/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString());
             Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString());
-            Assert.Equal("1 ML/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString());
-            Assert.Equal("1 ML/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString());
-            Assert.Equal("1 ML/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString());
+            Assert.Equal("1 Ml/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString());
+            Assert.Equal("1 Ml/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString());
+            Assert.Equal("1 Ml/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString());
             Assert.Equal("1 Mgal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerDay).ToString());
             Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString());
             Assert.Equal("1 Mgpd", new VolumeFlow(1, VolumeFlowUnit.MegausGallonPerDay).ToString());
             Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString());
-            Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString());
-            Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString());
-            Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString());
+            Assert.Equal("1 µl/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString());
+            Assert.Equal("1 µl/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString());
+            Assert.Equal("1 µl/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString());
             Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString());
-            Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
-            Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
-            Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
+            Assert.Equal("1 ml/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
+            Assert.Equal("1 ml/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
+            Assert.Equal("1 ml/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
             Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString());
             Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
-            Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
-            Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
-            Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
+            Assert.Equal("1 nl/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
+            Assert.Equal("1 nl/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
+            Assert.Equal("1 nl/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
             Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString());
             Assert.Equal("1 bbl/hr", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerHour).ToString());
             Assert.Equal("1 bbl/min", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerMinute).ToString());
@@ -5100,9 +4740,9 @@ namespace UnitsNet.Tests
             Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString(swedishCulture));
             Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString(swedishCulture));
             Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 cl/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 cl/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 cl/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString(swedishCulture));
@@ -5118,46 +4758,46 @@ namespace UnitsNet.Tests
             Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString(swedishCulture));
             Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString(swedishCulture));
             Assert.Equal("1 dal/day", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 daL/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 daL/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 daL/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 dal/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 dal/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 dal/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 dl/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 dl/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 dl/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 hl/day", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 hL/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 hL/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 hL/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 hl/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 hl/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 hl/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 kl/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 kl/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 kl/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString(swedishCulture));
             Assert.Equal("1 l/day", new VolumeFlow(1, VolumeFlowUnit.LiterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 L/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 L/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 L/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 l/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 l/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 l/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 ML/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 ML/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 ML/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 Ml/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 Ml/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 Ml/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Mgal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerDay).ToString(swedishCulture));
             Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Mgpd", new VolumeFlow(1, VolumeFlowUnit.MegausGallonPerDay).ToString(swedishCulture));
             Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 µl/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 µl/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 µl/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 ml/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 ml/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 ml/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString(swedishCulture));
             Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 nl/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 nl/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 nl/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString(swedishCulture));
             Assert.Equal("1 bbl/hr", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerHour).ToString(swedishCulture));
             Assert.Equal("1 bbl/min", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerMinute).ToString(swedishCulture));
@@ -5202,7 +4842,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -5352,6 +4992,13 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

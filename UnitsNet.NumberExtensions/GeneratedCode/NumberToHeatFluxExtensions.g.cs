@@ -32,149 +32,203 @@ namespace UnitsNet.NumberExtensions.NumberToHeatFlux
     /// </summary>
     public static class NumberToHeatFluxExtensions
     {
-        /// <inheritdoc cref="HeatFlux.FromBtusPerHourSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromBtusPerHourSquareFoot(double)" />
         public static HeatFlux BtusPerHourSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromBtusPerHourSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromBtusPerHourSquareFoot(value.ToDouble(null));
 #endif
-            => HeatFlux.FromBtusPerHourSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromBtusPerMinuteSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromBtusPerMinuteSquareFoot(double)" />
         public static HeatFlux BtusPerMinuteSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromBtusPerMinuteSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromBtusPerMinuteSquareFoot(value.ToDouble(null));
 #endif
-            => HeatFlux.FromBtusPerMinuteSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareFoot(double)" />
         public static HeatFlux BtusPerSecondSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromBtusPerSecondSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromBtusPerSecondSquareFoot(value.ToDouble(null));
 #endif
-            => HeatFlux.FromBtusPerSecondSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareInch(double)" />
         public static HeatFlux BtusPerSecondSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromBtusPerSecondSquareInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromBtusPerSecondSquareInch(value.ToDouble(null));
 #endif
-            => HeatFlux.FromBtusPerSecondSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromCaloriesPerSecondSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromCaloriesPerSecondSquareCentimeter(double)" />
         public static HeatFlux CaloriesPerSecondSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromCaloriesPerSecondSquareCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromCaloriesPerSecondSquareCentimeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromCaloriesPerSecondSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromCentiwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromCentiwattsPerSquareMeter(double)" />
         public static HeatFlux CentiwattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromCentiwattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromCentiwattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromCentiwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromDeciwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromDeciwattsPerSquareMeter(double)" />
         public static HeatFlux DeciwattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromDeciwattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromDeciwattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromDeciwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerHourSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerHourSquareMeter(double)" />
         public static HeatFlux KilocaloriesPerHourSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromKilocaloriesPerHourSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromKilocaloriesPerHourSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromKilocaloriesPerHourSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(double)" />
         public static HeatFlux KilocaloriesPerSecondSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromKilowattsPerSquareMeter(double)" />
         public static HeatFlux KilowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromKilowattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromKilowattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromMicrowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromMicrowattsPerSquareMeter(double)" />
         public static HeatFlux MicrowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromMicrowattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromMicrowattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromMilliwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromMilliwattsPerSquareMeter(double)" />
         public static HeatFlux MilliwattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromMilliwattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromMilliwattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromNanowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromNanowattsPerSquareMeter(double)" />
         public static HeatFlux NanowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromNanowattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromNanowattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(double)" />
         public static HeatFlux PoundsForcePerFootSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromPoundsForcePerFootSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromPoundsForcePerFootSecond(value.ToDouble(null));
 #endif
-            => HeatFlux.FromPoundsForcePerFootSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(double)" />
         public static HeatFlux PoundsPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromPoundsPerSecondCubed(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromPoundsPerSecondCubed(value.ToDouble(null));
 #endif
-            => HeatFlux.FromPoundsPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(double)" />
         public static HeatFlux WattsPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromWattsPerSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromWattsPerSquareFoot(value.ToDouble(null));
 #endif
-            => HeatFlux.FromWattsPerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareInch(double)" />
         public static HeatFlux WattsPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromWattsPerSquareInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromWattsPerSquareInch(value.ToDouble(null));
 #endif
-            => HeatFlux.FromWattsPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="HeatFlux.FromWattsPerSquareMeter(double)" />
         public static HeatFlux WattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => HeatFlux.FromWattsPerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatFlux.FromWattsPerSquareMeter(value.ToDouble(null));
 #endif
-            => HeatFlux.FromWattsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

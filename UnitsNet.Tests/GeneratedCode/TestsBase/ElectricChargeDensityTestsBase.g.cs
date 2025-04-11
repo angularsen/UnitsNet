@@ -68,16 +68,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.PositiveInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NegativeInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception1 = Record.Exception(() => new ElectricChargeDensity(double.PositiveInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception2 = Record.Exception(() => new ElectricChargeDensity(double.NegativeInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NaN, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception = Record.Exception(() => new ElectricChargeDensity(double.NaN, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -87,18 +92,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricChargeDensity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricChargeDensity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricChargeDensity(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -132,16 +137,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCoulombsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromCoulombsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCoulombsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromCoulombsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -152,20 +162,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricChargeDensity.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricChargeDensity.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+            var expectedUnit = ElectricChargeDensity.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricChargeDensity quantityToConvert = quantity;
+
+                ElectricChargeDensity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricChargeDensityUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricChargeDensityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricChargeDensityUnit> quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricChargeDensityUnit> quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -191,25 +290,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricChargeDensity.ParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricChargeDensity.TryParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -233,16 +385,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricChargeDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricChargeDensity.Units.First(u => u != ElectricChargeDensity.BaseUnit);
-
-            var quantity = ElectricChargeDensity.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricChargeDensity.Units.Where(u => u != ElectricChargeDensity.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricChargeDensity.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -252,6 +404,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricChargeDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricChargeDensityUnit unit)
+        {
+            var quantity = ElectricChargeDensity.From(3, ElectricChargeDensity.BaseUnit);
+            ElectricChargeDensity expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricChargeDensityUnit> quantityToConvert = quantity;
+                IQuantity<ElectricChargeDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -360,8 +531,8 @@ namespace UnitsNet.Tests
             var v = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
             Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(1), CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricChargeDensity.Zero, CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.True(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -447,7 +618,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -597,6 +768,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

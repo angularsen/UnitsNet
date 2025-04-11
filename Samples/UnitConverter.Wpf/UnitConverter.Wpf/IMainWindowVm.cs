@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using UnitsNet.Samples.UnitConverter.Wpf.Properties;
@@ -23,8 +23,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         string FromHeader { get; }
         string ToHeader { get; }
-        decimal FromValue { get; set; }
-        decimal ToValue { get; }
+        double FromValue { get; set; }
+        double ToValue { get; }
         ICommand SwapCommand { get; }
     }
 }

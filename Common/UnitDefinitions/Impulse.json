@@ -11,6 +11,11 @@
     {
       "SingularName": "KilogramMeterPerSecond",
       "PluralName": "KilogramMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -23,6 +28,11 @@
     {
       "SingularName": "NewtonSecond",
       "PluralName": "NewtonSeconds",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -36,8 +46,13 @@
     {
       "SingularName": "PoundFootPerSecond",
       "PluralName": "PoundFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 7.230657989877",
-      "FromBaseToUnitFunc": "{x} * 7.230657989877",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -48,8 +63,8 @@
     {
       "SingularName": "PoundForceSecond",
       "PluralName": "PoundForceSeconds",
-      "FromUnitToBaseFunc": "{x} / 0.2248089430997",
-      "FromBaseToUnitFunc": "{x} * 0.2248089430997",
+      "FromUnitToBaseFunc": "{x} * 0.45359237 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -60,8 +75,13 @@
     {
       "SingularName": "SlugFootPerSecond",
       "PluralName": "SlugFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 0.224735720691",
-      "FromBaseToUnitFunc": "{x} * 0.224735720691",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Slug",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 9.80665)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",

@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="UnitsNet" Version="4.72.0" />
+      <PackageReference Include="UnitsNet" VersionOverride="4.72.0" />
     </ItemGroup>
 
 </Project>

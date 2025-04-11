@@ -51,8 +51,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "{x} * 1.5500031000062000e3",
-      "FromBaseToUnitFunc": "{x} / 1.5500031000062000e3",
+      "FromUnitToBaseFunc": "{x} / 0.00064516",
+      "FromBaseToUnitFunc": "{x} * 0.00064516",
       "Localization": [
         {
           "Culture": "en-US",

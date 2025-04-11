@@ -11,13 +11,19 @@ namespace UnitsNet
         /// <summary>
         ///     Convert a Duration to a TimeSpan.
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Throws if the TimeSpan can't represent the Duration exactly </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Throws if the duration exceeds the <see cref="TimeSpan"/>.<see cref="TimeSpan.MaxValue"/> or
+        ///     <see cref="TimeSpan.MinValue"/>, which would cause it to roll over from positive to negative and vice versa.
+        /// </exception>
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            if ( Seconds > TimeSpan.MaxValue.TotalSeconds ||
-                Seconds < TimeSpan.MinValue.TotalSeconds )
-                throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
+            if (Seconds > TimeSpan.MaxValue.TotalSeconds) throw new ArgumentOutOfRangeException(nameof(Seconds),
+                    "The duration is too large for a TimeSpan, which would roll over from positive to negative.");
+
+            if (Seconds < TimeSpan.MinValue.TotalSeconds) throw new ArgumentOutOfRangeException(nameof(Seconds),
+                    "The duration is too small for a TimeSpan, which would roll over from negative to positive.");
+
             return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
         }
 
@@ -33,14 +39,14 @@ namespace UnitsNet
             return time.AddSeconds(-duration.Seconds);
         }
 
-        /// <summary>Explicitly cast <see cref="Duration"/> to <see cref="TimeSpan"/>.</summary>
-        public static explicit operator TimeSpan(Duration duration)
+        /// <summary>Implicitly cast <see cref="Duration"/> to <see cref="TimeSpan"/>.</summary>
+        public static implicit operator TimeSpan(Duration duration)
         {
             return duration.ToTimeSpan();
         }
 
-        /// <summary>Explicitly cast <see cref="TimeSpan"/> to <see cref="Duration"/>.</summary>
-        public static explicit operator Duration(TimeSpan duration)
+        /// <summary>Implicitly cast <see cref="TimeSpan"/> to <see cref="Duration"/>.</summary>
+        public static implicit operator Duration(TimeSpan duration)
         {
             return FromSeconds(duration.TotalSeconds);
         }
@@ -91,30 +97,6 @@ namespace UnitsNet
         public static bool operator >=(TimeSpan timeSpan, Duration duration)
         {
             return timeSpan.TotalSeconds >= duration.Seconds;
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> multiplied by <see cref="VolumeFlow"/>.</summary>
-        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
-        {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCharge operator *(Duration time, ElectricCurrent current)
-        {
-            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> multiplied by <see cref="Acceleration"/>.</summary>
-        public static Speed operator *(Duration duration, Acceleration acceleration)
-        {
-            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, SpeedUnit.MeterPerSecond);
-        }
-
-        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> multiplied by <see cref="ForceChangeRate"/>.</summary>
-        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
-        {
-            return new Force(forceChangeRate.NewtonsPerSecond * duration.Seconds, ForceUnit.Newton);
         }
     }
 }

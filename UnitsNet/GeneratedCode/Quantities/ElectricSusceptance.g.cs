@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricSusceptance :
-        IArithmeticQuantity<ElectricSusceptance, ElectricSusceptanceUnit, double>,
+        IArithmeticQuantity<ElectricSusceptance, ElectricSusceptanceUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<ElectricSusceptance, ElectricSusceptance, bool>,
+        IParsable<ElectricSusceptance>,
+#endif
         IComparable,
         IComparable<ElectricSusceptance>,
         IConvertible,
@@ -71,21 +77,21 @@ namespace UnitsNet
                 new UnitInfo<ElectricSusceptanceUnit>[]
                 {
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Micromho, "Micromhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millimho, "Millimhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanomho, "Nanomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Siemens, "Siemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Siemens, "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Teramho, "Teramhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -98,10 +104,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricSusceptance(double value, ElectricSusceptanceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -115,13 +120,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricSusceptance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -167,7 +167,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -345,160 +345,128 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigamho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromGigamhos(QuantityValue gigamhos)
+        public static ElectricSusceptance FromGigamhos(double value)
         {
-            double value = (double) gigamhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigamho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromGigasiemens(QuantityValue gigasiemens)
+        public static ElectricSusceptance FromGigasiemens(double value)
         {
-            double value = (double) gigasiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigasiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilomho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromKilomhos(QuantityValue kilomhos)
+        public static ElectricSusceptance FromKilomhos(double value)
         {
-            double value = (double) kilomhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Kilomho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromKilosiemens(QuantityValue kilosiemens)
+        public static ElectricSusceptance FromKilosiemens(double value)
         {
-            double value = (double) kilosiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Kilosiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megamho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMegamhos(QuantityValue megamhos)
+        public static ElectricSusceptance FromMegamhos(double value)
         {
-            double value = (double) megamhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megamho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMegasiemens(QuantityValue megasiemens)
+        public static ElectricSusceptance FromMegasiemens(double value)
         {
-            double value = (double) megasiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megasiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Mho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMhos(QuantityValue mhos)
+        public static ElectricSusceptance FromMhos(double value)
         {
-            double value = (double) mhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Mho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Micromho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMicromhos(QuantityValue micromhos)
+        public static ElectricSusceptance FromMicromhos(double value)
         {
-            double value = (double) micromhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Micromho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Microsiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMicrosiemens(QuantityValue microsiemens)
+        public static ElectricSusceptance FromMicrosiemens(double value)
         {
-            double value = (double) microsiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Microsiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millimho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMillimhos(QuantityValue millimhos)
+        public static ElectricSusceptance FromMillimhos(double value)
         {
-            double value = (double) millimhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Millimho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millisiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromMillisiemens(QuantityValue millisiemens)
+        public static ElectricSusceptance FromMillisiemens(double value)
         {
-            double value = (double) millisiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Millisiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanomho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromNanomhos(QuantityValue nanomhos)
+        public static ElectricSusceptance FromNanomhos(double value)
         {
-            double value = (double) nanomhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Nanomho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromNanosiemens(QuantityValue nanosiemens)
+        public static ElectricSusceptance FromNanosiemens(double value)
         {
-            double value = (double) nanosiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Nanosiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Siemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromSiemens(QuantityValue siemens)
+        public static ElectricSusceptance FromSiemens(double value)
         {
-            double value = (double) siemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Siemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Teramho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromTeramhos(QuantityValue teramhos)
+        public static ElectricSusceptance FromTeramhos(double value)
         {
-            double value = (double) teramhos;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Teramho);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Terasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSusceptance FromTerasiemens(QuantityValue terasiemens)
+        public static ElectricSusceptance FromTerasiemens(double value)
         {
-            double value = (double) terasiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Terasiemens);
         }
 
@@ -508,9 +476,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricSusceptance unit value.</returns>
-        public static ElectricSusceptance From(QuantityValue value, ElectricSusceptanceUnit fromUnit)
+        public static ElectricSusceptance From(double value, ElectricSusceptanceUnit fromUnit)
         {
-            return new ElectricSusceptance((double)value, fromUnit);
+            return new ElectricSusceptance(value, fromUnit);
         }
 
         #endregion
@@ -583,7 +551,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricSusceptance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricSusceptance result)
         {
             return TryParse(str, null, out result);
         }
@@ -598,7 +566,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricSusceptance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricSusceptance result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricSusceptance, ElectricSusceptanceUnit>(
                 str,
@@ -637,7 +605,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricSusceptanceUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricSusceptanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricSusceptanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -652,7 +620,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricSusceptanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricSusceptanceUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<ElectricSusceptanceUnit>(str, provider, out unit);
         }
@@ -907,34 +875,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricSusceptanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSusceptanceUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricSusceptanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSusceptanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1041,6 +982,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricSusceptance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricSusceptanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSusceptanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1048,21 +1005,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSusceptanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricSusceptance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1074,17 +1016,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricSusceptanceUnit> IQuantity<ElectricSusceptanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricSusceptanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSusceptanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1096,7 +1028,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1106,7 +1038,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1117,7 +1049,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1198,7 +1130,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

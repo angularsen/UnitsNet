@@ -32,7 +32,5 @@ namespace UnitsNet.Tests
         protected override double RadiansPerSecondInOneHertz => 2 * Math.PI;
 
         protected override double BeatsPerMinuteInOneHertz => 60;
-
-        protected override double BUnitsInOneHertz => 0.001;
     }
 }

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -151,8 +152,24 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeDividedByVolumeFlowEqualsTimeSpan()
         {
-            TimeSpan timeSpan = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
-            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
+            Duration duration = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
+        }
+
+        [Theory]
+        [InlineData(50, VolumeUnit.CubicMeter,
+            5, SpecificVolumeUnit.CubicMeterPerKilogram,
+            10, MassUnit.Kilogram)]
+        public void Dividing_Volume_By_SpecificVolume_ReturnsMass(double volumeValue, VolumeUnit volumeUnit, double specificVolumeValue,
+            SpecificVolumeUnit specificVolumeUnit, double expectedMassValue, MassUnit expectedMassUnit)
+        {
+            var mass = new Mass(expectedMassValue, expectedMassUnit);
+            var specificVolume = new SpecificVolume(specificVolumeValue, specificVolumeUnit);
+            var expectedVolume = new Volume(volumeValue, volumeUnit);
+
+            Mass massFromVolume = expectedVolume / specificVolume;
+
+            Assert.Equal(mass, massFromVolume);
         }
     }
 }

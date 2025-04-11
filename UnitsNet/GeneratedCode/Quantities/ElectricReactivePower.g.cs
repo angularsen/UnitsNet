@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricReactivePower :
-        IArithmeticQuantity<ElectricReactivePower, ElectricReactivePowerUnit, double>,
+        IArithmeticQuantity<ElectricReactivePower, ElectricReactivePowerUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<ElectricReactivePower, ElectricReactivePower, bool>,
+        IParsable<ElectricReactivePower>,
+#endif
         IComparable,
         IComparable<ElectricReactivePower>,
         IConvertible,
@@ -70,10 +76,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricReactivePowerUnit>("ElectricReactivePower",
                 new UnitInfo<ElectricReactivePowerUnit>[]
                 {
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
+                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ElectricReactivePower"),
                     new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
+                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
+                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -86,10 +92,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricReactivePower(double value, ElectricReactivePowerUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -103,13 +108,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricReactivePower(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -155,7 +155,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -249,40 +249,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
+        public static ElectricReactivePower FromGigavoltamperesReactive(double value)
         {
-            double value = (double) gigavoltamperesreactive;
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.GigavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
+        public static ElectricReactivePower FromKilovoltamperesReactive(double value)
         {
-            double value = (double) kilovoltamperesreactive;
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.KilovoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
+        public static ElectricReactivePower FromMegavoltamperesReactive(double value)
         {
-            double value = (double) megavoltamperesreactive;
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.MegavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)
+        public static ElectricReactivePower FromVoltamperesReactive(double value)
         {
-            double value = (double) voltamperesreactive;
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.VoltampereReactive);
         }
 
@@ -292,9 +284,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricReactivePower unit value.</returns>
-        public static ElectricReactivePower From(QuantityValue value, ElectricReactivePowerUnit fromUnit)
+        public static ElectricReactivePower From(double value, ElectricReactivePowerUnit fromUnit)
         {
-            return new ElectricReactivePower((double)value, fromUnit);
+            return new ElectricReactivePower(value, fromUnit);
         }
 
         #endregion
@@ -367,7 +359,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricReactivePower result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricReactivePower result)
         {
             return TryParse(str, null, out result);
         }
@@ -382,7 +374,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricReactivePower result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricReactivePower result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricReactivePower, ElectricReactivePowerUnit>(
                 str,
@@ -421,7 +413,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricReactivePowerUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricReactivePowerUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricReactivePowerUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -436,7 +428,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricReactivePowerUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricReactivePowerUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<ElectricReactivePowerUnit>(str, provider, out unit);
         }
@@ -691,34 +683,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ElectricReactivePowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricReactivePowerUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricReactivePowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricReactivePowerUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -801,6 +766,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ElectricReactivePower ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ElectricReactivePowerUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricReactivePowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -808,21 +789,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricReactivePowerUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricReactivePower ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -834,17 +800,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricReactivePowerUnit> IQuantity<ElectricReactivePowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricReactivePowerUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricReactivePowerUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -856,7 +812,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -866,7 +822,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -877,7 +833,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -958,7 +914,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

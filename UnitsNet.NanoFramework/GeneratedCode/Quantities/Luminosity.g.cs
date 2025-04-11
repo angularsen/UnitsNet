@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Luminosity(double value, LuminosityUnit unit)
         {
             _value = value;
@@ -159,85 +158,71 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromDecawatts(double decawatts) => new Luminosity(decawatts, LuminosityUnit.Decawatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromDeciwatts(double deciwatts) => new Luminosity(deciwatts, LuminosityUnit.Deciwatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromFemtowatts(double femtowatts) => new Luminosity(femtowatts, LuminosityUnit.Femtowatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromGigawatts(double gigawatts) => new Luminosity(gigawatts, LuminosityUnit.Gigawatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromKilowatts(double kilowatts) => new Luminosity(kilowatts, LuminosityUnit.Kilowatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMegawatts(double megawatts) => new Luminosity(megawatts, LuminosityUnit.Megawatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMicrowatts(double microwatts) => new Luminosity(microwatts, LuminosityUnit.Microwatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMilliwatts(double milliwatts) => new Luminosity(milliwatts, LuminosityUnit.Milliwatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromNanowatts(double nanowatts) => new Luminosity(nanowatts, LuminosityUnit.Nanowatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromPetawatts(double petawatts) => new Luminosity(petawatts, LuminosityUnit.Petawatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromPicowatts(double picowatts) => new Luminosity(picowatts, LuminosityUnit.Picowatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromSolarLuminosities(double solarluminosities) => new Luminosity(solarluminosities, LuminosityUnit.SolarLuminosity);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromTerawatts(double terawatts) => new Luminosity(terawatts, LuminosityUnit.Terawatt);
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromWatts(double watts) => new Luminosity(watts, LuminosityUnit.Watt);
 
         /// <summary>
@@ -291,7 +276,7 @@ namespace UnitsNet
                         LuminosityUnit.Nanowatt => (_value) * 1e-9d,
                         LuminosityUnit.Petawatt => (_value) * 1e15d,
                         LuminosityUnit.Picowatt => (_value) * 1e-12d,
-                        LuminosityUnit.SolarLuminosity => _value * 3.846e26,
+                        LuminosityUnit.SolarLuminosity => _value * 3.828e26,
                         LuminosityUnit.Terawatt => (_value) * 1e12d,
                         LuminosityUnit.Watt => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -318,7 +303,7 @@ namespace UnitsNet
                         LuminosityUnit.Nanowatt => (baseUnitValue) / 1e-9d,
                         LuminosityUnit.Petawatt => (baseUnitValue) / 1e15d,
                         LuminosityUnit.Picowatt => (baseUnitValue) / 1e-12d,
-                        LuminosityUnit.SolarLuminosity => baseUnitValue / 3.846e26,
+                        LuminosityUnit.SolarLuminosity => baseUnitValue / 3.828e26,
                         LuminosityUnit.Terawatt => (baseUnitValue) / 1e12d,
                         LuminosityUnit.Watt => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

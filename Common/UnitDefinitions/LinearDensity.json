@@ -11,6 +11,10 @@
     {
       "SingularName": "GramPerMillimeter",
       "PluralName": "GramsPerMillimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Millimeter"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo" ],
@@ -24,6 +28,10 @@
     {
       "SingularName": "GramPerCentimeter",
       "PluralName": "GramsPerCentimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Centimeter"
+      },
       "FromUnitToBaseFunc": "{x} * 1e-1",
       "FromBaseToUnitFunc": "{x} / 1e-1",
       "Prefixes": [ "Micro", "Milli", "Kilo" ],
@@ -37,6 +45,10 @@
     {
       "SingularName": "GramPerMeter",
       "PluralName": "GramsPerMeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "{x} * 1e-3",
       "FromBaseToUnitFunc": "{x} / 1e-3",
       "Prefixes": [ "Micro", "Milli", "Kilo" ],
@@ -50,8 +62,12 @@
     {
       "SingularName": "PoundPerInch",
       "PluralName": "PoundsPerInch",
-      "FromUnitToBaseFunc": "{x} / 5.5997415e-2",
-      "FromBaseToUnitFunc": "{x} * 5.5997415e-2",
+      "BaseUnits": {
+        "M": "Pound",
+        "L": "Inch"
+      },
+      "FromUnitToBaseFunc": "{x} * 0.45359237 / 2.54e-2",
+      "FromBaseToUnitFunc": "{x} * 2.54e-2 / 0.45359237",
       "Localization": [
         {
           "Culture": "en-US",
@@ -62,8 +78,12 @@
     {
       "SingularName": "PoundPerFoot",
       "PluralName": "PoundsPerFoot",
-      "FromUnitToBaseFunc": "{x} * 1.48816394",
-      "FromBaseToUnitFunc": "{x} / 1.48816394",
+      "BaseUnits": {
+        "M": "Pound",
+        "L": "Foot"
+      },
+      "FromUnitToBaseFunc": "{x} * 0.45359237 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.45359237",
       "Localization": [
         {
           "Culture": "en-US",
@@ -74,6 +94,10 @@
     {
       "SingularName": "GramPerFoot",
       "PluralName": "GramsPerFoot",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Foot"
+      },
       "FromUnitToBaseFunc": "{x} * ( 1e-3 / 0.3048 )",
       "FromBaseToUnitFunc": "{x} / ( 1e-3 / 0.3048 )",
       "Prefixes": [ "Micro", "Milli", "Kilo" ],

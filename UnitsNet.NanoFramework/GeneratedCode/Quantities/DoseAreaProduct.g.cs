@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public DoseAreaProduct(double value, DoseAreaProductUnit unit)
         {
             _value = value;
@@ -189,121 +188,101 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromCentigraySquareCentimeters(double centigraysquarecentimeters) => new DoseAreaProduct(centigraysquarecentimeters, DoseAreaProductUnit.CentigraySquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromCentigraySquareDecimeters(double centigraysquaredecimeters) => new DoseAreaProduct(centigraysquaredecimeters, DoseAreaProductUnit.CentigraySquareDecimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromCentigraySquareMeters(double centigraysquaremeters) => new DoseAreaProduct(centigraysquaremeters, DoseAreaProductUnit.CentigraySquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromCentigraySquareMillimeters(double centigraysquaremillimeters) => new DoseAreaProduct(centigraysquaremillimeters, DoseAreaProductUnit.CentigraySquareMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromDecigraySquareCentimeters(double decigraysquarecentimeters) => new DoseAreaProduct(decigraysquarecentimeters, DoseAreaProductUnit.DecigraySquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromDecigraySquareDecimeters(double decigraysquaredecimeters) => new DoseAreaProduct(decigraysquaredecimeters, DoseAreaProductUnit.DecigraySquareDecimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromDecigraySquareMeters(double decigraysquaremeters) => new DoseAreaProduct(decigraysquaremeters, DoseAreaProductUnit.DecigraySquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromDecigraySquareMillimeters(double decigraysquaremillimeters) => new DoseAreaProduct(decigraysquaremillimeters, DoseAreaProductUnit.DecigraySquareMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromGraySquareCentimeters(double graysquarecentimeters) => new DoseAreaProduct(graysquarecentimeters, DoseAreaProductUnit.GraySquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromGraySquareDecimeters(double graysquaredecimeters) => new DoseAreaProduct(graysquaredecimeters, DoseAreaProductUnit.GraySquareDecimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromGraySquareMeters(double graysquaremeters) => new DoseAreaProduct(graysquaremeters, DoseAreaProductUnit.GraySquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromGraySquareMillimeters(double graysquaremillimeters) => new DoseAreaProduct(graysquaremillimeters, DoseAreaProductUnit.GraySquareMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMicrograySquareCentimeters(double micrograysquarecentimeters) => new DoseAreaProduct(micrograysquarecentimeters, DoseAreaProductUnit.MicrograySquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMicrograySquareDecimeters(double micrograysquaredecimeters) => new DoseAreaProduct(micrograysquaredecimeters, DoseAreaProductUnit.MicrograySquareDecimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMicrograySquareMeters(double micrograysquaremeters) => new DoseAreaProduct(micrograysquaremeters, DoseAreaProductUnit.MicrograySquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMicrograySquareMillimeters(double micrograysquaremillimeters) => new DoseAreaProduct(micrograysquaremillimeters, DoseAreaProductUnit.MicrograySquareMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMilligraySquareCentimeters(double milligraysquarecentimeters) => new DoseAreaProduct(milligraysquarecentimeters, DoseAreaProductUnit.MilligraySquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMilligraySquareDecimeters(double milligraysquaredecimeters) => new DoseAreaProduct(milligraysquaredecimeters, DoseAreaProductUnit.MilligraySquareDecimeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMilligraySquareMeters(double milligraysquaremeters) => new DoseAreaProduct(milligraysquaremeters, DoseAreaProductUnit.MilligraySquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DoseAreaProduct FromMilligraySquareMillimeters(double milligraysquaremillimeters) => new DoseAreaProduct(milligraysquaremillimeters, DoseAreaProductUnit.MilligraySquareMillimeter);
 
         /// <summary>

@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -39,7 +41,16 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarMass :
-        IArithmeticQuantity<MolarMass, MolarMassUnit, double>,
+        IArithmeticQuantity<MolarMass, MolarMassUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
+        IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
+        IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MolarMass, MolarMass, bool>,
+        IParsable<MolarMass>,
+#endif
         IComparable,
         IComparable<MolarMass>,
         IConvertible,
@@ -67,19 +78,19 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarMassUnit>("MolarMass",
                 new UnitInfo<MolarMassUnit>[]
                 {
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined, "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -92,10 +103,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MolarMass(double value, MolarMassUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -109,13 +119,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarMass(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -161,7 +166,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -318,130 +323,104 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.CentigramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromCentigramsPerMole(QuantityValue centigramspermole)
+        public static MolarMass FromCentigramsPerMole(double value)
         {
-            double value = (double) centigramspermole;
             return new MolarMass(value, MolarMassUnit.CentigramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromDecagramsPerMole(QuantityValue decagramspermole)
+        public static MolarMass FromDecagramsPerMole(double value)
         {
-            double value = (double) decagramspermole;
             return new MolarMass(value, MolarMassUnit.DecagramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromDecigramsPerMole(QuantityValue decigramspermole)
+        public static MolarMass FromDecigramsPerMole(double value)
         {
-            double value = (double) decigramspermole;
             return new MolarMass(value, MolarMassUnit.DecigramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromGramsPerMole(QuantityValue gramspermole)
+        public static MolarMass FromGramsPerMole(double value)
         {
-            double value = (double) gramspermole;
             return new MolarMass(value, MolarMassUnit.GramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromHectogramsPerMole(QuantityValue hectogramspermole)
+        public static MolarMass FromHectogramsPerMole(double value)
         {
-            double value = (double) hectogramspermole;
             return new MolarMass(value, MolarMassUnit.HectogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerKilomole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilogramsPerKilomole(QuantityValue kilogramsperkilomole)
+        public static MolarMass FromKilogramsPerKilomole(double value)
         {
-            double value = (double) kilogramsperkilomole;
             return new MolarMass(value, MolarMassUnit.KilogramPerKilomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilogramsPerMole(QuantityValue kilogramspermole)
+        public static MolarMass FromKilogramsPerMole(double value)
         {
-            double value = (double) kilogramspermole;
             return new MolarMass(value, MolarMassUnit.KilogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilopoundsPerMole(QuantityValue kilopoundspermole)
+        public static MolarMass FromKilopoundsPerMole(double value)
         {
-            double value = (double) kilopoundspermole;
             return new MolarMass(value, MolarMassUnit.KilopoundPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMegapoundsPerMole(QuantityValue megapoundspermole)
+        public static MolarMass FromMegapoundsPerMole(double value)
         {
-            double value = (double) megapoundspermole;
             return new MolarMass(value, MolarMassUnit.MegapoundPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMicrogramsPerMole(QuantityValue microgramspermole)
+        public static MolarMass FromMicrogramsPerMole(double value)
         {
-            double value = (double) microgramspermole;
             return new MolarMass(value, MolarMassUnit.MicrogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMilligramsPerMole(QuantityValue milligramspermole)
+        public static MolarMass FromMilligramsPerMole(double value)
         {
-            double value = (double) milligramspermole;
             return new MolarMass(value, MolarMassUnit.MilligramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromNanogramsPerMole(QuantityValue nanogramspermole)
+        public static MolarMass FromNanogramsPerMole(double value)
         {
-            double value = (double) nanogramspermole;
             return new MolarMass(value, MolarMassUnit.NanogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromPoundsPerMole(QuantityValue poundspermole)
+        public static MolarMass FromPoundsPerMole(double value)
         {
-            double value = (double) poundspermole;
             return new MolarMass(value, MolarMassUnit.PoundPerMole);
         }
 
@@ -451,9 +430,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarMass unit value.</returns>
-        public static MolarMass From(QuantityValue value, MolarMassUnit fromUnit)
+        public static MolarMass From(double value, MolarMassUnit fromUnit)
         {
-            return new MolarMass((double)value, fromUnit);
+            return new MolarMass(value, fromUnit);
         }
 
         #endregion
@@ -526,7 +505,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MolarMass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MolarMass result)
         {
             return TryParse(str, null, out result);
         }
@@ -541,7 +520,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MolarMass result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMass result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<MolarMass, MolarMassUnit>(
                 str,
@@ -580,7 +559,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarMassUnit)"/>
-        public static bool TryParseUnit(string str, out MolarMassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MolarMassUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -595,7 +574,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MolarMassUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMassUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<MolarMassUnit>(str, provider, out unit);
         }
@@ -644,6 +623,28 @@ namespace UnitsNet
         public static double operator /(MolarMass left, MolarMass right)
         {
             return left.KilogramsPerMole / right.KilogramsPerMole;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MolarMass"/> * <see cref="AmountOfSubstance"/>.</summary>
+        public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
+        {
+            return Mass.FromKilograms(molarMass.KilogramsPerMole * amountOfSubstance.Moles);
+        }
+
+        /// <summary>Get <see cref="MassConcentration"/> from <see cref="MolarMass"/> * <see cref="Molarity"/>.</summary>
+        public static MassConcentration operator *(MolarMass molarMass, Molarity molarity)
+        {
+            return MassConcentration.FromKilogramsPerCubicMeter(molarMass.KilogramsPerMole * molarity.MolesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarMass"/> * <see cref="MolarFlow"/>.</summary>
+        public static MassFlow operator *(MolarMass molarMass, MolarFlow molarFlow)
+        {
+            return MassFlow.FromKilogramsPerSecond(molarMass.KilogramsPerKilomole * molarFlow.KilomolesPerSecond);
         }
 
         #endregion
@@ -850,34 +851,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MolarMassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MolarMassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -978,6 +952,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MolarMass ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MolarMassUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -985,21 +975,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarMass ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1011,17 +986,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MolarMassUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1033,7 +998,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1043,7 +1008,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1054,7 +1019,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1135,7 +1100,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

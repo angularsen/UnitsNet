@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Ratio(double value, RatioUnit unit)
         {
             _value = value;
@@ -116,37 +115,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.DecimalFraction"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromDecimalFractions(double decimalfractions) => new Ratio(decimalfractions, RatioUnit.DecimalFraction);
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerBillion(double partsperbillion) => new Ratio(partsperbillion, RatioUnit.PartPerBillion);
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerMillion(double partspermillion) => new Ratio(partspermillion, RatioUnit.PartPerMillion);
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerThousand(double partsperthousand) => new Ratio(partsperthousand, RatioUnit.PartPerThousand);
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerTrillion(double partspertrillion) => new Ratio(partspertrillion, RatioUnit.PartPerTrillion);
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPercent(double percent) => new Ratio(percent, RatioUnit.Percent);
 
         /// <summary>

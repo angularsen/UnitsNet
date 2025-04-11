@@ -72,8 +72,8 @@
       "BaseUnits": {
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "{x} * Math.Pow(0.3048, 6)",
-      "FromBaseToUnitFunc": "{x} / Math.Pow(0.3048, 6)",
+      "FromUnitToBaseFunc": "{x} * 0.000801843800914862014464",
+      "FromBaseToUnitFunc": "{x} / 0.000801843800914862014464",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +87,8 @@
       "BaseUnits": {
         "L": "Inch"
       },
-      "FromUnitToBaseFunc": "{x} * Math.Pow(2.54e-2, 6)",
-      "FromBaseToUnitFunc": "{x} / Math.Pow(2.54e-2, 6)",
+      "FromUnitToBaseFunc": "{x} * 0.000000000268535866540096",
+      "FromBaseToUnitFunc": "{x} / 0.000000000268535866540096",
       "Localization": [
         {
           "Culture": "en-US",

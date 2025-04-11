@@ -39,9 +39,6 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class CoefficientOfThermalExpansionTestsBase : QuantityTestsBase
     {
-        protected abstract double InverseDegreeCelsiusInOnePerKelvin { get; }
-        protected abstract double InverseDegreeFahrenheitInOnePerKelvin { get; }
-        protected abstract double InverseKelvinInOnePerKelvin { get; }
         protected abstract double PerDegreeCelsiusInOnePerKelvin { get; }
         protected abstract double PerDegreeFahrenheitInOnePerKelvin { get; }
         protected abstract double PerKelvinInOnePerKelvin { get; }
@@ -50,9 +47,6 @@ namespace UnitsNet.Tests
         protected abstract double PpmPerKelvinInOnePerKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double InverseDegreeFahrenheitTolerance { get { return 1e-5; } }
-        protected virtual double InverseKelvinTolerance { get { return 1e-5; } }
         protected virtual double PerDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double PerDegreeFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double PerKelvinTolerance { get { return 1e-5; } }
@@ -65,9 +59,6 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => (InverseDegreeCelsiusInOnePerKelvin, InverseDegreeCelsiusTolerance),
-                CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => (InverseDegreeFahrenheitInOnePerKelvin, InverseDegreeFahrenheitTolerance),
-                CoefficientOfThermalExpansionUnit.InverseKelvin => (InverseKelvinInOnePerKelvin, InverseKelvinTolerance),
                 CoefficientOfThermalExpansionUnit.PerDegreeCelsius => (PerDegreeCelsiusInOnePerKelvin, PerDegreeCelsiusTolerance),
                 CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => (PerDegreeFahrenheitInOnePerKelvin, PerDegreeFahrenheitTolerance),
                 CoefficientOfThermalExpansionUnit.PerKelvin => (PerKelvinInOnePerKelvin, PerKelvinTolerance),
@@ -80,9 +71,6 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
-            new object[] { CoefficientOfThermalExpansionUnit.InverseDegreeCelsius },
-            new object[] { CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit },
-            new object[] { CoefficientOfThermalExpansionUnit.InverseKelvin },
             new object[] { CoefficientOfThermalExpansionUnit.PerDegreeCelsius },
             new object[] { CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit },
             new object[] { CoefficientOfThermalExpansionUnit.PerKelvin },
@@ -100,16 +88,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.PositiveInfinity, CoefficientOfThermalExpansionUnit.PerKelvin));
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.NegativeInfinity, CoefficientOfThermalExpansionUnit.PerKelvin));
+            var exception1 = Record.Exception(() => new CoefficientOfThermalExpansion(double.PositiveInfinity, CoefficientOfThermalExpansionUnit.PerKelvin));
+            var exception2 = Record.Exception(() => new CoefficientOfThermalExpansion(double.NegativeInfinity, CoefficientOfThermalExpansionUnit.PerKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.NaN, CoefficientOfThermalExpansionUnit.PerKelvin));
+            var exception = Record.Exception(() => new CoefficientOfThermalExpansion(double.NaN, CoefficientOfThermalExpansionUnit.PerKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -119,18 +112,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new CoefficientOfThermalExpansion(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (CoefficientOfThermalExpansion) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new CoefficientOfThermalExpansion(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -151,9 +144,6 @@ namespace UnitsNet.Tests
         public void PerKelvinToCoefficientOfThermalExpansionUnits()
         {
             CoefficientOfThermalExpansion perkelvin = CoefficientOfThermalExpansion.FromPerKelvin(1);
-            AssertEx.EqualTolerance(InverseDegreeCelsiusInOnePerKelvin, perkelvin.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOnePerKelvin, perkelvin.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(InverseKelvinInOnePerKelvin, perkelvin.InverseKelvin, InverseKelvinTolerance);
             AssertEx.EqualTolerance(PerDegreeCelsiusInOnePerKelvin, perkelvin.PerDegreeCelsius, PerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(PerDegreeFahrenheitInOnePerKelvin, perkelvin.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(PerKelvinInOnePerKelvin, perkelvin.PerKelvin, PerKelvinTolerance);
@@ -165,64 +155,54 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity00.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity00.Unit);
+            var quantity00 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity00.PerDegreeCelsius, PerDegreeCelsiusTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, quantity00.Unit);
 
-            var quantity01 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity01.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity01.Unit);
+            var quantity01 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
+            AssertEx.EqualTolerance(1, quantity01.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, quantity01.Unit);
 
-            var quantity02 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseKelvin);
-            AssertEx.EqualTolerance(1, quantity02.InverseKelvin, InverseKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, quantity02.Unit);
+            var quantity02 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerKelvin);
+            AssertEx.EqualTolerance(1, quantity02.PerKelvin, PerKelvinTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, quantity02.Unit);
 
-            var quantity03 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity03.PerDegreeCelsius, PerDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, quantity03.Unit);
+            var quantity03 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity03.PpmPerDegreeCelsius, PpmPerDegreeCelsiusTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, quantity03.Unit);
 
-            var quantity04 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity04.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, quantity04.Unit);
+            var quantity04 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
+            AssertEx.EqualTolerance(1, quantity04.PpmPerDegreeFahrenheit, PpmPerDegreeFahrenheitTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, quantity04.Unit);
 
-            var quantity05 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerKelvin);
-            AssertEx.EqualTolerance(1, quantity05.PerKelvin, PerKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, quantity05.Unit);
-
-            var quantity06 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity06.PpmPerDegreeCelsius, PpmPerDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, quantity06.Unit);
-
-            var quantity07 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity07.PpmPerDegreeFahrenheit, PpmPerDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, quantity07.Unit);
-
-            var quantity08 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
-            AssertEx.EqualTolerance(1, quantity08.PpmPerKelvin, PpmPerKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, quantity08.Unit);
+            var quantity05 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
+            AssertEx.EqualTolerance(1, quantity05.PpmPerKelvin, PpmPerKelvinTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, quantity05.Unit);
 
         }
 
         [Fact]
-        public void FromPerKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromPerKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromPerKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromPerKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => CoefficientOfThermalExpansion.FromPerKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => CoefficientOfThermalExpansion.FromPerKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromPerKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromPerKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromPerKelvin(double.NaN));
+            var exception = Record.Exception(() => CoefficientOfThermalExpansion.FromPerKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
         public void As()
         {
             var perkelvin = CoefficientOfThermalExpansion.FromPerKelvin(1);
-            AssertEx.EqualTolerance(InverseDegreeCelsiusInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius), InverseDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit), InverseDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(InverseKelvinInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.InverseKelvin), InverseKelvinTolerance);
             AssertEx.EqualTolerance(PerDegreeCelsiusInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.PerDegreeCelsius), PerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(PerDegreeFahrenheitInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit), PerDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(PerKelvinInOnePerKelvin, perkelvin.As(CoefficientOfThermalExpansionUnit.PerKelvin), PerKelvinTolerance);
@@ -232,20 +212,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = CoefficientOfThermalExpansion.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(CoefficientOfThermalExpansion.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+            var expectedUnit = CoefficientOfThermalExpansion.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                CoefficientOfThermalExpansion quantityToConvert = quantity;
+
+                CoefficientOfThermalExpansion convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<CoefficientOfThermalExpansionUnit> quantityToConvert = quantity;
+
+                IQuantity<CoefficientOfThermalExpansionUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<CoefficientOfThermalExpansionUnit> quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<CoefficientOfThermalExpansionUnit> quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -336,80 +405,118 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/°C", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/°F", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/K", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
         {
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -437,12 +544,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = CoefficientOfThermalExpansion.Units.First(u => u != CoefficientOfThermalExpansion.BaseUnit);
-
-            var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(CoefficientOfThermalExpansion.Units.Where(u => u != CoefficientOfThermalExpansion.BaseUnit), fromUnit =>
+            {
+                var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -454,13 +561,29 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(CoefficientOfThermalExpansionUnit unit)
+        {
+            var quantity = CoefficientOfThermalExpansion.From(3, CoefficientOfThermalExpansion.BaseUnit);
+            CoefficientOfThermalExpansion expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<CoefficientOfThermalExpansionUnit> quantityToConvert = quantity;
+                IQuantity<CoefficientOfThermalExpansionUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {
             CoefficientOfThermalExpansion perkelvin = CoefficientOfThermalExpansion.FromPerKelvin(1);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeCelsius(perkelvin.InverseDegreeCelsius).PerKelvin, InverseDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(perkelvin.InverseDegreeFahrenheit).PerKelvin, InverseDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseKelvin(perkelvin.InverseKelvin).PerKelvin, InverseKelvinTolerance);
             AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromPerDegreeCelsius(perkelvin.PerDegreeCelsius).PerKelvin, PerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(perkelvin.PerDegreeFahrenheit).PerKelvin, PerDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromPerKelvin(perkelvin.PerKelvin).PerKelvin, PerKelvinTolerance);
@@ -525,8 +648,8 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerKelvin, true)]  // Same value and unit.
         [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 2, CoefficientOfThermalExpansionUnit.PerKelvin, false)] // Different value.
-        [InlineData(2, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, false)] // Different value and unit.
-        [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, false)] // Different unit.
+        [InlineData(2, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, false)] // Different value and unit.
+        [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, CoefficientOfThermalExpansionUnit unitA, double valueB, CoefficientOfThermalExpansionUnit unitB, bool expectEqual)
         {
             var a = new CoefficientOfThermalExpansion(valueA, unitA);
@@ -569,8 +692,8 @@ namespace UnitsNet.Tests
             var v = CoefficientOfThermalExpansion.FromPerKelvin(1);
             Assert.True(v.Equals(CoefficientOfThermalExpansion.FromPerKelvin(1), PerKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(CoefficientOfThermalExpansion.Zero, PerKelvinTolerance, ComparisonType.Relative));
-            Assert.True(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -614,9 +737,6 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 1/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString());
-            Assert.Equal("1 1/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString());
-            Assert.Equal("1 1/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString());
             Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString());
             Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString());
             Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString());
@@ -631,9 +751,6 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 1/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 1/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 1/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString(swedishCulture));
             Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString(swedishCulture));
             Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString(swedishCulture));
@@ -672,7 +789,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -822,6 +939,13 @@ namespace UnitsNet.Tests
         {
             var quantity = CoefficientOfThermalExpansion.FromPerKelvin(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromPerKelvin(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

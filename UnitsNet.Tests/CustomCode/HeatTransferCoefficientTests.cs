@@ -27,12 +27,10 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class HeatTransferCoefficientTests : HeatTransferCoefficientTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin => 1;
         protected override double WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin => 1;
         protected override double BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin => 1.7611018368230584e-1;
-        protected override double KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 0.859845227859;
-        protected override double BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin => 1.7611018368230584e-1;
-        protected override double CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 859.845227859;
+        protected override double KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 0.8604206500956023;
+        protected override double CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 860.4206500956023;
     }
 }

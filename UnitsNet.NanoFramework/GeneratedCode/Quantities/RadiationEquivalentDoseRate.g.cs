@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RadiationEquivalentDoseRate(double value, RadiationEquivalentDoseRateUnit unit)
         {
             _value = value;
@@ -136,61 +135,51 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(double microsievertsperhour) => new RadiationEquivalentDoseRate(microsievertsperhour, RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(double microsievertspersecond) => new RadiationEquivalentDoseRate(microsievertspersecond, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMilliroentgensEquivalentManPerHour(double milliroentgensequivalentmanperhour) => new RadiationEquivalentDoseRate(milliroentgensequivalentmanperhour, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMillisievertsPerHour(double millisievertsperhour) => new RadiationEquivalentDoseRate(millisievertsperhour, RadiationEquivalentDoseRateUnit.MillisievertPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(double millisievertspersecond) => new RadiationEquivalentDoseRate(millisievertspersecond, RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromNanosievertsPerHour(double nanosievertsperhour) => new RadiationEquivalentDoseRate(nanosievertsperhour, RadiationEquivalentDoseRateUnit.NanosievertPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(double nanosievertspersecond) => new RadiationEquivalentDoseRate(nanosievertspersecond, RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromRoentgensEquivalentManPerHour(double roentgensequivalentmanperhour) => new RadiationEquivalentDoseRate(roentgensequivalentmanperhour, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromSievertsPerHour(double sievertsperhour) => new RadiationEquivalentDoseRate(sievertsperhour, RadiationEquivalentDoseRateUnit.SievertPerHour);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromSievertsPerSecond(double sievertspersecond) => new RadiationEquivalentDoseRate(sievertspersecond, RadiationEquivalentDoseRateUnit.SievertPerSecond);
 
         /// <summary>

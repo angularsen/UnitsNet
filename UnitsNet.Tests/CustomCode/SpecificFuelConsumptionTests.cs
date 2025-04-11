@@ -18,20 +18,18 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificFuelConsumptionTests : SpecificFuelConsumptionTestsBase
     {
-        // Override properties in base class here
-        protected override bool SupportsSIUnitSystem => false;
+        protected override double GramsPerKilonewtonSecondInOneGramPerKilonewtonSecond => 1;
 
-        protected override double GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond => 1;
+        protected override double KilogramsPerKilonewtonSecondInOneGramPerKilonewtonSecond => 1e-3;
 
-        protected override double KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond => 1e-3;
+        protected override double PoundsMassPerPoundForceHourInOneGramPerKilonewtonSecond => 0.03530394;
 
-        protected override double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond => 0.03529827;
-
-        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03529827;        
+        protected override double KilogramsPerKilogramForceHourInOneGramPerKilonewtonSecond => 0.03530394;
     }
 }

@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricReactiveEnergy(double value, ElectricReactiveEnergyUnit unit)
         {
             _value = value;
@@ -101,19 +100,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactiveEnergy FromKilovoltampereReactiveHours(double kilovoltamperereactivehours) => new ElectricReactiveEnergy(kilovoltamperereactivehours, ElectricReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactiveEnergy FromMegavoltampereReactiveHours(double megavoltamperereactivehours) => new ElectricReactiveEnergy(megavoltamperereactivehours, ElectricReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactiveEnergy FromVoltampereReactiveHours(double voltamperereactivehours) => new ElectricReactiveEnergy(voltamperereactivehours, ElectricReactiveEnergyUnit.VoltampereReactiveHour);
 
         /// <summary>

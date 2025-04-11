@@ -106,6 +106,11 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Stone_(unit)</remarks>
         Stone = 24,
+
+        /// <summary>
+        ///     The tonne is a unit of mass equal to 1,000 kilograms. It is a non-SI unit accepted for use with SI. It is also referred to as a metric ton in the United States to distinguish it from the non-metric units of the short ton (United States customary units) and the long ton (British imperial units). It is equivalent to approximately 2,204.6 pounds, 1.102 short tons, and 0.984 long tons.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Tonne</remarks>
         Tonne = 25,
     }
 

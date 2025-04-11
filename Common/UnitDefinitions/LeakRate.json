@@ -12,6 +12,11 @@
     {
       "SingularName": "PascalCubicMeterPerSecond",
       "PluralName": "PascalCubicMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

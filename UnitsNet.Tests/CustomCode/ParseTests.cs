@@ -49,7 +49,7 @@ namespace UnitsNet.Tests
         [InlineData("5.5 m", 5.5)]
         [InlineData("500 005 m", 500005)]
         // quantity doesn't match number format
-        public void ParseWithCultureUsingSpaceAsThousandSeparators(string s, double expected)
+        public void ParseWithCultureUsingSpaceAsThousandSeparators(string? s, double expected)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
@@ -57,7 +57,7 @@ namespace UnitsNet.Tests
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.CurrencyDecimalSeparator = ".";
 
-            double actual = Length.Parse(s, numberFormat).Meters;
+            double actual = Length.Parse(s!, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -201,7 +201,7 @@ namespace UnitsNet.Tests
         [InlineData("1 MB", "ru-RU", 1, InformationUnit.Megabyte)]
         [InlineData("1 MiB", "en-US", 1, InformationUnit.Mebibyte)]
         [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
-        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue, Enum expectedUnit)
+        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
             var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 

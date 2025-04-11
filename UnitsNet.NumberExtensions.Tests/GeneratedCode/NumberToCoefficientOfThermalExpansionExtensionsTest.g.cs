@@ -25,18 +25,6 @@ namespace UnitsNet.Tests
     public class NumberToCoefficientOfThermalExpansionExtensionsTests
     {
         [Fact]
-        public void NumberToInverseDegreeCelsiusTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseDegreeCelsius(2), 2.InverseDegreeCelsius());
-
-        [Fact]
-        public void NumberToInverseDegreeFahrenheitTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(2), 2.InverseDegreeFahrenheit());
-
-        [Fact]
-        public void NumberToInverseKelvinTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(2), 2.InverseKelvin());
-
-        [Fact]
         public void NumberToPerDegreeCelsiusTest() =>
             Assert.Equal(CoefficientOfThermalExpansion.FromPerDegreeCelsius(2), 2.PerDegreeCelsius());
 

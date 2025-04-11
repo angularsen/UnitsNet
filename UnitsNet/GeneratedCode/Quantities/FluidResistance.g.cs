@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,11 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct FluidResistance :
-        IArithmeticQuantity<FluidResistance, FluidResistanceUnit, double>,
+        IArithmeticQuantity<FluidResistance, FluidResistanceUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<FluidResistance, FluidResistance, bool>,
+        IParsable<FluidResistance>,
+#endif
         IComparable,
         IComparable<FluidResistance>,
         IConvertible,
@@ -71,7 +77,7 @@ namespace UnitsNet
                 new UnitInfo<FluidResistanceUnit>[]
                 {
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondsPerCentimeterToTheFifth", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondsPerCubicMeter", BaseUnits.Undefined, "FluidResistance"),
+                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond), "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "MillimeterMercuryMinutesPerCubicCentimeter", BaseUnits.Undefined, "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "MillimeterMercuryMinutesPerCubicMeter", BaseUnits.Undefined, "FluidResistance"),
                     new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "MillimeterMercuryMinutesPerLiter", BaseUnits.Undefined, "FluidResistance"),
@@ -101,10 +107,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public FluidResistance(double value, FluidResistanceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -118,13 +123,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public FluidResistance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -170,7 +170,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -369,190 +369,152 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromDyneSecondsPerCentimeterToTheFifth(QuantityValue dynesecondspercentimetertothefifth)
+        public static FluidResistance FromDyneSecondsPerCentimeterToTheFifth(double value)
         {
-            double value = (double) dynesecondspercentimetertothefifth;
             return new FluidResistance(value, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MegapascalSecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMegapascalSecondsPerCubicMeter(QuantityValue megapascalsecondspercubicmeter)
+        public static FluidResistance FromMegapascalSecondsPerCubicMeter(double value)
         {
-            double value = (double) megapascalsecondspercubicmeter;
             return new FluidResistance(value, FluidResistanceUnit.MegapascalSecondPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercuryMinutesPerCubicCentimeter(QuantityValue millimetermercuryminutespercubiccentimeter)
+        public static FluidResistance FromMillimeterMercuryMinutesPerCubicCentimeter(double value)
         {
-            double value = (double) millimetermercuryminutespercubiccentimeter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercuryMinutesPerCubicMeter(QuantityValue millimetermercuryminutespercubicmeter)
+        public static FluidResistance FromMillimeterMercuryMinutesPerCubicMeter(double value)
         {
-            double value = (double) millimetermercuryminutespercubicmeter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercuryMinutesPerLiter(QuantityValue millimetermercuryminutesperliter)
+        public static FluidResistance FromMillimeterMercuryMinutesPerLiter(double value)
         {
-            double value = (double) millimetermercuryminutesperliter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercuryMinutePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercuryMinutesPerMilliliter(QuantityValue millimetermercuryminutespermilliliter)
+        public static FluidResistance FromMillimeterMercuryMinutesPerMilliliter(double value)
         {
-            double value = (double) millimetermercuryminutespermilliliter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercurySecondsPerCubicCentimeter(QuantityValue millimetermercurysecondspercubiccentimeter)
+        public static FluidResistance FromMillimeterMercurySecondsPerCubicCentimeter(double value)
         {
-            double value = (double) millimetermercurysecondspercubiccentimeter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercurySecondsPerCubicMeter(QuantityValue millimetermercurysecondspercubicmeter)
+        public static FluidResistance FromMillimeterMercurySecondsPerCubicMeter(double value)
         {
-            double value = (double) millimetermercurysecondspercubicmeter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercurySecondsPerLiter(QuantityValue millimetermercurysecondsperliter)
+        public static FluidResistance FromMillimeterMercurySecondsPerLiter(double value)
         {
-            double value = (double) millimetermercurysecondsperliter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercurySecondPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromMillimeterMercurySecondsPerMilliliter(QuantityValue millimetermercurysecondspermilliliter)
+        public static FluidResistance FromMillimeterMercurySecondsPerMilliliter(double value)
         {
-            double value = (double) millimetermercurysecondspermilliliter;
             return new FluidResistance(value, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalMinutesPerCubicCentimeter(QuantityValue pascalminutespercubiccentimeter)
+        public static FluidResistance FromPascalMinutesPerCubicCentimeter(double value)
         {
-            double value = (double) pascalminutespercubiccentimeter;
             return new FluidResistance(value, FluidResistanceUnit.PascalMinutePerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalMinutesPerCubicMeter(QuantityValue pascalminutespercubicmeter)
+        public static FluidResistance FromPascalMinutesPerCubicMeter(double value)
         {
-            double value = (double) pascalminutespercubicmeter;
             return new FluidResistance(value, FluidResistanceUnit.PascalMinutePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalMinutesPerLiter(QuantityValue pascalminutesperliter)
+        public static FluidResistance FromPascalMinutesPerLiter(double value)
         {
-            double value = (double) pascalminutesperliter;
             return new FluidResistance(value, FluidResistanceUnit.PascalMinutePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalMinutesPerMilliliter(QuantityValue pascalminutespermilliliter)
+        public static FluidResistance FromPascalMinutesPerMilliliter(double value)
         {
-            double value = (double) pascalminutespermilliliter;
             return new FluidResistance(value, FluidResistanceUnit.PascalMinutePerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalSecondsPerCubicCentimeter(QuantityValue pascalsecondspercubiccentimeter)
+        public static FluidResistance FromPascalSecondsPerCubicCentimeter(double value)
         {
-            double value = (double) pascalsecondspercubiccentimeter;
             return new FluidResistance(value, FluidResistanceUnit.PascalSecondPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalSecondsPerCubicMeter(QuantityValue pascalsecondspercubicmeter)
+        public static FluidResistance FromPascalSecondsPerCubicMeter(double value)
         {
-            double value = (double) pascalsecondspercubicmeter;
             return new FluidResistance(value, FluidResistanceUnit.PascalSecondPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalSecondsPerLiter(QuantityValue pascalsecondsperliter)
+        public static FluidResistance FromPascalSecondsPerLiter(double value)
         {
-            double value = (double) pascalsecondsperliter;
             return new FluidResistance(value, FluidResistanceUnit.PascalSecondPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromPascalSecondsPerMilliliter(QuantityValue pascalsecondspermilliliter)
+        public static FluidResistance FromPascalSecondsPerMilliliter(double value)
         {
-            double value = (double) pascalsecondspermilliliter;
             return new FluidResistance(value, FluidResistanceUnit.PascalSecondPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.WoodUnit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FluidResistance FromWoodUnits(QuantityValue woodunits)
+        public static FluidResistance FromWoodUnits(double value)
         {
-            double value = (double) woodunits;
             return new FluidResistance(value, FluidResistanceUnit.WoodUnit);
         }
 
@@ -562,9 +524,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>FluidResistance unit value.</returns>
-        public static FluidResistance From(QuantityValue value, FluidResistanceUnit fromUnit)
+        public static FluidResistance From(double value, FluidResistanceUnit fromUnit)
         {
-            return new FluidResistance((double)value, fromUnit);
+            return new FluidResistance(value, fromUnit);
         }
 
         #endregion
@@ -637,7 +599,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out FluidResistance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out FluidResistance result)
         {
             return TryParse(str, null, out result);
         }
@@ -652,7 +614,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out FluidResistance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out FluidResistance result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<FluidResistance, FluidResistanceUnit>(
                 str,
@@ -691,7 +653,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.FluidResistanceUnit)"/>
-        public static bool TryParseUnit(string str, out FluidResistanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out FluidResistanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -706,7 +668,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out FluidResistanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out FluidResistanceUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<FluidResistanceUnit>(str, provider, out unit);
         }
@@ -961,34 +923,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is FluidResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FluidResistanceUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is FluidResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FluidResistanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1101,6 +1036,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public FluidResistance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not FluidResistanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FluidResistanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1108,21 +1059,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FluidResistanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public FluidResistance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1134,17 +1070,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<FluidResistanceUnit> IQuantity<FluidResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not FluidResistanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FluidResistanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1156,7 +1082,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1166,7 +1092,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1177,7 +1103,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1258,7 +1184,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

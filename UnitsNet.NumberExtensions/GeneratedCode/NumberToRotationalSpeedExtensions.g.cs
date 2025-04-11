@@ -32,109 +32,148 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
     /// </summary>
     public static class NumberToRotationalSpeedExtensions
     {
-        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(double)" />
         public static RotationalSpeed CentiradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromCentiradiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromCentiradiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromCentiradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(double)" />
         public static RotationalSpeed DeciradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromDeciradiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromDeciradiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromDeciradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(double)" />
         public static RotationalSpeed DegreesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromDegreesPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromDegreesPerMinute(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromDegreesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(double)" />
         public static RotationalSpeed DegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromDegreesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromDegreesPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromDegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(double)" />
         public static RotationalSpeed MicrodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromMicrodegreesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromMicrodegreesPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromMicrodegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(double)" />
         public static RotationalSpeed MicroradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromMicroradiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromMicroradiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromMicroradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(double)" />
         public static RotationalSpeed MillidegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromMillidegreesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromMillidegreesPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromMillidegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(double)" />
         public static RotationalSpeed MilliradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromMilliradiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromMilliradiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromMilliradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(double)" />
         public static RotationalSpeed NanodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromNanodegreesPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromNanodegreesPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromNanodegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(double)" />
         public static RotationalSpeed NanoradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromNanoradiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromNanoradiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromNanoradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(double)" />
         public static RotationalSpeed RadiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromRadiansPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromRadiansPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromRadiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(double)" />
         public static RotationalSpeed RevolutionsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromRevolutionsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromRevolutionsPerMinute(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromRevolutionsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(double)" />
         public static RotationalSpeed RevolutionsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RotationalSpeed.FromRevolutionsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromRevolutionsPerSecond(value.ToDouble(null));
 #endif
-            => RotationalSpeed.FromRevolutionsPerSecond(Convert.ToDouble(value));
 
     }
 }

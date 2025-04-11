@@ -32,37 +32,49 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
     /// </summary>
     public static class NumberToIlluminanceExtensions
     {
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromKilolux(double)" />
         public static Illuminance Kilolux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Illuminance.FromKilolux(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Illuminance.FromKilolux(value.ToDouble(null));
 #endif
-            => Illuminance.FromKilolux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromLux(double)" />
         public static Illuminance Lux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Illuminance.FromLux(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Illuminance.FromLux(value.ToDouble(null));
 #endif
-            => Illuminance.FromLux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
         public static Illuminance Megalux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Illuminance.FromMegalux(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Illuminance.FromMegalux(value.ToDouble(null));
 #endif
-            => Illuminance.FromMegalux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
         public static Illuminance Millilux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Illuminance.FromMillilux(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Illuminance.FromMillilux(value.ToDouble(null));
 #endif
-            => Illuminance.FromMillilux(Convert.ToDouble(value));
 
     }
 }

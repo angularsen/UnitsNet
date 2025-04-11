@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -33,29 +34,28 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
             _quantity = quantity;
             QuantityInfo quantityQuantityInfo = quantity.QuantityInfo;
             IQuantity baseQuantity = quantity.ToUnit(quantityQuantityInfo.BaseUnitInfo.Value);
-            Conversions = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity, x.Value)).ToArray();
+            Conversions = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity, x)).ToArray();
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public string DefaultAbbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(_quantity.Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public string[] Abbreviations =>
-            UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(_quantity.QuantityInfo.UnitType, Convert.ToInt32(_quantity.Unit));
+        public IReadOnlyList<string> Abbreviations => UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(_quantity.Unit);
 
         public ConvertedQuantity[] Conversions { get; }
 
         [DebuggerDisplay("{Abbreviation}")]
-        internal readonly struct ConvertedQuantity(IQuantity baseQuantity, Enum unit)
+        internal readonly struct ConvertedQuantity(IQuantity baseQuantity, UnitInfo unit)
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public Enum Unit { get; } = unit;
+            public UnitInfo Unit { get; } = unit;
 
             [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-            public IQuantity Quantity => baseQuantity.ToUnit(Unit);
+            public IQuantity Quantity => baseQuantity.ToUnit(Unit.Value);
 
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Unit);
+            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Unit.UnitKey);
 
             public override string ToString()
             {
@@ -95,13 +95,12 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
     [DebuggerDisplay("{DoubleValue}")]
     internal readonly struct ValueDisplay(IQuantity quantity)
     {
-        public bool IsDecimal => quantity.Value.IsDecimal;
-        public double DoubleValue => (double)quantity.Value;
+        public double DoubleValue => quantity.Value;
         public decimal DecimalValue => (decimal)quantity.Value;
 
         public override string ToString()
         {
-            return IsDecimal ? DecimalValue.ToString(CultureInfo.CurrentCulture) : DoubleValue.ToString(CultureInfo.CurrentCulture);
+            return DoubleValue.ToString(CultureInfo.CurrentCulture);
         }
     }
 
@@ -113,7 +112,7 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
             QuantityToString = new StringFormatsDisplay(quantity);
             QuantityInfo quantityQuantityInfo = quantity.QuantityInfo;
             IQuantity baseQuantity = quantity.ToUnit(quantityQuantityInfo.BaseUnitInfo.Value);
-            QuantityToUnit = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity.ToUnit(x.Value))).ToArray();
+            QuantityToUnit = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity.ToUnit(x.Value), x)).ToArray();
         }
 
         public StringFormatsDisplay QuantityToString { get; }
@@ -127,10 +126,10 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         }
 
         [DebuggerDisplay("{Quantity}")]
-        internal readonly struct ConvertedQuantity(IQuantity quantity)
+        internal readonly struct ConvertedQuantity(IQuantity quantity, UnitInfo unitInfo)
         {
-            public Enum Unit => Quantity.Unit;
-            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Quantity.Unit);
+            public UnitInfo Unit { get; } = unitInfo;
+            public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Unit.UnitKey);
             public ValueDisplay Value => new(Quantity);
             public IQuantity Quantity { get; } = quantity;
 

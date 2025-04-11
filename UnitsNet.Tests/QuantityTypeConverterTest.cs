@@ -329,8 +329,8 @@ namespace UnitsNet.Tests
             var converter = new QuantityTypeConverter<CoefficientOfThermalExpansion>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(1), converter.ConvertFrom(context, Culture, "1K⁻¹"));
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(1), converter.ConvertFrom(context, Culture, "1K^-1"));
+            Assert.Equal(CoefficientOfThermalExpansion.FromPerKelvin(1), converter.ConvertFrom(context, Culture, "1K⁻¹"));
+            Assert.Equal(CoefficientOfThermalExpansion.FromPerKelvin(1), converter.ConvertFrom(context, Culture, "1K^-1"));
         }
 
         [Fact]

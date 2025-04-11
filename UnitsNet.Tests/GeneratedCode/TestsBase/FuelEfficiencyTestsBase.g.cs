@@ -39,13 +39,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class FuelEfficiencyTestsBase : QuantityTestsBase
     {
-        protected abstract double KilometersPerLitersInOneLiterPer100Kilometers { get; }
-        protected abstract double LitersPer100KilometersInOneLiterPer100Kilometers { get; }
-        protected abstract double MilesPerUkGallonInOneLiterPer100Kilometers { get; }
-        protected abstract double MilesPerUsGallonInOneLiterPer100Kilometers { get; }
+        protected abstract double KilometersPerLiterInOneKilometerPerLiter { get; }
+        protected abstract double LitersPer100KilometersInOneKilometerPerLiter { get; }
+        protected abstract double MilesPerUkGallonInOneKilometerPerLiter { get; }
+        protected abstract double MilesPerUsGallonInOneKilometerPerLiter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilometersPerLitersTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerLiterTolerance { get { return 1e-5; } }
         protected virtual double LitersPer100KilometersTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUkGallonTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
@@ -55,10 +55,10 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLitersInOneLiterPer100Kilometers, KilometersPerLitersTolerance),
-                FuelEfficiencyUnit.LiterPer100Kilometers => (LitersPer100KilometersInOneLiterPer100Kilometers, LitersPer100KilometersTolerance),
-                FuelEfficiencyUnit.MilePerUkGallon => (MilesPerUkGallonInOneLiterPer100Kilometers, MilesPerUkGallonTolerance),
-                FuelEfficiencyUnit.MilePerUsGallon => (MilesPerUsGallonInOneLiterPer100Kilometers, MilesPerUsGallonTolerance),
+                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLiterInOneKilometerPerLiter, KilometersPerLiterTolerance),
+                FuelEfficiencyUnit.LiterPer100Kilometers => (LitersPer100KilometersInOneKilometerPerLiter, LitersPer100KilometersTolerance),
+                FuelEfficiencyUnit.MilePerUkGallon => (MilesPerUkGallonInOneKilometerPerLiter, MilesPerUkGallonTolerance),
+                FuelEfficiencyUnit.MilePerUsGallon => (MilesPerUsGallonInOneKilometerPerLiter, MilesPerUsGallonTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -76,20 +76,25 @@ namespace UnitsNet.Tests
         {
             var quantity = new FuelEfficiency();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, quantity.Unit);
+            Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, quantity.Unit);
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.PositiveInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.NegativeInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
+            var exception1 = Record.Exception(() => new FuelEfficiency(double.PositiveInfinity, FuelEfficiencyUnit.KilometerPerLiter));
+            var exception2 = Record.Exception(() => new FuelEfficiency(double.NegativeInfinity, FuelEfficiencyUnit.KilometerPerLiter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.NaN, FuelEfficiencyUnit.LiterPer100Kilometers));
+            var exception = Record.Exception(() => new FuelEfficiency(double.NaN, FuelEfficiencyUnit.KilometerPerLiter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -99,24 +104,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new FuelEfficiency(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (FuelEfficiency) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new FuelEfficiency(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new FuelEfficiency(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
         public void FuelEfficiency_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            var quantity = new FuelEfficiency(1, FuelEfficiencyUnit.LiterPer100Kilometers);
+            var quantity = new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter);
 
             QuantityInfo<FuelEfficiencyUnit> quantityInfo = quantity.QuantityInfo;
 
@@ -128,20 +133,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void LiterPer100KilometersToFuelEfficiencyUnits()
+        public void KilometerPerLiterToFuelEfficiencyUnits()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, literper100kilometers.KilometersPerLiters, KilometersPerLitersTolerance);
-            AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, literper100kilometers.LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, literper100kilometers.MilesPerUkGallon, MilesPerUkGallonTolerance);
-            AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, literper100kilometers.MilesPerUsGallon, MilesPerUsGallonTolerance);
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            AssertEx.EqualTolerance(KilometersPerLiterInOneKilometerPerLiter, kilometerperliter.KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(LitersPer100KilometersInOneKilometerPerLiter, kilometerperliter.LitersPer100Kilometers, LitersPer100KilometersTolerance);
+            AssertEx.EqualTolerance(MilesPerUkGallonInOneKilometerPerLiter, kilometerperliter.MilesPerUkGallon, MilesPerUkGallonTolerance);
+            AssertEx.EqualTolerance(MilesPerUsGallonInOneKilometerPerLiter, kilometerperliter.MilesPerUsGallon, MilesPerUsGallonTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = FuelEfficiency.From(1, FuelEfficiencyUnit.KilometerPerLiter);
-            AssertEx.EqualTolerance(1, quantity00.KilometersPerLiters, KilometersPerLitersTolerance);
+            AssertEx.EqualTolerance(1, quantity00.KilometersPerLiter, KilometersPerLiterTolerance);
             Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, quantity00.Unit);
 
             var quantity01 = FuelEfficiency.From(1, FuelEfficiencyUnit.LiterPer100Kilometers);
@@ -159,43 +164,137 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromLitersPer100Kilometers_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilometersPerLiter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => FuelEfficiency.FromKilometersPerLiter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => FuelEfficiency.FromKilometersPerLiter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromLitersPer100Kilometers_WithNanValue_ThrowsArgumentException()
+        public void FromKilometersPerLiter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.NaN));
+            var exception = Record.Exception(() => FuelEfficiency.FromKilometersPerLiter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
         public void As()
         {
-            var literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.KilometerPerLiter), KilometersPerLitersTolerance);
-            AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.LiterPer100Kilometers), LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.MilePerUkGallon), MilesPerUkGallonTolerance);
-            AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.MilePerUsGallon), MilesPerUsGallonTolerance);
+            var kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            AssertEx.EqualTolerance(KilometersPerLiterInOneKilometerPerLiter, kilometerperliter.As(FuelEfficiencyUnit.KilometerPerLiter), KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(LitersPer100KilometersInOneKilometerPerLiter, kilometerperliter.As(FuelEfficiencyUnit.LiterPer100Kilometers), LitersPer100KilometersTolerance);
+            AssertEx.EqualTolerance(MilesPerUkGallonInOneKilometerPerLiter, kilometerperliter.As(FuelEfficiencyUnit.MilePerUkGallon), MilesPerUkGallonTolerance);
+            AssertEx.EqualTolerance(MilesPerUsGallonInOneKilometerPerLiter, kilometerperliter.As(FuelEfficiencyUnit.MilePerUsGallon), MilesPerUsGallonTolerance);
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = FuelEfficiency.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(FuelEfficiency.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+            var expectedUnit = FuelEfficiency.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                FuelEfficiency quantityToConvert = quantity;
+
+                FuelEfficiency convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<FuelEfficiencyUnit> quantityToConvert = quantity;
+
+                IQuantity<FuelEfficiencyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<FuelEfficiencyUnit> quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<FuelEfficiencyUnit> quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -203,14 +302,14 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsed = FuelEfficiency.Parse("1 km/L", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
+                var parsed = FuelEfficiency.Parse("1 km/l", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerLiter, KilometersPerLiterTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = FuelEfficiency.Parse("1 L/100km", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = FuelEfficiency.Parse("1 l/100km", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPer100Kilometers, LitersPer100KilometersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -235,13 +334,13 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
-                Assert.True(FuelEfficiency.TryParse("1 km/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
+                Assert.True(FuelEfficiency.TryParse("1 km/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerLiter, KilometersPerLiterTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
             }
 
             {
-                Assert.True(FuelEfficiency.TryParse("1 L/100km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(FuelEfficiency.TryParse("1 l/100km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPer100Kilometers, LitersPer100KilometersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsed.Unit);
             }
@@ -260,58 +359,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = FuelEfficiency.ParseUnit("km/L", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = FuelEfficiency.ParseUnit("L/100km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = FuelEfficiency.ParseUnit("mpg (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = FuelEfficiency.ParseUnit("mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
-            {
-                Assert.True(FuelEfficiency.TryParseUnit("km/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(FuelEfficiency.TryParseUnit("L/100km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(FuelEfficiency.TryParseUnit("mpg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(FuelEfficiency.TryParseUnit("mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsedUnit);
-            }
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -339,12 +482,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = FuelEfficiency.Units.First(u => u != FuelEfficiency.BaseUnit);
-
-            var quantity = FuelEfficiency.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(FuelEfficiency.Units.Where(u => u != FuelEfficiency.BaseUnit), fromUnit =>
+            {
+                var quantity = FuelEfficiency.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -356,74 +499,93 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(FuelEfficiencyUnit unit)
+        {
+            var quantity = FuelEfficiency.From(3, FuelEfficiency.BaseUnit);
+            FuelEfficiency expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<FuelEfficiencyUnit> quantityToConvert = quantity;
+                IQuantity<FuelEfficiencyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(1, FuelEfficiency.FromKilometersPerLiters(literper100kilometers.KilometersPerLiters).LitersPer100Kilometers, KilometersPerLitersTolerance);
-            AssertEx.EqualTolerance(1, FuelEfficiency.FromLitersPer100Kilometers(literper100kilometers.LitersPer100Kilometers).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUkGallon(literper100kilometers.MilesPerUkGallon).LitersPer100Kilometers, MilesPerUkGallonTolerance);
-            AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUsGallon(literper100kilometers.MilesPerUsGallon).LitersPer100Kilometers, MilesPerUsGallonTolerance);
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            AssertEx.EqualTolerance(1, FuelEfficiency.FromKilometersPerLiter(kilometerperliter.KilometersPerLiter).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(1, FuelEfficiency.FromLitersPer100Kilometers(kilometerperliter.LitersPer100Kilometers).KilometersPerLiter, LitersPer100KilometersTolerance);
+            AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUkGallon(kilometerperliter.MilesPerUkGallon).KilometersPerLiter, MilesPerUkGallonTolerance);
+            AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUsGallon(kilometerperliter.MilesPerUsGallon).KilometersPerLiter, MilesPerUsGallonTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            FuelEfficiency v = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(-1, -v.LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(2, (FuelEfficiency.FromLitersPer100Kilometers(3)-v).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(2, (FuelEfficiency.FromLitersPer100Kilometers(10)/5).LitersPer100Kilometers, LitersPer100KilometersTolerance);
-            AssertEx.EqualTolerance(2, FuelEfficiency.FromLitersPer100Kilometers(10)/FuelEfficiency.FromLitersPer100Kilometers(5), LitersPer100KilometersTolerance);
+            FuelEfficiency v = FuelEfficiency.FromKilometersPerLiter(1);
+            AssertEx.EqualTolerance(-1, -v.KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(2, (FuelEfficiency.FromKilometersPerLiter(3)-v).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(2, (FuelEfficiency.FromKilometersPerLiter(10)/5).KilometersPerLiter, KilometersPerLiterTolerance);
+            AssertEx.EqualTolerance(2, FuelEfficiency.FromKilometersPerLiter(10)/FuelEfficiency.FromKilometersPerLiter(5), KilometersPerLiterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            FuelEfficiency oneLiterPer100Kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            FuelEfficiency twoLitersPer100Kilometers = FuelEfficiency.FromLitersPer100Kilometers(2);
+            FuelEfficiency oneKilometerPerLiter = FuelEfficiency.FromKilometersPerLiter(1);
+            FuelEfficiency twoKilometersPerLiter = FuelEfficiency.FromKilometersPerLiter(2);
 
-            Assert.True(oneLiterPer100Kilometers < twoLitersPer100Kilometers);
-            Assert.True(oneLiterPer100Kilometers <= twoLitersPer100Kilometers);
-            Assert.True(twoLitersPer100Kilometers > oneLiterPer100Kilometers);
-            Assert.True(twoLitersPer100Kilometers >= oneLiterPer100Kilometers);
+            Assert.True(oneKilometerPerLiter < twoKilometersPerLiter);
+            Assert.True(oneKilometerPerLiter <= twoKilometersPerLiter);
+            Assert.True(twoKilometersPerLiter > oneKilometerPerLiter);
+            Assert.True(twoKilometersPerLiter >= oneKilometerPerLiter);
 
-            Assert.False(oneLiterPer100Kilometers > twoLitersPer100Kilometers);
-            Assert.False(oneLiterPer100Kilometers >= twoLitersPer100Kilometers);
-            Assert.False(twoLitersPer100Kilometers < oneLiterPer100Kilometers);
-            Assert.False(twoLitersPer100Kilometers <= oneLiterPer100Kilometers);
+            Assert.False(oneKilometerPerLiter > twoKilometersPerLiter);
+            Assert.False(oneKilometerPerLiter >= twoKilometersPerLiter);
+            Assert.False(twoKilometersPerLiter < oneKilometerPerLiter);
+            Assert.False(twoKilometersPerLiter <= oneKilometerPerLiter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.Equal(0, literper100kilometers.CompareTo(literper100kilometers));
-            Assert.True(literper100kilometers.CompareTo(FuelEfficiency.Zero) > 0);
-            Assert.True(FuelEfficiency.Zero.CompareTo(literper100kilometers) < 0);
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.Equal(0, kilometerperliter.CompareTo(kilometerperliter));
+            Assert.True(kilometerperliter.CompareTo(FuelEfficiency.Zero) > 0);
+            Assert.True(FuelEfficiency.Zero.CompareTo(kilometerperliter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.Throws<ArgumentException>(() => literper100kilometers.CompareTo(new object()));
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.Throws<ArgumentException>(() => kilometerperliter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.Throws<ArgumentNullException>(() => literper100kilometers.CompareTo(null));
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.Throws<ArgumentNullException>(() => kilometerperliter.CompareTo(null));
         }
 
         [Theory]
-        [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.LiterPer100Kilometers, true)]  // Same value and unit.
-        [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 2, FuelEfficiencyUnit.LiterPer100Kilometers, false)] // Different value.
-        [InlineData(2, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.KilometerPerLiter, false)] // Different value and unit.
-        [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.KilometerPerLiter, false)] // Different unit.
+        [InlineData(1, FuelEfficiencyUnit.KilometerPerLiter, 1, FuelEfficiencyUnit.KilometerPerLiter, true)]  // Same value and unit.
+        [InlineData(1, FuelEfficiencyUnit.KilometerPerLiter, 2, FuelEfficiencyUnit.KilometerPerLiter, false)] // Different value.
+        [InlineData(2, FuelEfficiencyUnit.KilometerPerLiter, 1, FuelEfficiencyUnit.LiterPer100Kilometers, false)] // Different value and unit.
+        [InlineData(1, FuelEfficiencyUnit.KilometerPerLiter, 1, FuelEfficiencyUnit.LiterPer100Kilometers, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FuelEfficiencyUnit unitA, double valueB, FuelEfficiencyUnit unitB, bool expectEqual)
         {
             var a = new FuelEfficiency(valueA, unitA);
@@ -463,32 +625,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.True(v.Equals(FuelEfficiency.FromLitersPer100Kilometers(1), LitersPer100KilometersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(FuelEfficiency.Zero, LitersPer100KilometersTolerance, ComparisonType.Relative));
-            Assert.True(FuelEfficiency.FromLitersPer100Kilometers(100).Equals(FuelEfficiency.FromLitersPer100Kilometers(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(FuelEfficiency.FromLitersPer100Kilometers(100).Equals(FuelEfficiency.FromLitersPer100Kilometers(120), (double)0.1m, ComparisonType.Relative));
+            var v = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.True(v.Equals(FuelEfficiency.FromKilometersPerLiter(1), KilometersPerLiterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(FuelEfficiency.Zero, KilometersPerLiterTolerance, ComparisonType.Relative));
+            Assert.True(FuelEfficiency.FromKilometersPerLiter(100).Equals(FuelEfficiency.FromKilometersPerLiter(120), 0.3, ComparisonType.Relative));
+            Assert.False(FuelEfficiency.FromKilometersPerLiter(100).Equals(FuelEfficiency.FromKilometersPerLiter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
         public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
         {
-            var v = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(FuelEfficiency.FromLitersPer100Kilometers(1), -1, ComparisonType.Relative));
+            var v = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(FuelEfficiency.FromKilometersPerLiter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.False(literper100kilometers.Equals(new object()));
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.False(kilometerperliter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            Assert.False(literper100kilometers.Equals(null));
+            FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
+            Assert.False(kilometerperliter.Equals(null));
         }
 
         [Fact]
@@ -511,8 +673,8 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 km/L", new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter).ToString());
-            Assert.Equal("1 L/100km", new FuelEfficiency(1, FuelEfficiencyUnit.LiterPer100Kilometers).ToString());
+            Assert.Equal("1 km/l", new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter).ToString());
+            Assert.Equal("1 l/100km", new FuelEfficiency(1, FuelEfficiencyUnit.LiterPer100Kilometers).ToString());
             Assert.Equal("1 mpg (imp.)", new FuelEfficiency(1, FuelEfficiencyUnit.MilePerUkGallon).ToString());
             Assert.Equal("1 mpg (U.S.)", new FuelEfficiency(1, FuelEfficiencyUnit.MilePerUsGallon).ToString());
         }
@@ -523,8 +685,8 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 km/L", new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 L/100km", new FuelEfficiency(1, FuelEfficiencyUnit.LiterPer100Kilometers).ToString(swedishCulture));
+            Assert.Equal("1 km/l", new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 l/100km", new FuelEfficiency(1, FuelEfficiencyUnit.LiterPer100Kilometers).ToString(swedishCulture));
             Assert.Equal("1 mpg (imp.)", new FuelEfficiency(1, FuelEfficiencyUnit.MilePerUkGallon).ToString(swedishCulture));
             Assert.Equal("1 mpg (U.S.)", new FuelEfficiency(1, FuelEfficiencyUnit.MilePerUsGallon).ToString(swedishCulture));
         }
@@ -533,20 +695,20 @@ namespace UnitsNet.Tests
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
             var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s1"));
-            Assert.Equal("0.12 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s2"));
-            Assert.Equal("0.123 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s3"));
-            Assert.Equal("0.1235 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s4"));
+            Assert.Equal("0.1 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s1"));
+            Assert.Equal("0.12 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s2"));
+            Assert.Equal("0.123 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s3"));
+            Assert.Equal("0.1235 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s4"));
         }
 
         [Fact]
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s1", culture));
-            Assert.Equal("0.12 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s2", culture));
-            Assert.Equal("0.123 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s3", culture));
-            Assert.Equal("0.1235 L/100km", new FuelEfficiency(0.123456, FuelEfficiencyUnit.LiterPer100Kilometers).ToString("s4", culture));
+            Assert.Equal("0.1 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s1", culture));
+            Assert.Equal("0.12 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s2", culture));
+            Assert.Equal("0.123 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s3", culture));
+            Assert.Equal("0.1235 km/l", new FuelEfficiency(0.123456, FuelEfficiencyUnit.KilometerPerLiter).ToString("s4", culture));
         }
 
         [Theory]
@@ -554,12 +716,12 @@ namespace UnitsNet.Tests
         [InlineData("en-US")]
         public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             CultureInfo formatProvider = cultureName == null
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -567,154 +729,161 @@ namespace UnitsNet.Tests
         [InlineData("g")]
         public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
         }
 
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
            Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
         public void Convert_ToChar_ThrowsInvalidCastException()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
         }
 
         [Fact]
         public void Convert_ToDateTime_ThrowsInvalidCastException()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
         }
 
         [Fact]
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(FuelEfficiency)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(FuelEfficiencyUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(FuelEfficiency.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(FuelEfficiency.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
         public void GetHashCode_Equals()
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
             Assert.Equal(new {FuelEfficiency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
@@ -723,8 +892,8 @@ namespace UnitsNet.Tests
         [InlineData(-1.0)]
         public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
         {
-            var quantity = FuelEfficiency.FromLitersPer100Kilometers(value);
-            Assert.Equal(FuelEfficiency.FromLitersPer100Kilometers(-value), -quantity);
+            var quantity = FuelEfficiency.FromKilometersPerLiter(value);
+            Assert.Equal(FuelEfficiency.FromKilometersPerLiter(-value), -quantity);
         }
     }
 }

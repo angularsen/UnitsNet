@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricReactivePower(double value, ElectricReactivePowerUnit unit)
         {
             _value = value;
@@ -109,25 +108,21 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive) => new ElectricReactivePower(gigavoltamperesreactive, ElectricReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive) => new ElectricReactivePower(kilovoltamperesreactive, ElectricReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive) => new ElectricReactivePower(megavoltamperesreactive, ElectricReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactivePower FromVoltamperesReactive(double voltamperesreactive) => new ElectricReactivePower(voltamperesreactive, ElectricReactivePowerUnit.VoltampereReactive);
 
         /// <summary>

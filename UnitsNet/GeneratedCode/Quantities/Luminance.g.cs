@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,14 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Luminance :
-        IArithmeticQuantity<Luminance, LuminanceUnit, double>,
+        IArithmeticQuantity<Luminance, LuminanceUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Luminance, Area, LuminousIntensity>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Luminance, Luminance, bool>,
+        IParsable<Luminance>,
+#endif
         IComparable,
         IComparable<Luminance>,
         IConvertible,
@@ -73,10 +82,10 @@ namespace UnitsNet
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareFoot, "CandelasPerSquareFoot", BaseUnits.Undefined, "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareInch, "CandelasPerSquareInch", BaseUnits.Undefined, "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareMeter, "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
+                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
+                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.Nit, "Nits", BaseUnits.Undefined, "Luminance"),
@@ -92,10 +101,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Luminance(double value, LuminanceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -109,13 +117,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Luminance(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -161,7 +164,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -297,100 +300,80 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareFoot(QuantityValue candelaspersquarefoot)
+        public static Luminance FromCandelasPerSquareFoot(double value)
         {
-            double value = (double) candelaspersquarefoot;
             return new Luminance(value, LuminanceUnit.CandelaPerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareInch(QuantityValue candelaspersquareinch)
+        public static Luminance FromCandelasPerSquareInch(double value)
         {
-            double value = (double) candelaspersquareinch;
             return new Luminance(value, LuminanceUnit.CandelaPerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareMeter(QuantityValue candelaspersquaremeter)
+        public static Luminance FromCandelasPerSquareMeter(double value)
         {
-            double value = (double) candelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.CandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCenticandelasPerSquareMeter(QuantityValue centicandelaspersquaremeter)
+        public static Luminance FromCenticandelasPerSquareMeter(double value)
         {
-            double value = (double) centicandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.CenticandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecicandelasPerSquareMeter(QuantityValue decicandelaspersquaremeter)
+        public static Luminance FromDecicandelasPerSquareMeter(double value)
         {
-            double value = (double) decicandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.DecicandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromKilocandelasPerSquareMeter(QuantityValue kilocandelaspersquaremeter)
+        public static Luminance FromKilocandelasPerSquareMeter(double value)
         {
-            double value = (double) kilocandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.KilocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMicrocandelasPerSquareMeter(QuantityValue microcandelaspersquaremeter)
+        public static Luminance FromMicrocandelasPerSquareMeter(double value)
         {
-            double value = (double) microcandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.MicrocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMillicandelasPerSquareMeter(QuantityValue millicandelaspersquaremeter)
+        public static Luminance FromMillicandelasPerSquareMeter(double value)
         {
-            double value = (double) millicandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.MillicandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNanocandelasPerSquareMeter(QuantityValue nanocandelaspersquaremeter)
+        public static Luminance FromNanocandelasPerSquareMeter(double value)
         {
-            double value = (double) nanocandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.NanocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.Nit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNits(QuantityValue nits)
+        public static Luminance FromNits(double value)
         {
-            double value = (double) nits;
             return new Luminance(value, LuminanceUnit.Nit);
         }
 
@@ -400,9 +383,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Luminance unit value.</returns>
-        public static Luminance From(QuantityValue value, LuminanceUnit fromUnit)
+        public static Luminance From(double value, LuminanceUnit fromUnit)
         {
-            return new Luminance((double)value, fromUnit);
+            return new Luminance(value, fromUnit);
         }
 
         #endregion
@@ -475,7 +458,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Luminance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Luminance result)
         {
             return TryParse(str, null, out result);
         }
@@ -490,7 +473,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Luminance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Luminance result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<Luminance, LuminanceUnit>(
                 str,
@@ -529,7 +512,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminanceUnit)"/>
-        public static bool TryParseUnit(string str, out LuminanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out LuminanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -544,7 +527,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out LuminanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminanceUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<LuminanceUnit>(str, provider, out unit);
         }
@@ -593,6 +576,16 @@ namespace UnitsNet
         public static double operator /(Luminance left, Luminance right)
         {
             return left.CandelasPerSquareMeter / right.CandelasPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="Luminance"/> * <see cref="Area"/>.</summary>
+        public static LuminousIntensity operator *(Luminance luminance, Area area)
+        {
+            return LuminousIntensity.FromCandela(luminance.CandelasPerSquareMeter * area.SquareMeters);
         }
 
         #endregion
@@ -799,34 +792,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is LuminanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LuminanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -887,8 +853,8 @@ namespace UnitsNet
             Luminance? convertedOrNull = (Unit, unit) switch
             {
                 // LuminanceUnit -> BaseUnit
-                (LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value* 1.07639e1, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value* 1.5500031e3, LuminanceUnit.CandelaPerSquareMeter),
+                (LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 9.290304e-2, LuminanceUnit.CandelaPerSquareMeter),
+                (LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 0.00064516, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-2d, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e3d, LuminanceUnit.CandelaPerSquareMeter),
@@ -898,8 +864,8 @@ namespace UnitsNet
                 (LuminanceUnit.Nit, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value, LuminanceUnit.CandelaPerSquareMeter),
 
                 // BaseUnit -> LuminanceUnit
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot) => new Luminance(_value/ 1.07639e1, LuminanceUnit.CandelaPerSquareFoot),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch) => new Luminance(_value/ 1.5500031e3, LuminanceUnit.CandelaPerSquareInch),
+                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot) => new Luminance(_value * 9.290304e-2, LuminanceUnit.CandelaPerSquareFoot),
+                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch) => new Luminance(_value * 0.00064516, LuminanceUnit.CandelaPerSquareInch),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter) => new Luminance((_value) / 1e-2d, LuminanceUnit.CenticandelaPerSquareMeter),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter) => new Luminance((_value) / 1e-1d, LuminanceUnit.DecicandelaPerSquareMeter),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter) => new Luminance((_value) / 1e3d, LuminanceUnit.KilocandelaPerSquareMeter),
@@ -921,6 +887,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Luminance ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not LuminanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -928,21 +910,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Luminance ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -954,17 +921,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<LuminanceUnit> IQuantity<LuminanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LuminanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -976,7 +933,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -986,7 +943,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -997,7 +954,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1078,7 +1035,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

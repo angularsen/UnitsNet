@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -42,7 +44,14 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MassFraction :
-        IArithmeticQuantity<MassFraction, MassFractionUnit, double>,
+        IArithmeticQuantity<MassFraction, MassFractionUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MassFraction, Mass, Mass>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MassFraction, MassFraction, bool>,
+        IParsable<MassFraction>,
+#endif
         IComparable,
         IComparable<MassFraction>,
         IConvertible,
@@ -106,30 +115,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassFraction(double value, MassFractionUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
-        }
-
-        /// <summary>
-        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
-        /// If multiple compatible units were found, the first match is used.
-        /// </summary>
-        /// <param name="value">The numeric value to construct this quantity with.</param>
-        /// <param name="unitSystem">The unit system to create the quantity with.</param>
-        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassFraction(double value, UnitSystem unitSystem)
-        {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
-            _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -175,7 +164,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -409,240 +398,192 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.CentigramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromCentigramsPerGram(QuantityValue centigramspergram)
+        public static MassFraction FromCentigramsPerGram(double value)
         {
-            double value = (double) centigramspergram;
             return new MassFraction(value, MassFractionUnit.CentigramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.CentigramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromCentigramsPerKilogram(QuantityValue centigramsperkilogram)
+        public static MassFraction FromCentigramsPerKilogram(double value)
         {
-            double value = (double) centigramsperkilogram;
             return new MassFraction(value, MassFractionUnit.CentigramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecagramsPerGram(QuantityValue decagramspergram)
+        public static MassFraction FromDecagramsPerGram(double value)
         {
-            double value = (double) decagramspergram;
             return new MassFraction(value, MassFractionUnit.DecagramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecagramsPerKilogram(QuantityValue decagramsperkilogram)
+        public static MassFraction FromDecagramsPerKilogram(double value)
         {
-            double value = (double) decagramsperkilogram;
             return new MassFraction(value, MassFractionUnit.DecagramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecigramsPerGram(QuantityValue decigramspergram)
+        public static MassFraction FromDecigramsPerGram(double value)
         {
-            double value = (double) decigramspergram;
             return new MassFraction(value, MassFractionUnit.DecigramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecigramsPerKilogram(QuantityValue decigramsperkilogram)
+        public static MassFraction FromDecigramsPerKilogram(double value)
         {
-            double value = (double) decigramsperkilogram;
             return new MassFraction(value, MassFractionUnit.DecigramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecimalFraction"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecimalFractions(QuantityValue decimalfractions)
+        public static MassFraction FromDecimalFractions(double value)
         {
-            double value = (double) decimalfractions;
             return new MassFraction(value, MassFractionUnit.DecimalFraction);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromGramsPerGram(QuantityValue gramspergram)
+        public static MassFraction FromGramsPerGram(double value)
         {
-            double value = (double) gramspergram;
             return new MassFraction(value, MassFractionUnit.GramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromGramsPerKilogram(QuantityValue gramsperkilogram)
+        public static MassFraction FromGramsPerKilogram(double value)
         {
-            double value = (double) gramsperkilogram;
             return new MassFraction(value, MassFractionUnit.GramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromHectogramsPerGram(QuantityValue hectogramspergram)
+        public static MassFraction FromHectogramsPerGram(double value)
         {
-            double value = (double) hectogramspergram;
             return new MassFraction(value, MassFractionUnit.HectogramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromHectogramsPerKilogram(QuantityValue hectogramsperkilogram)
+        public static MassFraction FromHectogramsPerKilogram(double value)
         {
-            double value = (double) hectogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.HectogramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromKilogramsPerGram(QuantityValue kilogramspergram)
+        public static MassFraction FromKilogramsPerGram(double value)
         {
-            double value = (double) kilogramspergram;
             return new MassFraction(value, MassFractionUnit.KilogramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromKilogramsPerKilogram(QuantityValue kilogramsperkilogram)
+        public static MassFraction FromKilogramsPerKilogram(double value)
         {
-            double value = (double) kilogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.KilogramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMicrogramsPerGram(QuantityValue microgramspergram)
+        public static MassFraction FromMicrogramsPerGram(double value)
         {
-            double value = (double) microgramspergram;
             return new MassFraction(value, MassFractionUnit.MicrogramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMicrogramsPerKilogram(QuantityValue microgramsperkilogram)
+        public static MassFraction FromMicrogramsPerKilogram(double value)
         {
-            double value = (double) microgramsperkilogram;
             return new MassFraction(value, MassFractionUnit.MicrogramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMilligramsPerGram(QuantityValue milligramspergram)
+        public static MassFraction FromMilligramsPerGram(double value)
         {
-            double value = (double) milligramspergram;
             return new MassFraction(value, MassFractionUnit.MilligramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMilligramsPerKilogram(QuantityValue milligramsperkilogram)
+        public static MassFraction FromMilligramsPerKilogram(double value)
         {
-            double value = (double) milligramsperkilogram;
             return new MassFraction(value, MassFractionUnit.MilligramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromNanogramsPerGram(QuantityValue nanogramspergram)
+        public static MassFraction FromNanogramsPerGram(double value)
         {
-            double value = (double) nanogramspergram;
             return new MassFraction(value, MassFractionUnit.NanogramPerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromNanogramsPerKilogram(QuantityValue nanogramsperkilogram)
+        public static MassFraction FromNanogramsPerKilogram(double value)
         {
-            double value = (double) nanogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.NanogramPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerBillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromPartsPerBillion(QuantityValue partsperbillion)
+        public static MassFraction FromPartsPerBillion(double value)
         {
-            double value = (double) partsperbillion;
             return new MassFraction(value, MassFractionUnit.PartPerBillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerMillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromPartsPerMillion(QuantityValue partspermillion)
+        public static MassFraction FromPartsPerMillion(double value)
         {
-            double value = (double) partspermillion;
             return new MassFraction(value, MassFractionUnit.PartPerMillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerThousand"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromPartsPerThousand(QuantityValue partsperthousand)
+        public static MassFraction FromPartsPerThousand(double value)
         {
-            double value = (double) partsperthousand;
             return new MassFraction(value, MassFractionUnit.PartPerThousand);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerTrillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromPartsPerTrillion(QuantityValue partspertrillion)
+        public static MassFraction FromPartsPerTrillion(double value)
         {
-            double value = (double) partspertrillion;
             return new MassFraction(value, MassFractionUnit.PartPerTrillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.Percent"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromPercent(QuantityValue percent)
+        public static MassFraction FromPercent(double value)
         {
-            double value = (double) percent;
             return new MassFraction(value, MassFractionUnit.Percent);
         }
 
@@ -652,9 +593,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFraction unit value.</returns>
-        public static MassFraction From(QuantityValue value, MassFractionUnit fromUnit)
+        public static MassFraction From(double value, MassFractionUnit fromUnit)
         {
-            return new MassFraction((double)value, fromUnit);
+            return new MassFraction(value, fromUnit);
         }
 
         #endregion
@@ -727,7 +668,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MassFraction result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out MassFraction result)
         {
             return TryParse(str, null, out result);
         }
@@ -742,7 +683,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MassFraction result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFraction result)
         {
             return UnitsNetSetup.Default.QuantityParser.TryParse<MassFraction, MassFractionUnit>(
                 str,
@@ -781,7 +722,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFractionUnit)"/>
-        public static bool TryParseUnit(string str, out MassFractionUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out MassFractionUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -796,7 +737,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassFractionUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFractionUnit unit)
         {
             return UnitsNetSetup.Default.UnitParser.TryParse<MassFractionUnit>(str, provider, out unit);
         }
@@ -845,6 +786,16 @@ namespace UnitsNet
         public static double operator /(MassFraction left, MassFraction right)
         {
             return left.DecimalFractions / right.DecimalFractions;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MassFraction"/> * <see cref="Mass"/>.</summary>
+        public static Mass operator *(MassFraction massFraction, Mass mass)
+        {
+            return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
         }
 
         #endregion
@@ -1051,34 +1002,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MassFractionUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
-
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MassFractionUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1201,6 +1125,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MassFraction ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MassFractionUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1208,21 +1148,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassFraction ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1234,17 +1159,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<MassFractionUnit> IQuantity<MassFractionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MassFractionUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        #endregion
 
         #endregion
 
@@ -1256,7 +1171,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -1266,7 +1181,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1277,7 +1192,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -1358,7 +1273,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

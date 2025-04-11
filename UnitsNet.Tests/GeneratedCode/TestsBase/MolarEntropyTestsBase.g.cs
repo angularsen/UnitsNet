@@ -76,16 +76,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NegativeInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception1 = Record.Exception(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception2 = Record.Exception(() => new MolarEntropy(double.NegativeInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception = Record.Exception(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -95,18 +100,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new MolarEntropy(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (MolarEntropy) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new MolarEntropy(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new MolarEntropy(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -150,16 +155,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoulesPerMoleKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoulesPerMoleKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoulesPerMoleKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromJoulesPerMoleKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
+            var exception = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -172,20 +182,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = MolarEntropy.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(MolarEntropy.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+            var expectedUnit = MolarEntropy.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                MolarEntropy quantityToConvert = quantity;
+
+                MolarEntropy convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<MolarEntropyUnit> quantityToConvert = quantity;
+
+                IQuantity<MolarEntropyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<MolarEntropyUnit> quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<MolarEntropyUnit> quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -237,47 +336,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarEntropyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("J/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("kJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("MJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarEntropyUnit expectedUnit)
         {
-            {
-                Assert.True(MolarEntropy.TryParseUnit("J/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEntropy.TryParseUnit("kJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEntropy.TryParseUnit("MJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -305,12 +451,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MolarEntropy.Units.First(u => u != MolarEntropy.BaseUnit);
-
-            var quantity = MolarEntropy.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(MolarEntropy.Units.Where(u => u != MolarEntropy.BaseUnit), fromUnit =>
+            {
+                var quantity = MolarEntropy.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -320,6 +466,25 @@ namespace UnitsNet.Tests
             var quantity = default(MolarEntropy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(MolarEntropyUnit unit)
+        {
+            var quantity = MolarEntropy.From(3, MolarEntropy.BaseUnit);
+            MolarEntropy expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<MolarEntropyUnit> quantityToConvert = quantity;
+                IQuantity<MolarEntropyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -431,8 +596,8 @@ namespace UnitsNet.Tests
             var v = MolarEntropy.FromJoulesPerMoleKelvin(1);
             Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1), JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MolarEntropy.Zero, JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
-            Assert.True(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -522,7 +687,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -672,6 +837,13 @@ namespace UnitsNet.Tests
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

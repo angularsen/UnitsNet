@@ -68,16 +68,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousFlux(double.PositiveInfinity, LuminousFluxUnit.Lumen));
-            Assert.Throws<ArgumentException>(() => new LuminousFlux(double.NegativeInfinity, LuminousFluxUnit.Lumen));
+            var exception1 = Record.Exception(() => new LuminousFlux(double.PositiveInfinity, LuminousFluxUnit.Lumen));
+            var exception2 = Record.Exception(() => new LuminousFlux(double.NegativeInfinity, LuminousFluxUnit.Lumen));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousFlux(double.NaN, LuminousFluxUnit.Lumen));
+            var exception = Record.Exception(() => new LuminousFlux(double.NaN, LuminousFluxUnit.Lumen));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -87,18 +92,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new LuminousFlux(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (LuminousFlux) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new LuminousFlux(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -132,16 +137,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromLumens_WithInfinityValue_ThrowsArgumentException()
+        public void FromLumens_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousFlux.FromLumens(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LuminousFlux.FromLumens(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => LuminousFlux.FromLumens(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => LuminousFlux.FromLumens(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromLumens_WithNanValue_ThrowsArgumentException()
+        public void FromLumens_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousFlux.FromLumens(double.NaN));
+            var exception = Record.Exception(() => LuminousFlux.FromLumens(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -152,20 +162,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = LuminousFlux.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(LuminousFlux.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            var expectedUnit = LuminousFlux.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                LuminousFlux quantityToConvert = quantity;
+
+                LuminousFlux convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<LuminousFluxUnit> quantityToConvert = quantity;
+
+                IQuantity<LuminousFluxUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminousFluxUnit> quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminousFluxUnit> quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -191,25 +290,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminousFluxUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = LuminousFlux.ParseUnit("lm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminousFluxUnit expectedUnit)
         {
-            {
-                Assert.True(LuminousFlux.TryParseUnit("lm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -233,16 +385,16 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousFluxUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LuminousFlux.Units.First(u => u != LuminousFlux.BaseUnit);
-
-            var quantity = LuminousFlux.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(LuminousFlux.Units.Where(u => u != LuminousFlux.BaseUnit), fromUnit =>
+            {
+                var quantity = LuminousFlux.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -252,6 +404,25 @@ namespace UnitsNet.Tests
             var quantity = default(LuminousFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(LuminousFluxUnit unit)
+        {
+            var quantity = LuminousFlux.From(3, LuminousFlux.BaseUnit);
+            LuminousFlux expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<LuminousFluxUnit> quantityToConvert = quantity;
+                IQuantity<LuminousFluxUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -360,8 +531,8 @@ namespace UnitsNet.Tests
             var v = LuminousFlux.FromLumens(1);
             Assert.True(v.Equals(LuminousFlux.FromLumens(1), LumensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LuminousFlux.Zero, LumensTolerance, ComparisonType.Relative));
-            Assert.True(LuminousFlux.FromLumens(100).Equals(LuminousFlux.FromLumens(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(LuminousFlux.FromLumens(100).Equals(LuminousFlux.FromLumens(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(LuminousFlux.FromLumens(100).Equals(LuminousFlux.FromLumens(120), 0.3, ComparisonType.Relative));
+            Assert.False(LuminousFlux.FromLumens(100).Equals(LuminousFlux.FromLumens(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -447,7 +618,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -597,6 +768,13 @@ namespace UnitsNet.Tests
         {
             var quantity = LuminousFlux.FromLumens(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

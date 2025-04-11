@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumeFlowPerArea(double value, VolumeFlowPerAreaUnit unit)
         {
             _value = value;
@@ -96,13 +95,11 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double cubicfeetperminutepersquarefoot) => new VolumeFlowPerArea(cubicfeetperminutepersquarefoot, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double cubicmeterspersecondpersquaremeter) => new VolumeFlowPerArea(cubicmeterspersecondpersquaremeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
         /// <summary>
@@ -145,7 +142,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => _value / 196.850394,
+                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => _value * (0.028316846592 / 60) / 9.290304e-2,
                         VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -160,7 +157,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => baseUnitValue * 196.850394,
+                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => baseUnitValue * 9.290304e-2 / (0.028316846592 / 60),
                         VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

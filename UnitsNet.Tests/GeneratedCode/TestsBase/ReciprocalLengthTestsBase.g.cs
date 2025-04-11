@@ -104,16 +104,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NegativeInfinity, ReciprocalLengthUnit.InverseMeter));
+            var exception1 = Record.Exception(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
+            var exception2 = Record.Exception(() => new ReciprocalLength(double.NegativeInfinity, ReciprocalLengthUnit.InverseMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
+            var exception = Record.Exception(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -123,18 +128,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ReciprocalLength(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ReciprocalLength) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ReciprocalLength(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ReciprocalLength(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -213,16 +218,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromInverseMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromInverseMeters_WithNanValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NaN));
+            var exception = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -242,20 +252,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ReciprocalLength.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ReciprocalLength.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+            var expectedUnit = ReciprocalLength.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ReciprocalLength quantityToConvert = quantity;
+
+                ReciprocalLength convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ReciprocalLengthUnit> quantityToConvert = quantity;
+
+                IQuantity<ReciprocalLengthUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ReciprocalLengthUnit> quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ReciprocalLengthUnit> quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -528,234 +627,230 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReciprocalLengthUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("cm⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("ft⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("in⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("m⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("µin⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/µin", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("mil⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/mil", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("mi⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/mi", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("mm⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/ftUS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("yd⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalLength.ParseUnit("1/yd", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ReciprocalLengthUnit parsedUnit = ReciprocalLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReciprocalLengthUnit expectedUnit)
         {
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("cm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ReciprocalLengthUnit parsedUnit = ReciprocalLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("en-US", "1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ReciprocalLengthUnit parsedUnit = ReciprocalLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("ft⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("en-US", "1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            ReciprocalLengthUnit parsedUnit = ReciprocalLength.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ReciprocalLength.TryParseUnit(abbreviation, out ReciprocalLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("in⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ReciprocalLength.TryParseUnit(abbreviation, out ReciprocalLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("en-US", "1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ReciprocalLength.TryParseUnit(abbreviation, out ReciprocalLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("m⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("µin⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/µin", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("mil⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/mil", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("mi⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/mi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("mm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("yd⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalLength.TryParseUnit("1/yd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cm⁻¹", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "1/cm", ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData("en-US", "ft⁻¹", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "1/ft", ReciprocalLengthUnit.InverseFoot)]
+        [InlineData("en-US", "in⁻¹", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "1/in", ReciprocalLengthUnit.InverseInch)]
+        [InlineData("en-US", "m⁻¹", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "1/m", ReciprocalLengthUnit.InverseMeter)]
+        [InlineData("en-US", "µin⁻¹", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "1/µin", ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData("en-US", "mil⁻¹", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "1/mil", ReciprocalLengthUnit.InverseMil)]
+        [InlineData("en-US", "mi⁻¹", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "1/mi", ReciprocalLengthUnit.InverseMile)]
+        [InlineData("en-US", "mm⁻¹", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "1/mm", ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData("en-US", "ftUS⁻¹", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "1/ftUS", ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData("en-US", "yd⁻¹", ReciprocalLengthUnit.InverseYard)]
+        [InlineData("en-US", "1/yd", ReciprocalLengthUnit.InverseYard)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ReciprocalLengthUnit expectedUnit)
+        {
+            Assert.True(ReciprocalLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ReciprocalLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -783,12 +878,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalLengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ReciprocalLength.Units.First(u => u != ReciprocalLength.BaseUnit);
-
-            var quantity = ReciprocalLength.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ReciprocalLength.Units.Where(u => u != ReciprocalLength.BaseUnit), fromUnit =>
+            {
+                var quantity = ReciprocalLength.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -798,6 +893,25 @@ namespace UnitsNet.Tests
             var quantity = default(ReciprocalLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ReciprocalLengthUnit unit)
+        {
+            var quantity = ReciprocalLength.From(3, ReciprocalLength.BaseUnit);
+            ReciprocalLength expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ReciprocalLengthUnit> quantityToConvert = quantity;
+                IQuantity<ReciprocalLengthUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -916,8 +1030,8 @@ namespace UnitsNet.Tests
             var v = ReciprocalLength.FromInverseMeters(1);
             Assert.True(v.Equals(ReciprocalLength.FromInverseMeters(1), InverseMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReciprocalLength.Zero, InverseMetersTolerance, ComparisonType.Relative));
-            Assert.True(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -1021,7 +1135,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1171,6 +1285,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RadiationEquivalentDose(double value, RadiationEquivalentDoseUnit unit)
         {
             _value = value;
@@ -116,37 +115,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Microsievert"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromMicrosieverts(double microsieverts) => new RadiationEquivalentDose(microsieverts, RadiationEquivalentDoseUnit.Microsievert);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromMilliroentgensEquivalentMan(double milliroentgensequivalentman) => new RadiationEquivalentDose(milliroentgensequivalentman, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Millisievert"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromMillisieverts(double millisieverts) => new RadiationEquivalentDose(millisieverts, RadiationEquivalentDoseUnit.Millisievert);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Nanosievert"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromNanosieverts(double nanosieverts) => new RadiationEquivalentDose(nanosieverts, RadiationEquivalentDoseUnit.Nanosievert);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.RoentgenEquivalentMan"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromRoentgensEquivalentMan(double roentgensequivalentman) => new RadiationEquivalentDose(roentgensequivalentman, RadiationEquivalentDoseUnit.RoentgenEquivalentMan);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Sievert"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDose FromSieverts(double sieverts) => new RadiationEquivalentDose(sieverts, RadiationEquivalentDoseUnit.Sievert);
 
         /// <summary>

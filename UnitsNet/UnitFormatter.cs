@@ -71,9 +71,9 @@ namespace UnitsNet
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
-            string abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
+            string abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

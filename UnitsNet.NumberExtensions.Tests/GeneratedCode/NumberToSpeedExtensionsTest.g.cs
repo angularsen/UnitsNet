@@ -29,16 +29,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromCentimetersPerHour(2), 2.CentimetersPerHour());
 
         [Fact]
-        public void NumberToCentimetersPerMinutesTest() =>
-            Assert.Equal(Speed.FromCentimetersPerMinutes(2), 2.CentimetersPerMinutes());
+        public void NumberToCentimetersPerMinuteTest() =>
+            Assert.Equal(Speed.FromCentimetersPerMinute(2), 2.CentimetersPerMinute());
 
         [Fact]
         public void NumberToCentimetersPerSecondTest() =>
             Assert.Equal(Speed.FromCentimetersPerSecond(2), 2.CentimetersPerSecond());
 
         [Fact]
-        public void NumberToDecimetersPerMinutesTest() =>
-            Assert.Equal(Speed.FromDecimetersPerMinutes(2), 2.DecimetersPerMinutes());
+        public void NumberToDecimetersPerMinuteTest() =>
+            Assert.Equal(Speed.FromDecimetersPerMinute(2), 2.DecimetersPerMinute());
 
         [Fact]
         public void NumberToDecimetersPerSecondTest() =>
@@ -73,8 +73,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromKilometersPerHour(2), 2.KilometersPerHour());
 
         [Fact]
-        public void NumberToKilometersPerMinutesTest() =>
-            Assert.Equal(Speed.FromKilometersPerMinutes(2), 2.KilometersPerMinutes());
+        public void NumberToKilometersPerMinuteTest() =>
+            Assert.Equal(Speed.FromKilometersPerMinute(2), 2.KilometersPerMinute());
 
         [Fact]
         public void NumberToKilometersPerSecondTest() =>
@@ -93,16 +93,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromMetersPerHour(2), 2.MetersPerHour());
 
         [Fact]
-        public void NumberToMetersPerMinutesTest() =>
-            Assert.Equal(Speed.FromMetersPerMinutes(2), 2.MetersPerMinutes());
+        public void NumberToMetersPerMinuteTest() =>
+            Assert.Equal(Speed.FromMetersPerMinute(2), 2.MetersPerMinute());
 
         [Fact]
         public void NumberToMetersPerSecondTest() =>
             Assert.Equal(Speed.FromMetersPerSecond(2), 2.MetersPerSecond());
 
         [Fact]
-        public void NumberToMicrometersPerMinutesTest() =>
-            Assert.Equal(Speed.FromMicrometersPerMinutes(2), 2.MicrometersPerMinutes());
+        public void NumberToMicrometersPerMinuteTest() =>
+            Assert.Equal(Speed.FromMicrometersPerMinute(2), 2.MicrometersPerMinute());
 
         [Fact]
         public void NumberToMicrometersPerSecondTest() =>
@@ -117,16 +117,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromMillimetersPerHour(2), 2.MillimetersPerHour());
 
         [Fact]
-        public void NumberToMillimetersPerMinutesTest() =>
-            Assert.Equal(Speed.FromMillimetersPerMinutes(2), 2.MillimetersPerMinutes());
+        public void NumberToMillimetersPerMinuteTest() =>
+            Assert.Equal(Speed.FromMillimetersPerMinute(2), 2.MillimetersPerMinute());
 
         [Fact]
         public void NumberToMillimetersPerSecondTest() =>
             Assert.Equal(Speed.FromMillimetersPerSecond(2), 2.MillimetersPerSecond());
 
         [Fact]
-        public void NumberToNanometersPerMinutesTest() =>
-            Assert.Equal(Speed.FromNanometersPerMinutes(2), 2.NanometersPerMinutes());
+        public void NumberToNanometersPerMinuteTest() =>
+            Assert.Equal(Speed.FromNanometersPerMinute(2), 2.NanometersPerMinute());
 
         [Fact]
         public void NumberToNanometersPerSecondTest() =>

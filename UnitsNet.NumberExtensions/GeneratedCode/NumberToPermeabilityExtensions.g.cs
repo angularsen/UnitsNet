@@ -32,13 +32,16 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
     /// </summary>
     public static class NumberToPermeabilityExtensions
     {
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(double)" />
         public static Permeability HenriesPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => Permeability.FromHenriesPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Permeability.FromHenriesPerMeter(value.ToDouble(null));
 #endif
-            => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
 
     }
 }

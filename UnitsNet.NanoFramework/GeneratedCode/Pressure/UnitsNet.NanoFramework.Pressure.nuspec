@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.Pressure</id>
-    <version>5.74.0</version>
+    <version>6.0.0-pre014</version>
     <title>Units.NET Pressure - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
@@ -17,8 +17,8 @@
     <language>en-US</language>
     <tags>nanoframework pressure unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
-      <dependency id="nanoFramework.System.Math" version="1.5.116" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.System.Math" version="1.5.43" />
     </dependencies>
   </metadata>
   <files>

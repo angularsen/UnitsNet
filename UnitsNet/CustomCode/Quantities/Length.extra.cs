@@ -14,17 +14,6 @@ namespace UnitsNet
         private const double InchesInOneFoot = 12;
 
         /// <summary>
-        /// Calculates the inverse of this unit.
-        /// </summary>
-        /// <returns>The inverse of this unit as <see cref="ReciprocalLength"/>.</returns>
-        public ReciprocalLength Inverse()
-        {
-            return Meters == 0.0
-                ? new ReciprocalLength(0.0, ReciprocalLengthUnit.InverseMeter)
-                : new ReciprocalLength(1 / Meters, ReciprocalLengthUnit.InverseMeter);
-        }
-
-        /// <summary>
         ///     Converts the length to a customary feet/inches combination.
         /// </summary>
         public FeetInches FeetInches
@@ -121,78 +110,6 @@ namespace UnitsNet
 
             result = default;
             return false;
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static Speed operator /(Length length, TimeSpan timeSpan)
-        {
-            return Speed.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="Duration"/>.</summary>
-        public static Speed operator /(Length length, Duration duration)
-        {
-            return Speed.FromMetersPerSecond(length.Meters/duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> divided by <see cref="Speed"/>.</summary>
-        public static Duration operator /(Length length, Speed speed)
-        {
-            return Duration.FromSeconds(length.Meters/speed.MetersPerSecond);
-        }
-
-        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Length"/> divided by <see cref="Area"/>.</summary>
-        public static ReciprocalLength operator /(Length length, Area area)
-        {
-            return ReciprocalLength.FromInverseMeters(length.Meters / area.SquareMeters);
-        }
-
-        /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="Length"/> divided by <see cref="Volume"/>.</summary>
-        public static ReciprocalArea operator /(Length length, Volume volume)
-        {
-            return ReciprocalArea.FromInverseSquareMeters(length.Meters / volume.CubicMeters);
-        }
-
-        /// <summary>Get <see cref="Area"/> from <see cref="Length"/> times <see cref="Length"/>.</summary>
-        public static Area operator *(Length length1, Length length2)
-        {
-            return Area.FromSquareMeters(length1.Meters*length2.Meters);
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> times <see cref="Length"/>.</summary>
-        public static Volume operator *(Area area, Length length)
-        {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> times <see cref="Area"/>.</summary>
-        public static Volume operator *(Length length, Area area)
-        {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
-        }
-
-        /// <summary>Get <see cref="Torque"/> from <see cref="Force"/> times <see cref="Length"/>.</summary>
-        public static Torque operator *(Force force, Length length)
-        {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
-        }
-
-        /// <summary>Get <see cref="Torque"/> from <see cref="Length"/> times <see cref="Force"/>.</summary>
-        public static Torque operator *(Length length, Force force)
-        {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
-        }
-
-        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Length"/> times <see cref="Speed"/>.</summary>
-        public static KinematicViscosity operator *(Length length, Speed speed)
-        {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
-        }
-
-        /// <summary>Get <see cref="Pressure"/> from <see cref="Length"/> times <see cref="SpecificWeight"/>.</summary>
-        public static Pressure operator *(Length length, SpecificWeight specificWeight)
-        {
-            return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
         }
     }
 

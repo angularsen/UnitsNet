@@ -1,7 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -53,7 +55,7 @@ namespace UnitsNet.Tests
             }
 
             var ex = Assert.Throws<AmbiguousUnitParseException>(Act);
-            Assert.Equal("Cannot parse \"Foo\" since it matched multiple units [Some, ATon] with case-insensitive comparison, but zero units with case-sensitive comparison. To resolve the ambiguity, pass a unit abbreviation with the correct casing.", ex.Message);
+            Assert.Equal("""Cannot parse "Foo" since it matches multiple units: ATon ("FOO"), Some ("foo").""", ex.Message);
         }
 
         [Fact]
@@ -88,5 +90,24 @@ namespace UnitsNet.Tests
             Assert.Equal(1, q.Value);
         }
 
+        [Fact]
+        public void TryParse_NullString_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>(null, null, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
+
+        [Fact]
+        public void TryParse_WithInvalidValue_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>("XX kg", CultureInfo.InvariantCulture, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
     }
 }

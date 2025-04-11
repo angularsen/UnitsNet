@@ -32,21 +32,27 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
     /// </summary>
     public static class NumberToRatioChangeRateExtensions
     {
-        /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(double)" />
         public static RatioChangeRate DecimalFractionsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(null));
 #endif
-            => RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
         public static RatioChangeRate PercentsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(null));
 #endif
-            => RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
 
     }
 }

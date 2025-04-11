@@ -32,77 +32,104 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
     /// </summary>
     public static class NumberToKinematicViscosityExtensions
     {
-        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(double)" />
         public static KinematicViscosity Centistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromCentistokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromCentistokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromCentistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(double)" />
         public static KinematicViscosity Decistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromDecistokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromDecistokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromDecistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(double)" />
         public static KinematicViscosity Kilostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromKilostokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromKilostokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromKilostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(double)" />
         public static KinematicViscosity Microstokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromMicrostokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromMicrostokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromMicrostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(double)" />
         public static KinematicViscosity Millistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromMillistokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromMillistokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromMillistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(double)" />
         public static KinematicViscosity Nanostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromNanostokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromNanostokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromNanostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(double)" />
         public static KinematicViscosity SquareFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromSquareFeetPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromSquareFeetPerSecond(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromSquareFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(double)" />
         public static KinematicViscosity SquareMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromSquareMetersPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromSquareMetersPerSecond(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromSquareMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromStokes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromStokes(double)" />
         public static KinematicViscosity Stokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => KinematicViscosity.FromStokes(double.CreateChecked(value));
+#else
+            , IConvertible
+            => KinematicViscosity.FromStokes(value.ToDouble(null));
 #endif
-            => KinematicViscosity.FromStokes(Convert.ToDouble(value));
 
     }
 }

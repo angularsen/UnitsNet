@@ -32,37 +32,49 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
     /// </summary>
     public static class NumberToTemperatureGradientExtensions
     {
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerKilometer<T>(this T value)
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(double)" />
+        public static TemperatureGradient DegreesCelsiusPerKilometer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerMeter(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerMeter<T>(this T value)
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(double)" />
+        public static TemperatureGradient DegreesCelsiusPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesCelciusPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(double)" />
         public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(double)" />
         public static TemperatureGradient KelvinsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => TemperatureGradient.FromKelvinsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => TemperatureGradient.FromKelvinsPerMeter(value.ToDouble(null));
 #endif
-            => TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
 
     }
 }

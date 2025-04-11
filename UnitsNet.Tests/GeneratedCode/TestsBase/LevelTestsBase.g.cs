@@ -72,37 +72,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
-            Assert.Throws<ArgumentException>(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+            var exception1 = Record.Exception(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
+            var exception2 = Record.Exception(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Level(double.NaN, LevelUnit.Decibel));
-        }
+            var exception = Record.Exception(() => new Level(double.NaN, LevelUnit.Decibel));
 
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Level(value: 1, unitSystem: null));
-        }
-
-        [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            Func<object> TestCode = () => new Level(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Level) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -141,16 +125,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecibels_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecibels_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Level.FromDecibels(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Level.FromDecibels(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecibels_WithNanValue_ThrowsArgumentException()
+        public void FromDecibels_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NaN));
+            var exception = Record.Exception(() => Level.FromDecibels(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -162,20 +151,70 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            var quantity = new Level(value: 1, unit: LevelUnit.Decibel);
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             var quantity = new Level(value: 1, unit: Level.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
 
-            if (SupportsSIUnitSystem)
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                var quantity = new Level(value: 1, unit: LevelUnit.Decibel);
+
+                Level convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(LevelUnit.Decibel, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<LevelUnit> quantity = new Level(value: 1, unit: LevelUnit.Decibel);
+
+                IQuantity<LevelUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(LevelUnit.Decibel, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new Level(value: 1, unit: LevelUnit.Decibel);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(LevelUnit.Decibel, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Level(value: 1, unit: Level.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<LevelUnit> quantity = new Level(value: 1, unit: Level.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Level(value: 1, unit: Level.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
@@ -214,36 +253,86 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LevelUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Level.ParseUnit("dB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Level.ParseUnit("Np", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LevelUnit.Neper, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LevelUnit expectedUnit)
         {
-            {
-                Assert.True(Level.TryParseUnit("dB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Level.TryParseUnit("Np", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LevelUnit.Neper, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LevelUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LevelUnit expectedUnit)
+        {
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LevelUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Level.TryParseUnit(abbreviation, out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LevelUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Level.TryParseUnit(abbreviation, out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LevelUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Level.TryParseUnit(abbreviation, out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LevelUnit expectedUnit)
+        {
+            Assert.True(Level.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -271,12 +360,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LevelUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Level.Units.First(u => u != Level.BaseUnit);
-
-            var quantity = Level.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Level.Units.Where(u => u != Level.BaseUnit), fromUnit =>
+            {
+                var quantity = Level.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -286,6 +375,25 @@ namespace UnitsNet.Tests
             var quantity = default(Level);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(LevelUnit unit)
+        {
+            var quantity = Level.From(3, Level.BaseUnit);
+            Level expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<LevelUnit> quantityToConvert = quantity;
+                IQuantity<LevelUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -400,8 +508,8 @@ namespace UnitsNet.Tests
             var v = Level.FromDecibels(1);
             Assert.True(v.Equals(Level.FromDecibels(1), DecibelsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Level.Zero, DecibelsTolerance, ComparisonType.Relative));
-            Assert.True(Level.FromDecibels(100).Equals(Level.FromDecibels(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(Level.FromDecibels(100).Equals(Level.FromDecibels(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(Level.FromDecibels(100).Equals(Level.FromDecibels(120), 0.3, ComparisonType.Relative));
+            Assert.False(Level.FromDecibels(100).Equals(Level.FromDecibels(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -489,7 +597,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -639,6 +747,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Level.FromDecibels(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Level.FromDecibels(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

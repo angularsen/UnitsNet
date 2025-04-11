@@ -32,69 +32,93 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationExposure
     /// </summary>
     public static class NumberToRadiationExposureExtensions
     {
-        /// <inheritdoc cref="RadiationExposure.FromCoulombsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromCoulombsPerKilogram(double)" />
         public static RadiationExposure CoulombsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromCoulombsPerKilogram(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromCoulombsPerKilogram(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromCoulombsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromMicrocoulombsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromMicrocoulombsPerKilogram(double)" />
         public static RadiationExposure MicrocoulombsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromMicrocoulombsPerKilogram(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromMicrocoulombsPerKilogram(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromMicrocoulombsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromMicroroentgens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromMicroroentgens(double)" />
         public static RadiationExposure Microroentgens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromMicroroentgens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromMicroroentgens(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromMicroroentgens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromMillicoulombsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromMillicoulombsPerKilogram(double)" />
         public static RadiationExposure MillicoulombsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromMillicoulombsPerKilogram(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromMillicoulombsPerKilogram(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromMillicoulombsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromMilliroentgens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromMilliroentgens(double)" />
         public static RadiationExposure Milliroentgens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromMilliroentgens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromMilliroentgens(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromMilliroentgens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromNanocoulombsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromNanocoulombsPerKilogram(double)" />
         public static RadiationExposure NanocoulombsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromNanocoulombsPerKilogram(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromNanocoulombsPerKilogram(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromNanocoulombsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromPicocoulombsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromPicocoulombsPerKilogram(double)" />
         public static RadiationExposure PicocoulombsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromPicocoulombsPerKilogram(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromPicocoulombsPerKilogram(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromPicocoulombsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationExposure.FromRoentgens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RadiationExposure.FromRoentgens(double)" />
         public static RadiationExposure Roentgens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => RadiationExposure.FromRoentgens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RadiationExposure.FromRoentgens(value.ToDouble(null));
 #endif
-            => RadiationExposure.FromRoentgens(Convert.ToDouble(value));
 
     }
 }

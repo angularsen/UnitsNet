@@ -49,28 +49,28 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MolarFlowTimesTimeSpanEqualsAmountOfSubstance()
         {
-            AmountOfSubstance amount = MolarFlow.FromKilomolesPerSecond(20) * TimeSpan.FromSeconds(2);
-            Assert.Equal(AmountOfSubstance.FromKilomoles(40), amount);
+            AmountOfSubstance amount = MolarFlow.FromMolesPerSecond(20) * TimeSpan.FromSeconds(2);
+            Assert.Equal(AmountOfSubstance.FromMoles(40), amount);
         }
 
         [Fact]
         public void MolarFlowTimesDurationEqualsAmountOfSubstance()
         {
-            AmountOfSubstance amount = MolarFlow.FromKilomolesPerSecond(20) * Duration.FromSeconds(2);
-            Assert.Equal(AmountOfSubstance.FromKilomoles(40), amount);
+            AmountOfSubstance amount = MolarFlow.FromMolesPerSecond(20) * Duration.FromSeconds(2);
+            Assert.Equal(AmountOfSubstance.FromMoles(40), amount);
         }
 
         [Fact]
         public void MolarFlowTimesMolarMassEqualsMassFlow()
         {
-            MassFlow massFlow = MolarFlow.FromKilomolesPerSecond(2) * MolarMass.FromKilogramsPerKilomole(3);
+            MassFlow massFlow = MolarFlow.FromMolesPerSecond(2) * MolarMass.FromKilogramsPerMole(3);
             Assert.Equal(MassFlow.FromKilogramsPerSecond(6), massFlow);
         }
 
         [Fact]
         public void MolarFlowOverMolarityEqualsVolumeFlow()
         {
-            VolumeFlow volumeFlow = MolarFlow.FromKilomolesPerSecond(6) / Molarity.FromKilomolesPerCubicMeter(3);
+            VolumeFlow volumeFlow = MolarFlow.FromMolesPerSecond(6) / Molarity.FromMolesPerCubicMeter(3);
             Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(2), volumeFlow);
         }
 

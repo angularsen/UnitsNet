@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricConductivity(double value, ElectricConductivityUnit unit)
         {
             _value = value;
@@ -119,37 +118,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromMicrosiemensPerCentimeter(double microsiemenspercentimeter) => new ElectricConductivity(microsiemenspercentimeter, ElectricConductivityUnit.MicrosiemensPerCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromMillisiemensPerCentimeter(double millisiemenspercentimeter) => new ElectricConductivity(millisiemenspercentimeter, ElectricConductivityUnit.MillisiemensPerCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerCentimeter(double siemenspercentimeter) => new ElectricConductivity(siemenspercentimeter, ElectricConductivityUnit.SiemensPerCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(double siemensperfoot) => new ElectricConductivity(siemensperfoot, ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(double siemensperinch) => new ElectricConductivity(siemensperinch, ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter) => new ElectricConductivity(siemenspermeter, ElectricConductivityUnit.SiemensPerMeter);
 
         /// <summary>
@@ -195,8 +188,8 @@ namespace UnitsNet
                         ElectricConductivityUnit.MicrosiemensPerCentimeter => (_value * 1e2) * 1e-6d,
                         ElectricConductivityUnit.MillisiemensPerCentimeter => (_value * 1e2) * 1e-3d,
                         ElectricConductivityUnit.SiemensPerCentimeter => _value * 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => _value * 3.2808398950131234,
-                        ElectricConductivityUnit.SiemensPerInch => _value * 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerFoot => _value / 0.3048,
+                        ElectricConductivityUnit.SiemensPerInch => _value / 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -214,8 +207,8 @@ namespace UnitsNet
                         ElectricConductivityUnit.MicrosiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
                         ElectricConductivityUnit.MillisiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
                         ElectricConductivityUnit.SiemensPerCentimeter => baseUnitValue / 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue / 3.2808398950131234,
-                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue / 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue * 0.3048,
+                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue * 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

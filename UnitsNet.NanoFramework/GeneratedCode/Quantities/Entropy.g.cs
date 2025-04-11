@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Entropy(double value, EntropyUnit unit)
         {
             _value = value;
@@ -121,43 +120,36 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.CaloriePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromCaloriesPerKelvin(double caloriesperkelvin) => new Entropy(caloriesperkelvin, EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromJoulesPerDegreeCelsius(double joulesperdegreecelsius) => new Entropy(joulesperdegreecelsius, EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromJoulesPerKelvin(double joulesperkelvin) => new Entropy(joulesperkelvin, EntropyUnit.JoulePerKelvin);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromKilocaloriesPerKelvin(double kilocaloriesperkelvin) => new Entropy(kilocaloriesperkelvin, EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromKilojoulesPerDegreeCelsius(double kilojoulesperdegreecelsius) => new Entropy(kilojoulesperdegreecelsius, EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromKilojoulesPerKelvin(double kilojoulesperkelvin) => new Entropy(kilojoulesperkelvin, EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromMegajoulesPerKelvin(double megajoulesperkelvin) => new Entropy(megajoulesperkelvin, EntropyUnit.MegajoulePerKelvin);
 
         /// <summary>

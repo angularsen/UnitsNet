@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricCapacitance(double value, ElectricCapacitanceUnit unit)
         {
             _value = value;
@@ -124,43 +123,36 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Farad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromFarads(double farads) => new ElectricCapacitance(farads, ElectricCapacitanceUnit.Farad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Kilofarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromKilofarads(double kilofarads) => new ElectricCapacitance(kilofarads, ElectricCapacitanceUnit.Kilofarad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Megafarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromMegafarads(double megafarads) => new ElectricCapacitance(megafarads, ElectricCapacitanceUnit.Megafarad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Microfarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromMicrofarads(double microfarads) => new ElectricCapacitance(microfarads, ElectricCapacitanceUnit.Microfarad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Millifarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromMillifarads(double millifarads) => new ElectricCapacitance(millifarads, ElectricCapacitanceUnit.Millifarad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Nanofarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromNanofarads(double nanofarads) => new ElectricCapacitance(nanofarads, ElectricCapacitanceUnit.Nanofarad);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Picofarad"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCapacitance FromPicofarads(double picofarads) => new ElectricCapacitance(picofarads, ElectricCapacitanceUnit.Picofarad);
 
         /// <summary>

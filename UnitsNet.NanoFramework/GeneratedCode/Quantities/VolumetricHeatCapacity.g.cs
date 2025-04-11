@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumetricHeatCapacity(double value, VolumetricHeatCapacityUnit unit)
         {
             _value = value;
@@ -134,55 +133,46 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromBtusPerCubicFootDegreeFahrenheit(double btuspercubicfootdegreefahrenheit) => new VolumetricHeatCapacity(btuspercubicfootdegreefahrenheit, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromCaloriesPerCubicCentimeterDegreeCelsius(double caloriespercubiccentimeterdegreecelsius) => new VolumetricHeatCapacity(caloriespercubiccentimeterdegreecelsius, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromJoulesPerCubicMeterDegreeCelsius(double joulespercubicmeterdegreecelsius) => new VolumetricHeatCapacity(joulespercubicmeterdegreecelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromJoulesPerCubicMeterKelvin(double joulespercubicmeterkelvin) => new VolumetricHeatCapacity(joulespercubicmeterkelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilocaloriesPerCubicCentimeterDegreeCelsius(double kilocaloriespercubiccentimeterdegreecelsius) => new VolumetricHeatCapacity(kilocaloriespercubiccentimeterdegreecelsius, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterDegreeCelsius(double kilojoulespercubicmeterdegreecelsius) => new VolumetricHeatCapacity(kilojoulespercubicmeterdegreecelsius, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterKelvin(double kilojoulespercubicmeterkelvin) => new VolumetricHeatCapacity(kilojoulespercubicmeterkelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterDegreeCelsius(double megajoulespercubicmeterdegreecelsius) => new VolumetricHeatCapacity(megajoulespercubicmeterdegreecelsius, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterKelvin(double megajoulespercubicmeterkelvin) => new VolumetricHeatCapacity(megajoulespercubicmeterkelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
 
         /// <summary>
@@ -225,11 +215,11 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value / 1.4910660e-5,
-                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value / 2.388459e-7,
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value * (1055.05585262 / 0.028316846592) * 1.8,
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value * 4.184e6,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => _value,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => _value,
-                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value / 2.388459e-7) * 1e3d,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value * 4.184e6) * 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (_value) * 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (_value) * 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (_value) * 1e6d,
@@ -247,11 +237,11 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue * 1.4910660e-5,
-                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue * 2.388459e-7,
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue / ((1055.05585262 / 0.028316846592) * 1.8),
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue / 4.184e6,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => baseUnitValue,
                         VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => baseUnitValue,
-                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue * 2.388459e-7) / 1e3d,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue / 4.184e6) / 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e3d,
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (baseUnitValue) / 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e6d,

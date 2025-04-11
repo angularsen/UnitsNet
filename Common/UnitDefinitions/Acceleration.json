@@ -75,14 +75,14 @@
         "L": "NauticalMile",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 0.5144444444444",
-      "FromBaseToUnitFunc": "{x} / 0.5144444444444",
+      "FromUnitToBaseFunc": "{x} * (1852.0 / 3600.0)",
+      "FromBaseToUnitFunc": "{x} / (1852.0 / 3600.0)",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/s" ]
         },
-		{
+        {
           "Culture": "ru-RU",
           "Abbreviations": [ "узел/с" ]
         }
@@ -95,14 +95,16 @@
         "L": "NauticalMile",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x} * 0.5144444444444 / 60",
-      "FromBaseToUnitFunc": "{x} / 0.5144444444444 * 60",
+      "XmlDocSummary": "The knot (/nɒt/) is a unit of speed equal to one nautical mile per hour, exactly 1.852 km/h (approximately 1.151 mph or 0.514 m/s).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Knot_(unit)",
+      "FromUnitToBaseFunc": "{x} * (1852.0 / 3600.0) / 60",
+      "FromBaseToUnitFunc": "{x} * 60 / (1852.0 / 3600.0)",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/min" ]
         },
-		{
+        {
           "Culture": "ru-RU",
           "Abbreviations": [ "узел/мин" ]
         }
@@ -115,14 +117,16 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} * 0.5144444444444 / 3600",
-      "FromBaseToUnitFunc": "{x} / 0.5144444444444 * 3600",
+      "XmlDocSummary": "The knot (/nɒt/) is a unit of speed equal to one nautical mile per hour, exactly 1.852 km/h (approximately 1.151 mph or 0.514 m/s).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Knot_(unit)",
+      "FromUnitToBaseFunc": "{x} * (1852.0 / 3600.0) / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / (1852.0 / 3600.0)",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/h" ]
         },
-		{
+        {
           "Culture": "ru-RU",
           "Abbreviations": [ "узел/час" ]
         }
@@ -131,10 +135,6 @@
     {
       "SingularName": "StandardGravity",
       "PluralName": "StandardGravity",
-      "BaseUnits": {
-        "L": "Meter",
-        "T": "Second"
-      },
       "FromUnitToBaseFunc": "{x} * 9.80665",
       "FromBaseToUnitFunc": "{x} / 9.80665",
       "Prefixes": [ "Milli"],

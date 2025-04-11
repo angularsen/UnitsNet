@@ -14,14 +14,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void GFormatStringEqualsToString()
         {
-            Assert.Equal(MyLength.ToString("g"), MyLength.ToString());
+            Assert.Equal(MyLength.ToString("G"), MyLength.ToString());
         }
 
         [Fact]
         public void EmptyOrNullFormatStringEqualsGFormat()
         {
-            Assert.Equal(MyLength.ToString("g"), MyLength.ToString(string.Empty));
-            Assert.Equal(MyLength.ToString("g"), MyLength.ToString(format: null!));
+            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(string.Empty));
+            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(format: null));
         }
 
         [Fact]
@@ -39,18 +39,6 @@ namespace UnitsNet.Tests
         public void AFormatWithInvalidIndexThrowsFormatException()
         {
             Assert.Throws<FormatException>(() => MyLength.ToString("a100"));
-        }
-
-        [Fact]
-        public void QFormatEqualsQuantityName()
-        {
-            Assert.Equal(Length.Info.Name, MyLength.ToString("q"));
-        }
-
-        [Fact]
-        public void UFormatEqualsUnitToString()
-        {
-            Assert.Equal(MyLength.Unit.ToString(), MyLength.ToString("u"));
         }
 
         [Fact]

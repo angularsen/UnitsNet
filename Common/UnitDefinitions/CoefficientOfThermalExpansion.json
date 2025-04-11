@@ -7,54 +7,6 @@
   },
   "Units": [
     {
-      "SingularName": "InverseKelvin",
-      "PluralName": "InverseKelvin",
-      "ObsoleteText": "Use PerKelvin instead.",
-      "BaseUnits": {
-        "Θ": "Kelvin"
-      },
-      "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "1/K" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "InverseDegreeCelsius",
-      "PluralName": "InverseDegreeCelsius",
-      "ObsoleteText": "Use PerDegreeCelsius instead.",
-      "BaseUnits": {
-        "Θ": "DegreeCelsius"
-      },
-      "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "1/°C" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "InverseDegreeFahrenheit",
-      "PluralName": "InverseDegreeFahrenheit",
-      "ObsoleteText": "Use PerDegreeFahrenheit instead.",
-      "BaseUnits": {
-        "Θ": "DegreeFahrenheit"
-      },
-      "FromUnitToBaseFunc": "{x} * 9 / 5",
-      "FromBaseToUnitFunc": "{x} * 5 / 9",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "1/°F" ]
-        }
-      ]
-    },
-    {
       "SingularName": "PerKelvin",
       "PluralName": "PerKelvin",
       "BaseUnits": {
@@ -102,9 +54,6 @@
     {
       "SingularName": "PpmPerKelvin",
       "PluralName": "PpmPerKelvin",
-      "BaseUnits": {
-        "Θ": "Kelvin"
-      },
       "FromUnitToBaseFunc": "{x} / 1e6",
       "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
@@ -117,9 +66,6 @@
     {
       "SingularName": "PpmPerDegreeCelsius",
       "PluralName": "PpmPerDegreeCelsius",
-      "BaseUnits": {
-        "Θ": "DegreeCelsius"
-      },
       "FromUnitToBaseFunc": "{x} / 1e6",
       "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
@@ -132,9 +78,6 @@
     {
       "SingularName": "PpmPerDegreeFahrenheit",
       "PluralName": "PpmPerDegreeFahrenheit",
-      "BaseUnits": {
-        "Θ": "DegreeFahrenheit"
-      },
       "FromUnitToBaseFunc": "{x} * 9 / 5e6",
       "FromBaseToUnitFunc": "{x} * 5e6 / 9",
       "Localization": [

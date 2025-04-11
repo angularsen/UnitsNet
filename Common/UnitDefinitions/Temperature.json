@@ -41,7 +41,7 @@
       "SingularName": "MillidegreeCelsius",
       "PluralName": "MillidegreesCelsius",
       "BaseUnits": {
-        "Θ": "DegreeCelsius"
+        "Θ": "MillidegreeCelsius"
       },
       "FromUnitToBaseFunc": "{x} / 1000 + 273.15",
       "FromBaseToUnitFunc": "({x} - 273.15) * 1000",
@@ -145,6 +145,9 @@
     {
       "SingularName": "SolarTemperature",
       "PluralName": "SolarTemperatures",
+      "BaseUnits": {
+        "Θ": "SolarTemperature"
+      },
       "FromUnitToBaseFunc": "{x} * 5778",
       "FromBaseToUnitFunc": "{x} / 5778",
       "Localization": [

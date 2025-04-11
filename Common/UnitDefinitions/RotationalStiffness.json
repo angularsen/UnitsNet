@@ -11,6 +11,11 @@
     {
       "SingularName": "NewtonMeterPerRadian",
       "PluralName": "NewtonMetersPerRadian",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -24,8 +29,8 @@
     {
       "SingularName": "PoundForceFootPerDegrees",
       "PluralName": "PoundForceFeetPerDegrees",
-      "FromUnitToBaseFunc": "{x} * 77.6826",
-      "FromBaseToUnitFunc": "{x} / 77.6826",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 * 0.3048 * 180 / Math.PI)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 0.3048 * 180 / Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -36,8 +41,8 @@
     {
       "SingularName": "KilopoundForceFootPerDegrees",
       "PluralName": "KilopoundForceFeetPerDegrees",
-      "FromUnitToBaseFunc": "{x} * 77682.6",
-      "FromBaseToUnitFunc": "{x} / 77682.6",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605e3 * 0.3048 * 180 / Math.PI)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605e3 * 0.3048 * 180 / Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +92,8 @@
     {
       "SingularName": "PoundForceFeetPerRadian",
       "PluralName": "PoundForceFeetPerRadian",
-      "FromUnitToBaseFunc": "{x} * 1.3558179483314",
-      "FromBaseToUnitFunc": "{x} / 1.3558179483314",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 * 0.3048",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",

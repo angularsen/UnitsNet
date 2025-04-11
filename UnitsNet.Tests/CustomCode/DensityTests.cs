@@ -47,45 +47,45 @@ namespace UnitsNet.Tests
 
         protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032;
 
-        protected override double CentigramsPerDeciLiterInOneKilogramPerCubicMeter => 1e1;
+        protected override double CentigramsPerDeciliterInOneKilogramPerCubicMeter => 1e1;
 
         protected override double CentigramsPerLiterInOneKilogramPerCubicMeter => 1e2;
 
         protected override double CentigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-1;
 
-        protected override double DecigramsPerDeciLiterInOneKilogramPerCubicMeter => 1;
+        protected override double DecigramsPerDeciliterInOneKilogramPerCubicMeter => 1;
 
         protected override double DecigramsPerLiterInOneKilogramPerCubicMeter => 1e1;
 
         protected override double DecigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-2;
 
-        protected override double GramsPerDeciLiterInOneKilogramPerCubicMeter => 1e-1;
+        protected override double GramsPerDeciliterInOneKilogramPerCubicMeter => 1e-1;
 
         protected override double GramsPerLiterInOneKilogramPerCubicMeter => 1;
 
         protected override double GramsPerMilliliterInOneKilogramPerCubicMeter => 1e-3;
 
-        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5;
+        protected override double MicrogramsPerDeciliterInOneKilogramPerCubicMeter => 1e5;
 
         protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double MicrogramsPerMilliliterInOneKilogramPerCubicMeter => 1e3;
 
-        protected override double MilligramsPerDeciLiterInOneKilogramPerCubicMeter => 1e2;
+        protected override double MilligramsPerDeciliterInOneKilogramPerCubicMeter => 1e2;
 
         protected override double MilligramsPerLiterInOneKilogramPerCubicMeter => 1e3;
 
         protected override double MilligramsPerMilliliterInOneKilogramPerCubicMeter => 1;
 
-        protected override double NanogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e8;
+        protected override double NanogramsPerDeciliterInOneKilogramPerCubicMeter => 1e8;
 
         protected override double NanogramsPerLiterInOneKilogramPerCubicMeter => 1e9;
 
         protected override double NanogramsPerMilliliterInOneKilogramPerCubicMeter => 1e6;
 
-        protected override double PicogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e11;
+        protected override double PicogramsPerDeciliterInOneKilogramPerCubicMeter => 1e11;
 
-        protected override double FemtogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e14;
+        protected override double FemtogramsPerDeciliterInOneKilogramPerCubicMeter => 1e14;
 
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
@@ -161,6 +161,20 @@ namespace UnitsNet.Tests
         {
             LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
             Assert.Equal(20, linearDensity.GramsPerCentimeter);
+        }
+
+        [Fact]
+        public static void DensityTimesVolumeConcentrationEqualsMassConcentration()
+        {
+            MassConcentration massConcentration = Density.FromKilogramsPerCubicMeter(20) * VolumeConcentration.FromPercent(50);
+            Assert.Equal(massConcentration, MassConcentration.FromKilogramsPerCubicMeter(10));
+        }
+
+        [Fact]
+        public static void InverseDensityEqualsSpecificVolume()
+        {
+            SpecificVolume specificVolume = Density.FromKilogramsPerCubicMeter(4).Inverse();
+            Assert.Equal(specificVolume, SpecificVolume.FromCubicMetersPerKilogram(0.25));
         }
     }
 }

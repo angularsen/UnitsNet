@@ -32,13 +32,16 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
     /// </summary>
     public static class NumberToLuminousFluxExtensions
     {
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LuminousFlux.FromLumens(double)" />
         public static LuminousFlux Lumens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => LuminousFlux.FromLumens(double.CreateChecked(value));
+#else
+            , IConvertible
+            => LuminousFlux.FromLumens(value.ToDouble(null));
 #endif
-            => LuminousFlux.FromLumens(Convert.ToDouble(value));
 
     }
 }

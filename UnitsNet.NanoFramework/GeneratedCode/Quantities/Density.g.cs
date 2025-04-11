@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Density(double value, DensityUnit unit)
         {
             _value = value;
@@ -85,7 +84,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerDeciliter"/>
         /// </summary>
-        public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
+        public double CentigramsPerDeciliter => As(DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerLiter"/>
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerDeciliter"/>
         /// </summary>
-        public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
+        public double DecigramsPerDeciliter => As(DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerLiter"/>
@@ -115,7 +114,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.FemtogramPerDeciliter"/>
         /// </summary>
-        public double FemtogramsPerDeciLiter => As(DensityUnit.FemtogramPerDeciliter);
+        public double FemtogramsPerDeciliter => As(DensityUnit.FemtogramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.FemtogramPerLiter"/>
@@ -155,7 +154,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerDeciliter"/>
         /// </summary>
-        public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
+        public double GramsPerDeciliter => As(DensityUnit.GramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerLiter"/>
@@ -210,7 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>
         /// </summary>
-        public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
+        public double MicrogramsPerDeciliter => As(DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerLiter"/>
@@ -230,7 +229,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerDeciliter"/>
         /// </summary>
-        public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
+        public double MilligramsPerDeciliter => As(DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerLiter"/>
@@ -245,7 +244,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerDeciliter"/>
         /// </summary>
-        public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
+        public double NanogramsPerDeciliter => As(DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerLiter"/>
@@ -260,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerDeciliter"/>
         /// </summary>
-        public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
+        public double PicogramsPerDeciliter => As(DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerLiter"/>
@@ -369,337 +368,281 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromCentigramsPerDeciLiter(double centigramsperdeciliter) => new Density(centigramsperdeciliter, DensityUnit.CentigramPerDeciliter);
+        public static Density FromCentigramsPerDeciliter(double centigramsperdeciliter) => new Density(centigramsperdeciliter, DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerLiter(double centigramsperliter) => new Density(centigramsperliter, DensityUnit.CentigramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerMilliliter(double centigramspermilliliter) => new Density(centigramspermilliliter, DensityUnit.CentigramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromDecigramsPerDeciLiter(double decigramsperdeciliter) => new Density(decigramsperdeciliter, DensityUnit.DecigramPerDeciliter);
+        public static Density FromDecigramsPerDeciliter(double decigramsperdeciliter) => new Density(decigramsperdeciliter, DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerLiter(double decigramsperliter) => new Density(decigramsperliter, DensityUnit.DecigramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerMilliliter(double decigramspermilliliter) => new Density(decigramspermilliliter, DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromFemtogramsPerDeciLiter(double femtogramsperdeciliter) => new Density(femtogramsperdeciliter, DensityUnit.FemtogramPerDeciliter);
+        public static Density FromFemtogramsPerDeciliter(double femtogramsperdeciliter) => new Density(femtogramsperdeciliter, DensityUnit.FemtogramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromFemtogramsPerLiter(double femtogramsperliter) => new Density(femtogramsperliter, DensityUnit.FemtogramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromFemtogramsPerMilliliter(double femtogramspermilliliter) => new Density(femtogramspermilliliter, DensityUnit.FemtogramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicCentimeter(double gramspercubiccentimeter) => new Density(gramspercubiccentimeter, DensityUnit.GramPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicFoot(double gramspercubicfoot) => new Density(gramspercubicfoot, DensityUnit.GramPerCubicFoot);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicInch(double gramspercubicinch) => new Density(gramspercubicinch, DensityUnit.GramPerCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMeter(double gramspercubicmeter) => new Density(gramspercubicmeter, DensityUnit.GramPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMillimeter(double gramspercubicmillimeter) => new Density(gramspercubicmillimeter, DensityUnit.GramPerCubicMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromGramsPerDeciLiter(double gramsperdeciliter) => new Density(gramsperdeciliter, DensityUnit.GramPerDeciliter);
+        public static Density FromGramsPerDeciliter(double gramsperdeciliter) => new Density(gramsperdeciliter, DensityUnit.GramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerLiter(double gramsperliter) => new Density(gramsperliter, DensityUnit.GramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerMilliliter(double gramspermilliliter) => new Density(gramspermilliliter, DensityUnit.GramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter) => new Density(kilogramspercubiccentimeter, DensityUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMeter(double kilogramspercubicmeter) => new Density(kilogramspercubicmeter, DensityUnit.KilogramPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter) => new Density(kilogramspercubicmillimeter, DensityUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerLiter(double kilogramsperliter) => new Density(kilogramsperliter, DensityUnit.KilogramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicFoot(double kilopoundspercubicfoot) => new Density(kilopoundspercubicfoot, DensityUnit.KilopoundPerCubicFoot);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch) => new Density(kilopoundspercubicinch, DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicYard"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicYard(double kilopoundspercubicyard) => new Density(kilopoundspercubicyard, DensityUnit.KilopoundPerCubicYard);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerCubicMeter(double microgramspercubicmeter) => new Density(microgramspercubicmeter, DensityUnit.MicrogramPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromMicrogramsPerDeciLiter(double microgramsperdeciliter) => new Density(microgramsperdeciliter, DensityUnit.MicrogramPerDeciliter);
+        public static Density FromMicrogramsPerDeciliter(double microgramsperdeciliter) => new Density(microgramsperdeciliter, DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerLiter(double microgramsperliter) => new Density(microgramsperliter, DensityUnit.MicrogramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerMilliliter(double microgramspermilliliter) => new Density(microgramspermilliliter, DensityUnit.MicrogramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerCubicMeter(double milligramspercubicmeter) => new Density(milligramspercubicmeter, DensityUnit.MilligramPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromMilligramsPerDeciLiter(double milligramsperdeciliter) => new Density(milligramsperdeciliter, DensityUnit.MilligramPerDeciliter);
+        public static Density FromMilligramsPerDeciliter(double milligramsperdeciliter) => new Density(milligramsperdeciliter, DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerLiter(double milligramsperliter) => new Density(milligramsperliter, DensityUnit.MilligramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerMilliliter(double milligramspermilliliter) => new Density(milligramspermilliliter, DensityUnit.MilligramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromNanogramsPerDeciLiter(double nanogramsperdeciliter) => new Density(nanogramsperdeciliter, DensityUnit.NanogramPerDeciliter);
+        public static Density FromNanogramsPerDeciliter(double nanogramsperdeciliter) => new Density(nanogramsperdeciliter, DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerLiter(double nanogramsperliter) => new Density(nanogramsperliter, DensityUnit.NanogramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerMilliliter(double nanogramspermilliliter) => new Density(nanogramspermilliliter, DensityUnit.NanogramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerDeciliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density FromPicogramsPerDeciLiter(double picogramsperdeciliter) => new Density(picogramsperdeciliter, DensityUnit.PicogramPerDeciliter);
+        public static Density FromPicogramsPerDeciliter(double picogramsperdeciliter) => new Density(picogramsperdeciliter, DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerLiter(double picogramsperliter) => new Density(picogramsperliter, DensityUnit.PicogramPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerMilliliter(double picogramspermilliliter) => new Density(picogramspermilliliter, DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicCentimeter(double poundspercubiccentimeter) => new Density(poundspercubiccentimeter, DensityUnit.PoundPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicFoot(double poundspercubicfoot) => new Density(poundspercubicfoot, DensityUnit.PoundPerCubicFoot);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicInch(double poundspercubicinch) => new Density(poundspercubicinch, DensityUnit.PoundPerCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMeter(double poundspercubicmeter) => new Density(poundspercubicmeter, DensityUnit.PoundPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMillimeter(double poundspercubicmillimeter) => new Density(poundspercubicmillimeter, DensityUnit.PoundPerCubicMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicYard"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicYard(double poundspercubicyard) => new Density(poundspercubicyard, DensityUnit.PoundPerCubicYard);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerImperialGallon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerImperialGallon(double poundsperimperialgallon) => new Density(poundsperimperialgallon, DensityUnit.PoundPerImperialGallon);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerUSGallon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerUSGallon(double poundsperusgallon) => new Density(poundsperusgallon, DensityUnit.PoundPerUSGallon);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicCentimeter(double slugspercubiccentimeter) => new Density(slugspercubiccentimeter, DensityUnit.SlugPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicFoot(double slugspercubicfoot) => new Density(slugspercubicfoot, DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicInch(double slugspercubicinch) => new Density(slugspercubicinch, DensityUnit.SlugPerCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMeter(double slugspercubicmeter) => new Density(slugspercubicmeter, DensityUnit.SlugPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMillimeter(double slugspercubicmillimeter) => new Density(slugspercubicmillimeter, DensityUnit.SlugPerCubicMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicCentimeter(double tonnespercubiccentimeter) => new Density(tonnespercubiccentimeter, DensityUnit.TonnePerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicFoot(double tonnespercubicfoot) => new Density(tonnespercubicfoot, DensityUnit.TonnePerCubicFoot);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicInch(double tonnespercubicinch) => new Density(tonnespercubicinch, DensityUnit.TonnePerCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMeter(double tonnespercubicmeter) => new Density(tonnespercubicmeter, DensityUnit.TonnePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter) => new Density(tonnespercubicmillimeter, DensityUnit.TonnePerCubicMillimeter);
 
         /// <summary>
@@ -752,8 +695,8 @@ namespace UnitsNet
                         DensityUnit.FemtogramPerLiter => (_value / 1) * 1e-15d,
                         DensityUnit.FemtogramPerMilliliter => (_value / 1e-3) * 1e-15d,
                         DensityUnit.GramPerCubicCentimeter => _value / 1e-3,
-                        DensityUnit.GramPerCubicFoot => _value * 0.0353146667214886,
-                        DensityUnit.GramPerCubicInch => _value * 61.0237440947323,
+                        DensityUnit.GramPerCubicFoot => _value * 0.001 / 0.028316846592,
+                        DensityUnit.GramPerCubicInch => _value * 0.001 / 1.6387064e-5,
                         DensityUnit.GramPerCubicMeter => _value / 1e3,
                         DensityUnit.GramPerCubicMillimeter => _value / 1e-6,
                         DensityUnit.GramPerDeciliter => _value / 1e-1,
@@ -763,9 +706,9 @@ namespace UnitsNet
                         DensityUnit.KilogramPerCubicMeter => (_value / 1e3) * 1e3d,
                         DensityUnit.KilogramPerCubicMillimeter => (_value / 1e-6) * 1e3d,
                         DensityUnit.KilogramPerLiter => _value * 1e3,
-                        DensityUnit.KilopoundPerCubicFoot => (_value / 0.062427961) * 1e3d,
-                        DensityUnit.KilopoundPerCubicInch => (_value / 3.6127298147753e-5) * 1e3d,
-                        DensityUnit.KilopoundPerCubicYard => (_value * (0.45359237 / 0.9144 / 0.9144 / 0.9144)) * 1e3d,
+                        DensityUnit.KilopoundPerCubicFoot => (_value * 0.45359237 / 0.028316846592) * 1e3d,
+                        DensityUnit.KilopoundPerCubicInch => (_value * 0.45359237 / 1.6387064e-5) * 1e3d,
+                        DensityUnit.KilopoundPerCubicYard => (_value * 0.45359237 / 0.764554857984) * 1e3d,
                         DensityUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
                         DensityUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
                         DensityUnit.MicrogramPerLiter => (_value / 1) * 1e-6d,
@@ -780,22 +723,22 @@ namespace UnitsNet
                         DensityUnit.PicogramPerDeciliter => (_value / 1e-1) * 1e-12d,
                         DensityUnit.PicogramPerLiter => (_value / 1) * 1e-12d,
                         DensityUnit.PicogramPerMilliliter => (_value / 1e-3) * 1e-12d,
-                        DensityUnit.PoundPerCubicCentimeter => _value / 2.204622621848775e-6,
-                        DensityUnit.PoundPerCubicFoot => _value / 0.062427961,
-                        DensityUnit.PoundPerCubicInch => _value / 3.6127298147753e-5,
-                        DensityUnit.PoundPerCubicMeter => _value / 2.204622621848775,
-                        DensityUnit.PoundPerCubicMillimeter => _value / 2.204622621848775e-9,
-                        DensityUnit.PoundPerCubicYard => _value * (0.45359237 / 0.9144 / 0.9144 / 0.9144),
-                        DensityUnit.PoundPerImperialGallon => _value * 9.9776398e1,
-                        DensityUnit.PoundPerUSGallon => _value * 1.19826427e2,
-                        DensityUnit.SlugPerCubicCentimeter => _value * 14593903,
-                        DensityUnit.SlugPerCubicFoot => _value * 515.378818,
-                        DensityUnit.SlugPerCubicInch => _value * 890574.60201535,
-                        DensityUnit.SlugPerCubicMeter => _value * 14.5939,
-                        DensityUnit.SlugPerCubicMillimeter => _value * 14593903000,
+                        DensityUnit.PoundPerCubicCentimeter => _value * 0.45359237e6,
+                        DensityUnit.PoundPerCubicFoot => _value * 0.45359237 / 0.028316846592,
+                        DensityUnit.PoundPerCubicInch => _value * 0.45359237 / 1.6387064e-5,
+                        DensityUnit.PoundPerCubicMeter => _value * 0.45359237,
+                        DensityUnit.PoundPerCubicMillimeter => _value * 0.45359237e9,
+                        DensityUnit.PoundPerCubicYard => _value * 0.45359237 / 0.764554857984,
+                        DensityUnit.PoundPerImperialGallon => _value * 0.45359237 / 0.00454609,
+                        DensityUnit.PoundPerUSGallon => _value * 0.45359237 / 0.003785411784,
+                        DensityUnit.SlugPerCubicCentimeter => _value * 0.45359237e6 * 9.80665 / 0.3048,
+                        DensityUnit.SlugPerCubicFoot => _value * (0.45359237 * 9.80665) / (0.3048 * 0.028316846592),
+                        DensityUnit.SlugPerCubicInch => _value * (0.45359237 * 9.80665) / (0.3048 * 1.6387064e-5),
+                        DensityUnit.SlugPerCubicMeter => _value * 0.45359237 * 9.80665 / 0.3048,
+                        DensityUnit.SlugPerCubicMillimeter => _value * 0.45359237e9 * 9.80665 / 0.3048,
                         DensityUnit.TonnePerCubicCentimeter => _value / 1e-9,
-                        DensityUnit.TonnePerCubicFoot => _value * 3.53146667214886e4,
-                        DensityUnit.TonnePerCubicInch => _value * 6.10237440947323e7,
+                        DensityUnit.TonnePerCubicFoot => _value * 1000 / 0.028316846592,
+                        DensityUnit.TonnePerCubicInch => _value * 1000 / 1.6387064e-5,
                         DensityUnit.TonnePerCubicMeter => _value / 0.001,
                         DensityUnit.TonnePerCubicMillimeter => _value / 1e-12,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -821,8 +764,8 @@ namespace UnitsNet
                         DensityUnit.FemtogramPerLiter => (baseUnitValue * 1) / 1e-15d,
                         DensityUnit.FemtogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-15d,
                         DensityUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
-                        DensityUnit.GramPerCubicFoot => baseUnitValue / 0.0353146667214886,
-                        DensityUnit.GramPerCubicInch => baseUnitValue / 61.0237440947323,
+                        DensityUnit.GramPerCubicFoot => baseUnitValue * 0.028316846592 / 0.001,
+                        DensityUnit.GramPerCubicInch => baseUnitValue * 1.6387064e-5 / 0.001,
                         DensityUnit.GramPerCubicMeter => baseUnitValue * 1e3,
                         DensityUnit.GramPerCubicMillimeter => baseUnitValue * 1e-6,
                         DensityUnit.GramPerDeciliter => baseUnitValue * 1e-1,
@@ -832,9 +775,9 @@ namespace UnitsNet
                         DensityUnit.KilogramPerCubicMeter => (baseUnitValue * 1e3) / 1e3d,
                         DensityUnit.KilogramPerCubicMillimeter => (baseUnitValue * 1e-6) / 1e3d,
                         DensityUnit.KilogramPerLiter => baseUnitValue / 1e3,
-                        DensityUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.062427961) / 1e3d,
-                        DensityUnit.KilopoundPerCubicInch => (baseUnitValue * 3.6127298147753e-5) / 1e3d,
-                        DensityUnit.KilopoundPerCubicYard => (baseUnitValue / (0.45359237 / 0.9144 / 0.9144 / 0.9144)) / 1e3d,
+                        DensityUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.028316846592 / 0.45359237) / 1e3d,
+                        DensityUnit.KilopoundPerCubicInch => (baseUnitValue * 1.6387064e-5 / 0.45359237) / 1e3d,
+                        DensityUnit.KilopoundPerCubicYard => (baseUnitValue * 0.764554857984 / 0.45359237) / 1e3d,
                         DensityUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
                         DensityUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
                         DensityUnit.MicrogramPerLiter => (baseUnitValue * 1) / 1e-6d,
@@ -849,22 +792,22 @@ namespace UnitsNet
                         DensityUnit.PicogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-12d,
                         DensityUnit.PicogramPerLiter => (baseUnitValue * 1) / 1e-12d,
                         DensityUnit.PicogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
-                        DensityUnit.PoundPerCubicCentimeter => baseUnitValue * 2.204622621848775e-6,
-                        DensityUnit.PoundPerCubicFoot => baseUnitValue * 0.062427961,
-                        DensityUnit.PoundPerCubicInch => baseUnitValue * 3.6127298147753e-5,
-                        DensityUnit.PoundPerCubicMeter => baseUnitValue * 2.204622621848775,
-                        DensityUnit.PoundPerCubicMillimeter => baseUnitValue * 2.204622621848775e-9,
-                        DensityUnit.PoundPerCubicYard => baseUnitValue / (0.45359237 / 0.9144 / 0.9144 / 0.9144),
-                        DensityUnit.PoundPerImperialGallon => baseUnitValue / 9.9776398e1,
-                        DensityUnit.PoundPerUSGallon => baseUnitValue / 1.19826427e2,
-                        DensityUnit.SlugPerCubicCentimeter => baseUnitValue / 14593903,
-                        DensityUnit.SlugPerCubicFoot => baseUnitValue * 0.00194032033,
-                        DensityUnit.SlugPerCubicInch => baseUnitValue / 890574.60201535,
-                        DensityUnit.SlugPerCubicMeter => baseUnitValue / 14.5939,
-                        DensityUnit.SlugPerCubicMillimeter => baseUnitValue / 14593903000,
+                        DensityUnit.PoundPerCubicCentimeter => baseUnitValue / 0.45359237e6,
+                        DensityUnit.PoundPerCubicFoot => baseUnitValue * 0.028316846592 / 0.45359237,
+                        DensityUnit.PoundPerCubicInch => baseUnitValue * 1.6387064e-5 / 0.45359237,
+                        DensityUnit.PoundPerCubicMeter => baseUnitValue / 0.45359237,
+                        DensityUnit.PoundPerCubicMillimeter => baseUnitValue / 0.45359237e9,
+                        DensityUnit.PoundPerCubicYard => baseUnitValue * 0.764554857984 / 0.45359237,
+                        DensityUnit.PoundPerImperialGallon => baseUnitValue * 0.00454609 / 0.45359237,
+                        DensityUnit.PoundPerUSGallon => baseUnitValue * 0.003785411784 / 0.45359237,
+                        DensityUnit.SlugPerCubicCentimeter => baseUnitValue * 0.3048 / (0.45359237e6 * 9.80665),
+                        DensityUnit.SlugPerCubicFoot => baseUnitValue * (0.3048 * 0.028316846592) / (0.45359237 * 9.80665),
+                        DensityUnit.SlugPerCubicInch => baseUnitValue * (0.3048 * 1.6387064e-5) / (0.45359237 * 9.80665),
+                        DensityUnit.SlugPerCubicMeter => baseUnitValue * 0.3048 / (0.45359237 * 9.80665),
+                        DensityUnit.SlugPerCubicMillimeter => baseUnitValue * 0.3048 / (0.45359237e9 * 9.80665),
                         DensityUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
-                        DensityUnit.TonnePerCubicFoot => baseUnitValue / 3.53146667214886e4,
-                        DensityUnit.TonnePerCubicInch => baseUnitValue / 6.10237440947323e7,
+                        DensityUnit.TonnePerCubicFoot => baseUnitValue * 0.028316846592 / 1000,
+                        DensityUnit.TonnePerCubicInch => baseUnitValue * 1.6387064e-5 / 1000,
                         DensityUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
                         DensityUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

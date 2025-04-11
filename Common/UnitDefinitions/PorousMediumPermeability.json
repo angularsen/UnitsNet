@@ -10,6 +10,8 @@
     {
       "SingularName": "Darcy",
       "PluralName": "Darcys",
+      "XmlDocSummary": "The darcy (or darcy unit) and millidarcy (md or mD) are units of permeability, named after Henry Darcy. They are not SI units, but they are widely used in petroleum engineering and geology.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Darcy_(unit)",
       "FromUnitToBaseFunc": "{x} * 9.869233e-13",
       "FromBaseToUnitFunc": "{x} / 9.869233e-13",
       "Prefixes": [ "Micro", "Milli" ],

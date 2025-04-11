@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MagneticFlux(double value, MagneticFluxUnit unit)
         {
             _value = value;
@@ -94,7 +93,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticFlux"/> from <see cref="MagneticFluxUnit.Weber"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticFlux FromWebers(double webers) => new MagneticFlux(webers, MagneticFluxUnit.Weber);
 
         /// <summary>

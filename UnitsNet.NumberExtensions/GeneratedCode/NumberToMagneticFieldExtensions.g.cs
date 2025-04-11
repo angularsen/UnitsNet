@@ -32,53 +32,71 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
     /// </summary>
     public static class NumberToMagneticFieldExtensions
     {
-        /// <inheritdoc cref="MagneticField.FromGausses(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromGausses(double)" />
         public static MagneticField Gausses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromGausses(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromGausses(value.ToDouble(null));
 #endif
-            => MagneticField.FromGausses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMicroteslas(double)" />
         public static MagneticField Microteslas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromMicroteslas(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromMicroteslas(value.ToDouble(null));
 #endif
-            => MagneticField.FromMicroteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMilligausses(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMilligausses(double)" />
         public static MagneticField Milligausses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromMilligausses(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromMilligausses(value.ToDouble(null));
 #endif
-            => MagneticField.FromMilligausses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMilliteslas(double)" />
         public static MagneticField Milliteslas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromMilliteslas(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromMilliteslas(value.ToDouble(null));
 #endif
-            => MagneticField.FromMilliteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromNanoteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromNanoteslas(double)" />
         public static MagneticField Nanoteslas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromNanoteslas(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromNanoteslas(value.ToDouble(null));
 #endif
-            => MagneticField.FromNanoteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)" />
         public static MagneticField Teslas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => MagneticField.FromTeslas(double.CreateChecked(value));
+#else
+            , IConvertible
+            => MagneticField.FromTeslas(value.ToDouble(null));
 #endif
-            => MagneticField.FromTeslas(Convert.ToDouble(value));
 
     }
 }

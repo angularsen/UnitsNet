@@ -25,8 +25,8 @@ namespace UnitsNet.Tests
     public class NumberToDensityExtensionsTests
     {
         [Fact]
-        public void NumberToCentigramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromCentigramsPerDeciLiter(2), 2.CentigramsPerDeciLiter());
+        public void NumberToCentigramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromCentigramsPerDeciliter(2), 2.CentigramsPerDeciliter());
 
         [Fact]
         public void NumberToCentigramsPerLiterTest() =>
@@ -37,8 +37,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromCentigramsPerMilliliter(2), 2.CentigramsPerMilliliter());
 
         [Fact]
-        public void NumberToDecigramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromDecigramsPerDeciLiter(2), 2.DecigramsPerDeciLiter());
+        public void NumberToDecigramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromDecigramsPerDeciliter(2), 2.DecigramsPerDeciliter());
 
         [Fact]
         public void NumberToDecigramsPerLiterTest() =>
@@ -49,8 +49,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromDecigramsPerMilliliter(2), 2.DecigramsPerMilliliter());
 
         [Fact]
-        public void NumberToFemtogramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromFemtogramsPerDeciLiter(2), 2.FemtogramsPerDeciLiter());
+        public void NumberToFemtogramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromFemtogramsPerDeciliter(2), 2.FemtogramsPerDeciliter());
 
         [Fact]
         public void NumberToFemtogramsPerLiterTest() =>
@@ -81,8 +81,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromGramsPerCubicMillimeter(2), 2.GramsPerCubicMillimeter());
 
         [Fact]
-        public void NumberToGramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromGramsPerDeciLiter(2), 2.GramsPerDeciLiter());
+        public void NumberToGramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromGramsPerDeciliter(2), 2.GramsPerDeciliter());
 
         [Fact]
         public void NumberToGramsPerLiterTest() =>
@@ -125,8 +125,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromMicrogramsPerCubicMeter(2), 2.MicrogramsPerCubicMeter());
 
         [Fact]
-        public void NumberToMicrogramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromMicrogramsPerDeciLiter(2), 2.MicrogramsPerDeciLiter());
+        public void NumberToMicrogramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromMicrogramsPerDeciliter(2), 2.MicrogramsPerDeciliter());
 
         [Fact]
         public void NumberToMicrogramsPerLiterTest() =>
@@ -141,8 +141,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromMilligramsPerCubicMeter(2), 2.MilligramsPerCubicMeter());
 
         [Fact]
-        public void NumberToMilligramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromMilligramsPerDeciLiter(2), 2.MilligramsPerDeciLiter());
+        public void NumberToMilligramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromMilligramsPerDeciliter(2), 2.MilligramsPerDeciliter());
 
         [Fact]
         public void NumberToMilligramsPerLiterTest() =>
@@ -153,8 +153,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromMilligramsPerMilliliter(2), 2.MilligramsPerMilliliter());
 
         [Fact]
-        public void NumberToNanogramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromNanogramsPerDeciLiter(2), 2.NanogramsPerDeciLiter());
+        public void NumberToNanogramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromNanogramsPerDeciliter(2), 2.NanogramsPerDeciliter());
 
         [Fact]
         public void NumberToNanogramsPerLiterTest() =>
@@ -165,8 +165,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromNanogramsPerMilliliter(2), 2.NanogramsPerMilliliter());
 
         [Fact]
-        public void NumberToPicogramsPerDeciLiterTest() =>
-            Assert.Equal(Density.FromPicogramsPerDeciLiter(2), 2.PicogramsPerDeciLiter());
+        public void NumberToPicogramsPerDeciliterTest() =>
+            Assert.Equal(Density.FromPicogramsPerDeciliter(2), 2.PicogramsPerDeciliter());
 
         [Fact]
         public void NumberToPicogramsPerLiterTest() =>

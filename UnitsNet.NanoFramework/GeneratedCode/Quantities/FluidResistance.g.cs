@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public FluidResistance(double value, FluidResistanceUnit unit)
         {
             _value = value;
@@ -184,115 +183,96 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromDyneSecondsPerCentimeterToTheFifth(double dynesecondspercentimetertothefifth) => new FluidResistance(dynesecondspercentimetertothefifth, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MegapascalSecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMegapascalSecondsPerCubicMeter(double megapascalsecondspercubicmeter) => new FluidResistance(megapascalsecondspercubicmeter, FluidResistanceUnit.MegapascalSecondPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercuryMinutesPerCubicCentimeter(double millimetermercuryminutespercubiccentimeter) => new FluidResistance(millimetermercuryminutespercubiccentimeter, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercuryMinutesPerCubicMeter(double millimetermercuryminutespercubicmeter) => new FluidResistance(millimetermercuryminutespercubicmeter, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercuryMinutesPerLiter(double millimetermercuryminutesperliter) => new FluidResistance(millimetermercuryminutesperliter, FluidResistanceUnit.MillimeterMercuryMinutePerLiter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercuryMinutesPerMilliliter(double millimetermercuryminutespermilliliter) => new FluidResistance(millimetermercuryminutespermilliliter, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercurySecondsPerCubicCentimeter(double millimetermercurysecondspercubiccentimeter) => new FluidResistance(millimetermercurysecondspercubiccentimeter, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercurySecondsPerCubicMeter(double millimetermercurysecondspercubicmeter) => new FluidResistance(millimetermercurysecondspercubicmeter, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercurySecondsPerLiter(double millimetermercurysecondsperliter) => new FluidResistance(millimetermercurysecondsperliter, FluidResistanceUnit.MillimeterMercurySecondPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.MillimeterMercurySecondPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromMillimeterMercurySecondsPerMilliliter(double millimetermercurysecondspermilliliter) => new FluidResistance(millimetermercurysecondspermilliliter, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalMinutesPerCubicCentimeter(double pascalminutespercubiccentimeter) => new FluidResistance(pascalminutespercubiccentimeter, FluidResistanceUnit.PascalMinutePerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalMinutesPerCubicMeter(double pascalminutespercubicmeter) => new FluidResistance(pascalminutespercubicmeter, FluidResistanceUnit.PascalMinutePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalMinutesPerLiter(double pascalminutesperliter) => new FluidResistance(pascalminutesperliter, FluidResistanceUnit.PascalMinutePerLiter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalMinutePerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalMinutesPerMilliliter(double pascalminutespermilliliter) => new FluidResistance(pascalminutespermilliliter, FluidResistanceUnit.PascalMinutePerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerCubicCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalSecondsPerCubicCentimeter(double pascalsecondspercubiccentimeter) => new FluidResistance(pascalsecondspercubiccentimeter, FluidResistanceUnit.PascalSecondPerCubicCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalSecondsPerCubicMeter(double pascalsecondspercubicmeter) => new FluidResistance(pascalsecondspercubicmeter, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalSecondsPerLiter(double pascalsecondsperliter) => new FluidResistance(pascalsecondsperliter, FluidResistanceUnit.PascalSecondPerLiter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.PascalSecondPerMilliliter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromPascalSecondsPerMilliliter(double pascalsecondspermilliliter) => new FluidResistance(pascalsecondspermilliliter, FluidResistanceUnit.PascalSecondPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="FluidResistance"/> from <see cref="FluidResistanceUnit.WoodUnit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FluidResistance FromWoodUnits(double woodunits) => new FluidResistance(woodunits, FluidResistanceUnit.WoodUnit);
 
         /// <summary>

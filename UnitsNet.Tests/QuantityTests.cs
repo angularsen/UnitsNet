@@ -31,9 +31,9 @@ namespace UnitsNet.Tests
         public void Equals_IGenericEquatableQuantity(string q1String, string q2String, string toleranceString, bool expectedEqual)
         {
             // This interfaces implements .NET generic math interfaces.
-            IQuantity<Length, LengthUnit, double> q1 = ParseLength(q1String);
-            IQuantity<Length, LengthUnit, double> q2 = ParseLength(q2String);
-            IQuantity<Length, LengthUnit, double> tolerance = ParseLength(toleranceString);
+            IQuantity<Length, LengthUnit> q1 = ParseLength(q1String);
+            IQuantity<Length, LengthUnit> q2 = ParseLength(q2String);
+            IQuantity<Length, LengthUnit> tolerance = ParseLength(toleranceString);
 
             Assert.Equal(expectedEqual, q1.Equals(q2, tolerance));
         }
@@ -88,9 +88,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_GenericEquatableIQuantity_OtherIsNull_ReturnsFalse()
         {
-            IQuantity<Length, LengthUnit, double> q1 = ParseLength("10 m");
-            IQuantity<Length, LengthUnit, double>? q2 = null;
-            IQuantity<Length, LengthUnit, double> tolerance = ParseLength("0.1 m");
+            IQuantity<Length, LengthUnit> q1 = ParseLength("10 m");
+            IQuantity<Length, LengthUnit>? q2 = null;
+            IQuantity<Length, LengthUnit> tolerance = ParseLength("0.1 m");
 
             Assert.False(q1.Equals(q2, tolerance));
         }
@@ -139,10 +139,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void From_InvalidQuantityNameOrUnitName_ThrowsUnitNotFoundException()
+        public void From_InvalidQuantityName_ThrowsQuantityNotFoundException()
+        {
+            Assert.Throws<QuantityNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
+        }
+        
+        [Fact]
+        public void From_InvalidUnitName_ThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "Length", "InvalidUnit"));
-            Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
         }
 
         [Fact]
@@ -216,6 +221,19 @@ namespace UnitsNet.Tests
             // VolumeConcentration.Percent
             Assert.False(Quantity.TryFromUnitAbbreviation(5, "%", out IQuantity? q));
             Assert.Null(q);
+        }
+
+        [Fact]
+        public void AllowSpecialValue()
+        {
+            try
+            {
+                var r = Ratio.FromDecimalFractions(double.NaN);
+            }
+            catch (ArgumentException)
+            {
+                Assert.Fail("Special double values (NaN, -Inf, +Inf) must be allowed.");
+            }
         }
 
         private static Length ParseLength(string str)

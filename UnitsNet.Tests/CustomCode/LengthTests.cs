@@ -88,38 +88,44 @@ namespace UnitsNet.Tests
 
         protected override double KilofeetInOneMeter => 3.28083989501e-3;
 
-        [ Fact]
+        [Fact]
+        public void AllBaseQuantityUnitsAreBaseUnits()
+        {
+            Assert.All(Length.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(unitInfo.Value), unitInfo.BaseUnits));
+        }
+
+        [Fact]
         public void AreaTimesLengthEqualsVolume()
         {
-            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
+            Volume volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
             Assert.Equal(volume, Volume.FromCubicMeters(30));
         }
 
         [Fact]
         public void ForceTimesLengthEqualsTorque()
         {
-            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
+            Torque torque = Force.FromNewtons(1) * Length.FromMeters(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
-            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
+            Volume volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
         }
 
         [Fact]
         public void LengthTimesForceEqualsTorque()
         {
-            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
+            Torque torque = Length.FromMeters(3) * Force.FromNewtons(1);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesLengthEqualsArea()
         {
-            Area area = Length.FromMeters(10)*Length.FromMeters(2);
+            Area area = Length.FromMeters(10) * Length.FromMeters(2);
             Assert.Equal(area, Area.FromSquareMeters(20));
         }
 
@@ -167,7 +173,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
+        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefaultUnit()
         {
             var value = Length.From(2, LengthUnit.Centimeter);
             string valueString = value.ToString(CultureInfo.InvariantCulture);
@@ -201,13 +207,6 @@ namespace UnitsNet.Tests
         {
             var length = new Length(1.0, UnitSystem.SI);
             Assert.Equal(LengthUnit.Meter, length.Unit);
-        }
-
-        [Fact]
-        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
-        {
-            // AmplitudeRatio is unitless. Can't have any matches :)
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
         }
 
         [Fact]

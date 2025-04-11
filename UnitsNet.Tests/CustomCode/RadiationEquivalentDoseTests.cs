@@ -20,14 +20,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void RadiationEquivalentDoseDividedByDurationEqualsRadiationEquivalentDoseRate()
         {
-            RadiationEquivalentDoseRate dose = RadiationEquivalentDose.FromSieverts(20)/Duration.FromHours(2);
+            RadiationEquivalentDoseRate dose = RadiationEquivalentDose.FromSieverts(20) / Duration.FromHours(2);
             Assert.Equal(dose, RadiationEquivalentDoseRate.FromSievertsPerHour(10));
         }
 
         [Fact]
         public void RadiationEquivalentDoseDividedByTimeSpanEqualsRadiationEquivalentDoseRate()
         {
-            RadiationEquivalentDoseRate dose = RadiationEquivalentDose.FromSieverts(20)/TimeSpan.FromHours(2);
+            RadiationEquivalentDoseRate dose = RadiationEquivalentDose.FromSieverts(20) / TimeSpan.FromHours(2);
             Assert.Equal(dose, RadiationEquivalentDoseRate.FromSievertsPerHour(10));
         }
     }

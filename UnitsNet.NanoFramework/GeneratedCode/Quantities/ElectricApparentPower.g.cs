@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricApparentPower(double value, ElectricApparentPowerUnit unit)
         {
             _value = value;
@@ -119,37 +118,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromGigavoltamperes(double gigavoltamperes) => new ElectricApparentPower(gigavoltamperes, ElectricApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromKilovoltamperes(double kilovoltamperes) => new ElectricApparentPower(kilovoltamperes, ElectricApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromMegavoltamperes(double megavoltamperes) => new ElectricApparentPower(megavoltamperes, ElectricApparentPowerUnit.Megavoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromMicrovoltamperes(double microvoltamperes) => new ElectricApparentPower(microvoltamperes, ElectricApparentPowerUnit.Microvoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromMillivoltamperes(double millivoltamperes) => new ElectricApparentPower(millivoltamperes, ElectricApparentPowerUnit.Millivoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentPowerUnit.Voltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricApparentPower FromVoltamperes(double voltamperes) => new ElectricApparentPower(voltamperes, ElectricApparentPowerUnit.Voltampere);
 
         /// <summary>

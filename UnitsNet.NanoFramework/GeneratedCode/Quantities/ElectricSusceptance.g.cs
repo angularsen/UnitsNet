@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricSusceptance(double value, ElectricSusceptanceUnit unit)
         {
             _value = value;
@@ -169,97 +168,81 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigamho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromGigamhos(double gigamhos) => new ElectricSusceptance(gigamhos, ElectricSusceptanceUnit.Gigamho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromGigasiemens(double gigasiemens) => new ElectricSusceptance(gigasiemens, ElectricSusceptanceUnit.Gigasiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilomho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromKilomhos(double kilomhos) => new ElectricSusceptance(kilomhos, ElectricSusceptanceUnit.Kilomho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromKilosiemens(double kilosiemens) => new ElectricSusceptance(kilosiemens, ElectricSusceptanceUnit.Kilosiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megamho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMegamhos(double megamhos) => new ElectricSusceptance(megamhos, ElectricSusceptanceUnit.Megamho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMegasiemens(double megasiemens) => new ElectricSusceptance(megasiemens, ElectricSusceptanceUnit.Megasiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Mho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMhos(double mhos) => new ElectricSusceptance(mhos, ElectricSusceptanceUnit.Mho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Micromho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMicromhos(double micromhos) => new ElectricSusceptance(micromhos, ElectricSusceptanceUnit.Micromho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Microsiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMicrosiemens(double microsiemens) => new ElectricSusceptance(microsiemens, ElectricSusceptanceUnit.Microsiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millimho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMillimhos(double millimhos) => new ElectricSusceptance(millimhos, ElectricSusceptanceUnit.Millimho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millisiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromMillisiemens(double millisiemens) => new ElectricSusceptance(millisiemens, ElectricSusceptanceUnit.Millisiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanomho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromNanomhos(double nanomhos) => new ElectricSusceptance(nanomhos, ElectricSusceptanceUnit.Nanomho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromNanosiemens(double nanosiemens) => new ElectricSusceptance(nanosiemens, ElectricSusceptanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Siemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromSiemens(double siemens) => new ElectricSusceptance(siemens, ElectricSusceptanceUnit.Siemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Teramho"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromTeramhos(double teramhos) => new ElectricSusceptance(teramhos, ElectricSusceptanceUnit.Teramho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Terasiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSusceptance FromTerasiemens(double terasiemens) => new ElectricSusceptance(terasiemens, ElectricSusceptanceUnit.Terasiemens);
 
         /// <summary>

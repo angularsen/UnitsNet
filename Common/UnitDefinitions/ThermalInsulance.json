@@ -1,0 +1,95 @@
+{
+  "Name": "ThermalInsulance",
+  "BaseUnit": "SquareMeterKelvinPerKilowatt",
+  "XmlDocSummary": "Thermal insulance (R-value) is a measure of a material's resistance to the heat current. It quantifies how effectively a material can resist the transfer of heat through conduction, convection, and radiation. It has the units square metre kelvins per watt (m2⋅K/W) in SI units or square foot degree Fahrenheit–hours per British thermal unit (ft2⋅°F⋅h/Btu) in imperial units. The higher the thermal insulance, the better a material insulates against heat transfer. It is commonly used in construction to assess the insulation properties of materials such as walls, roofs, and insulation products.",
+  "BaseDimensions": {
+    "M": -1,
+    "T": 3,
+    "Θ": 1
+  },
+  "Units": [
+    {
+      "SingularName": "SquareMeterKelvinPerKilowatt",
+      "PluralName": "SquareMeterKelvinsPerKilowatt",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²K/kW" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMeterKelvinPerWatt",
+      "PluralName": "SquareMeterKelvinsPerWatt",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x} * 1000",
+      "FromBaseToUnitFunc": "{x} / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²K/W" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMeterDegreeCelsiusPerWatt",
+      "PluralName": "SquareMeterDegreesCelsiusPerWatt",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x} * 1000.0",
+      "FromBaseToUnitFunc": "{x} / 1000.0",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²°C/W" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareCentimeterKelvinPerWatt",
+      "PluralName": "SquareCentimeterKelvinsPerWatt",
+      "FromUnitToBaseFunc": "{x} * 0.1",
+      "FromBaseToUnitFunc": "{x} / 0.1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm²K/W" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareCentimeterHourDegreeCelsiusPerKilocalorie",
+      "PluralName": "SquareCentimeterHourDegreesCelsiusPerKilocalorie",
+      "FromUnitToBaseFunc": "{x} * (0.0001 * 3600) / 4.184",
+      "FromBaseToUnitFunc": "{x} * 4.184 / (0.0001 * 3600)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm²Hr°C/kcal" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HourSquareFeetDegreeFahrenheitPerBtu",
+      "PluralName": "HourSquareFeetDegreesFahrenheitPerBtu",
+      "FromUnitToBaseFunc": "{x} * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8)",
+      "FromBaseToUnitFunc": "{x} * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Hrft²°F/Btu" ]
+        }
+      ]
+    }
+
+  ]
+}

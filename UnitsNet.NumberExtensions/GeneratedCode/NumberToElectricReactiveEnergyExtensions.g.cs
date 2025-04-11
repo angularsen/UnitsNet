@@ -32,29 +32,38 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
     /// </summary>
     public static class NumberToElectricReactiveEnergyExtensions
     {
-        /// <inheritdoc cref="ElectricReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double)" />
         public static ElectricReactiveEnergy KilovoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(value.ToDouble(null));
 #endif
-            => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
         public static ElectricReactiveEnergy MegavoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(value.ToDouble(null));
 #endif
-            => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(double)" />
         public static ElectricReactiveEnergy VoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricReactiveEnergy.FromVoltampereReactiveHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricReactiveEnergy.FromVoltampereReactiveHours(value.ToDouble(null));
 #endif
-            => ElectricReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
 
     }
 }

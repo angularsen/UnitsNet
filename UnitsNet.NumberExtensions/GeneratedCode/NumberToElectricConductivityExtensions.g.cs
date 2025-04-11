@@ -32,53 +32,71 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
     /// </summary>
     public static class NumberToElectricConductivityExtensions
     {
-        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(double)" />
         public static ElectricConductivity MicrosiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromMicrosiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
         public static ElectricConductivity MillisiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromMillisiemensPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromMillisiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
         public static ElectricConductivity SiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromSiemensPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerCentimeter(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromSiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
         public static ElectricConductivity SiemensPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromSiemensPerFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerFoot(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
         public static ElectricConductivity SiemensPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromSiemensPerInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerInch(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromSiemensPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
         public static ElectricConductivity SiemensPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricConductivity.FromSiemensPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricConductivity.FromSiemensPerMeter(value.ToDouble(null));
 #endif
-            => ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
 
     }
 }

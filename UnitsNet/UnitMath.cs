@@ -17,7 +17,7 @@ namespace UnitsNet
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
         public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
-            return value.Value >= QuantityValue.Zero ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
+            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
 
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>
@@ -30,8 +30,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Sum<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Sum(x => x.As(unitType)), unitType);
         }
@@ -44,7 +45,8 @@ namespace UnitsNet
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="unitType">The desired unit type for the resulting quantity</param>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation</typeparam>
+        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The sum of the projected values, represented in the specified unit type.</returns>
         /// <exception cref="T:System.ArgumentNullException">
         ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
@@ -52,8 +54,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Sum<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Sum<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Sum(unitType);
         }
@@ -79,8 +82,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Min<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Min<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Min(x => x.As(unitType)), unitType);
         }
@@ -93,7 +97,8 @@ namespace UnitsNet
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="unitType">The desired unit type for the resulting quantity</param>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation</typeparam>
+        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The min of the projected values, represented in the specified unit type.</returns>
         /// <exception cref="T:System.ArgumentNullException">
         ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
@@ -102,8 +107,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Min<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Min<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Min(unitType);
         }
@@ -129,8 +135,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Max<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Max<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Max(x => x.As(unitType)), unitType);
         }
@@ -143,7 +150,8 @@ namespace UnitsNet
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="unitType">The desired unit type for the resulting quantity</param>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation</typeparam>
+        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The max of the projected values, represented in the specified unit type.</returns>
         /// <exception cref="T:System.ArgumentNullException">
         ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
@@ -152,8 +160,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Max<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Max<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Max(unitType);
         }
@@ -169,8 +178,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Average<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Average<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return (TQuantity) Quantity.From(source.Average(x => x.As(unitType)), unitType);
         }
@@ -183,7 +193,8 @@ namespace UnitsNet
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="unitType">The desired unit type for the resulting quantity</param>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation</typeparam>
+        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The average of the projected values, represented in the specified unit type.</returns>
         /// <exception cref="T:System.ArgumentNullException">
         ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
@@ -192,8 +203,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
-        public static TQuantity Average<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
-            where TQuantity : IQuantity
+        public static TQuantity Average<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
+            where TUnitType : struct, Enum
+            where TQuantity : IQuantity<TUnitType>
         {
             return source.Select(selector).Average(unitType);
         }
@@ -220,7 +232,7 @@ namespace UnitsNet
         {
             var minValue = (TQuantity)min.ToUnit(value.Unit);
             var maxValue = (TQuantity)max.ToUnit(value.Unit);
-            
+
             if (minValue.CompareTo(maxValue) > 0)
             {
                 throw new ArgumentException($"min ({min}) cannot be greater than max ({max})", nameof(min));
@@ -237,26 +249,6 @@ namespace UnitsNet
             }
 
             return value;
-        }
-
-        /// <summary>
-        /// Explicitly create a <see cref="QuantityValue"/> instance from a double
-        /// </summary>
-        /// <param name="value">The input value</param>
-        /// <returns>An instance of <see cref="QuantityValue"/></returns>
-        public static QuantityValue ToQuantityValue(this double value)
-        {
-            return value; // Implicit cast
-        }
-
-        /// <summary>
-        /// Explicitly create a <see cref="QuantityValue"/> instance from a decimal
-        /// </summary>
-        /// <param name="value">The input value</param>
-        /// <returns>An instance of <see cref="QuantityValue"/></returns>
-        public static QuantityValue ToQuantityValue(this decimal value)
-        {
-            return value; // Implicit cast
         }
     }
 }

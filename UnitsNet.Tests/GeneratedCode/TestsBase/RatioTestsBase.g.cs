@@ -88,37 +88,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Ratio(double.PositiveInfinity, RatioUnit.DecimalFraction));
-            Assert.Throws<ArgumentException>(() => new Ratio(double.NegativeInfinity, RatioUnit.DecimalFraction));
+            var exception1 = Record.Exception(() => new Ratio(double.PositiveInfinity, RatioUnit.DecimalFraction));
+            var exception2 = Record.Exception(() => new Ratio(double.NegativeInfinity, RatioUnit.DecimalFraction));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Ratio(double.NaN, RatioUnit.DecimalFraction));
-        }
+            var exception = Record.Exception(() => new Ratio(double.NaN, RatioUnit.DecimalFraction));
 
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Ratio(value: 1, unitSystem: null));
-        }
-
-        [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            Func<object> TestCode = () => new Ratio(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Ratio) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -177,16 +161,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecimalFractions_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecimalFractions_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Ratio.FromDecimalFractions(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Ratio.FromDecimalFractions(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecimalFractions_WithNanValue_ThrowsArgumentException()
+        public void FromDecimalFractions_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NaN));
+            var exception = Record.Exception(() => Ratio.FromDecimalFractions(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -202,20 +191,70 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            var quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
 
-            if (SupportsSIUnitSystem)
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                var quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
+
+                Ratio convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<RatioUnit> quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
+
+                IQuantity<RatioUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<RatioUnit> quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
@@ -306,80 +345,118 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("‰", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("%", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioUnit expectedUnit)
         {
-            {
-                Assert.True(Ratio.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("‰", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
-            }
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
-            }
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("%", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.Percent, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            Assert.True(Ratio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -407,12 +484,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Ratio.Units.First(u => u != Ratio.BaseUnit);
-
-            var quantity = Ratio.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Ratio.Units.Where(u => u != Ratio.BaseUnit), fromUnit =>
+            {
+                var quantity = Ratio.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -422,6 +499,25 @@ namespace UnitsNet.Tests
             var quantity = default(Ratio);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(RatioUnit unit)
+        {
+            var quantity = Ratio.From(3, Ratio.BaseUnit);
+            Ratio expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<RatioUnit> quantityToConvert = quantity;
+                IQuantity<RatioUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -536,8 +632,8 @@ namespace UnitsNet.Tests
             var v = Ratio.FromDecimalFractions(1);
             Assert.True(v.Equals(Ratio.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Ratio.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
-            Assert.True(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), 0.3, ComparisonType.Relative));
+            Assert.False(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -633,7 +729,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -783,6 +879,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Ratio.FromDecimalFractions(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

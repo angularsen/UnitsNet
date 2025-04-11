@@ -32,29 +32,38 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
     /// </summary>
     public static class NumberToElectricApparentEnergyExtensions
     {
-        /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(double)" />
         public static ElectricApparentEnergy KilovoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricApparentEnergy.FromKilovoltampereHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricApparentEnergy.FromKilovoltampereHours(value.ToDouble(null));
 #endif
-            => ElectricApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(double)" />
         public static ElectricApparentEnergy MegavoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricApparentEnergy.FromMegavoltampereHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricApparentEnergy.FromMegavoltampereHours(value.ToDouble(null));
 #endif
-            => ElectricApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(double)" />
         public static ElectricApparentEnergy VoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ElectricApparentEnergy.FromVoltampereHours(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ElectricApparentEnergy.FromVoltampereHours(value.ToDouble(null));
 #endif
-            => ElectricApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
 
     }
 }

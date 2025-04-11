@@ -12,6 +12,11 @@
     {
       "SingularName": "VoltampereReactive",
       "PluralName": "VoltamperesReactive",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega", "Giga" ],

@@ -38,7 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/L", "M" ]
+          "Abbreviations": [ "mol/l", "M" ]
         }
       ]
     },
@@ -49,8 +49,8 @@
         "L": "Foot",
         "N": "PoundMole"
       },
-      "FromUnitToBaseFunc": "{x} / 6.2427960576144611956325455827221e-5",
-      "FromBaseToUnitFunc": "{x} * 6.2427960576144611956325455827221e-5",
+      "FromUnitToBaseFunc": "{x} * 1000 * 0.45359237 / 0.028316846592",
+      "FromBaseToUnitFunc": "{x} / (1000 * 0.45359237 / 0.028316846592)",
       "Localization": [
         {
           "Culture": "en-US",

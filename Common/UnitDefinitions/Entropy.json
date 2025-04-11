@@ -12,6 +12,12 @@
     {
       "SingularName": "JoulePerKelvin",
       "PluralName": "JoulesPerKelvin",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -38,6 +44,12 @@
     {
       "SingularName": "JoulePerDegreeCelsius",
       "PluralName": "JoulesPerDegreeCelsius",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo" ],

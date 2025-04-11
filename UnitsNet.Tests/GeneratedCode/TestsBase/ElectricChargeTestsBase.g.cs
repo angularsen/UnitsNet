@@ -108,16 +108,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.PositiveInfinity, ElectricChargeUnit.Coulomb));
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.NegativeInfinity, ElectricChargeUnit.Coulomb));
+            var exception1 = Record.Exception(() => new ElectricCharge(double.PositiveInfinity, ElectricChargeUnit.Coulomb));
+            var exception2 = Record.Exception(() => new ElectricCharge(double.NegativeInfinity, ElectricChargeUnit.Coulomb));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.NaN, ElectricChargeUnit.Coulomb));
+            var exception = Record.Exception(() => new ElectricCharge(double.NaN, ElectricChargeUnit.Coulomb));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -127,18 +132,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
         {
-            Func<object> TestCode = () => new ElectricCharge(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricCharge) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var quantity = new ElectricCharge(value: 1, unitSystem: UnitSystem.SI);
+            Assert.Equal(1, quantity.Value);
+            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => new ElectricCharge(value: 1, unitSystem: unsupportedUnitSystem));
         }
 
         [Fact]
@@ -222,16 +227,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCoulombs_WithInfinityValue_ThrowsArgumentException()
+        public void FromCoulombs_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricCharge.FromCoulombs(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricCharge.FromCoulombs(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCoulombs_WithNanValue_ThrowsArgumentException()
+        public void FromCoulombs_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.NaN));
+            var exception = Record.Exception(() => ElectricCharge.FromCoulombs(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -252,20 +262,109 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public virtual void BaseUnit_HasSIBase()
+        {
+            var baseUnitInfo = ElectricCharge.Info.BaseUnitInfo;
+            Assert.True(baseUnitInfo.BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+        }
+
+        [Fact]
+        public virtual void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var expectedValue = quantity.As(ElectricCharge.Info.GetDefaultUnit(UnitSystem.SI));
 
-            if (SupportsSIUnitSystem)
+            var convertedValue = quantity.As(UnitSystem.SI);
+
+            Assert.Equal(expectedValue, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Throws<ArgumentException>(() => quantity.As(unsupportedUnitSystem));
+        }
+
+        [Fact]
+        public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+            var expectedUnit = ElectricCharge.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                ElectricCharge quantityToConvert = quantity;
+
+                ElectricCharge convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<ElectricChargeUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricChargeUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);            
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricChargeUnit> quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricChargeUnit> quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Fact]
@@ -437,149 +536,190 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("A-h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("Ah", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("C", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Coulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("kA-h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("kAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("kC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("MA-h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("MAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("MC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Megacoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("µC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("mA-h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("mAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("mC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Millicoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("nC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCharge.ParseUnit("pC", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricCharge.TryParseUnit("A-h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("Ah", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.Coulomb, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("kA-h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("kAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("kC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCharge.TryParseUnit("µC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCharge.TryParseUnit("nC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCharge.TryParseUnit("pC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -607,12 +747,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricChargeUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricCharge.Units.First(u => u != ElectricCharge.BaseUnit);
-
-            var quantity = ElectricCharge.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(ElectricCharge.Units.Where(u => u != ElectricCharge.BaseUnit), fromUnit =>
+            {
+                var quantity = ElectricCharge.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -622,6 +762,25 @@ namespace UnitsNet.Tests
             var quantity = default(ElectricCharge);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(ElectricChargeUnit unit)
+        {
+            var quantity = ElectricCharge.From(3, ElectricCharge.BaseUnit);
+            ElectricCharge expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<ElectricChargeUnit> quantityToConvert = quantity;
+                IQuantity<ElectricChargeUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -741,8 +900,8 @@ namespace UnitsNet.Tests
             var v = ElectricCharge.FromCoulombs(1);
             Assert.True(v.Equals(ElectricCharge.FromCoulombs(1), CoulombsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCharge.Zero, CoulombsTolerance, ComparisonType.Relative));
-            Assert.True(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), (double)0.3m, ComparisonType.Relative));
-            Assert.False(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), (double)0.1m, ComparisonType.Relative));
+            Assert.True(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -848,7 +1007,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -998,6 +1157,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricCharge.FromCoulombs(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = ElectricCharge.FromCoulombs(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]

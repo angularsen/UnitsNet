@@ -32,309 +32,423 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
     /// </summary>
     public static class NumberToForcePerLengthExtensions
     {
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerCentimeter(double)" />
         public static ForcePerLength CentinewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromCentinewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromCentinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)" />
         public static ForcePerLength CentinewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromCentinewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(double)" />
         public static ForcePerLength CentinewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromCentinewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromCentinewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromCentinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(double)" />
         public static ForcePerLength DecanewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecanewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecanewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(double)" />
         public static ForcePerLength DecanewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecanewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecanewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(double)" />
         public static ForcePerLength DecanewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecanewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecanewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecanewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(double)" />
         public static ForcePerLength DecinewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecinewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)" />
         public static ForcePerLength DecinewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecinewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(double)" />
         public static ForcePerLength DecinewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromDecinewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromDecinewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromDecinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(double)" />
         public static ForcePerLength KilogramsForcePerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilogramsForcePerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilogramsForcePerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)" />
         public static ForcePerLength KilogramsForcePerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilogramsForcePerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(double)" />
         public static ForcePerLength KilogramsForcePerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilogramsForcePerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilogramsForcePerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilogramsForcePerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(double)" />
         public static ForcePerLength KilonewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilonewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilonewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)" />
         public static ForcePerLength KilonewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilonewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(double)" />
         public static ForcePerLength KilonewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilonewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilonewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilonewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(double)" />
         public static ForcePerLength KilopoundsForcePerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilopoundsForcePerFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilopoundsForcePerFoot(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilopoundsForcePerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(double)" />
         public static ForcePerLength KilopoundsForcePerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromKilopoundsForcePerInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromKilopoundsForcePerInch(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromKilopoundsForcePerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(double)" />
         public static ForcePerLength MeganewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMeganewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMeganewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)" />
         public static ForcePerLength MeganewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMeganewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(double)" />
         public static ForcePerLength MeganewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMeganewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMeganewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMeganewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(double)" />
         public static ForcePerLength MicronewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMicronewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMicronewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)" />
         public static ForcePerLength MicronewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMicronewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(double)" />
         public static ForcePerLength MicronewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMicronewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMicronewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMicronewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(double)" />
         public static ForcePerLength MillinewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMillinewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMillinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)" />
         public static ForcePerLength MillinewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMillinewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(double)" />
         public static ForcePerLength MillinewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromMillinewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromMillinewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromMillinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(double)" />
         public static ForcePerLength NanonewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNanonewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNanonewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)" />
         public static ForcePerLength NanonewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNanonewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(double)" />
         public static ForcePerLength NanonewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNanonewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNanonewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNanonewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(double)" />
         public static ForcePerLength NewtonsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNewtonsPerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)" />
         public static ForcePerLength NewtonsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNewtonsPerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(double)" />
         public static ForcePerLength NewtonsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromNewtonsPerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromNewtonsPerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromNewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(double)" />
         public static ForcePerLength PoundsForcePerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromPoundsForcePerFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerFoot(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromPoundsForcePerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(double)" />
         public static ForcePerLength PoundsForcePerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromPoundsForcePerInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerInch(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromPoundsForcePerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(double)" />
         public static ForcePerLength PoundsForcePerYard<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromPoundsForcePerYard(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromPoundsForcePerYard(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromPoundsForcePerYard(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(double)" />
         public static ForcePerLength TonnesForcePerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromTonnesForcePerCentimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerCentimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromTonnesForcePerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(double)" />
         public static ForcePerLength TonnesForcePerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromTonnesForcePerMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerMeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromTonnesForcePerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(double)" />
         public static ForcePerLength TonnesForcePerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => ForcePerLength.FromTonnesForcePerMillimeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ForcePerLength.FromTonnesForcePerMillimeter(value.ToDouble(null));
 #endif
-            => ForcePerLength.FromTonnesForcePerMillimeter(Convert.ToDouble(value));
 
     }
 }

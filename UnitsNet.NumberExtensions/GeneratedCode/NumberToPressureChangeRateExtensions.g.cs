@@ -32,149 +32,203 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
     /// </summary>
     public static class NumberToPressureChangeRateExtensions
     {
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(double)" />
         public static PressureChangeRate AtmospheresPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromAtmospheresPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromAtmospheresPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromAtmospheresPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromBarsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromBarsPerMinute(double)" />
         public static PressureChangeRate BarsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromBarsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromBarsPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromBarsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromBarsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromBarsPerSecond(double)" />
         public static PressureChangeRate BarsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromBarsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromBarsPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromBarsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerMinute(double)" />
         public static PressureChangeRate KilopascalsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromKilopascalsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromKilopascalsPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromKilopascalsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(double)" />
         public static PressureChangeRate KilopascalsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromKilopascalsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromKilopascalsPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromKilopascalsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(double)" />
         public static PressureChangeRate KilopoundsForcePerSquareInchPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(double)" />
         public static PressureChangeRate KilopoundsForcePerSquareInchPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerMinute(double)" />
         public static PressureChangeRate MegapascalsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMegapascalsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMegapascalsPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMegapascalsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(double)" />
         public static PressureChangeRate MegapascalsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMegapascalsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMegapascalsPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMegapascalsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(double)" />
         public static PressureChangeRate MegapoundsForcePerSquareInchPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(double)" />
         public static PressureChangeRate MegapoundsForcePerSquareInchPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerMinute(double)" />
         public static PressureChangeRate MillibarsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMillibarsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMillibarsPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMillibarsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerSecond(double)" />
         public static PressureChangeRate MillibarsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMillibarsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMillibarsPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMillibarsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromMillimetersOfMercuryPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromMillimetersOfMercuryPerSecond(double)" />
         public static PressureChangeRate MillimetersOfMercuryPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromMillimetersOfMercuryPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromMillimetersOfMercuryPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromMillimetersOfMercuryPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerMinute(double)" />
         public static PressureChangeRate PascalsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromPascalsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromPascalsPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromPascalsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(double)" />
         public static PressureChangeRate PascalsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromPascalsPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromPascalsPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromPascalsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(double)" />
         public static PressureChangeRate PoundsForcePerSquareInchPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(double)" />
         public static PressureChangeRate PoundsForcePerSquareInchPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
+            => PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(value.ToDouble(null));
 #endif
-            => PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
 
     }
 }

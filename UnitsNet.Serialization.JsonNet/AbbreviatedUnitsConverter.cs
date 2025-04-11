@@ -79,15 +79,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             // write the 'Value' using the actual type
             writer.WritePropertyName(ValueProperty);
-            if (quantity is IValueQuantity<decimal> decimalQuantity)
-            {
-                // cannot use `writer.WriteValue(decimalQuantity.Value)`: there is a hidden EnsureDecimalPlace(..) method call inside it that converts '123' to '123.0'
-                writer.WriteRawValue(decimalQuantity.Value.ToString(CultureInfo.InvariantCulture));
-            }
-            else
-            {
-                writer.WriteValue((double)quantity.Value);
-            }
+            writer.WriteValue((double)quantity.Value);
 
             //  write the 'Unit' abbreviation
             writer.WritePropertyName(UnitProperty);
@@ -172,14 +164,10 @@ namespace UnitsNet.Serialization.JsonNet
                 unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
             }
 
-            QuantityValue value;
+            double value;
             if (valueToken is null)
             {
                 value = default;
-            }
-            else if (quantityInfo.Zero is IValueQuantity<decimal>)
-            {
-                value = decimal.Parse(valueToken, CultureInfo.InvariantCulture);
             }
             else
             {
@@ -244,7 +232,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>The default abbreviation as provided by the associated <see cref="UnitAbbreviationsCache" /></returns>
         protected string GetUnitAbbreviation(Enum unit)
         {
-            return _abbreviations.GetDefaultAbbreviation(unit.GetType(), Convert.ToInt32(unit), CultureInfo.InvariantCulture);
+            return _abbreviations.GetDefaultAbbreviation(unit, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -275,7 +263,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected Enum Parse(string? unitAbbreviation, QuantityInfo quantityInfo)
+        protected Enum Parse(string unitAbbreviation, QuantityInfo quantityInfo)
         {
             return _unitParser.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture);
         }

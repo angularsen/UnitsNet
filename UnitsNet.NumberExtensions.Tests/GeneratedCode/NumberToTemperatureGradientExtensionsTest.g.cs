@@ -25,12 +25,12 @@ namespace UnitsNet.Tests
     public class NumberToTemperatureGradientExtensionsTests
     {
         [Fact]
-        public void NumberToDegreesCelciusPerKilometerTest() =>
-            Assert.Equal(TemperatureGradient.FromDegreesCelciusPerKilometer(2), 2.DegreesCelciusPerKilometer());
+        public void NumberToDegreesCelsiusPerKilometerTest() =>
+            Assert.Equal(TemperatureGradient.FromDegreesCelsiusPerKilometer(2), 2.DegreesCelsiusPerKilometer());
 
         [Fact]
-        public void NumberToDegreesCelciusPerMeterTest() =>
-            Assert.Equal(TemperatureGradient.FromDegreesCelciusPerMeter(2), 2.DegreesCelciusPerMeter());
+        public void NumberToDegreesCelsiusPerMeterTest() =>
+            Assert.Equal(TemperatureGradient.FromDegreesCelsiusPerMeter(2), 2.DegreesCelsiusPerMeter());
 
         [Fact]
         public void NumberToDegreesFahrenheitPerFootTest() =>

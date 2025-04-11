@@ -68,23 +68,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal("{\"Unit\":\"LengthUnit.Meter\",\"Value\":10.2365}", result.ToString());
         }
 
-        [Theory]
-        [InlineData(10.2365, "10.2365", "10.2365")]
-        [InlineData(10, "10.0", "10")] // Json.NET adds .0
-        public void UnitsNetIQuantityJsonConverter_WriteJson_works_with_decimal_quantity(decimal value, string expectedValue, string expectedValueString)
-        {
-            var result = new StringBuilder();
-
-            using (var stringWriter = new StringWriter(result))
-                using(var writer = new JsonTextWriter(stringWriter))
-            {
-                _sut.WriteJson(writer, Power.FromWatts(value), JsonSerializer.CreateDefault());
-            }
-
-            Assert.Equal($"{{\"Unit\":\"PowerUnit.Watt\",\"Value\":{expectedValue},\"ValueString\":\"{expectedValueString}\",\"ValueType\":\"decimal\"}}",
-                result.ToString());
-        }
-
         [Fact]
         public void UnitsNetIQuantityJsonConverter_CanRead_returns_true()
         {
@@ -135,7 +118,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.Equal(10.3654M, ((Power)result).Watts);
+            Assert.Equal(10.3654, ((Power)result).Watts);
         }
     }
 }

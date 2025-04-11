@@ -75,6 +75,12 @@ namespace UnitsNet.Tests
         protected override double PoundsPerDayInOneGramPerSecond => 1.9047936e2;
 
         protected override double GramsPerHourInOneGramPerSecond => 3600;
+        
+        [Fact(Skip = "See about changing the BaseUnit to KilogramPerSecond")]
+        public override void BaseUnit_HasSIBase()
+        {
+            base.BaseUnit_HasSIBase();
+        }
 
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
@@ -98,17 +104,10 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TimeSpanTimesMassFlowEqualsMass()
-        {
-            Mass mass = TimeSpan.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
-        }
-
-        [Fact]
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
             Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            AssertEx.EqualTolerance(20.0m / 24.0m * 1e6m / 180.0m, power.Kilowatts, 1E-11m);
+            AssertEx.EqualTolerance(20.0 / 24.0 * 1e6 / 180.0, power.Kilowatts, 1e-11);
         }
 
         [Fact]

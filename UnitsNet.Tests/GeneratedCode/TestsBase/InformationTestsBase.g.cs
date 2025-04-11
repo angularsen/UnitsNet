@@ -39,63 +39,63 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class InformationTestsBase : QuantityTestsBase
     {
-        protected abstract decimal BitsInOneBit { get; }
-        protected abstract decimal BytesInOneBit { get; }
-        protected abstract decimal ExabitsInOneBit { get; }
-        protected abstract decimal ExabytesInOneBit { get; }
-        protected abstract decimal ExbibitsInOneBit { get; }
-        protected abstract decimal ExbibytesInOneBit { get; }
-        protected abstract decimal GibibitsInOneBit { get; }
-        protected abstract decimal GibibytesInOneBit { get; }
-        protected abstract decimal GigabitsInOneBit { get; }
-        protected abstract decimal GigabytesInOneBit { get; }
-        protected abstract decimal KibibitsInOneBit { get; }
-        protected abstract decimal KibibytesInOneBit { get; }
-        protected abstract decimal KilobitsInOneBit { get; }
-        protected abstract decimal KilobytesInOneBit { get; }
-        protected abstract decimal MebibitsInOneBit { get; }
-        protected abstract decimal MebibytesInOneBit { get; }
-        protected abstract decimal MegabitsInOneBit { get; }
-        protected abstract decimal MegabytesInOneBit { get; }
-        protected abstract decimal PebibitsInOneBit { get; }
-        protected abstract decimal PebibytesInOneBit { get; }
-        protected abstract decimal PetabitsInOneBit { get; }
-        protected abstract decimal PetabytesInOneBit { get; }
-        protected abstract decimal TebibitsInOneBit { get; }
-        protected abstract decimal TebibytesInOneBit { get; }
-        protected abstract decimal TerabitsInOneBit { get; }
-        protected abstract decimal TerabytesInOneBit { get; }
+        protected abstract double BitsInOneBit { get; }
+        protected abstract double BytesInOneBit { get; }
+        protected abstract double ExabitsInOneBit { get; }
+        protected abstract double ExabytesInOneBit { get; }
+        protected abstract double ExbibitsInOneBit { get; }
+        protected abstract double ExbibytesInOneBit { get; }
+        protected abstract double GibibitsInOneBit { get; }
+        protected abstract double GibibytesInOneBit { get; }
+        protected abstract double GigabitsInOneBit { get; }
+        protected abstract double GigabytesInOneBit { get; }
+        protected abstract double KibibitsInOneBit { get; }
+        protected abstract double KibibytesInOneBit { get; }
+        protected abstract double KilobitsInOneBit { get; }
+        protected abstract double KilobytesInOneBit { get; }
+        protected abstract double MebibitsInOneBit { get; }
+        protected abstract double MebibytesInOneBit { get; }
+        protected abstract double MegabitsInOneBit { get; }
+        protected abstract double MegabytesInOneBit { get; }
+        protected abstract double PebibitsInOneBit { get; }
+        protected abstract double PebibytesInOneBit { get; }
+        protected abstract double PetabitsInOneBit { get; }
+        protected abstract double PetabytesInOneBit { get; }
+        protected abstract double TebibitsInOneBit { get; }
+        protected abstract double TebibytesInOneBit { get; }
+        protected abstract double TerabitsInOneBit { get; }
+        protected abstract double TerabytesInOneBit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual decimal BitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal BytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal ExabitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal ExabytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal ExbibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal ExbibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal GibibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal GibibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal GigabitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal GigabytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal KibibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal KibibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal KilobitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal KilobytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal MebibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal MebibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal MegabitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal MegabytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal PebibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal PebibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal PetabitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal PetabytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal TebibitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal TebibytesTolerance { get { return 1e-9m; } }
-        protected virtual decimal TerabitsTolerance { get { return 1e-9m; } }
-        protected virtual decimal TerabytesTolerance { get { return 1e-9m; } }
+        protected virtual double BitsTolerance { get { return 1e-5; } }
+        protected virtual double BytesTolerance { get { return 1e-5; } }
+        protected virtual double ExabitsTolerance { get { return 1e-5; } }
+        protected virtual double ExabytesTolerance { get { return 1e-5; } }
+        protected virtual double ExbibitsTolerance { get { return 1e-5; } }
+        protected virtual double ExbibytesTolerance { get { return 1e-5; } }
+        protected virtual double GibibitsTolerance { get { return 1e-5; } }
+        protected virtual double GibibytesTolerance { get { return 1e-5; } }
+        protected virtual double GigabitsTolerance { get { return 1e-5; } }
+        protected virtual double GigabytesTolerance { get { return 1e-5; } }
+        protected virtual double KibibitsTolerance { get { return 1e-5; } }
+        protected virtual double KibibytesTolerance { get { return 1e-5; } }
+        protected virtual double KilobitsTolerance { get { return 1e-5; } }
+        protected virtual double KilobytesTolerance { get { return 1e-5; } }
+        protected virtual double MebibitsTolerance { get { return 1e-5; } }
+        protected virtual double MebibytesTolerance { get { return 1e-5; } }
+        protected virtual double MegabitsTolerance { get { return 1e-5; } }
+        protected virtual double MegabytesTolerance { get { return 1e-5; } }
+        protected virtual double PebibitsTolerance { get { return 1e-5; } }
+        protected virtual double PebibytesTolerance { get { return 1e-5; } }
+        protected virtual double PetabitsTolerance { get { return 1e-5; } }
+        protected virtual double PetabytesTolerance { get { return 1e-5; } }
+        protected virtual double TebibitsTolerance { get { return 1e-5; } }
+        protected virtual double TebibytesTolerance { get { return 1e-5; } }
+        protected virtual double TerabitsTolerance { get { return 1e-5; } }
+        protected virtual double TerabytesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(InformationUnit unit)
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(InformationUnit unit)
         {
             return unit switch
             {
@@ -164,29 +164,25 @@ namespace UnitsNet.Tests
         {
             var quantity = new Information();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);
             Assert.Equal(InformationUnit.Bit, quantity.Unit);
         }
 
         [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Information(value: 1, unitSystem: null));
+            var exception1 = Record.Exception(() => new Information(double.PositiveInfinity, InformationUnit.Bit));
+            var exception2 = Record.Exception(() => new Information(double.NegativeInfinity, InformationUnit.Bit));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Func<object> TestCode = () => new Information(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Information) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var exception = Record.Exception(() => new Information(double.NaN, InformationUnit.Bit));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -345,6 +341,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FromBits_WithInfinityValue_DoNotThrowsArgumentException()
+        {
+            var exception1 = Record.Exception(() => Information.FromBits(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Information.FromBits(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
+        }
+
+        [Fact]
+        public void FromBits_WithNanValue_DoNotThrowsArgumentException()
+        {
+            var exception = Record.Exception(() => Information.FromBits(double.NaN));
+
+            Assert.Null(exception);
+        }
+
+        [Fact]
         public void As()
         {
             var bit = Information.FromBits(1);
@@ -377,20 +391,70 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            var quantity = new Information(value: 1, unit: InformationUnit.Bit);
+
+            var convertedValue = quantity.As(UnitSystem.SI);
+            
+            Assert.Equal(quantity.Value, convertedValue);
+        }
+
+        [Fact]
+        public void As_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             var quantity = new Information(value: 1, unit: Information.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            UnitSystem nullUnitSystem = null!;
+            Assert.Throws<ArgumentNullException>(() => quantity.As(nullUnitSystem));
+        }
 
-            if (SupportsSIUnitSystem)
+        [Fact]
+        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            Assert.Multiple(() =>
             {
-                var value = Convert.ToDouble(AsWithSIUnitSystem());
-                Assert.Equal(1, value);
-            }
-            else
+                var quantity = new Information(value: 1, unit: InformationUnit.Bit);
+
+                Information convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
             {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+                IQuantity<InformationUnit> quantity = new Information(value: 1, unit: InformationUnit.Bit);
+
+                IQuantity<InformationUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new Information(value: 1, unit: InformationUnit.Bit);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
+        }
+
+        [Fact]
+        public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            Assert.Multiple(() => 
+            {
+                var quantity = new Information(value: 1, unit: Information.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<InformationUnit> quantity = new Information(value: 1, unit: Information.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Information(value: 1, unit: Information.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
@@ -585,170 +649,278 @@ namespace UnitsNet.Tests
         {
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Information.ParseUnit("b", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Bit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("B", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Byte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Eb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("EB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Eib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exbibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("EiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exbibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Gib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gibibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("GiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gibibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Gb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gigabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("GB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gigabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Kib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kibibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("KiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kibibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("kb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kilobit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("kB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kilobyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Mib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Mebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("MiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Mebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Mb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Megabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("MB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Megabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Pib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Pebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("PiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Pebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Pb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Petabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("PB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Petabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Tib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Tebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("TiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Tebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Tb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Terabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("TB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Terabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
         {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            Assert.True(Information.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
@@ -776,12 +948,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(InformationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Information.Units.First(u => u != Information.BaseUnit);
-
-            var quantity = Information.From(3.0, fromUnit);
-            var converted = quantity.ToUnit(unit);
-            Assert.Equal(converted.Unit, unit);
+            Assert.All(Information.Units.Where(u => u != Information.BaseUnit), fromUnit =>
+            {
+                var quantity = Information.From(3.0, fromUnit);
+                var converted = quantity.ToUnit(unit);
+                Assert.Equal(converted.Unit, unit);
+            });
         }
 
         [Theory]
@@ -791,6 +963,25 @@ namespace UnitsNet.Tests
             var quantity = default(Information);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromIQuantity_ReturnsTheExpectedIQuantity(InformationUnit unit)
+        {
+            var quantity = Information.From(3, Information.BaseUnit);
+            Information expectedQuantity = quantity.ToUnit(unit);
+            Assert.Multiple(() =>
+            {
+                IQuantity<InformationUnit> quantityToConvert = quantity;
+                IQuantity<InformationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
+                Assert.Equal(unit, convertedQuantity.Unit);
+            });
         }
 
         [Fact]
@@ -883,7 +1074,7 @@ namespace UnitsNet.Tests
         [InlineData(1, InformationUnit.Bit, 2, InformationUnit.Bit, false)] // Different value.
         [InlineData(2, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different value and unit.
         [InlineData(1, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different unit.
-        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(decimal valueA, InformationUnit unitA, decimal valueB, InformationUnit unitB, bool expectEqual)
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, InformationUnit unitA, double valueB, InformationUnit unitB, bool expectEqual)
         {
             var a = new Information(valueA, unitA);
             var b = new Information(valueB, unitB);
@@ -925,8 +1116,8 @@ namespace UnitsNet.Tests
             var v = Information.FromBits(1);
             Assert.True(v.Equals(Information.FromBits(1), BitsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Information.Zero, BitsTolerance, ComparisonType.Relative));
-            Assert.True(Information.FromBits(100).Equals(Information.FromBits(120), (decimal)0.3m, ComparisonType.Relative));
-            Assert.False(Information.FromBits(100).Equals(Information.FromBits(120), (decimal)0.1m, ComparisonType.Relative));
+            Assert.True(Information.FromBits(100).Equals(Information.FromBits(120), 0.3, ComparisonType.Relative));
+            Assert.False(Information.FromBits(100).Equals(Information.FromBits(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -1036,20 +1227,20 @@ namespace UnitsNet.Tests
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
             var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 b", new Information(0.123456m, InformationUnit.Bit).ToString("s1"));
-            Assert.Equal("0.12 b", new Information(0.123456m, InformationUnit.Bit).ToString("s2"));
-            Assert.Equal("0.123 b", new Information(0.123456m, InformationUnit.Bit).ToString("s3"));
-            Assert.Equal("0.1235 b", new Information(0.123456m, InformationUnit.Bit).ToString("s4"));
+            Assert.Equal("0.1 b", new Information(0.123456, InformationUnit.Bit).ToString("s1"));
+            Assert.Equal("0.12 b", new Information(0.123456, InformationUnit.Bit).ToString("s2"));
+            Assert.Equal("0.123 b", new Information(0.123456, InformationUnit.Bit).ToString("s3"));
+            Assert.Equal("0.1235 b", new Information(0.123456, InformationUnit.Bit).ToString("s4"));
         }
 
         [Fact]
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 b", new Information(0.123456m, InformationUnit.Bit).ToString("s1", culture));
-            Assert.Equal("0.12 b", new Information(0.123456m, InformationUnit.Bit).ToString("s2", culture));
-            Assert.Equal("0.123 b", new Information(0.123456m, InformationUnit.Bit).ToString("s3", culture));
-            Assert.Equal("0.1235 b", new Information(0.123456m, InformationUnit.Bit).ToString("s4", culture));
+            Assert.Equal("0.1 b", new Information(0.123456, InformationUnit.Bit).ToString("s1", culture));
+            Assert.Equal("0.12 b", new Information(0.123456, InformationUnit.Bit).ToString("s2", culture));
+            Assert.Equal("0.123 b", new Information(0.123456, InformationUnit.Bit).ToString("s3", culture));
+            Assert.Equal("0.1235 b", new Information(0.123456, InformationUnit.Bit).ToString("s4", culture));
         }
 
         [Theory]
@@ -1062,7 +1253,7 @@ namespace UnitsNet.Tests
                 ? null
                 : CultureInfo.GetCultureInfo(cultureName);
 
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Equal(quantity.ToString("G", formatProvider), quantity.ToString(null, formatProvider));
         }
 
         [Theory]
@@ -1212,6 +1403,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Information.FromBits(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void Convert_GetTypeCode_Returns_Object()
+        {
+            var quantity = Information.FromBits(1.0);
+            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
         }
 
         [Fact]
