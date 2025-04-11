@@ -143,14 +143,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
         }
-        
+
         [Fact]
         public void Parse_LengthUnit_MM_ThrowsExceptionDescribingTheAmbiguity()
         {
             var ex = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("MM"));
             Assert.Equal("""Cannot parse "MM" since it matches multiple units: Megameter ("Mm"), Millimeter ("mm").""", ex.Message);
         }
-        
+
         [Fact]
         public void TryParse_WithNullAbbreviation_ReturnsFalse()
         {

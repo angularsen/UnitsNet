@@ -218,6 +218,7 @@ namespace UnitsNet
             (Enum Unit, string Abbreviation)[] matches =
                 stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
+            // No match? Retry after normalizing the unit abbreviation.
             if (matches.Length == 0)
             {
                 var normalizeUnitString = NormalizeUnitString(unitAbbreviation);
@@ -232,7 +233,7 @@ namespace UnitsNet
             {
                 return matches;
             }
-            
+
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             (Enum Unit, string Abbreviation)[] caseSensitiveMatches = stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation)).ToArray();
             return caseSensitiveMatches.Length == 0 ? matches : caseSensitiveMatches;

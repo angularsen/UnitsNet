@@ -28,7 +28,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/(kgf�h)" ]
+          "Abbreviations": [ "kg/(kgf·h)" ]
         }
       ]
     },
@@ -45,8 +45,8 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/(kN�s)" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN�s)" ] }
+          "Abbreviations": [ "g/(kN·s)" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN·s)" ] }
         }
       ]
     }

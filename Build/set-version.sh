@@ -4,7 +4,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 set_version_script="$script_dir/set-version-UnitsNet.ps1"
 
 if [ $# -eq 1 ]; then
-    powershell -NoProfile $set_version_script -setVersion $1
+    pwsh -NoProfile $set_version_script -setVersion $1
     exit 0
 else
     echo "Usage: ./set-version.sh <version>"
