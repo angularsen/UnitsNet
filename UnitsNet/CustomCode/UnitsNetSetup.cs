@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Collections.Generic;
+using System.Linq;
 using UnitsNet.Units;
 
 namespace UnitsNet;
@@ -20,7 +21,7 @@ public sealed class UnitsNetSetup
     static UnitsNetSetup()
     {
         var unitConverter = UnitConverter.CreateDefault();
-        ICollection<QuantityInfo> quantityInfos = Quantity.ByName.Values;
+        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.ByName.Values.ToList();
 
         Default = new UnitsNetSetup(quantityInfos, unitConverter);
     }
@@ -30,7 +31,7 @@ public sealed class UnitsNetSetup
     /// </summary>
     /// <param name="quantityInfos">The quantities and their units to support for unit conversions, Parse() and ToString().</param>
     /// <param name="unitConverter">The unit converter instance.</param>
-    public UnitsNetSetup(ICollection<QuantityInfo> quantityInfos, UnitConverter unitConverter)
+    public UnitsNetSetup(IEnumerable<QuantityInfo> quantityInfos, UnitConverter unitConverter)
     {
         var quantityInfoLookup = new QuantityInfoLookup(quantityInfos);
         var unitAbbreviations = new UnitAbbreviationsCache(quantityInfoLookup);

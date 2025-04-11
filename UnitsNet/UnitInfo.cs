@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -72,6 +73,15 @@ namespace UnitsNet
         /// Name of the quantity this unit belongs to. May be null for custom units.
         /// </summary>
         public string? QuantityName { get; }
+
+        /// <summary>
+        ///     Gets the unique key representing the unit type and its corresponding value.
+        /// </summary>
+        /// <remarks>
+        ///     This key is particularly useful when using an enum-based unit in a hash-based collection,
+        ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
+        /// </remarks>
+        public virtual UnitKey UnitKey => Value;
     }
 
     /// <inheritdoc cref="UnitInfo" />
@@ -81,6 +91,7 @@ namespace UnitsNet
     ///     or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
     /// </remarks>
     /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
+    [DebuggerDisplay("{Name} ({Value})")]
     public class UnitInfo<TUnit> : UnitInfo
         where TUnit : struct, Enum
     {
@@ -101,5 +112,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="UnitInfo.Value"/>
         public new TUnit Value { get; }
+        
+        /// <inheritdoc />
+        public override UnitKey UnitKey
+        {
+            get => UnitKey.ForUnit(Value);
+        }
     }
 }

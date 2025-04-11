@@ -51,7 +51,7 @@ public class ConvertValueBenchmarks
     [GlobalSetup]
     public void PrepareTo_ConvertWith_FullyCachedFrozenDictionary()
     {
-        var nbQuantities = Quantity.Infos.Length;
+        var nbQuantities = Quantity.Infos.Count;
     }
     
 }

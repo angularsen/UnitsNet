@@ -3,7 +3,9 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using UnitsNet.Tests.CustomQuantities;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Units;
 using Xunit;
 
@@ -295,10 +297,53 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
+        public void UnitAbbreviationsCacheDefaultReturnsUnitsNetSetupDefaultUnitAbbreviations()
         {
-            var unitAbbreviationCache = new UnitAbbreviationsCache();
-            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(HowMuchUnit.AShitTon));
+            Assert.Equal(UnitsNetSetup.Default.UnitAbbreviations, UnitAbbreviationsCache.Default);
+        }
+
+        [Fact]
+        public void GetUnitAbbreviationsThrowsUnitNotFoundExceptionIfNoneExist()
+        {
+            Assert.Multiple(checks: [
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(MassUnit.Gram)),
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(typeof(MassUnit), (int)MassUnit.Gram))
+            ]);
+        }
+
+        [Fact]
+        public void GetDefaultAbbreviationThrowsUnitNotFoundExceptionIfNoneExist()
+        {
+            Assert.Multiple(checks: [
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(MassUnit.Gram)),
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram))
+            ]);
+        }
+
+        [Fact]
+        public void GetUnitAbbreviationsReturnsTheExpectedAbbreviationWhenConstructedWithTheSpecificQuantityInfo()
+        {
+            Assert.Multiple(checks:
+            [
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]); },
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetUnitAbbreviations(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)[0]); }
+            ]);
+        }
+
+        [Fact]
+        public void GetDefaultAbbreviationReturnsTheExpectedAbbreviationWhenConstructedWithTheSpecificQuantityInfo()
+        {
+            Assert.Multiple(checks:
+            [
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture)); },
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)); }
+            ]);
+        }
+
+        [Fact]
+        public void GetAbbreviationsThrowsArgumentNullExceptionWhenGivenANullUnitInfo()
+        {
+            Assert.Throws<ArgumentNullException>(() => new UnitAbbreviationsCache().GetAbbreviations(null!));
         }
 
         [Fact]
@@ -356,6 +401,30 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MapUnitToDefaultAbbreviation_GivenUnitAndNoCulture_SetsDefaultAbbreviationForUnitForCurrentCulture()
+        {
+            using var cultureScope = new CultureScope(NorwegianCultureName);
+            var cache = new UnitAbbreviationsCache([Mass.Info]);
+
+            cache.MapUnitToDefaultAbbreviation(MassUnit.Gram, "zz");
+
+            Assert.Equal("zz", cache.GetDefaultAbbreviation(MassUnit.Gram));
+            Assert.Equal("g", cache.GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture));
+        }
+
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_GivenUnitTypeAndValue_SetsDefaultAbbreviationForUnitForCurrentCulture()
+        {
+            using var cultureScope = new CultureScope(NorwegianCultureName);
+            var cache = new UnitAbbreviationsCache([Mass.Info]);
+
+            cache.MapUnitToDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, null, "zz");
+
+            Assert.Equal("zz", cache.GetDefaultAbbreviation(MassUnit.Gram));
+            Assert.Equal("g", cache.GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture));
+        }
+
+        [Fact]
         public void MapUnitToDefaultAbbreviation_GivenCustomAbbreviation_SetsAbbreviationUsedByQuantityToString()
         {
             // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
@@ -363,6 +432,19 @@ namespace UnitsNet.Tests
             UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+        }
+
+        [Fact]
+        public void MapUnitToAbbreviation_GivenUnitTypeAndValue_AddsTheAbbreviationForUnitForCurrentCulture()
+        {
+            using var cultureScope = new CultureScope(NorwegianCultureName);
+            var cache = new UnitAbbreviationsCache([Mass.Info]);
+
+            cache.MapUnitToAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, null, "zz");
+
+            Assert.Equal("zz", cache.GetUnitAbbreviations(MassUnit.Gram).Last());
+            Assert.Equal("g", cache.GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture));
+            Assert.DoesNotContain("zz", cache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture));
         }
 
         [Fact]
