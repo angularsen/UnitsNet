@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace UnitsNet
@@ -73,7 +74,7 @@ namespace UnitsNet
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
             where TUnitType : struct, Enum
         {
-            string abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
+            string abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture as CultureInfo);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

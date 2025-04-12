@@ -146,7 +146,7 @@ public class QuantityFormatter
                 case 'S' or 's':
                     return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 0);
                 case 'A' or 'a':
-                    return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+                    return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider as CultureInfo);
                 case 'U' or 'u':
                     throw new FormatException($"The \"{format}\" format is no longer supported: consider using the Unit property.");
                 case 'V' or 'v':
@@ -168,7 +168,7 @@ public class QuantityFormatter
                     return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                 case 'A' or 'a' when int.TryParse(format.AsSpan(1), out var abbreviationIndex):
                 {
-                    var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
+                    var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider as CultureInfo);
 
                     if (abbreviationIndex >= abbreviations.Length)
                     {
@@ -186,7 +186,7 @@ public class QuantityFormatter
                     return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                 case 'A' or 'a' when int.TryParse(format.Substring(1), out var abbreviationIndex):
                 {
-                    var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
+                    var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider as CultureInfo);
 
                     if (abbreviationIndex >= abbreviations.Length)
                     {
@@ -210,7 +210,7 @@ public class QuantityFormatter
     private static string FormatWithValueAndAbbreviation<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
         where TUnitType : struct, Enum
     {
-        var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+        var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider as CultureInfo);
         return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviation);
     }
 

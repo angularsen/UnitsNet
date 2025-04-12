@@ -83,8 +83,9 @@ namespace UnitsNet
                 return true;
 
             var quantityParser = UnitsNetSetup.Default.QuantityParser;
-            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
-            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
+            var unitLocalizationCulture = formatProvider as CultureInfo;
+            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, unitLocalizationCulture, matchEntireString: false);
+            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, unitLocalizationCulture, matchEntireString: false);
 
             // Match entire string exactly
             string pattern = $@"^(?<negativeSign>\-?)(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
@@ -154,10 +155,13 @@ namespace UnitsNet
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
+            if (cultureInfo is not CultureInfo unitLocalizationCulture)
+            {
+                cultureInfo = unitLocalizationCulture = CultureInfo.CurrentCulture;
+            }
 
-            var footUnit = Length.GetAbbreviation(LengthUnit.Foot, cultureInfo);
-            var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, cultureInfo);
+            var footUnit = Length.GetAbbreviation(LengthUnit.Foot, unitLocalizationCulture);
+            var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, unitLocalizationCulture);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.

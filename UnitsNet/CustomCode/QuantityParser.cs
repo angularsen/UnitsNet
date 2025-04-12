@@ -154,7 +154,7 @@ namespace UnitsNet
 
         internal string CreateRegexPatternForUnit<TUnitType>(
             TUnitType unit,
-            IFormatProvider? formatProvider,
+            CultureInfo? formatProvider,
             bool matchEntireString = true)
             where TUnitType : struct, Enum
         {
@@ -186,7 +186,7 @@ namespace UnitsNet
             where TUnitType : struct, Enum
         {
             var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
-            var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
+            var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider as CultureInfo);
             return fromDelegate(value, parsedUnit);
         }
 
@@ -207,7 +207,7 @@ namespace UnitsNet
             if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
                     return false;
 
-            if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
+            if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider as CultureInfo, out TUnitType parsedUnit))
                     return false;
 
             result = fromDelegate(value, parsedUnit);
@@ -246,7 +246,7 @@ namespace UnitsNet
 
         private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : struct, Enum
         {
-            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
+            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider as CultureInfo);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
 
             // Match entire string exactly

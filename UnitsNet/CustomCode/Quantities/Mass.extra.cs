@@ -88,10 +88,13 @@ namespace UnitsNet
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
+            if (cultureInfo is not CultureInfo unitLocalizationCulture)
+            {
+                cultureInfo = unitLocalizationCulture = CultureInfo.CurrentCulture;
+            }
 
-            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, cultureInfo);
-            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, cultureInfo);
+            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, unitLocalizationCulture);
+            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, unitLocalizationCulture);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.

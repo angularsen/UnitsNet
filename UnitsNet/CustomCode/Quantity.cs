@@ -98,15 +98,15 @@ namespace UnitsNet
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
         ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
         /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-        public static IQuantity FromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation)
+        public static IQuantity FromUnitAbbreviation(CultureInfo? culture, double value, string unitAbbreviation)
         {
-            return From(value, UnitParser.GetUnitFromAbbreviation(unitAbbreviation, formatProvider).Value);
+            return From(value, UnitParser.GetUnitFromAbbreviation(unitAbbreviation, culture).Value);
         }
 
         /// <summary>
@@ -156,15 +156,15 @@ namespace UnitsNet
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
         ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <param name="quantity">The quantity if successful, otherwise null.</param>
         /// <returns>True if successful.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static bool TryFromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFromUnitAbbreviation(CultureInfo? culture, double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            if (UnitParser.TryGetUnitFromAbbreviation(unitAbbreviation, formatProvider, out UnitInfo? unitInfo))
+            if (UnitParser.TryGetUnitFromAbbreviation(unitAbbreviation, culture, out UnitInfo? unitInfo))
             {
                 return TryFrom(value, unitInfo.Value, out quantity);
             }

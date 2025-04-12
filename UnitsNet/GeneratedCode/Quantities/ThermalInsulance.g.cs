@@ -249,10 +249,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static string GetAbbreviation(ThermalInsulanceUnit unit, IFormatProvider? provider)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static string GetAbbreviation(ThermalInsulanceUnit unit, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
         }
 
         #endregion
@@ -430,18 +430,18 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ThermalInsulanceUnit ParseUnit(string str, IFormatProvider? provider)
+        public static ThermalInsulanceUnit ParseUnit(string str, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitParser.Parse<ThermalInsulanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ThermalInsulanceUnit>(str, culture);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ThermalInsulanceUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,CultureInfo?,out UnitsNet.Units.ThermalInsulanceUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out ThermalInsulanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -456,10 +456,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ThermalInsulanceUnit unit)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, CultureInfo? culture, out ThermalInsulanceUnit unit)
         {
-            return UnitsNetSetup.Default.UnitParser.TryParse<ThermalInsulanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ThermalInsulanceUnit>(str, culture, out unit);
         }
 
         #endregion

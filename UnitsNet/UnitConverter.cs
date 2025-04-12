@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -398,7 +399,7 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
-            return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, (IFormatProvider?)null);
+            return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, (CultureInfo?)null);
         }
 
         /// <summary>
@@ -445,10 +446,7 @@ namespace UnitsNet
         /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
         /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
         /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="formatProvider">
-        ///     The format provider to use for lookup. Defaults to <see cref="System.Globalization.CultureInfo.CurrentCulture" />
-        ///     if null.
-        /// </param>
+        /// <param name="culture">The unit localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
         /// <exception cref="QuantityNotFoundException">
@@ -456,13 +454,13 @@ namespace UnitsNet
         /// </exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, IFormatProvider? formatProvider)
+        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture)
         {
             QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
             QuantityInfo quantityInfo = quantities.GetQuantityByName(quantityName);
-            Enum fromUnit = unitParser.Parse(fromUnitAbbrev, quantityInfo.UnitType, formatProvider); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            Enum toUnit = unitParser.Parse(toUnitAbbrev, quantityInfo.UnitType, formatProvider); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            Enum fromUnit = unitParser.Parse(fromUnitAbbrev, quantityInfo.UnitType, culture); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            Enum toUnit = unitParser.Parse(toUnitAbbrev, quantityInfo.UnitType, culture); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
             return Quantity.From(fromValue, fromUnit).As(toUnit);
         }
 
@@ -486,7 +484,7 @@ namespace UnitsNet
         /// <returns>True if conversion was successful.</returns>
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
         {
-            return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, (IFormatProvider?)null);
+            return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, (CultureInfo?)null);
         }
 
         /// <summary>
@@ -530,15 +528,12 @@ namespace UnitsNet
         /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
         /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
         /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="formatProvider">
-        ///     The format provider to use for lookup. Defaults to <see cref="System.Globalization.CultureInfo.CurrentCulture" />
-        ///     if null.
-        /// </param>
+        /// <param name="culture">The unit localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
-            IFormatProvider? formatProvider)
+            CultureInfo? culture)
         {
             QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
@@ -548,8 +543,8 @@ namespace UnitsNet
                 return false;
             }
 
-            if (!unitParser.TryParse(fromUnitAbbrev, quantityInfo.UnitType, formatProvider, out Enum? fromUnit) ||
-                !unitParser.TryParse(toUnitAbbrev, quantityInfo.UnitType, formatProvider, out Enum? toUnit))
+            if (!unitParser.TryParse(fromUnitAbbrev, quantityInfo.UnitType, culture, out Enum? fromUnit) ||
+                !unitParser.TryParse(toUnitAbbrev, quantityInfo.UnitType, culture, out Enum? toUnit))
             {
                 result = 0;
                 return false;
