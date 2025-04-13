@@ -777,6 +777,7 @@ namespace UnitsNet
             Energy.RegisterDefaultConversions(unitConverter);
             EnergyDensity.RegisterDefaultConversions(unitConverter);
             Entropy.RegisterDefaultConversions(unitConverter);
+            FluidResistance.RegisterDefaultConversions(unitConverter);
             Force.RegisterDefaultConversions(unitConverter);
             ForceChangeRate.RegisterDefaultConversions(unitConverter);
             ForcePerLength.RegisterDefaultConversions(unitConverter);
