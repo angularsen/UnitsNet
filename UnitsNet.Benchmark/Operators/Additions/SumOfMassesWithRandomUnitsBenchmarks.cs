@@ -11,10 +11,10 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+// [SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfMassesWithRandomUnitsBenchmarks
 {
-    private static readonly double Value = 1.23;
+    private static readonly QuantityValue Value = 1.23;
 
     private readonly Random _random = new(42);
     private Mass[] _quantities;
@@ -22,37 +22,44 @@ public class SumOfMassesWithRandomUnitsBenchmarks
     [Params(1000)]
     public int NbOperations { get; set; }
 
+    [Params(true)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _quantities = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units, NbOperations).ToArray();
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        Quantity.From(Value, Mass.BaseUnit); // TODO we need a better way to "disable" the lazy loading of the _quantitiesByUnitType (QuantityInfoLookup)
+        
+        _quantities = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbOperations).ToArray();
     }
     
     [Benchmark(Baseline = true)]
     public Mass SumOfMasses()
     {
-#if NET
-        return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
-#else
-        Mass sum = Mass.Zero;
-        foreach (var quantity in _quantities)
-        {
-            sum = quantity + sum;
-        }
-
-        return sum;
-#endif
+        return _quantities.Sum();
     }
+    
+// #if NET
+//     [Benchmark(Baseline = false)]
+//     public Mass SumOfMassesWithGenericExtension()
+//     {
+//         return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
+//     }
+// #endif
 
-    [Benchmark(Baseline = false)]
-    public Mass SumOfMassesWithBaseUnit()
-    {
-        return _quantities.Sum(Mass.BaseUnit);
-    }
-
-    [Benchmark(Baseline = false)]
-    public Mass SumOfMassesWithInMilligrams()
-    {
-        return _quantities.Sum(MassUnit.Milligram);
-    }
+    // [Benchmark(Baseline = false)]
+    // public Mass SumOfMassesWithBaseUnit()
+    // {
+    //     return _quantities.Sum(Mass.BaseUnit);
+    // }
+    //
+    // [Benchmark(Baseline = false)]
+    // public Mass SumOfMassesWithNonBaseUnit()
+    // {
+    //     return _quantities.Sum(MassUnit.Milligram);
+    // }
 }

@@ -18,15 +18,15 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Numerics;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.Units;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -42,7 +42,8 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Dose_area_product
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct DoseAreaProduct :
         IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
@@ -51,56 +52,142 @@ namespace UnitsNet
 #endif
         IComparable,
         IComparable<DoseAreaProduct>,
-        IConvertible,
         IEquatable<DoseAreaProduct>,
         IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly DoseAreaProductUnit? _unit;
+
+        /// <summary>
+        ///     Provides detailed information about the <see cref="DoseAreaProduct"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class DoseAreaProductInfo: QuantityInfo<DoseAreaProduct, DoseAreaProductUnit>
+        {
+            /// <inheritdoc />
+            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<DoseAreaProduct, DoseAreaProductUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, DoseAreaProduct.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.DoseAreaProduct", typeof(DoseAreaProduct).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.</returns>
+            public static DoseAreaProductInfo CreateDefault()
+            {
+                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, GetDefaultMappings(), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.
+            /// </returns>
+            public static DoseAreaProductInfo CreateDefault(Func<IEnumerable<UnitDefinition<DoseAreaProductUnit>>, IEnumerable<IUnitDefinition<DoseAreaProductUnit>>> customizeUnits)
+            {
+                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="DoseAreaProduct"/> is T^-2L^4.
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of DoseAreaProduct is GraySquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static DoseAreaProductUnit DefaultBaseUnit { get; } = DoseAreaProductUnit.GraySquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="DoseAreaProductUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DoseAreaProductUnit}"/> representing the default unit mappings for DoseAreaProduct.</returns>
+            public static IEnumerable<UnitDefinition<DoseAreaProductUnit>> GetDefaultMappings()
+            {
+                yield return new (DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeter", "CentigraySquareCentimeters", BaseUnits.Undefined,
+                     1000000             
+                );
+                yield return new (DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeter", "CentigraySquareDecimeters", BaseUnits.Undefined,
+                     10000             
+                );
+                yield return new (DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeter", "CentigraySquareMeters", BaseUnits.Undefined,
+                     100             
+                );
+                yield return new (DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeter", "CentigraySquareMillimeters", BaseUnits.Undefined,
+                     100000000             
+                );
+                yield return new (DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeter", "DecigraySquareCentimeters", BaseUnits.Undefined,
+                     100000             
+                );
+                yield return new (DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeter", "DecigraySquareDecimeters", BaseUnits.Undefined,
+                     1000             
+                );
+                yield return new (DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeter", "DecigraySquareMeters", BaseUnits.Undefined,
+                     10             
+                );
+                yield return new (DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeter", "DecigraySquareMillimeters", BaseUnits.Undefined,
+                     10000000             
+                );
+                yield return new (DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeter", "GraySquareCentimeters", BaseUnits.Undefined,
+                     10000             
+                );
+                yield return new (DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeter", "GraySquareDecimeters", BaseUnits.Undefined,
+                     100             
+                );
+                yield return new (DoseAreaProductUnit.GraySquareMeter, "GraySquareMeter", "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeter", "GraySquareMillimeters", BaseUnits.Undefined,
+                     1000000             
+                );
+                yield return new (DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeter", "MicrograySquareCentimeters", BaseUnits.Undefined,
+                     10000000000             
+                );
+                yield return new (DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeter", "MicrograySquareDecimeters", BaseUnits.Undefined,
+                     100000000             
+                );
+                yield return new (DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeter", "MicrograySquareMeters", BaseUnits.Undefined,
+                     1000000             
+                );
+                yield return new (DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeter", "MicrograySquareMillimeters", BaseUnits.Undefined,
+                     1000000000000             
+                );
+                yield return new (DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeter", "MilligraySquareCentimeters", BaseUnits.Undefined,
+                     10000000             
+                );
+                yield return new (DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeter", "MilligraySquareDecimeters", BaseUnits.Undefined,
+                     100000             
+                );
+                yield return new (DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeter", "MilligraySquareMeters", BaseUnits.Undefined,
+                     1000             
+                );
+                yield return new (DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeter", "MilligraySquareMillimeters", BaseUnits.Undefined,
+                     1000000000             
+                );
+            }
+        }
 
         static DoseAreaProduct()
         {
-            BaseDimensions = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
-            BaseUnit = DoseAreaProductUnit.GraySquareMeter;
-            Units = Enum.GetValues(typeof(DoseAreaProductUnit)).Cast<DoseAreaProductUnit>().ToArray();
-            Zero = new DoseAreaProduct(0, BaseUnit);
-            Info = new QuantityInfo<DoseAreaProductUnit>("DoseAreaProduct",
-                new UnitInfo<DoseAreaProductUnit>[]
-                {
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareMeter, "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(DoseAreaProductInfo.CreateDefault);
         }
 
         /// <summary>
@@ -108,7 +195,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public DoseAreaProduct(double value, DoseAreaProductUnit unit)
+        public DoseAreaProduct(QuantityValue value, DoseAreaProductUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -122,7 +209,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public DoseAreaProduct(double value, UnitSystem unitSystem)
+        public DoseAreaProduct(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -133,221 +220,178 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="DoseAreaProduct" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DoseAreaProductUnit> Info { get; }
+        public static QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of DoseAreaProduct, which is GraySquareMeter. All conversions go via this value.
         /// </summary>
-        public static DoseAreaProductUnit BaseUnit { get; }
+        public static DoseAreaProductUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the DoseAreaProduct quantity.
         /// </summary>
-        public static DoseAreaProductUnit[] Units { get; }
+        public static IReadOnlyCollection<DoseAreaProductUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GraySquareMeter.
         /// </summary>
-        public static DoseAreaProduct Zero { get; }
-
-        /// <inheritdoc cref="Zero"/>
-        public static DoseAreaProduct AdditiveIdentity => Zero;
+        public static DoseAreaProduct Zero => Info.Zero;
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
-
         /// <inheritdoc />
-        double IQuantity.Value => _value;
-
-        Enum IQuantity.Unit => Unit;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public DoseAreaProductUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<DoseAreaProductUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        public QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => DoseAreaProduct.BaseDimensions;
 
+        #region Explicit implementations
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Enum IQuantity.Unit => Unit;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.QuantityInfo => Info;
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<DoseAreaProduct> IQuantityInstance<DoseAreaProduct>.QuantityInfo => Info;
+#endif
+
+        #endregion
+
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>
         /// </summary>
-        public double CentigraySquareCentimeters => As(DoseAreaProductUnit.CentigraySquareCentimeter);
+        public QuantityValue CentigraySquareCentimeters => this.As(DoseAreaProductUnit.CentigraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>
         /// </summary>
-        public double CentigraySquareDecimeters => As(DoseAreaProductUnit.CentigraySquareDecimeter);
+        public QuantityValue CentigraySquareDecimeters => this.As(DoseAreaProductUnit.CentigraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>
         /// </summary>
-        public double CentigraySquareMeters => As(DoseAreaProductUnit.CentigraySquareMeter);
+        public QuantityValue CentigraySquareMeters => this.As(DoseAreaProductUnit.CentigraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>
         /// </summary>
-        public double CentigraySquareMillimeters => As(DoseAreaProductUnit.CentigraySquareMillimeter);
+        public QuantityValue CentigraySquareMillimeters => this.As(DoseAreaProductUnit.CentigraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>
         /// </summary>
-        public double DecigraySquareCentimeters => As(DoseAreaProductUnit.DecigraySquareCentimeter);
+        public QuantityValue DecigraySquareCentimeters => this.As(DoseAreaProductUnit.DecigraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>
         /// </summary>
-        public double DecigraySquareDecimeters => As(DoseAreaProductUnit.DecigraySquareDecimeter);
+        public QuantityValue DecigraySquareDecimeters => this.As(DoseAreaProductUnit.DecigraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>
         /// </summary>
-        public double DecigraySquareMeters => As(DoseAreaProductUnit.DecigraySquareMeter);
+        public QuantityValue DecigraySquareMeters => this.As(DoseAreaProductUnit.DecigraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>
         /// </summary>
-        public double DecigraySquareMillimeters => As(DoseAreaProductUnit.DecigraySquareMillimeter);
+        public QuantityValue DecigraySquareMillimeters => this.As(DoseAreaProductUnit.DecigraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>
         /// </summary>
-        public double GraySquareCentimeters => As(DoseAreaProductUnit.GraySquareCentimeter);
+        public QuantityValue GraySquareCentimeters => this.As(DoseAreaProductUnit.GraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>
         /// </summary>
-        public double GraySquareDecimeters => As(DoseAreaProductUnit.GraySquareDecimeter);
+        public QuantityValue GraySquareDecimeters => this.As(DoseAreaProductUnit.GraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMeter"/>
         /// </summary>
-        public double GraySquareMeters => As(DoseAreaProductUnit.GraySquareMeter);
+        public QuantityValue GraySquareMeters => this.As(DoseAreaProductUnit.GraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>
         /// </summary>
-        public double GraySquareMillimeters => As(DoseAreaProductUnit.GraySquareMillimeter);
+        public QuantityValue GraySquareMillimeters => this.As(DoseAreaProductUnit.GraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>
         /// </summary>
-        public double MicrograySquareCentimeters => As(DoseAreaProductUnit.MicrograySquareCentimeter);
+        public QuantityValue MicrograySquareCentimeters => this.As(DoseAreaProductUnit.MicrograySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>
         /// </summary>
-        public double MicrograySquareDecimeters => As(DoseAreaProductUnit.MicrograySquareDecimeter);
+        public QuantityValue MicrograySquareDecimeters => this.As(DoseAreaProductUnit.MicrograySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>
         /// </summary>
-        public double MicrograySquareMeters => As(DoseAreaProductUnit.MicrograySquareMeter);
+        public QuantityValue MicrograySquareMeters => this.As(DoseAreaProductUnit.MicrograySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>
         /// </summary>
-        public double MicrograySquareMillimeters => As(DoseAreaProductUnit.MicrograySquareMillimeter);
+        public QuantityValue MicrograySquareMillimeters => this.As(DoseAreaProductUnit.MicrograySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>
         /// </summary>
-        public double MilligraySquareCentimeters => As(DoseAreaProductUnit.MilligraySquareCentimeter);
+        public QuantityValue MilligraySquareCentimeters => this.As(DoseAreaProductUnit.MilligraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>
         /// </summary>
-        public double MilligraySquareDecimeters => As(DoseAreaProductUnit.MilligraySquareDecimeter);
+        public QuantityValue MilligraySquareDecimeters => this.As(DoseAreaProductUnit.MilligraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>
         /// </summary>
-        public double MilligraySquareMeters => As(DoseAreaProductUnit.MilligraySquareMeter);
+        public QuantityValue MilligraySquareMeters => this.As(DoseAreaProductUnit.MilligraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>
         /// </summary>
-        public double MilligraySquareMillimeters => As(DoseAreaProductUnit.MilligraySquareMillimeter);
+        public QuantityValue MilligraySquareMillimeters => this.As(DoseAreaProductUnit.MilligraySquareMillimeter);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: DoseAreaProductUnit -> BaseUnit
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> DoseAreaProductUnit
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareCentimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareDecimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareMillimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareCentimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareDecimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareMillimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareCentimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareDecimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMillimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareCentimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareDecimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareMillimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareCentimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareDecimeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareMeter));
-            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareMillimeter));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -364,10 +408,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static string GetAbbreviation(DoseAreaProductUnit unit, IFormatProvider? provider)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static string GetAbbreviation(DoseAreaProductUnit unit, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
         }
 
         #endregion
@@ -377,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareCentimeters(double value)
+        public static DoseAreaProduct FromCentigraySquareCentimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareCentimeter);
         }
@@ -385,7 +429,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareDecimeters(double value)
+        public static DoseAreaProduct FromCentigraySquareDecimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareDecimeter);
         }
@@ -393,7 +437,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareMeters(double value)
+        public static DoseAreaProduct FromCentigraySquareMeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMeter);
         }
@@ -401,7 +445,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareMillimeters(double value)
+        public static DoseAreaProduct FromCentigraySquareMillimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMillimeter);
         }
@@ -409,7 +453,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareCentimeters(double value)
+        public static DoseAreaProduct FromDecigraySquareCentimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareCentimeter);
         }
@@ -417,7 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareDecimeters(double value)
+        public static DoseAreaProduct FromDecigraySquareDecimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareDecimeter);
         }
@@ -425,7 +469,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareMeters(double value)
+        public static DoseAreaProduct FromDecigraySquareMeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMeter);
         }
@@ -433,7 +477,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareMillimeters(double value)
+        public static DoseAreaProduct FromDecigraySquareMillimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMillimeter);
         }
@@ -441,7 +485,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareCentimeters(double value)
+        public static DoseAreaProduct FromGraySquareCentimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareCentimeter);
         }
@@ -449,7 +493,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareDecimeters(double value)
+        public static DoseAreaProduct FromGraySquareDecimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareDecimeter);
         }
@@ -457,7 +501,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareMeters(double value)
+        public static DoseAreaProduct FromGraySquareMeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMeter);
         }
@@ -465,7 +509,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareMillimeters(double value)
+        public static DoseAreaProduct FromGraySquareMillimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMillimeter);
         }
@@ -473,7 +517,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareCentimeters(double value)
+        public static DoseAreaProduct FromMicrograySquareCentimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareCentimeter);
         }
@@ -481,7 +525,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareDecimeters(double value)
+        public static DoseAreaProduct FromMicrograySquareDecimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareDecimeter);
         }
@@ -489,7 +533,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareMeters(double value)
+        public static DoseAreaProduct FromMicrograySquareMeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMeter);
         }
@@ -497,7 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareMillimeters(double value)
+        public static DoseAreaProduct FromMicrograySquareMillimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMillimeter);
         }
@@ -505,7 +549,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareCentimeters(double value)
+        public static DoseAreaProduct FromMilligraySquareCentimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareCentimeter);
         }
@@ -513,7 +557,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareDecimeters(double value)
+        public static DoseAreaProduct FromMilligraySquareDecimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareDecimeter);
         }
@@ -521,7 +565,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareMeters(double value)
+        public static DoseAreaProduct FromMilligraySquareMeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMeter);
         }
@@ -529,7 +573,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareMillimeters(double value)
+        public static DoseAreaProduct FromMilligraySquareMillimeters(QuantityValue value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMillimeter);
         }
@@ -540,7 +584,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>DoseAreaProduct unit value.</returns>
-        public static DoseAreaProduct From(double value, DoseAreaProductUnit fromUnit)
+        public static DoseAreaProduct From(QuantityValue value, DoseAreaProductUnit fromUnit)
         {
             return new DoseAreaProduct(value, fromUnit);
         }
@@ -601,10 +645,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static DoseAreaProduct Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<DoseAreaProduct, DoseAreaProductUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<DoseAreaProduct, DoseAreaProductUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -615,7 +656,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([NotNullWhen(true)]string? str, out DoseAreaProduct result)
+        public static bool TryParse(string? str, out DoseAreaProduct result)
         {
             return TryParse(str, null, out result);
         }
@@ -630,13 +671,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out DoseAreaProduct result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out DoseAreaProduct result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<DoseAreaProduct, DoseAreaProductUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -657,18 +694,18 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static DoseAreaProductUnit ParseUnit(string str, IFormatProvider? provider)
+        public static DoseAreaProductUnit ParseUnit(string str, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitParser.Parse<DoseAreaProductUnit>(str, provider);
+            return UnitParser.Default.Parse(str, Info.UnitInfos, culture).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DoseAreaProductUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,CultureInfo?,out UnitsNet.Units.DoseAreaProductUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out DoseAreaProductUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -683,10 +720,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DoseAreaProductUnit unit)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, CultureInfo? culture, out DoseAreaProductUnit unit)
         {
-            return UnitsNetSetup.Default.UnitParser.TryParse<DoseAreaProductUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse(str, Info, culture, out unit);
         }
 
         #endregion
@@ -702,35 +739,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="DoseAreaProduct"/> from adding two <see cref="DoseAreaProduct"/>.</summary>
         public static DoseAreaProduct operator +(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return new DoseAreaProduct(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new DoseAreaProduct(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from subtracting two <see cref="DoseAreaProduct"/>.</summary>
         public static DoseAreaProduct operator -(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return new DoseAreaProduct(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new DoseAreaProduct(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from multiplying value and <see cref="DoseAreaProduct"/>.</summary>
-        public static DoseAreaProduct operator *(double left, DoseAreaProduct right)
+        public static DoseAreaProduct operator *(QuantityValue left, DoseAreaProduct right)
         {
             return new DoseAreaProduct(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from multiplying value and <see cref="DoseAreaProduct"/>.</summary>
-        public static DoseAreaProduct operator *(DoseAreaProduct left, double right)
+        public static DoseAreaProduct operator *(DoseAreaProduct left, QuantityValue right)
         {
             return new DoseAreaProduct(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from dividing <see cref="DoseAreaProduct"/> by value.</summary>
-        public static DoseAreaProduct operator /(DoseAreaProduct left, double right)
+        public static DoseAreaProduct operator /(DoseAreaProduct left, QuantityValue right)
         {
             return new DoseAreaProduct(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="DoseAreaProduct"/> by <see cref="DoseAreaProduct"/>.</summary>
-        public static double operator /(DoseAreaProduct left, DoseAreaProduct right)
+        public static QuantityValue operator /(DoseAreaProduct left, DoseAreaProduct right)
         {
             return left.GraySquareMeters / right.GraySquareMeters;
         }
@@ -742,88 +779,82 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(DoseAreaProduct left, DoseAreaProduct right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(DoseAreaProduct other, DoseAreaProduct tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities.</summary>
         public static bool operator ==(DoseAreaProduct left, DoseAreaProduct right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="DoseAreaProduct"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(DoseAreaProduct other, DoseAreaProduct tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="DoseAreaProduct"/> quantities.</summary>
         public static bool operator !=(DoseAreaProduct left, DoseAreaProduct right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(DoseAreaProduct other, DoseAreaProduct tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is DoseAreaProduct otherQuantity))
+            if (obj is not DoseAreaProduct otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(DoseAreaProduct other, DoseAreaProduct tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="DoseAreaProduct"/> quantities.</summary>
         public bool Equals(DoseAreaProduct other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
 
-        #pragma warning restore CS0809
-
-        /// <summary>Compares the current <see cref="DoseAreaProduct"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current DoseAreaProduct.</returns>
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(typeof(DoseAreaProduct), this.As(BaseUnit));
+        }
+        
+        /// <inheritdoc  cref="CompareTo(DoseAreaProduct)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is DoseAreaProduct otherQuantity)) throw new ArgumentException("Expected type DoseAreaProduct.", nameof(obj));
+            if (obj is not DoseAreaProduct otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<DoseAreaProduct>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="DoseAreaProduct"/> with another <see cref="DoseAreaProduct"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="DoseAreaProduct"/> with another <see cref="DoseAreaProduct"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -835,260 +866,24 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(DoseAreaProduct other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another DoseAreaProduct within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(DoseAreaProduct other, DoseAreaProduct tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(DoseAreaProduct other, double tolerance, ComparisonType comparisonType)
-        {
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {
-            return other is DoseAreaProduct otherTyped
-                   && (tolerance is DoseAreaProduct toleranceTyped
-                       ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'DoseAreaProduct'.", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(DoseAreaProduct other, DoseAreaProduct tolerance)
-        {
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current DoseAreaProduct.</returns>
-        public override int GetHashCode()
-        {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return _value.CompareTo(other.As(this.Unit));
         }
 
         #endregion
 
-        #region Conversion Methods
+        #region Conversion Methods (explicit implementations for netstandard2.0)
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(DoseAreaProductUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
+#if NETSTANDARD2_0
+        QuantityValue IQuantity.As(Enum unit) => UnitConverter.Default.ConvertValue(Value, UnitKey.ForUnit(Unit), unit);
 
-            return ToUnit(unit).Value;
-        }
+        IQuantity IQuantity.ToUnit(Enum unit) => UnitConverter.Default.ConvertTo(this, unit);
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts this DoseAreaProduct to another DoseAreaProduct with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A DoseAreaProduct with the specified unit.</returns>
-        public DoseAreaProduct ToUnit(DoseAreaProductUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
+        IQuantity<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.ToUnit(DoseAreaProductUnit unit) => this.ToUnit(unit);
 
-        /// <summary>
-        ///     Converts this <see cref="DoseAreaProduct"/> to another <see cref="DoseAreaProduct"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A DoseAreaProduct with the specified unit.</returns>
-        public DoseAreaProduct ToUnit(DoseAreaProductUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(DoseAreaProduct), Unit, typeof(DoseAreaProduct), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (DoseAreaProduct)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="DoseAreaProduct"/> to another <see cref="DoseAreaProduct"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="DoseAreaProduct"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(DoseAreaProductUnit unit, [NotNullWhen(true)] out DoseAreaProduct? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            DoseAreaProduct? convertedOrNull = (Unit, unit) switch
-            {
-                // DoseAreaProductUnit -> BaseUnit
-                (DoseAreaProductUnit.CentigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.CentigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.CentigraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.CentigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.DecigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.DecigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.DecigraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.DecigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.GraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 10000, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.GraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 100, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.GraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 1000000, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MicrograySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MicrograySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MicrograySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MicrograySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MilligraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MilligraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MilligraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
-                (DoseAreaProductUnit.MilligraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
-
-                // BaseUnit -> DoseAreaProductUnit
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-2d, DoseAreaProductUnit.CentigraySquareCentimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-2d, DoseAreaProductUnit.CentigraySquareDecimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMeter) => new DoseAreaProduct((_value) / 1e-2d, DoseAreaProductUnit.CentigraySquareMeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-2d, DoseAreaProductUnit.CentigraySquareMillimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-1d, DoseAreaProductUnit.DecigraySquareCentimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-1d, DoseAreaProductUnit.DecigraySquareDecimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMeter) => new DoseAreaProduct((_value) / 1e-1d, DoseAreaProductUnit.DecigraySquareMeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-1d, DoseAreaProductUnit.DecigraySquareMillimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareCentimeter) => new DoseAreaProduct(_value * 10000, DoseAreaProductUnit.GraySquareCentimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareDecimeter) => new DoseAreaProduct(_value * 100, DoseAreaProductUnit.GraySquareDecimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMillimeter) => new DoseAreaProduct(_value * 1000000, DoseAreaProductUnit.GraySquareMillimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-6d, DoseAreaProductUnit.MicrograySquareCentimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-6d, DoseAreaProductUnit.MicrograySquareDecimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMeter) => new DoseAreaProduct((_value) / 1e-6d, DoseAreaProductUnit.MicrograySquareMeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-6d, DoseAreaProductUnit.MicrograySquareMillimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-3d, DoseAreaProductUnit.MilligraySquareCentimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-3d, DoseAreaProductUnit.MilligraySquareDecimeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMeter) => new DoseAreaProduct((_value) / 1e-3d, DoseAreaProductUnit.MilligraySquareMeter),
-                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-3d, DoseAreaProductUnit.MilligraySquareMillimeter),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public DoseAreaProduct ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not DoseAreaProductUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is DoseAreaProductUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DoseAreaProductUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IQuantity<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.ToUnit(DoseAreaProductUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        #endregion
+        IQuantity<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
+#endif
 
         #endregion
 
@@ -1103,137 +898,16 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, null);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <returns>The string representation.</returns>
         public string ToString(string? format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<DoseAreaProductUnit>(this, format, provider);
+            return QuantityFormatter.Default.Format(this, format, provider);
         }
 
         #endregion
 
-        #region IConvertible Methods
-
-        TypeCode IConvertible.GetTypeCode()
-        {
-            return TypeCode.Object;
-        }
-
-        bool IConvertible.ToBoolean(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(DoseAreaProduct)} to bool is not supported.");
-        }
-
-        byte IConvertible.ToByte(IFormatProvider? provider)
-        {
-            return Convert.ToByte(_value);
-        }
-
-        char IConvertible.ToChar(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(DoseAreaProduct)} to char is not supported.");
-        }
-
-        DateTime IConvertible.ToDateTime(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(DoseAreaProduct)} to DateTime is not supported.");
-        }
-
-        decimal IConvertible.ToDecimal(IFormatProvider? provider)
-        {
-            return Convert.ToDecimal(_value);
-        }
-
-        double IConvertible.ToDouble(IFormatProvider? provider)
-        {
-            return Convert.ToDouble(_value);
-        }
-
-        short IConvertible.ToInt16(IFormatProvider? provider)
-        {
-            return Convert.ToInt16(_value);
-        }
-
-        int IConvertible.ToInt32(IFormatProvider? provider)
-        {
-            return Convert.ToInt32(_value);
-        }
-
-        long IConvertible.ToInt64(IFormatProvider? provider)
-        {
-            return Convert.ToInt64(_value);
-        }
-
-        sbyte IConvertible.ToSByte(IFormatProvider? provider)
-        {
-            return Convert.ToSByte(_value);
-        }
-
-        float IConvertible.ToSingle(IFormatProvider? provider)
-        {
-            return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
-        {
-            if (conversionType == typeof(DoseAreaProduct))
-                return this;
-            else if (conversionType == typeof(DoseAreaProductUnit))
-                return Unit;
-            else if (conversionType == typeof(QuantityInfo))
-                return DoseAreaProduct.Info;
-            else if (conversionType == typeof(BaseDimensions))
-                return DoseAreaProduct.BaseDimensions;
-            else
-                throw new InvalidCastException($"Converting {typeof(DoseAreaProduct)} to {conversionType} is not supported.");
-        }
-
-        ushort IConvertible.ToUInt16(IFormatProvider? provider)
-        {
-            return Convert.ToUInt16(_value);
-        }
-
-        uint IConvertible.ToUInt32(IFormatProvider? provider)
-        {
-            return Convert.ToUInt32(_value);
-        }
-
-        ulong IConvertible.ToUInt64(IFormatProvider? provider)
-        {
-            return Convert.ToUInt64(_value);
-        }
-
-        #endregion
     }
 }

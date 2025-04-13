@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new DynamicViscosity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -145,15 +145,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void DynamicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            DynamicViscosityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
-            QuantityInfo<DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<DynamicViscosity, DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(DynamicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("DynamicViscosity", quantityInfo.Name);
+            Assert.Equal(DynamicViscosity.Zero, quantityInfo.Zero);
+            Assert.Equal(DynamicViscosity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(DynamicViscosity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<DynamicViscosityUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void DynamicViscosityInfo_CreateWithCustomUnitInfos()
+        {
+            DynamicViscosityUnit[] expectedUnits = [DynamicViscosityUnit.NewtonSecondPerMeterSquared];
+
+            DynamicViscosity.DynamicViscosityInfo quantityInfo = DynamicViscosity.DynamicViscosityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("DynamicViscosity", quantityInfo.Name);
+            Assert.Equal(DynamicViscosity.Zero, quantityInfo.Zero);
+            Assert.Equal(DynamicViscosity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -176,43 +194,43 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = DynamicViscosity.From(1, DynamicViscosityUnit.Centipoise);
-            AssertEx.EqualTolerance(1, quantity00.Centipoise, CentipoiseTolerance);
+            Assert.Equal(1, quantity00.Centipoise);
             Assert.Equal(DynamicViscosityUnit.Centipoise, quantity00.Unit);
 
             var quantity01 = DynamicViscosity.From(1, DynamicViscosityUnit.MicropascalSecond);
-            AssertEx.EqualTolerance(1, quantity01.MicropascalSeconds, MicropascalSecondsTolerance);
+            Assert.Equal(1, quantity01.MicropascalSeconds);
             Assert.Equal(DynamicViscosityUnit.MicropascalSecond, quantity01.Unit);
 
             var quantity02 = DynamicViscosity.From(1, DynamicViscosityUnit.MillipascalSecond);
-            AssertEx.EqualTolerance(1, quantity02.MillipascalSeconds, MillipascalSecondsTolerance);
+            Assert.Equal(1, quantity02.MillipascalSeconds);
             Assert.Equal(DynamicViscosityUnit.MillipascalSecond, quantity02.Unit);
 
             var quantity03 = DynamicViscosity.From(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
-            AssertEx.EqualTolerance(1, quantity03.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
+            Assert.Equal(1, quantity03.NewtonSecondsPerMeterSquared);
             Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity03.Unit);
 
             var quantity04 = DynamicViscosity.From(1, DynamicViscosityUnit.PascalSecond);
-            AssertEx.EqualTolerance(1, quantity04.PascalSeconds, PascalSecondsTolerance);
+            Assert.Equal(1, quantity04.PascalSeconds);
             Assert.Equal(DynamicViscosityUnit.PascalSecond, quantity04.Unit);
 
             var quantity05 = DynamicViscosity.From(1, DynamicViscosityUnit.Poise);
-            AssertEx.EqualTolerance(1, quantity05.Poise, PoiseTolerance);
+            Assert.Equal(1, quantity05.Poise);
             Assert.Equal(DynamicViscosityUnit.Poise, quantity05.Unit);
 
             var quantity06 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
-            AssertEx.EqualTolerance(1, quantity06.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
+            Assert.Equal(1, quantity06.PoundsForceSecondPerSquareFoot);
             Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, quantity06.Unit);
 
             var quantity07 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
-            AssertEx.EqualTolerance(1, quantity07.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
+            Assert.Equal(1, quantity07.PoundsForceSecondPerSquareInch);
             Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, quantity07.Unit);
 
             var quantity08 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundPerFootSecond);
-            AssertEx.EqualTolerance(1, quantity08.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
+            Assert.Equal(1, quantity08.PoundsPerFootSecond);
             Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, quantity08.Unit);
 
             var quantity09 = DynamicViscosity.From(1, DynamicViscosityUnit.Reyn);
-            AssertEx.EqualTolerance(1, quantity09.Reyns, ReynsTolerance);
+            Assert.Equal(1, quantity09.Reyns);
             Assert.Equal(DynamicViscosityUnit.Reyn, quantity09.Unit);
 
         }
@@ -357,183 +375,48 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cP", DynamicViscosityUnit.Centipoise, 4.2)]
+        [InlineData("en-US", "4.2 µPa·s", DynamicViscosityUnit.MicropascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 µPaS", DynamicViscosityUnit.MicropascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 mPa·s", DynamicViscosityUnit.MillipascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 mPaS", DynamicViscosityUnit.MillipascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s", DynamicViscosityUnit.PascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 PaS", DynamicViscosityUnit.PascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 P", DynamicViscosityUnit.Poise, 4.2)]
+        [InlineData("en-US", "4.2 lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond, 4.2)]
+        [InlineData("en-US", "4.2 reyn", DynamicViscosityUnit.Reyn, 4.2)]
+        public void Parse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 cP", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Centipoise, CentipoiseTolerance);
-                Assert.Equal(DynamicViscosityUnit.Centipoise, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 µPa·s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 µPaS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 mPa·s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 mPaS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 Ns/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 Pa·s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 PaS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 P", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Poise, PoiseTolerance);
-                Assert.Equal(DynamicViscosityUnit.Poise, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 lbf·s/in²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DynamicViscosity.Parse("1 reyn", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Reyns, ReynsTolerance);
-                Assert.Equal(DynamicViscosityUnit.Reyn, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = DynamicViscosity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cP", DynamicViscosityUnit.Centipoise, 4.2)]
+        [InlineData("en-US", "4.2 µPa·s", DynamicViscosityUnit.MicropascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 µPaS", DynamicViscosityUnit.MicropascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 mPa·s", DynamicViscosityUnit.MillipascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 mPaS", DynamicViscosityUnit.MillipascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s", DynamicViscosityUnit.PascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 PaS", DynamicViscosityUnit.PascalSecond, 4.2)]
+        [InlineData("en-US", "4.2 P", DynamicViscosityUnit.Poise, 4.2)]
+        [InlineData("en-US", "4.2 lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond, 4.2)]
+        [InlineData("en-US", "4.2 reyn", DynamicViscosityUnit.Reyn, 4.2)]
+        public void TryParse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(DynamicViscosity.TryParse("1 cP", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centipoise, CentipoiseTolerance);
-                Assert.Equal(DynamicViscosityUnit.Centipoise, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 µPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 µPaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 mPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 mPaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 Ns/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 Pa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 PaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
-                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 P", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Poise, PoiseTolerance);
-                Assert.Equal(DynamicViscosityUnit.Poise, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 lbf·s/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
-                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(DynamicViscosity.TryParse("1 reyn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Reyns, ReynsTolerance);
-                Assert.Equal(DynamicViscosityUnit.Reyn, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(DynamicViscosity.TryParse(quantityString, out DynamicViscosity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -707,6 +590,36 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", DynamicViscosityUnit.Centipoise, "cP")]
+        [InlineData("en-US", DynamicViscosityUnit.MicropascalSecond, "µPa·s")]
+        [InlineData("en-US", DynamicViscosityUnit.MillipascalSecond, "mPa·s")]
+        [InlineData("en-US", DynamicViscosityUnit.NewtonSecondPerMeterSquared, "Ns/m²")]
+        [InlineData("en-US", DynamicViscosityUnit.PascalSecond, "Pa·s")]
+        [InlineData("en-US", DynamicViscosityUnit.Poise, "P")]
+        [InlineData("en-US", DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "lbf·s/ft²")]
+        [InlineData("en-US", DynamicViscosityUnit.PoundForceSecondPerSquareInch, "lbf·s/in²")]
+        [InlineData("en-US", DynamicViscosityUnit.PoundPerFootSecond, "lb/(ft·s)")]
+        [InlineData("en-US", DynamicViscosityUnit.Reyn, "reyn")]
+        public void GetAbbreviationForCulture(string culture, DynamicViscosityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(DynamicViscosity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DynamicViscosityUnit unit)
         {
@@ -736,6 +649,7 @@ namespace UnitsNet.Tests
                 var quantity = DynamicViscosity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -759,41 +673,43 @@ namespace UnitsNet.Tests
                 IQuantity<DynamicViscosityUnit> quantityToConvert = quantity;
                 IQuantity<DynamicViscosityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromCentipoise(newtonsecondpermetersquared.Centipoise).NewtonSecondsPerMeterSquared, CentipoiseTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromMicropascalSeconds(newtonsecondpermetersquared.MicropascalSeconds).NewtonSecondsPerMeterSquared, MicropascalSecondsTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromMillipascalSeconds(newtonsecondpermetersquared.MillipascalSeconds).NewtonSecondsPerMeterSquared, MillipascalSecondsTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromNewtonSecondsPerMeterSquared(newtonsecondpermetersquared.NewtonSecondsPerMeterSquared).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPascalSeconds(newtonsecondpermetersquared.PascalSeconds).NewtonSecondsPerMeterSquared, PascalSecondsTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoise(newtonsecondpermetersquared.Poise).NewtonSecondsPerMeterSquared, PoiseTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsForceSecondPerSquareFoot(newtonsecondpermetersquared.PoundsForceSecondPerSquareFoot).NewtonSecondsPerMeterSquared, PoundsForceSecondPerSquareFootTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsForceSecondPerSquareInch(newtonsecondpermetersquared.PoundsForceSecondPerSquareInch).NewtonSecondsPerMeterSquared, PoundsForceSecondPerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsPerFootSecond(newtonsecondpermetersquared.PoundsPerFootSecond).NewtonSecondsPerMeterSquared, PoundsPerFootSecondTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromReyns(newtonsecondpermetersquared.Reyns).NewtonSecondsPerMeterSquared, ReynsTolerance);
+            DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(3);
+            Assert.Equal(3, DynamicViscosity.FromCentipoise(newtonsecondpermetersquared.Centipoise).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromMicropascalSeconds(newtonsecondpermetersquared.MicropascalSeconds).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromMillipascalSeconds(newtonsecondpermetersquared.MillipascalSeconds).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromNewtonSecondsPerMeterSquared(newtonsecondpermetersquared.NewtonSecondsPerMeterSquared).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromPascalSeconds(newtonsecondpermetersquared.PascalSeconds).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromPoise(newtonsecondpermetersquared.Poise).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromPoundsForceSecondPerSquareFoot(newtonsecondpermetersquared.PoundsForceSecondPerSquareFoot).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromPoundsForceSecondPerSquareInch(newtonsecondpermetersquared.PoundsForceSecondPerSquareInch).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromPoundsPerFootSecond(newtonsecondpermetersquared.PoundsPerFootSecond).NewtonSecondsPerMeterSquared);
+            Assert.Equal(3, DynamicViscosity.FromReyns(newtonsecondpermetersquared.Reyns).NewtonSecondsPerMeterSquared);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             DynamicViscosity v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            AssertEx.EqualTolerance(-1, -v.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (DynamicViscosity.FromNewtonSecondsPerMeterSquared(3)-v).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (v + v).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(10, (v*10).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(10, (10*v).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (DynamicViscosity.FromNewtonSecondsPerMeterSquared(10)/5).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, DynamicViscosity.FromNewtonSecondsPerMeterSquared(10)/DynamicViscosity.FromNewtonSecondsPerMeterSquared(5), NewtonSecondsPerMeterSquaredTolerance);
+            Assert.Equal(-1, -v.NewtonSecondsPerMeterSquared);
+            Assert.Equal(2, (DynamicViscosity.FromNewtonSecondsPerMeterSquared(3) - v).NewtonSecondsPerMeterSquared);
+            Assert.Equal(2, (v + v).NewtonSecondsPerMeterSquared);
+            Assert.Equal(10, (v * 10).NewtonSecondsPerMeterSquared);
+            Assert.Equal(10, (10 * v).NewtonSecondsPerMeterSquared);
+            Assert.Equal(2, (DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / 5).NewtonSecondsPerMeterSquared);
+            Assert.Equal(2, DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / DynamicViscosity.FromNewtonSecondsPerMeterSquared(5));
         }
 
         [Fact]
@@ -839,8 +755,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, true)]  // Same value and unit.
         [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 2, DynamicViscosityUnit.NewtonSecondPerMeterSquared, false)] // Different value.
-        [InlineData(2, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.Centipoise, false)] // Different value and unit.
-        [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.Centipoise, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DynamicViscosityUnit unitA, double valueB, DynamicViscosityUnit unitB, bool expectEqual)
         {
             var a = new DynamicViscosity(valueA, unitA);
@@ -878,23 +792,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(DynamicViscosity.Zero, NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
-            Assert.True(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.3, ComparisonType.Relative));
-            Assert.False(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
@@ -906,6 +803,32 @@ namespace UnitsNet.Tests
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             Assert.False(newtonsecondpermetersquared.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(firstValue);
+            var otherQuantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(secondValue);
+            DynamicViscosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, DynamicViscosity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
+            var negativeTolerance = DynamicViscosity.FromNewtonSecondsPerMeterSquared(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -922,6 +845,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(DynamicViscosity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(DynamicViscosity.Info.Units, DynamicViscosity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, DynamicViscosity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1001,157 +936,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(DynamicViscosity)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(DynamicViscosityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(DynamicViscosity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(DynamicViscosity.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(new {DynamicViscosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(DynamicViscosity), quantity.As(DynamicViscosity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

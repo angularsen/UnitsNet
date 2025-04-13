@@ -17,7 +17,7 @@ namespace UnitsNet
         ///     </para>
         /// </param>
         /// <param name = "conversionFactor">
-        ///     The <see cref = "double" /> that specifies the ratio of a natural gas volume in the standard condition to the natural gas volume in the operating condition.
+        ///     The <see cref = "Ratio" /> that specifies the ratio of a natural gas volume in the standard condition to the natural gas volume in the operating condition.
         ///     <para>
         ///         This value is normally shown on the invoice, otherwise it is to be requested from the supplier. For a rough approximation, a value of 100% for natural gas can be assumed.
         ///     </para>
@@ -28,9 +28,9 @@ namespace UnitsNet
         /// <returns>
         ///     An <see cref = "Energy" /> that specifies the combustion energy of natural gas as consumed by the heating system.
         /// </returns>
-        public static Energy CombustionEnergy ( EnergyDensity energyDensity, Volume volume, Ratio conversionFactor )
+        public static Energy CombustionEnergy(EnergyDensity energyDensity, Volume volume, Ratio conversionFactor)
         {
-            return Energy.FromJoules ( (energyDensity * volume).As ( EnergyUnit.Joule ) * conversionFactor.DecimalFractions );
+            return Energy.FromJoules((energyDensity * volume).As(EnergyUnit.Joule) * conversionFactor.DecimalFractions);
         }
     }
 }

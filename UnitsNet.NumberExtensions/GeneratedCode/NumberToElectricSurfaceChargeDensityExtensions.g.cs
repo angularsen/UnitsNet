@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
     /// </summary>
     public static class NumberToElectricSurfaceChargeDensityExtensions
     {
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(QuantityValue)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double.CreateChecked(value));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(value.ToDouble(null));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(QuantityValue)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double.CreateChecked(value));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(value.ToDouble(null));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(QuantityValue)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.CreateChecked(value));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value.ToDouble(null));
+            => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value.ToQuantityValue());
 #endif
 
     }

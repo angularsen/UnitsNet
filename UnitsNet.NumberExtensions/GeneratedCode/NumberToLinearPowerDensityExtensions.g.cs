@@ -32,279 +32,279 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
     /// </summary>
     public static class NumberToLinearPowerDensityExtensions
     {
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerCentimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerCentimeter(QuantityValue)" />
         public static LinearPowerDensity GigawattsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromGigawattsPerCentimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromGigawattsPerCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromGigawattsPerCentimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromGigawattsPerCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerFoot(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerFoot(QuantityValue)" />
         public static LinearPowerDensity GigawattsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromGigawattsPerFoot(double.CreateChecked(value));
+            => LinearPowerDensity.FromGigawattsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromGigawattsPerFoot(value.ToDouble(null));
+            => LinearPowerDensity.FromGigawattsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerInch(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerInch(QuantityValue)" />
         public static LinearPowerDensity GigawattsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromGigawattsPerInch(double.CreateChecked(value));
+            => LinearPowerDensity.FromGigawattsPerInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromGigawattsPerInch(value.ToDouble(null));
+            => LinearPowerDensity.FromGigawattsPerInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMeter(QuantityValue)" />
         public static LinearPowerDensity GigawattsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromGigawattsPerMeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromGigawattsPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromGigawattsPerMeter(value.ToDouble(null));
+            => LinearPowerDensity.FromGigawattsPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMillimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMillimeter(QuantityValue)" />
         public static LinearPowerDensity GigawattsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromGigawattsPerMillimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromGigawattsPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromGigawattsPerMillimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromGigawattsPerMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerCentimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerCentimeter(QuantityValue)" />
         public static LinearPowerDensity KilowattsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromKilowattsPerCentimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromKilowattsPerCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromKilowattsPerCentimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromKilowattsPerCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerFoot(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerFoot(QuantityValue)" />
         public static LinearPowerDensity KilowattsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromKilowattsPerFoot(double.CreateChecked(value));
+            => LinearPowerDensity.FromKilowattsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromKilowattsPerFoot(value.ToDouble(null));
+            => LinearPowerDensity.FromKilowattsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerInch(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerInch(QuantityValue)" />
         public static LinearPowerDensity KilowattsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromKilowattsPerInch(double.CreateChecked(value));
+            => LinearPowerDensity.FromKilowattsPerInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromKilowattsPerInch(value.ToDouble(null));
+            => LinearPowerDensity.FromKilowattsPerInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMeter(QuantityValue)" />
         public static LinearPowerDensity KilowattsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromKilowattsPerMeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromKilowattsPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromKilowattsPerMeter(value.ToDouble(null));
+            => LinearPowerDensity.FromKilowattsPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMillimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMillimeter(QuantityValue)" />
         public static LinearPowerDensity KilowattsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromKilowattsPerMillimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromKilowattsPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromKilowattsPerMillimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromKilowattsPerMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerCentimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerCentimeter(QuantityValue)" />
         public static LinearPowerDensity MegawattsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMegawattsPerCentimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMegawattsPerCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMegawattsPerCentimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMegawattsPerCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerFoot(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerFoot(QuantityValue)" />
         public static LinearPowerDensity MegawattsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMegawattsPerFoot(double.CreateChecked(value));
+            => LinearPowerDensity.FromMegawattsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMegawattsPerFoot(value.ToDouble(null));
+            => LinearPowerDensity.FromMegawattsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerInch(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerInch(QuantityValue)" />
         public static LinearPowerDensity MegawattsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMegawattsPerInch(double.CreateChecked(value));
+            => LinearPowerDensity.FromMegawattsPerInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMegawattsPerInch(value.ToDouble(null));
+            => LinearPowerDensity.FromMegawattsPerInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMeter(QuantityValue)" />
         public static LinearPowerDensity MegawattsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMegawattsPerMeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMegawattsPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMegawattsPerMeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMegawattsPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMillimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMillimeter(QuantityValue)" />
         public static LinearPowerDensity MegawattsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMegawattsPerMillimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMegawattsPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMegawattsPerMillimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMegawattsPerMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerCentimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerCentimeter(QuantityValue)" />
         public static LinearPowerDensity MilliwattsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMilliwattsPerCentimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMilliwattsPerCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMilliwattsPerCentimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMilliwattsPerCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerFoot(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerFoot(QuantityValue)" />
         public static LinearPowerDensity MilliwattsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMilliwattsPerFoot(double.CreateChecked(value));
+            => LinearPowerDensity.FromMilliwattsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMilliwattsPerFoot(value.ToDouble(null));
+            => LinearPowerDensity.FromMilliwattsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerInch(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerInch(QuantityValue)" />
         public static LinearPowerDensity MilliwattsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMilliwattsPerInch(double.CreateChecked(value));
+            => LinearPowerDensity.FromMilliwattsPerInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMilliwattsPerInch(value.ToDouble(null));
+            => LinearPowerDensity.FromMilliwattsPerInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMeter(QuantityValue)" />
         public static LinearPowerDensity MilliwattsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMilliwattsPerMeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMilliwattsPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMilliwattsPerMeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMilliwattsPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMillimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMillimeter(QuantityValue)" />
         public static LinearPowerDensity MilliwattsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromMilliwattsPerMillimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromMilliwattsPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromMilliwattsPerMillimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromMilliwattsPerMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerCentimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerCentimeter(QuantityValue)" />
         public static LinearPowerDensity WattsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromWattsPerCentimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromWattsPerCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromWattsPerCentimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromWattsPerCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerFoot(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerFoot(QuantityValue)" />
         public static LinearPowerDensity WattsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromWattsPerFoot(double.CreateChecked(value));
+            => LinearPowerDensity.FromWattsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromWattsPerFoot(value.ToDouble(null));
+            => LinearPowerDensity.FromWattsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerInch(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerInch(QuantityValue)" />
         public static LinearPowerDensity WattsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromWattsPerInch(double.CreateChecked(value));
+            => LinearPowerDensity.FromWattsPerInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromWattsPerInch(value.ToDouble(null));
+            => LinearPowerDensity.FromWattsPerInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMeter(QuantityValue)" />
         public static LinearPowerDensity WattsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromWattsPerMeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromWattsPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromWattsPerMeter(value.ToDouble(null));
+            => LinearPowerDensity.FromWattsPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMillimeter(double)" />
+        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMillimeter(QuantityValue)" />
         public static LinearPowerDensity WattsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LinearPowerDensity.FromWattsPerMillimeter(double.CreateChecked(value));
+            => LinearPowerDensity.FromWattsPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LinearPowerDensity.FromWattsPerMillimeter(value.ToDouble(null));
+            => LinearPowerDensity.FromWattsPerMillimeter(value.ToQuantityValue());
 #endif
 
     }

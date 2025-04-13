@@ -5,9 +5,10 @@
   <ItemGroup>
     <PackageVersion Include="UnitsNet" Version="5.65.0" />
     <PackageVersion Include="MahApps.Metro" Version="2.4.10" />
-    <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.106" />
     <PackageVersion Include="Prism.Unity" Version="9.0.537" />
     <PackageVersion Include="Prism.Wpf" Version="9.0.537" />
     <PackageVersion Include="Unity.Abstractions" Version="5.11.7" />
+    <PackageVersion Include="System.Collections.Immutable" Version="9.0.0" />
+    <PackageVersion Include="System.Reflection.Metadata" Version="9.0.0" />
   </ItemGroup>
 </Project>

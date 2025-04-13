@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
     /// </summary>
     public static class NumberToMagnetizationExtensions
     {
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(double)" />
+        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(QuantityValue)" />
         public static Magnetization AmperesPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Magnetization.FromAmperesPerMeter(double.CreateChecked(value));
+            => Magnetization.FromAmperesPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Magnetization.FromAmperesPerMeter(value.ToDouble(null));
+            => Magnetization.FromAmperesPerMeter(value.ToQuantityValue());
 #endif
 
     }

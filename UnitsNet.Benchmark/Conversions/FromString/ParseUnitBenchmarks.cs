@@ -6,13 +6,34 @@ using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark.Conversions.FromString;
 
+// [MemoryDiagnoser]
+// [SimpleJob(RuntimeMoniker.Net48)]
+// [SimpleJob(RuntimeMoniker.Net80)]
+// public class IsTerminatingValueBenchmarks
+// {
+//     private QuantityValue Value = QuantityValue.FromTerms(1, 350);
+//     // private QuantityValue Value = QuantityValue.FromTerms(1, 350 * 12345);
+//     // private QuantityValue Value = QuantityValue.FromPowerOfTen(1, 350 * 12345, -20);
+//
+//     [Benchmark(Baseline = true)]
+//     public bool HasTerminatingDecimal()
+//     {
+//         return QuantityValue.HasFiniteDecimalExpansion(Value);
+//     }
+//     [Benchmark(Baseline = false)]
+//     public bool HasTerminatingDecimalBitwise()
+//     {
+//         return Value.ToString("G", CultureInfo.InvariantCulture).Length < 16;
+//     }
+// }
+
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
 [SimpleJob(RuntimeMoniker.Net80)]
 public class ParseUnitBenchmarks
 {
     private const int NbAbbreviations = 1000;
-    
+
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
     private readonly Random _random = new(42);
     private string[] _densityUnits;
@@ -57,8 +78,7 @@ public class ParseUnitBenchmarks
     public void PrepareVolumeFlowUnits()
     {
         _volumeFlowUnits = _random.GetRandomAbbreviations<VolumeFlowUnit>(UnitsNetSetup.Default.UnitAbbreviations, NbAbbreviations);
-        // initializes the QuantityInfoLookup and the abbreviations cache
-        VolumeFlow.TryParseUnit("_invalid", Culture, out _);
+        VolumeFlow.ParseUnit(_volumeFlowUnits[0], Culture);
     }
 
     [Benchmark(Baseline = true)]

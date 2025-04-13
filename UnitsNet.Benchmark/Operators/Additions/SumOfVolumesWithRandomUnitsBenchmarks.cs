@@ -14,38 +14,36 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfVolumesWithRandomUnitsBenchmarks
 {
-    private static readonly double Value = 1.23;
+    private static readonly QuantityValue Value = 1.23;
 
-    private readonly Random _random = new(41);
+    private readonly Random _random = new(42);
     private Volume[] _quantities;
 
     [Params(10, 100, 1000)]
     public int NbOperations { get; set; }
+    
+    [Params(true)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _quantities = _random.GetRandomQuantities<Volume, VolumeUnit>(Value, Volume.Units, NbOperations).ToArray();
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
         Quantity.From(Value, Volume.BaseUnit); // TODO we need a better way to "disable" the lazy loading of the _quantitiesByUnitType (QuantityInfoLookup)
-        Console.Out.WriteLine("Quantities prepared: starting unit = {0}", _quantities[0].Unit);
+        
+        _quantities = _random.GetRandomQuantities<Volume, VolumeUnit>(Value, Volume.Units.ToArray(), NbOperations).ToArray();
+        Console.Out.WriteLine("Quantities prepared: starting unit = {0} ({1})", _quantities[0].Unit, _quantities[0].QuantityInfo[_quantities[0].Unit].ConversionToBase);
     }
     
     [Benchmark(Baseline = true)]
     public Volume SumOfVolumes()
     {
-#if NET
-        return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
-#else
-        Volume sum = Volume.Zero;
-        foreach (var quantity in _quantities)
-        {
-            sum = quantity + sum;
-        }
-
-        return sum;
-#endif
+        return _quantities.Sum();
     }
-    
+
     [Benchmark(Baseline = false)]
     public Volume SumOfVolumesInBaseUnit()
     {

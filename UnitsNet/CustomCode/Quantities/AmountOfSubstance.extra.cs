@@ -22,16 +22,15 @@ namespace UnitsNet
         ///     is planned to take effect on 20 May 2019. The value of the constant will be fixed to exactly 6.02214076×1023 mol−1.
         ///     See here: https://www.bipm.org/utils/common/pdf/CGPM-2018/26th-CGPM-Resolutions.pdf
         /// </remarks>
-        public static double AvogadroConstant { get; } = 6.02214076e23;
+        public static QuantityValue AvogadroConstant { get; } = 6.02214076e23m;
 
         /// <summary>
         /// Calculates the number of particles (atoms or molecules) in this amount of substance using the <see cref="AvogadroConstant"/>.
         /// </summary>
         /// <returns>The number of particles (atoms or molecules) in this amount of substance.</returns>
-        public double NumberOfParticles()
+        public QuantityValue NumberOfParticles()
         {
-            var moles = ToUnit(AmountOfSubstanceUnit.Mole);
-            return AvogadroConstant * moles.Value;
+            return AvogadroConstant * this.As(AmountOfSubstanceUnit.Mole);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="Mass" /> and a given <see cref="MolarMass" />.</summary>

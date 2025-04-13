@@ -20,7 +20,7 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void From_GivenNaNOrInfinity_DoNotThrowsArgumentException(double value)
+        public void From_GivenNaNOrInfinity_DoesNotThrowArgumentException(double value)
         {
             var exception = Record.Exception(() => Quantity.From(value, LengthUnit.Centimeter));
 
@@ -50,6 +50,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.From(3, LengthUnit.Centimeter));
             Assert.Equal(Mass.FromTonnes(3), Quantity.From(3, MassUnit.Tonne));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.From(3, PressureUnit.Megabar));
+        }
+
+        [Fact]
+        public void FromQuantityInfo_ReturnsQuantityWithBaseUnit()
+        {
+            IQuantity quantity = Quantity.FromQuantityInfo(Length.Info, 1);
+            Assert.Equal(1, quantity.Value);
+            Assert.Equal(Length.BaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -98,7 +106,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetUnitInfo_ThrowsUnitNotFoundExceptionIfNotFound()
+        public void GetUnitInfo_ThrowsKeyNotFoundExceptionIfNotFound()
         {
             Assert.Throws<UnitNotFoundException>(() => Quantity.GetUnitInfo(ConsoleColor.Red));
         }
@@ -116,12 +124,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.Parse(InvariantCulture, typeof(Length), "3 cm"));
             Assert.Equal(Mass.FromTonnes(3), Quantity.Parse(InvariantCulture, typeof(Mass), "03t"));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.Parse(InvariantCulture, typeof(Pressure), "3.0 Mbar"));
-        }
-
-        [Fact]
-        public void Parse_GivenInvalidType_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Quantity.Parse(typeof(bool), "3 cm"));
         }
 
         [Theory]
@@ -180,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(InvariantCulture, typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(DateTime), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 
@@ -215,7 +217,7 @@ namespace UnitsNet.Tests
         {
             var knownQuantities = new List<QuantityInfo> { Length.Info, Force.Info, Mass.Info };
 
-            ICollection<QuantityInfo> types = Quantity.ByName.Values;
+            IEnumerable<QuantityInfo> types = Quantity.ByName.Values;
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }

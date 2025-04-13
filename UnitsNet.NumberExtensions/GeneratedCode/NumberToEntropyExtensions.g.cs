@@ -32,81 +32,81 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
     /// </summary>
     public static class NumberToEntropyExtensions
     {
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(QuantityValue)" />
         public static Entropy CaloriesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromCaloriesPerKelvin(double.CreateChecked(value));
+            => Entropy.FromCaloriesPerKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromCaloriesPerKelvin(value.ToDouble(null));
+            => Entropy.FromCaloriesPerKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)" />
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(QuantityValue)" />
         public static Entropy JoulesPerDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromJoulesPerDegreeCelsius(double.CreateChecked(value));
+            => Entropy.FromJoulesPerDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromJoulesPerDegreeCelsius(value.ToDouble(null));
+            => Entropy.FromJoulesPerDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(QuantityValue)" />
         public static Entropy JoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromJoulesPerKelvin(double.CreateChecked(value));
+            => Entropy.FromJoulesPerKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromJoulesPerKelvin(value.ToDouble(null));
+            => Entropy.FromJoulesPerKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(QuantityValue)" />
         public static Entropy KilocaloriesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromKilocaloriesPerKelvin(double.CreateChecked(value));
+            => Entropy.FromKilocaloriesPerKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromKilocaloriesPerKelvin(value.ToDouble(null));
+            => Entropy.FromKilocaloriesPerKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)" />
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(QuantityValue)" />
         public static Entropy KilojoulesPerDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromKilojoulesPerDegreeCelsius(double.CreateChecked(value));
+            => Entropy.FromKilojoulesPerDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromKilojoulesPerDegreeCelsius(value.ToDouble(null));
+            => Entropy.FromKilojoulesPerDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(QuantityValue)" />
         public static Entropy KilojoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromKilojoulesPerKelvin(double.CreateChecked(value));
+            => Entropy.FromKilojoulesPerKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromKilojoulesPerKelvin(value.ToDouble(null));
+            => Entropy.FromKilojoulesPerKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(QuantityValue)" />
         public static Entropy MegajoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Entropy.FromMegajoulesPerKelvin(double.CreateChecked(value));
+            => Entropy.FromMegajoulesPerKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Entropy.FromMegajoulesPerKelvin(value.ToDouble(null));
+            => Entropy.FromMegajoulesPerKelvin(value.ToQuantityValue());
 #endif
 
     }

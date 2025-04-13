@@ -14,20 +14,28 @@ namespace UnitsNet.Benchmark.Operators.Divisions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class MassDividedByVolumeWithRandomUnitsBenchmarks
 {
-    private static readonly double MassValue = 1.23;
-    private static readonly double VolumeValue = 9.42;
+    private static readonly QuantityValue MassValue = 1.23;
+    private static readonly QuantityValue VolumeValue = 9.42;
 
     private readonly Random _random = new(42);
     private (Mass left, Volume right)[] _operands;
 
     [Params(1000)]
     public int NbOperations { get; set; }
+    
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+    
+    [ParamsAllValues]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<Mass, MassUnit>(MassValue, Mass.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units, NbOperations), (mass, volume) => (volume: mass, density: volume))
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        
+        _operands = _random.GetRandomQuantities<Mass, MassUnit>(MassValue, Mass.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units.ToArray(), NbOperations), (mass, volume) => (volume: mass, density: volume))
             .ToArray();
     }
 

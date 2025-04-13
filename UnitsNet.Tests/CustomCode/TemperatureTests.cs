@@ -2,7 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -35,103 +35,118 @@ namespace UnitsNet.Tests
             Assert.All(Temperature.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(temperature: unitInfo.Value), unitInfo.BaseUnits));
         }
 
-        public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =
-            new List<object[]>
+        public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } = new[]
         {
-                new object[] { Temperature.FromDegreesCelsius(10), 1, Temperature.FromDegreesCelsius(10) },
-                new object[] { Temperature.FromDegreesCelsius(10), 5, Temperature.FromDegreesCelsius(2) },
-                new object[] { Temperature.FromDegreesCelsius(10), -10, Temperature.FromDegreesCelsius(-1) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), 1, Temperature.FromDegreesFahrenheit(10) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), 5, Temperature.FromDegreesFahrenheit(2) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), -10, Temperature.FromDegreesFahrenheit(-1) }
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), 1, (10m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), 5, (2m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), -10, (-1m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), 1, (10m, TemperatureUnit.DegreeFahrenheit) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), 5, (2m, TemperatureUnit.DegreeFahrenheit) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), -10, (-1m, TemperatureUnit.DegreeFahrenheit) }
         };
 
-        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
-            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
         [Theory]
         [MemberData(nameof(DividedByTemperatureDeltaEqualsTemperatureData))]
-        public void DividedByTemperatureDeltaEqualsTemperature(Temperature temperature, int divisor, Temperature expected)
+        public void DividedByTemperatureDeltaEqualsTemperature((decimal Value, TemperatureUnit Unit) temperature, decimal divisor,
+            (decimal Value, TemperatureUnit Unit) expected)
         {
-            Temperature resultTemp = temperature.Divide(divisor, temperature.Unit);
-            Assert.True(expected.Equals(resultTemp, 1e-5, ComparisonType.Absolute));
+            var temp = new Temperature(temperature.Value, temperature.Unit);
+            Temperature result = temp.Divide(divisor, temperature.Unit);
+            Assert.Equal(expected.Value, result.Value);
+            Assert.Equal(expected.Unit, result.Unit);
         }
 
-        public static IEnumerable<object[]> MultiplyByTemperatureDeltaEqualsTemperatureData { get; } =
-            new List<object[]>
+        public static IEnumerable<object[]> MultiplyByTemperatureDeltaEqualsTemperatureData { get; } = new[]
         {
-                new object[] { Temperature.FromDegreesCelsius(10), 0, Temperature.FromDegreesCelsius(0) },
-                new object[] { Temperature.FromDegreesCelsius(10), 5, Temperature.FromDegreesCelsius(50) },
-                new object[] { Temperature.FromDegreesCelsius(10), -5, Temperature.FromDegreesCelsius(-50) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), 0, Temperature.FromDegreesFahrenheit(0) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), 5, Temperature.FromDegreesFahrenheit(50) },
-                new object[] { Temperature.FromDegreesFahrenheit(10), -5, Temperature.FromDegreesFahrenheit(-50) }
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), 0, (0m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), 5, (50m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeCelsius), -5, (-50m, TemperatureUnit.DegreeCelsius) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), 0, (0m, TemperatureUnit.DegreeFahrenheit) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), 5, (50m, TemperatureUnit.DegreeFahrenheit) },
+            new object[] { (10m, TemperatureUnit.DegreeFahrenheit), -5, (-50m, TemperatureUnit.DegreeFahrenheit) }
         };
 
-        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
-            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
         [Theory]
         [MemberData(nameof(MultiplyByTemperatureDeltaEqualsTemperatureData))]
-        public void MultiplyByTemperatureDeltaEqualsTemperature(Temperature temperature, int factor, Temperature expected)
+        public void MultiplyByTemperatureDeltaEqualsTemperature((decimal Value, TemperatureUnit Unit) temperature, decimal factor,
+            (decimal Value, TemperatureUnit Unit) expected)
         {
-            Temperature resultTemp = temperature.Multiply(factor, temperature.Unit);
-            Assert.True(expected.Equals(resultTemp, 1e-5, ComparisonType.Absolute));
+            var temp = new Temperature(temperature.Value, temperature.Unit);
+            var result = temp.Multiply(factor, temperature.Unit);;
+            Assert.Equal(expected.Value, result.Value);
+            Assert.Equal(expected.Unit, result.Unit);
         }
 
-        public static IEnumerable<object[]> TemperatureDeltaPlusTemperatureEqualsTemperatureData { get; } =
-            new List<object[]>
+        public static IEnumerable<object[]> TemperatureDeltaPlusTemperatureEqualsTemperatureData { get; } = new[]
         {
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(0), Temperature.FromDegreesCelsius(-10) },
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(10), Temperature.FromDegreesCelsius(0) },
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(20), Temperature.FromDegreesCelsius(10) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(0), Temperature.FromDegreesFahrenheit(-10) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(10), Temperature.FromDegreesFahrenheit(0) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(10) }
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 0m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 0m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit }
         };
 
         [Theory]
         [MemberData(nameof(TemperatureDeltaPlusTemperatureEqualsTemperatureData))]
-        public void TemperatureDeltaPlusTemperatureEqualsTemperature(Temperature temperature, TemperatureDelta delta, Temperature expected)
+        public void TemperatureDeltaPlusTemperatureEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+            TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
         {
-            Temperature resultTemp = delta + temperature;
-            Assert.True(expected.Equals(resultTemp, 1e-5, ComparisonType.Absolute));
+            var temperature = new Temperature(temperatureValue, temperatureUnit);
+            var temperatureDelta = new TemperatureDelta(deltaValue, deltaUnit);
+            var expectedTemperature = new Temperature(expectedValue, expectedUnit);
+            
+            Temperature result = temperature + temperatureDelta;
+            
+            Assert.Equal(expectedTemperature, result);
         }
 
-        public static IEnumerable<object[]> TemperatureMinusTemperatureDeltaEqualsTemperatureData { get; } =
-            new List<object[]>
+        public static IEnumerable<object[]> TemperatureMinusTemperatureDeltaEqualsTemperatureData { get; } = new[]
         {
-                new object[] { Temperature.FromDegreesCelsius(20), TemperatureDelta.FromDegreesCelsius(10), Temperature.FromDegreesCelsius(10) },
-                new object[] { Temperature.FromDegreesCelsius(20), TemperatureDelta.FromDegreesCelsius(20), Temperature.FromDegreesCelsius(0) },
-                new object[] { Temperature.FromDegreesCelsius(20), TemperatureDelta.FromDegreesCelsius(30), Temperature.FromDegreesCelsius(-10) },
-                new object[] { Temperature.FromDegreesFahrenheit(20), TemperatureDelta.FromDegreesFahrenheit(10), Temperature.FromDegreesFahrenheit(10) },
-                new object[] { Temperature.FromDegreesFahrenheit(20), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(0) },
-                new object[] { Temperature.FromDegreesFahrenheit(20), TemperatureDelta.FromDegreesFahrenheit(30), Temperature.FromDegreesFahrenheit(-10) }
+            new object[] { 20m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius },
+            new object[] { 20m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius },
+            new object[] { 20m, TemperatureUnit.DegreeCelsius, 30m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius },
+            new object[] { 20m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { 20m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { 20m, TemperatureUnit.DegreeFahrenheit, 30m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit }
         };
 
         [Theory]
         [MemberData(nameof(TemperatureMinusTemperatureDeltaEqualsTemperatureData))]
-        public void TemperatureMinusTemperatureDeltaEqualsTemperature(Temperature temperature, TemperatureDelta delta, Temperature expected)
+        public void TemperatureMinusTemperatureDeltaEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+            TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
         {
-            Temperature resultTemp = temperature - delta;
-            Assert.True(expected.Equals(resultTemp, 1e-5, ComparisonType.Absolute));
+            var temp = new Temperature(temperatureValue, temperatureUnit);
+            var delta = new TemperatureDelta(deltaValue, deltaUnit);
+            var expectedTemperature = new Temperature(expectedValue, expectedUnit);
+            
+            Temperature result = temp - delta;
+            
+            Assert.Equal(expectedTemperature, result);
         }
 
-        public static IEnumerable<object[]> TemperaturePlusTemperatureDeltaEqualsTemperatureData { get; } =
-            new List<object[]>
+        public static IEnumerable<object[]> TemperaturePlusTemperatureDeltaEqualsTemperatureData { get; } = new[]
         {
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(0), Temperature.FromDegreesCelsius(-10) },
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(10), Temperature.FromDegreesCelsius(0) },
-                new object[] { Temperature.FromDegreesCelsius(-10), TemperatureDelta.FromDegreesCelsius(20), Temperature.FromDegreesCelsius(10) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(0), Temperature.FromDegreesFahrenheit(-10) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(10), Temperature.FromDegreesFahrenheit(0) },
-                new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(10) }
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 0m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 0m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit },
+            new object[] { -10m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit }
         };
 
         [Theory]
         [MemberData(nameof(TemperaturePlusTemperatureDeltaEqualsTemperatureData))]
-        public void TemperaturePlusTemperatureDeltaEqualsTemperature(Temperature temperature, TemperatureDelta delta, Temperature expected)
+        public void TemperaturePlusTemperatureDeltaEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+            TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
         {
-            Temperature resultTemp = temperature + delta;
-            Assert.True(expected.Equals(resultTemp, 1e-5, ComparisonType.Absolute));
+            var temp = new Temperature(temperatureValue, temperatureUnit);
+            var delta = new TemperatureDelta(deltaValue, deltaUnit);
+            var expectedTemperature = new Temperature(expectedValue, expectedUnit);
+            
+            Temperature result = temp + delta;
+            
+            Assert.Equal(expectedTemperature, result);
         }
     }
 }

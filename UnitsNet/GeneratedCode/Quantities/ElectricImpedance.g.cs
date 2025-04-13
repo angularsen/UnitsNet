@@ -18,15 +18,15 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Numerics;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.Units;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -43,7 +43,8 @@ namespace UnitsNet
     /// </remarks>
     [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ElectricImpedance :
         IArithmeticQuantity<ElectricImpedance, ElectricImpedanceUnit>,
 #if NET7_0_OR_GREATER
@@ -52,44 +53,106 @@ namespace UnitsNet
 #endif
         IComparable,
         IComparable<ElectricImpedance>,
-        IConvertible,
         IEquatable<ElectricImpedance>,
         IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly ElectricImpedanceUnit? _unit;
+
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricImpedance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricImpedanceInfo: QuantityInfo<ElectricImpedance, ElectricImpedanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricImpedanceInfo(string name, ElectricImpedanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>> unitMappings, ElectricImpedance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricImpedance, ElectricImpedanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricImpedanceInfo(string name, ElectricImpedanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>> unitMappings, ElectricImpedance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricImpedance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricImpedance", typeof(ElectricImpedance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings for the ElectricImpedance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings.</returns>
+            public static ElectricImpedanceInfo CreateDefault()
+            {
+                return new ElectricImpedanceInfo(nameof(ElectricImpedance), DefaultBaseUnit, GetDefaultMappings(), new ElectricImpedance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings for the ElectricImpedance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricImpedanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricImpedanceUnit>>, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>>> customizeUnits)
+            {
+                return new ElectricImpedanceInfo(nameof(ElectricImpedance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricImpedance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricImpedance"/> is T^-3L^2MI^-2.
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricImpedance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricImpedanceUnit DefaultBaseUnit { get; } = ElectricImpedanceUnit.Ohm;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricImpedanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricImpedanceUnit}"/> representing the default unit mappings for ElectricImpedance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricImpedanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricImpedanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(1, 1000000000)             
+                );
+                yield return new (ElectricImpedanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (ElectricImpedanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (ElectricImpedanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     1000000             
+                );
+                yield return new (ElectricImpedanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     1000             
+                );
+                yield return new (ElectricImpedanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     1000000000             
+                );
+                yield return new (ElectricImpedanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(1, 1000000000000)             
+                );
+            }
+        }
 
         static ElectricImpedance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-            BaseUnit = ElectricImpedanceUnit.Ohm;
-            Units = Enum.GetValues(typeof(ElectricImpedanceUnit)).Cast<ElectricImpedanceUnit>().ToArray();
-            Zero = new ElectricImpedance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricImpedanceUnit>("ElectricImpedance",
-                new UnitInfo<ElectricImpedanceUnit>[]
-                {
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Milliohm, "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(ElectricImpedanceInfo.CreateDefault);
         }
 
         /// <summary>
@@ -97,7 +160,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricImpedance(double value, ElectricImpedanceUnit unit)
+        public ElectricImpedance(QuantityValue value, ElectricImpedanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -111,7 +174,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricImpedance(double value, UnitSystem unitSystem)
+        public ElectricImpedance(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -122,137 +185,118 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricImpedance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricImpedanceUnit> Info { get; }
+        public static QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricImpedance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricImpedanceUnit BaseUnit { get; }
+        public static ElectricImpedanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricImpedance quantity.
         /// </summary>
-        public static ElectricImpedanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricImpedanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricImpedance Zero { get; }
-
-        /// <inheritdoc cref="Zero"/>
-        public static ElectricImpedance AdditiveIdentity => Zero;
+        public static ElectricImpedance Zero => Info.Zero;
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
-
         /// <inheritdoc />
-        double IQuantity.Value => _value;
-
-        Enum IQuantity.Unit => Unit;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public ElectricImpedanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricImpedanceUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        public QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => ElectricImpedance.BaseDimensions;
 
+        #region Explicit implementations
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Enum IQuantity.Unit => Unit;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.QuantityInfo => Info;
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<ElectricImpedance> IQuantityInstance<ElectricImpedance>.QuantityInfo => Info;
+#endif
+
+        #endregion
+
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Gigaohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Gigaohm"/>
         /// </summary>
-        public double Gigaohms => As(ElectricImpedanceUnit.Gigaohm);
+        public QuantityValue Gigaohms => this.As(ElectricImpedanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Kiloohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Kiloohm"/>
         /// </summary>
-        public double Kiloohms => As(ElectricImpedanceUnit.Kiloohm);
+        public QuantityValue Kiloohms => this.As(ElectricImpedanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Megaohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Megaohm"/>
         /// </summary>
-        public double Megaohms => As(ElectricImpedanceUnit.Megaohm);
+        public QuantityValue Megaohms => this.As(ElectricImpedanceUnit.Megaohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Microohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Microohm"/>
         /// </summary>
-        public double Microohms => As(ElectricImpedanceUnit.Microohm);
+        public QuantityValue Microohms => this.As(ElectricImpedanceUnit.Microohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Milliohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Milliohm"/>
         /// </summary>
-        public double Milliohms => As(ElectricImpedanceUnit.Milliohm);
+        public QuantityValue Milliohms => this.As(ElectricImpedanceUnit.Milliohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Nanoohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Nanoohm"/>
         /// </summary>
-        public double Nanoohms => As(ElectricImpedanceUnit.Nanoohm);
+        public QuantityValue Nanoohms => this.As(ElectricImpedanceUnit.Nanoohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Ohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Ohm"/>
         /// </summary>
-        public double Ohms => As(ElectricImpedanceUnit.Ohm);
+        public QuantityValue Ohms => this.As(ElectricImpedanceUnit.Ohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Teraohm"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Teraohm"/>
         /// </summary>
-        public double Teraohms => As(ElectricImpedanceUnit.Teraohm);
+        public QuantityValue Teraohms => this.As(ElectricImpedanceUnit.Teraohm);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: ElectricImpedanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Gigaohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Kiloohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Megaohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Microohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Milliohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Nanoohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Teraohm, ElectricImpedanceUnit.Ohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Ohm));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Ohm, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> ElectricImpedanceUnit
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Gigaohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Gigaohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Kiloohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Kiloohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Megaohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Megaohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Microohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Microohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Milliohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Milliohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Nanoohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Nanoohm));
-            unitConverter.SetConversionFunction<ElectricImpedance>(ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Teraohm, quantity => quantity.ToUnit(ElectricImpedanceUnit.Teraohm));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -269,10 +313,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static string GetAbbreviation(ElectricImpedanceUnit unit, IFormatProvider? provider)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static string GetAbbreviation(ElectricImpedanceUnit unit, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
         }
 
         #endregion
@@ -282,7 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Gigaohm"/>.
         /// </summary>
-        public static ElectricImpedance FromGigaohms(double value)
+        public static ElectricImpedance FromGigaohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Gigaohm);
         }
@@ -290,7 +334,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Kiloohm"/>.
         /// </summary>
-        public static ElectricImpedance FromKiloohms(double value)
+        public static ElectricImpedance FromKiloohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Kiloohm);
         }
@@ -298,7 +342,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Megaohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMegaohms(double value)
+        public static ElectricImpedance FromMegaohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Megaohm);
         }
@@ -306,7 +350,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Microohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMicroohms(double value)
+        public static ElectricImpedance FromMicroohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Microohm);
         }
@@ -314,7 +358,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Milliohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMilliohms(double value)
+        public static ElectricImpedance FromMilliohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Milliohm);
         }
@@ -322,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Nanoohm"/>.
         /// </summary>
-        public static ElectricImpedance FromNanoohms(double value)
+        public static ElectricImpedance FromNanoohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Nanoohm);
         }
@@ -330,7 +374,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Ohm"/>.
         /// </summary>
-        public static ElectricImpedance FromOhms(double value)
+        public static ElectricImpedance FromOhms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Ohm);
         }
@@ -338,7 +382,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Teraohm"/>.
         /// </summary>
-        public static ElectricImpedance FromTeraohms(double value)
+        public static ElectricImpedance FromTeraohms(QuantityValue value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Teraohm);
         }
@@ -349,7 +393,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricImpedance unit value.</returns>
-        public static ElectricImpedance From(double value, ElectricImpedanceUnit fromUnit)
+        public static ElectricImpedance From(QuantityValue value, ElectricImpedanceUnit fromUnit)
         {
             return new ElectricImpedance(value, fromUnit);
         }
@@ -410,10 +454,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricImpedance Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricImpedance, ElectricImpedanceUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<ElectricImpedance, ElectricImpedanceUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -424,7 +465,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricImpedance result)
+        public static bool TryParse(string? str, out ElectricImpedance result)
         {
             return TryParse(str, null, out result);
         }
@@ -439,13 +480,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricImpedance result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricImpedance result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricImpedance, ElectricImpedanceUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<ElectricImpedance, ElectricImpedanceUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -466,18 +503,18 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricImpedanceUnit ParseUnit(string str, IFormatProvider? provider)
+        public static ElectricImpedanceUnit ParseUnit(string str, CultureInfo? culture)
         {
-            return UnitsNetSetup.Default.UnitParser.Parse<ElectricImpedanceUnit>(str, provider);
+            return UnitParser.Default.Parse(str, Info.UnitInfos, culture).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricImpedanceUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,CultureInfo?,out UnitsNet.Units.ElectricImpedanceUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricImpedanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -492,10 +529,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricImpedanceUnit unit)
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, CultureInfo? culture, out ElectricImpedanceUnit unit)
         {
-            return UnitsNetSetup.Default.UnitParser.TryParse<ElectricImpedanceUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse(str, Info, culture, out unit);
         }
 
         #endregion
@@ -511,35 +548,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricImpedance"/> from adding two <see cref="ElectricImpedance"/>.</summary>
         public static ElectricImpedance operator +(ElectricImpedance left, ElectricImpedance right)
         {
-            return new ElectricImpedance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricImpedance(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from subtracting two <see cref="ElectricImpedance"/>.</summary>
         public static ElectricImpedance operator -(ElectricImpedance left, ElectricImpedance right)
         {
-            return new ElectricImpedance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricImpedance(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from multiplying value and <see cref="ElectricImpedance"/>.</summary>
-        public static ElectricImpedance operator *(double left, ElectricImpedance right)
+        public static ElectricImpedance operator *(QuantityValue left, ElectricImpedance right)
         {
             return new ElectricImpedance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from multiplying value and <see cref="ElectricImpedance"/>.</summary>
-        public static ElectricImpedance operator *(ElectricImpedance left, double right)
+        public static ElectricImpedance operator *(ElectricImpedance left, QuantityValue right)
         {
             return new ElectricImpedance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from dividing <see cref="ElectricImpedance"/> by value.</summary>
-        public static ElectricImpedance operator /(ElectricImpedance left, double right)
+        public static ElectricImpedance operator /(ElectricImpedance left, QuantityValue right)
         {
             return new ElectricImpedance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricImpedance"/> by <see cref="ElectricImpedance"/>.</summary>
-        public static double operator /(ElectricImpedance left, ElectricImpedance right)
+        public static QuantityValue operator /(ElectricImpedance left, ElectricImpedance right)
         {
             return left.Ohms / right.Ohms;
         }
@@ -551,88 +588,82 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricImpedance left, ElectricImpedance right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricImpedance left, ElectricImpedance right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricImpedance left, ElectricImpedance right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricImpedance left, ElectricImpedance right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricImpedance other, ElectricImpedance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities.</summary>
         public static bool operator ==(ElectricImpedance left, ElectricImpedance right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ElectricImpedance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricImpedance other, ElectricImpedance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ElectricImpedance"/> quantities.</summary>
         public static bool operator !=(ElectricImpedance left, ElectricImpedance right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricImpedance other, ElectricImpedance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is ElectricImpedance otherQuantity))
+            if (obj is not ElectricImpedance otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricImpedance other, ElectricImpedance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricImpedance"/> quantities.</summary>
         public bool Equals(ElectricImpedance other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
 
-        #pragma warning restore CS0809
-
-        /// <summary>Compares the current <see cref="ElectricImpedance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current ElectricImpedance.</returns>
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(typeof(ElectricImpedance), this.As(BaseUnit));
+        }
+        
+        /// <inheritdoc  cref="CompareTo(ElectricImpedance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ElectricImpedance otherQuantity)) throw new ArgumentException("Expected type ElectricImpedance.", nameof(obj));
+            if (obj is not ElectricImpedance otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<ElectricImpedance>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="ElectricImpedance"/> with another <see cref="ElectricImpedance"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="ElectricImpedance"/> with another <see cref="ElectricImpedance"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -644,236 +675,24 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(ElectricImpedance other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another ElectricImpedance within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(ElectricImpedance other, ElectricImpedance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(ElectricImpedance other, double tolerance, ComparisonType comparisonType)
-        {
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {
-            return other is ElectricImpedance otherTyped
-                   && (tolerance is ElectricImpedance toleranceTyped
-                       ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ElectricImpedance'.", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(ElectricImpedance other, ElectricImpedance tolerance)
-        {
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current ElectricImpedance.</returns>
-        public override int GetHashCode()
-        {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return _value.CompareTo(other.As(this.Unit));
         }
 
         #endregion
 
-        #region Conversion Methods
+        #region Conversion Methods (explicit implementations for netstandard2.0)
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricImpedanceUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
+#if NETSTANDARD2_0
+        QuantityValue IQuantity.As(Enum unit) => UnitConverter.Default.ConvertValue(Value, UnitKey.ForUnit(Unit), unit);
 
-            return ToUnit(unit).Value;
-        }
+        IQuantity IQuantity.ToUnit(Enum unit) => UnitConverter.Default.ConvertTo(this, unit);
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts this ElectricImpedance to another ElectricImpedance with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A ElectricImpedance with the specified unit.</returns>
-        public ElectricImpedance ToUnit(ElectricImpedanceUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
+        IQuantity<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.ToUnit(ElectricImpedanceUnit unit) => this.ToUnit(unit);
 
-        /// <summary>
-        ///     Converts this <see cref="ElectricImpedance"/> to another <see cref="ElectricImpedance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A ElectricImpedance with the specified unit.</returns>
-        public ElectricImpedance ToUnit(ElectricImpedanceUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(ElectricImpedance), Unit, typeof(ElectricImpedance), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (ElectricImpedance)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="ElectricImpedance"/> to another <see cref="ElectricImpedance"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="ElectricImpedance"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(ElectricImpedanceUnit unit, [NotNullWhen(true)] out ElectricImpedance? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            ElectricImpedance? convertedOrNull = (Unit, unit) switch
-            {
-                // ElectricImpedanceUnit -> BaseUnit
-                (ElectricImpedanceUnit.Gigaohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e9d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Kiloohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e3d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Megaohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e6d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Microohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e-6d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Milliohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e-3d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Nanoohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e-9d, ElectricImpedanceUnit.Ohm),
-                (ElectricImpedanceUnit.Teraohm, ElectricImpedanceUnit.Ohm) => new ElectricImpedance((_value) * 1e12d, ElectricImpedanceUnit.Ohm),
-
-                // BaseUnit -> ElectricImpedanceUnit
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Gigaohm) => new ElectricImpedance((_value) / 1e9d, ElectricImpedanceUnit.Gigaohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Kiloohm) => new ElectricImpedance((_value) / 1e3d, ElectricImpedanceUnit.Kiloohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Megaohm) => new ElectricImpedance((_value) / 1e6d, ElectricImpedanceUnit.Megaohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Microohm) => new ElectricImpedance((_value) / 1e-6d, ElectricImpedanceUnit.Microohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Milliohm) => new ElectricImpedance((_value) / 1e-3d, ElectricImpedanceUnit.Milliohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Nanoohm) => new ElectricImpedance((_value) / 1e-9d, ElectricImpedanceUnit.Nanoohm),
-                (ElectricImpedanceUnit.Ohm, ElectricImpedanceUnit.Teraohm) => new ElectricImpedance((_value) / 1e12d, ElectricImpedanceUnit.Teraohm),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricImpedance ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not ElectricImpedanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricImpedanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is ElectricImpedanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricImpedanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IQuantity<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.ToUnit(ElectricImpedanceUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        #endregion
+        IQuantity<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
+#endif
 
         #endregion
 
@@ -888,137 +707,16 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, null);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <returns>The string representation.</returns>
         public string ToString(string? format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<ElectricImpedanceUnit>(this, format, provider);
+            return QuantityFormatter.Default.Format(this, format, provider);
         }
 
         #endregion
 
-        #region IConvertible Methods
-
-        TypeCode IConvertible.GetTypeCode()
-        {
-            return TypeCode.Object;
-        }
-
-        bool IConvertible.ToBoolean(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(ElectricImpedance)} to bool is not supported.");
-        }
-
-        byte IConvertible.ToByte(IFormatProvider? provider)
-        {
-            return Convert.ToByte(_value);
-        }
-
-        char IConvertible.ToChar(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(ElectricImpedance)} to char is not supported.");
-        }
-
-        DateTime IConvertible.ToDateTime(IFormatProvider? provider)
-        {
-            throw new InvalidCastException($"Converting {typeof(ElectricImpedance)} to DateTime is not supported.");
-        }
-
-        decimal IConvertible.ToDecimal(IFormatProvider? provider)
-        {
-            return Convert.ToDecimal(_value);
-        }
-
-        double IConvertible.ToDouble(IFormatProvider? provider)
-        {
-            return Convert.ToDouble(_value);
-        }
-
-        short IConvertible.ToInt16(IFormatProvider? provider)
-        {
-            return Convert.ToInt16(_value);
-        }
-
-        int IConvertible.ToInt32(IFormatProvider? provider)
-        {
-            return Convert.ToInt32(_value);
-        }
-
-        long IConvertible.ToInt64(IFormatProvider? provider)
-        {
-            return Convert.ToInt64(_value);
-        }
-
-        sbyte IConvertible.ToSByte(IFormatProvider? provider)
-        {
-            return Convert.ToSByte(_value);
-        }
-
-        float IConvertible.ToSingle(IFormatProvider? provider)
-        {
-            return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
-        {
-            if (conversionType == typeof(ElectricImpedance))
-                return this;
-            else if (conversionType == typeof(ElectricImpedanceUnit))
-                return Unit;
-            else if (conversionType == typeof(QuantityInfo))
-                return ElectricImpedance.Info;
-            else if (conversionType == typeof(BaseDimensions))
-                return ElectricImpedance.BaseDimensions;
-            else
-                throw new InvalidCastException($"Converting {typeof(ElectricImpedance)} to {conversionType} is not supported.");
-        }
-
-        ushort IConvertible.ToUInt16(IFormatProvider? provider)
-        {
-            return Convert.ToUInt16(_value);
-        }
-
-        uint IConvertible.ToUInt32(IFormatProvider? provider)
-        {
-            return Convert.ToUInt32(_value);
-        }
-
-        ulong IConvertible.ToUInt64(IFormatProvider? provider)
-        {
-            return Convert.ToUInt64(_value);
-        }
-
-        #endregion
     }
 }

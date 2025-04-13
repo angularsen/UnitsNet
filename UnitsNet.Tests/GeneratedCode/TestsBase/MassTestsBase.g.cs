@@ -200,7 +200,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Mass(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -213,15 +213,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Mass(1, MassUnit.Kilogram);
 
-            QuantityInfo<MassUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Mass, MassUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal(Mass.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Mass.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void MassInfo_CreateWithCustomUnitInfos()
+        {
+            MassUnit[] expectedUnits = [MassUnit.Kilogram];
+
+            Mass.MassInfo quantityInfo = Mass.MassInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Mass", quantityInfo.Name);
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal(Mass.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -261,111 +279,111 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = Mass.From(1, MassUnit.Centigram);
-            AssertEx.EqualTolerance(1, quantity00.Centigrams, CentigramsTolerance);
+            Assert.Equal(1, quantity00.Centigrams);
             Assert.Equal(MassUnit.Centigram, quantity00.Unit);
 
             var quantity01 = Mass.From(1, MassUnit.Decagram);
-            AssertEx.EqualTolerance(1, quantity01.Decagrams, DecagramsTolerance);
+            Assert.Equal(1, quantity01.Decagrams);
             Assert.Equal(MassUnit.Decagram, quantity01.Unit);
 
             var quantity02 = Mass.From(1, MassUnit.Decigram);
-            AssertEx.EqualTolerance(1, quantity02.Decigrams, DecigramsTolerance);
+            Assert.Equal(1, quantity02.Decigrams);
             Assert.Equal(MassUnit.Decigram, quantity02.Unit);
 
             var quantity03 = Mass.From(1, MassUnit.EarthMass);
-            AssertEx.EqualTolerance(1, quantity03.EarthMasses, EarthMassesTolerance);
+            Assert.Equal(1, quantity03.EarthMasses);
             Assert.Equal(MassUnit.EarthMass, quantity03.Unit);
 
             var quantity04 = Mass.From(1, MassUnit.Femtogram);
-            AssertEx.EqualTolerance(1, quantity04.Femtograms, FemtogramsTolerance);
+            Assert.Equal(1, quantity04.Femtograms);
             Assert.Equal(MassUnit.Femtogram, quantity04.Unit);
 
             var quantity05 = Mass.From(1, MassUnit.Grain);
-            AssertEx.EqualTolerance(1, quantity05.Grains, GrainsTolerance);
+            Assert.Equal(1, quantity05.Grains);
             Assert.Equal(MassUnit.Grain, quantity05.Unit);
 
             var quantity06 = Mass.From(1, MassUnit.Gram);
-            AssertEx.EqualTolerance(1, quantity06.Grams, GramsTolerance);
+            Assert.Equal(1, quantity06.Grams);
             Assert.Equal(MassUnit.Gram, quantity06.Unit);
 
             var quantity07 = Mass.From(1, MassUnit.Hectogram);
-            AssertEx.EqualTolerance(1, quantity07.Hectograms, HectogramsTolerance);
+            Assert.Equal(1, quantity07.Hectograms);
             Assert.Equal(MassUnit.Hectogram, quantity07.Unit);
 
             var quantity08 = Mass.From(1, MassUnit.Kilogram);
-            AssertEx.EqualTolerance(1, quantity08.Kilograms, KilogramsTolerance);
+            Assert.Equal(1, quantity08.Kilograms);
             Assert.Equal(MassUnit.Kilogram, quantity08.Unit);
 
             var quantity09 = Mass.From(1, MassUnit.Kilopound);
-            AssertEx.EqualTolerance(1, quantity09.Kilopounds, KilopoundsTolerance);
+            Assert.Equal(1, quantity09.Kilopounds);
             Assert.Equal(MassUnit.Kilopound, quantity09.Unit);
 
             var quantity10 = Mass.From(1, MassUnit.Kilotonne);
-            AssertEx.EqualTolerance(1, quantity10.Kilotonnes, KilotonnesTolerance);
+            Assert.Equal(1, quantity10.Kilotonnes);
             Assert.Equal(MassUnit.Kilotonne, quantity10.Unit);
 
             var quantity11 = Mass.From(1, MassUnit.LongHundredweight);
-            AssertEx.EqualTolerance(1, quantity11.LongHundredweight, LongHundredweightTolerance);
+            Assert.Equal(1, quantity11.LongHundredweight);
             Assert.Equal(MassUnit.LongHundredweight, quantity11.Unit);
 
             var quantity12 = Mass.From(1, MassUnit.LongTon);
-            AssertEx.EqualTolerance(1, quantity12.LongTons, LongTonsTolerance);
+            Assert.Equal(1, quantity12.LongTons);
             Assert.Equal(MassUnit.LongTon, quantity12.Unit);
 
             var quantity13 = Mass.From(1, MassUnit.Megapound);
-            AssertEx.EqualTolerance(1, quantity13.Megapounds, MegapoundsTolerance);
+            Assert.Equal(1, quantity13.Megapounds);
             Assert.Equal(MassUnit.Megapound, quantity13.Unit);
 
             var quantity14 = Mass.From(1, MassUnit.Megatonne);
-            AssertEx.EqualTolerance(1, quantity14.Megatonnes, MegatonnesTolerance);
+            Assert.Equal(1, quantity14.Megatonnes);
             Assert.Equal(MassUnit.Megatonne, quantity14.Unit);
 
             var quantity15 = Mass.From(1, MassUnit.Microgram);
-            AssertEx.EqualTolerance(1, quantity15.Micrograms, MicrogramsTolerance);
+            Assert.Equal(1, quantity15.Micrograms);
             Assert.Equal(MassUnit.Microgram, quantity15.Unit);
 
             var quantity16 = Mass.From(1, MassUnit.Milligram);
-            AssertEx.EqualTolerance(1, quantity16.Milligrams, MilligramsTolerance);
+            Assert.Equal(1, quantity16.Milligrams);
             Assert.Equal(MassUnit.Milligram, quantity16.Unit);
 
             var quantity17 = Mass.From(1, MassUnit.Nanogram);
-            AssertEx.EqualTolerance(1, quantity17.Nanograms, NanogramsTolerance);
+            Assert.Equal(1, quantity17.Nanograms);
             Assert.Equal(MassUnit.Nanogram, quantity17.Unit);
 
             var quantity18 = Mass.From(1, MassUnit.Ounce);
-            AssertEx.EqualTolerance(1, quantity18.Ounces, OuncesTolerance);
+            Assert.Equal(1, quantity18.Ounces);
             Assert.Equal(MassUnit.Ounce, quantity18.Unit);
 
             var quantity19 = Mass.From(1, MassUnit.Picogram);
-            AssertEx.EqualTolerance(1, quantity19.Picograms, PicogramsTolerance);
+            Assert.Equal(1, quantity19.Picograms);
             Assert.Equal(MassUnit.Picogram, quantity19.Unit);
 
             var quantity20 = Mass.From(1, MassUnit.Pound);
-            AssertEx.EqualTolerance(1, quantity20.Pounds, PoundsTolerance);
+            Assert.Equal(1, quantity20.Pounds);
             Assert.Equal(MassUnit.Pound, quantity20.Unit);
 
             var quantity21 = Mass.From(1, MassUnit.ShortHundredweight);
-            AssertEx.EqualTolerance(1, quantity21.ShortHundredweight, ShortHundredweightTolerance);
+            Assert.Equal(1, quantity21.ShortHundredweight);
             Assert.Equal(MassUnit.ShortHundredweight, quantity21.Unit);
 
             var quantity22 = Mass.From(1, MassUnit.ShortTon);
-            AssertEx.EqualTolerance(1, quantity22.ShortTons, ShortTonsTolerance);
+            Assert.Equal(1, quantity22.ShortTons);
             Assert.Equal(MassUnit.ShortTon, quantity22.Unit);
 
             var quantity23 = Mass.From(1, MassUnit.Slug);
-            AssertEx.EqualTolerance(1, quantity23.Slugs, SlugsTolerance);
+            Assert.Equal(1, quantity23.Slugs);
             Assert.Equal(MassUnit.Slug, quantity23.Unit);
 
             var quantity24 = Mass.From(1, MassUnit.SolarMass);
-            AssertEx.EqualTolerance(1, quantity24.SolarMasses, SolarMassesTolerance);
+            Assert.Equal(1, quantity24.SolarMasses);
             Assert.Equal(MassUnit.SolarMass, quantity24.Unit);
 
             var quantity25 = Mass.From(1, MassUnit.Stone);
-            AssertEx.EqualTolerance(1, quantity25.Stone, StoneTolerance);
+            Assert.Equal(1, quantity25.Stone);
             Assert.Equal(MassUnit.Stone, quantity25.Unit);
 
             var quantity26 = Mass.From(1, MassUnit.Tonne);
-            AssertEx.EqualTolerance(1, quantity26.Tonnes, TonnesTolerance);
+            Assert.Equal(1, quantity26.Tonnes);
             Assert.Equal(MassUnit.Tonne, quantity26.Unit);
 
         }
@@ -527,965 +545,182 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cg", MassUnit.Centigram, 4.2)]
+        [InlineData("en-US", "4.2 dag", MassUnit.Decagram, 4.2)]
+        [InlineData("en-US", "4.2 dg", MassUnit.Decigram, 4.2)]
+        [InlineData("en-US", "4.2 em", MassUnit.EarthMass, 4.2)]
+        [InlineData("en-US", "4.2 fg", MassUnit.Femtogram, 4.2)]
+        [InlineData("en-US", "4.2 gr", MassUnit.Grain, 4.2)]
+        [InlineData("en-US", "4.2 g", MassUnit.Gram, 4.2)]
+        [InlineData("en-US", "4.2 hg", MassUnit.Hectogram, 4.2)]
+        [InlineData("en-US", "4.2 kg", MassUnit.Kilogram, 4.2)]
+        [InlineData("en-US", "4.2 klb", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 klbs", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 klbm", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 kt", MassUnit.Kilotonne, 4.2)]
+        [InlineData("en-US", "4.2 long tn", MassUnit.LongTon, 4.2)]
+        [InlineData("en-US", "4.2 Mlb", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mlbs", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mlbm", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mt", MassUnit.Megatonne, 4.2)]
+        [InlineData("en-US", "4.2 µg", MassUnit.Microgram, 4.2)]
+        [InlineData("en-US", "4.2 mg", MassUnit.Milligram, 4.2)]
+        [InlineData("en-US", "4.2 ng", MassUnit.Nanogram, 4.2)]
+        [InlineData("en-US", "4.2 oz", MassUnit.Ounce, 4.2)]
+        [InlineData("en-US", "4.2 pg", MassUnit.Picogram, 4.2)]
+        [InlineData("en-US", "4.2 lb", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 lbs", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 lbm", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 t (short)", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 short tn", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 ST", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 slug", MassUnit.Slug, 4.2)]
+        [InlineData("en-US", "4.2 M☉", MassUnit.SolarMass, 4.2)]
+        [InlineData("en-US", "4.2 M⊙", MassUnit.SolarMass, 4.2)]
+        [InlineData("en-US", "4.2 st", MassUnit.Stone, 4.2)]
+        [InlineData("en-US", "4.2 t", MassUnit.Tonne, 4.2)]
+        [InlineData("ru-RU", "4,2 сг", MassUnit.Centigram, 4.2)]
+        [InlineData("ru-RU", "4,2 даг", MassUnit.Decagram, 4.2)]
+        [InlineData("ru-RU", "4,2 дг", MassUnit.Decigram, 4.2)]
+        [InlineData("ru-RU", "4,2 фг", MassUnit.Femtogram, 4.2)]
+        [InlineData("ru-RU", "4,2 г", MassUnit.Gram, 4.2)]
+        [InlineData("ru-RU", "4,2 гг", MassUnit.Hectogram, 4.2)]
+        [InlineData("ru-RU", "4,2 кг", MassUnit.Kilogram, 4.2)]
+        [InlineData("ru-RU", "4,2 кфунт", MassUnit.Kilopound, 4.2)]
+        [InlineData("ru-RU", "4,2 кт", MassUnit.Kilotonne, 4.2)]
+        [InlineData("ru-RU", "4,2 тонна большая", MassUnit.LongTon, 4.2)]
+        [InlineData("ru-RU", "4,2 Мфунт", MassUnit.Megapound, 4.2)]
+        [InlineData("ru-RU", "4,2 Мт", MassUnit.Megatonne, 4.2)]
+        [InlineData("ru-RU", "4,2 мкг", MassUnit.Microgram, 4.2)]
+        [InlineData("ru-RU", "4,2 мг", MassUnit.Milligram, 4.2)]
+        [InlineData("ru-RU", "4,2 нг", MassUnit.Nanogram, 4.2)]
+        [InlineData("ru-RU", "4,2 пг", MassUnit.Picogram, 4.2)]
+        [InlineData("ru-RU", "4,2 фунт", MassUnit.Pound, 4.2)]
+        [InlineData("ru-RU", "4,2 тонна малая", MassUnit.ShortTon, 4.2)]
+        [InlineData("ru-RU", "4,2 т", MassUnit.Tonne, 4.2)]
+        [InlineData("zh-CN", "4.2 厘克", MassUnit.Centigram, 4.2)]
+        [InlineData("zh-CN", "4.2 十克", MassUnit.Decagram, 4.2)]
+        [InlineData("zh-CN", "4.2 分克", MassUnit.Decigram, 4.2)]
+        [InlineData("zh-CN", "4.2 飞克", MassUnit.Femtogram, 4.2)]
+        [InlineData("zh-CN", "4.2 克", MassUnit.Gram, 4.2)]
+        [InlineData("zh-CN", "4.2 百克", MassUnit.Hectogram, 4.2)]
+        [InlineData("zh-CN", "4.2 千克", MassUnit.Kilogram, 4.2)]
+        [InlineData("zh-CN", "4.2 千磅", MassUnit.Kilopound, 4.2)]
+        [InlineData("zh-CN", "4.2 千吨", MassUnit.Kilotonne, 4.2)]
+        [InlineData("zh-CN", "4.2 长吨", MassUnit.LongTon, 4.2)]
+        [InlineData("zh-CN", "4.2 兆磅", MassUnit.Megapound, 4.2)]
+        [InlineData("zh-CN", "4.2 兆吨", MassUnit.Megatonne, 4.2)]
+        [InlineData("zh-CN", "4.2 微克", MassUnit.Microgram, 4.2)]
+        [InlineData("zh-CN", "4.2 毫克", MassUnit.Milligram, 4.2)]
+        [InlineData("zh-CN", "4.2 纳克", MassUnit.Nanogram, 4.2)]
+        [InlineData("zh-CN", "4.2 盎司", MassUnit.Ounce, 4.2)]
+        [InlineData("zh-CN", "4.2 皮克", MassUnit.Picogram, 4.2)]
+        [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
+        [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
+        [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
+        public void Parse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = Mass.Parse("1 cg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 сг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 厘克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 dag", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 даг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 十克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 dg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 дг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 分克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 em", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.EarthMasses, EarthMassesTolerance);
-                Assert.Equal(MassUnit.EarthMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 fg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 фг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 飞克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 gr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Grains, GrainsTolerance);
-                Assert.Equal(MassUnit.Grain, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 g", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 г", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 hg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 гг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 百克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 кг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 千克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 klb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 klbs", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 klbm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 кфунт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 千磅", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 kt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 кт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 千吨", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 cwt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.LongHundredweight, LongHundredweightTolerance);
-                Assert.Equal(MassUnit.LongHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 long tn", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 тонна большая", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 长吨", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Mlb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Mlbs", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Mlbm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Мфунт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 兆磅", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Mt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 Мт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 兆吨", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 µg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 мкг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 微克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 mg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 мг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 毫克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 ng", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 нг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 纳克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 oz", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
-                Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 盎司", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
-                Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 pg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 пг", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 皮克", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 lb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 lbs", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 lbm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 фунт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 磅", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 cwt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ShortHundredweight, ShortHundredweightTolerance);
-                Assert.Equal(MassUnit.ShortHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 t (short)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 short tn", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 ST", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 тонна малая", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 短吨", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 slug", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Slugs, SlugsTolerance);
-                Assert.Equal(MassUnit.Slug, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 M☉", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
-                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 M⊙", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
-                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 st", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Stone, StoneTolerance);
-                Assert.Equal(MassUnit.Stone, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 t", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 т", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Mass.Parse("1 吨", CultureInfo.GetCultureInfo("zh-CN"));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Mass.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "1 cwt")] // [LongHundredweight, ShortHundredweight] 
+        public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {
-            {
-                Assert.True(Mass.TryParse("1 cg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 сг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 厘克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
-                Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 dag", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 даг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 十克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
-                Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 dg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 дг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 分克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
-                Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 em", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.EarthMasses, EarthMassesTolerance);
-                Assert.Equal(MassUnit.EarthMass, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 fg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 фг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 飞克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Femtograms, FemtogramsTolerance);
-                Assert.Equal(MassUnit.Femtogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 gr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Grains, GrainsTolerance);
-                Assert.Equal(MassUnit.Grain, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 г", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
-                Assert.Equal(MassUnit.Gram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 hg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 гг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 百克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
-                Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 кг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 千克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
-                Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 klb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 klbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 klbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 кфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 千磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
-                Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 kt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 кт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 千吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
-                Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 long tn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 тонна большая", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 长吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
-                Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Mlb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Mlbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Mlbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Мфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 兆磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
-                Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Mt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 Мт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 兆吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
-                Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 µg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 мкг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 微克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
-                Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 mg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 мг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 毫克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
-                Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 ng", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 нг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 纳克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
-                Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 oz", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
-                Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 盎司", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
-                Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 pg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 пг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 皮克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picograms, PicogramsTolerance);
-                Assert.Equal(MassUnit.Picogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 lbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 lbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 фунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
-                Assert.Equal(MassUnit.Pound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 t (short)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 short tn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 тонна малая", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 短吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 slug", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Slugs, SlugsTolerance);
-                Assert.Equal(MassUnit.Slug, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 M☉", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
-                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 M⊙", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
-                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 т", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            }
-
-            {
-                Assert.True(Mass.TryParse("1 吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
-                Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            }
-
+            Assert.Throws<AmbiguousUnitParseException>(() => Mass.Parse(quantityString, CultureInfo.GetCultureInfo(culture)));
+        }
+
+        [Theory]
+        [InlineData("en-US", "4.2 cg", MassUnit.Centigram, 4.2)]
+        [InlineData("en-US", "4.2 dag", MassUnit.Decagram, 4.2)]
+        [InlineData("en-US", "4.2 dg", MassUnit.Decigram, 4.2)]
+        [InlineData("en-US", "4.2 em", MassUnit.EarthMass, 4.2)]
+        [InlineData("en-US", "4.2 fg", MassUnit.Femtogram, 4.2)]
+        [InlineData("en-US", "4.2 gr", MassUnit.Grain, 4.2)]
+        [InlineData("en-US", "4.2 g", MassUnit.Gram, 4.2)]
+        [InlineData("en-US", "4.2 hg", MassUnit.Hectogram, 4.2)]
+        [InlineData("en-US", "4.2 kg", MassUnit.Kilogram, 4.2)]
+        [InlineData("en-US", "4.2 klb", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 klbs", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 klbm", MassUnit.Kilopound, 4.2)]
+        [InlineData("en-US", "4.2 kt", MassUnit.Kilotonne, 4.2)]
+        [InlineData("en-US", "4.2 long tn", MassUnit.LongTon, 4.2)]
+        [InlineData("en-US", "4.2 Mlb", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mlbs", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mlbm", MassUnit.Megapound, 4.2)]
+        [InlineData("en-US", "4.2 Mt", MassUnit.Megatonne, 4.2)]
+        [InlineData("en-US", "4.2 µg", MassUnit.Microgram, 4.2)]
+        [InlineData("en-US", "4.2 mg", MassUnit.Milligram, 4.2)]
+        [InlineData("en-US", "4.2 ng", MassUnit.Nanogram, 4.2)]
+        [InlineData("en-US", "4.2 oz", MassUnit.Ounce, 4.2)]
+        [InlineData("en-US", "4.2 pg", MassUnit.Picogram, 4.2)]
+        [InlineData("en-US", "4.2 lb", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 lbs", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 lbm", MassUnit.Pound, 4.2)]
+        [InlineData("en-US", "4.2 t (short)", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 short tn", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 ST", MassUnit.ShortTon, 4.2)]
+        [InlineData("en-US", "4.2 slug", MassUnit.Slug, 4.2)]
+        [InlineData("en-US", "4.2 M☉", MassUnit.SolarMass, 4.2)]
+        [InlineData("en-US", "4.2 M⊙", MassUnit.SolarMass, 4.2)]
+        [InlineData("en-US", "4.2 st", MassUnit.Stone, 4.2)]
+        [InlineData("en-US", "4.2 t", MassUnit.Tonne, 4.2)]
+        [InlineData("ru-RU", "4,2 сг", MassUnit.Centigram, 4.2)]
+        [InlineData("ru-RU", "4,2 даг", MassUnit.Decagram, 4.2)]
+        [InlineData("ru-RU", "4,2 дг", MassUnit.Decigram, 4.2)]
+        [InlineData("ru-RU", "4,2 фг", MassUnit.Femtogram, 4.2)]
+        [InlineData("ru-RU", "4,2 г", MassUnit.Gram, 4.2)]
+        [InlineData("ru-RU", "4,2 гг", MassUnit.Hectogram, 4.2)]
+        [InlineData("ru-RU", "4,2 кг", MassUnit.Kilogram, 4.2)]
+        [InlineData("ru-RU", "4,2 кфунт", MassUnit.Kilopound, 4.2)]
+        [InlineData("ru-RU", "4,2 кт", MassUnit.Kilotonne, 4.2)]
+        [InlineData("ru-RU", "4,2 тонна большая", MassUnit.LongTon, 4.2)]
+        [InlineData("ru-RU", "4,2 Мфунт", MassUnit.Megapound, 4.2)]
+        [InlineData("ru-RU", "4,2 Мт", MassUnit.Megatonne, 4.2)]
+        [InlineData("ru-RU", "4,2 мкг", MassUnit.Microgram, 4.2)]
+        [InlineData("ru-RU", "4,2 мг", MassUnit.Milligram, 4.2)]
+        [InlineData("ru-RU", "4,2 нг", MassUnit.Nanogram, 4.2)]
+        [InlineData("ru-RU", "4,2 пг", MassUnit.Picogram, 4.2)]
+        [InlineData("ru-RU", "4,2 фунт", MassUnit.Pound, 4.2)]
+        [InlineData("ru-RU", "4,2 тонна малая", MassUnit.ShortTon, 4.2)]
+        [InlineData("ru-RU", "4,2 т", MassUnit.Tonne, 4.2)]
+        [InlineData("zh-CN", "4.2 厘克", MassUnit.Centigram, 4.2)]
+        [InlineData("zh-CN", "4.2 十克", MassUnit.Decagram, 4.2)]
+        [InlineData("zh-CN", "4.2 分克", MassUnit.Decigram, 4.2)]
+        [InlineData("zh-CN", "4.2 飞克", MassUnit.Femtogram, 4.2)]
+        [InlineData("zh-CN", "4.2 克", MassUnit.Gram, 4.2)]
+        [InlineData("zh-CN", "4.2 百克", MassUnit.Hectogram, 4.2)]
+        [InlineData("zh-CN", "4.2 千克", MassUnit.Kilogram, 4.2)]
+        [InlineData("zh-CN", "4.2 千磅", MassUnit.Kilopound, 4.2)]
+        [InlineData("zh-CN", "4.2 千吨", MassUnit.Kilotonne, 4.2)]
+        [InlineData("zh-CN", "4.2 长吨", MassUnit.LongTon, 4.2)]
+        [InlineData("zh-CN", "4.2 兆磅", MassUnit.Megapound, 4.2)]
+        [InlineData("zh-CN", "4.2 兆吨", MassUnit.Megatonne, 4.2)]
+        [InlineData("zh-CN", "4.2 微克", MassUnit.Microgram, 4.2)]
+        [InlineData("zh-CN", "4.2 毫克", MassUnit.Milligram, 4.2)]
+        [InlineData("zh-CN", "4.2 纳克", MassUnit.Nanogram, 4.2)]
+        [InlineData("zh-CN", "4.2 盎司", MassUnit.Ounce, 4.2)]
+        [InlineData("zh-CN", "4.2 皮克", MassUnit.Picogram, 4.2)]
+        [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
+        [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
+        [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
+        public void TryParse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Mass.TryParse(quantityString, out Mass parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
+
+        [Theory]
+        [InlineData("en-US", "1 cwt")] // [LongHundredweight, ShortHundredweight] 
+        public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
+        {
+            Assert.False(Mass.TryParse(quantityString, CultureInfo.GetCultureInfo(culture), out _));
         }
 
         [Theory]
@@ -1997,6 +1232,92 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", MassUnit.Centigram, "cg")]
+        [InlineData("en-US", MassUnit.Decagram, "dag")]
+        [InlineData("en-US", MassUnit.Decigram, "dg")]
+        [InlineData("en-US", MassUnit.EarthMass, "em")]
+        [InlineData("en-US", MassUnit.Femtogram, "fg")]
+        [InlineData("en-US", MassUnit.Grain, "gr")]
+        [InlineData("en-US", MassUnit.Gram, "g")]
+        [InlineData("en-US", MassUnit.Hectogram, "hg")]
+        [InlineData("en-US", MassUnit.Kilogram, "kg")]
+        [InlineData("en-US", MassUnit.Kilopound, "klb")]
+        [InlineData("en-US", MassUnit.Kilotonne, "kt")]
+        [InlineData("en-US", MassUnit.LongHundredweight, "cwt")]
+        [InlineData("en-US", MassUnit.LongTon, "long tn")]
+        [InlineData("en-US", MassUnit.Megapound, "Mlb")]
+        [InlineData("en-US", MassUnit.Megatonne, "Mt")]
+        [InlineData("en-US", MassUnit.Microgram, "µg")]
+        [InlineData("en-US", MassUnit.Milligram, "mg")]
+        [InlineData("en-US", MassUnit.Nanogram, "ng")]
+        [InlineData("en-US", MassUnit.Ounce, "oz")]
+        [InlineData("en-US", MassUnit.Picogram, "pg")]
+        [InlineData("en-US", MassUnit.Pound, "lb")]
+        [InlineData("en-US", MassUnit.ShortHundredweight, "cwt")]
+        [InlineData("en-US", MassUnit.ShortTon, "t (short)")]
+        [InlineData("en-US", MassUnit.Slug, "slug")]
+        [InlineData("en-US", MassUnit.SolarMass, "M☉")]
+        [InlineData("en-US", MassUnit.Stone, "st")]
+        [InlineData("en-US", MassUnit.Tonne, "t")]
+        [InlineData("ru-RU", MassUnit.Centigram, "сг")]
+        [InlineData("ru-RU", MassUnit.Decagram, "даг")]
+        [InlineData("ru-RU", MassUnit.Decigram, "дг")]
+        [InlineData("ru-RU", MassUnit.Femtogram, "фг")]
+        [InlineData("ru-RU", MassUnit.Gram, "г")]
+        [InlineData("ru-RU", MassUnit.Hectogram, "гг")]
+        [InlineData("ru-RU", MassUnit.Kilogram, "кг")]
+        [InlineData("ru-RU", MassUnit.Kilopound, "кфунт")]
+        [InlineData("ru-RU", MassUnit.Kilotonne, "кт")]
+        [InlineData("ru-RU", MassUnit.LongTon, "тонна большая")]
+        [InlineData("ru-RU", MassUnit.Megapound, "Мфунт")]
+        [InlineData("ru-RU", MassUnit.Megatonne, "Мт")]
+        [InlineData("ru-RU", MassUnit.Microgram, "мкг")]
+        [InlineData("ru-RU", MassUnit.Milligram, "мг")]
+        [InlineData("ru-RU", MassUnit.Nanogram, "нг")]
+        [InlineData("ru-RU", MassUnit.Picogram, "пг")]
+        [InlineData("ru-RU", MassUnit.Pound, "фунт")]
+        [InlineData("ru-RU", MassUnit.ShortTon, "тонна малая")]
+        [InlineData("ru-RU", MassUnit.Tonne, "т")]
+        [InlineData("zh-CN", MassUnit.Centigram, "厘克")]
+        [InlineData("zh-CN", MassUnit.Decagram, "十克")]
+        [InlineData("zh-CN", MassUnit.Decigram, "分克")]
+        [InlineData("zh-CN", MassUnit.Femtogram, "飞克")]
+        [InlineData("zh-CN", MassUnit.Gram, "克")]
+        [InlineData("zh-CN", MassUnit.Hectogram, "百克")]
+        [InlineData("zh-CN", MassUnit.Kilogram, "千克")]
+        [InlineData("zh-CN", MassUnit.Kilopound, "千磅")]
+        [InlineData("zh-CN", MassUnit.Kilotonne, "千吨")]
+        [InlineData("zh-CN", MassUnit.LongTon, "长吨")]
+        [InlineData("zh-CN", MassUnit.Megapound, "兆磅")]
+        [InlineData("zh-CN", MassUnit.Megatonne, "兆吨")]
+        [InlineData("zh-CN", MassUnit.Microgram, "微克")]
+        [InlineData("zh-CN", MassUnit.Milligram, "毫克")]
+        [InlineData("zh-CN", MassUnit.Nanogram, "纳克")]
+        [InlineData("zh-CN", MassUnit.Ounce, "盎司")]
+        [InlineData("zh-CN", MassUnit.Picogram, "皮克")]
+        [InlineData("zh-CN", MassUnit.Pound, "磅")]
+        [InlineData("zh-CN", MassUnit.ShortTon, "短吨")]
+        [InlineData("zh-CN", MassUnit.Tonne, "吨")]
+        public void GetAbbreviationForCulture(string culture, MassUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Mass.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Mass.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Mass.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MassUnit unit)
         {
@@ -2026,6 +1347,7 @@ namespace UnitsNet.Tests
                 var quantity = Mass.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -2049,58 +1371,60 @@ namespace UnitsNet.Tests
                 IQuantity<MassUnit> quantityToConvert = quantity;
                 IQuantity<MassUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Mass kilogram = Mass.FromKilograms(1);
-            AssertEx.EqualTolerance(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromFemtograms(kilogram.Femtograms).Kilograms, FemtogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromOunces(kilogram.Ounces).Kilograms, OuncesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromPicograms(kilogram.Picograms).Kilograms, PicogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms, ShortHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSlugs(kilogram.Slugs).Kilograms, SlugsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
+            Mass kilogram = Mass.FromKilograms(3);
+            Assert.Equal(3, Mass.FromCentigrams(kilogram.Centigrams).Kilograms);
+            Assert.Equal(3, Mass.FromDecagrams(kilogram.Decagrams).Kilograms);
+            Assert.Equal(3, Mass.FromDecigrams(kilogram.Decigrams).Kilograms);
+            Assert.Equal(3, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms);
+            Assert.Equal(3, Mass.FromFemtograms(kilogram.Femtograms).Kilograms);
+            Assert.Equal(3, Mass.FromGrains(kilogram.Grains).Kilograms);
+            Assert.Equal(3, Mass.FromGrams(kilogram.Grams).Kilograms);
+            Assert.Equal(3, Mass.FromHectograms(kilogram.Hectograms).Kilograms);
+            Assert.Equal(3, Mass.FromKilograms(kilogram.Kilograms).Kilograms);
+            Assert.Equal(3, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms);
+            Assert.Equal(3, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms);
+            Assert.Equal(3, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms);
+            Assert.Equal(3, Mass.FromLongTons(kilogram.LongTons).Kilograms);
+            Assert.Equal(3, Mass.FromMegapounds(kilogram.Megapounds).Kilograms);
+            Assert.Equal(3, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms);
+            Assert.Equal(3, Mass.FromMicrograms(kilogram.Micrograms).Kilograms);
+            Assert.Equal(3, Mass.FromMilligrams(kilogram.Milligrams).Kilograms);
+            Assert.Equal(3, Mass.FromNanograms(kilogram.Nanograms).Kilograms);
+            Assert.Equal(3, Mass.FromOunces(kilogram.Ounces).Kilograms);
+            Assert.Equal(3, Mass.FromPicograms(kilogram.Picograms).Kilograms);
+            Assert.Equal(3, Mass.FromPounds(kilogram.Pounds).Kilograms);
+            Assert.Equal(3, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms);
+            Assert.Equal(3, Mass.FromShortTons(kilogram.ShortTons).Kilograms);
+            Assert.Equal(3, Mass.FromSlugs(kilogram.Slugs).Kilograms);
+            Assert.Equal(3, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms);
+            Assert.Equal(3, Mass.FromStone(kilogram.Stone).Kilograms);
+            Assert.Equal(3, Mass.FromTonnes(kilogram.Tonnes).Kilograms);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Mass v = Mass.FromKilograms(1);
-            AssertEx.EqualTolerance(-1, -v.Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(3)-v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(10)/5).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), KilogramsTolerance);
+            Assert.Equal(-1, -v.Kilograms);
+            Assert.Equal(2, (Mass.FromKilograms(3) - v).Kilograms);
+            Assert.Equal(2, (v + v).Kilograms);
+            Assert.Equal(10, (v * 10).Kilograms);
+            Assert.Equal(10, (10 * v).Kilograms);
+            Assert.Equal(2, (Mass.FromKilograms(10) / 5).Kilograms);
+            Assert.Equal(2, Mass.FromKilograms(10) / Mass.FromKilograms(5));
         }
 
         [Fact]
@@ -2146,8 +1470,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Kilogram, true)]  // Same value and unit.
         [InlineData(1, MassUnit.Kilogram, 2, MassUnit.Kilogram, false)] // Different value.
-        [InlineData(2, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different value and unit.
-        [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassUnit unitA, double valueB, MassUnit unitB, bool expectEqual)
         {
             var a = new Mass(valueA, unitA);
@@ -2185,23 +1507,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Mass.FromKilograms(1);
-            Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
-            Assert.True(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), 0.3, ComparisonType.Relative));
-            Assert.False(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Mass.FromKilograms(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Mass.FromKilograms(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Mass kilogram = Mass.FromKilograms(1);
@@ -2213,6 +1518,32 @@ namespace UnitsNet.Tests
         {
             Mass kilogram = Mass.FromKilograms(1);
             Assert.False(kilogram.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Mass.FromKilograms(firstValue);
+            var otherQuantity = Mass.FromKilograms(secondValue);
+            Mass maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, Mass.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Mass.FromKilograms(1);
+            var negativeTolerance = Mass.FromKilograms(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -2229,6 +1560,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Mass.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Mass.Info.Units, Mass.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Mass.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -2342,157 +1685,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Mass)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(Mass.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(Mass.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(new {Mass.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Mass), quantity.As(Mass.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -6,39 +6,40 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial class Quantity
+    public static partial class Quantity
     {
         private static QuantityInfoLookup Quantities => UnitsNetSetup.Default.QuantityInfoLookup;
+        private static QuantityParser QuantityParser => UnitsNetSetup.Default.QuantityParser;
         private static UnitParser UnitParser => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
-        /// All quantity names of <see cref="Infos"/>, such as "Length" and "Mass".
+        /// All quantity names, such as "Length" and "Mass", that are present in the <see cref="UnitsNetSetup.Default"/> configuration.
         /// </summary>
         public static IReadOnlyCollection<string> Names => Quantities.Names;
+        
+        /// <summary>
+        /// All QuantityInfo instances mapped by quantity name that are present in the <see cref="UnitsNetSetup.Default"/> configuration.
+        /// </summary>
+        public static IReadOnlyDictionary<string, QuantityInfo> ByName => Quantities.ByName;
 
         /// <summary>
-        /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
+        /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>, that are present in the <see cref="UnitsNetSetup.Default"/> configuration.
         /// </summary>
         public static IReadOnlyList<QuantityInfo> Infos => Quantities.Infos;
 
         /// <summary>
-        /// Get <see cref="UnitInfo"/> for a given unit enum value.
+        /// Get <see cref="UnitInfo{TQuantity,TUnit}"/> for a given unit enum value.
         /// </summary>
-        public static UnitInfo GetUnitInfo(Enum unitEnum) => Quantities.GetUnitInfo(unitEnum);
+        public static UnitInfo GetUnitInfo(UnitKey unitEnum) => Quantities.GetUnitInfo(unitEnum);
 
         /// <summary>
-        /// Try to get <see cref="UnitInfo"/> for a given unit enum value.
+        /// Try to get <see cref="UnitInfo{TQuantity,TUnit}"/> for a given unit enum value.
         /// </summary>
-        public static bool TryGetUnitInfo(Enum unitEnum, [NotNullWhen(true)] out UnitInfo? unitInfo) =>
-            Quantities.TryGetUnitInfo(unitEnum, out unitInfo);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="unitInfo"></param>
-        public static void AddUnitInfo(Enum unit, UnitInfo unitInfo) => Quantities.AddUnitInfo(unitInfo);
-
+        public static bool TryGetUnitInfo(UnitKey unitEnum, [NotNullWhen(true)] out UnitInfo? unitInfo)
+        {
+            return Quantities.TryGetUnitInfo(unitEnum, out unitInfo);
+        }
+        
         /// <summary>
         ///     Dynamically constructs a quantity from a numeric value and a unit enum value.
         /// </summary>
@@ -46,11 +47,9 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit value is not a known unit enum type.</exception>
-        public static IQuantity From(double value, Enum unit)
+        public static IQuantity From(QuantityValue value, UnitKey unit)
         {
-            return TryFrom(value, unit, out IQuantity? quantity)
-                ? quantity
-                : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
+            return Quantities.From(value, unit);
         }
 
         /// <summary>
@@ -66,9 +65,27 @@ namespace UnitsNet
         /// <exception cref="UnitNotFoundException">
         ///     Thrown when no unit is found for the specified quantity name and unit name.
         /// </exception>
-        public static IQuantity From(double value, string quantityName, string unitName)
+        public static IQuantity From(QuantityValue value, string quantityName, string unitName)
         {
-            return From(value, Quantities.GetUnitByName(quantityName, unitName).Value);
+            return Quantities.GetUnitByName(quantityName, unitName).From(value);
+        }
+
+        /// <summary>
+        ///     Dynamically constructs a quantity of the given <see cref="QuantityInfo" /> with the value in the quantity's base
+        ///     units.
+        /// </summary>
+        /// <param name="quantityInfo">The <see cref="QuantityInfo" /> of the quantity to create.</param>
+        /// <param name="value">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
+        /// <remarks>
+        ///     This is the equivalent to:
+        ///     <code>quantityInfo.From(value, quantityInfo.BaseUnitInfo.Value)</code>
+        ///     or
+        ///     <code>quantityInfo.BaseUnitInfo.From(value)</code>
+        /// </remarks>
+        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
+        {
+            return quantityInfo.BaseUnitInfo.From(value);
         }
 
         /// <summary>
@@ -79,14 +96,14 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
+        ///     Prefer <see cref="From(QuantityValue,UnitKey)"/> or <see cref="From(QuantityValue,string,string)"/> instead.
         /// </remarks>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
         /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-        public static IQuantity FromUnitAbbreviation(double value, string unitAbbreviation) => FromUnitAbbreviation(null, value, unitAbbreviation);
+        public static IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation) => FromUnitAbbreviation(null, value, unitAbbreviation);
 
         /// <summary>
         ///     Dynamically construct a quantity from a numeric value and a unit abbreviation.
@@ -96,17 +113,17 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
+        ///     Prefer <see cref="From(QuantityValue,UnitKey)"/> or <see cref="From(QuantityValue,string,string)"/> instead.
         /// </remarks>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
         /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-        public static IQuantity FromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation)
+        public static IQuantity FromUnitAbbreviation(CultureInfo? culture, QuantityValue value, string unitAbbreviation)
         {
-            return From(value, UnitParser.GetUnitFromAbbreviation(unitAbbreviation, formatProvider).Value);
+            return UnitParser.FromUnitAbbreviation(value, unitAbbreviation, culture);
         }
 
         /// <summary>
@@ -117,15 +134,33 @@ namespace UnitsNet
         /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
         /// <param name="quantity">The constructed quantity, if successful, otherwise null.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(double value, string quantityName, string unitName, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, string quantityName, string unitName, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            if (Quantities.TryGetUnitByName(quantityName, unitName, out UnitInfo? unitInfo))
+            if (!Quantities.TryGetUnitByName(quantityName, unitName, out UnitInfo? unitInfo))
             {
-                return TryFrom(value, unitInfo.Value, out quantity);
+                quantity = null;
+                return false;
             }
-            
-            quantity = null;
-            return false;
+
+            quantity = unitInfo.From(value);
+            return true;
+        }
+
+        /// <summary>
+        ///     Attempts to create a quantity from the specified value and unit.
+        /// </summary>
+        /// <param name="value">The value of the quantity.</param>
+        /// <param name="unit">The unit of the quantity, represented as an <see cref="Enum" />.</param>
+        /// <param name="quantity">
+        ///     When this method returns, contains the created quantity if the conversion succeeded,
+        ///     or <c>null</c> if the conversion failed. This parameter is passed uninitialized.
+        /// </param>
+        /// <returns>
+        ///     <c>true</c> if the quantity was successfully created; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool TryFrom(QuantityValue value, Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
+        {
+            return Quantities.TryFrom(value, unit, out quantity);
         }
 
         /// <summary>
@@ -136,14 +171,14 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
+        ///     Prefer <see cref="From(QuantityValue,UnitKey)"/> or <see cref="From(QuantityValue,string,string)"/> instead.
         /// </remarks>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <param name="quantity">The quantity if successful, otherwise null.</param>
         /// <returns>True if successful.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static bool TryFromUnitAbbreviation(double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity) =>
+        public static bool TryFromUnitAbbreviation(QuantityValue value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity) =>
             TryFromUnitAbbreviation(null, value, unitAbbreviation, out quantity);
 
         /// <summary>
@@ -154,19 +189,20 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
+        ///     Prefer <see cref="From(QuantityValue,UnitKey)"/> or <see cref="From(QuantityValue,string,string)"/> instead.
         /// </remarks>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <param name="quantity">The quantity if successful, otherwise null.</param>
         /// <returns>True if successful.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static bool TryFromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFromUnitAbbreviation(CultureInfo? culture, QuantityValue value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            if (UnitParser.TryGetUnitFromAbbreviation(unitAbbreviation, formatProvider, out UnitInfo? unitInfo))
+            if (UnitParser.TryGetUnitFromAbbreviation(unitAbbreviation, culture, out UnitInfo? unitInfo))
             {
-                return TryFrom(value, unitInfo.Value, out quantity);
+                quantity = unitInfo.From(value);
+                return true;
             }
 
             quantity = null;
@@ -183,25 +219,34 @@ namespace UnitsNet
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
-        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        /// <exception cref="UnitNotFoundException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the <paramref name="quantityType" /> is not of type <see cref="IQuantity" />.
+        /// </exception>
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when the specified quantity type is not registered in the current configuration.
+        /// </exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
-            // TODO Support custom units (via the QuantityParser), currently only hardcoded built-in quantities are supported.
-            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
-                return quantity;
-
-            throw new UnitNotFoundException($"Quantity string '{quantityString}' could not be parsed to quantity '{quantityType}'.");
+            QuantityInfo quantityInfo = Quantities.GetQuantityInfo(quantityType);
+            return QuantityParser.Parse(quantityString, formatProvider, quantityInfo);
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            // TODO Support custom units (via the QuantityParser), currently only hardcoded built-in quantities are supported.
             return TryParse(null, quantityType, quantityString, out quantity);
+        }
+
+        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
+        {
+            if (Quantities.TryGetQuantityInfo(quantityType, out QuantityInfo? quantityInfo))
+            {
+                return QuantityParser.TryParse(quantityString, formatProvider, quantityInfo, out quantity);
+            }
+
+            quantity = null;
+            return false;
         }
 
         /// <summary>

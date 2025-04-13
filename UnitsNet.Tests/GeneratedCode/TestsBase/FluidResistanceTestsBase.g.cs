@@ -168,7 +168,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new FluidResistance(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -181,15 +181,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            FluidResistanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
-            QuantityInfo<FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<FluidResistance, FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
             Assert.Equal("FluidResistance", quantityInfo.Name);
+            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
+            Assert.Equal(FluidResistance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(FluidResistance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<FluidResistanceUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void FluidResistanceInfo_CreateWithCustomUnitInfos()
+        {
+            FluidResistanceUnit[] expectedUnits = [FluidResistanceUnit.PascalSecondPerCubicMeter];
+
+            FluidResistance.FluidResistanceInfo quantityInfo = FluidResistance.FluidResistanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("FluidResistance", quantityInfo.Name);
+            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
+            Assert.Equal(FluidResistance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -221,79 +239,79 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = FluidResistance.From(1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth);
-            AssertEx.EqualTolerance(1, quantity00.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
+            Assert.Equal(1, quantity00.DyneSecondsPerCentimeterToTheFifth);
             Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, quantity00.Unit);
 
             var quantity01 = FluidResistance.From(1, FluidResistanceUnit.MegapascalSecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity01.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
+            Assert.Equal(1, quantity01.MegapascalSecondsPerCubicMeter);
             Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, quantity01.Unit);
 
             var quantity02 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
+            Assert.Equal(1, quantity02.MillimeterMercuryMinutesPerCubicCentimeter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, quantity02.Unit);
 
             var quantity03 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity03.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
+            Assert.Equal(1, quantity03.MillimeterMercuryMinutesPerCubicMeter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, quantity03.Unit);
 
             var quantity04 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerLiter);
-            AssertEx.EqualTolerance(1, quantity04.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
+            Assert.Equal(1, quantity04.MillimeterMercuryMinutesPerLiter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, quantity04.Unit);
 
             var quantity05 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter);
-            AssertEx.EqualTolerance(1, quantity05.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
+            Assert.Equal(1, quantity05.MillimeterMercuryMinutesPerMilliliter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, quantity05.Unit);
 
             var quantity06 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity06.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
+            Assert.Equal(1, quantity06.MillimeterMercurySecondsPerCubicCentimeter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, quantity06.Unit);
 
             var quantity07 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity07.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
+            Assert.Equal(1, quantity07.MillimeterMercurySecondsPerCubicMeter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, quantity07.Unit);
 
             var quantity08 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerLiter);
-            AssertEx.EqualTolerance(1, quantity08.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
+            Assert.Equal(1, quantity08.MillimeterMercurySecondsPerLiter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, quantity08.Unit);
 
             var quantity09 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter);
-            AssertEx.EqualTolerance(1, quantity09.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
+            Assert.Equal(1, quantity09.MillimeterMercurySecondsPerMilliliter);
             Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, quantity09.Unit);
 
             var quantity10 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity10.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
+            Assert.Equal(1, quantity10.PascalMinutesPerCubicCentimeter);
             Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, quantity10.Unit);
 
             var quantity11 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity11.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
+            Assert.Equal(1, quantity11.PascalMinutesPerCubicMeter);
             Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, quantity11.Unit);
 
             var quantity12 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerLiter);
-            AssertEx.EqualTolerance(1, quantity12.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
+            Assert.Equal(1, quantity12.PascalMinutesPerLiter);
             Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, quantity12.Unit);
 
             var quantity13 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerMilliliter);
-            AssertEx.EqualTolerance(1, quantity13.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
+            Assert.Equal(1, quantity13.PascalMinutesPerMilliliter);
             Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, quantity13.Unit);
 
             var quantity14 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity14.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
+            Assert.Equal(1, quantity14.PascalSecondsPerCubicCentimeter);
             Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, quantity14.Unit);
 
             var quantity15 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity15.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
+            Assert.Equal(1, quantity15.PascalSecondsPerCubicMeter);
             Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, quantity15.Unit);
 
             var quantity16 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerLiter);
-            AssertEx.EqualTolerance(1, quantity16.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
+            Assert.Equal(1, quantity16.PascalSecondsPerLiter);
             Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, quantity16.Unit);
 
             var quantity17 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerMilliliter);
-            AssertEx.EqualTolerance(1, quantity17.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
+            Assert.Equal(1, quantity17.PascalSecondsPerMilliliter);
             Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, quantity17.Unit);
 
             var quantity18 = FluidResistance.From(1, FluidResistanceUnit.WoodUnit);
-            AssertEx.EqualTolerance(1, quantity18.WoodUnits, WoodUnitsTolerance);
+            Assert.Equal(1, quantity18.WoodUnits);
             Assert.Equal(FluidResistanceUnit.WoodUnit, quantity18.Unit);
 
         }
@@ -447,560 +465,106 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 dyn·s/cm⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("en-US", "4.2 dyn·s·cm⁻⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("en-US", "4.2 MPa·s/m³", FluidResistanceUnit.MegapascalSecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/cm³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/m³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/l", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/ml", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/cm³", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/m³", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/l", FluidResistanceUnit.MillimeterMercurySecondPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/ml", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/cm³", FluidResistanceUnit.PascalMinutePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/m³", FluidResistanceUnit.PascalMinutePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/l", FluidResistanceUnit.PascalMinutePerLiter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/ml", FluidResistanceUnit.PascalMinutePerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/cm³", FluidResistanceUnit.PascalSecondPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/m³", FluidResistanceUnit.PascalSecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/l", FluidResistanceUnit.PascalSecondPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/ml", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 WU", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("en-US", "4.2 HRU", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("ru-RU", "4,2 дин·с/см⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("ru-RU", "4,2 дин·с·см⁻⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("ru-RU", "4,2 МПа·с/м³", FluidResistanceUnit.MegapascalSecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/см³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/м³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/л", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/мл", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/см³", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/м³", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/л", FluidResistanceUnit.MillimeterMercurySecondPerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/мл", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/см³", FluidResistanceUnit.PascalMinutePerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/м³", FluidResistanceUnit.PascalMinutePerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/л", FluidResistanceUnit.PascalMinutePerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/мл", FluidResistanceUnit.PascalMinutePerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/см³", FluidResistanceUnit.PascalSecondPerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/м³", FluidResistanceUnit.PascalSecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/л", FluidResistanceUnit.PascalSecondPerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/мл", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 ЕВ", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("ru-RU", "4,2 ЕГС", FluidResistanceUnit.WoodUnit, 4.2)]
+        public void Parse(string culture, string quantityString, FluidResistanceUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = FluidResistance.Parse("1 dyn·s/cm⁵", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 dyn·s·cm⁻⁵", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 дин·с/см⁵", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 дин·с·см⁻⁵", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 MPa·s/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 МПа·с/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·min/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·мин/см³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·min/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·мин/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·min/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·мин/л", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·min/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·мин/мл", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·s/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·с/см³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·s/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·с/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·s/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·с/л", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 mmHg·s/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 мм рт.ст·с/мл", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·min/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·мин/см³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·min/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·мин/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·min/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·мин/л", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·min/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·мин/мл", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·s/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·с/см³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·s/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·с/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·s/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·с/л", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Pa·s/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 Па·с/мл", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 WU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 HRU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 ЕВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = FluidResistance.Parse("1 ЕГС", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = FluidResistance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 dyn·s/cm⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("en-US", "4.2 dyn·s·cm⁻⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("en-US", "4.2 MPa·s/m³", FluidResistanceUnit.MegapascalSecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/cm³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/m³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/l", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·min/ml", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/cm³", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/m³", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/l", FluidResistanceUnit.MillimeterMercurySecondPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mmHg·s/ml", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/cm³", FluidResistanceUnit.PascalMinutePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/m³", FluidResistanceUnit.PascalMinutePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/l", FluidResistanceUnit.PascalMinutePerLiter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·min/ml", FluidResistanceUnit.PascalMinutePerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/cm³", FluidResistanceUnit.PascalSecondPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/m³", FluidResistanceUnit.PascalSecondPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/l", FluidResistanceUnit.PascalSecondPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 Pa·s/ml", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 WU", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("en-US", "4.2 HRU", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("ru-RU", "4,2 дин·с/см⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("ru-RU", "4,2 дин·с·см⁻⁵", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, 4.2)]
+        [InlineData("ru-RU", "4,2 МПа·с/м³", FluidResistanceUnit.MegapascalSecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/см³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/м³", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/л", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·мин/мл", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/см³", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/м³", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/л", FluidResistanceUnit.MillimeterMercurySecondPerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 мм рт.ст·с/мл", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/см³", FluidResistanceUnit.PascalMinutePerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/м³", FluidResistanceUnit.PascalMinutePerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/л", FluidResistanceUnit.PascalMinutePerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·мин/мл", FluidResistanceUnit.PascalMinutePerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/см³", FluidResistanceUnit.PascalSecondPerCubicCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/м³", FluidResistanceUnit.PascalSecondPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/л", FluidResistanceUnit.PascalSecondPerLiter, 4.2)]
+        [InlineData("ru-RU", "4,2 Па·с/мл", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
+        [InlineData("ru-RU", "4,2 ЕВ", FluidResistanceUnit.WoodUnit, 4.2)]
+        [InlineData("ru-RU", "4,2 ЕГС", FluidResistanceUnit.WoodUnit, 4.2)]
+        public void TryParse(string culture, string quantityString, FluidResistanceUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(FluidResistance.TryParse("1 dyn·s/cm⁵", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 dyn·s·cm⁻⁵", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 дин·с/см⁵", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 дин·с·см⁻⁵", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-                Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 MPa·s/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 МПа·с/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·min/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·мин/см³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·min/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·мин/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·min/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·мин/л", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·min/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·мин/мл", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·s/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·с/см³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·s/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·с/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·s/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·с/л", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 mmHg·s/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 мм рт.ст·с/мл", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·min/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·мин/см³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·min/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·мин/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·min/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·мин/л", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·min/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·мин/мл", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·s/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·с/см³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·s/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·с/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·s/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·с/л", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Pa·s/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 Па·с/мл", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
-                Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 WU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 HRU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 ЕВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(FluidResistance.TryParse("1 ЕГС", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WoodUnits, WoodUnitsTolerance);
-                Assert.Equal(FluidResistanceUnit.WoodUnit, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(FluidResistance.TryParse(quantityString, out FluidResistance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1322,6 +886,64 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "dyn·s/cm⁵")]
+        [InlineData("en-US", FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MPa·s/m³")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "mmHg·min/cm³")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "mmHg·min/m³")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "mmHg·min/l")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, "mmHg·min/ml")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, "mmHg·s/cm³")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, "mmHg·s/m³")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercurySecondPerLiter, "mmHg·s/l")]
+        [InlineData("en-US", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, "mmHg·s/ml")]
+        [InlineData("en-US", FluidResistanceUnit.PascalMinutePerCubicCentimeter, "Pa·min/cm³")]
+        [InlineData("en-US", FluidResistanceUnit.PascalMinutePerCubicMeter, "Pa·min/m³")]
+        [InlineData("en-US", FluidResistanceUnit.PascalMinutePerLiter, "Pa·min/l")]
+        [InlineData("en-US", FluidResistanceUnit.PascalMinutePerMilliliter, "Pa·min/ml")]
+        [InlineData("en-US", FluidResistanceUnit.PascalSecondPerCubicCentimeter, "Pa·s/cm³")]
+        [InlineData("en-US", FluidResistanceUnit.PascalSecondPerCubicMeter, "Pa·s/m³")]
+        [InlineData("en-US", FluidResistanceUnit.PascalSecondPerLiter, "Pa·s/l")]
+        [InlineData("en-US", FluidResistanceUnit.PascalSecondPerMilliliter, "Pa·s/ml")]
+        [InlineData("en-US", FluidResistanceUnit.WoodUnit, "WU")]
+        [InlineData("ru-RU", FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "дин·с/см⁵")]
+        [InlineData("ru-RU", FluidResistanceUnit.MegapascalSecondPerCubicMeter, "МПа·с/м³")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "мм рт.ст·мин/см³")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "мм рт.ст·мин/м³")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "мм рт.ст·мин/л")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, "мм рт.ст·мин/мл")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, "мм рт.ст·с/см³")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, "мм рт.ст·с/м³")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercurySecondPerLiter, "мм рт.ст·с/л")]
+        [InlineData("ru-RU", FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, "мм рт.ст·с/мл")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalMinutePerCubicCentimeter, "Па·мин/см³")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalMinutePerCubicMeter, "Па·мин/м³")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalMinutePerLiter, "Па·мин/л")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalMinutePerMilliliter, "Па·мин/мл")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalSecondPerCubicCentimeter, "Па·с/см³")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalSecondPerCubicMeter, "Па·с/м³")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalSecondPerLiter, "Па·с/л")]
+        [InlineData("ru-RU", FluidResistanceUnit.PascalSecondPerMilliliter, "Па·с/мл")]
+        [InlineData("ru-RU", FluidResistanceUnit.WoodUnit, "ЕВ")]
+        public void GetAbbreviationForCulture(string culture, FluidResistanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = FluidResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(FluidResistance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = FluidResistance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(FluidResistanceUnit unit)
         {
@@ -1351,6 +973,7 @@ namespace UnitsNet.Tests
                 var quantity = FluidResistance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1374,50 +997,52 @@ namespace UnitsNet.Tests
                 IQuantity<FluidResistanceUnit> quantityToConvert = quantity;
                 IQuantity<FluidResistanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(pascalsecondpercubicmeter.DyneSecondsPerCentimeterToTheFifth).PascalSecondsPerCubicMeter, DyneSecondsPerCentimeterToTheFifthTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMegapascalSecondsPerCubicMeter(pascalsecondpercubicmeter.MegapascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicMeter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerLiter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerLiter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerMilliliter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicCentimeter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicMeter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerLiter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerLiter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerMilliliter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerMilliliter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerCubicCentimeter(pascalsecondpercubicmeter.PascalMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter, PascalMinutesPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerCubicMeter(pascalsecondpercubicmeter.PascalMinutesPerCubicMeter).PascalSecondsPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerLiter(pascalsecondpercubicmeter.PascalMinutesPerLiter).PascalSecondsPerCubicMeter, PascalMinutesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerMilliliter(pascalsecondpercubicmeter.PascalMinutesPerMilliliter).PascalSecondsPerCubicMeter, PascalMinutesPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerCubicCentimeter(pascalsecondpercubicmeter.PascalSecondsPerCubicCentimeter).PascalSecondsPerCubicMeter, PascalSecondsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerCubicMeter(pascalsecondpercubicmeter.PascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerLiter(pascalsecondpercubicmeter.PascalSecondsPerLiter).PascalSecondsPerCubicMeter, PascalSecondsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerMilliliter(pascalsecondpercubicmeter.PascalSecondsPerMilliliter).PascalSecondsPerCubicMeter, PascalSecondsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromWoodUnits(pascalsecondpercubicmeter.WoodUnits).PascalSecondsPerCubicMeter, WoodUnitsTolerance);
+            FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(3);
+            Assert.Equal(3, FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(pascalsecondpercubicmeter.DyneSecondsPerCentimeterToTheFifth).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMegapascalSecondsPerCubicMeter(pascalsecondpercubicmeter.MegapascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerLiter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerLiter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerMilliliter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerCubicCentimeter(pascalsecondpercubicmeter.PascalMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerCubicMeter(pascalsecondpercubicmeter.PascalMinutesPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerLiter(pascalsecondpercubicmeter.PascalMinutesPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerMilliliter(pascalsecondpercubicmeter.PascalMinutesPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerCubicCentimeter(pascalsecondpercubicmeter.PascalSecondsPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerCubicMeter(pascalsecondpercubicmeter.PascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerLiter(pascalsecondpercubicmeter.PascalSecondsPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerMilliliter(pascalsecondpercubicmeter.PascalSecondsPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromWoodUnits(pascalsecondpercubicmeter.WoodUnits).PascalSecondsPerCubicMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             FluidResistance v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            AssertEx.EqualTolerance(-1, -v.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (FluidResistance.FromPascalSecondsPerCubicMeter(3)-v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (FluidResistance.FromPascalSecondsPerCubicMeter(10)/5).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, FluidResistance.FromPascalSecondsPerCubicMeter(10)/FluidResistance.FromPascalSecondsPerCubicMeter(5), PascalSecondsPerCubicMeterTolerance);
+            Assert.Equal(-1, -v.PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (FluidResistance.FromPascalSecondsPerCubicMeter(3) - v).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (v + v).PascalSecondsPerCubicMeter);
+            Assert.Equal(10, (v * 10).PascalSecondsPerCubicMeter);
+            Assert.Equal(10, (10 * v).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (FluidResistance.FromPascalSecondsPerCubicMeter(10) / 5).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, FluidResistance.FromPascalSecondsPerCubicMeter(10) / FluidResistance.FromPascalSecondsPerCubicMeter(5));
         }
 
         [Fact]
@@ -1463,8 +1088,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.PascalSecondPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 2, FluidResistanceUnit.PascalSecondPerCubicMeter, false)] // Different value.
-        [InlineData(2, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, false)] // Different value and unit.
-        [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FluidResistanceUnit unitA, double valueB, FluidResistanceUnit unitB, bool expectEqual)
         {
             var a = new FluidResistance(valueA, unitA);
@@ -1502,23 +1125,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            Assert.True(v.Equals(FluidResistance.FromPascalSecondsPerCubicMeter(1), PascalSecondsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(FluidResistance.Zero, PascalSecondsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.True(FluidResistance.FromPascalSecondsPerCubicMeter(100).Equals(FluidResistance.FromPascalSecondsPerCubicMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(FluidResistance.FromPascalSecondsPerCubicMeter(100).Equals(FluidResistance.FromPascalSecondsPerCubicMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(FluidResistance.FromPascalSecondsPerCubicMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
@@ -1530,6 +1136,32 @@ namespace UnitsNet.Tests
         {
             FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
             Assert.False(pascalsecondpercubicmeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(firstValue);
+            var otherQuantity = FluidResistance.FromPascalSecondsPerCubicMeter(secondValue);
+            FluidResistance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, FluidResistance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1);
+            var negativeTolerance = FluidResistance.FromPascalSecondsPerCubicMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1546,6 +1178,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(FluidResistance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(FluidResistance.Info.Units, FluidResistance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, FluidResistance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1643,157 +1287,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(FluidResistance)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(FluidResistanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(FluidResistance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(FluidResistance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(new {FluidResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(FluidResistance), quantity.As(FluidResistance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

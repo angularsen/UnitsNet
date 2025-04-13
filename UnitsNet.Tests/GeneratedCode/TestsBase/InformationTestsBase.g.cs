@@ -188,15 +188,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            InformationUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Information(1, InformationUnit.Bit);
 
-            QuantityInfo<InformationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Information, InformationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Information.Zero, quantityInfo.Zero);
             Assert.Equal("Information", quantityInfo.Name);
+            Assert.Equal(Information.Zero, quantityInfo.Zero);
+            Assert.Equal(Information.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Information.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<InformationUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void InformationInfo_CreateWithCustomUnitInfos()
+        {
+            InformationUnit[] expectedUnits = [InformationUnit.Bit];
+
+            Information.InformationInfo quantityInfo = Information.InformationInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Information", quantityInfo.Name);
+            Assert.Equal(Information.Zero, quantityInfo.Zero);
+            Assert.Equal(Information.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -235,107 +253,107 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = Information.From(1, InformationUnit.Bit);
-            AssertEx.EqualTolerance(1, quantity00.Bits, BitsTolerance);
+            Assert.Equal(1, quantity00.Bits);
             Assert.Equal(InformationUnit.Bit, quantity00.Unit);
 
             var quantity01 = Information.From(1, InformationUnit.Byte);
-            AssertEx.EqualTolerance(1, quantity01.Bytes, BytesTolerance);
+            Assert.Equal(1, quantity01.Bytes);
             Assert.Equal(InformationUnit.Byte, quantity01.Unit);
 
             var quantity02 = Information.From(1, InformationUnit.Exabit);
-            AssertEx.EqualTolerance(1, quantity02.Exabits, ExabitsTolerance);
+            Assert.Equal(1, quantity02.Exabits);
             Assert.Equal(InformationUnit.Exabit, quantity02.Unit);
 
             var quantity03 = Information.From(1, InformationUnit.Exabyte);
-            AssertEx.EqualTolerance(1, quantity03.Exabytes, ExabytesTolerance);
+            Assert.Equal(1, quantity03.Exabytes);
             Assert.Equal(InformationUnit.Exabyte, quantity03.Unit);
 
             var quantity04 = Information.From(1, InformationUnit.Exbibit);
-            AssertEx.EqualTolerance(1, quantity04.Exbibits, ExbibitsTolerance);
+            Assert.Equal(1, quantity04.Exbibits);
             Assert.Equal(InformationUnit.Exbibit, quantity04.Unit);
 
             var quantity05 = Information.From(1, InformationUnit.Exbibyte);
-            AssertEx.EqualTolerance(1, quantity05.Exbibytes, ExbibytesTolerance);
+            Assert.Equal(1, quantity05.Exbibytes);
             Assert.Equal(InformationUnit.Exbibyte, quantity05.Unit);
 
             var quantity06 = Information.From(1, InformationUnit.Gibibit);
-            AssertEx.EqualTolerance(1, quantity06.Gibibits, GibibitsTolerance);
+            Assert.Equal(1, quantity06.Gibibits);
             Assert.Equal(InformationUnit.Gibibit, quantity06.Unit);
 
             var quantity07 = Information.From(1, InformationUnit.Gibibyte);
-            AssertEx.EqualTolerance(1, quantity07.Gibibytes, GibibytesTolerance);
+            Assert.Equal(1, quantity07.Gibibytes);
             Assert.Equal(InformationUnit.Gibibyte, quantity07.Unit);
 
             var quantity08 = Information.From(1, InformationUnit.Gigabit);
-            AssertEx.EqualTolerance(1, quantity08.Gigabits, GigabitsTolerance);
+            Assert.Equal(1, quantity08.Gigabits);
             Assert.Equal(InformationUnit.Gigabit, quantity08.Unit);
 
             var quantity09 = Information.From(1, InformationUnit.Gigabyte);
-            AssertEx.EqualTolerance(1, quantity09.Gigabytes, GigabytesTolerance);
+            Assert.Equal(1, quantity09.Gigabytes);
             Assert.Equal(InformationUnit.Gigabyte, quantity09.Unit);
 
             var quantity10 = Information.From(1, InformationUnit.Kibibit);
-            AssertEx.EqualTolerance(1, quantity10.Kibibits, KibibitsTolerance);
+            Assert.Equal(1, quantity10.Kibibits);
             Assert.Equal(InformationUnit.Kibibit, quantity10.Unit);
 
             var quantity11 = Information.From(1, InformationUnit.Kibibyte);
-            AssertEx.EqualTolerance(1, quantity11.Kibibytes, KibibytesTolerance);
+            Assert.Equal(1, quantity11.Kibibytes);
             Assert.Equal(InformationUnit.Kibibyte, quantity11.Unit);
 
             var quantity12 = Information.From(1, InformationUnit.Kilobit);
-            AssertEx.EqualTolerance(1, quantity12.Kilobits, KilobitsTolerance);
+            Assert.Equal(1, quantity12.Kilobits);
             Assert.Equal(InformationUnit.Kilobit, quantity12.Unit);
 
             var quantity13 = Information.From(1, InformationUnit.Kilobyte);
-            AssertEx.EqualTolerance(1, quantity13.Kilobytes, KilobytesTolerance);
+            Assert.Equal(1, quantity13.Kilobytes);
             Assert.Equal(InformationUnit.Kilobyte, quantity13.Unit);
 
             var quantity14 = Information.From(1, InformationUnit.Mebibit);
-            AssertEx.EqualTolerance(1, quantity14.Mebibits, MebibitsTolerance);
+            Assert.Equal(1, quantity14.Mebibits);
             Assert.Equal(InformationUnit.Mebibit, quantity14.Unit);
 
             var quantity15 = Information.From(1, InformationUnit.Mebibyte);
-            AssertEx.EqualTolerance(1, quantity15.Mebibytes, MebibytesTolerance);
+            Assert.Equal(1, quantity15.Mebibytes);
             Assert.Equal(InformationUnit.Mebibyte, quantity15.Unit);
 
             var quantity16 = Information.From(1, InformationUnit.Megabit);
-            AssertEx.EqualTolerance(1, quantity16.Megabits, MegabitsTolerance);
+            Assert.Equal(1, quantity16.Megabits);
             Assert.Equal(InformationUnit.Megabit, quantity16.Unit);
 
             var quantity17 = Information.From(1, InformationUnit.Megabyte);
-            AssertEx.EqualTolerance(1, quantity17.Megabytes, MegabytesTolerance);
+            Assert.Equal(1, quantity17.Megabytes);
             Assert.Equal(InformationUnit.Megabyte, quantity17.Unit);
 
             var quantity18 = Information.From(1, InformationUnit.Pebibit);
-            AssertEx.EqualTolerance(1, quantity18.Pebibits, PebibitsTolerance);
+            Assert.Equal(1, quantity18.Pebibits);
             Assert.Equal(InformationUnit.Pebibit, quantity18.Unit);
 
             var quantity19 = Information.From(1, InformationUnit.Pebibyte);
-            AssertEx.EqualTolerance(1, quantity19.Pebibytes, PebibytesTolerance);
+            Assert.Equal(1, quantity19.Pebibytes);
             Assert.Equal(InformationUnit.Pebibyte, quantity19.Unit);
 
             var quantity20 = Information.From(1, InformationUnit.Petabit);
-            AssertEx.EqualTolerance(1, quantity20.Petabits, PetabitsTolerance);
+            Assert.Equal(1, quantity20.Petabits);
             Assert.Equal(InformationUnit.Petabit, quantity20.Unit);
 
             var quantity21 = Information.From(1, InformationUnit.Petabyte);
-            AssertEx.EqualTolerance(1, quantity21.Petabytes, PetabytesTolerance);
+            Assert.Equal(1, quantity21.Petabytes);
             Assert.Equal(InformationUnit.Petabyte, quantity21.Unit);
 
             var quantity22 = Information.From(1, InformationUnit.Tebibit);
-            AssertEx.EqualTolerance(1, quantity22.Tebibits, TebibitsTolerance);
+            Assert.Equal(1, quantity22.Tebibits);
             Assert.Equal(InformationUnit.Tebibit, quantity22.Unit);
 
             var quantity23 = Information.From(1, InformationUnit.Tebibyte);
-            AssertEx.EqualTolerance(1, quantity23.Tebibytes, TebibytesTolerance);
+            Assert.Equal(1, quantity23.Tebibytes);
             Assert.Equal(InformationUnit.Tebibyte, quantity23.Unit);
 
             var quantity24 = Information.From(1, InformationUnit.Terabit);
-            AssertEx.EqualTolerance(1, quantity24.Terabits, TerabitsTolerance);
+            Assert.Equal(1, quantity24.Terabits);
             Assert.Equal(InformationUnit.Terabit, quantity24.Unit);
 
             var quantity25 = Information.From(1, InformationUnit.Terabyte);
-            AssertEx.EqualTolerance(1, quantity25.Terabytes, TerabytesTolerance);
+            Assert.Equal(1, quantity25.Terabytes);
             Assert.Equal(InformationUnit.Terabyte, quantity25.Unit);
 
         }
@@ -457,196 +475,74 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 b", InformationUnit.Bit, 4.2)]
+        [InlineData("en-US", "4.2 B", InformationUnit.Byte, 4.2)]
+        [InlineData("en-US", "4.2 Eb", InformationUnit.Exabit, 4.2)]
+        [InlineData("en-US", "4.2 EB", InformationUnit.Exabyte, 4.2)]
+        [InlineData("en-US", "4.2 Eib", InformationUnit.Exbibit, 4.2)]
+        [InlineData("en-US", "4.2 EiB", InformationUnit.Exbibyte, 4.2)]
+        [InlineData("en-US", "4.2 Gib", InformationUnit.Gibibit, 4.2)]
+        [InlineData("en-US", "4.2 GiB", InformationUnit.Gibibyte, 4.2)]
+        [InlineData("en-US", "4.2 Gb", InformationUnit.Gigabit, 4.2)]
+        [InlineData("en-US", "4.2 GB", InformationUnit.Gigabyte, 4.2)]
+        [InlineData("en-US", "4.2 Kib", InformationUnit.Kibibit, 4.2)]
+        [InlineData("en-US", "4.2 KiB", InformationUnit.Kibibyte, 4.2)]
+        [InlineData("en-US", "4.2 kb", InformationUnit.Kilobit, 4.2)]
+        [InlineData("en-US", "4.2 kB", InformationUnit.Kilobyte, 4.2)]
+        [InlineData("en-US", "4.2 Mib", InformationUnit.Mebibit, 4.2)]
+        [InlineData("en-US", "4.2 MiB", InformationUnit.Mebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Mb", InformationUnit.Megabit, 4.2)]
+        [InlineData("en-US", "4.2 MB", InformationUnit.Megabyte, 4.2)]
+        [InlineData("en-US", "4.2 Pib", InformationUnit.Pebibit, 4.2)]
+        [InlineData("en-US", "4.2 PiB", InformationUnit.Pebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Pb", InformationUnit.Petabit, 4.2)]
+        [InlineData("en-US", "4.2 PB", InformationUnit.Petabyte, 4.2)]
+        [InlineData("en-US", "4.2 Tib", InformationUnit.Tebibit, 4.2)]
+        [InlineData("en-US", "4.2 TiB", InformationUnit.Tebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Tb", InformationUnit.Terabit, 4.2)]
+        [InlineData("en-US", "4.2 TB", InformationUnit.Terabyte, 4.2)]
+        public void Parse(string culture, string quantityString, InformationUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = Information.Parse("1 b", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Bits, BitsTolerance);
-                Assert.Equal(InformationUnit.Bit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 B", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Bytes, BytesTolerance);
-                Assert.Equal(InformationUnit.Byte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Eb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Exabits, ExabitsTolerance);
-                Assert.Equal(InformationUnit.Exabit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 EB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Exabytes, ExabytesTolerance);
-                Assert.Equal(InformationUnit.Exabyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Eib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Exbibits, ExbibitsTolerance);
-                Assert.Equal(InformationUnit.Exbibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 EiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Exbibytes, ExbibytesTolerance);
-                Assert.Equal(InformationUnit.Exbibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Gib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gibibits, GibibitsTolerance);
-                Assert.Equal(InformationUnit.Gibibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 GiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gibibytes, GibibytesTolerance);
-                Assert.Equal(InformationUnit.Gibibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Gb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigabits, GigabitsTolerance);
-                Assert.Equal(InformationUnit.Gigabit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 GB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigabytes, GigabytesTolerance);
-                Assert.Equal(InformationUnit.Gigabyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Kib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kibibits, KibibitsTolerance);
-                Assert.Equal(InformationUnit.Kibibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 KiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kibibytes, KibibytesTolerance);
-                Assert.Equal(InformationUnit.Kibibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 kb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilobits, KilobitsTolerance);
-                Assert.Equal(InformationUnit.Kilobit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 kB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilobytes, KilobytesTolerance);
-                Assert.Equal(InformationUnit.Kilobyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Mib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Mebibits, MebibitsTolerance);
-                Assert.Equal(InformationUnit.Mebibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 MiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Mebibytes, MebibytesTolerance);
-                Assert.Equal(InformationUnit.Mebibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Mb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megabits, MegabitsTolerance);
-                Assert.Equal(InformationUnit.Megabit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 MB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megabytes, MegabytesTolerance);
-                Assert.Equal(InformationUnit.Megabyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Pib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Pebibits, PebibitsTolerance);
-                Assert.Equal(InformationUnit.Pebibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 PiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Pebibytes, PebibytesTolerance);
-                Assert.Equal(InformationUnit.Pebibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Pb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Petabits, PetabitsTolerance);
-                Assert.Equal(InformationUnit.Petabit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 PB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Petabytes, PetabytesTolerance);
-                Assert.Equal(InformationUnit.Petabyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Tib", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Tebibits, TebibitsTolerance);
-                Assert.Equal(InformationUnit.Tebibit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 TiB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Tebibytes, TebibytesTolerance);
-                Assert.Equal(InformationUnit.Tebibyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 Tb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terabits, TerabitsTolerance);
-                Assert.Equal(InformationUnit.Terabit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Information.Parse("1 TB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terabytes, TerabytesTolerance);
-                Assert.Equal(InformationUnit.Terabyte, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Information.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 b", InformationUnit.Bit, 4.2)]
+        [InlineData("en-US", "4.2 B", InformationUnit.Byte, 4.2)]
+        [InlineData("en-US", "4.2 Eb", InformationUnit.Exabit, 4.2)]
+        [InlineData("en-US", "4.2 EB", InformationUnit.Exabyte, 4.2)]
+        [InlineData("en-US", "4.2 Eib", InformationUnit.Exbibit, 4.2)]
+        [InlineData("en-US", "4.2 EiB", InformationUnit.Exbibyte, 4.2)]
+        [InlineData("en-US", "4.2 Gib", InformationUnit.Gibibit, 4.2)]
+        [InlineData("en-US", "4.2 GiB", InformationUnit.Gibibyte, 4.2)]
+        [InlineData("en-US", "4.2 Gb", InformationUnit.Gigabit, 4.2)]
+        [InlineData("en-US", "4.2 GB", InformationUnit.Gigabyte, 4.2)]
+        [InlineData("en-US", "4.2 Kib", InformationUnit.Kibibit, 4.2)]
+        [InlineData("en-US", "4.2 KiB", InformationUnit.Kibibyte, 4.2)]
+        [InlineData("en-US", "4.2 kb", InformationUnit.Kilobit, 4.2)]
+        [InlineData("en-US", "4.2 kB", InformationUnit.Kilobyte, 4.2)]
+        [InlineData("en-US", "4.2 Mib", InformationUnit.Mebibit, 4.2)]
+        [InlineData("en-US", "4.2 MiB", InformationUnit.Mebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Mb", InformationUnit.Megabit, 4.2)]
+        [InlineData("en-US", "4.2 MB", InformationUnit.Megabyte, 4.2)]
+        [InlineData("en-US", "4.2 Pib", InformationUnit.Pebibit, 4.2)]
+        [InlineData("en-US", "4.2 PiB", InformationUnit.Pebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Pb", InformationUnit.Petabit, 4.2)]
+        [InlineData("en-US", "4.2 PB", InformationUnit.Petabyte, 4.2)]
+        [InlineData("en-US", "4.2 Tib", InformationUnit.Tebibit, 4.2)]
+        [InlineData("en-US", "4.2 TiB", InformationUnit.Tebibyte, 4.2)]
+        [InlineData("en-US", "4.2 Tb", InformationUnit.Terabit, 4.2)]
+        [InlineData("en-US", "4.2 TB", InformationUnit.Terabyte, 4.2)]
+        public void TryParse(string culture, string quantityString, InformationUnit expectedUnit, decimal expectedValue)
         {
+            using var _ = new CultureScope(culture);
+            Assert.True(Information.TryParse(quantityString, out Information parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -924,6 +820,52 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", InformationUnit.Bit, "b")]
+        [InlineData("en-US", InformationUnit.Byte, "B")]
+        [InlineData("en-US", InformationUnit.Exabit, "Eb")]
+        [InlineData("en-US", InformationUnit.Exabyte, "EB")]
+        [InlineData("en-US", InformationUnit.Exbibit, "Eib")]
+        [InlineData("en-US", InformationUnit.Exbibyte, "EiB")]
+        [InlineData("en-US", InformationUnit.Gibibit, "Gib")]
+        [InlineData("en-US", InformationUnit.Gibibyte, "GiB")]
+        [InlineData("en-US", InformationUnit.Gigabit, "Gb")]
+        [InlineData("en-US", InformationUnit.Gigabyte, "GB")]
+        [InlineData("en-US", InformationUnit.Kibibit, "Kib")]
+        [InlineData("en-US", InformationUnit.Kibibyte, "KiB")]
+        [InlineData("en-US", InformationUnit.Kilobit, "kb")]
+        [InlineData("en-US", InformationUnit.Kilobyte, "kB")]
+        [InlineData("en-US", InformationUnit.Mebibit, "Mib")]
+        [InlineData("en-US", InformationUnit.Mebibyte, "MiB")]
+        [InlineData("en-US", InformationUnit.Megabit, "Mb")]
+        [InlineData("en-US", InformationUnit.Megabyte, "MB")]
+        [InlineData("en-US", InformationUnit.Pebibit, "Pib")]
+        [InlineData("en-US", InformationUnit.Pebibyte, "PiB")]
+        [InlineData("en-US", InformationUnit.Petabit, "Pb")]
+        [InlineData("en-US", InformationUnit.Petabyte, "PB")]
+        [InlineData("en-US", InformationUnit.Tebibit, "Tib")]
+        [InlineData("en-US", InformationUnit.Tebibyte, "TiB")]
+        [InlineData("en-US", InformationUnit.Terabit, "Tb")]
+        [InlineData("en-US", InformationUnit.Terabyte, "TB")]
+        public void GetAbbreviationForCulture(string culture, InformationUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Information.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Information.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Information.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(InformationUnit unit)
         {
@@ -953,6 +895,7 @@ namespace UnitsNet.Tests
                 var quantity = Information.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -976,57 +919,59 @@ namespace UnitsNet.Tests
                 IQuantity<InformationUnit> quantityToConvert = quantity;
                 IQuantity<InformationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Information bit = Information.FromBits(1);
-            AssertEx.EqualTolerance(1, Information.FromBits(bit.Bits).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromBytes(bit.Bytes).Bits, BytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromExabits(bit.Exabits).Bits, ExabitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromExabytes(bit.Exabytes).Bits, ExabytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromExbibits(bit.Exbibits).Bits, ExbibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromExbibytes(bit.Exbibytes).Bits, ExbibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromGibibits(bit.Gibibits).Bits, GibibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromGibibytes(bit.Gibibytes).Bits, GibibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromGigabits(bit.Gigabits).Bits, GigabitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromGigabytes(bit.Gigabytes).Bits, GigabytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromKibibits(bit.Kibibits).Bits, KibibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromKibibytes(bit.Kibibytes).Bits, KibibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromKilobits(bit.Kilobits).Bits, KilobitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromKilobytes(bit.Kilobytes).Bits, KilobytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromMebibits(bit.Mebibits).Bits, MebibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromMebibytes(bit.Mebibytes).Bits, MebibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromMegabits(bit.Megabits).Bits, MegabitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromMegabytes(bit.Megabytes).Bits, MegabytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromPebibits(bit.Pebibits).Bits, PebibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromPebibytes(bit.Pebibytes).Bits, PebibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromPetabits(bit.Petabits).Bits, PetabitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromPetabytes(bit.Petabytes).Bits, PetabytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromTebibits(bit.Tebibits).Bits, TebibitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromTebibytes(bit.Tebibytes).Bits, TebibytesTolerance);
-            AssertEx.EqualTolerance(1, Information.FromTerabits(bit.Terabits).Bits, TerabitsTolerance);
-            AssertEx.EqualTolerance(1, Information.FromTerabytes(bit.Terabytes).Bits, TerabytesTolerance);
+            Information bit = Information.FromBits(3);
+            Assert.Equal(3, Information.FromBits(bit.Bits).Bits);
+            Assert.Equal(3, Information.FromBytes(bit.Bytes).Bits);
+            Assert.Equal(3, Information.FromExabits(bit.Exabits).Bits);
+            Assert.Equal(3, Information.FromExabytes(bit.Exabytes).Bits);
+            Assert.Equal(3, Information.FromExbibits(bit.Exbibits).Bits);
+            Assert.Equal(3, Information.FromExbibytes(bit.Exbibytes).Bits);
+            Assert.Equal(3, Information.FromGibibits(bit.Gibibits).Bits);
+            Assert.Equal(3, Information.FromGibibytes(bit.Gibibytes).Bits);
+            Assert.Equal(3, Information.FromGigabits(bit.Gigabits).Bits);
+            Assert.Equal(3, Information.FromGigabytes(bit.Gigabytes).Bits);
+            Assert.Equal(3, Information.FromKibibits(bit.Kibibits).Bits);
+            Assert.Equal(3, Information.FromKibibytes(bit.Kibibytes).Bits);
+            Assert.Equal(3, Information.FromKilobits(bit.Kilobits).Bits);
+            Assert.Equal(3, Information.FromKilobytes(bit.Kilobytes).Bits);
+            Assert.Equal(3, Information.FromMebibits(bit.Mebibits).Bits);
+            Assert.Equal(3, Information.FromMebibytes(bit.Mebibytes).Bits);
+            Assert.Equal(3, Information.FromMegabits(bit.Megabits).Bits);
+            Assert.Equal(3, Information.FromMegabytes(bit.Megabytes).Bits);
+            Assert.Equal(3, Information.FromPebibits(bit.Pebibits).Bits);
+            Assert.Equal(3, Information.FromPebibytes(bit.Pebibytes).Bits);
+            Assert.Equal(3, Information.FromPetabits(bit.Petabits).Bits);
+            Assert.Equal(3, Information.FromPetabytes(bit.Petabytes).Bits);
+            Assert.Equal(3, Information.FromTebibits(bit.Tebibits).Bits);
+            Assert.Equal(3, Information.FromTebibytes(bit.Tebibytes).Bits);
+            Assert.Equal(3, Information.FromTerabits(bit.Terabits).Bits);
+            Assert.Equal(3, Information.FromTerabytes(bit.Terabytes).Bits);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Information v = Information.FromBits(1);
-            AssertEx.EqualTolerance(-1, -v.Bits, BitsTolerance);
-            AssertEx.EqualTolerance(2, (Information.FromBits(3)-v).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(2, (Information.FromBits(10)/5).Bits, BitsTolerance);
-            AssertEx.EqualTolerance(2, Information.FromBits(10)/Information.FromBits(5), BitsTolerance);
+            Assert.Equal(-1, -v.Bits);
+            Assert.Equal(2, (Information.FromBits(3) - v).Bits);
+            Assert.Equal(2, (v + v).Bits);
+            Assert.Equal(10, (v * 10).Bits);
+            Assert.Equal(10, (10 * v).Bits);
+            Assert.Equal(2, (Information.FromBits(10) / 5).Bits);
+            Assert.Equal(2, Information.FromBits(10) / Information.FromBits(5));
         }
 
         [Fact]
@@ -1072,8 +1017,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, InformationUnit.Bit, 1, InformationUnit.Bit, true)]  // Same value and unit.
         [InlineData(1, InformationUnit.Bit, 2, InformationUnit.Bit, false)] // Different value.
-        [InlineData(2, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different value and unit.
-        [InlineData(1, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, InformationUnit unitA, double valueB, InformationUnit unitB, bool expectEqual)
         {
             var a = new Information(valueA, unitA);
@@ -1111,23 +1054,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Information.FromBits(1);
-            Assert.True(v.Equals(Information.FromBits(1), BitsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Information.Zero, BitsTolerance, ComparisonType.Relative));
-            Assert.True(Information.FromBits(100).Equals(Information.FromBits(120), 0.3, ComparisonType.Relative));
-            Assert.False(Information.FromBits(100).Equals(Information.FromBits(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Information.FromBits(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Information.FromBits(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Information bit = Information.FromBits(1);
@@ -1139,6 +1065,32 @@ namespace UnitsNet.Tests
         {
             Information bit = Information.FromBits(1);
             Assert.False(bit.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Information.FromBits(firstValue);
+            var otherQuantity = Information.FromBits(secondValue);
+            Information maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, Information.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Information.FromBits(1);
+            var negativeTolerance = Information.FromBits(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1155,6 +1107,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Information.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Information.Info.Units, Information.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Information.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1266,157 +1230,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Information)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(InformationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(Information.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(Information.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = Information.FromBits(1.0);
-            Assert.Equal(new {Information.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Information), quantity.As(Information.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

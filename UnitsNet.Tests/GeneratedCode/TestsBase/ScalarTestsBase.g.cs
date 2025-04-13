@@ -88,15 +88,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ScalarUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
-            QuantityInfo<ScalarUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Scalar.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ScalarUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void ScalarInfo_CreateWithCustomUnitInfos()
+        {
+            ScalarUnit[] expectedUnits = [ScalarUnit.Amount];
+
+            Scalar.ScalarInfo quantityInfo = Scalar.ScalarInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Scalar", quantityInfo.Name);
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -110,7 +128,7 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = Scalar.From(1, ScalarUnit.Amount);
-            AssertEx.EqualTolerance(1, quantity00.Amount, AmountTolerance);
+            Assert.Equal(1, quantity00.Amount);
             Assert.Equal(ScalarUnit.Amount, quantity00.Unit);
 
         }
@@ -207,27 +225,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = Scalar.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Scalar.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(Scalar.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Scalar.TryParse(quantityString, out Scalar parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -305,6 +320,27 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ScalarUnit.Amount, "")]
+        public void GetAbbreviationForCulture(string culture, ScalarUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Scalar.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Scalar.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Scalar.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ScalarUnit unit)
         {
@@ -334,6 +370,7 @@ namespace UnitsNet.Tests
                 var quantity = Scalar.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -357,32 +394,34 @@ namespace UnitsNet.Tests
                 IQuantity<ScalarUnit> quantityToConvert = quantity;
                 IQuantity<ScalarUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Scalar amount = Scalar.FromAmount(1);
-            AssertEx.EqualTolerance(1, Scalar.FromAmount(amount.Amount).Amount, AmountTolerance);
+            Scalar amount = Scalar.FromAmount(3);
+            Assert.Equal(3, Scalar.FromAmount(amount.Amount).Amount);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Scalar v = Scalar.FromAmount(1);
-            AssertEx.EqualTolerance(-1, -v.Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (Scalar.FromAmount(3)-v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (Scalar.FromAmount(10)/5).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, Scalar.FromAmount(10)/Scalar.FromAmount(5), AmountTolerance);
+            Assert.Equal(-1, -v.Amount);
+            Assert.Equal(2, (Scalar.FromAmount(3) - v).Amount);
+            Assert.Equal(2, (v + v).Amount);
+            Assert.Equal(10, (v * 10).Amount);
+            Assert.Equal(10, (10 * v).Amount);
+            Assert.Equal(2, (Scalar.FromAmount(10) / 5).Amount);
+            Assert.Equal(2, Scalar.FromAmount(10) / Scalar.FromAmount(5));
         }
 
         [Fact]
@@ -428,7 +467,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ScalarUnit.Amount, 1, ScalarUnit.Amount, true)]  // Same value and unit.
         [InlineData(1, ScalarUnit.Amount, 2, ScalarUnit.Amount, false)] // Different value.
-        [InlineData(2, ScalarUnit.Amount, 1, ScalarUnit.Amount, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ScalarUnit unitA, double valueB, ScalarUnit unitB, bool expectEqual)
         {
             var a = new Scalar(valueA, unitA);
@@ -466,23 +504,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Scalar.FromAmount(1);
-            Assert.True(v.Equals(Scalar.FromAmount(1), AmountTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Scalar.Zero, AmountTolerance, ComparisonType.Relative));
-            Assert.True(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.3, ComparisonType.Relative));
-            Assert.False(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Scalar.FromAmount(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Scalar.FromAmount(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Scalar amount = Scalar.FromAmount(1);
@@ -494,6 +515,32 @@ namespace UnitsNet.Tests
         {
             Scalar amount = Scalar.FromAmount(1);
             Assert.False(amount.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Scalar.FromAmount(firstValue);
+            var otherQuantity = Scalar.FromAmount(secondValue);
+            Scalar maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, Scalar.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Scalar.FromAmount(1);
+            var negativeTolerance = Scalar.FromAmount(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -510,6 +557,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Scalar.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Scalar.Info.Units, Scalar.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Scalar.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -571,157 +630,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Scalar)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ScalarUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(Scalar.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(Scalar.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(new {Scalar.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Scalar), quantity.As(Scalar.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

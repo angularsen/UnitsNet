@@ -13,13 +13,19 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class AddTwoMassesWithSameUnitsBenchmarks
 {
-    private static readonly double LeftValue = 1.23;
-    private static readonly double RightValue = 4.56;
+    private static readonly QuantityValue LeftValue = 1.23;
+    private static readonly QuantityValue RightValue = 4.56;
 
     private (Mass left, Mass right)[] _operands;
 
-    [Params(1_000)]
+    [Params(1000)]
     public int NbOperations { get; set; }
+
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [Params(MassUnit.Kilogram, MassUnit.Gram, MassUnit.Milligram)]
     public MassUnit Unit { get; set; }
@@ -27,6 +33,8 @@ public class AddTwoMassesWithSameUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        
         _operands = Enumerable.Range(0, NbOperations).Select(_ => (Mass.From(LeftValue, Unit), Mass.From(RightValue, Unit))).ToArray();
     }
 

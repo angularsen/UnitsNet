@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
     /// </summary>
     public static class NumberToAmplitudeRatioExtensions
     {
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(double)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(QuantityValue)" />
         public static AmplitudeRatio DecibelMicrovolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AmplitudeRatio.FromDecibelMicrovolts(double.CreateChecked(value));
+            => AmplitudeRatio.FromDecibelMicrovolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => AmplitudeRatio.FromDecibelMicrovolts(value.ToDouble(null));
+            => AmplitudeRatio.FromDecibelMicrovolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(double)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(QuantityValue)" />
         public static AmplitudeRatio DecibelMillivolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AmplitudeRatio.FromDecibelMillivolts(double.CreateChecked(value));
+            => AmplitudeRatio.FromDecibelMillivolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => AmplitudeRatio.FromDecibelMillivolts(value.ToDouble(null));
+            => AmplitudeRatio.FromDecibelMillivolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(QuantityValue)" />
         public static AmplitudeRatio DecibelsUnloaded<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AmplitudeRatio.FromDecibelsUnloaded(double.CreateChecked(value));
+            => AmplitudeRatio.FromDecibelsUnloaded(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => AmplitudeRatio.FromDecibelsUnloaded(value.ToDouble(null));
+            => AmplitudeRatio.FromDecibelsUnloaded(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(double)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(QuantityValue)" />
         public static AmplitudeRatio DecibelVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AmplitudeRatio.FromDecibelVolts(double.CreateChecked(value));
+            => AmplitudeRatio.FromDecibelVolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => AmplitudeRatio.FromDecibelVolts(value.ToDouble(null));
+            => AmplitudeRatio.FromDecibelVolts(value.ToQuantityValue());
 #endif
 
     }

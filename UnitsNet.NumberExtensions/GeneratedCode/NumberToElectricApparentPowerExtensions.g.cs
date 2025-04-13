@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
     /// </summary>
     public static class NumberToElectricApparentPowerExtensions
     {
-        /// <inheritdoc cref="ElectricApparentPower.FromGigavoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromGigavoltamperes(QuantityValue)" />
         public static ElectricApparentPower Gigavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromGigavoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromGigavoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromGigavoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromGigavoltamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricApparentPower.FromKilovoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromKilovoltamperes(QuantityValue)" />
         public static ElectricApparentPower Kilovoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromKilovoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromKilovoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromKilovoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromKilovoltamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricApparentPower.FromMegavoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromMegavoltamperes(QuantityValue)" />
         public static ElectricApparentPower Megavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromMegavoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromMegavoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromMegavoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromMegavoltamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricApparentPower.FromMicrovoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromMicrovoltamperes(QuantityValue)" />
         public static ElectricApparentPower Microvoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromMicrovoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromMicrovoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromMicrovoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromMicrovoltamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricApparentPower.FromMillivoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromMillivoltamperes(QuantityValue)" />
         public static ElectricApparentPower Millivoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromMillivoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromMillivoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromMillivoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromMillivoltamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricApparentPower.FromVoltamperes(double)" />
+        /// <inheritdoc cref="ElectricApparentPower.FromVoltamperes(QuantityValue)" />
         public static ElectricApparentPower Voltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentPower.FromVoltamperes(double.CreateChecked(value));
+            => ElectricApparentPower.FromVoltamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentPower.FromVoltamperes(value.ToDouble(null));
+            => ElectricApparentPower.FromVoltamperes(value.ToQuantityValue());
 #endif
 
     }

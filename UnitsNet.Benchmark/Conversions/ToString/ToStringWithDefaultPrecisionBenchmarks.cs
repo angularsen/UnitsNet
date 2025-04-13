@@ -12,7 +12,7 @@ namespace UnitsNet.Benchmark.Conversions.ToString;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class ToStringWithDefaultPrecisionBenchmarks
 {
-    private static readonly double Value = 123.456;
+    private static readonly QuantityValue Value = 123.456m;
     private readonly Random _random = new(42);
 
     private Mass[] _masses = [];
@@ -27,13 +27,13 @@ public class ToStringWithDefaultPrecisionBenchmarks
     [GlobalSetup(Target = nameof(MassToString))]
     public void PrepareMassesToTest()
     {
-        _masses = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units, NbConversions).ToArray();
+        _masses = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbConversions).ToArray();
     }
 
     [GlobalSetup(Target = nameof(VolumeFlowToString))]
     public void PrepareVolumeFlowsToTest()
     {
-        _volumeFlows = _random.GetRandomQuantities<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units, NbConversions).ToArray();
+        _volumeFlows = _random.GetRandomQuantities<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units.ToArray(), NbConversions).ToArray();
     }
 
     [Benchmark(Baseline = true)]
