@@ -24,7 +24,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LuminanceTests : LuminanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CandelasPerSquareMeterInOneCandelaPerSquareMeter => 1;
         protected override double CandelasPerSquareFootInOneCandelaPerSquareMeter => 9.290304e-2;
         protected override double CandelasPerSquareInchInOneCandelaPerSquareMeter => 6.4516e-4;

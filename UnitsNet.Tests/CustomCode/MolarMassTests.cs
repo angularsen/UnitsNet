@@ -28,7 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarMassTests : MolarMassTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double CentigramsPerMoleInOneKilogramPerMole => 1e5;
         protected override double DecagramsPerMoleInOneKilogramPerMole => 1e2;
         protected override double DecigramsPerMoleInOneKilogramPerMole => 1e4;

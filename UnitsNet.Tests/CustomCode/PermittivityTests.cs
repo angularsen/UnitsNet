@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PermittivityTests : PermittivityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double FaradsPerMeterInOneFaradPerMeter => 1;
     }
 }

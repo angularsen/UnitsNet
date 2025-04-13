@@ -27,8 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class BitRateTests : BitRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double BitsPerSecondInOneBitPerSecond => 1;
         protected override double BytesPerSecondInOneBitPerSecond => 1.25E-1;
 

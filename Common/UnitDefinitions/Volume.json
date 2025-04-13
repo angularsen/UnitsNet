@@ -329,15 +329,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": []
+          "Abbreviations": [ "tablespoon (U.S.)" ]
         }
       ]
     },
@@ -351,15 +343,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": []
+          "Abbreviations": [ "tablespoon (A.U.)" ]
         }
       ]
     },
@@ -373,15 +357,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": []
+          "Abbreviations": [ "tablespoon (U.K.)" ]
         }
       ]
     },
@@ -396,14 +372,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": []
         }
       ]
     },
@@ -417,15 +385,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": []
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": []
+          "Abbreviations": [ "teaspoon (U.S.)" ]
         }
       ]
     },
@@ -439,7 +399,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": [ "metric cup" ]
         }
       ]
     },
@@ -453,7 +413,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": ["cup (U.S. customary)"]
         }
       ]
     },
@@ -467,7 +427,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": ["cup (U.S.)"]
         }
       ]
     },

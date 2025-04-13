@@ -240,6 +240,7 @@ namespace UnitsNet
             (TEnum Unit, string Abbreviation)[] matches =
                 stringUnitPairs.Where(pair => pair.Abbreviation.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
+            // No match? Retry after normalizing the unit abbreviation.
             if (matches.Length == 0)
             {
                 var normalizeUnitString = NormalizeUnitString(unitAbbreviation);

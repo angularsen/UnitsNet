@@ -8,8 +8,6 @@ namespace UnitsNet.Tests
 {
     public class AreaTests : AreaTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 
         protected override double SquareMetersInOneSquareMeter => 1;
@@ -71,7 +69,7 @@ namespace UnitsNet.Tests
         [InlineData(0.5, 0.19634954084936208)]
         [InlineData(1, 0.7853981633974483)]
         [InlineData(2, 3.141592653589793)]
-        public void AreaFromCicleDiameterCalculatedCorrectly(double diameterMeters, double expected)
+        public void AreaFromCircleDiameterCalculatedCorrectly(double diameterMeters, double expected)
         {
             Length diameter = Length.FromMeters(diameterMeters);
 
@@ -85,7 +83,7 @@ namespace UnitsNet.Tests
         [InlineData(0.5, 0.7853981633974483)]
         [InlineData(1, 3.141592653589793)]
         [InlineData(2, 12.566370614359173)]
-        public void AreaFromCicleRadiusCalculatedCorrectly(double radiusMeters, double expected)
+        public void AreaFromCircleRadiusCalculatedCorrectly(double radiusMeters, double expected)
         {
             Length radius = Length.FromMeters(radiusMeters);
 
@@ -129,7 +127,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(-2.0, -0.5)]
         [InlineData(-1.0, -1.0)]
-        [InlineData(0.0, 0.0)]
+        [InlineData(0.0, double.PositiveInfinity)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
         public void InverseReturnsReciprocalArea(double value, double expected)

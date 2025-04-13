@@ -8,8 +8,12 @@ Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
+### Changes
+ℹ️ The `master` branch now targets v6, but it is still in pre-release. 
+New units will be backported to  `maintenance/v5` until v6 becomes stable.
+
+[Upgrading from 5.x to 6.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-5.x-to-6.x)<br>
 [Upgrading from 4.x to 5.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-4.x-to-5.x)<br>
-[Upgrading from 5.x to 6.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-5.x-to-6.x) (still in prerelease and may yet change)
 
 ### Overview
 

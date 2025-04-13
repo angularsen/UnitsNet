@@ -24,7 +24,6 @@ namespace UnitsNet.Tests.CustomCode
     public class AbsorbedDoseOfIonizingRadiationTests : AbsorbedDoseOfIonizingRadiationTestsBase
     {
         // Override properties in base class here
-        protected override bool SupportsSIUnitSystem => true;
         protected override double CentigraysInOneGray => 100;
         protected override double FemtograysInOneGray => 1E+15;
         protected override double GigagraysInOneGray => 1E-9;

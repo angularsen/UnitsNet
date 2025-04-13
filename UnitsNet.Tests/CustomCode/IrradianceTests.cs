@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IrradianceTests : IrradianceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double KilowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-7;
 
         protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;

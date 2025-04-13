@@ -7,8 +7,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RadioactivityTests : RadioactivityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double BecquerelsInOneBecquerel => 1;
         protected override double CuriesInOneBecquerel => 2.702702702703e-11;
         protected override double ExabecquerelsInOneBecquerel => 1e-18;

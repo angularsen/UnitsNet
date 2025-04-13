@@ -28,7 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassConcentrationTests : MassConcentrationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
 
         #region Unit Conversion Coefficients
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
@@ -134,6 +133,14 @@ namespace UnitsNet.Tests.CustomCode
             Mass massComponent = massConcentration * volume;
 
             AssertEx.EqualTolerance(expectedMassValue, massComponent.As(expectedMassUnit), tolerance);
+        }
+
+        [Fact]
+        public void DefaultSIUnitIsKgPerCubicMeter()
+        {
+            var massConcentration = new MassConcentration(1, UnitSystem.SI);
+
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, massConcentration.Unit); // MassConcentration.BaseUnit = KilogramPerCubicMeter
         }
 
         [Fact]

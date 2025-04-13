@@ -26,8 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PorousMediumPermeabilityTests : PorousMediumPermeabilityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double DarcysInOneSquareMeter => 0.10132499658e13;
 
         protected override double MicrodarcysInOneSquareMeter => 0.10132499658e19;

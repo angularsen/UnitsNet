@@ -29,7 +29,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricConductivityTests : ElectricConductivityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double SiemensPerMeterInOneSiemensPerMeter => 1;
         protected override double SiemensPerInchInOneSiemensPerMeter => 2.54e-2;
         protected override double SiemensPerFootInOneSiemensPerMeter => 3.048e-1;
@@ -40,7 +39,7 @@ namespace UnitsNet.Tests.CustomCode
         [Theory]
         [InlineData( -1.0, -1.0 )]
         [InlineData( -2.0, -0.5 )]
-        [InlineData( 0.0, 0.0 )]
+        [InlineData( 0.0, double.PositiveInfinity )]
         [InlineData( 1.0, 1.0 )]
         [InlineData( 2.0, 0.5 )]
         public static void InverseTest( double value, double expected )

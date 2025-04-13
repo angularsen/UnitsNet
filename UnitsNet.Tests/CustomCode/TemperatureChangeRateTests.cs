@@ -8,7 +8,6 @@ namespace UnitsNet.Tests
 {
     public class TemperatureChangeRateTests : TemperatureChangeRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond => 1;
 
         protected override double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond => 1E-1;
@@ -42,8 +41,8 @@ namespace UnitsNet.Tests
         protected override double DegreesKelvinPerSecondInOneDegreeCelsiusPerSecond => 1;
 
         protected override double DegreesCelsiusPerHourInOneDegreeCelsiusPerSecond => 3600;
-        
-        
+
+
         [Fact(Skip = "See about changing the BaseUnit to KelvinPerSecond")]
         public override void BaseUnit_HasSIBase()
         {

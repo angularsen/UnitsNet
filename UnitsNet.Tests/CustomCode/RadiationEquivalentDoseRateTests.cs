@@ -9,7 +9,6 @@ namespace UnitsNet.Tests.CustomCode
     public class RadiationEquivalentDoseRateTests : RadiationEquivalentDoseRateTestsBase
     {
         // Override properties in base class here
-        protected override bool SupportsSIUnitSystem => false;
         protected override double SievertsPerSecondInOneSievertPerSecond => 1;
         protected override double MillisievertsPerSecondInOneSievertPerSecond => 1e+3;
         protected override double MicrosievertsPerSecondInOneSievertPerSecond => 1e+6;
@@ -24,14 +23,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void RadiationEquivalentDoseRateTimesTimeSpanEqualsRadiationEquivalentDose()
         {
-            RadiationEquivalentDose dose = RadiationEquivalentDoseRate.FromSievertsPerHour(20)*TimeSpan.FromHours(2);
+            RadiationEquivalentDose dose = RadiationEquivalentDoseRate.FromSievertsPerHour(20) * TimeSpan.FromHours(2);
             Assert.Equal(dose, RadiationEquivalentDose.FromSieverts(40));
         }
 
         [Fact]
         public void RadiationEquivalentDoseRateTimesDurationEqualsRadiationEquivalentDose()
         {
-            RadiationEquivalentDose dose = RadiationEquivalentDoseRate.FromSievertsPerHour(20)*Duration.FromHours(2);
+            RadiationEquivalentDose dose = RadiationEquivalentDoseRate.FromSievertsPerHour(20) * Duration.FromHours(2);
             Assert.Equal(dose, RadiationEquivalentDose.FromSieverts(40));
         }
     }

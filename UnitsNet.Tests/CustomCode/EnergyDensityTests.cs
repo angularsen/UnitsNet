@@ -26,8 +26,6 @@ namespace UnitsNet.Tests.CustomCode
     public class EnergyDensityTests : EnergyDensityTestsBase
     {
         /// <inheritdoc />
-        protected override bool SupportsSIUnitSystem => true;
-        /// <inheritdoc />
         protected override double GigajoulesPerCubicMeterInOneJoulePerCubicMeter => 1e-9;
         /// <inheritdoc />
         protected override double GigawattHoursPerCubicMeterInOneJoulePerCubicMeter => 2.77777778e-13;

@@ -23,8 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricApparentPowerTests : ElectricApparentPowerTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double VoltamperesInOneVoltampere => 1;
 
         protected override double KilovoltamperesInOneVoltampere => 1E-3;

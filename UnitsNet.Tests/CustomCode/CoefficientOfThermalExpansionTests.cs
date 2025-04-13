@@ -27,8 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class CoefficientOfThermalExpansionTests : CoefficientOfThermalExpansionTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double PerDegreeCelsiusInOnePerKelvin => 1.0;
 
         protected override double PerDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;

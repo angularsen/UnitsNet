@@ -824,6 +824,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 tablespoon (A.U.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AuTablespoons, AuTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.AuTablespoon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 bf", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.BoardFeet, BoardFeetTolerance);
                 Assert.Equal(VolumeUnit.BoardFoot, parsed.Unit);
@@ -1356,6 +1363,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 metric cup", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetricCups, MetricCupsTolerance);
+                Assert.Equal(VolumeUnit.MetricCup, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 tsp", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
@@ -1468,9 +1482,23 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 tablespoon (U.K.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UkTablespoons, UkTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.UkTablespoon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 bl (U.S.)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.UsBeerBarrels, UsBeerBarrelsTolerance);
                 Assert.Equal(VolumeUnit.UsBeerBarrel, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 cup (U.S. customary)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsCustomaryCups, UsCustomaryCupsTolerance);
+                Assert.Equal(VolumeUnit.UsCustomaryCup, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1485,6 +1513,13 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 Американский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.UsGallons, UsGallonsTolerance);
                 Assert.Equal(VolumeUnit.UsGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 cup (U.S.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsLegalCups, UsLegalCupsTolerance);
+                Assert.Equal(VolumeUnit.UsLegalCup, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1515,6 +1550,20 @@ namespace UnitsNet.Tests
                 Assert.Equal(VolumeUnit.UsQuart, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsed = Volume.Parse("1 tablespoon (U.S.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsTablespoons, UsTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.UsTablespoon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 teaspoon (U.S.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsTeaspoons, UsTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.UsTeaspoon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -1536,6 +1585,12 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 acre-feet", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AcreFeet, AcreFeetTolerance);
                 Assert.Equal(VolumeUnit.AcreFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 tablespoon (A.U.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AuTablespoons, AuTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.AuTablespoon, parsed.Unit);
             }
 
             {
@@ -1935,6 +1990,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 metric cup", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricCups, MetricCupsTolerance);
+                Assert.Equal(VolumeUnit.MetricCup, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 tsp", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
@@ -2019,9 +2080,21 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 tablespoon (U.K.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UkTablespoons, UkTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.UkTablespoon, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 bl (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.UsBeerBarrels, UsBeerBarrelsTolerance);
                 Assert.Equal(VolumeUnit.UsBeerBarrel, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 cup (U.S. customary)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsCustomaryCups, UsCustomaryCupsTolerance);
+                Assert.Equal(VolumeUnit.UsCustomaryCup, parsed.Unit);
             }
 
             {
@@ -2034,6 +2107,12 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 Американский галлон", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.UsGallons, UsGallonsTolerance);
                 Assert.Equal(VolumeUnit.UsGallon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 cup (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsLegalCups, UsLegalCupsTolerance);
+                Assert.Equal(VolumeUnit.UsLegalCup, parsed.Unit);
             }
 
             {
@@ -2060,12 +2139,25 @@ namespace UnitsNet.Tests
                 Assert.Equal(VolumeUnit.UsQuart, parsed.Unit);
             }
 
+            {
+                Assert.True(Volume.TryParse("1 tablespoon (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsTablespoons, UsTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.UsTablespoon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 teaspoon (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsTeaspoons, UsTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.UsTeaspoon, parsed.Unit);
+            }
+
         }
 
         [Theory]
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("bf", VolumeUnit.BoardFoot)]
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
@@ -2103,6 +2195,7 @@ namespace UnitsNet.Tests
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("metric cup", VolumeUnit.MetricCup)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2116,11 +2209,16 @@ namespace UnitsNet.Tests
         [InlineData("ml", VolumeUnit.Milliliter)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -2133,6 +2231,7 @@ namespace UnitsNet.Tests
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("bf", VolumeUnit.BoardFoot)]
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
@@ -2170,6 +2269,7 @@ namespace UnitsNet.Tests
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("metric cup", VolumeUnit.MetricCup)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2183,11 +2283,16 @@ namespace UnitsNet.Tests
         [InlineData("ml", VolumeUnit.Milliliter)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -2200,6 +2305,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("en-US", "tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("en-US", "bf", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
@@ -2237,6 +2343,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2250,11 +2357,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("en-US", "gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("en-US", "cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("en-US", "oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("en-US", "pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("en-US", "qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("en-US", "tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("en-US", "teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
+        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         [InlineData("ru-RU", "сл", VolumeUnit.Centiliter)]
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
@@ -2288,9 +2403,6 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нл", VolumeUnit.Nanoliter)]
         [InlineData("ru-RU", "Американский галлон", VolumeUnit.UsGallon)]
         [InlineData("ru-RU", "Американская унция", VolumeUnit.UsOunce)]
-        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -2302,6 +2414,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("en-US", "tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("en-US", "bf", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
@@ -2339,6 +2452,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2352,11 +2466,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("en-US", "gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("en-US", "cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("en-US", "oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("en-US", "pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("en-US", "qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("en-US", "tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("en-US", "teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
+        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         [InlineData("ru-RU", "сл", VolumeUnit.Centiliter)]
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
@@ -2390,9 +2512,6 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нл", VolumeUnit.Nanoliter)]
         [InlineData("ru-RU", "Американский галлон", VolumeUnit.UsGallon)]
         [InlineData("ru-RU", "Американская унция", VolumeUnit.UsOunce)]
-        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, VolumeUnit expectedUnit)
         {
             VolumeUnit parsedUnit = Volume.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -2413,6 +2532,7 @@ namespace UnitsNet.Tests
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("bf", VolumeUnit.BoardFoot)]
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
@@ -2450,6 +2570,7 @@ namespace UnitsNet.Tests
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("metric cup", VolumeUnit.MetricCup)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2463,11 +2584,16 @@ namespace UnitsNet.Tests
         [InlineData("ml", VolumeUnit.Milliliter)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -2480,6 +2606,7 @@ namespace UnitsNet.Tests
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("bf", VolumeUnit.BoardFoot)]
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
@@ -2517,6 +2644,7 @@ namespace UnitsNet.Tests
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("metric cup", VolumeUnit.MetricCup)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2530,11 +2658,16 @@ namespace UnitsNet.Tests
         [InlineData("ml", VolumeUnit.Milliliter)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -2547,6 +2680,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("en-US", "tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("en-US", "bf", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
@@ -2584,6 +2718,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2597,11 +2732,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("en-US", "gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("en-US", "cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("en-US", "oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("en-US", "pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("en-US", "qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("en-US", "tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("en-US", "teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
+        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         [InlineData("ru-RU", "сл", VolumeUnit.Centiliter)]
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
@@ -2635,9 +2778,6 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нл", VolumeUnit.Nanoliter)]
         [InlineData("ru-RU", "Американский галлон", VolumeUnit.UsGallon)]
         [InlineData("ru-RU", "Американская унция", VolumeUnit.UsOunce)]
-        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -2649,6 +2789,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("en-US", "acre-feet", VolumeUnit.AcreFoot)]
+        [InlineData("en-US", "tablespoon (A.U.)", VolumeUnit.AuTablespoon)]
         [InlineData("en-US", "bf", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
@@ -2686,6 +2827,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
+        [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2699,11 +2841,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
+        [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
         [InlineData("en-US", "gal (U.S.)", VolumeUnit.UsGallon)]
+        [InlineData("en-US", "cup (U.S.)", VolumeUnit.UsLegalCup)]
         [InlineData("en-US", "oz (U.S.)", VolumeUnit.UsOunce)]
         [InlineData("en-US", "pt (U.S.)", VolumeUnit.UsPint)]
         [InlineData("en-US", "qt (U.S.)", VolumeUnit.UsQuart)]
+        [InlineData("en-US", "tablespoon (U.S.)", VolumeUnit.UsTablespoon)]
+        [InlineData("en-US", "teaspoon (U.S.)", VolumeUnit.UsTeaspoon)]
+        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
+        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         [InlineData("ru-RU", "сл", VolumeUnit.Centiliter)]
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
@@ -2737,9 +2887,6 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нл", VolumeUnit.Nanoliter)]
         [InlineData("ru-RU", "Американский галлон", VolumeUnit.UsGallon)]
         [InlineData("ru-RU", "Американская унция", VolumeUnit.UsOunce)]
-        [InlineData("fr-CA", "pmp", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied-planche", VolumeUnit.BoardFoot)]
-        [InlineData("fr-CA", "pied de planche", VolumeUnit.BoardFoot)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, VolumeUnit expectedUnit)
         {
             Assert.True(Volume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeUnit parsedUnit));
@@ -3023,7 +3170,7 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString());
+            Assert.Equal("1 tablespoon (A.U.)", new Volume(1, VolumeUnit.AuTablespoon).ToString());
             Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString());
             Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString());
             Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString());
@@ -3060,22 +3207,22 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString());
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString());
+            Assert.Equal("1 metric cup", new Volume(1, VolumeUnit.MetricCup).ToString());
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
             Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString());
             Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString());
+            Assert.Equal("1 tablespoon (U.K.)", new Volume(1, VolumeUnit.UkTablespoon).ToString());
             Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsCustomaryCup).ToString());
+            Assert.Equal("1 cup (U.S. customary)", new Volume(1, VolumeUnit.UsCustomaryCup).ToString());
             Assert.Equal("1 gal (U.S.)", new Volume(1, VolumeUnit.UsGallon).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsLegalCup).ToString());
+            Assert.Equal("1 cup (U.S.)", new Volume(1, VolumeUnit.UsLegalCup).ToString());
             Assert.Equal("1 oz (U.S.)", new Volume(1, VolumeUnit.UsOunce).ToString());
             Assert.Equal("1 pt (U.S.)", new Volume(1, VolumeUnit.UsPint).ToString());
             Assert.Equal("1 qt (U.S.)", new Volume(1, VolumeUnit.UsQuart).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsTablespoon).ToString());
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsTeaspoon).ToString());
+            Assert.Equal("1 tablespoon (U.S.)", new Volume(1, VolumeUnit.UsTablespoon).ToString());
+            Assert.Equal("1 teaspoon (U.S.)", new Volume(1, VolumeUnit.UsTeaspoon).ToString());
         }
 
         [Fact]
@@ -3085,7 +3232,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString(swedishCulture));
+            Assert.Equal("1 tablespoon (A.U.)", new Volume(1, VolumeUnit.AuTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString(swedishCulture));
             Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString(swedishCulture));
             Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString(swedishCulture));
@@ -3122,22 +3269,22 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString(swedishCulture));
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString(swedishCulture));
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString(swedishCulture));
+            Assert.Equal("1 metric cup", new Volume(1, VolumeUnit.MetricCup).ToString(swedishCulture));
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString(swedishCulture));
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString(swedishCulture));
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString(swedishCulture));
             Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString(swedishCulture));
             Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString(swedishCulture));
+            Assert.Equal("1 tablespoon (U.K.)", new Volume(1, VolumeUnit.UkTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsCustomaryCup).ToString(swedishCulture));
+            Assert.Equal("1 cup (U.S. customary)", new Volume(1, VolumeUnit.UsCustomaryCup).ToString(swedishCulture));
             Assert.Equal("1 gal (U.S.)", new Volume(1, VolumeUnit.UsGallon).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsLegalCup).ToString(swedishCulture));
+            Assert.Equal("1 cup (U.S.)", new Volume(1, VolumeUnit.UsLegalCup).ToString(swedishCulture));
             Assert.Equal("1 oz (U.S.)", new Volume(1, VolumeUnit.UsOunce).ToString(swedishCulture));
             Assert.Equal("1 pt (U.S.)", new Volume(1, VolumeUnit.UsPint).ToString(swedishCulture));
             Assert.Equal("1 qt (U.S.)", new Volume(1, VolumeUnit.UsQuart).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsTablespoon).ToString(swedishCulture));
-            Assert.Equal("1", new Volume(1, VolumeUnit.UsTeaspoon).ToString(swedishCulture));
+            Assert.Equal("1 tablespoon (U.S.)", new Volume(1, VolumeUnit.UsTablespoon).ToString(swedishCulture));
+            Assert.Equal("1 teaspoon (U.S.)", new Volume(1, VolumeUnit.UsTeaspoon).ToString(swedishCulture));
         }
 
         [Fact]

@@ -8,8 +8,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RadiationEquivalentDoseTests : RadiationEquivalentDoseTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double SievertsInOneSievert => 1;
         protected override double MillisievertsInOneSievert => 1e+3;
         protected override double MicrosievertsInOneSievert => 1e+6;

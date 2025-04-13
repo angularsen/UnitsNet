@@ -7,8 +7,6 @@ namespace UnitsNet.Tests
 {
     public class AccelerationTests : AccelerationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double KilometersPerSecondSquaredInOneMeterPerSecondSquared => 1E-3;
 
         protected override double MetersPerSecondSquaredInOneMeterPerSecondSquared => 1;

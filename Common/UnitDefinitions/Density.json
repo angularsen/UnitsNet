@@ -76,7 +76,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/in³" ],
+          "Abbreviations": [ "lb/in³", "lbm/in³" ],
           "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
         }
       ]
@@ -94,7 +94,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/ft³" ],
+          "Abbreviations": [ "lb/ft³", "lbm/ft³" ],
           "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
         }
       ]
@@ -113,7 +113,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/yd³" ],
+          "Abbreviations": [ "lb/yd³", "lbm/yd³" ],
           "AbbreviationsForPrefixes": { "Kilo": "kip/yd³" }
         }
       ]
@@ -345,7 +345,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/m³" ]
+          "Abbreviations": [ "lb/m³", "lbm/m³" ]
         }
       ]
     },
@@ -361,7 +361,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/cm³" ]
+          "Abbreviations": [ "lb/cm³", "lbm/cm³" ]
         }
       ]
     },
@@ -377,7 +377,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/mm³" ]
+          "Abbreviations": [ "lb/mm³", "lbm/mm³" ]
         }
       ]
     },

@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricImpedanceTests : ElectricImpedanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double NanoohmsInOneOhm => 1e9;
 
         protected override double MicroohmsInOneOhm => 1e6;

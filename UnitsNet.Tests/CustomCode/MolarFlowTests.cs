@@ -25,9 +25,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarFlowTests : MolarFlowTestsBase
     {
-        // Override properties in base class here
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double KilomolesPerHourInOneMolePerSecond => 3.6;
 
         protected override double KilomolesPerMinuteInOneMolePerSecond => 0.06;

@@ -1,0 +1,324 @@
+﻿{
+  "Name": "FluidResistance",
+  "BaseUnit": "PascalSecondPerCubicMeter",
+  "XmlDocSummary": "Fluid Resistance is a force acting opposite to the relative motion of any object moving with respect to a surrounding fluid. Fluid Resistance is sometimes referred to as drag or fluid friction.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Friction#Fluid",
+  "BaseDimensions": {
+    "M": 1,
+    "L": -4,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "PascalSecondPerLiter",
+      "PluralName": "PascalSecondsPerLiter",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·s/l" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·с/л" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalMinutePerLiter",
+      "PluralName": "PascalMinutesPerLiter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "{x} * 6e4",
+      "FromBaseToUnitFunc": "{x} / 6e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·min/l" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·мин/л" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalSecondPerMilliliter",
+      "PluralName": "PascalSecondsPerMilliliter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·s/ml" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·с/мл" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalMinutePerMilliliter",
+      "PluralName": "PascalMinutesPerMilliliter",
+      "FromUnitToBaseFunc": "{x} * 6e7",
+      "FromBaseToUnitFunc": "{x} / 6e7",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·min/ml" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·мин/мл" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalSecondPerCubicMeter",
+      "PluralName": "PascalSecondsPerCubicMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·s/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·с/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalMinutePerCubicMeter",
+      "PluralName": "PascalMinutesPerCubicMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "{x} * 60",
+      "FromBaseToUnitFunc": "{x} / 60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·min/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·мин/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalSecondPerCubicCentimeter",
+      "PluralName": "PascalSecondsPerCubicCentimeter",
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·s/cm³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·с/см³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalMinutePerCubicCentimeter",
+      "PluralName": "PascalMinutesPerCubicCentimeter",
+      "FromUnitToBaseFunc": "{x} * 6e7",
+      "FromBaseToUnitFunc": "{x} / 6e7",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa·min/cm³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па·мин/см³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DyneSecondPerCentimeterToTheFifth",
+      "PluralName": "DyneSecondsPerCentimeterToTheFifth",
+      "FromUnitToBaseFunc": "{x} * 1e5",
+      "FromBaseToUnitFunc": "{x} / 1e5",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Vascular_resistance",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dyn·s/cm⁵", "dyn·s·cm⁻⁵" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дин·с/см⁵", "дин·с·см⁻⁵" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercurySecondPerLiter",
+      "PluralName": "MillimeterMercurySecondsPerLiter",
+      "FromUnitToBaseFunc": "{x} * 1.33322368e5",
+      "FromBaseToUnitFunc": "{x} / 1.33322368e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·s/l" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·с/л" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercuryMinutePerLiter",
+      "PluralName": "MillimeterMercuryMinutesPerLiter",
+      "FromUnitToBaseFunc": "{x} * 7.99934208e6",
+      "FromBaseToUnitFunc": "{x} / 7.99934208e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·min/l" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·мин/л" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercurySecondPerMilliliter",
+      "PluralName": "MillimeterMercurySecondsPerMilliliter",
+      "FromUnitToBaseFunc": "{x} * 1.33322368e8",
+      "FromBaseToUnitFunc": "{x} / 1.33322368e8",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·s/ml" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·с/мл" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercuryMinutePerMilliliter",
+      "PluralName": "MillimeterMercuryMinutesPerMilliliter",
+      "FromUnitToBaseFunc": "{x} * 7.99934208e9",
+      "FromBaseToUnitFunc": "{x} / 7.99934208e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·min/ml" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·мин/мл" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercurySecondPerCubicCentimeter",
+      "PluralName": "MillimeterMercurySecondsPerCubicCentimeter",
+      "FromUnitToBaseFunc": "{x} * 1.33322368e8",
+      "FromBaseToUnitFunc": "{x} / 1.33322368e8",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·s/cm³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·с/см³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercuryMinutePerCubicCentimeter",
+      "PluralName": "MillimeterMercuryMinutesPerCubicCentimeter",
+      "FromUnitToBaseFunc": "{x} * 7.99934208e9",
+      "FromBaseToUnitFunc": "{x} / 7.99934208e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·min/cm³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·мин/см³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercurySecondPerCubicMeter",
+      "PluralName": "MillimeterMercurySecondsPerCubicMeter",
+      "FromUnitToBaseFunc": "{x} * 133.322368",
+      "FromBaseToUnitFunc": "{x} / 133.322368",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·s/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·с/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercuryMinutePerCubicMeter",
+      "PluralName": "MillimeterMercuryMinutesPerCubicMeter",
+      "FromUnitToBaseFunc": "{x} * 7.99934208e3",
+      "FromBaseToUnitFunc": "{x} / 7.99934208e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg·min/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст·мин/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WoodUnit",
+      "PluralName": "WoodUnits",
+      "FromUnitToBaseFunc": "{x} * 7.99934208e6",
+      "FromBaseToUnitFunc": "{x} / 7.99934208e6",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Vascular_resistance",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "WU", "HRU" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "ЕВ", "ЕГС" ]
+        }
+      ]
+    }
+  ]
+}

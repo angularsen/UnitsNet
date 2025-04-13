@@ -28,7 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IlluminanceTests : IlluminanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double MilliluxInOneLux => 1E3;
 
         protected override double LuxInOneLux => 1;
@@ -36,7 +35,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KiloluxInOneLux => 1E-3;
 
         protected override double MegaluxInOneLux => 1E-6;
-
+        
         [Fact]
         public void IlluminanceTimesAreaEqualsLuminousFlux()
         {

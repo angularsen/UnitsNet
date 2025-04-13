@@ -7,8 +7,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolalityTests : MolalityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
-
         protected override double MolesPerKilogramInOneMolePerKilogram => 1;
         protected override double MolesPerGramInOneMolePerKilogram => 1e-3;
         protected override double MillimolesPerKilogramInOneMolePerKilogram => 1e3;

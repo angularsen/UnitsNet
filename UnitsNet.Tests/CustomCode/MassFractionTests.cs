@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassFractionTests : MassFractionTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
 
         #region Unit Conversion Coefficients
         protected override double KilogramsPerKilogramInOneDecimalFraction => 1;

@@ -648,7 +648,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ElectricConductivity"/>.</returns>
         public ElectricConductivity Inverse()
         {
-            return OhmMeters == 0.0 ? ElectricConductivity.Zero : ElectricConductivity.FromSiemensPerMeter(1 / OhmMeters);
+            return ElectricConductivity.FromSiemensPerMeter(1 / OhmMeters);
         }
 
         #endregion

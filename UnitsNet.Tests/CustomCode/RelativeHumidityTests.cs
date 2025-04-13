@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RelativeHumidityTests : RelativeHumidityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double PercentInOnePercent => 1;
     }
 }

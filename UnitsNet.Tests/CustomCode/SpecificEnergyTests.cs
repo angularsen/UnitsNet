@@ -7,7 +7,6 @@ namespace UnitsNet.Tests
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
         protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
@@ -49,36 +48,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {
-            Energy energy = Mass.FromKilograms(20.0)*SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.Equal(200d, energy.Joules);
+            Energy energy = Mass.FromKilograms(20) * SpecificEnergy.FromJoulesPerKilogram(10);
+            Assert.Equal(200, energy.Joules);
         }
 
         [Fact]
         public void SpecificEnergyTimesMassEqualsEnergy()
         {
-            Energy energy = SpecificEnergy.FromJoulesPerKilogram(10.0)*Mass.FromKilograms(20.0);
-            Assert.Equal(200d, energy.Joules);
+            Energy energy = SpecificEnergy.FromJoulesPerKilogram(10) * Mass.FromKilograms(20);
+            Assert.Equal(200, energy.Joules);
         }
 
         [Fact]
         public void DoubleDividedBySpecificEnergyEqualsBrakeSpecificFuelConsumption()
         {
-            BrakeSpecificFuelConsumption bsfc = 2.0 / SpecificEnergy.FromJoulesPerKilogram(4.0);
+            BrakeSpecificFuelConsumption bsfc = 2 / SpecificEnergy.FromJoulesPerKilogram(4);
             Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
         }
 
         [Fact]
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
-            Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Power power = SpecificEnergy.FromJoulesPerKilogram(10) * MassFlow.FromKilogramsPerSecond(20);
             Assert.Equal(200, power.Watts);
         }
 
         [Fact]
         public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
         {
-            double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
-            Assert.Equal(200d, value);
+            var value = SpecificEnergy.FromJoulesPerKilogram(10) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20);
+            Assert.Equal(200, value);
         }
 
         [Fact]

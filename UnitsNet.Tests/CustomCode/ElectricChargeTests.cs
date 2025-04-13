@@ -7,7 +7,6 @@ namespace UnitsNet.Tests
 {
     public class ElectricChargeTests : ElectricChargeTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double CoulombsInOneCoulomb => 1;
         protected override double MilliampereHoursInOneCoulomb => 2.77777777777e-1;
         protected override double AmpereHoursInOneCoulomb => 2.77777777777e-4;

@@ -30,8 +30,6 @@ namespace UnitsNet.Tests
 
         protected override double StandardGravitiesPerSecondInOneMeterPerSecondCubed => 1.019716212977928e-1;
 
-        protected override bool SupportsSIUnitSystem => true;
-
         [Fact]
         public void AccelerationDividedByDurationEqualsJerk()
         {

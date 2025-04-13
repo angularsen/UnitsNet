@@ -86,6 +86,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "EnergyDensity", "EnergyDens
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Entropy", "Entropy\Entropy.nfproj", "{816884bb-a5f6-5c07-967b-bb8f21d724b7}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "FluidResistance", "FluidResistance\FluidResistance.nfproj", "{d19281dc-72f6-62a9-18d5-b845d6fd8d99}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Force", "Force\Force.nfproj", "{5517dacf-b1ff-6515-e5b6-b5081f92f407}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ForceChangeRate", "ForceChangeRate\ForceChangeRate.nfproj", "{97ad732d-4ce5-2027-aabc-844002d29c23}"
@@ -512,6 +514,12 @@ Global
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Release|Any CPU.Build.0 = Release|Any CPU
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Release|Any CPU.Build.0 = Release|Any CPU
+{d19281dc-72f6-62a9-18d5-b845d6fd8d99}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {5517dacf-b1ff-6515-e5b6-b5081f92f407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {5517dacf-b1ff-6515-e5b6-b5081f92f407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {5517dacf-b1ff-6515-e5b6-b5081f92f407}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

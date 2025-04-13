@@ -26,7 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DegreesCelsiusInOneKelvin => 1;
         protected override double DegreesDelisleInOneKelvin => -1.5d;
         protected override double DegreesFahrenheitInOneKelvin => 1.8;
@@ -64,7 +63,7 @@ namespace UnitsNet.Tests.CustomCode
             Energy energy = TemperatureDelta.FromKelvins(20) * Entropy.FromJoulesPerKelvin(4);
             Assert.Equal(Energy.FromJoules(80), energy);
         }
-
+        
         [Fact]
         public void TemperatureDeltaTimesCoefficientOfThermalExpansionEqualsRatio()
         {
@@ -84,6 +83,17 @@ namespace UnitsNet.Tests.CustomCode
         {
             TemperatureChangeRate changeRate = TemperatureDelta.FromKelvins(20) / Duration.FromSeconds(2);
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(10), changeRate);
+        }
+
+        [Fact]
+        public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
+        {
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(0.001);
+
+            Ratio expansionRatio = dT * cte;
+
+            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
 
         [Fact]

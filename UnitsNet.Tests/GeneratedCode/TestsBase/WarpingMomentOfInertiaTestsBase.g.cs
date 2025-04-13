@@ -330,21 +330,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = WarpingMomentOfInertia.Parse("1 cm^6", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = WarpingMomentOfInertia.Parse("1 dm⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 dm^6", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -358,21 +344,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = WarpingMomentOfInertia.Parse("1 ft^6", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheSixth, FeetToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = WarpingMomentOfInertia.Parse("1 in⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 in^6", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -386,21 +358,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = WarpingMomentOfInertia.Parse("1 m^6", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheSixth, MetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = WarpingMomentOfInertia.Parse("1 mm⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 mm^6", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -417,19 +375,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 cm^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, parsed.Unit);
-            }
-
-            {
                 Assert.True(WarpingMomentOfInertia.TryParse("1 dm⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 dm^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
             }
@@ -441,19 +387,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 ft^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheSixth, FeetToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, parsed.Unit);
-            }
-
-            {
                 Assert.True(WarpingMomentOfInertia.TryParse("1 in⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 in^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
             }
@@ -465,19 +399,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 m^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheSixth, MetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, parsed.Unit);
-            }
-
-            {
                 Assert.True(WarpingMomentOfInertia.TryParse("1 mm⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 mm^6", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
                 Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
             }
@@ -486,17 +408,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -507,17 +423,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -528,17 +438,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("en-US", "cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("en-US", "dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("en-US", "dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("en-US", "ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("en-US", "ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("en-US", "in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("en-US", "in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("en-US", "m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("en-US", "m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("en-US", "mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("en-US", "mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -548,17 +452,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("en-US", "cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("en-US", "dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("en-US", "dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("en-US", "ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("en-US", "ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("en-US", "in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("en-US", "in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("en-US", "m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("en-US", "m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("en-US", "mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("en-US", "mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             WarpingMomentOfInertiaUnit parsedUnit = WarpingMomentOfInertia.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -567,17 +465,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -588,17 +480,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -609,17 +495,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("en-US", "cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("en-US", "dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("en-US", "dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("en-US", "ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("en-US", "ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("en-US", "in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("en-US", "in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("en-US", "m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("en-US", "m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("en-US", "mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("en-US", "mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -629,17 +509,11 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData("en-US", "cm^6", WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
         [InlineData("en-US", "dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData("en-US", "dm^6", WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
         [InlineData("en-US", "ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData("en-US", "ft^6", WarpingMomentOfInertiaUnit.FootToTheSixth)]
         [InlineData("en-US", "in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData("en-US", "in^6", WarpingMomentOfInertiaUnit.InchToTheSixth)]
         [InlineData("en-US", "m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData("en-US", "m^6", WarpingMomentOfInertiaUnit.MeterToTheSixth)]
         [InlineData("en-US", "mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
-        [InlineData("en-US", "mm^6", WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, WarpingMomentOfInertiaUnit expectedUnit)
         {
             Assert.True(WarpingMomentOfInertia.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out WarpingMomentOfInertiaUnit parsedUnit));

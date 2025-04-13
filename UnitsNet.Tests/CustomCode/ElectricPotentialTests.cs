@@ -7,7 +7,6 @@ namespace UnitsNet.Tests
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double MicrovoltsInOneVolt => 1e6;
 
         protected override double MillivoltsInOneVolt => 1e3;
