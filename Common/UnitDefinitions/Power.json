@@ -135,6 +135,19 @@
           "Abbreviations": [ "TR" ]
         }
       ]
+    },
+    {
+      "SingularName": "CaloriePerHour",
+      "PluralName": "CaloriesPerHour",
+      "FromUnitToBaseFunc": "{x} / 859.8452279",
+      "FromBaseToUnitFunc": "{x} * 859.8452279",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/h" ]
+        }
+      ]
     }
   ]
 }

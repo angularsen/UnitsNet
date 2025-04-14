@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         BoilerHorsepower = 1,
         /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
         BritishThermalUnitPerHour = 2,
+        CaloriePerHour = 33,
         Decawatt = 3,
         Deciwatt = 4,
 
@@ -42,6 +43,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower</remarks>
         ElectricalHorsepower = 5,
         Femtowatt = 6,
+        GigacaloriePerHour = 37,
         GigajoulePerHour = 7,
         Gigawatt = 8,
 
@@ -52,6 +54,7 @@ namespace UnitsNet.Units
         HydraulicHorsepower = 9,
         JoulePerHour = 10,
         KilobritishThermalUnitPerHour = 11,
+        KilocaloriePerHour = 34,
         KilojoulePerHour = 12,
         Kilowatt = 13,
 
@@ -61,6 +64,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Imperial_horsepower</remarks>
         MechanicalHorsepower = 14,
         MegabritishThermalUnitPerHour = 15,
+        MegacaloriePerHour = 27,
         MegajoulePerHour = 16,
         Megawatt = 17,
 

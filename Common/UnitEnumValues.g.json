@@ -1055,7 +1055,11 @@
     "Picowatt": 24,
     "Terawatt": 25,
     "Watt": 26,
-    "TonOfRefrigeration": 29
+    "TonOfRefrigeration": 29,
+    "CaloriePerHour": 33,
+    "GigacaloriePerHour": 37,
+    "KilocaloriePerHour": 34,
+    "MegacaloriePerHour": 27
   },
   "PowerDensity": {
     "DecawattPerCubicFoot": 1,

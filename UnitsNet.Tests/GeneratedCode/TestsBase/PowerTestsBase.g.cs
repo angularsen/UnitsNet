@@ -41,19 +41,23 @@ namespace UnitsNet.Tests
     {
         protected abstract double BoilerHorsepowerInOneWatt { get; }
         protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double CaloriesPerHourInOneWatt { get; }
         protected abstract double DecawattsInOneWatt { get; }
         protected abstract double DeciwattsInOneWatt { get; }
         protected abstract double ElectricalHorsepowerInOneWatt { get; }
         protected abstract double FemtowattsInOneWatt { get; }
+        protected abstract double GigacaloriesPerHourInOneWatt { get; }
         protected abstract double GigajoulesPerHourInOneWatt { get; }
         protected abstract double GigawattsInOneWatt { get; }
         protected abstract double HydraulicHorsepowerInOneWatt { get; }
         protected abstract double JoulesPerHourInOneWatt { get; }
         protected abstract double KilobritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double KilocaloriesPerHourInOneWatt { get; }
         protected abstract double KilojoulesPerHourInOneWatt { get; }
         protected abstract double KilowattsInOneWatt { get; }
         protected abstract double MechanicalHorsepowerInOneWatt { get; }
         protected abstract double MegabritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double MegacaloriesPerHourInOneWatt { get; }
         protected abstract double MegajoulesPerHourInOneWatt { get; }
         protected abstract double MegawattsInOneWatt { get; }
         protected abstract double MetricHorsepowerInOneWatt { get; }
@@ -70,19 +74,23 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BoilerHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double BritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CaloriesPerHourTolerance { get { return 1e-5; } }
         protected virtual double DecawattsTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsTolerance { get { return 1e-5; } }
         protected virtual double ElectricalHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double FemtowattsTolerance { get { return 1e-5; } }
+        protected virtual double GigacaloriesPerHourTolerance { get { return 1e-5; } }
         protected virtual double GigajoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double GigawattsTolerance { get { return 1e-5; } }
         protected virtual double HydraulicHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double JoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilobritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilojoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilowattsTolerance { get { return 1e-5; } }
         protected virtual double MechanicalHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double MegabritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegacaloriesPerHourTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double MegawattsTolerance { get { return 1e-5; } }
         protected virtual double MetricHorsepowerTolerance { get { return 1e-5; } }
@@ -103,19 +111,23 @@ namespace UnitsNet.Tests
             {
                 PowerUnit.BoilerHorsepower => (BoilerHorsepowerInOneWatt, BoilerHorsepowerTolerance),
                 PowerUnit.BritishThermalUnitPerHour => (BritishThermalUnitsPerHourInOneWatt, BritishThermalUnitsPerHourTolerance),
+                PowerUnit.CaloriePerHour => (CaloriesPerHourInOneWatt, CaloriesPerHourTolerance),
                 PowerUnit.Decawatt => (DecawattsInOneWatt, DecawattsTolerance),
                 PowerUnit.Deciwatt => (DeciwattsInOneWatt, DeciwattsTolerance),
                 PowerUnit.ElectricalHorsepower => (ElectricalHorsepowerInOneWatt, ElectricalHorsepowerTolerance),
                 PowerUnit.Femtowatt => (FemtowattsInOneWatt, FemtowattsTolerance),
+                PowerUnit.GigacaloriePerHour => (GigacaloriesPerHourInOneWatt, GigacaloriesPerHourTolerance),
                 PowerUnit.GigajoulePerHour => (GigajoulesPerHourInOneWatt, GigajoulesPerHourTolerance),
                 PowerUnit.Gigawatt => (GigawattsInOneWatt, GigawattsTolerance),
                 PowerUnit.HydraulicHorsepower => (HydraulicHorsepowerInOneWatt, HydraulicHorsepowerTolerance),
                 PowerUnit.JoulePerHour => (JoulesPerHourInOneWatt, JoulesPerHourTolerance),
                 PowerUnit.KilobritishThermalUnitPerHour => (KilobritishThermalUnitsPerHourInOneWatt, KilobritishThermalUnitsPerHourTolerance),
+                PowerUnit.KilocaloriePerHour => (KilocaloriesPerHourInOneWatt, KilocaloriesPerHourTolerance),
                 PowerUnit.KilojoulePerHour => (KilojoulesPerHourInOneWatt, KilojoulesPerHourTolerance),
                 PowerUnit.Kilowatt => (KilowattsInOneWatt, KilowattsTolerance),
                 PowerUnit.MechanicalHorsepower => (MechanicalHorsepowerInOneWatt, MechanicalHorsepowerTolerance),
                 PowerUnit.MegabritishThermalUnitPerHour => (MegabritishThermalUnitsPerHourInOneWatt, MegabritishThermalUnitsPerHourTolerance),
+                PowerUnit.MegacaloriePerHour => (MegacaloriesPerHourInOneWatt, MegacaloriesPerHourTolerance),
                 PowerUnit.MegajoulePerHour => (MegajoulesPerHourInOneWatt, MegajoulesPerHourTolerance),
                 PowerUnit.Megawatt => (MegawattsInOneWatt, MegawattsTolerance),
                 PowerUnit.MetricHorsepower => (MetricHorsepowerInOneWatt, MetricHorsepowerTolerance),
@@ -136,19 +148,23 @@ namespace UnitsNet.Tests
         {
             new object[] { PowerUnit.BoilerHorsepower },
             new object[] { PowerUnit.BritishThermalUnitPerHour },
+            new object[] { PowerUnit.CaloriePerHour },
             new object[] { PowerUnit.Decawatt },
             new object[] { PowerUnit.Deciwatt },
             new object[] { PowerUnit.ElectricalHorsepower },
             new object[] { PowerUnit.Femtowatt },
+            new object[] { PowerUnit.GigacaloriePerHour },
             new object[] { PowerUnit.GigajoulePerHour },
             new object[] { PowerUnit.Gigawatt },
             new object[] { PowerUnit.HydraulicHorsepower },
             new object[] { PowerUnit.JoulePerHour },
             new object[] { PowerUnit.KilobritishThermalUnitPerHour },
+            new object[] { PowerUnit.KilocaloriePerHour },
             new object[] { PowerUnit.KilojoulePerHour },
             new object[] { PowerUnit.Kilowatt },
             new object[] { PowerUnit.MechanicalHorsepower },
             new object[] { PowerUnit.MegabritishThermalUnitPerHour },
+            new object[] { PowerUnit.MegacaloriePerHour },
             new object[] { PowerUnit.MegajoulePerHour },
             new object[] { PowerUnit.Megawatt },
             new object[] { PowerUnit.MetricHorsepower },
@@ -230,19 +246,23 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.BoilerHorsepower, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(CaloriesPerHourInOneWatt, watt.CaloriesPerHour, CaloriesPerHourTolerance);
             AssertEx.EqualTolerance(DecawattsInOneWatt, watt.Decawatts, DecawattsTolerance);
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigacaloriesPerHourInOneWatt, watt.GigacaloriesPerHour, GigacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.GigajoulesPerHour, GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.HydraulicHorsepower, HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.JoulesPerHour, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(KilocaloriesPerHourInOneWatt, watt.KilocaloriesPerHour, KilocaloriesPerHourTolerance);
             AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.KilojoulesPerHour, KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.Kilowatts, KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.MechanicalHorsepower, MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(MegabritishThermalUnitsPerHourInOneWatt, watt.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(MegacaloriesPerHourInOneWatt, watt.MegacaloriesPerHour, MegacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.MegajoulesPerHour, MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.Megawatts, MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.MetricHorsepower, MetricHorsepowerTolerance);
@@ -268,105 +288,121 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
             Assert.Equal(PowerUnit.BritishThermalUnitPerHour, quantity01.Unit);
 
-            var quantity02 = Power.From(1, PowerUnit.Decawatt);
-            AssertEx.EqualTolerance(1, quantity02.Decawatts, DecawattsTolerance);
-            Assert.Equal(PowerUnit.Decawatt, quantity02.Unit);
+            var quantity02 = Power.From(1, PowerUnit.CaloriePerHour);
+            AssertEx.EqualTolerance(1, quantity02.CaloriesPerHour, CaloriesPerHourTolerance);
+            Assert.Equal(PowerUnit.CaloriePerHour, quantity02.Unit);
 
-            var quantity03 = Power.From(1, PowerUnit.Deciwatt);
-            AssertEx.EqualTolerance(1, quantity03.Deciwatts, DeciwattsTolerance);
-            Assert.Equal(PowerUnit.Deciwatt, quantity03.Unit);
+            var quantity03 = Power.From(1, PowerUnit.Decawatt);
+            AssertEx.EqualTolerance(1, quantity03.Decawatts, DecawattsTolerance);
+            Assert.Equal(PowerUnit.Decawatt, quantity03.Unit);
 
-            var quantity04 = Power.From(1, PowerUnit.ElectricalHorsepower);
-            AssertEx.EqualTolerance(1, quantity04.ElectricalHorsepower, ElectricalHorsepowerTolerance);
-            Assert.Equal(PowerUnit.ElectricalHorsepower, quantity04.Unit);
+            var quantity04 = Power.From(1, PowerUnit.Deciwatt);
+            AssertEx.EqualTolerance(1, quantity04.Deciwatts, DeciwattsTolerance);
+            Assert.Equal(PowerUnit.Deciwatt, quantity04.Unit);
 
-            var quantity05 = Power.From(1, PowerUnit.Femtowatt);
-            AssertEx.EqualTolerance(1, quantity05.Femtowatts, FemtowattsTolerance);
-            Assert.Equal(PowerUnit.Femtowatt, quantity05.Unit);
+            var quantity05 = Power.From(1, PowerUnit.ElectricalHorsepower);
+            AssertEx.EqualTolerance(1, quantity05.ElectricalHorsepower, ElectricalHorsepowerTolerance);
+            Assert.Equal(PowerUnit.ElectricalHorsepower, quantity05.Unit);
 
-            var quantity06 = Power.From(1, PowerUnit.GigajoulePerHour);
-            AssertEx.EqualTolerance(1, quantity06.GigajoulesPerHour, GigajoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.GigajoulePerHour, quantity06.Unit);
+            var quantity06 = Power.From(1, PowerUnit.Femtowatt);
+            AssertEx.EqualTolerance(1, quantity06.Femtowatts, FemtowattsTolerance);
+            Assert.Equal(PowerUnit.Femtowatt, quantity06.Unit);
 
-            var quantity07 = Power.From(1, PowerUnit.Gigawatt);
-            AssertEx.EqualTolerance(1, quantity07.Gigawatts, GigawattsTolerance);
-            Assert.Equal(PowerUnit.Gigawatt, quantity07.Unit);
+            var quantity07 = Power.From(1, PowerUnit.GigacaloriePerHour);
+            AssertEx.EqualTolerance(1, quantity07.GigacaloriesPerHour, GigacaloriesPerHourTolerance);
+            Assert.Equal(PowerUnit.GigacaloriePerHour, quantity07.Unit);
 
-            var quantity08 = Power.From(1, PowerUnit.HydraulicHorsepower);
-            AssertEx.EqualTolerance(1, quantity08.HydraulicHorsepower, HydraulicHorsepowerTolerance);
-            Assert.Equal(PowerUnit.HydraulicHorsepower, quantity08.Unit);
+            var quantity08 = Power.From(1, PowerUnit.GigajoulePerHour);
+            AssertEx.EqualTolerance(1, quantity08.GigajoulesPerHour, GigajoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.GigajoulePerHour, quantity08.Unit);
 
-            var quantity09 = Power.From(1, PowerUnit.JoulePerHour);
-            AssertEx.EqualTolerance(1, quantity09.JoulesPerHour, JoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.JoulePerHour, quantity09.Unit);
+            var quantity09 = Power.From(1, PowerUnit.Gigawatt);
+            AssertEx.EqualTolerance(1, quantity09.Gigawatts, GigawattsTolerance);
+            Assert.Equal(PowerUnit.Gigawatt, quantity09.Unit);
 
-            var quantity10 = Power.From(1, PowerUnit.KilobritishThermalUnitPerHour);
-            AssertEx.EqualTolerance(1, quantity10.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-            Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, quantity10.Unit);
+            var quantity10 = Power.From(1, PowerUnit.HydraulicHorsepower);
+            AssertEx.EqualTolerance(1, quantity10.HydraulicHorsepower, HydraulicHorsepowerTolerance);
+            Assert.Equal(PowerUnit.HydraulicHorsepower, quantity10.Unit);
 
-            var quantity11 = Power.From(1, PowerUnit.KilojoulePerHour);
-            AssertEx.EqualTolerance(1, quantity11.KilojoulesPerHour, KilojoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.KilojoulePerHour, quantity11.Unit);
+            var quantity11 = Power.From(1, PowerUnit.JoulePerHour);
+            AssertEx.EqualTolerance(1, quantity11.JoulesPerHour, JoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.JoulePerHour, quantity11.Unit);
 
-            var quantity12 = Power.From(1, PowerUnit.Kilowatt);
-            AssertEx.EqualTolerance(1, quantity12.Kilowatts, KilowattsTolerance);
-            Assert.Equal(PowerUnit.Kilowatt, quantity12.Unit);
+            var quantity12 = Power.From(1, PowerUnit.KilobritishThermalUnitPerHour);
+            AssertEx.EqualTolerance(1, quantity12.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+            Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, quantity12.Unit);
 
-            var quantity13 = Power.From(1, PowerUnit.MechanicalHorsepower);
-            AssertEx.EqualTolerance(1, quantity13.MechanicalHorsepower, MechanicalHorsepowerTolerance);
-            Assert.Equal(PowerUnit.MechanicalHorsepower, quantity13.Unit);
+            var quantity13 = Power.From(1, PowerUnit.KilocaloriePerHour);
+            AssertEx.EqualTolerance(1, quantity13.KilocaloriesPerHour, KilocaloriesPerHourTolerance);
+            Assert.Equal(PowerUnit.KilocaloriePerHour, quantity13.Unit);
 
-            var quantity14 = Power.From(1, PowerUnit.MegabritishThermalUnitPerHour);
-            AssertEx.EqualTolerance(1, quantity14.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-            Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, quantity14.Unit);
+            var quantity14 = Power.From(1, PowerUnit.KilojoulePerHour);
+            AssertEx.EqualTolerance(1, quantity14.KilojoulesPerHour, KilojoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.KilojoulePerHour, quantity14.Unit);
 
-            var quantity15 = Power.From(1, PowerUnit.MegajoulePerHour);
-            AssertEx.EqualTolerance(1, quantity15.MegajoulesPerHour, MegajoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.MegajoulePerHour, quantity15.Unit);
+            var quantity15 = Power.From(1, PowerUnit.Kilowatt);
+            AssertEx.EqualTolerance(1, quantity15.Kilowatts, KilowattsTolerance);
+            Assert.Equal(PowerUnit.Kilowatt, quantity15.Unit);
 
-            var quantity16 = Power.From(1, PowerUnit.Megawatt);
-            AssertEx.EqualTolerance(1, quantity16.Megawatts, MegawattsTolerance);
-            Assert.Equal(PowerUnit.Megawatt, quantity16.Unit);
+            var quantity16 = Power.From(1, PowerUnit.MechanicalHorsepower);
+            AssertEx.EqualTolerance(1, quantity16.MechanicalHorsepower, MechanicalHorsepowerTolerance);
+            Assert.Equal(PowerUnit.MechanicalHorsepower, quantity16.Unit);
 
-            var quantity17 = Power.From(1, PowerUnit.MetricHorsepower);
-            AssertEx.EqualTolerance(1, quantity17.MetricHorsepower, MetricHorsepowerTolerance);
-            Assert.Equal(PowerUnit.MetricHorsepower, quantity17.Unit);
+            var quantity17 = Power.From(1, PowerUnit.MegabritishThermalUnitPerHour);
+            AssertEx.EqualTolerance(1, quantity17.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
+            Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, quantity17.Unit);
 
-            var quantity18 = Power.From(1, PowerUnit.Microwatt);
-            AssertEx.EqualTolerance(1, quantity18.Microwatts, MicrowattsTolerance);
-            Assert.Equal(PowerUnit.Microwatt, quantity18.Unit);
+            var quantity18 = Power.From(1, PowerUnit.MegacaloriePerHour);
+            AssertEx.EqualTolerance(1, quantity18.MegacaloriesPerHour, MegacaloriesPerHourTolerance);
+            Assert.Equal(PowerUnit.MegacaloriePerHour, quantity18.Unit);
 
-            var quantity19 = Power.From(1, PowerUnit.MillijoulePerHour);
-            AssertEx.EqualTolerance(1, quantity19.MillijoulesPerHour, MillijoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.MillijoulePerHour, quantity19.Unit);
+            var quantity19 = Power.From(1, PowerUnit.MegajoulePerHour);
+            AssertEx.EqualTolerance(1, quantity19.MegajoulesPerHour, MegajoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.MegajoulePerHour, quantity19.Unit);
 
-            var quantity20 = Power.From(1, PowerUnit.Milliwatt);
-            AssertEx.EqualTolerance(1, quantity20.Milliwatts, MilliwattsTolerance);
-            Assert.Equal(PowerUnit.Milliwatt, quantity20.Unit);
+            var quantity20 = Power.From(1, PowerUnit.Megawatt);
+            AssertEx.EqualTolerance(1, quantity20.Megawatts, MegawattsTolerance);
+            Assert.Equal(PowerUnit.Megawatt, quantity20.Unit);
 
-            var quantity21 = Power.From(1, PowerUnit.Nanowatt);
-            AssertEx.EqualTolerance(1, quantity21.Nanowatts, NanowattsTolerance);
-            Assert.Equal(PowerUnit.Nanowatt, quantity21.Unit);
+            var quantity21 = Power.From(1, PowerUnit.MetricHorsepower);
+            AssertEx.EqualTolerance(1, quantity21.MetricHorsepower, MetricHorsepowerTolerance);
+            Assert.Equal(PowerUnit.MetricHorsepower, quantity21.Unit);
 
-            var quantity22 = Power.From(1, PowerUnit.Petawatt);
-            AssertEx.EqualTolerance(1, quantity22.Petawatts, PetawattsTolerance);
-            Assert.Equal(PowerUnit.Petawatt, quantity22.Unit);
+            var quantity22 = Power.From(1, PowerUnit.Microwatt);
+            AssertEx.EqualTolerance(1, quantity22.Microwatts, MicrowattsTolerance);
+            Assert.Equal(PowerUnit.Microwatt, quantity22.Unit);
 
-            var quantity23 = Power.From(1, PowerUnit.Picowatt);
-            AssertEx.EqualTolerance(1, quantity23.Picowatts, PicowattsTolerance);
-            Assert.Equal(PowerUnit.Picowatt, quantity23.Unit);
+            var quantity23 = Power.From(1, PowerUnit.MillijoulePerHour);
+            AssertEx.EqualTolerance(1, quantity23.MillijoulesPerHour, MillijoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.MillijoulePerHour, quantity23.Unit);
 
-            var quantity24 = Power.From(1, PowerUnit.Terawatt);
-            AssertEx.EqualTolerance(1, quantity24.Terawatts, TerawattsTolerance);
-            Assert.Equal(PowerUnit.Terawatt, quantity24.Unit);
+            var quantity24 = Power.From(1, PowerUnit.Milliwatt);
+            AssertEx.EqualTolerance(1, quantity24.Milliwatts, MilliwattsTolerance);
+            Assert.Equal(PowerUnit.Milliwatt, quantity24.Unit);
 
-            var quantity25 = Power.From(1, PowerUnit.TonOfRefrigeration);
-            AssertEx.EqualTolerance(1, quantity25.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
-            Assert.Equal(PowerUnit.TonOfRefrigeration, quantity25.Unit);
+            var quantity25 = Power.From(1, PowerUnit.Nanowatt);
+            AssertEx.EqualTolerance(1, quantity25.Nanowatts, NanowattsTolerance);
+            Assert.Equal(PowerUnit.Nanowatt, quantity25.Unit);
 
-            var quantity26 = Power.From(1, PowerUnit.Watt);
-            AssertEx.EqualTolerance(1, quantity26.Watts, WattsTolerance);
-            Assert.Equal(PowerUnit.Watt, quantity26.Unit);
+            var quantity26 = Power.From(1, PowerUnit.Petawatt);
+            AssertEx.EqualTolerance(1, quantity26.Petawatts, PetawattsTolerance);
+            Assert.Equal(PowerUnit.Petawatt, quantity26.Unit);
+
+            var quantity27 = Power.From(1, PowerUnit.Picowatt);
+            AssertEx.EqualTolerance(1, quantity27.Picowatts, PicowattsTolerance);
+            Assert.Equal(PowerUnit.Picowatt, quantity27.Unit);
+
+            var quantity28 = Power.From(1, PowerUnit.Terawatt);
+            AssertEx.EqualTolerance(1, quantity28.Terawatts, TerawattsTolerance);
+            Assert.Equal(PowerUnit.Terawatt, quantity28.Unit);
+
+            var quantity29 = Power.From(1, PowerUnit.TonOfRefrigeration);
+            AssertEx.EqualTolerance(1, quantity29.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
+            Assert.Equal(PowerUnit.TonOfRefrigeration, quantity29.Unit);
+
+            var quantity30 = Power.From(1, PowerUnit.Watt);
+            AssertEx.EqualTolerance(1, quantity30.Watts, WattsTolerance);
+            Assert.Equal(PowerUnit.Watt, quantity30.Unit);
 
         }
 
@@ -394,19 +430,23 @@ namespace UnitsNet.Tests
             var watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.As(PowerUnit.BoilerHorsepower), BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.BritishThermalUnitPerHour), BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(CaloriesPerHourInOneWatt, watt.As(PowerUnit.CaloriePerHour), CaloriesPerHourTolerance);
             AssertEx.EqualTolerance(DecawattsInOneWatt, watt.As(PowerUnit.Decawatt), DecawattsTolerance);
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.As(PowerUnit.Deciwatt), DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigacaloriesPerHourInOneWatt, watt.As(PowerUnit.GigacaloriePerHour), GigacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.As(PowerUnit.GigajoulePerHour), GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.As(PowerUnit.HydraulicHorsepower), HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.As(PowerUnit.JoulePerHour), JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.KilobritishThermalUnitPerHour), KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(KilocaloriesPerHourInOneWatt, watt.As(PowerUnit.KilocaloriePerHour), KilocaloriesPerHourTolerance);
             AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.As(PowerUnit.KilojoulePerHour), KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.As(PowerUnit.Kilowatt), KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.As(PowerUnit.MechanicalHorsepower), MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(MegabritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.MegabritishThermalUnitPerHour), MegabritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(MegacaloriesPerHourInOneWatt, watt.As(PowerUnit.MegacaloriePerHour), MegacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.As(PowerUnit.MegajoulePerHour), MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.As(PowerUnit.Megawatt), MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.As(PowerUnit.MetricHorsepower), MetricHorsepowerTolerance);
@@ -553,6 +593,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Power.Parse("1 cal/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerHour, CaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.CaloriePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Power.Parse("1 daW", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
                 Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
@@ -577,6 +624,13 @@ namespace UnitsNet.Tests
                 var parsed = Power.Parse("1 fW", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
                 Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 Gcal/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigacaloriesPerHour, GigacaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.GigacaloriePerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -623,6 +677,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Power.Parse("1 kcal/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerHour, KilocaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.KilocaloriePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Power.Parse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
                 Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
@@ -654,6 +715,13 @@ namespace UnitsNet.Tests
                 var parsed = Power.Parse("1 MBtu/hr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
                 Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 Mcal/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegacaloriesPerHour, MegacaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.MegacaloriePerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -764,6 +832,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Power.TryParse("1 cal/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerHour, CaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.CaloriePerHour, parsed.Unit);
+            }
+
+            {
                 Assert.True(Power.TryParse("1 daW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
                 Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
@@ -785,6 +859,12 @@ namespace UnitsNet.Tests
                 Assert.True(Power.TryParse("1 fW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
                 Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(Power.TryParse("1 Gcal/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigacaloriesPerHour, GigacaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.GigacaloriePerHour, parsed.Unit);
             }
 
             {
@@ -824,6 +904,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Power.TryParse("1 kcal/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerHour, KilocaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.KilocaloriePerHour, parsed.Unit);
+            }
+
+            {
                 Assert.True(Power.TryParse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
                 Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
@@ -851,6 +937,12 @@ namespace UnitsNet.Tests
                 Assert.True(Power.TryParse("1 MBtu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
                 Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(Power.TryParse("1 Mcal/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegacaloriesPerHour, MegacaloriesPerHourTolerance);
+                Assert.Equal(PowerUnit.MegacaloriePerHour, parsed.Unit);
             }
 
             {
@@ -895,21 +987,25 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("daW", PowerUnit.Decawatt)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("fW", PowerUnit.Femtowatt)]
+        [InlineData("Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
@@ -934,21 +1030,25 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("daW", PowerUnit.Decawatt)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("fW", PowerUnit.Femtowatt)]
+        [InlineData("Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
@@ -973,21 +1073,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
+        [InlineData("en-US", "Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("en-US", "kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("en-US", "Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
@@ -1011,21 +1115,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
+        [InlineData("en-US", "Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("en-US", "kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("en-US", "Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
@@ -1048,21 +1156,25 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("daW", PowerUnit.Decawatt)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("fW", PowerUnit.Femtowatt)]
+        [InlineData("Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
@@ -1087,21 +1199,25 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("daW", PowerUnit.Decawatt)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("fW", PowerUnit.Femtowatt)]
+        [InlineData("Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
@@ -1126,21 +1242,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
+        [InlineData("en-US", "Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("en-US", "kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("en-US", "Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
@@ -1164,21 +1284,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "cal/h", PowerUnit.CaloriePerHour)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
+        [InlineData("en-US", "Gcal/h", PowerUnit.GigacaloriePerHour)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData("en-US", "kcal/h", PowerUnit.KilocaloriePerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
+        [InlineData("en-US", "Mcal/h", PowerUnit.MegacaloriePerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
@@ -1264,19 +1388,23 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromBritishThermalUnitsPerHour(watt.BritishThermalUnitsPerHour).Watts, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromCaloriesPerHour(watt.CaloriesPerHour).Watts, CaloriesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromDecawatts(watt.Decawatts).Watts, DecawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromDeciwatts(watt.Deciwatts).Watts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromGigacaloriesPerHour(watt.GigacaloriesPerHour).Watts, GigacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigajoulesPerHour(watt.GigajoulesPerHour).Watts, GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromJoulesPerHour(watt.JoulesPerHour).Watts, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilobritishThermalUnitsPerHour(watt.KilobritishThermalUnitsPerHour).Watts, KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromKilocaloriesPerHour(watt.KilocaloriesPerHour).Watts, KilocaloriesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilojoulesPerHour(watt.KilojoulesPerHour).Watts, KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegabritishThermalUnitsPerHour(watt.MegabritishThermalUnitsPerHour).Watts, MegabritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMegacaloriesPerHour(watt.MegacaloriesPerHour).Watts, MegacaloriesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegajoulesPerHour(watt.MegajoulesPerHour).Watts, MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
@@ -1438,19 +1566,23 @@ namespace UnitsNet.Tests
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString());
             Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 cal/h", new Power(1, PowerUnit.CaloriePerHour).ToString());
             Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString());
             Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString());
             Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString());
             Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString());
+            Assert.Equal("1 Gcal/h", new Power(1, PowerUnit.GigacaloriePerHour).ToString());
             Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString());
             Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString());
             Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString());
             Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString());
             Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 kcal/h", new Power(1, PowerUnit.KilocaloriePerHour).ToString());
             Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString());
             Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString());
             Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString());
             Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 Mcal/h", new Power(1, PowerUnit.MegacaloriePerHour).ToString());
             Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString());
             Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString());
             Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString());
@@ -1473,19 +1605,23 @@ namespace UnitsNet.Tests
 
             Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString(swedishCulture));
             Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString(swedishCulture));
+            Assert.Equal("1 cal/h", new Power(1, PowerUnit.CaloriePerHour).ToString(swedishCulture));
             Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString(swedishCulture));
             Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString(swedishCulture));
             Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString(swedishCulture));
             Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString(swedishCulture));
+            Assert.Equal("1 Gcal/h", new Power(1, PowerUnit.GigacaloriePerHour).ToString(swedishCulture));
             Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString(swedishCulture));
             Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString(swedishCulture));
             Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString(swedishCulture));
             Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString(swedishCulture));
             Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString(swedishCulture));
+            Assert.Equal("1 kcal/h", new Power(1, PowerUnit.KilocaloriePerHour).ToString(swedishCulture));
             Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString(swedishCulture));
             Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString(swedishCulture));
             Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString(swedishCulture));
             Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString(swedishCulture));
+            Assert.Equal("1 Mcal/h", new Power(1, PowerUnit.MegacaloriePerHour).ToString(swedishCulture));
             Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString(swedishCulture));
             Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString(swedishCulture));
             Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString(swedishCulture));
