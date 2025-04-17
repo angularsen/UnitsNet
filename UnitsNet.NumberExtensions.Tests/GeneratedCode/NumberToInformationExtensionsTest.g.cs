@@ -41,12 +41,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromExabytes(2), 2.Exabytes());
 
         [Fact]
+        public void NumberToExaoctetsTest() =>
+            Assert.Equal(Information.FromExaoctets(2), 2.Exaoctets());
+
+        [Fact]
         public void NumberToExbibitsTest() =>
             Assert.Equal(Information.FromExbibits(2), 2.Exbibits());
 
         [Fact]
         public void NumberToExbibytesTest() =>
             Assert.Equal(Information.FromExbibytes(2), 2.Exbibytes());
+
+        [Fact]
+        public void NumberToExbioctetsTest() =>
+            Assert.Equal(Information.FromExbioctets(2), 2.Exbioctets());
 
         [Fact]
         public void NumberToGibibitsTest() =>
@@ -57,12 +65,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromGibibytes(2), 2.Gibibytes());
 
         [Fact]
+        public void NumberToGibioctetsTest() =>
+            Assert.Equal(Information.FromGibioctets(2), 2.Gibioctets());
+
+        [Fact]
         public void NumberToGigabitsTest() =>
             Assert.Equal(Information.FromGigabits(2), 2.Gigabits());
 
         [Fact]
         public void NumberToGigabytesTest() =>
             Assert.Equal(Information.FromGigabytes(2), 2.Gigabytes());
+
+        [Fact]
+        public void NumberToGigaoctetsTest() =>
+            Assert.Equal(Information.FromGigaoctets(2), 2.Gigaoctets());
 
         [Fact]
         public void NumberToKibibitsTest() =>
@@ -73,12 +89,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromKibibytes(2), 2.Kibibytes());
 
         [Fact]
+        public void NumberToKibioctetsTest() =>
+            Assert.Equal(Information.FromKibioctets(2), 2.Kibioctets());
+
+        [Fact]
         public void NumberToKilobitsTest() =>
             Assert.Equal(Information.FromKilobits(2), 2.Kilobits());
 
         [Fact]
         public void NumberToKilobytesTest() =>
             Assert.Equal(Information.FromKilobytes(2), 2.Kilobytes());
+
+        [Fact]
+        public void NumberToKilooctetsTest() =>
+            Assert.Equal(Information.FromKilooctets(2), 2.Kilooctets());
 
         [Fact]
         public void NumberToMebibitsTest() =>
@@ -89,12 +113,24 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromMebibytes(2), 2.Mebibytes());
 
         [Fact]
+        public void NumberToMebioctetsTest() =>
+            Assert.Equal(Information.FromMebioctets(2), 2.Mebioctets());
+
+        [Fact]
         public void NumberToMegabitsTest() =>
             Assert.Equal(Information.FromMegabits(2), 2.Megabits());
 
         [Fact]
         public void NumberToMegabytesTest() =>
             Assert.Equal(Information.FromMegabytes(2), 2.Megabytes());
+
+        [Fact]
+        public void NumberToMegaoctetsTest() =>
+            Assert.Equal(Information.FromMegaoctets(2), 2.Megaoctets());
+
+        [Fact]
+        public void NumberToOctetsTest() =>
+            Assert.Equal(Information.FromOctets(2), 2.Octets());
 
         [Fact]
         public void NumberToPebibitsTest() =>
@@ -105,12 +141,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromPebibytes(2), 2.Pebibytes());
 
         [Fact]
+        public void NumberToPebioctetsTest() =>
+            Assert.Equal(Information.FromPebioctets(2), 2.Pebioctets());
+
+        [Fact]
         public void NumberToPetabitsTest() =>
             Assert.Equal(Information.FromPetabits(2), 2.Petabits());
 
         [Fact]
         public void NumberToPetabytesTest() =>
             Assert.Equal(Information.FromPetabytes(2), 2.Petabytes());
+
+        [Fact]
+        public void NumberToPetaoctetsTest() =>
+            Assert.Equal(Information.FromPetaoctets(2), 2.Petaoctets());
 
         [Fact]
         public void NumberToTebibitsTest() =>
@@ -121,12 +165,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Information.FromTebibytes(2), 2.Tebibytes());
 
         [Fact]
+        public void NumberToTebioctetsTest() =>
+            Assert.Equal(Information.FromTebioctets(2), 2.Tebioctets());
+
+        [Fact]
         public void NumberToTerabitsTest() =>
             Assert.Equal(Information.FromTerabits(2), 2.Terabits());
 
         [Fact]
         public void NumberToTerabytesTest() =>
             Assert.Equal(Information.FromTerabytes(2), 2.Terabytes());
+
+        [Fact]
+        public void NumberToTeraoctetsTest() =>
+            Assert.Equal(Information.FromTeraoctets(2), 2.Teraoctets());
 
     }
 }

@@ -35,6 +35,19 @@
           "Abbreviations": [ "B/s" ]
         }
       ]
+    },
+    {
+      "SingularName": "OctetPerSecond",
+      "PluralName": "OctetsPerSecond",
+      "FromUnitToBaseFunc": "{x} * 8",
+      "FromBaseToUnitFunc": "{x} / 8",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "o/s" ]
+        }
+      ]
     }
   ]
 }
