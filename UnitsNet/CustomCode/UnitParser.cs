@@ -141,16 +141,16 @@ public sealed class UnitParser
     ///     Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
     /// </summary>
     /// <param name="unitAbbreviation"></param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <typeparam name="TUnitType"></typeparam>
     /// <returns></returns>
-    public TUnitType Parse<TUnitType>(string unitAbbreviation, CultureInfo? culture = null)
+    public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
         where TUnitType : struct, Enum
     {
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
 
         QuantityInfo quantityInfo = Quantities.GetQuantityByUnitType(typeof(TUnitType));
-        return Parse(unitAbbreviation, quantityInfo.UnitInfos, culture).UnitKey.ToUnit<TUnitType>();
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider).UnitKey.ToUnit<TUnitType>();
     }
 
     /// <summary>
@@ -162,16 +162,16 @@ public sealed class UnitParser
     ///     <see cref="LengthUnit.Meter" /> respectively.
     /// </param>
     /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
     /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-    public Enum Parse(string unitAbbreviation, Type unitType, CultureInfo? culture = null)
+    public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
     {
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
 
         QuantityInfo quantityInfo = Quantities.GetQuantityByUnitType(unitType);
-        return Parse(unitAbbreviation, quantityInfo.UnitInfos, culture).Value;
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider).Value;
     }
 
     /// <summary>
@@ -179,10 +179,7 @@ public sealed class UnitParser
     /// </summary>
     /// <param name="quantityName">The name of the quantity to which the unit belongs.</param>
     /// <param name="unitAbbreviation">The abbreviation of the unit to retrieve.</param>
-    /// <param name="culture">
-    ///     An optional <see cref="CultureInfo" /> to consider when resolving the unit abbreviation.
-    ///     If <c>null</c>, the default culture is used.
-    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>
     ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
     /// </returns>
@@ -193,16 +190,16 @@ public sealed class UnitParser
     ///     Thrown if the <paramref name="unitAbbreviation" /> cannot be resolved to a valid unit for the specified quantity.
     /// </exception>
     /// <remarks>
-    ///     When a specific <paramref name="culture"/> is provided, both localized and non-localized units would be compared.
+    ///     When a specific <paramref name="formatProvider"/> is provided, both localized and non-localized units would be compared.
     ///     <para>Both the <paramref name="quantityName" /> and the <paramref name="unitAbbreviation" /> comparisons are case-insensitive.</para>
     /// </remarks>
-    public UnitInfo GetUnitFromAbbreviation(string quantityName, string unitAbbreviation, CultureInfo? culture)
+    public UnitInfo GetUnitFromAbbreviation(string quantityName, string unitAbbreviation, IFormatProvider? formatProvider)
     {
         if (quantityName == null) throw new ArgumentNullException(nameof(quantityName));
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
 
         QuantityInfo quantityInfo = Quantities.GetQuantityByName(quantityName);
-        return Parse(unitAbbreviation, quantityInfo.UnitInfos, culture);
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider);
     }
 
     /// <summary>
@@ -210,10 +207,7 @@ public sealed class UnitParser
     /// </summary>
     /// <param name="quantityType">The type of the quantity to which the unit belongs.</param>
     /// <param name="unitAbbreviation">The abbreviation of the unit to retrieve.</param>
-    /// <param name="culture">
-    ///     An optional <see cref="CultureInfo" /> to consider when resolving the unit abbreviation.
-    ///     If <c>null</c>, the default culture is used.
-    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>
     ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
     /// </returns>
@@ -224,16 +218,16 @@ public sealed class UnitParser
     ///     Thrown if the <paramref name="unitAbbreviation" /> cannot be resolved to a valid unit for the specified quantity.
     /// </exception>
     /// <remarks>
-    ///     When a specific <paramref name="culture" /> is provided, both localized and non-localized units would be compared.
+    ///     When a specific <paramref name="formatProvider" /> is provided, both localized and non-localized units would be compared.
     ///     <para>The <paramref name="unitAbbreviation" /> comparisons are case-insensitive.</para>
     /// </remarks>
-    public UnitInfo GetUnitFromAbbreviation(Type quantityType, string unitAbbreviation, CultureInfo? culture)
+    public UnitInfo GetUnitFromAbbreviation(Type quantityType, string unitAbbreviation, IFormatProvider? formatProvider)
     {
         if (quantityType == null) throw new ArgumentNullException(nameof(quantityType));
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
 
         QuantityInfo quantityInfo = Quantities.GetQuantityInfo(quantityType);
-        return Parse(unitAbbreviation, quantityInfo.UnitInfos, culture);
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider);
     }
 
     /// <summary>
@@ -242,16 +236,21 @@ public sealed class UnitParser
     /// <typeparam name="TUnitInfo">The type of the unit information.</typeparam>
     /// <param name="unitAbbreviation">The abbreviation of the unit to parse.</param>
     /// <param name="units">A collection of unit information to search through.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>The unit information that matches the specified abbreviation.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="unitAbbreviation" /> is null.</exception>
     /// <exception cref="UnitNotFoundException">Thrown when no matching unit is found.</exception>
     /// <exception cref="AmbiguousUnitParseException">Thrown when multiple matching units are found.</exception>
-    internal TUnitInfo Parse<TUnitInfo>(string unitAbbreviation, IReadOnlyList<TUnitInfo> units, CultureInfo? culture = null)
+    internal TUnitInfo Parse<TUnitInfo>(string unitAbbreviation, IReadOnlyList<TUnitInfo> units, IFormatProvider? formatProvider = null)
         where TUnitInfo : UnitInfo
     {
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
-        culture ??= CultureInfo.CurrentCulture;
+        
+        if (formatProvider is not CultureInfo culture)
+        {
+            culture = CultureInfo.CurrentCulture;
+        }
+        
         unitAbbreviation = unitAbbreviation.Trim();
         while (true)
         {
@@ -338,14 +337,14 @@ public sealed class UnitParser
     ///     Try to parse a unit abbreviation.
     /// </summary>
     /// <param name="unitAbbreviation">The string value.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unit">The unit enum value as out result.</param>
     /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
     /// <returns>True if successful.</returns>
-    public bool TryParse<TUnitType>([NotNullWhen(true)] string? unitAbbreviation, CultureInfo? culture, out TUnitType unit)
+    public bool TryParse<TUnitType>([NotNullWhen(true)] string? unitAbbreviation, IFormatProvider? formatProvider, out TUnitType unit)
         where TUnitType : struct, Enum
     {
-        if (!TryParse(unitAbbreviation, typeof(TUnitType), culture, out Enum? unitObj))
+        if (!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out Enum? unitObj))
         {
             unit = default;
             return false;
@@ -372,13 +371,10 @@ public sealed class UnitParser
     /// </summary>
     /// <param name="unitAbbreviation">The string value.</param>
     /// <param name="unitType">Type of unit enum.</param>
-    /// <param name="culture">
-    ///     The format provider to use for lookup. Defaults to
-    ///     <see cref="CultureInfo.CurrentCulture" /> if null.
-    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unit">The unit enum value as out result.</param>
     /// <returns>True if successful.</returns>
-    public bool TryParse([NotNullWhen(true)] string? unitAbbreviation, Type unitType, CultureInfo? culture, [NotNullWhen(true)] out Enum? unit)
+    public bool TryParse([NotNullWhen(true)] string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, [NotNullWhen(true)] out Enum? unit)
     {
         if (unitAbbreviation == null)
         {
@@ -387,7 +383,7 @@ public sealed class UnitParser
         }
 
         if (Quantities.TryGetQuantityByUnitType(unitType, out QuantityInfo? quantityInfo) &&
-            TryParse(unitAbbreviation, quantityInfo.UnitInfos, culture, out UnitInfo? unitInfo))
+            TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out UnitInfo? unitInfo))
         {
             unit = unitInfo.Value;
             return true;
@@ -403,18 +399,18 @@ public sealed class UnitParser
     /// <typeparam name="TUnit">The type of the unit enumeration.</typeparam>
     /// <param name="unitAbbreviation">The unit abbreviation to parse.</param>
     /// <param name="quantityInfo">The quantity information that provides context for the unit.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unit">
     ///     When this method returns, contains the parsed unit if the parsing succeeded, or <c>null</c> if the parsing failed.
     /// </param>
     /// <returns>
     ///     <c>true</c> if the unit abbreviation was successfully parsed; otherwise, <c>false</c>.
     /// </returns>
-    internal bool TryParse<TUnit>([NotNullWhen(true)] string? unitAbbreviation, QuantityInfo<TUnit> quantityInfo, CultureInfo? culture,
+    internal bool TryParse<TUnit>([NotNullWhen(true)] string? unitAbbreviation, QuantityInfo<TUnit> quantityInfo, IFormatProvider? formatProvider,
         out TUnit unit)
         where TUnit : struct, Enum
     {
-        if (TryParse(unitAbbreviation, quantityInfo.UnitInfos, culture, out UnitInfo<TUnit>? unitInfo))
+        if (TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out UnitInfo<TUnit>? unitInfo))
         {
             unit = unitInfo.Value;
             return true;
@@ -433,10 +429,7 @@ public sealed class UnitParser
     /// <param name="unitAbbreviation">
     ///     The abbreviation of the unit to retrieve. Can be <c>null</c>, in which case the method will return <c>false</c>.
     /// </param>
-    /// <param name="culture">
-    ///     An optional <see cref="CultureInfo" /> to consider when resolving the unit abbreviation.
-    ///     If <c>null</c>, the default culture is used.
-    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unitInfo">
     ///     When this method returns, contains the <see cref="UnitInfo" /> that matches the specified unit abbreviation
     ///     within the given quantity, if the operation succeeds; otherwise, <c>null</c>.
@@ -449,11 +442,11 @@ public sealed class UnitParser
     ///     This method does not throw exceptions for invalid input or unresolved unit abbreviations. Instead, it returns
     ///     <c>false</c>.
     /// </remarks>
-    public bool TryGetUnitFromAbbreviation(string quantityName, string? unitAbbreviation, CultureInfo? culture, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    public bool TryGetUnitFromAbbreviation(string quantityName, string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unitInfo)
     {
         if (unitAbbreviation != null && Quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo))
         {
-            return TryParse(unitAbbreviation, quantityInfo.UnitInfos, culture, out unitInfo);
+            return TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out unitInfo);
         }
 
         unitInfo = null;
@@ -467,7 +460,7 @@ public sealed class UnitParser
     /// <typeparam name="TUnitInfo">The type of the unit information.</typeparam>
     /// <param name="unitAbbreviation">The unit abbreviation to match.</param>
     /// <param name="units">The collection of units to match against.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unit">
     ///     When this method returns, contains the matching unit information if the match was successful; otherwise, the
     ///     default value for the type of the unit parameter.
@@ -475,8 +468,8 @@ public sealed class UnitParser
     /// <returns>
     ///     <c>true</c> if the unit abbreviation was successfully matched; otherwise, <c>false</c>.
     /// </returns>
-    internal bool TryParse<TUnitInfo>([NotNullWhen(true)] string? unitAbbreviation, IReadOnlyList<TUnitInfo> units, CultureInfo? culture,
-        [NotNullWhen(true)] out TUnitInfo? unit) 
+    internal bool TryParse<TUnitInfo>([NotNullWhen(true)] string? unitAbbreviation, IReadOnlyList<TUnitInfo> units, IFormatProvider? formatProvider,
+        [NotNullWhen(true)] out TUnitInfo? unit)
         where TUnitInfo : UnitInfo
     {
         unit = null;
@@ -486,7 +479,11 @@ public sealed class UnitParser
         }
         
         unitAbbreviation = unitAbbreviation.Trim();
-        culture ??= CultureInfo.CurrentCulture;
+        
+        if (formatProvider is not CultureInfo culture)
+        {
+            culture = CultureInfo.CurrentCulture;
+        }
         
         List<(TUnitInfo UnitInfo, string Abbreviation)> matches = FindMatchingUnits(unitAbbreviation, units, culture);
         
@@ -611,7 +608,7 @@ public sealed class UnitParser
     ///     Retrieves the unit information corresponding to the specified unit abbreviation.
     /// </summary>
     /// <param name="unitAbbreviation">The unit abbreviation to parse. Cannot be null or empty.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>The <see cref="UnitInfo" /> instance representing the parsed unit.</returns>
     /// <exception cref="ArgumentNullException">
     ///     Thrown when <paramref name="unitAbbreviation" /> is null.
@@ -632,10 +629,15 @@ public sealed class UnitParser
     ///     Note that this method is not optimized for performance, as it enumerates all units and their abbreviations
     ///     during each invocation.
     /// </remarks>
-    public UnitInfo GetUnitFromAbbreviation(string unitAbbreviation, CultureInfo? culture)
+    public UnitInfo GetUnitFromAbbreviation(string unitAbbreviation, IFormatProvider? formatProvider)
     {
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
-        culture ??= CultureInfo.CurrentCulture;
+        
+        if (formatProvider is not CultureInfo culture)
+        {
+            culture = CultureInfo.CurrentCulture;
+        }
+        
         unitAbbreviation = unitAbbreviation.Trim();
         StringComparison comparison = StringComparison.Ordinal;
         while (true)
@@ -678,7 +680,7 @@ public sealed class UnitParser
     ///     Attempts to parse the specified unit abbreviation into an <see cref="UnitInfo" /> object.
     /// </summary>
     /// <param name="unitAbbreviation">The unit abbreviation to parse.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <param name="unit">
     ///     When this method returns, contains the parsed <see cref="UnitInfo" /> object if the parsing succeeded,
     ///     or <c>null</c> if the parsing failed. This parameter is passed uninitialized.
@@ -696,7 +698,7 @@ public sealed class UnitParser
     ///     Note that this method is not optimized for performance, as it enumerates all units and their abbreviations
     ///     during each invocation.
     /// </remarks>
-    public bool TryGetUnitFromAbbreviation([NotNullWhen(true)]string? unitAbbreviation, CultureInfo? culture, [NotNullWhen(true)] out UnitInfo? unit)
+    public bool TryGetUnitFromAbbreviation([NotNullWhen(true)]string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unit)
     {
         if (unitAbbreviation == null)
         {
@@ -705,7 +707,11 @@ public sealed class UnitParser
         }
         
         unitAbbreviation = unitAbbreviation.Trim();
-        culture ??= CultureInfo.CurrentCulture;
+        
+        if (formatProvider is not CultureInfo culture)
+        {
+            culture = CultureInfo.CurrentCulture;
+        }
         
         StringComparison comparison = StringComparison.Ordinal;
         while (true)
@@ -747,7 +753,6 @@ public sealed class UnitParser
             }
         }
     }
-
     
     /// <summary>
     ///     Dynamically construct a quantity from a numeric value and a unit abbreviation.
@@ -761,24 +766,24 @@ public sealed class UnitParser
     /// </remarks>
     /// <param name="value">Numeric value.</param>
     /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram" />.</param>
-    /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>An <see cref="IQuantity" /> object.</returns>
     /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
     /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-    internal IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation, CultureInfo? culture)
+    internal IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation, IFormatProvider? formatProvider)
     {
-        return GetUnitFromAbbreviation(unitAbbreviation, culture).From(value);
+        return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
     }
     
-    /// <inheritdoc cref="UnitAbbreviationsCache.GetUnitAbbreviations(UnitKey,CultureInfo?)" />
-    public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, CultureInfo? culture)
+    /// <inheritdoc cref="UnitAbbreviationsCache.GetUnitAbbreviations(UnitKey,IFormatProvider?)" />
+    public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider)
     {
-        return Abbreviations.GetUnitAbbreviations(unitKey, culture);
+        return Abbreviations.GetUnitAbbreviations(unitKey, formatProvider);
     }
 
     /// <inheritdoc cref="UnitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity" />
-    public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitType, CultureInfo? culture)
+    public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitType, IFormatProvider? formatProvider)
     {
-        return Abbreviations.GetAllUnitAbbreviationsForQuantity(unitType, culture);
+        return Abbreviations.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider);
     }
 }

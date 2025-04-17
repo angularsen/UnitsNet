@@ -81,9 +81,8 @@ namespace UnitsNet
                 return true;
 
             QuantityParser quantityParser = QuantityParser.Default;
-            var unitLocalizationCulture = formatProvider as CultureInfo;
-            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, unitLocalizationCulture, matchEntireString: false);
-            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, unitLocalizationCulture, matchEntireString: false);
+            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
+            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
 
             // Match entire string exactly
             string pattern = $@"^(?<negativeSign>\-?)(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";

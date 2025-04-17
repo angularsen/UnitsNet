@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
 namespace UnitsNet.Debug;
@@ -137,7 +138,7 @@ public readonly struct UnitAbbreviations
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public IReadOnlyList<string> Abbreviations
     {
-        get => QuantityProxy.Configuration.UnitAbbreviations.GetAbbreviations(TargetUnit, QuantityDebugProxy.DefaultFormatProvider);
+        get => QuantityProxy.Configuration.UnitAbbreviations.GetAbbreviationsWithFallbackCulture(TargetUnit, QuantityDebugProxy.DefaultFormatProvider ?? CultureInfo.CurrentCulture);
     }
 
     /// <inheritdoc />

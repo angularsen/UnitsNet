@@ -174,7 +174,7 @@ public class QuantityParser
                TryParseWithRegex(valueString, unitString, quantityInfo.UnitInfos, formatProvider, out result);
     }
 
-    internal string CreateRegexPatternForUnit<TUnitType>(TUnitType unit, CultureInfo? formatProvider, bool matchEntireString = true)
+    internal string CreateRegexPatternForUnit<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, bool matchEntireString = true)
         where TUnitType : struct, Enum
     {
         IReadOnlyList<string> unitAbbreviations = _unitParser.GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider);
@@ -202,7 +202,7 @@ public class QuantityParser
         where TUnitType : struct, Enum
     {
         var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider);
-        TUnitType parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider as CultureInfo);
+        TUnitType parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
         return fromDelegate(value, parsedUnit);
     }
 
@@ -213,7 +213,7 @@ public class QuantityParser
     private IQuantity ParseWithRegex(string valueString, string unitString, IReadOnlyList<UnitInfo> units, IFormatProvider? formatProvider)
     {
         var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider);
-        UnitInfo unitInfo = _unitParser.Parse(unitString, units, formatProvider as CultureInfo);
+        UnitInfo unitInfo = _unitParser.Parse(unitString, units, formatProvider);
         return unitInfo.From(value);
     }
 
@@ -233,7 +233,7 @@ public class QuantityParser
             return false;
         }
 
-        if (!_unitParser.TryParse(unitString, formatProvider as CultureInfo, out TUnitType parsedUnit))
+        if (!_unitParser.TryParse(unitString, formatProvider, out TUnitType parsedUnit))
         {
             return false;
         }
@@ -256,7 +256,7 @@ public class QuantityParser
             return false;
         }
 
-        if (!_unitParser.TryParse(unitString, units, formatProvider as CultureInfo, out UnitInfo? parsedUnit))
+        if (!_unitParser.TryParse(unitString, units, formatProvider, out UnitInfo? parsedUnit))
         {
             return false;
         }
@@ -297,7 +297,7 @@ public class QuantityParser
 
     private string CreateRegexPatternForQuantity(Type unitType, IFormatProvider? formatProvider)
     {
-        IReadOnlyList<string> unitAbbreviations = _unitParser.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider as CultureInfo);
+        IReadOnlyList<string> unitAbbreviations = _unitParser.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider);
         var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
 
         // Match entire string exactly

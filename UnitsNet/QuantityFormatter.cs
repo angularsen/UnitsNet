@@ -31,7 +31,6 @@ public class QuantityFormatter
     ///     <see cref="UnitAbbreviationsCache" />.
     /// </value>
     public static QuantityFormatter Default => UnitsNetSetup.Default.Formatter;
-    // public static QuantityFormatter Default { get; } = UnitsNetSetup.Default.Formatter;
 
     /// <inheritdoc cref="Format{TUnitType}(UnitsNet.IQuantity{TUnitType},string,IFormatProvider)" />
     [Obsolete("Consider switching to one of the more performant instance methods available on QuantityFormatter.Default.")]
@@ -133,7 +132,7 @@ public class QuantityFormatter
                     break;
                 }
                 case 'A' or 'a':
-                    return _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider as CultureInfo);
+                    return _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
                 case 'U' or 'u':
                     throw new FormatException($"The \"{format}\" format is no longer supported: consider using the Unit property.");
                 case 'V' or 'v':
@@ -153,7 +152,7 @@ public class QuantityFormatter
 #if NET
                 case 'A' or 'a' when int.TryParse(format.AsSpan(1), out var abbreviationIndex):
                 {
-                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider as CultureInfo);
+                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
 
                     if (abbreviationIndex >= abbreviations.Count)
                     {
@@ -169,7 +168,7 @@ public class QuantityFormatter
 #else
                 case 'A' or 'a' when int.TryParse(format.Substring(1), out var abbreviationIndex):
                 {
-                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider as CultureInfo);
+                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
 
                     if (abbreviationIndex >= abbreviations.Count)
                     {
@@ -186,7 +185,7 @@ public class QuantityFormatter
             }
         }
  
-        var abbreviation = _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider as CultureInfo);
+        var abbreviation = _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
         if (abbreviation.Length == 0)
         {
             return quantity.Value.ToString(format, formatProvider);

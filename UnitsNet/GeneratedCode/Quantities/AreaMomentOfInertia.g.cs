@@ -297,10 +297,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static string GetAbbreviation(AreaMomentOfInertiaUnit unit, CultureInfo? culture)
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static string GetAbbreviation(AreaMomentOfInertiaUnit unit, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -433,7 +433,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out AreaMomentOfInertia result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out AreaMomentOfInertia result)
         {
             return TryParse(str, null, out result);
         }
@@ -448,7 +448,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out AreaMomentOfInertia result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaMomentOfInertia result)
         {
             return QuantityParser.Default.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider, From, out result);
         }
@@ -471,18 +471,18 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static AreaMomentOfInertiaUnit ParseUnit(string str, CultureInfo? culture)
+        public static AreaMomentOfInertiaUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse(str, Info.UnitInfos, culture).Value;
+            return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,CultureInfo?,out UnitsNet.Units.AreaMomentOfInertiaUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.AreaMomentOfInertiaUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out AreaMomentOfInertiaUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -497,10 +497,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="culture">The localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, CultureInfo? culture, out AreaMomentOfInertiaUnit unit)
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaMomentOfInertiaUnit unit)
         {
-            return UnitParser.Default.TryParse(str, Info, culture, out unit);
+            return UnitParser.Default.TryParse(str, Info, provider, out unit);
         }
 
         #endregion
