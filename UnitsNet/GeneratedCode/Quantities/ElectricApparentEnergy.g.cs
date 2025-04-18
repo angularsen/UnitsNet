@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -68,7 +69,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             BaseUnit = ElectricApparentEnergyUnit.VoltampereHour;
-            Units = Enum.GetValues(typeof(ElectricApparentEnergyUnit)).Cast<ElectricApparentEnergyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricApparentEnergyUnit>();
             Zero = new ElectricApparentEnergy(0, BaseUnit);
             Info = new QuantityInfo<ElectricApparentEnergyUnit>("ElectricApparentEnergy",
                 new UnitInfo<ElectricApparentEnergyUnit>[]

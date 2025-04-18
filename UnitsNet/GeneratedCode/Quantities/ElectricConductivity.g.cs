@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
             BaseUnit = ElectricConductivityUnit.SiemensPerMeter;
-            Units = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricConductivityUnit>();
             Zero = new ElectricConductivity(0, BaseUnit);
             Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
                 new UnitInfo<ElectricConductivityUnit>[]

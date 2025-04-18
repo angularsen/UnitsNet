@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, -1, 0, 0, 0, 1, 0);
             BaseUnit = MolalityUnit.MolePerKilogram;
-            Units = Enum.GetValues(typeof(MolalityUnit)).Cast<MolalityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MolalityUnit>();
             Zero = new Molality(0, BaseUnit);
             Info = new QuantityInfo<MolalityUnit>("Molality",
                 new UnitInfo<MolalityUnit>[]

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -79,7 +80,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
             BaseUnit = ForcePerLengthUnit.NewtonPerMeter;
-            Units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ForcePerLengthUnit>();
             Zero = new ForcePerLength(0, BaseUnit);
             Info = new QuantityInfo<ForcePerLengthUnit>("ForcePerLength",
                 new UnitInfo<ForcePerLengthUnit>[]

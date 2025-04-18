@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -68,7 +69,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = PowerRatioUnit.DecibelWatt;
-            Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().ToArray();
+            Units = EnumHelpers.GetValues<PowerRatioUnit>();
             Zero = new PowerRatio(0, BaseUnit);
             Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[]

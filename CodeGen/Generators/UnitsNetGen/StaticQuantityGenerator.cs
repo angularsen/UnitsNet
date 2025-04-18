@@ -130,6 +130,14 @@ namespace UnitsNet
             yield return typeof({quantity.Name});");
             Writer.WL(@"
         }
+
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {");
+            foreach (var quantity in _quantities)
+                Writer.WL($@"
+            {quantity.Name}.RegisterDefaultConversions(unitConverter);");
+            Writer.WL(@"
+        }
     }
 }");
             return Writer.ToString();

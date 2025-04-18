@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using UnitsNet.InternalHelpers;
+using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Units;
 using AbbreviationMapKey = System.ValueTuple<UnitsNet.UnitKey, string>;
 
@@ -54,7 +56,7 @@ namespace UnitsNet
             : this(new QuantityInfoLookup([]))
         {
         }
-        
+
         /// <summary>
         ///     Creates an instance of the cache using the specified set of quantities.
         /// </summary>
@@ -63,7 +65,7 @@ namespace UnitsNet
             :this(new QuantityInfoLookup(quantities))
         {
         }
-        
+
         /// <summary>
         ///     Creates an instance of the cache using the specified set of quantities.
         /// </summary>
@@ -74,7 +76,7 @@ namespace UnitsNet
         {
             QuantityInfoLookup = quantityInfoLookup;
         }
-        
+
         /// <summary>
         ///     Create an instance of the cache and load all the built-in quantities defined in the library.
         /// </summary>
@@ -174,7 +176,7 @@ namespace UnitsNet
 
             AddAbbreviation(unitInfo, formatProvider, setAsDefault, abbreviations);
         }
-        
+
         /// <summary>
         ///     Gets the default abbreviation for a given unit type and its numeric enum value.
         ///     If a unit has more than one abbreviation defined, then it returns the first one.
@@ -187,7 +189,7 @@ namespace UnitsNet
         {
             return GetDefaultAbbreviation(UnitKey.ForUnit(unit), formatProvider);
         }
-        
+
         /// <summary>
         ///     Gets the default abbreviation for a given unit type and its numeric enum value.
         ///     If a unit has more than one abbreviation defined, then it returns the first one.
@@ -200,7 +202,7 @@ namespace UnitsNet
         {
             return GetDefaultAbbreviation(new UnitKey(unitType, unitValue), formatProvider);
         }
-        
+
         /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}"/>
         /// <param name="unitKey">The key representing the unit type and value.</param>
         /// <param name="formatProvider">
@@ -242,11 +244,11 @@ namespace UnitsNet
         {
             return GetUnitAbbreviations(new UnitKey(unitType, unitValue), formatProvider).ToArray(); // TODO can we change this to return an IReadOnlyList (as the GetAbbreviations)?
         }
-        
+
         /// <summary>
         /// Retrieves the unit abbreviations for a specified unit key and optional format provider.
         /// </summary>
-        /// <param name="unitKey">The key representing the unit type and value.</param> 
+        /// <param name="unitKey">The key representing the unit type and value.</param>
         /// <param name="formatProvider">An optional format provider to use for culture-specific formatting.</param>
         /// <returns>A read-only collection of unit abbreviation strings.</returns>
         public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider = null)
@@ -279,17 +281,21 @@ namespace UnitsNet
         /// <param name="unitEnumType">Enum type for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when no quantity information is found for the specified unit enum type.
+        /// </exception>
         public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
             var allAbbreviations = new List<string>();
             if (!QuantityInfoLookup.TryGetQuantityByUnitType(unitEnumType, out QuantityInfo? quantityInfo))
             {
                 // TODO I think we should either return empty or throw QuantityNotFoundException here
-                var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
-                var all = GetStringUnitPairs(enumValues, formatProvider);
-                return all.Select(pair => pair.Item2).ToList();
+                // var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
+                // var all = GetStringUnitPairs(enumValues, formatProvider);
+                // return all.Select(pair => pair.Item2).ToList();
+                throw new QuantityNotFoundException("No quantity information was found for the type.");
             }
-            
+
             foreach(UnitInfo unitInfo in quantityInfo.UnitInfos)
             {
                 if(TryGetUnitAbbreviations(unitInfo.UnitKey, formatProvider, out IReadOnlyList<string> abbreviations))
@@ -301,9 +307,10 @@ namespace UnitsNet
             return allAbbreviations;
         }
 
-        internal List<(Enum Unit, string Abbreviation)> GetStringUnitPairs(IEnumerable<Enum> enumValues, IFormatProvider? formatProvider = null)
+        internal List<(TEnum Unit, string Abbreviation)> GetStringUnitPairs<TEnum>(IEnumerable<TEnum> enumValues, IFormatProvider? formatProvider = null)
+            where TEnum : Enum
         {
-            var unitAbbreviationsPairs = new List<(Enum, string)>();
+            var unitAbbreviationsPairs = new List<(TEnum, string)>();
             formatProvider ??= CultureInfo.CurrentCulture;
 
             foreach(var enumValue in enumValues)

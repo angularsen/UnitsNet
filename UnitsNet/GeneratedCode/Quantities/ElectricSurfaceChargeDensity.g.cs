@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
             BaseUnit = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
-            Units = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricSurfaceChargeDensityUnit>();
             Zero = new ElectricSurfaceChargeDensity(0, BaseUnit);
             Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>("ElectricSurfaceChargeDensity",
                 new UnitInfo<ElectricSurfaceChargeDensityUnit>[]

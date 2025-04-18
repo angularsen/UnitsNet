@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -80,7 +81,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
             BaseUnit = DensityUnit.KilogramPerCubicMeter;
-            Units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<DensityUnit>();
             Zero = new Density(0, BaseUnit);
             Info = new QuantityInfo<DensityUnit>("Density",
                 new UnitInfo<DensityUnit>[]

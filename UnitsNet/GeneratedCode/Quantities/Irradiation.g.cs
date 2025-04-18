@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
             BaseUnit = IrradiationUnit.JoulePerSquareMeter;
-            Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<IrradiationUnit>();
             Zero = new Irradiation(0, BaseUnit);
             Info = new QuantityInfo<IrradiationUnit>("Irradiation",
                 new UnitInfo<IrradiationUnit>[]

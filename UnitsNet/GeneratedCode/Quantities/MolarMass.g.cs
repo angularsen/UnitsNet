@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -73,7 +74,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
             BaseUnit = MolarMassUnit.KilogramPerMole;
-            Units = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MolarMassUnit>();
             Zero = new MolarMass(0, BaseUnit);
             Info = new QuantityInfo<MolarMassUnit>("MolarMass",
                 new UnitInfo<MolarMassUnit>[]

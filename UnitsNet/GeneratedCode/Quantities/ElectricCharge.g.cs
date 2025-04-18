@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -76,7 +77,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
             BaseUnit = ElectricChargeUnit.Coulomb;
-            Units = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricChargeUnit>();
             Zero = new ElectricCharge(0, BaseUnit);
             Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[]

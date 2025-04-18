@@ -21,6 +21,10 @@ namespace UnitsNet.Serialization.JsonNet
     /// </code>
     /// </example>
     /// <inheritdoc />
+#if NET
+    [RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
+#endif
     public class AbbreviatedUnitsConverter : JsonConverter<IQuantity>
     {
         private const string ValueProperty = "Value";

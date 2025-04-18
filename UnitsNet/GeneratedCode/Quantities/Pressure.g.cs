@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -80,7 +81,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
             BaseUnit = PressureUnit.Pascal;
-            Units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().ToArray();
+            Units = EnumHelpers.GetValues<PressureUnit>();
             Zero = new Pressure(0, BaseUnit);
             Info = new QuantityInfo<PressureUnit>("Pressure",
                 new UnitInfo<PressureUnit>[]

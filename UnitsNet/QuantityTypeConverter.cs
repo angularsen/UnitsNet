@@ -3,6 +3,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace UnitsNet
@@ -138,7 +139,9 @@ namespace UnitsNet
             return (sourceType == typeof(string)) || base.CanConvertFrom(context, sourceType);
         }
 
-        private static TAttribute? GetAttribute<TAttribute>(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
+        private static TAttribute? GetAttribute<
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] TAttribute
+        >(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
         {
             if (context?.PropertyDescriptor is null) return null;
 

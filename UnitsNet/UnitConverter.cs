@@ -84,12 +84,7 @@ namespace UnitsNet
         {
             if (unitConverter is null)
                 throw new ArgumentNullException(nameof(unitConverter));
-
-            foreach(var quantity in Quantity.GetQuantityTypes())
-            {
-                var registerMethod = quantity.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
-                registerMethod?.Invoke(null, new object[]{unitConverter});
-            }
+            Quantity.RegisterDefaultConversions(unitConverter);
         }
 
         /// <summary>
@@ -369,7 +364,7 @@ namespace UnitsNet
                 result = quantity.As(toUnitInfo.Value);
                 return true;
             }
-            
+
             result = 0d;
             return false;
         }
@@ -396,6 +391,7 @@ namespace UnitsNet
         /// </exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, (IFormatProvider?)null);
@@ -425,6 +421,7 @@ namespace UnitsNet
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of the IFormatProvider.")]
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
         {
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture));
@@ -456,6 +453,7 @@ namespace UnitsNet
         /// </exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, IFormatProvider? formatProvider)
         {
             QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
@@ -484,6 +482,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
         {
             return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, (IFormatProvider?)null);
@@ -509,6 +508,7 @@ namespace UnitsNet
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
         [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of the IFormatProvider.")]
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             string? culture)
         {
@@ -537,6 +537,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        [RequiresDynamicCode("It might not be possible to convert by abbreviation at runtime")]
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             IFormatProvider? formatProvider)
         {

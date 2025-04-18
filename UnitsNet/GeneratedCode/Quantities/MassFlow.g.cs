@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -80,7 +81,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
             BaseUnit = MassFlowUnit.GramPerSecond;
-            Units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MassFlowUnit>();
             Zero = new MassFlow(0, BaseUnit);
             Info = new QuantityInfo<MassFlowUnit>("MassFlow",
                 new UnitInfo<MassFlowUnit>[]

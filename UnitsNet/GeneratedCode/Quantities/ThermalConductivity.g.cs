@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
             BaseUnit = ThermalConductivityUnit.WattPerMeterKelvin;
-            Units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ThermalConductivityUnit>();
             Zero = new ThermalConductivity(0, BaseUnit);
             Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
                 new UnitInfo<ThermalConductivityUnit>[]
