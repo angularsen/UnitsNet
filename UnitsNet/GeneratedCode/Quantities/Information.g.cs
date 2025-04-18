@@ -77,28 +77,41 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Exabit, "Exabits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Exabyte, "Exabytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exaoctet, "Exaoctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Exbibit, "Exbibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, "Exbibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exbioctet, "Exbioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Gibibit, "Gibibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, "Gibibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gibioctet, "Gibioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Gigabit, "Gigabits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, "Gigabytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gigaoctet, "Gigaoctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Kibibit, "Kibibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, "Kibibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kibioctet, "Kibioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Kilobit, "Kilobits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, "Kilobytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kilooctet, "Kilooctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Mebibit, "Mebibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, "Mebibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Mebioctet, "Mebioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Megabit, "Megabits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Megabyte, "Megabytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Megaoctet, "Megaoctets", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Octet, "Octets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Pebibit, "Pebibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, "Pebibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Pebioctet, "Pebioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Petabit, "Petabits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Petabyte, "Petabytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Petaoctet, "Petaoctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Tebibit, "Tebibits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Tebioctet, "Tebioctets", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined, "Information"),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined, "Information"),
+                    new UnitInfo<InformationUnit>(InformationUnit.Teraoctet, "Teraoctets", BaseUnits.Undefined, "Information"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -203,6 +216,11 @@ namespace UnitsNet
         public double Exabytes => As(InformationUnit.Exabyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exaoctet"/>
+        /// </summary>
+        public double Exaoctets => As(InformationUnit.Exaoctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
         public double Exbibits => As(InformationUnit.Exbibit);
@@ -211,6 +229,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
         public double Exbibytes => As(InformationUnit.Exbibyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbioctet"/>
+        /// </summary>
+        public double Exbioctets => As(InformationUnit.Exbioctet);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
@@ -223,6 +246,11 @@ namespace UnitsNet
         public double Gibibytes => As(InformationUnit.Gibibyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibioctet"/>
+        /// </summary>
+        public double Gibioctets => As(InformationUnit.Gibioctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
         public double Gigabits => As(InformationUnit.Gigabit);
@@ -231,6 +259,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
         public double Gigabytes => As(InformationUnit.Gigabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigaoctet"/>
+        /// </summary>
+        public double Gigaoctets => As(InformationUnit.Gigaoctet);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
@@ -243,6 +276,11 @@ namespace UnitsNet
         public double Kibibytes => As(InformationUnit.Kibibyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibioctet"/>
+        /// </summary>
+        public double Kibioctets => As(InformationUnit.Kibioctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
         public double Kilobits => As(InformationUnit.Kilobit);
@@ -251,6 +289,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
         public double Kilobytes => As(InformationUnit.Kilobyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilooctet"/>
+        /// </summary>
+        public double Kilooctets => As(InformationUnit.Kilooctet);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
@@ -263,6 +306,11 @@ namespace UnitsNet
         public double Mebibytes => As(InformationUnit.Mebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebioctet"/>
+        /// </summary>
+        public double Mebioctets => As(InformationUnit.Mebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
         public double Megabits => As(InformationUnit.Megabit);
@@ -271,6 +319,16 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
         public double Megabytes => As(InformationUnit.Megabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megaoctet"/>
+        /// </summary>
+        public double Megaoctets => As(InformationUnit.Megaoctet);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Octet"/>
+        /// </summary>
+        public double Octets => As(InformationUnit.Octet);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
@@ -283,6 +341,11 @@ namespace UnitsNet
         public double Pebibytes => As(InformationUnit.Pebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebioctet"/>
+        /// </summary>
+        public double Pebioctets => As(InformationUnit.Pebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
         public double Petabits => As(InformationUnit.Petabit);
@@ -291,6 +354,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
         public double Petabytes => As(InformationUnit.Petabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petaoctet"/>
+        /// </summary>
+        public double Petaoctets => As(InformationUnit.Petaoctet);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
@@ -303,6 +371,11 @@ namespace UnitsNet
         public double Tebibytes => As(InformationUnit.Tebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebioctet"/>
+        /// </summary>
+        public double Tebioctets => As(InformationUnit.Tebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
         public double Terabits => As(InformationUnit.Terabit);
@@ -311,6 +384,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
         public double Terabytes => As(InformationUnit.Terabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Teraoctet"/>
+        /// </summary>
+        public double Teraoctets => As(InformationUnit.Teraoctet);
 
         #endregion
 
@@ -326,28 +404,41 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Information>(InformationUnit.Byte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Exabit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Exabyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Exaoctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Exbibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Exbibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Exbioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Gibibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Gibibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Gibioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Gigabit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Gigabyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Gigaoctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Kibibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Kibibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Kibioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Kilobit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Kilobyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Kilooctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Mebibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Mebibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Mebioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Megabit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Megabyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Megaoctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Octet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Pebibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Pebibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Pebioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Petabit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Petabyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Petaoctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Tebibit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Tebibyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Tebioctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Terabit, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Terabyte, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Teraoctet, InformationUnit.Bit, quantity => quantity.ToUnit(InformationUnit.Bit));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Bit, quantity => quantity);
@@ -356,28 +447,41 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Byte, quantity => quantity.ToUnit(InformationUnit.Byte));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exabit, quantity => quantity.ToUnit(InformationUnit.Exabit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exabyte, quantity => quantity.ToUnit(InformationUnit.Exabyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exaoctet, quantity => quantity.ToUnit(InformationUnit.Exaoctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exbibit, quantity => quantity.ToUnit(InformationUnit.Exbibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exbibyte, quantity => quantity.ToUnit(InformationUnit.Exbibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exbioctet, quantity => quantity.ToUnit(InformationUnit.Exbioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gibibit, quantity => quantity.ToUnit(InformationUnit.Gibibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gibibyte, quantity => quantity.ToUnit(InformationUnit.Gibibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gibioctet, quantity => quantity.ToUnit(InformationUnit.Gibioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gigabit, quantity => quantity.ToUnit(InformationUnit.Gigabit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gigabyte, quantity => quantity.ToUnit(InformationUnit.Gigabyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gigaoctet, quantity => quantity.ToUnit(InformationUnit.Gigaoctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kibibit, quantity => quantity.ToUnit(InformationUnit.Kibibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kibibyte, quantity => quantity.ToUnit(InformationUnit.Kibibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kibioctet, quantity => quantity.ToUnit(InformationUnit.Kibioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kilobit, quantity => quantity.ToUnit(InformationUnit.Kilobit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kilobyte, quantity => quantity.ToUnit(InformationUnit.Kilobyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kilooctet, quantity => quantity.ToUnit(InformationUnit.Kilooctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Mebibit, quantity => quantity.ToUnit(InformationUnit.Mebibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Mebibyte, quantity => quantity.ToUnit(InformationUnit.Mebibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Mebioctet, quantity => quantity.ToUnit(InformationUnit.Mebioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Megabit, quantity => quantity.ToUnit(InformationUnit.Megabit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Megabyte, quantity => quantity.ToUnit(InformationUnit.Megabyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Megaoctet, quantity => quantity.ToUnit(InformationUnit.Megaoctet));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Octet, quantity => quantity.ToUnit(InformationUnit.Octet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Pebibit, quantity => quantity.ToUnit(InformationUnit.Pebibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Pebibyte, quantity => quantity.ToUnit(InformationUnit.Pebibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Pebioctet, quantity => quantity.ToUnit(InformationUnit.Pebioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Petabit, quantity => quantity.ToUnit(InformationUnit.Petabit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Petabyte, quantity => quantity.ToUnit(InformationUnit.Petabyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Petaoctet, quantity => quantity.ToUnit(InformationUnit.Petaoctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Tebibit, quantity => quantity.ToUnit(InformationUnit.Tebibit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Tebibyte, quantity => quantity.ToUnit(InformationUnit.Tebibyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Tebioctet, quantity => quantity.ToUnit(InformationUnit.Tebioctet));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Terabit, quantity => quantity.ToUnit(InformationUnit.Terabit));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Terabyte, quantity => quantity.ToUnit(InformationUnit.Terabyte));
+            unitConverter.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Teraoctet, quantity => quantity.ToUnit(InformationUnit.Teraoctet));
         }
 
         /// <summary>
@@ -438,6 +542,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exaoctet"/>.
+        /// </summary>
+        public static Information FromExaoctets(double value)
+        {
+            return new Information(value, InformationUnit.Exaoctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
         public static Information FromExbibits(double value)
@@ -451,6 +563,14 @@ namespace UnitsNet
         public static Information FromExbibytes(double value)
         {
             return new Information(value, InformationUnit.Exbibyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbioctet"/>.
+        /// </summary>
+        public static Information FromExbioctets(double value)
+        {
+            return new Information(value, InformationUnit.Exbioctet);
         }
 
         /// <summary>
@@ -470,6 +590,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibioctet"/>.
+        /// </summary>
+        public static Information FromGibioctets(double value)
+        {
+            return new Information(value, InformationUnit.Gibioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
         public static Information FromGigabits(double value)
@@ -483,6 +611,14 @@ namespace UnitsNet
         public static Information FromGigabytes(double value)
         {
             return new Information(value, InformationUnit.Gigabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigaoctet"/>.
+        /// </summary>
+        public static Information FromGigaoctets(double value)
+        {
+            return new Information(value, InformationUnit.Gigaoctet);
         }
 
         /// <summary>
@@ -502,6 +638,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibioctet"/>.
+        /// </summary>
+        public static Information FromKibioctets(double value)
+        {
+            return new Information(value, InformationUnit.Kibioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
         public static Information FromKilobits(double value)
@@ -515,6 +659,14 @@ namespace UnitsNet
         public static Information FromKilobytes(double value)
         {
             return new Information(value, InformationUnit.Kilobyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilooctet"/>.
+        /// </summary>
+        public static Information FromKilooctets(double value)
+        {
+            return new Information(value, InformationUnit.Kilooctet);
         }
 
         /// <summary>
@@ -534,6 +686,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebioctet"/>.
+        /// </summary>
+        public static Information FromMebioctets(double value)
+        {
+            return new Information(value, InformationUnit.Mebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
         public static Information FromMegabits(double value)
@@ -547,6 +707,22 @@ namespace UnitsNet
         public static Information FromMegabytes(double value)
         {
             return new Information(value, InformationUnit.Megabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megaoctet"/>.
+        /// </summary>
+        public static Information FromMegaoctets(double value)
+        {
+            return new Information(value, InformationUnit.Megaoctet);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Octet"/>.
+        /// </summary>
+        public static Information FromOctets(double value)
+        {
+            return new Information(value, InformationUnit.Octet);
         }
 
         /// <summary>
@@ -566,6 +742,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebioctet"/>.
+        /// </summary>
+        public static Information FromPebioctets(double value)
+        {
+            return new Information(value, InformationUnit.Pebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
         public static Information FromPetabits(double value)
@@ -579,6 +763,14 @@ namespace UnitsNet
         public static Information FromPetabytes(double value)
         {
             return new Information(value, InformationUnit.Petabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petaoctet"/>.
+        /// </summary>
+        public static Information FromPetaoctets(double value)
+        {
+            return new Information(value, InformationUnit.Petaoctet);
         }
 
         /// <summary>
@@ -598,6 +790,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebioctet"/>.
+        /// </summary>
+        public static Information FromTebioctets(double value)
+        {
+            return new Information(value, InformationUnit.Tebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
         public static Information FromTerabits(double value)
@@ -611,6 +811,14 @@ namespace UnitsNet
         public static Information FromTerabytes(double value)
         {
             return new Information(value, InformationUnit.Terabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Teraoctet"/>.
+        /// </summary>
+        public static Information FromTeraoctets(double value)
+        {
+            return new Information(value, InformationUnit.Teraoctet);
         }
 
         /// <summary>
@@ -1082,55 +1290,81 @@ namespace UnitsNet
                 (InformationUnit.Byte, InformationUnit.Bit) => new Information(_value * 8, InformationUnit.Bit),
                 (InformationUnit.Exabit, InformationUnit.Bit) => new Information((_value) * 1e18d, InformationUnit.Bit),
                 (InformationUnit.Exabyte, InformationUnit.Bit) => new Information((_value * 8) * 1e18d, InformationUnit.Bit),
+                (InformationUnit.Exaoctet, InformationUnit.Bit) => new Information((_value * 8) * 1e18d, InformationUnit.Bit),
                 (InformationUnit.Exbibit, InformationUnit.Bit) => new Information((_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Exbibyte, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
+                (InformationUnit.Exbioctet, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Gibibit, InformationUnit.Bit) => new Information((_value) * (1024d * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Gibibyte, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024), InformationUnit.Bit),
+                (InformationUnit.Gibioctet, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Gigabit, InformationUnit.Bit) => new Information((_value) * 1e9d, InformationUnit.Bit),
                 (InformationUnit.Gigabyte, InformationUnit.Bit) => new Information((_value * 8) * 1e9d, InformationUnit.Bit),
+                (InformationUnit.Gigaoctet, InformationUnit.Bit) => new Information((_value * 8) * 1e9d, InformationUnit.Bit),
                 (InformationUnit.Kibibit, InformationUnit.Bit) => new Information((_value) * 1024d, InformationUnit.Bit),
                 (InformationUnit.Kibibyte, InformationUnit.Bit) => new Information((_value * 8) * 1024d, InformationUnit.Bit),
+                (InformationUnit.Kibioctet, InformationUnit.Bit) => new Information((_value * 8) * 1024d, InformationUnit.Bit),
                 (InformationUnit.Kilobit, InformationUnit.Bit) => new Information((_value) * 1e3d, InformationUnit.Bit),
                 (InformationUnit.Kilobyte, InformationUnit.Bit) => new Information((_value * 8) * 1e3d, InformationUnit.Bit),
+                (InformationUnit.Kilooctet, InformationUnit.Bit) => new Information((_value * 8) * 1e3d, InformationUnit.Bit),
                 (InformationUnit.Mebibit, InformationUnit.Bit) => new Information((_value) * (1024d * 1024), InformationUnit.Bit),
                 (InformationUnit.Mebibyte, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024), InformationUnit.Bit),
+                (InformationUnit.Mebioctet, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024), InformationUnit.Bit),
                 (InformationUnit.Megabit, InformationUnit.Bit) => new Information((_value) * 1e6d, InformationUnit.Bit),
                 (InformationUnit.Megabyte, InformationUnit.Bit) => new Information((_value * 8) * 1e6d, InformationUnit.Bit),
+                (InformationUnit.Megaoctet, InformationUnit.Bit) => new Information((_value * 8) * 1e6d, InformationUnit.Bit),
+                (InformationUnit.Octet, InformationUnit.Bit) => new Information(_value * 8, InformationUnit.Bit),
                 (InformationUnit.Pebibit, InformationUnit.Bit) => new Information((_value) * (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Pebibyte, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
+                (InformationUnit.Pebioctet, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Petabit, InformationUnit.Bit) => new Information((_value) * 1e15d, InformationUnit.Bit),
                 (InformationUnit.Petabyte, InformationUnit.Bit) => new Information((_value * 8) * 1e15d, InformationUnit.Bit),
+                (InformationUnit.Petaoctet, InformationUnit.Bit) => new Information((_value * 8) * 1e15d, InformationUnit.Bit),
                 (InformationUnit.Tebibit, InformationUnit.Bit) => new Information((_value) * (1024d * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Tebibyte, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024), InformationUnit.Bit),
+                (InformationUnit.Tebioctet, InformationUnit.Bit) => new Information((_value * 8) * (1024d * 1024 * 1024 * 1024), InformationUnit.Bit),
                 (InformationUnit.Terabit, InformationUnit.Bit) => new Information((_value) * 1e12d, InformationUnit.Bit),
                 (InformationUnit.Terabyte, InformationUnit.Bit) => new Information((_value * 8) * 1e12d, InformationUnit.Bit),
+                (InformationUnit.Teraoctet, InformationUnit.Bit) => new Information((_value * 8) * 1e12d, InformationUnit.Bit),
 
                 // BaseUnit -> InformationUnit
                 (InformationUnit.Bit, InformationUnit.Byte) => new Information(_value / 8, InformationUnit.Byte),
                 (InformationUnit.Bit, InformationUnit.Exabit) => new Information((_value) / 1e18d, InformationUnit.Exabit),
                 (InformationUnit.Bit, InformationUnit.Exabyte) => new Information((_value / 8) / 1e18d, InformationUnit.Exabyte),
+                (InformationUnit.Bit, InformationUnit.Exaoctet) => new Information((_value / 8) / 1e18d, InformationUnit.Exaoctet),
                 (InformationUnit.Bit, InformationUnit.Exbibit) => new Information((_value) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Exbibit),
                 (InformationUnit.Bit, InformationUnit.Exbibyte) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Exbibyte),
+                (InformationUnit.Bit, InformationUnit.Exbioctet) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), InformationUnit.Exbioctet),
                 (InformationUnit.Bit, InformationUnit.Gibibit) => new Information((_value) / (1024d * 1024 * 1024), InformationUnit.Gibibit),
                 (InformationUnit.Bit, InformationUnit.Gibibyte) => new Information((_value / 8) / (1024d * 1024 * 1024), InformationUnit.Gibibyte),
+                (InformationUnit.Bit, InformationUnit.Gibioctet) => new Information((_value / 8) / (1024d * 1024 * 1024), InformationUnit.Gibioctet),
                 (InformationUnit.Bit, InformationUnit.Gigabit) => new Information((_value) / 1e9d, InformationUnit.Gigabit),
                 (InformationUnit.Bit, InformationUnit.Gigabyte) => new Information((_value / 8) / 1e9d, InformationUnit.Gigabyte),
+                (InformationUnit.Bit, InformationUnit.Gigaoctet) => new Information((_value / 8) / 1e9d, InformationUnit.Gigaoctet),
                 (InformationUnit.Bit, InformationUnit.Kibibit) => new Information((_value) / 1024d, InformationUnit.Kibibit),
                 (InformationUnit.Bit, InformationUnit.Kibibyte) => new Information((_value / 8) / 1024d, InformationUnit.Kibibyte),
+                (InformationUnit.Bit, InformationUnit.Kibioctet) => new Information((_value / 8) / 1024d, InformationUnit.Kibioctet),
                 (InformationUnit.Bit, InformationUnit.Kilobit) => new Information((_value) / 1e3d, InformationUnit.Kilobit),
                 (InformationUnit.Bit, InformationUnit.Kilobyte) => new Information((_value / 8) / 1e3d, InformationUnit.Kilobyte),
+                (InformationUnit.Bit, InformationUnit.Kilooctet) => new Information((_value / 8) / 1e3d, InformationUnit.Kilooctet),
                 (InformationUnit.Bit, InformationUnit.Mebibit) => new Information((_value) / (1024d * 1024), InformationUnit.Mebibit),
                 (InformationUnit.Bit, InformationUnit.Mebibyte) => new Information((_value / 8) / (1024d * 1024), InformationUnit.Mebibyte),
+                (InformationUnit.Bit, InformationUnit.Mebioctet) => new Information((_value / 8) / (1024d * 1024), InformationUnit.Mebioctet),
                 (InformationUnit.Bit, InformationUnit.Megabit) => new Information((_value) / 1e6d, InformationUnit.Megabit),
                 (InformationUnit.Bit, InformationUnit.Megabyte) => new Information((_value / 8) / 1e6d, InformationUnit.Megabyte),
+                (InformationUnit.Bit, InformationUnit.Megaoctet) => new Information((_value / 8) / 1e6d, InformationUnit.Megaoctet),
+                (InformationUnit.Bit, InformationUnit.Octet) => new Information(_value / 8, InformationUnit.Octet),
                 (InformationUnit.Bit, InformationUnit.Pebibit) => new Information((_value) / (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Pebibit),
                 (InformationUnit.Bit, InformationUnit.Pebibyte) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Pebibyte),
+                (InformationUnit.Bit, InformationUnit.Pebioctet) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024), InformationUnit.Pebioctet),
                 (InformationUnit.Bit, InformationUnit.Petabit) => new Information((_value) / 1e15d, InformationUnit.Petabit),
                 (InformationUnit.Bit, InformationUnit.Petabyte) => new Information((_value / 8) / 1e15d, InformationUnit.Petabyte),
+                (InformationUnit.Bit, InformationUnit.Petaoctet) => new Information((_value / 8) / 1e15d, InformationUnit.Petaoctet),
                 (InformationUnit.Bit, InformationUnit.Tebibit) => new Information((_value) / (1024d * 1024 * 1024 * 1024), InformationUnit.Tebibit),
                 (InformationUnit.Bit, InformationUnit.Tebibyte) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024), InformationUnit.Tebibyte),
+                (InformationUnit.Bit, InformationUnit.Tebioctet) => new Information((_value / 8) / (1024d * 1024 * 1024 * 1024), InformationUnit.Tebioctet),
                 (InformationUnit.Bit, InformationUnit.Terabit) => new Information((_value) / 1e12d, InformationUnit.Terabit),
                 (InformationUnit.Bit, InformationUnit.Terabyte) => new Information((_value / 8) / 1e12d, InformationUnit.Terabyte),
+                (InformationUnit.Bit, InformationUnit.Teraoctet) => new Information((_value / 8) / 1e12d, InformationUnit.Teraoctet),
 
                 _ => null
             };

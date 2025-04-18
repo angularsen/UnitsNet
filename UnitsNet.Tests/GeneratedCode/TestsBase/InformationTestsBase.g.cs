@@ -43,56 +43,82 @@ namespace UnitsNet.Tests
         protected abstract double BytesInOneBit { get; }
         protected abstract double ExabitsInOneBit { get; }
         protected abstract double ExabytesInOneBit { get; }
+        protected abstract double ExaoctetsInOneBit { get; }
         protected abstract double ExbibitsInOneBit { get; }
         protected abstract double ExbibytesInOneBit { get; }
+        protected abstract double ExbioctetsInOneBit { get; }
         protected abstract double GibibitsInOneBit { get; }
         protected abstract double GibibytesInOneBit { get; }
+        protected abstract double GibioctetsInOneBit { get; }
         protected abstract double GigabitsInOneBit { get; }
         protected abstract double GigabytesInOneBit { get; }
+        protected abstract double GigaoctetsInOneBit { get; }
         protected abstract double KibibitsInOneBit { get; }
         protected abstract double KibibytesInOneBit { get; }
+        protected abstract double KibioctetsInOneBit { get; }
         protected abstract double KilobitsInOneBit { get; }
         protected abstract double KilobytesInOneBit { get; }
+        protected abstract double KilooctetsInOneBit { get; }
         protected abstract double MebibitsInOneBit { get; }
         protected abstract double MebibytesInOneBit { get; }
+        protected abstract double MebioctetsInOneBit { get; }
         protected abstract double MegabitsInOneBit { get; }
         protected abstract double MegabytesInOneBit { get; }
+        protected abstract double MegaoctetsInOneBit { get; }
+        protected abstract double OctetsInOneBit { get; }
         protected abstract double PebibitsInOneBit { get; }
         protected abstract double PebibytesInOneBit { get; }
+        protected abstract double PebioctetsInOneBit { get; }
         protected abstract double PetabitsInOneBit { get; }
         protected abstract double PetabytesInOneBit { get; }
+        protected abstract double PetaoctetsInOneBit { get; }
         protected abstract double TebibitsInOneBit { get; }
         protected abstract double TebibytesInOneBit { get; }
+        protected abstract double TebioctetsInOneBit { get; }
         protected abstract double TerabitsInOneBit { get; }
         protected abstract double TerabytesInOneBit { get; }
+        protected abstract double TeraoctetsInOneBit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BitsTolerance { get { return 1e-5; } }
         protected virtual double BytesTolerance { get { return 1e-5; } }
         protected virtual double ExabitsTolerance { get { return 1e-5; } }
         protected virtual double ExabytesTolerance { get { return 1e-5; } }
+        protected virtual double ExaoctetsTolerance { get { return 1e-5; } }
         protected virtual double ExbibitsTolerance { get { return 1e-5; } }
         protected virtual double ExbibytesTolerance { get { return 1e-5; } }
+        protected virtual double ExbioctetsTolerance { get { return 1e-5; } }
         protected virtual double GibibitsTolerance { get { return 1e-5; } }
         protected virtual double GibibytesTolerance { get { return 1e-5; } }
+        protected virtual double GibioctetsTolerance { get { return 1e-5; } }
         protected virtual double GigabitsTolerance { get { return 1e-5; } }
         protected virtual double GigabytesTolerance { get { return 1e-5; } }
+        protected virtual double GigaoctetsTolerance { get { return 1e-5; } }
         protected virtual double KibibitsTolerance { get { return 1e-5; } }
         protected virtual double KibibytesTolerance { get { return 1e-5; } }
+        protected virtual double KibioctetsTolerance { get { return 1e-5; } }
         protected virtual double KilobitsTolerance { get { return 1e-5; } }
         protected virtual double KilobytesTolerance { get { return 1e-5; } }
+        protected virtual double KilooctetsTolerance { get { return 1e-5; } }
         protected virtual double MebibitsTolerance { get { return 1e-5; } }
         protected virtual double MebibytesTolerance { get { return 1e-5; } }
+        protected virtual double MebioctetsTolerance { get { return 1e-5; } }
         protected virtual double MegabitsTolerance { get { return 1e-5; } }
         protected virtual double MegabytesTolerance { get { return 1e-5; } }
+        protected virtual double MegaoctetsTolerance { get { return 1e-5; } }
+        protected virtual double OctetsTolerance { get { return 1e-5; } }
         protected virtual double PebibitsTolerance { get { return 1e-5; } }
         protected virtual double PebibytesTolerance { get { return 1e-5; } }
+        protected virtual double PebioctetsTolerance { get { return 1e-5; } }
         protected virtual double PetabitsTolerance { get { return 1e-5; } }
         protected virtual double PetabytesTolerance { get { return 1e-5; } }
+        protected virtual double PetaoctetsTolerance { get { return 1e-5; } }
         protected virtual double TebibitsTolerance { get { return 1e-5; } }
         protected virtual double TebibytesTolerance { get { return 1e-5; } }
+        protected virtual double TebioctetsTolerance { get { return 1e-5; } }
         protected virtual double TerabitsTolerance { get { return 1e-5; } }
         protected virtual double TerabytesTolerance { get { return 1e-5; } }
+        protected virtual double TeraoctetsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(InformationUnit unit)
@@ -103,28 +129,41 @@ namespace UnitsNet.Tests
                 InformationUnit.Byte => (BytesInOneBit, BytesTolerance),
                 InformationUnit.Exabit => (ExabitsInOneBit, ExabitsTolerance),
                 InformationUnit.Exabyte => (ExabytesInOneBit, ExabytesTolerance),
+                InformationUnit.Exaoctet => (ExaoctetsInOneBit, ExaoctetsTolerance),
                 InformationUnit.Exbibit => (ExbibitsInOneBit, ExbibitsTolerance),
                 InformationUnit.Exbibyte => (ExbibytesInOneBit, ExbibytesTolerance),
+                InformationUnit.Exbioctet => (ExbioctetsInOneBit, ExbioctetsTolerance),
                 InformationUnit.Gibibit => (GibibitsInOneBit, GibibitsTolerance),
                 InformationUnit.Gibibyte => (GibibytesInOneBit, GibibytesTolerance),
+                InformationUnit.Gibioctet => (GibioctetsInOneBit, GibioctetsTolerance),
                 InformationUnit.Gigabit => (GigabitsInOneBit, GigabitsTolerance),
                 InformationUnit.Gigabyte => (GigabytesInOneBit, GigabytesTolerance),
+                InformationUnit.Gigaoctet => (GigaoctetsInOneBit, GigaoctetsTolerance),
                 InformationUnit.Kibibit => (KibibitsInOneBit, KibibitsTolerance),
                 InformationUnit.Kibibyte => (KibibytesInOneBit, KibibytesTolerance),
+                InformationUnit.Kibioctet => (KibioctetsInOneBit, KibioctetsTolerance),
                 InformationUnit.Kilobit => (KilobitsInOneBit, KilobitsTolerance),
                 InformationUnit.Kilobyte => (KilobytesInOneBit, KilobytesTolerance),
+                InformationUnit.Kilooctet => (KilooctetsInOneBit, KilooctetsTolerance),
                 InformationUnit.Mebibit => (MebibitsInOneBit, MebibitsTolerance),
                 InformationUnit.Mebibyte => (MebibytesInOneBit, MebibytesTolerance),
+                InformationUnit.Mebioctet => (MebioctetsInOneBit, MebioctetsTolerance),
                 InformationUnit.Megabit => (MegabitsInOneBit, MegabitsTolerance),
                 InformationUnit.Megabyte => (MegabytesInOneBit, MegabytesTolerance),
+                InformationUnit.Megaoctet => (MegaoctetsInOneBit, MegaoctetsTolerance),
+                InformationUnit.Octet => (OctetsInOneBit, OctetsTolerance),
                 InformationUnit.Pebibit => (PebibitsInOneBit, PebibitsTolerance),
                 InformationUnit.Pebibyte => (PebibytesInOneBit, PebibytesTolerance),
+                InformationUnit.Pebioctet => (PebioctetsInOneBit, PebioctetsTolerance),
                 InformationUnit.Petabit => (PetabitsInOneBit, PetabitsTolerance),
                 InformationUnit.Petabyte => (PetabytesInOneBit, PetabytesTolerance),
+                InformationUnit.Petaoctet => (PetaoctetsInOneBit, PetaoctetsTolerance),
                 InformationUnit.Tebibit => (TebibitsInOneBit, TebibitsTolerance),
                 InformationUnit.Tebibyte => (TebibytesInOneBit, TebibytesTolerance),
+                InformationUnit.Tebioctet => (TebioctetsInOneBit, TebioctetsTolerance),
                 InformationUnit.Terabit => (TerabitsInOneBit, TerabitsTolerance),
                 InformationUnit.Terabyte => (TerabytesInOneBit, TerabytesTolerance),
+                InformationUnit.Teraoctet => (TeraoctetsInOneBit, TeraoctetsTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -135,28 +174,41 @@ namespace UnitsNet.Tests
             new object[] { InformationUnit.Byte },
             new object[] { InformationUnit.Exabit },
             new object[] { InformationUnit.Exabyte },
+            new object[] { InformationUnit.Exaoctet },
             new object[] { InformationUnit.Exbibit },
             new object[] { InformationUnit.Exbibyte },
+            new object[] { InformationUnit.Exbioctet },
             new object[] { InformationUnit.Gibibit },
             new object[] { InformationUnit.Gibibyte },
+            new object[] { InformationUnit.Gibioctet },
             new object[] { InformationUnit.Gigabit },
             new object[] { InformationUnit.Gigabyte },
+            new object[] { InformationUnit.Gigaoctet },
             new object[] { InformationUnit.Kibibit },
             new object[] { InformationUnit.Kibibyte },
+            new object[] { InformationUnit.Kibioctet },
             new object[] { InformationUnit.Kilobit },
             new object[] { InformationUnit.Kilobyte },
+            new object[] { InformationUnit.Kilooctet },
             new object[] { InformationUnit.Mebibit },
             new object[] { InformationUnit.Mebibyte },
+            new object[] { InformationUnit.Mebioctet },
             new object[] { InformationUnit.Megabit },
             new object[] { InformationUnit.Megabyte },
+            new object[] { InformationUnit.Megaoctet },
+            new object[] { InformationUnit.Octet },
             new object[] { InformationUnit.Pebibit },
             new object[] { InformationUnit.Pebibyte },
+            new object[] { InformationUnit.Pebioctet },
             new object[] { InformationUnit.Petabit },
             new object[] { InformationUnit.Petabyte },
+            new object[] { InformationUnit.Petaoctet },
             new object[] { InformationUnit.Tebibit },
             new object[] { InformationUnit.Tebibyte },
+            new object[] { InformationUnit.Tebioctet },
             new object[] { InformationUnit.Terabit },
             new object[] { InformationUnit.Terabyte },
+            new object[] { InformationUnit.Teraoctet },
         };
 
         [Fact]
@@ -207,28 +259,41 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(BytesInOneBit, bit.Bytes, BytesTolerance);
             AssertEx.EqualTolerance(ExabitsInOneBit, bit.Exabits, ExabitsTolerance);
             AssertEx.EqualTolerance(ExabytesInOneBit, bit.Exabytes, ExabytesTolerance);
+            AssertEx.EqualTolerance(ExaoctetsInOneBit, bit.Exaoctets, ExaoctetsTolerance);
             AssertEx.EqualTolerance(ExbibitsInOneBit, bit.Exbibits, ExbibitsTolerance);
             AssertEx.EqualTolerance(ExbibytesInOneBit, bit.Exbibytes, ExbibytesTolerance);
+            AssertEx.EqualTolerance(ExbioctetsInOneBit, bit.Exbioctets, ExbioctetsTolerance);
             AssertEx.EqualTolerance(GibibitsInOneBit, bit.Gibibits, GibibitsTolerance);
             AssertEx.EqualTolerance(GibibytesInOneBit, bit.Gibibytes, GibibytesTolerance);
+            AssertEx.EqualTolerance(GibioctetsInOneBit, bit.Gibioctets, GibioctetsTolerance);
             AssertEx.EqualTolerance(GigabitsInOneBit, bit.Gigabits, GigabitsTolerance);
             AssertEx.EqualTolerance(GigabytesInOneBit, bit.Gigabytes, GigabytesTolerance);
+            AssertEx.EqualTolerance(GigaoctetsInOneBit, bit.Gigaoctets, GigaoctetsTolerance);
             AssertEx.EqualTolerance(KibibitsInOneBit, bit.Kibibits, KibibitsTolerance);
             AssertEx.EqualTolerance(KibibytesInOneBit, bit.Kibibytes, KibibytesTolerance);
+            AssertEx.EqualTolerance(KibioctetsInOneBit, bit.Kibioctets, KibioctetsTolerance);
             AssertEx.EqualTolerance(KilobitsInOneBit, bit.Kilobits, KilobitsTolerance);
             AssertEx.EqualTolerance(KilobytesInOneBit, bit.Kilobytes, KilobytesTolerance);
+            AssertEx.EqualTolerance(KilooctetsInOneBit, bit.Kilooctets, KilooctetsTolerance);
             AssertEx.EqualTolerance(MebibitsInOneBit, bit.Mebibits, MebibitsTolerance);
             AssertEx.EqualTolerance(MebibytesInOneBit, bit.Mebibytes, MebibytesTolerance);
+            AssertEx.EqualTolerance(MebioctetsInOneBit, bit.Mebioctets, MebioctetsTolerance);
             AssertEx.EqualTolerance(MegabitsInOneBit, bit.Megabits, MegabitsTolerance);
             AssertEx.EqualTolerance(MegabytesInOneBit, bit.Megabytes, MegabytesTolerance);
+            AssertEx.EqualTolerance(MegaoctetsInOneBit, bit.Megaoctets, MegaoctetsTolerance);
+            AssertEx.EqualTolerance(OctetsInOneBit, bit.Octets, OctetsTolerance);
             AssertEx.EqualTolerance(PebibitsInOneBit, bit.Pebibits, PebibitsTolerance);
             AssertEx.EqualTolerance(PebibytesInOneBit, bit.Pebibytes, PebibytesTolerance);
+            AssertEx.EqualTolerance(PebioctetsInOneBit, bit.Pebioctets, PebioctetsTolerance);
             AssertEx.EqualTolerance(PetabitsInOneBit, bit.Petabits, PetabitsTolerance);
             AssertEx.EqualTolerance(PetabytesInOneBit, bit.Petabytes, PetabytesTolerance);
+            AssertEx.EqualTolerance(PetaoctetsInOneBit, bit.Petaoctets, PetaoctetsTolerance);
             AssertEx.EqualTolerance(TebibitsInOneBit, bit.Tebibits, TebibitsTolerance);
             AssertEx.EqualTolerance(TebibytesInOneBit, bit.Tebibytes, TebibytesTolerance);
+            AssertEx.EqualTolerance(TebioctetsInOneBit, bit.Tebioctets, TebioctetsTolerance);
             AssertEx.EqualTolerance(TerabitsInOneBit, bit.Terabits, TerabitsTolerance);
             AssertEx.EqualTolerance(TerabytesInOneBit, bit.Terabytes, TerabytesTolerance);
+            AssertEx.EqualTolerance(TeraoctetsInOneBit, bit.Teraoctets, TeraoctetsTolerance);
         }
 
         [Fact]
@@ -250,93 +315,145 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.Exabytes, ExabytesTolerance);
             Assert.Equal(InformationUnit.Exabyte, quantity03.Unit);
 
-            var quantity04 = Information.From(1, InformationUnit.Exbibit);
-            AssertEx.EqualTolerance(1, quantity04.Exbibits, ExbibitsTolerance);
-            Assert.Equal(InformationUnit.Exbibit, quantity04.Unit);
+            var quantity04 = Information.From(1, InformationUnit.Exaoctet);
+            AssertEx.EqualTolerance(1, quantity04.Exaoctets, ExaoctetsTolerance);
+            Assert.Equal(InformationUnit.Exaoctet, quantity04.Unit);
 
-            var quantity05 = Information.From(1, InformationUnit.Exbibyte);
-            AssertEx.EqualTolerance(1, quantity05.Exbibytes, ExbibytesTolerance);
-            Assert.Equal(InformationUnit.Exbibyte, quantity05.Unit);
+            var quantity05 = Information.From(1, InformationUnit.Exbibit);
+            AssertEx.EqualTolerance(1, quantity05.Exbibits, ExbibitsTolerance);
+            Assert.Equal(InformationUnit.Exbibit, quantity05.Unit);
 
-            var quantity06 = Information.From(1, InformationUnit.Gibibit);
-            AssertEx.EqualTolerance(1, quantity06.Gibibits, GibibitsTolerance);
-            Assert.Equal(InformationUnit.Gibibit, quantity06.Unit);
+            var quantity06 = Information.From(1, InformationUnit.Exbibyte);
+            AssertEx.EqualTolerance(1, quantity06.Exbibytes, ExbibytesTolerance);
+            Assert.Equal(InformationUnit.Exbibyte, quantity06.Unit);
 
-            var quantity07 = Information.From(1, InformationUnit.Gibibyte);
-            AssertEx.EqualTolerance(1, quantity07.Gibibytes, GibibytesTolerance);
-            Assert.Equal(InformationUnit.Gibibyte, quantity07.Unit);
+            var quantity07 = Information.From(1, InformationUnit.Exbioctet);
+            AssertEx.EqualTolerance(1, quantity07.Exbioctets, ExbioctetsTolerance);
+            Assert.Equal(InformationUnit.Exbioctet, quantity07.Unit);
 
-            var quantity08 = Information.From(1, InformationUnit.Gigabit);
-            AssertEx.EqualTolerance(1, quantity08.Gigabits, GigabitsTolerance);
-            Assert.Equal(InformationUnit.Gigabit, quantity08.Unit);
+            var quantity08 = Information.From(1, InformationUnit.Gibibit);
+            AssertEx.EqualTolerance(1, quantity08.Gibibits, GibibitsTolerance);
+            Assert.Equal(InformationUnit.Gibibit, quantity08.Unit);
 
-            var quantity09 = Information.From(1, InformationUnit.Gigabyte);
-            AssertEx.EqualTolerance(1, quantity09.Gigabytes, GigabytesTolerance);
-            Assert.Equal(InformationUnit.Gigabyte, quantity09.Unit);
+            var quantity09 = Information.From(1, InformationUnit.Gibibyte);
+            AssertEx.EqualTolerance(1, quantity09.Gibibytes, GibibytesTolerance);
+            Assert.Equal(InformationUnit.Gibibyte, quantity09.Unit);
 
-            var quantity10 = Information.From(1, InformationUnit.Kibibit);
-            AssertEx.EqualTolerance(1, quantity10.Kibibits, KibibitsTolerance);
-            Assert.Equal(InformationUnit.Kibibit, quantity10.Unit);
+            var quantity10 = Information.From(1, InformationUnit.Gibioctet);
+            AssertEx.EqualTolerance(1, quantity10.Gibioctets, GibioctetsTolerance);
+            Assert.Equal(InformationUnit.Gibioctet, quantity10.Unit);
 
-            var quantity11 = Information.From(1, InformationUnit.Kibibyte);
-            AssertEx.EqualTolerance(1, quantity11.Kibibytes, KibibytesTolerance);
-            Assert.Equal(InformationUnit.Kibibyte, quantity11.Unit);
+            var quantity11 = Information.From(1, InformationUnit.Gigabit);
+            AssertEx.EqualTolerance(1, quantity11.Gigabits, GigabitsTolerance);
+            Assert.Equal(InformationUnit.Gigabit, quantity11.Unit);
 
-            var quantity12 = Information.From(1, InformationUnit.Kilobit);
-            AssertEx.EqualTolerance(1, quantity12.Kilobits, KilobitsTolerance);
-            Assert.Equal(InformationUnit.Kilobit, quantity12.Unit);
+            var quantity12 = Information.From(1, InformationUnit.Gigabyte);
+            AssertEx.EqualTolerance(1, quantity12.Gigabytes, GigabytesTolerance);
+            Assert.Equal(InformationUnit.Gigabyte, quantity12.Unit);
 
-            var quantity13 = Information.From(1, InformationUnit.Kilobyte);
-            AssertEx.EqualTolerance(1, quantity13.Kilobytes, KilobytesTolerance);
-            Assert.Equal(InformationUnit.Kilobyte, quantity13.Unit);
+            var quantity13 = Information.From(1, InformationUnit.Gigaoctet);
+            AssertEx.EqualTolerance(1, quantity13.Gigaoctets, GigaoctetsTolerance);
+            Assert.Equal(InformationUnit.Gigaoctet, quantity13.Unit);
 
-            var quantity14 = Information.From(1, InformationUnit.Mebibit);
-            AssertEx.EqualTolerance(1, quantity14.Mebibits, MebibitsTolerance);
-            Assert.Equal(InformationUnit.Mebibit, quantity14.Unit);
+            var quantity14 = Information.From(1, InformationUnit.Kibibit);
+            AssertEx.EqualTolerance(1, quantity14.Kibibits, KibibitsTolerance);
+            Assert.Equal(InformationUnit.Kibibit, quantity14.Unit);
 
-            var quantity15 = Information.From(1, InformationUnit.Mebibyte);
-            AssertEx.EqualTolerance(1, quantity15.Mebibytes, MebibytesTolerance);
-            Assert.Equal(InformationUnit.Mebibyte, quantity15.Unit);
+            var quantity15 = Information.From(1, InformationUnit.Kibibyte);
+            AssertEx.EqualTolerance(1, quantity15.Kibibytes, KibibytesTolerance);
+            Assert.Equal(InformationUnit.Kibibyte, quantity15.Unit);
 
-            var quantity16 = Information.From(1, InformationUnit.Megabit);
-            AssertEx.EqualTolerance(1, quantity16.Megabits, MegabitsTolerance);
-            Assert.Equal(InformationUnit.Megabit, quantity16.Unit);
+            var quantity16 = Information.From(1, InformationUnit.Kibioctet);
+            AssertEx.EqualTolerance(1, quantity16.Kibioctets, KibioctetsTolerance);
+            Assert.Equal(InformationUnit.Kibioctet, quantity16.Unit);
 
-            var quantity17 = Information.From(1, InformationUnit.Megabyte);
-            AssertEx.EqualTolerance(1, quantity17.Megabytes, MegabytesTolerance);
-            Assert.Equal(InformationUnit.Megabyte, quantity17.Unit);
+            var quantity17 = Information.From(1, InformationUnit.Kilobit);
+            AssertEx.EqualTolerance(1, quantity17.Kilobits, KilobitsTolerance);
+            Assert.Equal(InformationUnit.Kilobit, quantity17.Unit);
 
-            var quantity18 = Information.From(1, InformationUnit.Pebibit);
-            AssertEx.EqualTolerance(1, quantity18.Pebibits, PebibitsTolerance);
-            Assert.Equal(InformationUnit.Pebibit, quantity18.Unit);
+            var quantity18 = Information.From(1, InformationUnit.Kilobyte);
+            AssertEx.EqualTolerance(1, quantity18.Kilobytes, KilobytesTolerance);
+            Assert.Equal(InformationUnit.Kilobyte, quantity18.Unit);
 
-            var quantity19 = Information.From(1, InformationUnit.Pebibyte);
-            AssertEx.EqualTolerance(1, quantity19.Pebibytes, PebibytesTolerance);
-            Assert.Equal(InformationUnit.Pebibyte, quantity19.Unit);
+            var quantity19 = Information.From(1, InformationUnit.Kilooctet);
+            AssertEx.EqualTolerance(1, quantity19.Kilooctets, KilooctetsTolerance);
+            Assert.Equal(InformationUnit.Kilooctet, quantity19.Unit);
 
-            var quantity20 = Information.From(1, InformationUnit.Petabit);
-            AssertEx.EqualTolerance(1, quantity20.Petabits, PetabitsTolerance);
-            Assert.Equal(InformationUnit.Petabit, quantity20.Unit);
+            var quantity20 = Information.From(1, InformationUnit.Mebibit);
+            AssertEx.EqualTolerance(1, quantity20.Mebibits, MebibitsTolerance);
+            Assert.Equal(InformationUnit.Mebibit, quantity20.Unit);
 
-            var quantity21 = Information.From(1, InformationUnit.Petabyte);
-            AssertEx.EqualTolerance(1, quantity21.Petabytes, PetabytesTolerance);
-            Assert.Equal(InformationUnit.Petabyte, quantity21.Unit);
+            var quantity21 = Information.From(1, InformationUnit.Mebibyte);
+            AssertEx.EqualTolerance(1, quantity21.Mebibytes, MebibytesTolerance);
+            Assert.Equal(InformationUnit.Mebibyte, quantity21.Unit);
 
-            var quantity22 = Information.From(1, InformationUnit.Tebibit);
-            AssertEx.EqualTolerance(1, quantity22.Tebibits, TebibitsTolerance);
-            Assert.Equal(InformationUnit.Tebibit, quantity22.Unit);
+            var quantity22 = Information.From(1, InformationUnit.Mebioctet);
+            AssertEx.EqualTolerance(1, quantity22.Mebioctets, MebioctetsTolerance);
+            Assert.Equal(InformationUnit.Mebioctet, quantity22.Unit);
 
-            var quantity23 = Information.From(1, InformationUnit.Tebibyte);
-            AssertEx.EqualTolerance(1, quantity23.Tebibytes, TebibytesTolerance);
-            Assert.Equal(InformationUnit.Tebibyte, quantity23.Unit);
+            var quantity23 = Information.From(1, InformationUnit.Megabit);
+            AssertEx.EqualTolerance(1, quantity23.Megabits, MegabitsTolerance);
+            Assert.Equal(InformationUnit.Megabit, quantity23.Unit);
 
-            var quantity24 = Information.From(1, InformationUnit.Terabit);
-            AssertEx.EqualTolerance(1, quantity24.Terabits, TerabitsTolerance);
-            Assert.Equal(InformationUnit.Terabit, quantity24.Unit);
+            var quantity24 = Information.From(1, InformationUnit.Megabyte);
+            AssertEx.EqualTolerance(1, quantity24.Megabytes, MegabytesTolerance);
+            Assert.Equal(InformationUnit.Megabyte, quantity24.Unit);
 
-            var quantity25 = Information.From(1, InformationUnit.Terabyte);
-            AssertEx.EqualTolerance(1, quantity25.Terabytes, TerabytesTolerance);
-            Assert.Equal(InformationUnit.Terabyte, quantity25.Unit);
+            var quantity25 = Information.From(1, InformationUnit.Megaoctet);
+            AssertEx.EqualTolerance(1, quantity25.Megaoctets, MegaoctetsTolerance);
+            Assert.Equal(InformationUnit.Megaoctet, quantity25.Unit);
+
+            var quantity26 = Information.From(1, InformationUnit.Octet);
+            AssertEx.EqualTolerance(1, quantity26.Octets, OctetsTolerance);
+            Assert.Equal(InformationUnit.Octet, quantity26.Unit);
+
+            var quantity27 = Information.From(1, InformationUnit.Pebibit);
+            AssertEx.EqualTolerance(1, quantity27.Pebibits, PebibitsTolerance);
+            Assert.Equal(InformationUnit.Pebibit, quantity27.Unit);
+
+            var quantity28 = Information.From(1, InformationUnit.Pebibyte);
+            AssertEx.EqualTolerance(1, quantity28.Pebibytes, PebibytesTolerance);
+            Assert.Equal(InformationUnit.Pebibyte, quantity28.Unit);
+
+            var quantity29 = Information.From(1, InformationUnit.Pebioctet);
+            AssertEx.EqualTolerance(1, quantity29.Pebioctets, PebioctetsTolerance);
+            Assert.Equal(InformationUnit.Pebioctet, quantity29.Unit);
+
+            var quantity30 = Information.From(1, InformationUnit.Petabit);
+            AssertEx.EqualTolerance(1, quantity30.Petabits, PetabitsTolerance);
+            Assert.Equal(InformationUnit.Petabit, quantity30.Unit);
+
+            var quantity31 = Information.From(1, InformationUnit.Petabyte);
+            AssertEx.EqualTolerance(1, quantity31.Petabytes, PetabytesTolerance);
+            Assert.Equal(InformationUnit.Petabyte, quantity31.Unit);
+
+            var quantity32 = Information.From(1, InformationUnit.Petaoctet);
+            AssertEx.EqualTolerance(1, quantity32.Petaoctets, PetaoctetsTolerance);
+            Assert.Equal(InformationUnit.Petaoctet, quantity32.Unit);
+
+            var quantity33 = Information.From(1, InformationUnit.Tebibit);
+            AssertEx.EqualTolerance(1, quantity33.Tebibits, TebibitsTolerance);
+            Assert.Equal(InformationUnit.Tebibit, quantity33.Unit);
+
+            var quantity34 = Information.From(1, InformationUnit.Tebibyte);
+            AssertEx.EqualTolerance(1, quantity34.Tebibytes, TebibytesTolerance);
+            Assert.Equal(InformationUnit.Tebibyte, quantity34.Unit);
+
+            var quantity35 = Information.From(1, InformationUnit.Tebioctet);
+            AssertEx.EqualTolerance(1, quantity35.Tebioctets, TebioctetsTolerance);
+            Assert.Equal(InformationUnit.Tebioctet, quantity35.Unit);
+
+            var quantity36 = Information.From(1, InformationUnit.Terabit);
+            AssertEx.EqualTolerance(1, quantity36.Terabits, TerabitsTolerance);
+            Assert.Equal(InformationUnit.Terabit, quantity36.Unit);
+
+            var quantity37 = Information.From(1, InformationUnit.Terabyte);
+            AssertEx.EqualTolerance(1, quantity37.Terabytes, TerabytesTolerance);
+            Assert.Equal(InformationUnit.Terabyte, quantity37.Unit);
+
+            var quantity38 = Information.From(1, InformationUnit.Teraoctet);
+            AssertEx.EqualTolerance(1, quantity38.Teraoctets, TeraoctetsTolerance);
+            Assert.Equal(InformationUnit.Teraoctet, quantity38.Unit);
 
         }
 
@@ -366,28 +483,41 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(BytesInOneBit, bit.As(InformationUnit.Byte), BytesTolerance);
             AssertEx.EqualTolerance(ExabitsInOneBit, bit.As(InformationUnit.Exabit), ExabitsTolerance);
             AssertEx.EqualTolerance(ExabytesInOneBit, bit.As(InformationUnit.Exabyte), ExabytesTolerance);
+            AssertEx.EqualTolerance(ExaoctetsInOneBit, bit.As(InformationUnit.Exaoctet), ExaoctetsTolerance);
             AssertEx.EqualTolerance(ExbibitsInOneBit, bit.As(InformationUnit.Exbibit), ExbibitsTolerance);
             AssertEx.EqualTolerance(ExbibytesInOneBit, bit.As(InformationUnit.Exbibyte), ExbibytesTolerance);
+            AssertEx.EqualTolerance(ExbioctetsInOneBit, bit.As(InformationUnit.Exbioctet), ExbioctetsTolerance);
             AssertEx.EqualTolerance(GibibitsInOneBit, bit.As(InformationUnit.Gibibit), GibibitsTolerance);
             AssertEx.EqualTolerance(GibibytesInOneBit, bit.As(InformationUnit.Gibibyte), GibibytesTolerance);
+            AssertEx.EqualTolerance(GibioctetsInOneBit, bit.As(InformationUnit.Gibioctet), GibioctetsTolerance);
             AssertEx.EqualTolerance(GigabitsInOneBit, bit.As(InformationUnit.Gigabit), GigabitsTolerance);
             AssertEx.EqualTolerance(GigabytesInOneBit, bit.As(InformationUnit.Gigabyte), GigabytesTolerance);
+            AssertEx.EqualTolerance(GigaoctetsInOneBit, bit.As(InformationUnit.Gigaoctet), GigaoctetsTolerance);
             AssertEx.EqualTolerance(KibibitsInOneBit, bit.As(InformationUnit.Kibibit), KibibitsTolerance);
             AssertEx.EqualTolerance(KibibytesInOneBit, bit.As(InformationUnit.Kibibyte), KibibytesTolerance);
+            AssertEx.EqualTolerance(KibioctetsInOneBit, bit.As(InformationUnit.Kibioctet), KibioctetsTolerance);
             AssertEx.EqualTolerance(KilobitsInOneBit, bit.As(InformationUnit.Kilobit), KilobitsTolerance);
             AssertEx.EqualTolerance(KilobytesInOneBit, bit.As(InformationUnit.Kilobyte), KilobytesTolerance);
+            AssertEx.EqualTolerance(KilooctetsInOneBit, bit.As(InformationUnit.Kilooctet), KilooctetsTolerance);
             AssertEx.EqualTolerance(MebibitsInOneBit, bit.As(InformationUnit.Mebibit), MebibitsTolerance);
             AssertEx.EqualTolerance(MebibytesInOneBit, bit.As(InformationUnit.Mebibyte), MebibytesTolerance);
+            AssertEx.EqualTolerance(MebioctetsInOneBit, bit.As(InformationUnit.Mebioctet), MebioctetsTolerance);
             AssertEx.EqualTolerance(MegabitsInOneBit, bit.As(InformationUnit.Megabit), MegabitsTolerance);
             AssertEx.EqualTolerance(MegabytesInOneBit, bit.As(InformationUnit.Megabyte), MegabytesTolerance);
+            AssertEx.EqualTolerance(MegaoctetsInOneBit, bit.As(InformationUnit.Megaoctet), MegaoctetsTolerance);
+            AssertEx.EqualTolerance(OctetsInOneBit, bit.As(InformationUnit.Octet), OctetsTolerance);
             AssertEx.EqualTolerance(PebibitsInOneBit, bit.As(InformationUnit.Pebibit), PebibitsTolerance);
             AssertEx.EqualTolerance(PebibytesInOneBit, bit.As(InformationUnit.Pebibyte), PebibytesTolerance);
+            AssertEx.EqualTolerance(PebioctetsInOneBit, bit.As(InformationUnit.Pebioctet), PebioctetsTolerance);
             AssertEx.EqualTolerance(PetabitsInOneBit, bit.As(InformationUnit.Petabit), PetabitsTolerance);
             AssertEx.EqualTolerance(PetabytesInOneBit, bit.As(InformationUnit.Petabyte), PetabytesTolerance);
+            AssertEx.EqualTolerance(PetaoctetsInOneBit, bit.As(InformationUnit.Petaoctet), PetaoctetsTolerance);
             AssertEx.EqualTolerance(TebibitsInOneBit, bit.As(InformationUnit.Tebibit), TebibitsTolerance);
             AssertEx.EqualTolerance(TebibytesInOneBit, bit.As(InformationUnit.Tebibyte), TebibytesTolerance);
+            AssertEx.EqualTolerance(TebioctetsInOneBit, bit.As(InformationUnit.Tebioctet), TebioctetsTolerance);
             AssertEx.EqualTolerance(TerabitsInOneBit, bit.As(InformationUnit.Terabit), TerabitsTolerance);
             AssertEx.EqualTolerance(TerabytesInOneBit, bit.As(InformationUnit.Terabyte), TerabytesTolerance);
+            AssertEx.EqualTolerance(TeraoctetsInOneBit, bit.As(InformationUnit.Teraoctet), TeraoctetsTolerance);
         }
 
         [Fact]
@@ -490,6 +620,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Eo", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exaoctets, ExaoctetsTolerance);
+                Assert.Equal(InformationUnit.Exaoctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 Eib", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Exbibits, ExbibitsTolerance);
                 Assert.Equal(InformationUnit.Exbibit, parsed.Unit);
@@ -500,6 +637,13 @@ namespace UnitsNet.Tests
                 var parsed = Information.Parse("1 EiB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Exbibytes, ExbibytesTolerance);
                 Assert.Equal(InformationUnit.Exbibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Eio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exbioctets, ExbioctetsTolerance);
+                Assert.Equal(InformationUnit.Exbioctet, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -518,6 +662,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Gio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gibioctets, GibioctetsTolerance);
+                Assert.Equal(InformationUnit.Gibioctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 Gb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Gigabits, GigabitsTolerance);
                 Assert.Equal(InformationUnit.Gigabit, parsed.Unit);
@@ -528,6 +679,13 @@ namespace UnitsNet.Tests
                 var parsed = Information.Parse("1 GB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Gigabytes, GigabytesTolerance);
                 Assert.Equal(InformationUnit.Gigabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Go", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigaoctets, GigaoctetsTolerance);
+                Assert.Equal(InformationUnit.Gigaoctet, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -546,6 +704,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Kio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kibioctets, KibioctetsTolerance);
+                Assert.Equal(InformationUnit.Kibioctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 kb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilobits, KilobitsTolerance);
                 Assert.Equal(InformationUnit.Kilobit, parsed.Unit);
@@ -556,6 +721,13 @@ namespace UnitsNet.Tests
                 var parsed = Information.Parse("1 kB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilobytes, KilobytesTolerance);
                 Assert.Equal(InformationUnit.Kilobyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 ko", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilooctets, KilooctetsTolerance);
+                Assert.Equal(InformationUnit.Kilooctet, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -574,6 +746,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Mio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mebioctets, MebioctetsTolerance);
+                Assert.Equal(InformationUnit.Mebioctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 Mb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megabits, MegabitsTolerance);
                 Assert.Equal(InformationUnit.Megabit, parsed.Unit);
@@ -584,6 +763,20 @@ namespace UnitsNet.Tests
                 var parsed = Information.Parse("1 MB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megabytes, MegabytesTolerance);
                 Assert.Equal(InformationUnit.Megabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Mo", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megaoctets, MegaoctetsTolerance);
+                Assert.Equal(InformationUnit.Megaoctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 o", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Octets, OctetsTolerance);
+                Assert.Equal(InformationUnit.Octet, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -602,6 +795,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Pio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Pebioctets, PebioctetsTolerance);
+                Assert.Equal(InformationUnit.Pebioctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 Pb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Petabits, PetabitsTolerance);
                 Assert.Equal(InformationUnit.Petabit, parsed.Unit);
@@ -612,6 +812,13 @@ namespace UnitsNet.Tests
                 var parsed = Information.Parse("1 PB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Petabytes, PetabytesTolerance);
                 Assert.Equal(InformationUnit.Petabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Po", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Petaoctets, PetaoctetsTolerance);
+                Assert.Equal(InformationUnit.Petaoctet, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -630,6 +837,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Information.Parse("1 Tio", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Tebioctets, TebioctetsTolerance);
+                Assert.Equal(InformationUnit.Tebioctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Information.Parse("1 Tb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Terabits, TerabitsTolerance);
                 Assert.Equal(InformationUnit.Terabit, parsed.Unit);
@@ -642,11 +856,96 @@ namespace UnitsNet.Tests
                 Assert.Equal(InformationUnit.Terabyte, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsed = Information.Parse("1 To", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Teraoctets, TeraoctetsTolerance);
+                Assert.Equal(InformationUnit.Teraoctet, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
         public void TryParse()
         {
+            {
+                Assert.True(Information.TryParse("1 Eo", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exaoctets, ExaoctetsTolerance);
+                Assert.Equal(InformationUnit.Exaoctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Eio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exbioctets, ExbioctetsTolerance);
+                Assert.Equal(InformationUnit.Exbioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Gio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gibioctets, GibioctetsTolerance);
+                Assert.Equal(InformationUnit.Gibioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Go", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigaoctets, GigaoctetsTolerance);
+                Assert.Equal(InformationUnit.Gigaoctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Kio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kibioctets, KibioctetsTolerance);
+                Assert.Equal(InformationUnit.Kibioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 ko", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilooctets, KilooctetsTolerance);
+                Assert.Equal(InformationUnit.Kilooctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Mio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mebioctets, MebioctetsTolerance);
+                Assert.Equal(InformationUnit.Mebioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Mo", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megaoctets, MegaoctetsTolerance);
+                Assert.Equal(InformationUnit.Megaoctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 o", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Octets, OctetsTolerance);
+                Assert.Equal(InformationUnit.Octet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Pio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Pebioctets, PebioctetsTolerance);
+                Assert.Equal(InformationUnit.Pebioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Po", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Petaoctets, PetaoctetsTolerance);
+                Assert.Equal(InformationUnit.Petaoctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 Tio", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Tebioctets, TebioctetsTolerance);
+                Assert.Equal(InformationUnit.Tebioctet, parsed.Unit);
+            }
+
+            {
+                Assert.True(Information.TryParse("1 To", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Teraoctets, TeraoctetsTolerance);
+                Assert.Equal(InformationUnit.Teraoctet, parsed.Unit);
+            }
+
         }
 
         [Theory]
@@ -654,28 +953,41 @@ namespace UnitsNet.Tests
         [InlineData("B", InformationUnit.Byte)]
         [InlineData("Eb", InformationUnit.Exabit)]
         [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eo", InformationUnit.Exaoctet)]
         [InlineData("Eib", InformationUnit.Exbibit)]
         [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Eio", InformationUnit.Exbioctet)]
         [InlineData("Gib", InformationUnit.Gibibit)]
         [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gio", InformationUnit.Gibioctet)]
         [InlineData("Gb", InformationUnit.Gigabit)]
         [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Go", InformationUnit.Gigaoctet)]
         [InlineData("Kib", InformationUnit.Kibibit)]
         [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("Kio", InformationUnit.Kibioctet)]
         [InlineData("kb", InformationUnit.Kilobit)]
         [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("ko", InformationUnit.Kilooctet)]
         [InlineData("Mib", InformationUnit.Mebibit)]
         [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mio", InformationUnit.Mebioctet)]
         [InlineData("Mb", InformationUnit.Megabit)]
         [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Mo", InformationUnit.Megaoctet)]
+        [InlineData("o", InformationUnit.Octet)]
         [InlineData("Pib", InformationUnit.Pebibit)]
         [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pio", InformationUnit.Pebioctet)]
         [InlineData("Pb", InformationUnit.Petabit)]
         [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Po", InformationUnit.Petaoctet)]
         [InlineData("Tib", InformationUnit.Tebibit)]
         [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tio", InformationUnit.Tebioctet)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
+        [InlineData("To", InformationUnit.Teraoctet)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -689,28 +1001,41 @@ namespace UnitsNet.Tests
         [InlineData("B", InformationUnit.Byte)]
         [InlineData("Eb", InformationUnit.Exabit)]
         [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eo", InformationUnit.Exaoctet)]
         [InlineData("Eib", InformationUnit.Exbibit)]
         [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Eio", InformationUnit.Exbioctet)]
         [InlineData("Gib", InformationUnit.Gibibit)]
         [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gio", InformationUnit.Gibioctet)]
         [InlineData("Gb", InformationUnit.Gigabit)]
         [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Go", InformationUnit.Gigaoctet)]
         [InlineData("Kib", InformationUnit.Kibibit)]
         [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("Kio", InformationUnit.Kibioctet)]
         [InlineData("kb", InformationUnit.Kilobit)]
         [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("ko", InformationUnit.Kilooctet)]
         [InlineData("Mib", InformationUnit.Mebibit)]
         [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mio", InformationUnit.Mebioctet)]
         [InlineData("Mb", InformationUnit.Megabit)]
         [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Mo", InformationUnit.Megaoctet)]
+        [InlineData("o", InformationUnit.Octet)]
         [InlineData("Pib", InformationUnit.Pebibit)]
         [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pio", InformationUnit.Pebioctet)]
         [InlineData("Pb", InformationUnit.Petabit)]
         [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Po", InformationUnit.Petaoctet)]
         [InlineData("Tib", InformationUnit.Tebibit)]
         [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tio", InformationUnit.Tebioctet)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
+        [InlineData("To", InformationUnit.Teraoctet)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -724,28 +1049,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "B", InformationUnit.Byte)]
         [InlineData("en-US", "Eb", InformationUnit.Exabit)]
         [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eo", InformationUnit.Exaoctet)]
         [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
         [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Eio", InformationUnit.Exbioctet)]
         [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
         [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gio", InformationUnit.Gibioctet)]
         [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
         [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Go", InformationUnit.Gigaoctet)]
         [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
         [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "Kio", InformationUnit.Kibioctet)]
         [InlineData("en-US", "kb", InformationUnit.Kilobit)]
         [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "ko", InformationUnit.Kilooctet)]
         [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
         [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mio", InformationUnit.Mebioctet)]
         [InlineData("en-US", "Mb", InformationUnit.Megabit)]
         [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Mo", InformationUnit.Megaoctet)]
+        [InlineData("en-US", "o", InformationUnit.Octet)]
         [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
         [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pio", InformationUnit.Pebioctet)]
         [InlineData("en-US", "Pb", InformationUnit.Petabit)]
         [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Po", InformationUnit.Petaoctet)]
         [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tio", InformationUnit.Tebioctet)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        [InlineData("en-US", "To", InformationUnit.Teraoctet)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -758,28 +1096,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "B", InformationUnit.Byte)]
         [InlineData("en-US", "Eb", InformationUnit.Exabit)]
         [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eo", InformationUnit.Exaoctet)]
         [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
         [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Eio", InformationUnit.Exbioctet)]
         [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
         [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gio", InformationUnit.Gibioctet)]
         [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
         [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Go", InformationUnit.Gigaoctet)]
         [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
         [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "Kio", InformationUnit.Kibioctet)]
         [InlineData("en-US", "kb", InformationUnit.Kilobit)]
         [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "ko", InformationUnit.Kilooctet)]
         [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
         [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mio", InformationUnit.Mebioctet)]
         [InlineData("en-US", "Mb", InformationUnit.Megabit)]
         [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Mo", InformationUnit.Megaoctet)]
+        [InlineData("en-US", "o", InformationUnit.Octet)]
         [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
         [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pio", InformationUnit.Pebioctet)]
         [InlineData("en-US", "Pb", InformationUnit.Petabit)]
         [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Po", InformationUnit.Petaoctet)]
         [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tio", InformationUnit.Tebioctet)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        [InlineData("en-US", "To", InformationUnit.Teraoctet)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             InformationUnit parsedUnit = Information.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -791,28 +1142,41 @@ namespace UnitsNet.Tests
         [InlineData("B", InformationUnit.Byte)]
         [InlineData("Eb", InformationUnit.Exabit)]
         [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eo", InformationUnit.Exaoctet)]
         [InlineData("Eib", InformationUnit.Exbibit)]
         [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Eio", InformationUnit.Exbioctet)]
         [InlineData("Gib", InformationUnit.Gibibit)]
         [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gio", InformationUnit.Gibioctet)]
         [InlineData("Gb", InformationUnit.Gigabit)]
         [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Go", InformationUnit.Gigaoctet)]
         [InlineData("Kib", InformationUnit.Kibibit)]
         [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("Kio", InformationUnit.Kibioctet)]
         [InlineData("kb", InformationUnit.Kilobit)]
         [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("ko", InformationUnit.Kilooctet)]
         [InlineData("Mib", InformationUnit.Mebibit)]
         [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mio", InformationUnit.Mebioctet)]
         [InlineData("Mb", InformationUnit.Megabit)]
         [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Mo", InformationUnit.Megaoctet)]
+        [InlineData("o", InformationUnit.Octet)]
         [InlineData("Pib", InformationUnit.Pebibit)]
         [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pio", InformationUnit.Pebioctet)]
         [InlineData("Pb", InformationUnit.Petabit)]
         [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Po", InformationUnit.Petaoctet)]
         [InlineData("Tib", InformationUnit.Tebibit)]
         [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tio", InformationUnit.Tebioctet)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
+        [InlineData("To", InformationUnit.Teraoctet)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -826,28 +1190,41 @@ namespace UnitsNet.Tests
         [InlineData("B", InformationUnit.Byte)]
         [InlineData("Eb", InformationUnit.Exabit)]
         [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eo", InformationUnit.Exaoctet)]
         [InlineData("Eib", InformationUnit.Exbibit)]
         [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Eio", InformationUnit.Exbioctet)]
         [InlineData("Gib", InformationUnit.Gibibit)]
         [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gio", InformationUnit.Gibioctet)]
         [InlineData("Gb", InformationUnit.Gigabit)]
         [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Go", InformationUnit.Gigaoctet)]
         [InlineData("Kib", InformationUnit.Kibibit)]
         [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("Kio", InformationUnit.Kibioctet)]
         [InlineData("kb", InformationUnit.Kilobit)]
         [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("ko", InformationUnit.Kilooctet)]
         [InlineData("Mib", InformationUnit.Mebibit)]
         [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mio", InformationUnit.Mebioctet)]
         [InlineData("Mb", InformationUnit.Megabit)]
         [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Mo", InformationUnit.Megaoctet)]
+        [InlineData("o", InformationUnit.Octet)]
         [InlineData("Pib", InformationUnit.Pebibit)]
         [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pio", InformationUnit.Pebioctet)]
         [InlineData("Pb", InformationUnit.Petabit)]
         [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Po", InformationUnit.Petaoctet)]
         [InlineData("Tib", InformationUnit.Tebibit)]
         [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tio", InformationUnit.Tebioctet)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
+        [InlineData("To", InformationUnit.Teraoctet)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -861,28 +1238,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "B", InformationUnit.Byte)]
         [InlineData("en-US", "Eb", InformationUnit.Exabit)]
         [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eo", InformationUnit.Exaoctet)]
         [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
         [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Eio", InformationUnit.Exbioctet)]
         [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
         [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gio", InformationUnit.Gibioctet)]
         [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
         [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Go", InformationUnit.Gigaoctet)]
         [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
         [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "Kio", InformationUnit.Kibioctet)]
         [InlineData("en-US", "kb", InformationUnit.Kilobit)]
         [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "ko", InformationUnit.Kilooctet)]
         [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
         [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mio", InformationUnit.Mebioctet)]
         [InlineData("en-US", "Mb", InformationUnit.Megabit)]
         [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Mo", InformationUnit.Megaoctet)]
+        [InlineData("en-US", "o", InformationUnit.Octet)]
         [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
         [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pio", InformationUnit.Pebioctet)]
         [InlineData("en-US", "Pb", InformationUnit.Petabit)]
         [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Po", InformationUnit.Petaoctet)]
         [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tio", InformationUnit.Tebioctet)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        [InlineData("en-US", "To", InformationUnit.Teraoctet)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -895,28 +1285,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "B", InformationUnit.Byte)]
         [InlineData("en-US", "Eb", InformationUnit.Exabit)]
         [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eo", InformationUnit.Exaoctet)]
         [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
         [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Eio", InformationUnit.Exbioctet)]
         [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
         [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gio", InformationUnit.Gibioctet)]
         [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
         [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Go", InformationUnit.Gigaoctet)]
         [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
         [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "Kio", InformationUnit.Kibioctet)]
         [InlineData("en-US", "kb", InformationUnit.Kilobit)]
         [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "ko", InformationUnit.Kilooctet)]
         [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
         [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mio", InformationUnit.Mebioctet)]
         [InlineData("en-US", "Mb", InformationUnit.Megabit)]
         [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Mo", InformationUnit.Megaoctet)]
+        [InlineData("en-US", "o", InformationUnit.Octet)]
         [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
         [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pio", InformationUnit.Pebioctet)]
         [InlineData("en-US", "Pb", InformationUnit.Petabit)]
         [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Po", InformationUnit.Petaoctet)]
         [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tio", InformationUnit.Tebioctet)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        [InlineData("en-US", "To", InformationUnit.Teraoctet)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             Assert.True(Information.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out InformationUnit parsedUnit));
@@ -992,28 +1395,41 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Information.FromBytes(bit.Bytes).Bits, BytesTolerance);
             AssertEx.EqualTolerance(1, Information.FromExabits(bit.Exabits).Bits, ExabitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromExabytes(bit.Exabytes).Bits, ExabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExaoctets(bit.Exaoctets).Bits, ExaoctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromExbibits(bit.Exbibits).Bits, ExbibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromExbibytes(bit.Exbibytes).Bits, ExbibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExbioctets(bit.Exbioctets).Bits, ExbioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromGibibits(bit.Gibibits).Bits, GibibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromGibibytes(bit.Gibibytes).Bits, GibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGibioctets(bit.Gibioctets).Bits, GibioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromGigabits(bit.Gigabits).Bits, GigabitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromGigabytes(bit.Gigabytes).Bits, GigabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGigaoctets(bit.Gigaoctets).Bits, GigaoctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromKibibits(bit.Kibibits).Bits, KibibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromKibibytes(bit.Kibibytes).Bits, KibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKibioctets(bit.Kibioctets).Bits, KibioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromKilobits(bit.Kilobits).Bits, KilobitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromKilobytes(bit.Kilobytes).Bits, KilobytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKilooctets(bit.Kilooctets).Bits, KilooctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromMebibits(bit.Mebibits).Bits, MebibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromMebibytes(bit.Mebibytes).Bits, MebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMebioctets(bit.Mebioctets).Bits, MebioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromMegabits(bit.Megabits).Bits, MegabitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromMegabytes(bit.Megabytes).Bits, MegabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMegaoctets(bit.Megaoctets).Bits, MegaoctetsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromOctets(bit.Octets).Bits, OctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromPebibits(bit.Pebibits).Bits, PebibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromPebibytes(bit.Pebibytes).Bits, PebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPebioctets(bit.Pebioctets).Bits, PebioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromPetabits(bit.Petabits).Bits, PetabitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromPetabytes(bit.Petabytes).Bits, PetabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPetaoctets(bit.Petaoctets).Bits, PetaoctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromTebibits(bit.Tebibits).Bits, TebibitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromTebibytes(bit.Tebibytes).Bits, TebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTebioctets(bit.Tebioctets).Bits, TebioctetsTolerance);
             AssertEx.EqualTolerance(1, Information.FromTerabits(bit.Terabits).Bits, TerabitsTolerance);
             AssertEx.EqualTolerance(1, Information.FromTerabytes(bit.Terabytes).Bits, TerabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTeraoctets(bit.Teraoctets).Bits, TeraoctetsTolerance);
         }
 
         [Fact]
@@ -1165,28 +1581,41 @@ namespace UnitsNet.Tests
             Assert.Equal("1 B", new Information(1, InformationUnit.Byte).ToString());
             Assert.Equal("1 Eb", new Information(1, InformationUnit.Exabit).ToString());
             Assert.Equal("1 EB", new Information(1, InformationUnit.Exabyte).ToString());
+            Assert.Equal("1 Eo", new Information(1, InformationUnit.Exaoctet).ToString());
             Assert.Equal("1 Eib", new Information(1, InformationUnit.Exbibit).ToString());
             Assert.Equal("1 EiB", new Information(1, InformationUnit.Exbibyte).ToString());
+            Assert.Equal("1 Eio", new Information(1, InformationUnit.Exbioctet).ToString());
             Assert.Equal("1 Gib", new Information(1, InformationUnit.Gibibit).ToString());
             Assert.Equal("1 GiB", new Information(1, InformationUnit.Gibibyte).ToString());
+            Assert.Equal("1 Gio", new Information(1, InformationUnit.Gibioctet).ToString());
             Assert.Equal("1 Gb", new Information(1, InformationUnit.Gigabit).ToString());
             Assert.Equal("1 GB", new Information(1, InformationUnit.Gigabyte).ToString());
+            Assert.Equal("1 Go", new Information(1, InformationUnit.Gigaoctet).ToString());
             Assert.Equal("1 Kib", new Information(1, InformationUnit.Kibibit).ToString());
             Assert.Equal("1 KiB", new Information(1, InformationUnit.Kibibyte).ToString());
+            Assert.Equal("1 Kio", new Information(1, InformationUnit.Kibioctet).ToString());
             Assert.Equal("1 kb", new Information(1, InformationUnit.Kilobit).ToString());
             Assert.Equal("1 kB", new Information(1, InformationUnit.Kilobyte).ToString());
+            Assert.Equal("1 ko", new Information(1, InformationUnit.Kilooctet).ToString());
             Assert.Equal("1 Mib", new Information(1, InformationUnit.Mebibit).ToString());
             Assert.Equal("1 MiB", new Information(1, InformationUnit.Mebibyte).ToString());
+            Assert.Equal("1 Mio", new Information(1, InformationUnit.Mebioctet).ToString());
             Assert.Equal("1 Mb", new Information(1, InformationUnit.Megabit).ToString());
             Assert.Equal("1 MB", new Information(1, InformationUnit.Megabyte).ToString());
+            Assert.Equal("1 Mo", new Information(1, InformationUnit.Megaoctet).ToString());
+            Assert.Equal("1 o", new Information(1, InformationUnit.Octet).ToString());
             Assert.Equal("1 Pib", new Information(1, InformationUnit.Pebibit).ToString());
             Assert.Equal("1 PiB", new Information(1, InformationUnit.Pebibyte).ToString());
+            Assert.Equal("1 Pio", new Information(1, InformationUnit.Pebioctet).ToString());
             Assert.Equal("1 Pb", new Information(1, InformationUnit.Petabit).ToString());
             Assert.Equal("1 PB", new Information(1, InformationUnit.Petabyte).ToString());
+            Assert.Equal("1 Po", new Information(1, InformationUnit.Petaoctet).ToString());
             Assert.Equal("1 Tib", new Information(1, InformationUnit.Tebibit).ToString());
             Assert.Equal("1 TiB", new Information(1, InformationUnit.Tebibyte).ToString());
+            Assert.Equal("1 Tio", new Information(1, InformationUnit.Tebioctet).ToString());
             Assert.Equal("1 Tb", new Information(1, InformationUnit.Terabit).ToString());
             Assert.Equal("1 TB", new Information(1, InformationUnit.Terabyte).ToString());
+            Assert.Equal("1 To", new Information(1, InformationUnit.Teraoctet).ToString());
         }
 
         [Fact]
@@ -1199,28 +1628,41 @@ namespace UnitsNet.Tests
             Assert.Equal("1 B", new Information(1, InformationUnit.Byte).ToString(swedishCulture));
             Assert.Equal("1 Eb", new Information(1, InformationUnit.Exabit).ToString(swedishCulture));
             Assert.Equal("1 EB", new Information(1, InformationUnit.Exabyte).ToString(swedishCulture));
+            Assert.Equal("1 Eo", new Information(1, InformationUnit.Exaoctet).ToString(swedishCulture));
             Assert.Equal("1 Eib", new Information(1, InformationUnit.Exbibit).ToString(swedishCulture));
             Assert.Equal("1 EiB", new Information(1, InformationUnit.Exbibyte).ToString(swedishCulture));
+            Assert.Equal("1 Eio", new Information(1, InformationUnit.Exbioctet).ToString(swedishCulture));
             Assert.Equal("1 Gib", new Information(1, InformationUnit.Gibibit).ToString(swedishCulture));
             Assert.Equal("1 GiB", new Information(1, InformationUnit.Gibibyte).ToString(swedishCulture));
+            Assert.Equal("1 Gio", new Information(1, InformationUnit.Gibioctet).ToString(swedishCulture));
             Assert.Equal("1 Gb", new Information(1, InformationUnit.Gigabit).ToString(swedishCulture));
             Assert.Equal("1 GB", new Information(1, InformationUnit.Gigabyte).ToString(swedishCulture));
+            Assert.Equal("1 Go", new Information(1, InformationUnit.Gigaoctet).ToString(swedishCulture));
             Assert.Equal("1 Kib", new Information(1, InformationUnit.Kibibit).ToString(swedishCulture));
             Assert.Equal("1 KiB", new Information(1, InformationUnit.Kibibyte).ToString(swedishCulture));
+            Assert.Equal("1 Kio", new Information(1, InformationUnit.Kibioctet).ToString(swedishCulture));
             Assert.Equal("1 kb", new Information(1, InformationUnit.Kilobit).ToString(swedishCulture));
             Assert.Equal("1 kB", new Information(1, InformationUnit.Kilobyte).ToString(swedishCulture));
+            Assert.Equal("1 ko", new Information(1, InformationUnit.Kilooctet).ToString(swedishCulture));
             Assert.Equal("1 Mib", new Information(1, InformationUnit.Mebibit).ToString(swedishCulture));
             Assert.Equal("1 MiB", new Information(1, InformationUnit.Mebibyte).ToString(swedishCulture));
+            Assert.Equal("1 Mio", new Information(1, InformationUnit.Mebioctet).ToString(swedishCulture));
             Assert.Equal("1 Mb", new Information(1, InformationUnit.Megabit).ToString(swedishCulture));
             Assert.Equal("1 MB", new Information(1, InformationUnit.Megabyte).ToString(swedishCulture));
+            Assert.Equal("1 Mo", new Information(1, InformationUnit.Megaoctet).ToString(swedishCulture));
+            Assert.Equal("1 o", new Information(1, InformationUnit.Octet).ToString(swedishCulture));
             Assert.Equal("1 Pib", new Information(1, InformationUnit.Pebibit).ToString(swedishCulture));
             Assert.Equal("1 PiB", new Information(1, InformationUnit.Pebibyte).ToString(swedishCulture));
+            Assert.Equal("1 Pio", new Information(1, InformationUnit.Pebioctet).ToString(swedishCulture));
             Assert.Equal("1 Pb", new Information(1, InformationUnit.Petabit).ToString(swedishCulture));
             Assert.Equal("1 PB", new Information(1, InformationUnit.Petabyte).ToString(swedishCulture));
+            Assert.Equal("1 Po", new Information(1, InformationUnit.Petaoctet).ToString(swedishCulture));
             Assert.Equal("1 Tib", new Information(1, InformationUnit.Tebibit).ToString(swedishCulture));
             Assert.Equal("1 TiB", new Information(1, InformationUnit.Tebibyte).ToString(swedishCulture));
+            Assert.Equal("1 Tio", new Information(1, InformationUnit.Tebioctet).ToString(swedishCulture));
             Assert.Equal("1 Tb", new Information(1, InformationUnit.Terabit).ToString(swedishCulture));
             Assert.Equal("1 TB", new Information(1, InformationUnit.Terabyte).ToString(swedishCulture));
+            Assert.Equal("1 To", new Information(1, InformationUnit.Teraoctet).ToString(swedishCulture));
         }
 
         [Fact]

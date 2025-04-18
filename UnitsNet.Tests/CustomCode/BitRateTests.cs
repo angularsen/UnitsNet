@@ -29,35 +29,48 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double BitsPerSecondInOneBitPerSecond => 1;
         protected override double BytesPerSecondInOneBitPerSecond => 1.25E-1;
+        protected override double OctetsPerSecondInOneBitPerSecond => 1.25E-1;
 
         protected override double KilobitsPerSecondInOneBitPerSecond => 1E-3;
         protected override double KilobytesPerSecondInOneBitPerSecond => 1.25E-4;
+        protected override double KilooctetsPerSecondInOneBitPerSecond => 1.25E-4;
         protected override double KibibitsPerSecondInOneBitPerSecond => 0.0009765625;
         protected override double KibibytesPerSecondInOneBitPerSecond => 0.0001220703125;
+        protected override double KibioctetsPerSecondInOneBitPerSecond => 0.0001220703125;
 
         protected override double MegabitsPerSecondInOneBitPerSecond => 1E-6;
         protected override double MegabytesPerSecondInOneBitPerSecond => 1.25E-07;
+        protected override double MegaoctetsPerSecondInOneBitPerSecond => 1.25E-07;
         protected override double MebibitsPerSecondInOneBitPerSecond => 9.5367431640625E-07;
         protected override double MebibytesPerSecondInOneBitPerSecond => 1.19209289550781E-07;
+        protected override double MebioctetsPerSecondInOneBitPerSecond  => 1.19209289550781E-07;
 
         protected override double GigabitsPerSecondInOneBitPerSecond => 1E-9;
         protected override double GigabytesPerSecondInOneBitPerSecond => 1.25E-10;
+        protected override double GigaoctetsPerSecondInOneBitPerSecond => 1.25E-10;
         protected override double GibibitsPerSecondInOneBitPerSecond => 9.31322574615479E-10;
         protected override double GibibytesPerSecondInOneBitPerSecond => 1.16415321826935E-10;
+        protected override double GibioctetsPerSecondInOneBitPerSecond => 1.16415321826935E-10;
 
         protected override double TerabitsPerSecondInOneBitPerSecond => 1E-12;
         protected override double TerabytesPerSecondInOneBitPerSecond => 1.25E-13;
+        protected override double TeraoctetsPerSecondInOneBitPerSecond => 1.25E-13;
         protected override double TebibitsPerSecondInOneBitPerSecond => 9.09494701772928E-13;
         protected override double TebibytesPerSecondInOneBitPerSecond => 1.13686837721616E-13;
+        protected override double TebioctetsPerSecondInOneBitPerSecond => 1.13686837721616E-13;
 
         protected override double PetabitsPerSecondInOneBitPerSecond => 1E-15;
         protected override double PetabytesPerSecondInOneBitPerSecond => 1.25E-16;
+        protected override double PetaoctetsPerSecondInOneBitPerSecond => 1.25E-16;
         protected override double PebibitsPerSecondInOneBitPerSecond => 8.88178419700125E-16;
         protected override double PebibytesPerSecondInOneBitPerSecond => 1.11022302462516E-16;
+        protected override double PebioctetsPerSecondInOneBitPerSecond => 1.11022302462516E-16;
 
         protected override double ExabitsPerSecondInOneBitPerSecond => 1E-18;
         protected override double ExabytesPerSecondInOneBitPerSecond => 1.25E-19;
+        protected override double ExaoctetsPerSecondInOneBitPerSecond => 1.25E-19;
         protected override double ExbibitsPerSecondInOneBitPerSecond => 8.67361738E-19;
         protected override double ExbibytesPerSecondInOneBitPerSecond => 1.0842021724855E-19;
+        protected override double ExbioctetsPerSecondInOneBitPerSecond => 1.0842021724855E-19;
     }
 }
