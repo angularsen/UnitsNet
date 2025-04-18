@@ -1,4 +1,5 @@
 ﻿using System;
+using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -6,55 +7,117 @@ namespace UnitsNet.Tests.CustomQuantities
     /// <summary>
     /// Example of a custom/third-party quantity implementation, for plugging in quantities and units at runtime.
     /// </summary>
-    public readonly struct HowMuch : IQuantity
+    public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
     {
-        public HowMuch(double value, HowMuchUnit unit)
+        public HowMuch(QuantityValue value, HowMuchUnit unit)
         {
             Unit = unit;
             Value = value;
         }
+        
+        public static HowMuch From(QuantityValue value, HowMuchUnit unit)
+        {
+            return new HowMuch(value, unit);
+        }
 
-        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
-
-        Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
-        public double Value { get; }
+        public QuantityValue Value { get; }
+
 
         #region IQuantity
 
-        private static readonly HowMuch Zero = new HowMuch(0, HowMuchUnit.Some);
+        private static readonly HowMuch Zero = new(0, HowMuchUnit.Some);
 
-        public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
-
-        public QuantityInfo QuantityInfo => new(
-            nameof(HowMuch),
-            typeof(HowMuchUnit),
-            new UnitInfo[]
-            {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, "Some", BaseUnits.Undefined, nameof(HowMuch)),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined, nameof(HowMuch)),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, nameof(HowMuch)),
-            },
-            HowMuchUnit.Some,
-            Zero,
-            BaseDimensions.Dimensionless);
-
-        public double As(Enum unit) => Convert.ToDouble(unit);
-
-        public double As(UnitSystem unitSystem) => throw new NotImplementedException();
-
-        public IQuantity ToUnit(Enum unit)
+        public BaseDimensions Dimensions
         {
-            if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
-            throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
+            get => BaseDimensions.Dimensionless;
         }
 
-        public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
-        public override string ToString() => $"{Value} {Unit}";
-        public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
-        public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
+        public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
+            nameof(HowMuch),
+            HowMuchUnit.Some,
+            new UnitDefinition<HowMuchUnit>[]
+            {
+                new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
+                new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne), new QuantityValue(1, 10)),
+                new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
+            },
+            Zero,
+            new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
+            From);
+
+        QuantityInfo IQuantity.QuantityInfo
+        {
+            get => Info;
+        }
+
+        QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        public UnitKey UnitKey
+        {
+            get => UnitKey.ForUnit(Unit);
+        }
+
+        public override string ToString()
+        {
+            return $"{Value} {Unit}";
+        }
+
+        public string ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return $"HowMuch ({format}, {formatProvider})";
+        }
+
+#if !NET
+        //  all the following methods have a default interface implementation for net8.0 and above
+        IQuantityInstanceInfo<HowMuch> IQuantityInstance<HowMuch>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        Enum IQuantity.Unit
+        {
+            get => Unit;
+        }
+        
+        // all of these are now marked as obsolete
+
+        QuantityValue IQuantity.As(Enum unit)
+        {
+            return UnitConverter.Default.ConvertValue(this, unit);
+        }
+
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            return UnitConverter.Default.ConvertTo(this, unit);
+        }
+
+        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
+        {
+            return this.ToUnit(unitSystem);
+        }
+
+        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(HowMuchUnit unit)
+        {
+            return this.ToUnit(unit);
+        }
+
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem)
+        {
+            return this.ToUnit(unitSystem);
+        }
+
+#endif
 
         #endregion
     }

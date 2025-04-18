@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new DoseAreaProduct(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -185,15 +185,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void DoseAreaProduct_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            DoseAreaProductUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<DoseAreaProductUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMeter);
 
-            QuantityInfo<DoseAreaProductUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(DoseAreaProduct.Zero, quantityInfo.Zero);
             Assert.Equal("DoseAreaProduct", quantityInfo.Name);
+            Assert.Equal(DoseAreaProduct.Zero, quantityInfo.Zero);
+            Assert.Equal(DoseAreaProduct.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(DoseAreaProduct.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<DoseAreaProductUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<DoseAreaProductUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void DoseAreaProductInfo_CreateWithCustomUnitInfos()
+        {
+            DoseAreaProductUnit[] expectedUnits = [DoseAreaProductUnit.GraySquareMeter];
+
+            DoseAreaProduct.DoseAreaProductInfo quantityInfo = DoseAreaProduct.DoseAreaProductInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("DoseAreaProduct", quantityInfo.Name);
+            Assert.Equal(DoseAreaProduct.Zero, quantityInfo.Zero);
+            Assert.Equal(DoseAreaProduct.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -226,83 +244,83 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
+            Assert.Equal(1, quantity00.CentigraySquareCentimeters);
             Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, quantity00.Unit);
 
             var quantity01 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity01.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
+            Assert.Equal(1, quantity01.CentigraySquareDecimeters);
             Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, quantity01.Unit);
 
             var quantity02 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity02.CentigraySquareMeters, CentigraySquareMetersTolerance);
+            Assert.Equal(1, quantity02.CentigraySquareMeters);
             Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, quantity02.Unit);
 
             var quantity03 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity03.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
+            Assert.Equal(1, quantity03.CentigraySquareMillimeters);
             Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, quantity03.Unit);
 
             var quantity04 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity04.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
+            Assert.Equal(1, quantity04.DecigraySquareCentimeters);
             Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, quantity04.Unit);
 
             var quantity05 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity05.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
+            Assert.Equal(1, quantity05.DecigraySquareDecimeters);
             Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, quantity05.Unit);
 
             var quantity06 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity06.DecigraySquareMeters, DecigraySquareMetersTolerance);
+            Assert.Equal(1, quantity06.DecigraySquareMeters);
             Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, quantity06.Unit);
 
             var quantity07 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity07.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
+            Assert.Equal(1, quantity07.DecigraySquareMillimeters);
             Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, quantity07.Unit);
 
             var quantity08 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity08.GraySquareCentimeters, GraySquareCentimetersTolerance);
+            Assert.Equal(1, quantity08.GraySquareCentimeters);
             Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, quantity08.Unit);
 
             var quantity09 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity09.GraySquareDecimeters, GraySquareDecimetersTolerance);
+            Assert.Equal(1, quantity09.GraySquareDecimeters);
             Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, quantity09.Unit);
 
             var quantity10 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity10.GraySquareMeters, GraySquareMetersTolerance);
+            Assert.Equal(1, quantity10.GraySquareMeters);
             Assert.Equal(DoseAreaProductUnit.GraySquareMeter, quantity10.Unit);
 
             var quantity11 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity11.GraySquareMillimeters, GraySquareMillimetersTolerance);
+            Assert.Equal(1, quantity11.GraySquareMillimeters);
             Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, quantity11.Unit);
 
             var quantity12 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity12.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
+            Assert.Equal(1, quantity12.MicrograySquareCentimeters);
             Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, quantity12.Unit);
 
             var quantity13 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity13.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
+            Assert.Equal(1, quantity13.MicrograySquareDecimeters);
             Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, quantity13.Unit);
 
             var quantity14 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMeter);
-            AssertEx.EqualTolerance(1, quantity14.MicrograySquareMeters, MicrograySquareMetersTolerance);
+            Assert.Equal(1, quantity14.MicrograySquareMeters);
             Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, quantity14.Unit);
 
             var quantity15 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity15.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
+            Assert.Equal(1, quantity15.MicrograySquareMillimeters);
             Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, quantity15.Unit);
 
             var quantity16 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity16.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
+            Assert.Equal(1, quantity16.MilligraySquareCentimeters);
             Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, quantity16.Unit);
 
             var quantity17 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity17.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
+            Assert.Equal(1, quantity17.MilligraySquareDecimeters);
             Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, quantity17.Unit);
 
             var quantity18 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity18.MilligraySquareMeters, MilligraySquareMetersTolerance);
+            Assert.Equal(1, quantity18.MilligraySquareMeters);
             Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, quantity18.Unit);
 
             var quantity19 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity19.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
+            Assert.Equal(1, quantity19.MilligraySquareMillimeters);
             Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, quantity19.Unit);
 
         }
@@ -457,534 +475,102 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cGy·cm²", DoseAreaProductUnit.CentigraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·dm²", DoseAreaProductUnit.CentigraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·m²", DoseAreaProductUnit.CentigraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·mm²", DoseAreaProductUnit.CentigraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·cm²", DoseAreaProductUnit.DecigraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·dm²", DoseAreaProductUnit.DecigraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·m²", DoseAreaProductUnit.DecigraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·mm²", DoseAreaProductUnit.DecigraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·cm²", DoseAreaProductUnit.GraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·dm²", DoseAreaProductUnit.GraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·m²", DoseAreaProductUnit.GraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·mm²", DoseAreaProductUnit.GraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·cm²", DoseAreaProductUnit.MicrograySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·dm²", DoseAreaProductUnit.MicrograySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·m²", DoseAreaProductUnit.MicrograySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·mm²", DoseAreaProductUnit.MicrograySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·cm²", DoseAreaProductUnit.MilligraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·dm²", DoseAreaProductUnit.MilligraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·m²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·mm²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·см²", DoseAreaProductUnit.CentigraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·дм²", DoseAreaProductUnit.CentigraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·м²", DoseAreaProductUnit.CentigraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·мм²", DoseAreaProductUnit.CentigraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·см²", DoseAreaProductUnit.DecigraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·дм²", DoseAreaProductUnit.DecigraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·м²", DoseAreaProductUnit.DecigraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·мм²", DoseAreaProductUnit.DecigraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·см²", DoseAreaProductUnit.GraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·дм²", DoseAreaProductUnit.GraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·м²", DoseAreaProductUnit.GraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·мм²", DoseAreaProductUnit.GraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·см²", DoseAreaProductUnit.MicrograySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·дм²", DoseAreaProductUnit.MicrograySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·м²", DoseAreaProductUnit.MicrograySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·мм²", DoseAreaProductUnit.MicrograySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·см²", DoseAreaProductUnit.MilligraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·дм²", DoseAreaProductUnit.MilligraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·м²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·мм²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
+        public void Parse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 cGy·cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 сГр·см²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 cGy·dm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 сГр·дм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 cGy·m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMeters, CentigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 сГр·м²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMeters, CentigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 cGy·mm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 сГр·мм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 dGy·cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 дГр·см²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 dGy·dm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 дГр·дм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 dGy·m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMeters, DecigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 дГр·м²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMeters, DecigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 dGy·mm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 дГр·мм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Gy·cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareCentimeters, GraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Гр·см²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareCentimeters, GraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Gy·dm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareDecimeters, GraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Гр·дм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareDecimeters, GraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Gy·m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMeters, GraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Гр·м²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMeters, GraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Gy·mm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMillimeters, GraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 Гр·мм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMillimeters, GraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 µGy·cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мкГр·см²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 µGy·dm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мкГр·дм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 µGy·m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMeters, MicrograySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мкГр·м²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMeters, MicrograySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 µGy·mm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мкГр·мм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 mGy·cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мГр·см²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 mGy·dm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мГр·дм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 mGy·m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMeters, MilligraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мГр·м²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMeters, MilligraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 mGy·mm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = DoseAreaProduct.Parse("1 мГр·мм²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = DoseAreaProduct.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cGy·cm²", DoseAreaProductUnit.CentigraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·dm²", DoseAreaProductUnit.CentigraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·m²", DoseAreaProductUnit.CentigraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cGy·mm²", DoseAreaProductUnit.CentigraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·cm²", DoseAreaProductUnit.DecigraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·dm²", DoseAreaProductUnit.DecigraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·m²", DoseAreaProductUnit.DecigraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dGy·mm²", DoseAreaProductUnit.DecigraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·cm²", DoseAreaProductUnit.GraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·dm²", DoseAreaProductUnit.GraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·m²", DoseAreaProductUnit.GraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 Gy·mm²", DoseAreaProductUnit.GraySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·cm²", DoseAreaProductUnit.MicrograySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·dm²", DoseAreaProductUnit.MicrograySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·m²", DoseAreaProductUnit.MicrograySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µGy·mm²", DoseAreaProductUnit.MicrograySquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·cm²", DoseAreaProductUnit.MilligraySquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·dm²", DoseAreaProductUnit.MilligraySquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·m²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mGy·mm²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·см²", DoseAreaProductUnit.CentigraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·дм²", DoseAreaProductUnit.CentigraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·м²", DoseAreaProductUnit.CentigraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 сГр·мм²", DoseAreaProductUnit.CentigraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·см²", DoseAreaProductUnit.DecigraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·дм²", DoseAreaProductUnit.DecigraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·м²", DoseAreaProductUnit.DecigraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр·мм²", DoseAreaProductUnit.DecigraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·см²", DoseAreaProductUnit.GraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·дм²", DoseAreaProductUnit.GraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·м²", DoseAreaProductUnit.GraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 Гр·мм²", DoseAreaProductUnit.GraySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·см²", DoseAreaProductUnit.MicrograySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·дм²", DoseAreaProductUnit.MicrograySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·м²", DoseAreaProductUnit.MicrograySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкГр·мм²", DoseAreaProductUnit.MicrograySquareMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·см²", DoseAreaProductUnit.MilligraySquareCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·дм²", DoseAreaProductUnit.MilligraySquareDecimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·м²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мГр·мм²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
+        public void TryParse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 cGy·cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 сГр·см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 cGy·dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 сГр·дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 cGy·m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMeters, CentigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 сГр·м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMeters, CentigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 cGy·mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 сГр·мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 dGy·cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 дГр·см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 dGy·dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 дГр·дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 dGy·m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMeters, DecigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 дГр·м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMeters, DecigraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 dGy·mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 дГр·мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Gy·cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareCentimeters, GraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Гр·см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareCentimeters, GraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Gy·dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareDecimeters, GraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Гр·дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareDecimeters, GraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Gy·m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMeters, GraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Гр·м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMeters, GraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Gy·mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMillimeters, GraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 Гр·мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GraySquareMillimeters, GraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 µGy·cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мкГр·см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 µGy·dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мкГр·дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 µGy·m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMeters, MicrograySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мкГр·м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMeters, MicrograySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 µGy·mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мкГр·мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 mGy·cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мГр·см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 mGy·dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мГр·дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 mGy·m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMeters, MilligraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мГр·м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMeters, MilligraySquareMetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 mGy·mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(DoseAreaProduct.TryParse("1 мГр·мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
-                Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(DoseAreaProduct.TryParse(quantityString, out DoseAreaProduct parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1294,6 +880,66 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", DoseAreaProductUnit.CentigraySquareCentimeter, "cGy·cm²")]
+        [InlineData("en-US", DoseAreaProductUnit.CentigraySquareDecimeter, "cGy·dm²")]
+        [InlineData("en-US", DoseAreaProductUnit.CentigraySquareMeter, "cGy·m²")]
+        [InlineData("en-US", DoseAreaProductUnit.CentigraySquareMillimeter, "cGy·mm²")]
+        [InlineData("en-US", DoseAreaProductUnit.DecigraySquareCentimeter, "dGy·cm²")]
+        [InlineData("en-US", DoseAreaProductUnit.DecigraySquareDecimeter, "dGy·dm²")]
+        [InlineData("en-US", DoseAreaProductUnit.DecigraySquareMeter, "dGy·m²")]
+        [InlineData("en-US", DoseAreaProductUnit.DecigraySquareMillimeter, "dGy·mm²")]
+        [InlineData("en-US", DoseAreaProductUnit.GraySquareCentimeter, "Gy·cm²")]
+        [InlineData("en-US", DoseAreaProductUnit.GraySquareDecimeter, "Gy·dm²")]
+        [InlineData("en-US", DoseAreaProductUnit.GraySquareMeter, "Gy·m²")]
+        [InlineData("en-US", DoseAreaProductUnit.GraySquareMillimeter, "Gy·mm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MicrograySquareCentimeter, "µGy·cm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MicrograySquareDecimeter, "µGy·dm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MicrograySquareMeter, "µGy·m²")]
+        [InlineData("en-US", DoseAreaProductUnit.MicrograySquareMillimeter, "µGy·mm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MilligraySquareCentimeter, "mGy·cm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MilligraySquareDecimeter, "mGy·dm²")]
+        [InlineData("en-US", DoseAreaProductUnit.MilligraySquareMeter, "mGy·m²")]
+        [InlineData("en-US", DoseAreaProductUnit.MilligraySquareMillimeter, "mGy·mm²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.CentigraySquareCentimeter, "сГр·см²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.CentigraySquareDecimeter, "сГр·дм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.CentigraySquareMeter, "сГр·м²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.CentigraySquareMillimeter, "сГр·мм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.DecigraySquareCentimeter, "дГр·см²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.DecigraySquareDecimeter, "дГр·дм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.DecigraySquareMeter, "дГр·м²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.DecigraySquareMillimeter, "дГр·мм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.GraySquareCentimeter, "Гр·см²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.GraySquareDecimeter, "Гр·дм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.GraySquareMeter, "Гр·м²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.GraySquareMillimeter, "Гр·мм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MicrograySquareCentimeter, "мкГр·см²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MicrograySquareDecimeter, "мкГр·дм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MicrograySquareMeter, "мкГр·м²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MicrograySquareMillimeter, "мкГр·мм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MilligraySquareCentimeter, "мГр·см²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MilligraySquareDecimeter, "мГр·дм²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MilligraySquareMeter, "мГр·м²")]
+        [InlineData("ru-RU", DoseAreaProductUnit.MilligraySquareMillimeter, "мГр·мм²")]
+        public void GetAbbreviationForCulture(string culture, DoseAreaProductUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(DoseAreaProduct.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DoseAreaProductUnit unit)
         {
@@ -1323,6 +969,7 @@ namespace UnitsNet.Tests
                 var quantity = DoseAreaProduct.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1346,51 +993,53 @@ namespace UnitsNet.Tests
                 IQuantity<DoseAreaProductUnit> quantityToConvert = quantity;
                 IQuantity<DoseAreaProductUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            DoseAreaProduct graysquaremeter = DoseAreaProduct.FromGraySquareMeters(1);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromCentigraySquareCentimeters(graysquaremeter.CentigraySquareCentimeters).GraySquareMeters, CentigraySquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromCentigraySquareDecimeters(graysquaremeter.CentigraySquareDecimeters).GraySquareMeters, CentigraySquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromCentigraySquareMeters(graysquaremeter.CentigraySquareMeters).GraySquareMeters, CentigraySquareMetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromCentigraySquareMillimeters(graysquaremeter.CentigraySquareMillimeters).GraySquareMeters, CentigraySquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromDecigraySquareCentimeters(graysquaremeter.DecigraySquareCentimeters).GraySquareMeters, DecigraySquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromDecigraySquareDecimeters(graysquaremeter.DecigraySquareDecimeters).GraySquareMeters, DecigraySquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromDecigraySquareMeters(graysquaremeter.DecigraySquareMeters).GraySquareMeters, DecigraySquareMetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromDecigraySquareMillimeters(graysquaremeter.DecigraySquareMillimeters).GraySquareMeters, DecigraySquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromGraySquareCentimeters(graysquaremeter.GraySquareCentimeters).GraySquareMeters, GraySquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromGraySquareDecimeters(graysquaremeter.GraySquareDecimeters).GraySquareMeters, GraySquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromGraySquareMeters(graysquaremeter.GraySquareMeters).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromGraySquareMillimeters(graysquaremeter.GraySquareMillimeters).GraySquareMeters, GraySquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMicrograySquareCentimeters(graysquaremeter.MicrograySquareCentimeters).GraySquareMeters, MicrograySquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMicrograySquareDecimeters(graysquaremeter.MicrograySquareDecimeters).GraySquareMeters, MicrograySquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMicrograySquareMeters(graysquaremeter.MicrograySquareMeters).GraySquareMeters, MicrograySquareMetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMicrograySquareMillimeters(graysquaremeter.MicrograySquareMillimeters).GraySquareMeters, MicrograySquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMilligraySquareCentimeters(graysquaremeter.MilligraySquareCentimeters).GraySquareMeters, MilligraySquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMilligraySquareDecimeters(graysquaremeter.MilligraySquareDecimeters).GraySquareMeters, MilligraySquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMilligraySquareMeters(graysquaremeter.MilligraySquareMeters).GraySquareMeters, MilligraySquareMetersTolerance);
-            AssertEx.EqualTolerance(1, DoseAreaProduct.FromMilligraySquareMillimeters(graysquaremeter.MilligraySquareMillimeters).GraySquareMeters, MilligraySquareMillimetersTolerance);
+            DoseAreaProduct graysquaremeter = DoseAreaProduct.FromGraySquareMeters(3);
+            Assert.Equal(3, DoseAreaProduct.FromCentigraySquareCentimeters(graysquaremeter.CentigraySquareCentimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromCentigraySquareDecimeters(graysquaremeter.CentigraySquareDecimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromCentigraySquareMeters(graysquaremeter.CentigraySquareMeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromCentigraySquareMillimeters(graysquaremeter.CentigraySquareMillimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromDecigraySquareCentimeters(graysquaremeter.DecigraySquareCentimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromDecigraySquareDecimeters(graysquaremeter.DecigraySquareDecimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromDecigraySquareMeters(graysquaremeter.DecigraySquareMeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromDecigraySquareMillimeters(graysquaremeter.DecigraySquareMillimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromGraySquareCentimeters(graysquaremeter.GraySquareCentimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromGraySquareDecimeters(graysquaremeter.GraySquareDecimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromGraySquareMeters(graysquaremeter.GraySquareMeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromGraySquareMillimeters(graysquaremeter.GraySquareMillimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMicrograySquareCentimeters(graysquaremeter.MicrograySquareCentimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMicrograySquareDecimeters(graysquaremeter.MicrograySquareDecimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMicrograySquareMeters(graysquaremeter.MicrograySquareMeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMicrograySquareMillimeters(graysquaremeter.MicrograySquareMillimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMilligraySquareCentimeters(graysquaremeter.MilligraySquareCentimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMilligraySquareDecimeters(graysquaremeter.MilligraySquareDecimeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMilligraySquareMeters(graysquaremeter.MilligraySquareMeters).GraySquareMeters);
+            Assert.Equal(3, DoseAreaProduct.FromMilligraySquareMillimeters(graysquaremeter.MilligraySquareMillimeters).GraySquareMeters);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             DoseAreaProduct v = DoseAreaProduct.FromGraySquareMeters(1);
-            AssertEx.EqualTolerance(-1, -v.GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (DoseAreaProduct.FromGraySquareMeters(3)-v).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (DoseAreaProduct.FromGraySquareMeters(10)/5).GraySquareMeters, GraySquareMetersTolerance);
-            AssertEx.EqualTolerance(2, DoseAreaProduct.FromGraySquareMeters(10)/DoseAreaProduct.FromGraySquareMeters(5), GraySquareMetersTolerance);
+            Assert.Equal(-1, -v.GraySquareMeters);
+            Assert.Equal(2, (DoseAreaProduct.FromGraySquareMeters(3) - v).GraySquareMeters);
+            Assert.Equal(2, (v + v).GraySquareMeters);
+            Assert.Equal(10, (v * 10).GraySquareMeters);
+            Assert.Equal(10, (10 * v).GraySquareMeters);
+            Assert.Equal(2, (DoseAreaProduct.FromGraySquareMeters(10) / 5).GraySquareMeters);
+            Assert.Equal(2, DoseAreaProduct.FromGraySquareMeters(10) / DoseAreaProduct.FromGraySquareMeters(5));
         }
 
         [Fact]
@@ -1436,8 +1085,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, DoseAreaProductUnit.GraySquareMeter, 1, DoseAreaProductUnit.GraySquareMeter, true)]  // Same value and unit.
         [InlineData(1, DoseAreaProductUnit.GraySquareMeter, 2, DoseAreaProductUnit.GraySquareMeter, false)] // Different value.
-        [InlineData(2, DoseAreaProductUnit.GraySquareMeter, 1, DoseAreaProductUnit.CentigraySquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, DoseAreaProductUnit.GraySquareMeter, 1, DoseAreaProductUnit.CentigraySquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DoseAreaProductUnit unitA, double valueB, DoseAreaProductUnit unitB, bool expectEqual)
         {
             var a = new DoseAreaProduct(valueA, unitA);
@@ -1475,23 +1122,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = DoseAreaProduct.FromGraySquareMeters(1);
-            Assert.True(v.Equals(DoseAreaProduct.FromGraySquareMeters(1), GraySquareMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(DoseAreaProduct.Zero, GraySquareMetersTolerance, ComparisonType.Relative));
-            Assert.True(DoseAreaProduct.FromGraySquareMeters(100).Equals(DoseAreaProduct.FromGraySquareMeters(120), 0.3, ComparisonType.Relative));
-            Assert.False(DoseAreaProduct.FromGraySquareMeters(100).Equals(DoseAreaProduct.FromGraySquareMeters(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = DoseAreaProduct.FromGraySquareMeters(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(DoseAreaProduct.FromGraySquareMeters(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             DoseAreaProduct graysquaremeter = DoseAreaProduct.FromGraySquareMeters(1);
@@ -1503,6 +1133,32 @@ namespace UnitsNet.Tests
         {
             DoseAreaProduct graysquaremeter = DoseAreaProduct.FromGraySquareMeters(1);
             Assert.False(graysquaremeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = DoseAreaProduct.FromGraySquareMeters(firstValue);
+            var otherQuantity = DoseAreaProduct.FromGraySquareMeters(secondValue);
+            DoseAreaProduct maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, DoseAreaProduct.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = DoseAreaProduct.FromGraySquareMeters(1);
+            var negativeTolerance = DoseAreaProduct.FromGraySquareMeters(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1519,6 +1175,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(DoseAreaProduct.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(DoseAreaProduct.Info.Units, DoseAreaProduct.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, DoseAreaProduct.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1618,157 +1286,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(DoseAreaProduct)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(DoseAreaProductUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(DoseAreaProduct.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(DoseAreaProduct.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = DoseAreaProduct.FromGraySquareMeters(1.0);
-            Assert.Equal(new {DoseAreaProduct.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(DoseAreaProduct), quantity.As(DoseAreaProduct.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

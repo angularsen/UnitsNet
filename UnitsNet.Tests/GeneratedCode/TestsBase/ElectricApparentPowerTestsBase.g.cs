@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricApparentPower(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -129,15 +129,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricApparentPower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricApparentPowerUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricApparentPowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricApparentPower(1, ElectricApparentPowerUnit.Voltampere);
 
-            QuantityInfo<ElectricApparentPowerUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricApparentPower, ElectricApparentPowerUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricApparentPower.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricApparentPower", quantityInfo.Name);
+            Assert.Equal(ElectricApparentPower.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricApparentPower.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricApparentPower.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricApparentPowerUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<ElectricApparentPowerUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void ElectricApparentPowerInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricApparentPowerUnit[] expectedUnits = [ElectricApparentPowerUnit.Voltampere];
+
+            ElectricApparentPower.ElectricApparentPowerInfo quantityInfo = ElectricApparentPower.ElectricApparentPowerInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricApparentPower", quantityInfo.Name);
+            Assert.Equal(ElectricApparentPower.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricApparentPower.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -156,27 +174,27 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Gigavoltampere);
-            AssertEx.EqualTolerance(1, quantity00.Gigavoltamperes, GigavoltamperesTolerance);
+            Assert.Equal(1, quantity00.Gigavoltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Gigavoltampere, quantity00.Unit);
 
             var quantity01 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Kilovoltampere);
-            AssertEx.EqualTolerance(1, quantity01.Kilovoltamperes, KilovoltamperesTolerance);
+            Assert.Equal(1, quantity01.Kilovoltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Kilovoltampere, quantity01.Unit);
 
             var quantity02 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Megavoltampere);
-            AssertEx.EqualTolerance(1, quantity02.Megavoltamperes, MegavoltamperesTolerance);
+            Assert.Equal(1, quantity02.Megavoltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Megavoltampere, quantity02.Unit);
 
             var quantity03 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Microvoltampere);
-            AssertEx.EqualTolerance(1, quantity03.Microvoltamperes, MicrovoltamperesTolerance);
+            Assert.Equal(1, quantity03.Microvoltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Microvoltampere, quantity03.Unit);
 
             var quantity04 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Millivoltampere);
-            AssertEx.EqualTolerance(1, quantity04.Millivoltamperes, MillivoltamperesTolerance);
+            Assert.Equal(1, quantity04.Millivoltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Millivoltampere, quantity04.Unit);
 
             var quantity05 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Voltampere);
-            AssertEx.EqualTolerance(1, quantity05.Voltamperes, VoltamperesTolerance);
+            Assert.Equal(1, quantity05.Voltamperes);
             Assert.Equal(ElectricApparentPowerUnit.Voltampere, quantity05.Unit);
 
         }
@@ -317,80 +335,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 GVA", ElectricApparentPowerUnit.Gigavoltampere, 4.2)]
+        [InlineData("en-US", "4.2 kVA", ElectricApparentPowerUnit.Kilovoltampere, 4.2)]
+        [InlineData("en-US", "4.2 MVA", ElectricApparentPowerUnit.Megavoltampere, 4.2)]
+        [InlineData("en-US", "4.2 µVA", ElectricApparentPowerUnit.Microvoltampere, 4.2)]
+        [InlineData("en-US", "4.2 mVA", ElectricApparentPowerUnit.Millivoltampere, 4.2)]
+        [InlineData("en-US", "4.2 VA", ElectricApparentPowerUnit.Voltampere, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricApparentPowerUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 GVA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigavoltamperes, GigavoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Gigavoltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 kVA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilovoltamperes, KilovoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Kilovoltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 MVA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megavoltamperes, MegavoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Megavoltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 µVA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microvoltamperes, MicrovoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Microvoltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 mVA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millivoltamperes, MillivoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Millivoltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentPower.Parse("1 VA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Voltamperes, VoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Voltampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricApparentPower.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 GVA", ElectricApparentPowerUnit.Gigavoltampere, 4.2)]
+        [InlineData("en-US", "4.2 kVA", ElectricApparentPowerUnit.Kilovoltampere, 4.2)]
+        [InlineData("en-US", "4.2 MVA", ElectricApparentPowerUnit.Megavoltampere, 4.2)]
+        [InlineData("en-US", "4.2 µVA", ElectricApparentPowerUnit.Microvoltampere, 4.2)]
+        [InlineData("en-US", "4.2 mVA", ElectricApparentPowerUnit.Millivoltampere, 4.2)]
+        [InlineData("en-US", "4.2 VA", ElectricApparentPowerUnit.Voltampere, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricApparentPowerUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(ElectricApparentPower.TryParse("1 GVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigavoltamperes, GigavoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Gigavoltampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricApparentPower.TryParse("1 kVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilovoltamperes, KilovoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Kilovoltampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricApparentPower.TryParse("1 µVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microvoltamperes, MicrovoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Microvoltampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricApparentPower.TryParse("1 VA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Voltamperes, VoltamperesTolerance);
-                Assert.Equal(ElectricApparentPowerUnit.Voltampere, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricApparentPower.TryParse(quantityString, out ElectricApparentPower parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -508,6 +480,32 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ElectricApparentPowerUnit.Gigavoltampere, "GVA")]
+        [InlineData("en-US", ElectricApparentPowerUnit.Kilovoltampere, "kVA")]
+        [InlineData("en-US", ElectricApparentPowerUnit.Megavoltampere, "MVA")]
+        [InlineData("en-US", ElectricApparentPowerUnit.Microvoltampere, "µVA")]
+        [InlineData("en-US", ElectricApparentPowerUnit.Millivoltampere, "mVA")]
+        [InlineData("en-US", ElectricApparentPowerUnit.Voltampere, "VA")]
+        public void GetAbbreviationForCulture(string culture, ElectricApparentPowerUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricApparentPower.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricApparentPower.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricApparentPower.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricApparentPowerUnit unit)
         {
@@ -537,6 +535,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricApparentPower.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -560,37 +559,39 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricApparentPowerUnit> quantityToConvert = quantity;
                 IQuantity<ElectricApparentPowerUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(1);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromGigavoltamperes(voltampere.Gigavoltamperes).Voltamperes, GigavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes, KilovoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes, MegavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromMicrovoltamperes(voltampere.Microvoltamperes).Voltamperes, MicrovoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromMillivoltamperes(voltampere.Millivoltamperes).Voltamperes, MillivoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ElectricApparentPower.FromVoltamperes(voltampere.Voltamperes).Voltamperes, VoltamperesTolerance);
+            ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(3);
+            Assert.Equal(3, ElectricApparentPower.FromGigavoltamperes(voltampere.Gigavoltamperes).Voltamperes);
+            Assert.Equal(3, ElectricApparentPower.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes);
+            Assert.Equal(3, ElectricApparentPower.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes);
+            Assert.Equal(3, ElectricApparentPower.FromMicrovoltamperes(voltampere.Microvoltamperes).Voltamperes);
+            Assert.Equal(3, ElectricApparentPower.FromMillivoltamperes(voltampere.Millivoltamperes).Voltamperes);
+            Assert.Equal(3, ElectricApparentPower.FromVoltamperes(voltampere.Voltamperes).Voltamperes);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricApparentPower v = ElectricApparentPower.FromVoltamperes(1);
-            AssertEx.EqualTolerance(-1, -v.Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, (ElectricApparentPower.FromVoltamperes(3)-v).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, (ElectricApparentPower.FromVoltamperes(10)/5).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, ElectricApparentPower.FromVoltamperes(10)/ElectricApparentPower.FromVoltamperes(5), VoltamperesTolerance);
+            Assert.Equal(-1, -v.Voltamperes);
+            Assert.Equal(2, (ElectricApparentPower.FromVoltamperes(3) - v).Voltamperes);
+            Assert.Equal(2, (v + v).Voltamperes);
+            Assert.Equal(10, (v * 10).Voltamperes);
+            Assert.Equal(10, (10 * v).Voltamperes);
+            Assert.Equal(2, (ElectricApparentPower.FromVoltamperes(10) / 5).Voltamperes);
+            Assert.Equal(2, ElectricApparentPower.FromVoltamperes(10) / ElectricApparentPower.FromVoltamperes(5));
         }
 
         [Fact]
@@ -636,8 +637,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricApparentPowerUnit.Voltampere, 1, ElectricApparentPowerUnit.Voltampere, true)]  // Same value and unit.
         [InlineData(1, ElectricApparentPowerUnit.Voltampere, 2, ElectricApparentPowerUnit.Voltampere, false)] // Different value.
-        [InlineData(2, ElectricApparentPowerUnit.Voltampere, 1, ElectricApparentPowerUnit.Gigavoltampere, false)] // Different value and unit.
-        [InlineData(1, ElectricApparentPowerUnit.Voltampere, 1, ElectricApparentPowerUnit.Gigavoltampere, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricApparentPowerUnit unitA, double valueB, ElectricApparentPowerUnit unitB, bool expectEqual)
         {
             var a = new ElectricApparentPower(valueA, unitA);
@@ -675,23 +674,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricApparentPower.FromVoltamperes(1);
-            Assert.True(v.Equals(ElectricApparentPower.FromVoltamperes(1), VoltamperesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricApparentPower.Zero, VoltamperesTolerance, ComparisonType.Relative));
-            Assert.True(ElectricApparentPower.FromVoltamperes(100).Equals(ElectricApparentPower.FromVoltamperes(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricApparentPower.FromVoltamperes(100).Equals(ElectricApparentPower.FromVoltamperes(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricApparentPower.FromVoltamperes(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricApparentPower.FromVoltamperes(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(1);
@@ -703,6 +685,32 @@ namespace UnitsNet.Tests
         {
             ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(1);
             Assert.False(voltampere.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = ElectricApparentPower.FromVoltamperes(firstValue);
+            var otherQuantity = ElectricApparentPower.FromVoltamperes(secondValue);
+            ElectricApparentPower maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, ElectricApparentPower.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricApparentPower.FromVoltamperes(1);
+            var negativeTolerance = ElectricApparentPower.FromVoltamperes(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -719,6 +727,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricApparentPower.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricApparentPower.Info.Units, ElectricApparentPower.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricApparentPower.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -790,157 +810,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricApparentPower)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricApparentPowerUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(ElectricApparentPower.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(ElectricApparentPower.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(new {ElectricApparentPower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricApparentPower), quantity.As(ElectricApparentPower.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

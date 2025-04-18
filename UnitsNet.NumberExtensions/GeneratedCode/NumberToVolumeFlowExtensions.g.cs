@@ -32,829 +32,829 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
     /// </summary>
     public static class NumberToVolumeFlowExtensions
     {
-        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(QuantityValue)" />
         public static VolumeFlow AcreFeetPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromAcreFeetPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromAcreFeetPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromAcreFeetPerDay(value.ToDouble(null));
+            => VolumeFlow.FromAcreFeetPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(QuantityValue)" />
         public static VolumeFlow AcreFeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromAcreFeetPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromAcreFeetPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromAcreFeetPerHour(value.ToDouble(null));
+            => VolumeFlow.FromAcreFeetPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(QuantityValue)" />
         public static VolumeFlow AcreFeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromAcreFeetPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromAcreFeetPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromAcreFeetPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromAcreFeetPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(QuantityValue)" />
         public static VolumeFlow AcreFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromAcreFeetPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromAcreFeetPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromAcreFeetPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromAcreFeetPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(QuantityValue)" />
         public static VolumeFlow CentilitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCentilitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromCentilitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCentilitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromCentilitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerHour(QuantityValue)" />
         public static VolumeFlow CentilitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCentilitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromCentilitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCentilitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromCentilitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(QuantityValue)" />
         public static VolumeFlow CentilitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCentilitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCentilitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCentilitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCentilitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerSecond(QuantityValue)" />
         public static VolumeFlow CentilitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCentilitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromCentilitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCentilitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromCentilitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(QuantityValue)" />
         public static VolumeFlow CubicCentimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicCentimetersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCubicCentimetersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicCentimetersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCubicCentimetersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(QuantityValue)" />
         public static VolumeFlow CubicDecimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicDecimetersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCubicDecimetersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicDecimetersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCubicDecimetersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(QuantityValue)" />
         public static VolumeFlow CubicFeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicFeetPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromCubicFeetPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicFeetPerHour(value.ToDouble(null));
+            => VolumeFlow.FromCubicFeetPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(QuantityValue)" />
         public static VolumeFlow CubicFeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicFeetPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCubicFeetPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicFeetPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCubicFeetPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(QuantityValue)" />
         public static VolumeFlow CubicFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicFeetPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromCubicFeetPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicFeetPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromCubicFeetPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(QuantityValue)" />
         public static VolumeFlow CubicMetersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicMetersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromCubicMetersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicMetersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromCubicMetersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(QuantityValue)" />
         public static VolumeFlow CubicMetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicMetersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromCubicMetersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicMetersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromCubicMetersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(QuantityValue)" />
         public static VolumeFlow CubicMetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicMetersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCubicMetersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicMetersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCubicMetersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(QuantityValue)" />
         public static VolumeFlow CubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicMetersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromCubicMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicMetersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromCubicMetersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(QuantityValue)" />
         public static VolumeFlow CubicMillimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicMillimetersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromCubicMillimetersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicMillimetersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromCubicMillimetersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(QuantityValue)" />
         public static VolumeFlow CubicYardsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicYardsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromCubicYardsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicYardsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromCubicYardsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(QuantityValue)" />
         public static VolumeFlow CubicYardsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicYardsPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromCubicYardsPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicYardsPerHour(value.ToDouble(null));
+            => VolumeFlow.FromCubicYardsPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(QuantityValue)" />
         public static VolumeFlow CubicYardsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicYardsPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromCubicYardsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicYardsPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromCubicYardsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(QuantityValue)" />
         public static VolumeFlow CubicYardsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromCubicYardsPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromCubicYardsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromCubicYardsPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromCubicYardsPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerDay(QuantityValue)" />
         public static VolumeFlow DecalitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecalitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromDecalitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecalitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromDecalitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerHour(QuantityValue)" />
         public static VolumeFlow DecalitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecalitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromDecalitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecalitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromDecalitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerMinute(QuantityValue)" />
         public static VolumeFlow DecalitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecalitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromDecalitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecalitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromDecalitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecalitersPerSecond(QuantityValue)" />
         public static VolumeFlow DecalitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecalitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromDecalitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecalitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromDecalitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(QuantityValue)" />
         public static VolumeFlow DecilitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecilitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromDecilitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecilitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromDecilitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerHour(QuantityValue)" />
         public static VolumeFlow DecilitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecilitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromDecilitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecilitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromDecilitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(QuantityValue)" />
         public static VolumeFlow DecilitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecilitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromDecilitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecilitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromDecilitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(QuantityValue)" />
         public static VolumeFlow DecilitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromDecilitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromDecilitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromDecilitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromDecilitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerDay(QuantityValue)" />
         public static VolumeFlow HectolitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromHectolitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromHectolitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromHectolitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromHectolitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerHour(QuantityValue)" />
         public static VolumeFlow HectolitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromHectolitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromHectolitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromHectolitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromHectolitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerMinute(QuantityValue)" />
         public static VolumeFlow HectolitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromHectolitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromHectolitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromHectolitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromHectolitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromHectolitersPerSecond(QuantityValue)" />
         public static VolumeFlow HectolitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromHectolitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromHectolitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromHectolitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromHectolitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(QuantityValue)" />
         public static VolumeFlow KilolitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromKilolitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromKilolitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromKilolitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromKilolitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerHour(QuantityValue)" />
         public static VolumeFlow KilolitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromKilolitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromKilolitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromKilolitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromKilolitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(QuantityValue)" />
         public static VolumeFlow KilolitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromKilolitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromKilolitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromKilolitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromKilolitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerSecond(QuantityValue)" />
         public static VolumeFlow KilolitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromKilolitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromKilolitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromKilolitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromKilolitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(QuantityValue)" />
         public static VolumeFlow KilousGallonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromKilousGallonsPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromKilousGallonsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromKilousGallonsPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromKilousGallonsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(QuantityValue)" />
         public static VolumeFlow LitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromLitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromLitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromLitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromLitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(QuantityValue)" />
         public static VolumeFlow LitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromLitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromLitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromLitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromLitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(QuantityValue)" />
         public static VolumeFlow LitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromLitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromLitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromLitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromLitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(QuantityValue)" />
         public static VolumeFlow LitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromLitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromLitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromLitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromLitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(QuantityValue)" />
         public static VolumeFlow MegalitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegalitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMegalitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegalitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMegalitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(QuantityValue)" />
         public static VolumeFlow MegalitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegalitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromMegalitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegalitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromMegalitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(QuantityValue)" />
         public static VolumeFlow MegalitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegalitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromMegalitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegalitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromMegalitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(QuantityValue)" />
         public static VolumeFlow MegalitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegalitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromMegalitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegalitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromMegalitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerDay(QuantityValue)" />
         public static VolumeFlow MegaukGallonsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegaukGallonsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMegaukGallonsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegaukGallonsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMegaukGallonsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(QuantityValue)" />
         public static VolumeFlow MegaukGallonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegaukGallonsPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromMegaukGallonsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegaukGallonsPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromMegaukGallonsPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMegausGallonsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMegausGallonsPerDay(QuantityValue)" />
         public static VolumeFlow MegausGallonsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMegausGallonsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMegausGallonsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMegausGallonsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMegausGallonsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(QuantityValue)" />
         public static VolumeFlow MicrolitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMicrolitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMicrolitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMicrolitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMicrolitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerHour(QuantityValue)" />
         public static VolumeFlow MicrolitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMicrolitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromMicrolitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMicrolitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromMicrolitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(QuantityValue)" />
         public static VolumeFlow MicrolitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMicrolitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromMicrolitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMicrolitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromMicrolitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerSecond(QuantityValue)" />
         public static VolumeFlow MicrolitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMicrolitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromMicrolitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMicrolitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromMicrolitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(QuantityValue)" />
         public static VolumeFlow MillilitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMillilitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMillilitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMillilitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMillilitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerHour(QuantityValue)" />
         public static VolumeFlow MillilitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMillilitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromMillilitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMillilitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromMillilitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(QuantityValue)" />
         public static VolumeFlow MillilitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMillilitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromMillilitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMillilitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromMillilitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerSecond(QuantityValue)" />
         public static VolumeFlow MillilitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMillilitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromMillilitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMillilitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromMillilitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(QuantityValue)" />
         public static VolumeFlow MillionUsGallonsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromMillionUsGallonsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromMillionUsGallonsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromMillionUsGallonsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromMillionUsGallonsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(QuantityValue)" />
         public static VolumeFlow NanolitersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromNanolitersPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromNanolitersPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromNanolitersPerDay(value.ToDouble(null));
+            => VolumeFlow.FromNanolitersPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerHour(QuantityValue)" />
         public static VolumeFlow NanolitersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromNanolitersPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromNanolitersPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromNanolitersPerHour(value.ToDouble(null));
+            => VolumeFlow.FromNanolitersPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(QuantityValue)" />
         public static VolumeFlow NanolitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromNanolitersPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromNanolitersPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromNanolitersPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromNanolitersPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerSecond(QuantityValue)" />
         public static VolumeFlow NanolitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromNanolitersPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromNanolitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromNanolitersPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromNanolitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(QuantityValue)" />
         public static VolumeFlow OilBarrelsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromOilBarrelsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromOilBarrelsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromOilBarrelsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromOilBarrelsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(QuantityValue)" />
         public static VolumeFlow OilBarrelsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromOilBarrelsPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromOilBarrelsPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromOilBarrelsPerHour(value.ToDouble(null));
+            => VolumeFlow.FromOilBarrelsPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(QuantityValue)" />
         public static VolumeFlow OilBarrelsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromOilBarrelsPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromOilBarrelsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromOilBarrelsPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromOilBarrelsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(QuantityValue)" />
         public static VolumeFlow OilBarrelsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromOilBarrelsPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromOilBarrelsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromOilBarrelsPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromOilBarrelsPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(QuantityValue)" />
         public static VolumeFlow UkGallonsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUkGallonsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromUkGallonsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUkGallonsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromUkGallonsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerHour(QuantityValue)" />
         public static VolumeFlow UkGallonsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUkGallonsPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromUkGallonsPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUkGallonsPerHour(value.ToDouble(null));
+            => VolumeFlow.FromUkGallonsPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(QuantityValue)" />
         public static VolumeFlow UkGallonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUkGallonsPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromUkGallonsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUkGallonsPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromUkGallonsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(QuantityValue)" />
         public static VolumeFlow UkGallonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUkGallonsPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromUkGallonsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUkGallonsPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromUkGallonsPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(QuantityValue)" />
         public static VolumeFlow UsGallonsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUsGallonsPerDay(double.CreateChecked(value));
+            => VolumeFlow.FromUsGallonsPerDay(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUsGallonsPerDay(value.ToDouble(null));
+            => VolumeFlow.FromUsGallonsPerDay(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(QuantityValue)" />
         public static VolumeFlow UsGallonsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUsGallonsPerHour(double.CreateChecked(value));
+            => VolumeFlow.FromUsGallonsPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUsGallonsPerHour(value.ToDouble(null));
+            => VolumeFlow.FromUsGallonsPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(QuantityValue)" />
         public static VolumeFlow UsGallonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUsGallonsPerMinute(double.CreateChecked(value));
+            => VolumeFlow.FromUsGallonsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUsGallonsPerMinute(value.ToDouble(null));
+            => VolumeFlow.FromUsGallonsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(double)" />
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(QuantityValue)" />
         public static VolumeFlow UsGallonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlow.FromUsGallonsPerSecond(double.CreateChecked(value));
+            => VolumeFlow.FromUsGallonsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlow.FromUsGallonsPerSecond(value.ToDouble(null));
+            => VolumeFlow.FromUsGallonsPerSecond(value.ToQuantityValue());
 #endif
 
     }

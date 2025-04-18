@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using Newtonsoft.Json;
-using UnitsNet.Units;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -14,55 +11,98 @@ namespace UnitsNet.Serialization.JsonNet
     /// <example>
     /// <code>
     /// {
-    ///     "Value": 1.20,
+    ///     "Value": 1.2,
     ///     "Unit": "mg",
     ///     "Type": "Mass"
     /// }
     /// </code>
     /// </example>
     /// <inheritdoc />
-    public class AbbreviatedUnitsConverter : JsonConverter<IQuantity>
+    public class AbbreviatedUnitsConverter : NullableQuantityConverter<IQuantity>
     {
         private const string ValueProperty = "Value";
         private const string UnitProperty = "Unit";
         private const string TypeProperty = "Type";
 
-        private readonly UnitAbbreviationsCache _abbreviations;
+        private readonly QuantityValueSerializationFormat _valueSerializationFormat;
+        private readonly QuantityValueDeserializationFormat _valueDeserializationFormat;
         private readonly IEqualityComparer<string?> _propertyComparer;
-        private readonly IDictionary<string, QuantityInfo> _quantities;
+
         private readonly UnitParser _unitParser;
-
+        
         /// <summary>
-        ///     Construct a converter using the default list of quantities (case insensitive) and unit abbreviation provider
+        ///     Initializes a new instance of the <see cref="AbbreviatedUnitsConverter" /> class using the default
+        ///     case-insensitive comparer and the specified <see cref="QuantityValueFormatOptions" />.
         /// </summary>
-        public AbbreviatedUnitsConverter()
-            : this(StringComparer.OrdinalIgnoreCase)
+        /// <param name="valueFormatOptions">
+        ///     The options for formatting quantity values during serialization and deserialization.
+        ///     Defaults to a new instance of <see cref="QuantityValueFormatOptions" /> if not specified.
+        /// </param>
+        public AbbreviatedUnitsConverter(QuantityValueFormatOptions valueFormatOptions = new())
+            : this(StringComparer.OrdinalIgnoreCase, valueFormatOptions)
         {
         }
 
         /// <summary>
-        ///     Construct a converter using the default list of quantities and unit abbreviation provider
+        ///     Initializes a new instance of the <see cref="AbbreviatedUnitsConverter" /> class.
         /// </summary>
-        /// <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
-        public AbbreviatedUnitsConverter(IEqualityComparer<string?> comparer)
-            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitsNetSetup.Default.UnitAbbreviations, comparer)
+        /// <param name="comparer">
+        ///     The equality comparer used to compare property or quantity names, such as
+        ///     <see cref="StringComparer.OrdinalIgnoreCase" />.
+        /// </param>
+        /// <param name="valueFormatOptions">
+        ///     Options for formatting the quantity value during serialization and deserialization.
+        /// </param>
+        /// <remarks>
+        ///     The <paramref name="comparer" /> is used exclusively for property name matching.
+        ///     Quantity names are matched using the default comparer of <see cref="Quantity.ByName" />,
+        ///     which is currently <see cref="StringComparer.OrdinalIgnoreCase" />.
+        /// </remarks>
+        public AbbreviatedUnitsConverter(IEqualityComparer<string?> comparer, QuantityValueFormatOptions valueFormatOptions = new())
+            : this(UnitParser.Default, comparer, valueFormatOptions)
         {
         }
 
         /// <summary>
-        ///     Construct a converter using the provided map of {name : quantity}
+        ///     Initializes a new instance of the <see cref="AbbreviatedUnitsConverter" /> class.
         /// </summary>
-        /// <param name="quantities">The dictionary of quantity names</param>
-        /// <param name="abbreviations">The unit abbreviations used for the serialization </param>
-        /// <param name="propertyComparer">The comparer used to compare the property names (e.g. StringComparer.OrdinalIgnoreCase) </param>
-        public AbbreviatedUnitsConverter(IDictionary<string, QuantityInfo> quantities, UnitAbbreviationsCache abbreviations, IEqualityComparer<string?> propertyComparer)
+        /// <param name="unitParser">
+        ///     The <see cref="UnitParser" /> used for deserializing an abbreviation back into its
+        ///     corresponding unit.
+        /// </param>
+        /// <param name="valueFormatOptions">
+        ///     The options specifying how values should be serialized and deserialized.
+        ///     Defaults to a new instance of <see cref="QuantityValueFormatOptions" /> if not provided.
+        /// </param>
+        public AbbreviatedUnitsConverter(UnitParser unitParser, QuantityValueFormatOptions valueFormatOptions = new())
+            : this(unitParser, StringComparer.OrdinalIgnoreCase, valueFormatOptions)
         {
-            _quantities = quantities;
-            _abbreviations = abbreviations;
-            _propertyComparer = propertyComparer;
-            _unitParser = new UnitParser(abbreviations);
         }
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="AbbreviatedUnitsConverter" /> class.
+        /// </summary>
+        /// <param name="unitParser">
+        ///     The <see cref="UnitParser" /> used for deserializing an abbreviation back into its
+        ///     corresponding unit.
+        /// </param>
+        /// <param name="propertyComparer">
+        ///     The comparer used to compare property names during serialization and deserialization.
+        ///     For example, <see cref="StringComparer.OrdinalIgnoreCase" /> can be used for case-insensitive comparisons.
+        /// </param>
+        /// <param name="valueFormatOptions">
+        ///     The options specifying how values should be serialized and deserialized.
+        ///     Defaults to a new instance of <see cref="QuantityValueFormatOptions" /> if not provided.
+        /// </param>
+        public AbbreviatedUnitsConverter(UnitParser unitParser, IEqualityComparer<string?> propertyComparer,
+            QuantityValueFormatOptions valueFormatOptions = new())
+        {
+            _unitParser = unitParser ?? throw new ArgumentNullException(nameof(unitParser));
+            _propertyComparer = propertyComparer?? throw new ArgumentNullException(nameof(propertyComparer));
+            _valueSerializationFormat = valueFormatOptions.SerializationFormat;
+            _valueDeserializationFormat = valueFormatOptions.DeserializationFormat;
+        }
+        
         /// <inheritdoc />
         public override void WriteJson(JsonWriter writer, IQuantity? quantity, JsonSerializer serializer)
         {
@@ -71,47 +111,123 @@ namespace UnitsNet.Serialization.JsonNet
                 writer.WriteNull();
                 return;
             }
-
-            var unit = GetUnitAbbreviation(quantity.Unit); // by default this should be equal to quantity.ToString("a", CultureInfo.InvariantCulture);
-            var quantityType = GetQuantityType(quantity); // by default this should be equal to quantity.QuantityInfo.Name
-
+            
             writer.WriteStartObject();
 
-            // write the 'Value' using the actual type
-            writer.WritePropertyName(ValueProperty);
-            writer.WriteValue((double)quantity.Value);
-
-            //  write the 'Unit' abbreviation
-            writer.WritePropertyName(UnitProperty);
-            writer.WriteValue(unit);
-
-            // write the quantity 'Type'
-            writer.WritePropertyName(TypeProperty);
-            writer.WriteValue(quantityType);
+            WriteValueProperty(writer, quantity, serializer);
+            WriteUnitProperty(writer, quantity, serializer);
+            WriteTypeProperty(writer, quantity, serializer);
 
             writer.WriteEndObject();
         }
 
         /// <summary>
-        ///     Get the string representation associated with the given quantity
+        /// Writes the 'Value' property of the specified quantity to the JSON output.
         /// </summary>
-        /// <param name="quantity">The quantity that is being serialized</param>
-        /// <returns>The string representation associated with the given quantity</returns>
-        protected string GetQuantityType(IQuantity quantity)
+        /// <param name="writer">The <see cref="JsonWriter"/> used to write the JSON data.</param>
+        /// <param name="quantity">The <see cref="IQuantity"/> instance whose 'Value' property is to be written.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <remarks>
+        /// This method writes the numerical value of the quantity using the general ("G") format and invariant culture.
+        /// It can be overridden to customize the representation of the value, such as using a fractional format or a different numeric type.
+        /// </remarks>
+        protected virtual void WriteValueProperty(JsonWriter writer, IQuantity quantity, JsonSerializer serializer)
         {
-            return _quantities[quantity.QuantityInfo.Name].Name;
+            writer.WritePropertyName(ValueProperty);
+            writer.WriteValue(quantity.Value, serializer, _valueSerializationFormat);
         }
 
+        /// <summary>
+        /// Writes the 'Unit' property to the JSON output.
+        /// </summary>
+        /// <param name="writer">The <see cref="JsonWriter"/> used to write the JSON content.</param>
+        /// <param name="quantity">The <see cref="IQuantity"/> instance whose unit is being written.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <remarks>
+        /// This method can be overridden to customize the format or type of the 'Unit' property in the JSON payload.
+        /// </remarks>
+        protected virtual void WriteUnitProperty(JsonWriter writer, IQuantity quantity, JsonSerializer serializer)
+        {
+            writer.WritePropertyName(UnitProperty);
+            writer.WriteValue(_unitParser.Abbreviations.GetDefaultAbbreviation(quantity.UnitKey, serializer.Culture));
+        }
+
+        /// <summary>
+        ///     Writes the 'Type' property.
+        /// </summary>
+        /// <param name="writer">The JsonWriter to write to.</param>
+        /// <param name="quantity"></param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <remarks>
+        ///     This method can be overridden to customize the payload type or format.
+        /// </remarks>
+        protected virtual void WriteTypeProperty(JsonWriter writer, IQuantity quantity, JsonSerializer serializer)
+        {
+            writer.WritePropertyName(TypeProperty);
+            writer.WriteValue(quantity.QuantityInfo.Name);
+        }
+
+        /// <summary>
+        ///     Reads the "Value" property from the JSON reader and converts it to a <see cref="QuantityValue" />.
+        /// </summary>
+        /// <param name="reader">The <see cref="JsonReader" /> to read the value from.</param>
+        /// <param name="objectType">The type of the object to deserialize.</param>
+        /// <param name="serializer">The <see cref="JsonSerializer" /> used for deserialization.</param>
+        /// <returns>The parsed <see cref="QuantityValue" />.</returns>
+        /// <exception cref="JsonSerializationException">
+        ///     Thrown if the value cannot be read or converted to a <see cref="QuantityValue" />.
+        /// </exception>
+        protected virtual QuantityValue ReadValueProperty(JsonReader reader, Type objectType, JsonSerializer serializer)
+        {
+            return reader.ReadValue(serializer, _valueDeserializationFormat);
+        }
+
+        /// <summary>
+        ///     Reads the unit abbreviation property from the JSON reader.
+        /// </summary>
+        /// <param name="reader">The <see cref="JsonReader" /> instance to read from.</param>
+        /// <param name="objectType">The type of the object to deserialize.</param>
+        /// <param name="serializer">The <see cref="JsonSerializer"/> used for deserialization.</param>
+        /// <returns>
+        ///     The unit abbreviation as a <see cref="string" /> if present; otherwise, <c>null</c>.
+        /// </returns>
+        /// <exception cref="JsonReaderException">
+        ///     Thrown if the JSON reader is not positioned at a valid string value for the unit abbreviation.
+        /// </exception>
+        protected virtual string? ReadUnitAbbreviationProperty(JsonReader reader, Type objectType, JsonSerializer serializer)
+        {
+            return reader.ReadAsString();
+        }
+
+        /// <summary>
+        ///     Reads the quantity name property from the JSON reader.
+        /// </summary>
+        /// <param name="reader">The <see cref="JsonReader" /> instance used to read the JSON data.</param>
+        /// <param name="objectType">The type of the object to deserialize.</param>
+        /// <param name="serializer">The <see cref="JsonSerializer"/> used for deserialization.</param>
+        /// <returns>
+        ///     The quantity name as a string, or <c>null</c> if the value is not present or cannot be read.
+        /// </returns>
+        /// <remarks>
+        ///     This method is used to extract the name of the quantity type from the JSON data.
+        ///     The quantity name is typically used to identify the type of measurement (e.g., "Mass", "Length").
+        /// </remarks>
+        protected virtual string? ReadQuantityNameProperty(JsonReader reader, Type objectType, JsonSerializer serializer)
+        {
+            return reader.ReadAsString();
+        }
+        
         /// <inheritdoc />
         public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            QuantityInfo? quantityInfo;
             if (reader.TokenType == JsonToken.Null)
             {
-                return TryGetQuantity(objectType.Name, out quantityInfo) ? quantityInfo.Zero : default;
+                return objectType == typeof(IQuantity) || typeof(IQuantity).IsAssignableFrom(Nullable.GetUnderlyingType(objectType))
+                    ? null
+                    : _unitParser.Quantities.GetQuantityInfo(objectType).Zero;
             }
 
-            string? valueToken = null;
+            QuantityValue value = QuantityValue.Zero;
             string? unitAbbreviation = null, quantityName = null;
             if (reader.TokenType == JsonToken.StartObject)
             {
@@ -122,201 +238,53 @@ namespace UnitsNet.Serialization.JsonNet
                         var propertyName = reader.Value as string;
                         if (_propertyComparer.Equals(propertyName, ValueProperty))
                         {
-                            valueToken = reader.ReadAsString();
+                            value = ReadValueProperty(reader, objectType, serializer);
                         }
                         else if (_propertyComparer.Equals(propertyName, UnitProperty))
                         {
-                            unitAbbreviation = reader.ReadAsString();
+                            unitAbbreviation = ReadUnitAbbreviationProperty(reader, objectType, serializer);
                         }
                         else if (_propertyComparer.Equals(propertyName, TypeProperty))
                         {
-                            quantityName = reader.ReadAsString();
+                            quantityName = ReadQuantityNameProperty(reader, objectType, serializer);
+                        }
+                        else if (serializer.MissingMemberHandling == MissingMemberHandling.Ignore)
+                        {
+                            reader.Skip();
                         }
                         else
                         {
-                            reader.Skip();
+                            throw new JsonException($"'{propertyName}' was no found in the list of members of '{objectType}'.");
                         }
                     }
                 }
             }
-
-
-            Enum unit;
-            if (quantityName is null)
+            
+            UnitInfo unitInfo;
+            if (quantityName != null && unitAbbreviation != null)
             {
-                if (TryGetQuantity(objectType.Name, out quantityInfo))
-                {
-                    unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
-                }
-                else if (unitAbbreviation != null) // the objectType doesn't match any concrete quantity type (likely it is an IQuantity)
-                {
-                    // failing back to an exhaustive search (it is possible that this converter was created with a short-list of non-ambiguous quantities
-                    unit = FindUnit(unitAbbreviation, out quantityInfo);
-                }
-                else
-                {
-                    throw new FormatException("No unit abbreviation found in JSON.");
-                }
+                unitInfo = _unitParser.GetUnitFromAbbreviation(quantityName, unitAbbreviation, serializer.Culture);
+            }
+            else if (unitAbbreviation != null)
+            {
+                unitInfo = objectType == typeof(IQuantity)
+                    ? _unitParser.GetUnitFromAbbreviation(unitAbbreviation, serializer.Culture)
+                    : _unitParser.GetUnitFromAbbreviation(Nullable.GetUnderlyingType(objectType) ?? objectType, unitAbbreviation, serializer.Culture);
+            }
+            else if (quantityName != null)
+            {
+                unitInfo = _unitParser.Quantities.GetQuantityByName(quantityName).BaseUnitInfo;
+            }
+            else if (objectType != typeof(IQuantity))
+            {
+                unitInfo = _unitParser.Quantities.GetQuantityInfo(Nullable.GetUnderlyingType(objectType) ?? objectType).BaseUnitInfo;
             }
             else
             {
-                quantityInfo = GetQuantityInfo(quantityName);
-                unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
+                throw new FormatException("The target unit cannot be determined from the provided JSON.");
             }
 
-            double value;
-            if (valueToken is null)
-            {
-                value = default;
-            }
-            else
-            {
-                value = double.Parse(valueToken, CultureInfo.InvariantCulture);
-            }
-
-            return Quantity.From(value, unit);
-        }
-
-        /// <summary>
-        ///     Attempt to find a unique (non-ambiguous) unit matching the provided abbreviation.
-        ///     <remarks>
-        ///         An exhaustive search using all quantities is very likely to fail with an
-        ///         <exception cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
-        ///     </remarks>
-        /// </summary>
-        /// <param name="unitAbbreviation">The unit abbreviation </param>
-        /// <param name="quantityInfo">The quantity type where the resulting unit was found </param>
-        /// <returns>The unit associated with the given <paramref name="unitAbbreviation" /></returns>
-        /// <exception cref="AmbiguousUnitParseException"></exception>
-        /// <exception cref="UnitNotFoundException"></exception>
-        protected virtual Enum FindUnit(string unitAbbreviation, out QuantityInfo quantityInfo)
-        {
-            if (unitAbbreviation is null) // we could assume string.Empty instead
-            {
-                throw new UnitNotFoundException("The unit abbreviation and quantity type cannot both be null");
-            }
-
-            Enum? unit = null;
-            QuantityInfo? tempQuantityInfo = default;
-            foreach (var targetQuantity in _quantities.Values)
-            {
-                if (!TryParse(unitAbbreviation, targetQuantity, out var unitMatched))
-                {
-                    continue;
-                }
-
-                if (unit != null &&
-                    !(targetQuantity == tempQuantityInfo && Equals(unit, unitMatched))) // it is possible to have "synonyms": e.g. "Mass" and "Weight"
-                {
-                    throw new AmbiguousUnitParseException($"Multiple quantities found matching the provided abbreviation: {unit}, {unitMatched}");
-                }
-
-                tempQuantityInfo = targetQuantity;
-                unit = unitMatched;
-            }
-
-            if (unit is null || tempQuantityInfo is null)
-            {
-                throw new UnitNotFoundException($"No quantity found with abbreviation [{unitAbbreviation}].");
-            }
-
-            quantityInfo = tempQuantityInfo;
-            return unit;
-        }
-
-
-        /// <summary>
-        ///     Get the unit abbreviation associated with the given unit
-        /// </summary>
-        /// <param name="unit">Unit enum value, such as <see cref="MassUnit.Kilogram" />.</param>
-        /// <returns>The default abbreviation as provided by the associated <see cref="UnitAbbreviationsCache" /></returns>
-        protected string GetUnitAbbreviation(Enum unit)
-        {
-            return _abbreviations.GetDefaultAbbreviation(unit, CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        ///     If the unit abbreviation is unspecified: returns the default (BaseUnit) unit for the
-        ///     <paramref name="quantityInfo" />, otherwise attempts to <see cref="Parse" /> the
-        ///     <paramref name="unitAbbreviation" />
-        /// </summary>
-        /// <param name="unitAbbreviation">
-        ///     Unit abbreviation, such as "kg" or "m" for <see cref="MassUnit.Kilogram" /> and
-        ///     <see cref="LengthUnit.Meter" /> respectively.
-        /// </param>
-        /// <param name="quantityInfo">The associated quantity info</param>
-        /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected virtual Enum GetUnitOrDefault(string? unitAbbreviation, QuantityInfo quantityInfo)
-        {
-            return unitAbbreviation == null
-                ? quantityInfo.BaseUnitInfo.Value
-                : _unitParser.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture);
-        }
-
-        /// <param name="unitAbbreviation">
-        ///     Unit abbreviation, such as "kg" or "m" for <see cref="MassUnit.Kilogram" /> and
-        ///     <see cref="LengthUnit.Meter" /> respectively.
-        /// </param>
-        /// <param name="quantityInfo">The associated quantity info</param>
-        /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected Enum Parse(string unitAbbreviation, QuantityInfo quantityInfo)
-        {
-            return _unitParser.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture);
-        }
-
-        /// <param name="unitAbbreviation">
-        ///     Unit abbreviation, such as "kg" or "m" for <see cref="MassUnit.Kilogram" /> and
-        ///     <see cref="LengthUnit.Meter" /> respectively.
-        /// </param>
-        /// <param name="quantityInfo">The associated quantity info</param>
-        /// <param name="unit">The unit enum value as out result.</param>
-        /// <returns>True if successful.</returns>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected bool TryParse(string? unitAbbreviation, QuantityInfo quantityInfo, [NotNullWhen(true)] out Enum? unit)
-        {
-            return _unitParser.TryParse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture, out unit);
-        }
-
-        /// <summary>
-        ///     Try to get the quantity info associated with a given quantity name
-        /// </summary>
-        /// <param name="quantityName">The name of the quantity: i.e. <see cref="QuantityInfo.Name" /></param>
-        /// <param name="quantityInfo">The quantity information associated with the given quantity name</param>
-        /// <returns>
-        ///     <value>true</value>
-        ///     if a matching quantity is found or
-        ///     <value>false</value>
-        ///     otherwise
-        /// </returns>
-        protected bool TryGetQuantity(string quantityName, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
-        {
-            return _quantities.TryGetValue(quantityName, out quantityInfo);
-        }
-
-        /// <summary>
-        ///     Get the quantity info associated with a given quantity name
-        /// </summary>
-        /// <param name="quantityName">The name of the quantity: i.e. <see cref="QuantityInfo.Name" /></param>
-        /// <returns>
-        ///     <value>true</value>
-        ///     if a matching quantity is found or
-        ///     <value>false</value>
-        ///     otherwise
-        /// </returns>
-        /// <exception cref="UnitsNetException">Quantity not found exception is thrown if no match found</exception>
-        protected QuantityInfo GetQuantityInfo(string quantityName)
-        {
-            if (!TryGetQuantity(quantityName, out var quantityInfo))
-            {
-                throw new UnitsNetException($"Failed to find the quantity type: {quantityName}.") { Data = { ["type"] = quantityName } };
-            }
-
-            return quantityInfo;
+            return unitInfo.From(value);
         }
     }
 }

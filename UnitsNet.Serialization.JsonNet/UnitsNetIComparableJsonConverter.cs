@@ -15,7 +15,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// Should only be used when UnitsNet types are assigned to properties of type IComparable.
     /// Requires TypeNameHandling on <see cref="JsonSerializerSettings"/> to be set to something other than <see cref="TypeNameHandling.None"/> so that it outputs $type when serializing.
     /// </summary>
-    public sealed class UnitsNetIComparableJsonConverter : UnitsNetBaseJsonConverter<IComparable?>
+    public sealed class UnitsNetIComparableJsonConverter : UnitsNetBaseJsonConverter<IComparable>
     {
         /// <summary>
         /// Indicates if this JsonConverter is capable of writing JSON

@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricImpedance(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -137,15 +137,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricImpedance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricImpedanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricImpedance(1, ElectricImpedanceUnit.Ohm);
 
-            QuantityInfo<ElectricImpedanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricImpedance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricImpedance", quantityInfo.Name);
+            Assert.Equal(ElectricImpedance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricImpedance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricImpedance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricImpedanceUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void ElectricImpedanceInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricImpedanceUnit[] expectedUnits = [ElectricImpedanceUnit.Ohm];
+
+            ElectricImpedance.ElectricImpedanceInfo quantityInfo = ElectricImpedance.ElectricImpedanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricImpedance", quantityInfo.Name);
+            Assert.Equal(ElectricImpedance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricImpedance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -166,35 +184,35 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = ElectricImpedance.From(1, ElectricImpedanceUnit.Gigaohm);
-            AssertEx.EqualTolerance(1, quantity00.Gigaohms, GigaohmsTolerance);
+            Assert.Equal(1, quantity00.Gigaohms);
             Assert.Equal(ElectricImpedanceUnit.Gigaohm, quantity00.Unit);
 
             var quantity01 = ElectricImpedance.From(1, ElectricImpedanceUnit.Kiloohm);
-            AssertEx.EqualTolerance(1, quantity01.Kiloohms, KiloohmsTolerance);
+            Assert.Equal(1, quantity01.Kiloohms);
             Assert.Equal(ElectricImpedanceUnit.Kiloohm, quantity01.Unit);
 
             var quantity02 = ElectricImpedance.From(1, ElectricImpedanceUnit.Megaohm);
-            AssertEx.EqualTolerance(1, quantity02.Megaohms, MegaohmsTolerance);
+            Assert.Equal(1, quantity02.Megaohms);
             Assert.Equal(ElectricImpedanceUnit.Megaohm, quantity02.Unit);
 
             var quantity03 = ElectricImpedance.From(1, ElectricImpedanceUnit.Microohm);
-            AssertEx.EqualTolerance(1, quantity03.Microohms, MicroohmsTolerance);
+            Assert.Equal(1, quantity03.Microohms);
             Assert.Equal(ElectricImpedanceUnit.Microohm, quantity03.Unit);
 
             var quantity04 = ElectricImpedance.From(1, ElectricImpedanceUnit.Milliohm);
-            AssertEx.EqualTolerance(1, quantity04.Milliohms, MilliohmsTolerance);
+            Assert.Equal(1, quantity04.Milliohms);
             Assert.Equal(ElectricImpedanceUnit.Milliohm, quantity04.Unit);
 
             var quantity05 = ElectricImpedance.From(1, ElectricImpedanceUnit.Nanoohm);
-            AssertEx.EqualTolerance(1, quantity05.Nanoohms, NanoohmsTolerance);
+            Assert.Equal(1, quantity05.Nanoohms);
             Assert.Equal(ElectricImpedanceUnit.Nanoohm, quantity05.Unit);
 
             var quantity06 = ElectricImpedance.From(1, ElectricImpedanceUnit.Ohm);
-            AssertEx.EqualTolerance(1, quantity06.Ohms, OhmsTolerance);
+            Assert.Equal(1, quantity06.Ohms);
             Assert.Equal(ElectricImpedanceUnit.Ohm, quantity06.Unit);
 
             var quantity07 = ElectricImpedance.From(1, ElectricImpedanceUnit.Teraohm);
-            AssertEx.EqualTolerance(1, quantity07.Teraohms, TeraohmsTolerance);
+            Assert.Equal(1, quantity07.Teraohms);
             Assert.Equal(ElectricImpedanceUnit.Teraohm, quantity07.Unit);
 
         }
@@ -337,106 +355,38 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 GΩ", ElectricImpedanceUnit.Gigaohm, 4.2)]
+        [InlineData("en-US", "4.2 kΩ", ElectricImpedanceUnit.Kiloohm, 4.2)]
+        [InlineData("en-US", "4.2 MΩ", ElectricImpedanceUnit.Megaohm, 4.2)]
+        [InlineData("en-US", "4.2 µΩ", ElectricImpedanceUnit.Microohm, 4.2)]
+        [InlineData("en-US", "4.2 mΩ", ElectricImpedanceUnit.Milliohm, 4.2)]
+        [InlineData("en-US", "4.2 nΩ", ElectricImpedanceUnit.Nanoohm, 4.2)]
+        [InlineData("en-US", "4.2 Ω", ElectricImpedanceUnit.Ohm, 4.2)]
+        [InlineData("en-US", "4.2 TΩ", ElectricImpedanceUnit.Teraohm, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricImpedanceUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 GΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigaohms, GigaohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Gigaohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 kΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kiloohms, KiloohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Kiloohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 MΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megaohms, MegaohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Megaohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 µΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microohms, MicroohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Microohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 mΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliohms, MilliohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Milliohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 nΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanoohms, NanoohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Nanoohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 Ω", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Ohms, OhmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Ohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricImpedance.Parse("1 TΩ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Teraohms, TeraohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Teraohm, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricImpedance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 GΩ", ElectricImpedanceUnit.Gigaohm, 4.2)]
+        [InlineData("en-US", "4.2 kΩ", ElectricImpedanceUnit.Kiloohm, 4.2)]
+        [InlineData("en-US", "4.2 MΩ", ElectricImpedanceUnit.Megaohm, 4.2)]
+        [InlineData("en-US", "4.2 µΩ", ElectricImpedanceUnit.Microohm, 4.2)]
+        [InlineData("en-US", "4.2 mΩ", ElectricImpedanceUnit.Milliohm, 4.2)]
+        [InlineData("en-US", "4.2 nΩ", ElectricImpedanceUnit.Nanoohm, 4.2)]
+        [InlineData("en-US", "4.2 Ω", ElectricImpedanceUnit.Ohm, 4.2)]
+        [InlineData("en-US", "4.2 TΩ", ElectricImpedanceUnit.Teraohm, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricImpedanceUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(ElectricImpedance.TryParse("1 GΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigaohms, GigaohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Gigaohm, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricImpedance.TryParse("1 kΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kiloohms, KiloohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Kiloohm, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricImpedance.TryParse("1 µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microohms, MicroohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Microohm, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricImpedance.TryParse("1 nΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanoohms, NanoohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Nanoohm, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricImpedance.TryParse("1 Ω", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Ohms, OhmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Ohm, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricImpedance.TryParse("1 TΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Teraohms, TeraohmsTolerance);
-                Assert.Equal(ElectricImpedanceUnit.Teraohm, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricImpedance.TryParse(quantityString, out ElectricImpedance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -570,6 +520,34 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ElectricImpedanceUnit.Gigaohm, "GΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Kiloohm, "kΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Megaohm, "MΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Microohm, "µΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Milliohm, "mΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Nanoohm, "nΩ")]
+        [InlineData("en-US", ElectricImpedanceUnit.Ohm, "Ω")]
+        [InlineData("en-US", ElectricImpedanceUnit.Teraohm, "TΩ")]
+        public void GetAbbreviationForCulture(string culture, ElectricImpedanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricImpedance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricImpedanceUnit unit)
         {
@@ -599,6 +577,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricImpedance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -622,39 +601,41 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricImpedanceUnit> quantityToConvert = quantity;
                 IQuantity<ElectricImpedanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricImpedance ohm = ElectricImpedance.FromOhms(1);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromGigaohms(ohm.Gigaohms).Ohms, GigaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromMicroohms(ohm.Microohms).Ohms, MicroohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromNanoohms(ohm.Nanoohms).Ohms, NanoohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricImpedance.FromTeraohms(ohm.Teraohms).Ohms, TeraohmsTolerance);
+            ElectricImpedance ohm = ElectricImpedance.FromOhms(3);
+            Assert.Equal(3, ElectricImpedance.FromGigaohms(ohm.Gigaohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromKiloohms(ohm.Kiloohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromMegaohms(ohm.Megaohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromMicroohms(ohm.Microohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromMilliohms(ohm.Milliohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromNanoohms(ohm.Nanoohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromOhms(ohm.Ohms).Ohms);
+            Assert.Equal(3, ElectricImpedance.FromTeraohms(ohm.Teraohms).Ohms);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricImpedance v = ElectricImpedance.FromOhms(1);
-            AssertEx.EqualTolerance(-1, -v.Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricImpedance.FromOhms(3)-v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricImpedance.FromOhms(10)/5).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, ElectricImpedance.FromOhms(10)/ElectricImpedance.FromOhms(5), OhmsTolerance);
+            Assert.Equal(-1, -v.Ohms);
+            Assert.Equal(2, (ElectricImpedance.FromOhms(3) - v).Ohms);
+            Assert.Equal(2, (v + v).Ohms);
+            Assert.Equal(10, (v * 10).Ohms);
+            Assert.Equal(10, (10 * v).Ohms);
+            Assert.Equal(2, (ElectricImpedance.FromOhms(10) / 5).Ohms);
+            Assert.Equal(2, ElectricImpedance.FromOhms(10) / ElectricImpedance.FromOhms(5));
         }
 
         [Fact]
@@ -700,8 +681,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricImpedanceUnit.Ohm, 1, ElectricImpedanceUnit.Ohm, true)]  // Same value and unit.
         [InlineData(1, ElectricImpedanceUnit.Ohm, 2, ElectricImpedanceUnit.Ohm, false)] // Different value.
-        [InlineData(2, ElectricImpedanceUnit.Ohm, 1, ElectricImpedanceUnit.Gigaohm, false)] // Different value and unit.
-        [InlineData(1, ElectricImpedanceUnit.Ohm, 1, ElectricImpedanceUnit.Gigaohm, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricImpedanceUnit unitA, double valueB, ElectricImpedanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricImpedance(valueA, unitA);
@@ -739,23 +718,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricImpedance.FromOhms(1);
-            Assert.True(v.Equals(ElectricImpedance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricImpedance.Zero, OhmsTolerance, ComparisonType.Relative));
-            Assert.True(ElectricImpedance.FromOhms(100).Equals(ElectricImpedance.FromOhms(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricImpedance.FromOhms(100).Equals(ElectricImpedance.FromOhms(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricImpedance.FromOhms(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricImpedance.FromOhms(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricImpedance ohm = ElectricImpedance.FromOhms(1);
@@ -767,6 +729,32 @@ namespace UnitsNet.Tests
         {
             ElectricImpedance ohm = ElectricImpedance.FromOhms(1);
             Assert.False(ohm.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = ElectricImpedance.FromOhms(firstValue);
+            var otherQuantity = ElectricImpedance.FromOhms(secondValue);
+            ElectricImpedance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, ElectricImpedance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricImpedance.FromOhms(1);
+            var negativeTolerance = ElectricImpedance.FromOhms(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -783,6 +771,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricImpedance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricImpedance.Info.Units, ElectricImpedance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricImpedance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -858,157 +858,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricImpedance)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricImpedanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(ElectricImpedance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(ElectricImpedance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = ElectricImpedance.FromOhms(1.0);
-            Assert.Equal(new {ElectricImpedance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricImpedance), quantity.As(ElectricImpedance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

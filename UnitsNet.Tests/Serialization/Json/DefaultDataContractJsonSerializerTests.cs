@@ -1,13 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests.Serialization.Json
 {
+    
     /// <summary>
     ///     These tests demonstrate the default behavior of the DataContractJsonSerializer when dealing with quantities
     ///     <remarks>
@@ -21,7 +18,7 @@ namespace UnitsNet.Tests.Serialization.Json
     {
         protected override string SerializeObject(object obj)
         {
-            var serializer = new DataContractJsonSerializer(obj.GetType());
+            var serializer = new DataContractJsonSerializer(obj.GetType(), new DataContractJsonSerializerSettings(){SerializeReadOnlyTypes = true});
             using var stream = new MemoryStream();
             serializer.WriteObject(stream, obj);
             stream.Position = 0;
@@ -29,12 +26,12 @@ namespace UnitsNet.Tests.Serialization.Json
             return streamReader.ReadToEnd();
         }
 
-        protected override T DeserializeObject<T>(string xml)
+        protected override T DeserializeObject<T>(string json)
         {
             var serializer = new DataContractJsonSerializer(typeof(T));
             using var stream = new MemoryStream();
             using var writer = new StreamWriter(stream);
-            writer.Write(xml);
+            writer.Write(json);
             writer.Flush();
             stream.Position = 0;
             return (T)(serializer.ReadObject(stream) ?? throw new InvalidOperationException("Read 'null' from stream."));
@@ -43,11 +40,11 @@ namespace UnitsNet.Tests.Serialization.Json
         #region Serialization tests
 
         [Fact]
-        public void DoubleQuantity_SerializedWithDoubleValueAndunitInt()
+        public void Quantity_SerializedWithNumeratorAndDenominatorValueAndIntegerUnit()
         {
             var quantity = new Mass(1.20, MassUnit.Milligram);
             var unitInt = (int)quantity.Unit;
-            var expectedJson = $"{{\"Value\":1.2,\"Unit\":{unitInt}}}";
+            var expectedJson = $$$"""{"Value":{"N":{"_bits":null,"_sign":12},"D":{"_bits":null,"_sign":10}},"Unit":{{{unitInt}}}}""";
 
             var json = SerializeObject(quantity);
 
@@ -59,11 +56,11 @@ namespace UnitsNet.Tests.Serialization.Json
         #region Deserialization tests
 
         [Fact]
-        public void DoubleQuantity_DeserializedFromDoubleValueAndunitInt()
+        public void Quantity_DeserializedFromValueAndIntegerUnit()
         {
             var expectedUnit = MassUnit.Milligram;
             var unitInt = (int)expectedUnit;
-            var json = $"{{\"Value\":1.2,\"Unit\":{unitInt}}}";
+            var json = $$$"""{"Value":{"N":{"_bits":null,"_sign":12},"D":{"_bits":null,"_sign":10}},"Unit":{{{unitInt}}}}""";
 
             var quantity = DeserializeObject<Mass>(json);
 
@@ -72,20 +69,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DoubleQuantity_DeserializedFromQuotedDoubleValueAndunitInt()
-        {
-            var expectedUnit = MassUnit.Milligram;
-            var unitInt = (int)expectedUnit;
-            var json = $"{{\"Value\":\"1.2\",\"Unit\":{unitInt}}}";
-
-            var quantity = DeserializeObject<Mass>(json);
-
-            Assert.Equal(1.2, quantity.Value);
-            Assert.Equal(expectedUnit, quantity.Unit);
-        }
-
-        [Fact]
-        public void DoubleZeroQuantity_DeserializedFromunitIntAndNoValue()
+        public void ZeroQuantity_DeserializedFromIntegerUnitAndNoValue()
         {
             var expectedUnit = MassUnit.Milligram;
             var unitInt = (int)expectedUnit;
@@ -103,7 +87,7 @@ namespace UnitsNet.Tests.Serialization.Json
             var unit = InformationUnit.Exabyte;
             var unitInt = (int)unit;
             var testObject = new TestInterfaceObject { Quantity = new Information(1.2, unit) };
-            var expectedJson = $"{{\"Quantity\":{{\"__type\":\"Information:#UnitsNet\",\"Value\":1.2,\"Unit\":{unitInt}}}}}";
+            var expectedJson = $$$"""{"Quantity":{"__type":"Information:#UnitsNet","Value":{"N":{"_bits":null,"_sign":12},"D":{"_bits":null,"_sign":10}},"Unit":{{{unitInt}}}}}""";
 
             var json = SerializeObject(testObject);
 
@@ -111,9 +95,9 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DoubleBaseUnitQuantity_DeserializedFromValueAndNoUnit()
+        public void BaseUnitQuantity_DeserializedFromValueAndNoUnit()
         {
-            var json = "{\"Value\":1.2}";
+            var json = """{"Value":{"N":{"_bits":null,"_sign":12},"D":{"_bits":null,"_sign":10}}""";
 
             var quantity = DeserializeObject<Mass>(json);
 
@@ -122,7 +106,20 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DoubleZeroBaseQuantity_DeserializedFromEmptyInput()
+        public void ZeroQuantity_DeserializedFromUnitIntAndNoValue()
+        {
+            var expectedUnit = InformationUnit.Exabyte;
+            var unitInt = (int)expectedUnit;
+            var json = $$"""{"Unit":{{unitInt}}}""";
+
+            var quantity = DeserializeObject<Information>(json);
+
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(expectedUnit, quantity.Unit);
+        }
+
+        [Fact]
+        public void ZeroBaseQuantity_DeserializedFromEmptyInput()
         {
             var json = "{}";
 
@@ -138,30 +135,6 @@ namespace UnitsNet.Tests.Serialization.Json
             var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
 
             Assert.Throws<SerializationException>(() => SerializeObject(testObject));
-        }
-
-        [Fact]
-        public void DecimalZeroQuantity_DeserializedFromUnitIntAndNoValue()
-        {
-            var expectedUnit = InformationUnit.Exabyte;
-            var unitInt = (int)expectedUnit;
-            var json = $"{{\"Unit\":{unitInt}}}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(0, quantity.Value);
-            Assert.Equal(expectedUnit, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalZeroBaseQuantity_DeserializedFromEmptyInput()
-        {
-            var json = "{}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(0, quantity.Value);
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
         }
 
         #endregion

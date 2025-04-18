@@ -2,6 +2,7 @@
 
 namespace UnitsNet.Tests
 {
+    #if COMPILED_LAMBDAS_ENABLED
     public class CompiledLambdasTests
     {
         [Theory]
@@ -91,4 +92,5 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, CompiledLambdas.GreaterThanOrEqual(left, right));
         }
     }
+    #endif
 }

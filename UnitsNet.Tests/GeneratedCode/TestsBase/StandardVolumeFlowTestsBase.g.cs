@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new StandardVolumeFlow(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -141,15 +141,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void StandardVolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            StandardVolumeFlowUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
-            QuantityInfo<StandardVolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(StandardVolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("StandardVolumeFlow", quantityInfo.Name);
+            Assert.Equal(StandardVolumeFlow.Zero, quantityInfo.Zero);
+            Assert.Equal(StandardVolumeFlow.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(StandardVolumeFlow.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<StandardVolumeFlowUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void StandardVolumeFlowInfo_CreateWithCustomUnitInfos()
+        {
+            StandardVolumeFlowUnit[] expectedUnits = [StandardVolumeFlowUnit.StandardCubicMeterPerSecond];
+
+            StandardVolumeFlow.StandardVolumeFlowInfo quantityInfo = StandardVolumeFlow.StandardVolumeFlowInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("StandardVolumeFlow", quantityInfo.Name);
+            Assert.Equal(StandardVolumeFlow.Zero, quantityInfo.Zero);
+            Assert.Equal(StandardVolumeFlow.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -171,39 +189,39 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity00.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
+            Assert.Equal(1, quantity00.StandardCubicCentimetersPerMinute);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, quantity00.Unit);
 
             var quantity01 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerHour);
-            AssertEx.EqualTolerance(1, quantity01.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
+            Assert.Equal(1, quantity01.StandardCubicFeetPerHour);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, quantity01.Unit);
 
             var quantity02 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
-            AssertEx.EqualTolerance(1, quantity02.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
+            Assert.Equal(1, quantity02.StandardCubicFeetPerMinute);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, quantity02.Unit);
 
             var quantity03 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity03.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
+            Assert.Equal(1, quantity03.StandardCubicFeetPerSecond);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, quantity03.Unit);
 
             var quantity04 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
-            AssertEx.EqualTolerance(1, quantity04.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
+            Assert.Equal(1, quantity04.StandardCubicMetersPerDay);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, quantity04.Unit);
 
             var quantity05 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
-            AssertEx.EqualTolerance(1, quantity05.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
+            Assert.Equal(1, quantity05.StandardCubicMetersPerHour);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, quantity05.Unit);
 
             var quantity06 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity06.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
+            Assert.Equal(1, quantity06.StandardCubicMetersPerMinute);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, quantity06.Unit);
 
             var quantity07 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
+            Assert.Equal(1, quantity07.StandardCubicMetersPerSecond);
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity07.Unit);
 
             var quantity08 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardLiterPerMinute);
-            AssertEx.EqualTolerance(1, quantity08.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
+            Assert.Equal(1, quantity08.StandardLitersPerMinute);
             Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, quantity08.Unit);
 
         }
@@ -347,131 +365,40 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour, 4.2)]
+        [InlineData("en-US", "4.2 scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 slm", StandardVolumeFlowUnit.StandardLiterPerMinute, 4.2)]
+        public void Parse(string culture, string quantityString, StandardVolumeFlowUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 sccm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 scfh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 scfm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 Sft³/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 Sm³/d", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 Sm³/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 Sm³/min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 Sm³/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = StandardVolumeFlow.Parse("1 slm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = StandardVolumeFlow.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour, 4.2)]
+        [InlineData("en-US", "4.2 scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 slm", StandardVolumeFlowUnit.StandardLiterPerMinute, 4.2)]
+        public void TryParse(string culture, string quantityString, StandardVolumeFlowUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 sccm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 scfh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 scfm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 Sft³/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 Sm³/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 Sm³/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 Sm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 Sm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(StandardVolumeFlow.TryParse("1 slm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
-                Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(StandardVolumeFlow.TryParse(quantityString, out StandardVolumeFlow parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -613,6 +540,35 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "sccm")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicFootPerHour, "scfh")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicFootPerMinute, "scfm")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicFootPerSecond, "Sft³/s")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicMeterPerDay, "Sm³/d")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicMeterPerHour, "Sm³/h")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "Sm³/min")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "Sm³/s")]
+        [InlineData("en-US", StandardVolumeFlowUnit.StandardLiterPerMinute, "slm")]
+        public void GetAbbreviationForCulture(string culture, StandardVolumeFlowUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(StandardVolumeFlow.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(StandardVolumeFlowUnit unit)
         {
@@ -642,6 +598,7 @@ namespace UnitsNet.Tests
                 var quantity = StandardVolumeFlow.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -665,40 +622,42 @@ namespace UnitsNet.Tests
                 IQuantity<StandardVolumeFlowUnit> quantityToConvert = quantity;
                 IQuantity<StandardVolumeFlowUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(standardcubicmeterpersecond.StandardCubicCentimetersPerMinute).StandardCubicMetersPerSecond, StandardCubicCentimetersPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicFeetPerHour(standardcubicmeterpersecond.StandardCubicFeetPerHour).StandardCubicMetersPerSecond, StandardCubicFeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicFeetPerMinute(standardcubicmeterpersecond.StandardCubicFeetPerMinute).StandardCubicMetersPerSecond, StandardCubicFeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicFeetPerSecond(standardcubicmeterpersecond.StandardCubicFeetPerSecond).StandardCubicMetersPerSecond, StandardCubicFeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicMetersPerDay(standardcubicmeterpersecond.StandardCubicMetersPerDay).StandardCubicMetersPerSecond, StandardCubicMetersPerDayTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicMetersPerHour(standardcubicmeterpersecond.StandardCubicMetersPerHour).StandardCubicMetersPerSecond, StandardCubicMetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicMetersPerMinute(standardcubicmeterpersecond.StandardCubicMetersPerMinute).StandardCubicMetersPerSecond, StandardCubicMetersPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardCubicMetersPerSecond(standardcubicmeterpersecond.StandardCubicMetersPerSecond).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, StandardVolumeFlow.FromStandardLitersPerMinute(standardcubicmeterpersecond.StandardLitersPerMinute).StandardCubicMetersPerSecond, StandardLitersPerMinuteTolerance);
+            StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(3);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(standardcubicmeterpersecond.StandardCubicCentimetersPerMinute).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicFeetPerHour(standardcubicmeterpersecond.StandardCubicFeetPerHour).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicFeetPerMinute(standardcubicmeterpersecond.StandardCubicFeetPerMinute).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicFeetPerSecond(standardcubicmeterpersecond.StandardCubicFeetPerSecond).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicMetersPerDay(standardcubicmeterpersecond.StandardCubicMetersPerDay).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicMetersPerHour(standardcubicmeterpersecond.StandardCubicMetersPerHour).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicMetersPerMinute(standardcubicmeterpersecond.StandardCubicMetersPerMinute).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardCubicMetersPerSecond(standardcubicmeterpersecond.StandardCubicMetersPerSecond).StandardCubicMetersPerSecond);
+            Assert.Equal(3, StandardVolumeFlow.FromStandardLitersPerMinute(standardcubicmeterpersecond.StandardLitersPerMinute).StandardCubicMetersPerSecond);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             StandardVolumeFlow v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            AssertEx.EqualTolerance(-1, -v.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (StandardVolumeFlow.FromStandardCubicMetersPerSecond(3)-v).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (v + v).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (v*10).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (10*v).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (StandardVolumeFlow.FromStandardCubicMetersPerSecond(10)/5).StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, StandardVolumeFlow.FromStandardCubicMetersPerSecond(10)/StandardVolumeFlow.FromStandardCubicMetersPerSecond(5), StandardCubicMetersPerSecondTolerance);
+            Assert.Equal(-1, -v.StandardCubicMetersPerSecond);
+            Assert.Equal(2, (StandardVolumeFlow.FromStandardCubicMetersPerSecond(3) - v).StandardCubicMetersPerSecond);
+            Assert.Equal(2, (v + v).StandardCubicMetersPerSecond);
+            Assert.Equal(10, (v * 10).StandardCubicMetersPerSecond);
+            Assert.Equal(10, (10 * v).StandardCubicMetersPerSecond);
+            Assert.Equal(2, (StandardVolumeFlow.FromStandardCubicMetersPerSecond(10) / 5).StandardCubicMetersPerSecond);
+            Assert.Equal(2, StandardVolumeFlow.FromStandardCubicMetersPerSecond(10) / StandardVolumeFlow.FromStandardCubicMetersPerSecond(5));
         }
 
         [Fact]
@@ -744,8 +703,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 2, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, false)] // Different value.
-        [InlineData(2, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, false)] // Different value and unit.
-        [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, StandardVolumeFlowUnit unitA, double valueB, StandardVolumeFlowUnit unitB, bool expectEqual)
         {
             var a = new StandardVolumeFlow(valueA, unitA);
@@ -783,23 +740,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            Assert.True(v.Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(1), StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(StandardVolumeFlow.Zero, StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.True(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), 0.3, ComparisonType.Relative));
-            Assert.False(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
@@ -811,6 +751,32 @@ namespace UnitsNet.Tests
         {
             StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
             Assert.False(standardcubicmeterpersecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(firstValue);
+            var otherQuantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(secondValue);
+            StandardVolumeFlow maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, StandardVolumeFlow.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
+            var negativeTolerance = StandardVolumeFlow.FromStandardCubicMetersPerSecond(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -827,6 +793,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(StandardVolumeFlow.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(StandardVolumeFlow.Info.Units, StandardVolumeFlow.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, StandardVolumeFlow.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -904,157 +882,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(StandardVolumeFlow)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(StandardVolumeFlowUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(StandardVolumeFlow.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(StandardVolumeFlow.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(new {StandardVolumeFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(StandardVolumeFlow), quantity.As(StandardVolumeFlow.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

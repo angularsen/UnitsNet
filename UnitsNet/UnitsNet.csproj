@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>6.0.0-pre014</Version>
+    <Version>6.0.0-pre016</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -16,6 +16,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->
@@ -23,6 +24,7 @@
     <AssemblyVersion>6.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
   </PropertyGroup>

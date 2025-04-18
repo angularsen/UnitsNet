@@ -153,9 +153,6 @@ namespace CodeGen.Generators
                         $"{resourcesDirectory}/{quantity.Name}.restext" :
                         $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
 
-                    // Ensure parent folder exists
-                    Directory.CreateDirectory(resourcesDirectory);
-
                     using var writer = File.CreateText(fileName);
 
                     foreach(Unit unit in quantity.Units)

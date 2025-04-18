@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,13 +14,13 @@ namespace UnitsNet.Serialization.JsonNet
     /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
-    public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
+    public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From(double,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// Instead of calling <see cref="Quantity.From(QuantityValue,UnitKey)"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
@@ -92,10 +91,23 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (registeredQuantity is not null)
             {
-                return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit)!;
+                var instance = Activator.CreateInstance(registeredQuantity, (QuantityValue)valueUnit.Value, unit);
+                if (instance is IQuantity quantityCreated)
+                {
+                    return quantityCreated;
+                }
+                
+                if (instance is not null)
+                {
+                    throw new InvalidOperationException(
+                        $"The instance created for '{registeredQuantity.Name}' is not a valid quantity: '{instance.GetType()}'.");
+                }
+                
+                throw new InvalidOperationException(
+                    $"Cannot create instance of type {registeredQuantity.Name} from value {valueUnit.Value} and unit {valueUnit.Unit}.");
             }
 
-            return Quantity.From(valueUnit.Value, unit);
+            return Quantity.From(QuantityValue.FromDoubleRounded(valueUnit.Value), unit);
         }
 
         private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)

@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new AreaMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -129,15 +129,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
 
-            QuantityInfo<AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
+            Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
+            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(AreaMomentOfInertia.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AreaMomentOfInertiaUnit>)quantity).QuantityInfo);
+        }
 
-            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void AreaMomentOfInertiaInfo_CreateWithCustomUnitInfos()
+        {
+            AreaMomentOfInertiaUnit[] expectedUnits = [AreaMomentOfInertiaUnit.MeterToTheFourth];
+
+            AreaMomentOfInertia.AreaMomentOfInertiaInfo quantityInfo = AreaMomentOfInertia.AreaMomentOfInertiaInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
+            Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
+            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -156,27 +174,27 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
-            AssertEx.EqualTolerance(1, quantity00.CentimetersToTheFourth, CentimetersToTheFourthTolerance);
+            Assert.Equal(1, quantity00.CentimetersToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, quantity00.Unit);
 
             var quantity01 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
-            AssertEx.EqualTolerance(1, quantity01.DecimetersToTheFourth, DecimetersToTheFourthTolerance);
+            Assert.Equal(1, quantity01.DecimetersToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, quantity01.Unit);
 
             var quantity02 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.FootToTheFourth);
-            AssertEx.EqualTolerance(1, quantity02.FeetToTheFourth, FeetToTheFourthTolerance);
+            Assert.Equal(1, quantity02.FeetToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, quantity02.Unit);
 
             var quantity03 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.InchToTheFourth);
-            AssertEx.EqualTolerance(1, quantity03.InchesToTheFourth, InchesToTheFourthTolerance);
+            Assert.Equal(1, quantity03.InchesToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, quantity03.Unit);
 
             var quantity04 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
-            AssertEx.EqualTolerance(1, quantity04.MetersToTheFourth, MetersToTheFourthTolerance);
+            Assert.Equal(1, quantity04.MetersToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, quantity04.Unit);
 
             var quantity05 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
-            AssertEx.EqualTolerance(1, quantity05.MillimetersToTheFourth, MillimetersToTheFourthTolerance);
+            Assert.Equal(1, quantity05.MillimetersToTheFourth);
             Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity05.Unit);
 
         }
@@ -317,92 +335,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁴", AreaMomentOfInertiaUnit.CentimeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 dm⁴", AreaMomentOfInertiaUnit.DecimeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 ft⁴", AreaMomentOfInertiaUnit.FootToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 in⁴", AreaMomentOfInertiaUnit.InchToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 m⁴", AreaMomentOfInertiaUnit.MeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 mm⁴", AreaMomentOfInertiaUnit.MillimeterToTheFourth, 4.2)]
+        public void Parse(string culture, string quantityString, AreaMomentOfInertiaUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 cm⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheFourth, CentimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 dm⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheFourth, DecimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 ft⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheFourth, FeetToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 in⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheFourth, InchesToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 m⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheFourth, MetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AreaMomentOfInertia.Parse("1 mm⁴", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheFourth, MillimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = AreaMomentOfInertia.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁴", AreaMomentOfInertiaUnit.CentimeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 dm⁴", AreaMomentOfInertiaUnit.DecimeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 ft⁴", AreaMomentOfInertiaUnit.FootToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 in⁴", AreaMomentOfInertiaUnit.InchToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 m⁴", AreaMomentOfInertiaUnit.MeterToTheFourth, 4.2)]
+        [InlineData("en-US", "4.2 mm⁴", AreaMomentOfInertiaUnit.MillimeterToTheFourth, 4.2)]
+        public void TryParse(string culture, string quantityString, AreaMomentOfInertiaUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 cm⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheFourth, CentimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, parsed.Unit);
-            }
-
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 dm⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheFourth, DecimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, parsed.Unit);
-            }
-
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 ft⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheFourth, FeetToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, parsed.Unit);
-            }
-
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 in⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheFourth, InchesToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, parsed.Unit);
-            }
-
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 m⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheFourth, MetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, parsed.Unit);
-            }
-
-            {
-                Assert.True(AreaMomentOfInertia.TryParse("1 mm⁴", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheFourth, MillimetersToTheFourthTolerance);
-                Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(AreaMomentOfInertia.TryParse(quantityString, out AreaMomentOfInertia parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -520,6 +480,32 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.CentimeterToTheFourth, "cm⁴")]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.DecimeterToTheFourth, "dm⁴")]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.FootToTheFourth, "ft⁴")]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.InchToTheFourth, "in⁴")]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.MeterToTheFourth, "m⁴")]
+        [InlineData("en-US", AreaMomentOfInertiaUnit.MillimeterToTheFourth, "mm⁴")]
+        public void GetAbbreviationForCulture(string culture, AreaMomentOfInertiaUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(AreaMomentOfInertia.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(AreaMomentOfInertiaUnit unit)
         {
@@ -549,6 +535,7 @@ namespace UnitsNet.Tests
                 var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -572,37 +559,39 @@ namespace UnitsNet.Tests
                 IQuantity<AreaMomentOfInertiaUnit> quantityToConvert = quantity;
                 IQuantity<AreaMomentOfInertiaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromCentimetersToTheFourth(metertothefourth.CentimetersToTheFourth).MetersToTheFourth, CentimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromDecimetersToTheFourth(metertothefourth.DecimetersToTheFourth).MetersToTheFourth, DecimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromFeetToTheFourth(metertothefourth.FeetToTheFourth).MetersToTheFourth, FeetToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromInchesToTheFourth(metertothefourth.InchesToTheFourth).MetersToTheFourth, InchesToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromMetersToTheFourth(metertothefourth.MetersToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromMillimetersToTheFourth(metertothefourth.MillimetersToTheFourth).MetersToTheFourth, MillimetersToTheFourthTolerance);
+            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(3);
+            Assert.Equal(3, AreaMomentOfInertia.FromCentimetersToTheFourth(metertothefourth.CentimetersToTheFourth).MetersToTheFourth);
+            Assert.Equal(3, AreaMomentOfInertia.FromDecimetersToTheFourth(metertothefourth.DecimetersToTheFourth).MetersToTheFourth);
+            Assert.Equal(3, AreaMomentOfInertia.FromFeetToTheFourth(metertothefourth.FeetToTheFourth).MetersToTheFourth);
+            Assert.Equal(3, AreaMomentOfInertia.FromInchesToTheFourth(metertothefourth.InchesToTheFourth).MetersToTheFourth);
+            Assert.Equal(3, AreaMomentOfInertia.FromMetersToTheFourth(metertothefourth.MetersToTheFourth).MetersToTheFourth);
+            Assert.Equal(3, AreaMomentOfInertia.FromMillimetersToTheFourth(metertothefourth.MillimetersToTheFourth).MetersToTheFourth);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             AreaMomentOfInertia v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            AssertEx.EqualTolerance(-1, -v.MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, (AreaMomentOfInertia.FromMetersToTheFourth(3)-v).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, (v + v).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(10, (v*10).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(10, (10*v).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, (AreaMomentOfInertia.FromMetersToTheFourth(10)/5).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, AreaMomentOfInertia.FromMetersToTheFourth(10)/AreaMomentOfInertia.FromMetersToTheFourth(5), MetersToTheFourthTolerance);
+            Assert.Equal(-1, -v.MetersToTheFourth);
+            Assert.Equal(2, (AreaMomentOfInertia.FromMetersToTheFourth(3) - v).MetersToTheFourth);
+            Assert.Equal(2, (v + v).MetersToTheFourth);
+            Assert.Equal(10, (v * 10).MetersToTheFourth);
+            Assert.Equal(10, (10 * v).MetersToTheFourth);
+            Assert.Equal(2, (AreaMomentOfInertia.FromMetersToTheFourth(10) / 5).MetersToTheFourth);
+            Assert.Equal(2, AreaMomentOfInertia.FromMetersToTheFourth(10) / AreaMomentOfInertia.FromMetersToTheFourth(5));
         }
 
         [Fact]
@@ -648,8 +637,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.MeterToTheFourth, true)]  // Same value and unit.
         [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 2, AreaMomentOfInertiaUnit.MeterToTheFourth, false)] // Different value.
-        [InlineData(2, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.CentimeterToTheFourth, false)] // Different value and unit.
-        [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.CentimeterToTheFourth, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaMomentOfInertiaUnit unitA, double valueB, AreaMomentOfInertiaUnit unitB, bool expectEqual)
         {
             var a = new AreaMomentOfInertia(valueA, unitA);
@@ -687,23 +674,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(AreaMomentOfInertia.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
-            Assert.True(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), 0.3, ComparisonType.Relative));
-            Assert.False(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
@@ -715,6 +685,32 @@ namespace UnitsNet.Tests
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
             Assert.False(metertothefourth.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(firstValue);
+            var otherQuantity = AreaMomentOfInertia.FromMetersToTheFourth(secondValue);
+            AreaMomentOfInertia maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, AreaMomentOfInertia.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            var negativeTolerance = AreaMomentOfInertia.FromMetersToTheFourth(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -731,6 +727,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(AreaMomentOfInertia.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(AreaMomentOfInertia.Info.Units, AreaMomentOfInertia.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, AreaMomentOfInertia.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -802,157 +810,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToByte_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToChar_ThrowsInvalidCastException()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDateTime_ThrowsInvalidCastException()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDecimal_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToDouble_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt16_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt32_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToInt64_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSByte_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToSingle_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToString_EqualsToString()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt16_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt32_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
-        }
-
-        [Fact]
-        public void Convert_ToUInt64_EqualsValueAsSameType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_SelfType_EqualsSelf()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(AreaMomentOfInertia)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_UnitType_EqualsUnit()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AreaMomentOfInertiaUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(AreaMomentOfInertia.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(AreaMomentOfInertia.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
-        }
-
-        [Fact]
-        public void Convert_GetTypeCode_Returns_Object()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(TypeCode.Object, Convert.GetTypeCode(quantity));
-        }
-
-        [Fact]
         public void GetHashCode_Equals()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(new {AreaMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(AreaMomentOfInertia), quantity.As(AreaMomentOfInertia.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

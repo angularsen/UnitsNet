@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net48;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0</TargetFrameworks>
     <RootNamespace>UnitsNet.NumberExtensions.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
@@ -17,6 +17,10 @@
     <AssemblyName>UnitsNet.NumberExtensions.Tests</AssemblyName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+    <Compile Remove="ConvertibleExtensionsTest.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />

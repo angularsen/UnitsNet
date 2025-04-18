@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0;net9.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn><!-- CS0618: 'member' is obsolete: 'text' (we often obsolete things before removal) -->
     <Nullable>enable</Nullable>
+    <TestFramework>xunit</TestFramework>
   </PropertyGroup>
 
   <!-- Strong name signing -->
@@ -29,11 +31,16 @@
     <PackageReference Include="xunit.runner.visualstudio">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    </PackageReference>		
+    <PackageReference Include="JetBrains.Annotations" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>

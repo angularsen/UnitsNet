@@ -13,13 +13,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_WithSingleCaseInsensitiveMatch_ParsesWithMatchedUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch(value, unit));
 
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
@@ -28,14 +28,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_WithOneCaseInsensitiveMatchAndOneExactMatch_ParsesWithTheExactMatchUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "FOO");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch(value, unit));
 
             Assert.Equal(HowMuchUnit.ATon, q.Unit);
             Assert.Equal(1, q.Value);
@@ -44,14 +44,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsAmbiguousUnitParseException()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "FOO");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
             void Act()
             {
-                quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
+                quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch(value, unit));
             }
 
             var ex = Assert.Throws<AmbiguousUnitParseException>(Act);
@@ -61,13 +61,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_MappedCustomUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch(value, unit));
 
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
@@ -76,13 +76,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_MappedCustomUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
             bool success = quantityParser.TryParse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
-                (value, unit) => new HowMuch((double) value, unit),
+                (value, unit) => new HowMuch(value, unit),
                 out HowMuch q);
 
             Assert.True(success);

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-	<TargetFrameworks>net9.0;net48</TargetFrameworks>
-	<LangVersion>preview</LangVersion>
+    <TargetFrameworks>net9.0;net48</TargetFrameworks>
+    <LangVersion>preview</LangVersion>
     <Version>4.0.0.0</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyTitle>UnitsNet.Benchmark</AssemblyTitle>
@@ -11,10 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" />
+    <PackageReference Include="System.Reflection.Metadata" />
     <PackageReference Include="BenchmarkDotNet" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj" />
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 </Project>

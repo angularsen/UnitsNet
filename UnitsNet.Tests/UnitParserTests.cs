@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using System.Runtime;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
@@ -16,7 +17,7 @@ namespace UnitsNet.Tests
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
         public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            var abbrevCache = new UnitAbbreviationsCache();
+            var abbrevCache = new UnitAbbreviationsCache([Area.Info]);
             abbrevCache.MapUnitToAbbreviation(expected, customAbbreviation);
             var parser = new UnitParser(abbrevCache);
 
@@ -129,13 +130,16 @@ namespace UnitsNet.Tests
         [InlineData("kg", "ru-RU", MassUnit.Kilogram)] // should work with the "FallbackCulture"
         public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
         {
-            Assert.Equal(expectedUnit, UnitsNetSetup.Default.UnitParser.Parse<MassUnit>(str, CultureInfo.GetCultureInfo(cultureName)));
+            var formatProvider = CultureInfo.GetCultureInfo(cultureName);
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+            
+            Assert.Equal(expectedUnit, unitParser.Parse<MassUnit>(str, formatProvider));
         }
-
+        
         [Fact]
         public void Parse_MappedCustomUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var unitParser = new UnitParser(unitAbbreviationsCache);
 
@@ -150,7 +154,7 @@ namespace UnitsNet.Tests
             var ex = Assert.Throws<AmbiguousUnitParseException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>("MM"));
             Assert.Equal("""Cannot parse "MM" since it matches multiple units: Megameter ("Mm"), Millimeter ("mm").""", ex.Message);
         }
-
+        
         [Fact]
         public void TryParse_WithNullAbbreviation_ReturnsFalse()
         {
@@ -162,6 +166,10 @@ namespace UnitsNet.Tests
             }, () =>
             {
                 var success = unitParser.TryParse(null, typeof(LengthUnit), out Enum? _);
+                Assert.False(success);
+            }, () =>
+            {
+                var success = unitParser.TryParse(null, [], null, out UnitInfo<Length, LengthUnit>? _);
                 Assert.False(success);
             });
         }
@@ -177,6 +185,7 @@ namespace UnitsNet.Tests
         {
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
             Assert.False(unitParser.TryParse("pt", CultureInfo.InvariantCulture, out LengthUnit _));
+            Assert.False(unitParser.TryParse("pt", Length.Info.UnitInfos, CultureInfo.InvariantCulture, out UnitInfo<Length, LengthUnit>? _));
         }
 
         [Theory]
@@ -196,6 +205,38 @@ namespace UnitsNet.Tests
 
             Assert.True(success);
             Assert.Equal(expectedUnit, unitParsed);
+        }
+
+        [Fact]
+        public void TryGetUnitFromAbbreviation_WithLocalizedUnit_MatchingCulture_ReturnsTrue()
+        {
+            var formatProvider = CultureInfo.GetCultureInfo("ru-RU");
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+
+            var success = unitParser.TryGetUnitFromAbbreviation("кг", formatProvider, out UnitInfo? unitInfo);
+
+            Assert.True(success);
+            Assert.Equal(Mass.Info[MassUnit.Kilogram], unitInfo);
+        }
+
+        [Fact]
+        public void TryGetUnitFromAbbreviation_MatchingFallbackCulture_ReturnsTrue()
+        {
+            var formatProvider = CultureInfo.GetCultureInfo("ru-RU");
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+
+            var success = unitParser.TryGetUnitFromAbbreviation("kg", formatProvider, out UnitInfo? unitInfo);
+            
+            Assert.True(success);
+            Assert.Equal(Mass.Info[MassUnit.Kilogram], unitInfo);
+        }
+
+        [Fact]
+        public void TryGetUnitFromAbbreviation_WithNullString_ReturnsFalse()
+        {
+            var success = UnitsNetSetup.Default.UnitParser.TryGetUnitFromAbbreviation(null, CultureInfo.InvariantCulture, out UnitInfo? _);
+            
+            Assert.False(success);
         }
     }
 }

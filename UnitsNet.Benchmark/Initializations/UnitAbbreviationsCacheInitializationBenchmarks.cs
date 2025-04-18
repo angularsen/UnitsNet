@@ -52,20 +52,20 @@ public class UnitAbbreviationsCacheInitializationBenchmarks
     public string DefaultWithoutLookup()
     {
         var cache = UnitAbbreviationsCache.CreateDefault();
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
+        return Mass.GetAbbreviation(Mass.BaseUnit);
     }
 
     [Benchmark]
     public string EmptyWithoutLookup()
     {
         var cache = new UnitAbbreviationsCache();
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
+        return Mass.GetAbbreviation(Mass.BaseUnit);
     }
 
     [Benchmark]
     public string WithSpecificQuantityWithoutLookup()
     {
         var cache = new UnitAbbreviationsCache([Mass.Info]);
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
+        return Mass.GetAbbreviation(Mass.BaseUnit);
     }
 }

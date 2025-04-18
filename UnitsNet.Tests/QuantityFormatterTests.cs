@@ -95,8 +95,9 @@ namespace UnitsNet.Tests
             var length = Length.FromMeters(123456789.987654321);
 
             var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
-            Assert.Equal(expected, QuantityFormatter.Format(length, format));
+            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
+
         
         [Theory]
         [InlineData("U")]
@@ -140,9 +141,9 @@ namespace UnitsNet.Tests
         public static void Format_WithUnsupportedFormatString_ThrowsFormatException(string format)
         {
             var length = Length.FromMeters(123456789.987654321);
-            Assert.Throws<FormatException>(() => QuantityFormatter.Format(length, format));
+            Assert.Throws<FormatException>(() => QuantityFormatter.Default.Format(length, format));
         }
-        
+
         [Fact]
         public static void StandardNumericFormatStringsAsPartOfLongerFormatStringsWork()
         {
@@ -173,7 +174,7 @@ namespace UnitsNet.Tests
             var length = Length.FromMeters(123456789.987654321);
 
             var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
-            Assert.Equal(expected, QuantityFormatter.Format(length, format));
+            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
     }
 }
