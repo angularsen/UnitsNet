@@ -62,7 +62,7 @@ namespace UnitsNet
         ///     Creates an instance of the cache using the specified set of quantities.
         /// </summary>
         /// <returns>Instance for mapping the units of the provided quantities.</returns>
-        public UnitAbbreviationsCache(IReadOnlyCollection<QuantityInfo> quantities)
+        public UnitAbbreviationsCache(IEnumerable<QuantityInfo> quantities)
             :this(new QuantityInfoLookup(quantities))
         {
         }
@@ -121,6 +121,10 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="unit" />.
+        /// </exception>
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params IEnumerable<string> abbreviations)
             where TUnitType : struct, Enum
         {

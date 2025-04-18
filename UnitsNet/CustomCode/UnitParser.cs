@@ -27,7 +27,7 @@ public sealed class UnitParser
     /// <param name="quantities">
     ///     A read-only collection of quantity information used to initialize the unit abbreviations cache.
     /// </param>
-    public UnitParser(IReadOnlyCollection<QuantityInfo> quantities)
+    public UnitParser(IEnumerable<QuantityInfo> quantities)
         : this(new UnitAbbreviationsCache(quantities))
     {
     }
