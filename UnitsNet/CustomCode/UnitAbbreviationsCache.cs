@@ -284,9 +284,10 @@ namespace UnitsNet
         ///     Thrown when no unit information is found for the specified
         ///     <paramref name="unit" />.
         /// </exception>
-        public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : struct, Enum
+        public IReadOnlyList<string> GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null)
+            where TUnitType : struct, Enum
         {
-            return GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider).ToArray(); // TODO can we change this to return an IReadOnlyList (as the GetAbbreviations)?
+            return GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider);
         }
 
         /// <summary>
@@ -300,9 +301,9 @@ namespace UnitsNet
         ///     Thrown when no unit information is found for the specified
         ///     <paramref name="unitType" /> and <paramref name="unitValue" />.
         /// </exception>
-        public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
+        public IReadOnlyList<string> GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            return GetUnitAbbreviations(new UnitKey(unitType, unitValue), formatProvider).ToArray(); // TODO can we change this to return an IReadOnlyList (as the GetAbbreviations)?
+            return GetUnitAbbreviations(new UnitKey(unitType, unitValue), formatProvider);
         }
         
         /// <summary>
@@ -365,30 +366,6 @@ namespace UnitsNet
             }
 
             return allAbbreviations;
-        }
-
-        /// <summary>
-        ///    Get all abbreviations for the given unit and culture.
-        /// </summary>
-        /// <param name="unitInfo">The unit.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <returns>The list of abbreviations mapped for this unit. The first in the list is the primary abbreviation used by ToString().</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="unitInfo"/> was null.</exception>
-        /// <exception cref="UnitNotFoundException">
-        ///     Thrown when the specified <paramref name="unitInfo" /> is not registered with the associated <see cref="Quantities"/>.
-        /// </exception>
-        public IReadOnlyList<string> GetAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null) // TODO see about removing this overload
-        {
-            if (unitInfo == null) throw new ArgumentNullException(nameof(unitInfo));
-
-            unitInfo = Quantities.GetUnitInfo(unitInfo.UnitKey); // makes sure that the unit is part of the mapped quantities
-
-            if (formatProvider is not CultureInfo culture)
-            {
-                culture = CultureInfo.CurrentCulture;
-            }
-
-            return GetAbbreviationsWithFallbackCulture(unitInfo, culture);
         }
 
         /// <summary>
