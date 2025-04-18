@@ -42,7 +42,7 @@ namespace UnitsNet.Tests
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
             Assertion(3, AreaDensityUnit.MilligramPerSquareMeter, Quantity.From(3, AreaDensityUnit.MilligramPerSquareMeter));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
-            Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
+            Assertion(3, BitRateUnit.TeraoctetPerSecond, Quantity.From(3, BitRateUnit.TeraoctetPerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
             Assertion(3, ImpulseUnit.SlugFootPerSecond, Quantity.From(3, ImpulseUnit.SlugFootPerSecond));
-            Assertion(3, InformationUnit.Terabyte, Quantity.From(3, InformationUnit.Terabyte));
+            Assertion(3, InformationUnit.Teraoctet, Quantity.From(3, InformationUnit.Teraoctet));
             Assertion(3, IrradianceUnit.WattPerSquareMeter, Quantity.From(3, IrradianceUnit.WattPerSquareMeter));
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));

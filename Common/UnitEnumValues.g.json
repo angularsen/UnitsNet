@@ -122,7 +122,20 @@
     "TebibitPerSecond": 23,
     "TebibytePerSecond": 24,
     "TerabitPerSecond": 25,
-    "TerabytePerSecond": 26
+    "TerabytePerSecond": 26,
+    "ExaoctetPerSecond": 29,
+    "ExbioctetPerSecond": 31,
+    "GibioctetPerSecond": 32,
+    "GigaoctetPerSecond": 35,
+    "KibioctetPerSecond": 30,
+    "KilooctetPerSecond": 27,
+    "MebioctetPerSecond": 36,
+    "MegaoctetPerSecond": 34,
+    "OctetPerSecond": 28,
+    "PebioctetPerSecond": 33,
+    "PetaoctetPerSecond": 46,
+    "TebioctetPerSecond": 42,
+    "TeraoctetPerSecond": 40
   },
   "BrakeSpecificFuelConsumption": {
     "GramPerKiloWattHour": 1,
@@ -595,7 +608,20 @@
     "Tebibit": 23,
     "Tebibyte": 24,
     "Terabit": 25,
-    "Terabyte": 26
+    "Terabyte": 26,
+    "Exaoctet": 33,
+    "Exbioctet": 35,
+    "Gibioctet": 27,
+    "Gigaoctet": 28,
+    "Kibioctet": 30,
+    "Kilooctet": 32,
+    "Mebioctet": 36,
+    "Megaoctet": 34,
+    "Octet": 31,
+    "Pebioctet": 29,
+    "Petaoctet": 39,
+    "Tebioctet": 43,
+    "Teraoctet": 40
   },
   "Irradiance": {
     "KilowattPerSquareCentimeter": 1,
