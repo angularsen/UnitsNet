@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_MappedCustomUnit()
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var unitParser = new UnitParser(unitAbbreviationsCache);
 

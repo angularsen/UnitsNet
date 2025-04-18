@@ -28,8 +28,8 @@ namespace UnitsNet.Tests
         public void GetUnitAbbreviationsThrowsUnitNotFoundExceptionIfNoneExist()
         {
             Assert.Multiple(checks: [
-                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(MassUnit.Gram)),
-                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(typeof(MassUnit), (int)MassUnit.Gram))
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(HowMuchUnit.AShitTon)),
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetUnitAbbreviations(typeof(HowMuchUnit), (int)HowMuchUnit.AShitTon))
             ]);
         }
 
@@ -61,7 +61,7 @@ namespace UnitsNet.Tests
             // Zulu (South Africa)
             var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
 
-            var abbreviationsCache = new UnitAbbreviationsCache();
+            var abbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             abbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.AShitTon, AmericanCulture, "US english abbreviation for Unit1");
 
             // Act
@@ -75,9 +75,15 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviationThrowsUnitNotFoundExceptionIfNoneExist()
         {
             Assert.Multiple(checks: [
-                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(MassUnit.Gram)),
-                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram))
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(HowMuchUnit.AShitTon)),
+                () => Assert.Throws<UnitNotFoundException>(() => new UnitAbbreviationsCache().GetDefaultAbbreviation(typeof(HowMuchUnit), (int)HowMuchUnit.AShitTon))
             ]);
+        }
+
+        [Fact]
+        public void GetDefaultAbbreviation_ForUnitWithoutAbbreviations_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new UnitAbbreviationsCache([HowMuch.Info]).GetDefaultAbbreviation(HowMuchUnit.AShitTon));
         }
 
         [Fact]
@@ -172,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_DoesNotInsertDuplicates()
         {
-            var cache = new UnitAbbreviationsCache();
+            var cache = new UnitAbbreviationsCache([HowMuch.Info]);
 
             cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
             cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
@@ -186,7 +192,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToDefaultAbbreviation_Twice_SetsNewDefaultAndKeepsOrderOfExistingAbbreviations()
         {
-            var cache = new UnitAbbreviationsCache();
+            var cache = new UnitAbbreviationsCache([HowMuch.Info]);
 
             cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
             cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "1st default");
@@ -204,8 +210,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapAndLookup_WithSpecificEnumType()
         {
-            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some));
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
+            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", unitAbbreviationsCache.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
     }
 }

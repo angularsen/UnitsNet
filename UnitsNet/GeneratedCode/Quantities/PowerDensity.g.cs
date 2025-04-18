@@ -1046,7 +1046,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PowerDensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.UnitParser.Parse<PowerDensityUnit>(str, provider);
+            return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerDensityUnit)"/>
@@ -1067,7 +1067,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerDensityUnit unit)
         {
-            return UnitsNetSetup.Default.UnitParser.TryParse<PowerDensityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse(str, Info, provider, out unit);
         }
 
         #endregion
