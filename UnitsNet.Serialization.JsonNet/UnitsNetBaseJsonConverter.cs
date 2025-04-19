@@ -15,7 +15,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
-    public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
+    public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 

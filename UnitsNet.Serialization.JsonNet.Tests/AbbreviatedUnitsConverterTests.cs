@@ -1,4 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
+using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Tests.Serialization;
 using UnitsNet.Units;
 using Xunit;
@@ -12,7 +17,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         #region Serialization tests
-
+        
         [Fact]
         public void DoubleQuantity_SerializedWithDoubleValueAndAbbreviatedUnit()
         {
@@ -47,6 +52,77 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal(expectedJson, json);
         }
 
+        [Fact]
+        public void InterfaceObject_WithNullValueSerializesAsNull()
+        {
+            var testObject = new TestInterfaceObject { Quantity = null! };
+            var expectedJson =  """{"Quantity":null}""";
+
+            var json = SerializeObject(testObject);
+
+            Assert.Equal(expectedJson, json);
+        }
+          
+        [Fact]
+        public void NonNullNullableValueNestedInObject_ExpectJsonUnaffected()
+        {
+            var testObj = new TestObject()
+            {
+                NullableFrequency = Frequency.FromHertz(10),
+                NonNullableFrequency = Frequency.FromHertz(10)
+            };
+
+            string expectedJson = """{"NullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"},"NonNullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"}}""";
+
+            string json = SerializeObject(testObj);
+
+            Assert.Equal(expectedJson, json);
+        }
+          
+        [Fact]
+        public void NullQuantityNestedInObject_SerializesAsNull()
+        {
+            var testObj = new TestObject()
+            {
+                NonNullableFrequency = Frequency.FromHertz(10)
+            };
+
+            string expectedJson = """{"NullableFrequency":null,"NonNullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"}}""";
+
+            string json = SerializeObject(testObj);
+
+            Assert.Equal(expectedJson, json);
+        }
+        
+        [Fact]
+        public void NullObject_SerializesAsNull()
+        {
+            var abbreviatedUnitsConverter = new AbbreviatedUnitsConverter();
+            var result = new StringBuilder();
+            using(var stringWriter = new StringWriter(result))
+            using (var writer = new JsonTextWriter(stringWriter))
+            {
+                abbreviatedUnitsConverter.WriteJson(writer, (object)null, JsonSerializer.CreateDefault());
+            }
+
+            Assert.Equal("null", result.ToString());
+        }
+
+        [Fact]
+        public void WriteJson_GivenAnotherType_ThrowsJsonSerializationException()
+        {
+            var abbreviatedUnitsConverter = new AbbreviatedUnitsConverter();
+            using var stringWriter = new StringWriter();
+            using var writer = new JsonTextWriter(stringWriter);
+            Assert.Throws<JsonException>(() => abbreviatedUnitsConverter.WriteJson(writer, DateTime.MinValue, JsonSerializer.CreateDefault()));
+        }
+
+        [Fact]
+        public void Serializing_UnknownQuantity_ThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => SerializeObject(HowMuch.From(1, HowMuchUnit.Some)));
+        }
+
         #endregion
 
         #region Deserialization tests
@@ -57,7 +133,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var json = """{"Value":1.2,"Unit":"mg","Type":"Mass"}""";
 
             var quantity = DeserializeObject<IQuantity>(json);
-
+            
             Assert.Equal(1.2, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
@@ -78,7 +154,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             var json = """{"Value":1.2,"Unit":"em"}""";
 
-            var quantity = DeserializeObject<Mass>(json);
+            var quantity = DeserializeObject<IQuantity>(json);
 
             Assert.Equal(1.2, quantity.Value);
             Assert.Equal(MassUnit.EarthMass, quantity.Unit);
@@ -116,22 +192,59 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal(PressureUnit.Megabar, megabar.Unit);
             Assert.Equal(PressureUnit.Millibar, millibar.Unit);
         }
-
+        
         [Fact]
-        public void UnitsNetExceptionThrown_WhenDeserializing_FromUnknownQuantityType()
+        public void Converter_IgnoresUnknownProperties()
         {
-            var json = """{"Value":1.2,"Unit":"mg","Type":"invalid"}""";
+            var json = """{"Value":1.2,"Something":"Else","Unit":"mg","Type":"Mass"}""";
 
-            Assert.Throws<UnitsNetException>(() => DeserializeObject<Mass>(json));
+            var quantity = DeserializeObject<IQuantity>(json);
+
+            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
         [Fact]
-        public void UnitsNotFoundExceptionThrown_WhenDeserializing_FromUnknownUnit()
+        public void Deserializing_FromUnknownUnitForTargetQuantity_ThrowsUnitsNotFoundException()
         {
             var json = """{"Value":1.2,"Unit":"invalid","Type":"Mass"}""";
 
             Assert.Throws<UnitNotFoundException>(() => DeserializeObject<Mass>(json));
         }
+
+        [Fact]
+        public void DeserializingIQuantity_FromAmbiguousAbbreviationAndNoQuantityType_ThrowsAmbiguousUnitParseException()
+        {
+            var json = """{"Value":1.2,"Unit":"mg"}""";
+
+            Assert.Throws<AmbiguousUnitParseException>(() => DeserializeObject<IQuantity>(json));
+        }
+
+        [Fact]
+        public void DeserializingIQuantity_FromUnknownUnitAndNoQuantityType_ThrowsUnitsNotFoundException()
+        {
+            var json = """{"Value":1.2,"Unit":"invalid"}""";
+
+            Assert.Throws<UnitNotFoundException>(() => DeserializeObject<IQuantity>(json));
+        }
+
+        [Fact]
+        public void DeserializingIQuantity_FromNoUnitAndNoQuantityType_ThrowsFormatException()
+        {
+            var json = """{"Value":1.2}""";
+
+            Assert.Throws<FormatException>(() => DeserializeObject<IQuantity>(json));
+        }
+
+        [Fact]
+        public void ReadJson_GivenAnotherType_ThrowsJsonSerializationException()
+        {
+            var abbreviatedUnitsConverter = new AbbreviatedUnitsConverter();
+            using var stringWriter = new StringReader("something");
+            using var reader = new JsonTextReader(stringWriter);
+            Assert.Throws<JsonException>(() => abbreviatedUnitsConverter.ReadJson(reader, typeof(IQuantity), DateTime.MinValue, JsonSerializer.CreateDefault()));
+        }
+
 
         [Fact]
         public void DoubleIQuantity_DeserializedFromQuotedDoubleValueAndAbbreviatedUnit()
@@ -220,19 +333,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
-
+        
         #endregion
-
-        #region Compatibility
-
-        [JsonObject]
-        class PlainOldDoubleQuantity
-        {
-            public double Value { get; set; }
-            public string Unit { get; set; }
-        }
-
-        #endregion
-
     }
 }
