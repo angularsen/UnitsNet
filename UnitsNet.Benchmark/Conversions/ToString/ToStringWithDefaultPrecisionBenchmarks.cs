@@ -9,7 +9,7 @@ namespace UnitsNet.Benchmark.Conversions.ToString;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class ToStringWithDefaultPrecisionBenchmarks
 {
     private static readonly double Value = 123.456;
