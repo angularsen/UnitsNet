@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.Units;
@@ -14,7 +15,7 @@ namespace UnitsNet;
 ///     abbreviations.<br />
 ///     Alternatively, a setup instance may be provided for most static methods, such as
 ///     <see cref="Quantity.Parse(System.Type,string)" /> and
-///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string)" />.
+///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string?,IFormatProvider?)" />.
 /// </summary>
 public sealed class UnitsNetSetup
 {

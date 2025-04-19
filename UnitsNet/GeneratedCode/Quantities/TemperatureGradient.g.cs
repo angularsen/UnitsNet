@@ -839,7 +839,7 @@ namespace UnitsNet
             return ToString(null, provider);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
         /// </summary>
@@ -850,7 +850,7 @@ namespace UnitsNet
             return ToString(format, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
