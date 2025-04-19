@@ -575,35 +575,6 @@ public sealed class UnitParser
         return unitAbbreviationsPairs;
     }
 
-
-    private List<(UnitInfo UnitInfo, string Abbreviation)> FindAllMatchingUnitsForCulture(string unitAbbreviation, CultureInfo culture,
-        StringComparison comparison)
-    {
-        var unitAbbreviationsPairs = new List<(UnitInfo, string)>();
-        foreach (QuantityInfo quantityInfo in Quantities.Infos)
-        {
-            IReadOnlyList<UnitInfo> unitInfos = quantityInfo.UnitInfos;
-            var nbUnits = unitInfos.Count;
-            for (var i = 0; i < nbUnits; i++)
-            {
-                UnitInfo unitInfo = unitInfos[i];
-                IReadOnlyList<string> abbreviations = Abbreviations.GetAbbreviationsForCulture(unitInfo, culture);
-                var nbAbbreviations = abbreviations.Count;
-                for (var p = 0; p < nbAbbreviations; p++)
-                {
-                    var abbreviation = abbreviations[p];
-                    if (unitAbbreviation.Equals(abbreviation, comparison))
-                    {
-                        unitAbbreviationsPairs.Add((unitInfo, abbreviation));
-                    }
-                }
-            }
-        }
-
-        return unitAbbreviationsPairs;
-    }
-
-
     /// <summary>
     ///     Retrieves the unit information corresponding to the specified unit abbreviation.
     /// </summary>
@@ -633,46 +604,16 @@ public sealed class UnitParser
     {
         if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
         
-        if (formatProvider is not CultureInfo culture)
+        List<(UnitInfo UnitInfo, string Abbreviation)> matches = FindAllMatchingUnits(unitAbbreviation, formatProvider);
+        switch (matches.Count)
         {
-            culture = CultureInfo.CurrentCulture;
-        }
-        
-        unitAbbreviation = unitAbbreviation.Trim();
-        StringComparison comparison = StringComparison.Ordinal;
-        while (true)
-        {
-            List<(UnitInfo UnitInfo, string Abbreviation)> matches = FindAllMatchingUnitsForCulture(unitAbbreviation, culture, comparison);
-            switch (matches.Count)
-            {
-                case 1:
-                    return matches[0].UnitInfo;
-                case 0:
-                    // Retry with fallback culture, if different.
-                    if (UnitAbbreviationsCache.HasFallbackCulture(culture))
-                    {
-                        culture = UnitAbbreviationsCache.FallbackCulture;
-                        continue;
-                    }
-                    
-                    var normalizedUnitString = NormalizeUnitString(unitAbbreviation);
-                    if (normalizedUnitString != unitAbbreviation)
-                    {
-                        unitAbbreviation = normalizedUnitString;
-                        continue;
-                    }
-
-                    if (comparison == StringComparison.Ordinal)
-                    {
-                        comparison = StringComparison.OrdinalIgnoreCase;
-                        continue;
-                    }
-
-                    throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}].");
-                default:
-                    var unitsCsv = string.Join(", ", matches.Select(x => $"{x.UnitInfo.Name} (\"{x.Abbreviation}\")").OrderBy(x => x));
-                    throw new AmbiguousUnitParseException($"Cannot parse \"{unitAbbreviation}\" since it matches multiple units: {unitsCsv}.");
-            }
+            case 1:
+                return matches[0].UnitInfo;
+            case 0:
+                throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}].");
+            default:
+                var unitsCsv = string.Join(", ", matches.Select(x => $"{x.UnitInfo.Name} (\"{x.Abbreviation}\")").OrderBy(x => x));
+                throw new AmbiguousUnitParseException($"Cannot parse \"{unitAbbreviation}\" since it matches multiple units: {unitsCsv}.");
         }
     }
 
@@ -706,52 +647,83 @@ public sealed class UnitParser
             return false;
         }
         
-        unitAbbreviation = unitAbbreviation.Trim();
-        
+        List<(UnitInfo UnitInfo, string Abbreviation)> matches = FindAllMatchingUnits(unitAbbreviation, formatProvider);
+        if (matches.Count == 1)
+        {
+            unit = matches[0].UnitInfo;
+            return true;
+        }
+
+        unit = null;
+        return false;
+    }
+
+    private List<(UnitInfo UnitInfo, string Abbreviation)> FindAllMatchingUnits(string unitAbbreviation, IFormatProvider? formatProvider)
+    {
         if (formatProvider is not CultureInfo culture)
         {
             culture = CultureInfo.CurrentCulture;
         }
         
+        unitAbbreviation = unitAbbreviation.Trim();
         StringComparison comparison = StringComparison.Ordinal;
         while (true)
         {
             List<(UnitInfo UnitInfo, string Abbreviation)> matches = FindAllMatchingUnitsForCulture(unitAbbreviation, culture, comparison);
-            switch (matches.Count)
+            if (matches.Count != 0)
             {
-                case 1:
-                    unit = matches[0].UnitInfo;
-                    return true;
-                case 0:
-                    // Retry with fallback culture, if different.
-                    if (UnitAbbreviationsCache.HasFallbackCulture(culture))
-                    {
-                        culture = UnitAbbreviationsCache.FallbackCulture;
-                        continue;
-                    }
+                return matches;
+            }
+            
+            // Retry with fallback culture, if different.
+            if (UnitAbbreviationsCache.HasFallbackCulture(culture))
+            {
+                culture = UnitAbbreviationsCache.FallbackCulture;
+                continue;
+            }
                     
-                    var normalizedUnitString = NormalizeUnitString(unitAbbreviation);
-                    if (normalizedUnitString != unitAbbreviation)
-                    {
-                        unitAbbreviation = normalizedUnitString;
-                        continue;
-                    }
+            var normalizedUnitString = NormalizeUnitString(unitAbbreviation);
+            if (normalizedUnitString != unitAbbreviation)
+            {
+                unitAbbreviation = normalizedUnitString;
+                continue;
+            }
 
-                    if (comparison == StringComparison.Ordinal)
-                    {
-                        comparison = StringComparison.OrdinalIgnoreCase;
-                        continue;
-                    }
-                    
-                    unit = null;
-                    return false;
-                default:
+            if (comparison == StringComparison.Ordinal)
+            {
+                comparison = StringComparison.OrdinalIgnoreCase;
+                continue;
+            }
+
+            return matches;
+        }
+    }
+
+    private List<(UnitInfo UnitInfo, string Abbreviation)> FindAllMatchingUnitsForCulture(string unitAbbreviation, CultureInfo culture,
+        StringComparison comparison)
+    {
+        var unitAbbreviationsPairs = new List<(UnitInfo, string)>();
+        foreach (QuantityInfo quantityInfo in Quantities.Infos)
+        {
+            IReadOnlyList<UnitInfo> unitInfos = quantityInfo.UnitInfos;
+            var nbUnits = unitInfos.Count;
+            for (var i = 0; i < nbUnits; i++)
+            {
+                UnitInfo unitInfo = unitInfos[i];
+                IReadOnlyList<string> abbreviations = Abbreviations.GetAbbreviationsForCulture(unitInfo, culture);
+                var nbAbbreviations = abbreviations.Count;
+                for (var p = 0; p < nbAbbreviations; p++)
                 {
-                    unit = null;
-                    return false;
+                    var abbreviation = abbreviations[p];
+                    if (unitAbbreviation.Equals(abbreviation, comparison))
+                    {
+                        unitAbbreviationsPairs.Add((unitInfo, abbreviation));
+                    }
                 }
             }
         }
+
+        return unitAbbreviationsPairs;
     }
     
     /// <summary>

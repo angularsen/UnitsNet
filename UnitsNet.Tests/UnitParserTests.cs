@@ -12,6 +12,34 @@ namespace UnitsNet.Tests
 {
     public class UnitParserTests
     {
+        [Fact]
+        public void Constructor_WithQuantitiesCreatesNewAbbreviationsCacheAndNewQuantityInfoLookup()
+        {
+            var unitParser = new UnitParser([Mass.Info]);
+            Assert.NotNull(unitParser.Abbreviations);
+            Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
+            Assert.NotEqual(UnitsNetSetup.Default.QuantityInfoLookup, unitParser.Quantities);
+        }
+        
+        [Fact]
+        public void Constructor_WithQuantityInfoLookupCreatesNewAbbreviationsCache()
+        {
+            var quantities = new QuantityInfoLookup([Mass.Info]);
+            var unitParser = new UnitParser(quantities);
+            Assert.NotNull(unitParser.Abbreviations);
+            Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
+            Assert.Equal(quantities, unitParser.Quantities);
+        }
+        
+        [Fact]
+        public void CreateDefault_CreatesNewAbbreviationsCacheWithDefaultQuantities()
+        {
+            var unitParser = UnitParser.CreateDefault();
+            Assert.NotNull(unitParser.Abbreviations);
+            Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
+            Assert.Equal(UnitsNetSetup.Default.QuantityInfoLookup, unitParser.Quantities);
+        }
+        
         [Theory]
         [InlineData("m^^2", AreaUnit.SquareMeter)]
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
@@ -60,6 +88,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_NullAbbreviation_Throws_ArgumentNullException()
         {
+            Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>(null!));
+            Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, Length.Info.UnitInfos));
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, typeof(LengthUnit)));
         }
 
@@ -174,10 +204,13 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void TryParse_UnknownAbbreviation_ReturnsFalse()
+        [Theory]
+        [InlineData("")] 
+        [InlineData("z^2")]
+        [InlineData("nonexistingunit")]
+        public void TryParse_UnknownAbbreviation_ReturnsFalse(string unknownAreaAbbreviation)
         {
-            Assert.False(UnitsNetSetup.Default.UnitParser.TryParse("nonexistingunit", out AreaUnit _));
+            Assert.False(UnitsNetSetup.Default.UnitParser.TryParse(unknownAreaAbbreviation, out AreaUnit _));
         }
 
         [Fact]
@@ -237,6 +270,27 @@ namespace UnitsNet.Tests
             var success = UnitsNetSetup.Default.UnitParser.TryGetUnitFromAbbreviation(null, CultureInfo.InvariantCulture, out UnitInfo? _);
             
             Assert.False(success);
+        }
+
+        [Fact]
+        public void GetUnitFromAbbreviation_GivenAbbreviationsThatAreAmbiguousWhenLowerCase_ReturnsCorrectUnit()
+        {
+            Assert.Equal(PressureUnit.Megabar, UnitParser.Default.GetUnitFromAbbreviation("Mbar", CultureInfo.InvariantCulture).Value);
+            Assert.Equal(PressureUnit.Millibar, UnitParser.Default.GetUnitFromAbbreviation("mbar", CultureInfo.InvariantCulture).Value);
+        }
+
+        [Fact]
+        public void GetUnitFromAbbreviation_NullAbbreviation_Throws_ArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.GetUnitFromAbbreviation(null!, CultureInfo.InvariantCulture));
+        }
+        
+        [Theory]
+        [InlineData("z^2")]
+        [InlineData("nonexistingunit")]
+        public void GetUnitFromAbbreviation_UnknownAbbreviationThrowsUnitNotFoundException(string unknownAbbreviation)
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitsNetSetup.Default.UnitParser.GetUnitFromAbbreviation(unknownAbbreviation, CultureInfo.InvariantCulture));
         }
     }
 }
