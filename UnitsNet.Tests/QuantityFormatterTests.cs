@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Format_WithoutParameters_FormatsWithGeneralFormatWithCurrentCulture()
+        public void Format_WithoutFormatParameter_FormatsWithGeneralFormatWithCurrentCulture()
         {
             using var cultureScope = new CultureScope(CultureInfo.InvariantCulture);
             var length = Length.FromMeters(123.321);
@@ -188,7 +188,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Format_WithInterfaceQuantity_FormatsWithCurrentCulture()
+        public void Format_WithFormatParameter_FormatsWithCurrentCulture()
         {
             using var cultureScope = new CultureScope(CultureInfo.InvariantCulture);
             var length = Length.FromMeters(123.321);
