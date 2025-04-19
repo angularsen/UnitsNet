@@ -21,7 +21,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// </code>
     /// </example>
     /// <inheritdoc />
-    public class AbbreviatedUnitsConverter : JsonConverter<IQuantity>
+    public class AbbreviatedUnitsConverter : NullableQuantityConverter<IQuantity>
     {
         private const string ValueProperty = "Value";
         private const string UnitProperty = "Unit";
