@@ -31,7 +31,7 @@ internal readonly record struct UnitConversionKey
     /// </value>
     public bool HasSameUnits
     {
-        get => FromUnitKey.UnitValue == ToUnitValue;
+        get => FromUnitKey.UnitEnumValue == ToUnitValue;
     }
 
     public UnitKey FromUnitKey { get; }
@@ -65,6 +65,6 @@ internal readonly record struct UnitConversionKey
     /// </returns>
     public static UnitConversionKey Create(UnitKey fromUnitKey, UnitKey toUnitKey)
     {
-        return new UnitConversionKey(fromUnitKey, toUnitKey.UnitValue);
+        return new UnitConversionKey(fromUnitKey, toUnitKey.UnitEnumValue);
     }
 }

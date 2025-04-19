@@ -138,7 +138,7 @@ public class UnitConverter
         where TQuantity : IQuantity
     {
         QuantityInfo quantityInfo = quantity.QuantityInfo;
-        if (quantityInfo.UnitType == toUnitKey.UnitType)
+        if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
         {
             if (TryConvertValue(quantity.Value, quantity.UnitKey, toUnitKey, out QuantityValue convertedValue))
             {
@@ -509,7 +509,7 @@ public class UnitConverter
         where TQuantity : IQuantity
     {
         QuantityInfo quantityInfo = quantity.QuantityInfo;
-        if (quantityInfo.UnitType == toUnitKey.UnitType)
+        if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
         {
             QuantityValue convertedValue = ConvertValue(quantity.Value, quantity.UnitKey, toUnitKey);
             return quantityInfo.From(convertedValue, toUnitKey);
@@ -594,7 +594,7 @@ public class UnitConverter
     {
         var fromUnitKey = UnitKey.ForUnit(fromUnit);
         var toUnitKey = UnitKey.ForUnit(toUnit);
-        if (fromUnitKey.UnitValue == toUnitKey.UnitValue)
+        if (fromUnitKey.UnitEnumValue == toUnitKey.UnitEnumValue)
         {
             return value;
         }
@@ -822,7 +822,7 @@ public class UnitConverter
 
         UnitInfo fromUnitInfo = GetUnitInfo(fromUnitKey);
         UnitInfo toUnitInfo = GetUnitInfo(toUnitKey);
-        return fromUnitKey.UnitType == toUnitKey.UnitType
+        return fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType
             ? fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo)
             : GetConversionFromOneQuantityToAnother(fromUnitInfo, toUnitInfo);
     }
@@ -881,7 +881,7 @@ public class UnitConverter
             return false;
         }
 
-        if (fromUnitKey.UnitType != toUnitKey.UnitType)
+        if (fromUnitKey.UnitEnumType != toUnitKey.UnitEnumType)
         {
             return TryGetConversionFromOneQuantityToAnother(fromUnitInfo, toUnitInfo, out conversionFunction);
         }

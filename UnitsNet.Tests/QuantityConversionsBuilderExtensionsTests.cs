@@ -648,7 +648,7 @@ public class QuantityConversionsBuilderExtensionsTests
                     UnitConversionMapping unitConversionKey = pair.Key;
                     CustomQuantityConversionExpressionMapping expressionMapping = pair.Value;
                     ConversionExpression conversionExpression = expressionMapping.ConversionExpression;
-                    var conversionKey = new QuantityConversionKey(unitConversionKey.FromUnitKey, unitConversionKey.ToUnitKey.UnitType);
+                    var conversionKey = new QuantityConversionKey(unitConversionKey.FromUnitKey, unitConversionKey.ToUnitKey.UnitEnumType);
                     Assert.Contains(conversionKey, conversionExpressions);
                     Assert.Equal(expressionMapping.TargetUnit.UnitKey, conversionExpressions[conversionKey].TargetUnit);
                     Assert.Equal(conversionExpression.Evaluate(10), conversionExpressions[conversionKey].Convert(10));
@@ -657,7 +657,7 @@ public class QuantityConversionsBuilderExtensionsTests
             () =>
             {
                 // all generated conversions from a DensityUnit are a function of the custom conversion expressions in our customConversionFromDensity
-                Assert.All(conversionExpressions.Where(x => x.Key.FromUnit.UnitType == typeof(DensityUnit)),
+                Assert.All(conversionExpressions.Where(x => x.Key.FromUnit.UnitEnumType == typeof(DensityUnit)),
                     pair =>
                     {
                         QuantityConversionKey conversionKey = pair.Key;
@@ -681,7 +681,7 @@ public class QuantityConversionsBuilderExtensionsTests
             () =>
             {
                 // all generated conversions from a SpecificVolumeUnit are a function of the custom conversion expressions in our customConversionFromSpecificVolume
-                Assert.All(conversionExpressions.Where(x => x.Key.FromUnit.UnitType == typeof(SpecificVolumeUnit)),
+                Assert.All(conversionExpressions.Where(x => x.Key.FromUnit.UnitEnumType == typeof(SpecificVolumeUnit)),
                     pair =>
                     {
                         QuantityConversionKey conversionKey = pair.Key;
@@ -772,7 +772,7 @@ public class QuantityConversionsBuilderExtensionsTests
             Assert.Equal(expectedValue, conversionExpressions[conversionKey].Convert(valueToConvert));
             Assert.Equal(toUnit.UnitKey, conversionExpressions[conversionKey].TargetUnit);
             // this maybe a bit redundant but that's the only covering line for the ResultType property (its only used for the default equality contract)
-            Assert.Equal(conversionKey.ResultType, conversionExpressions[conversionKey].TargetUnit.UnitType); 
+            Assert.Equal(conversionKey.ResultType, conversionExpressions[conversionKey].TargetUnit.UnitEnumType); 
             if (reduceConstants)
             {
                 Assert.True(IsReduced(conversionExpressions[conversionKey].Convert(1)));
@@ -846,7 +846,7 @@ public class QuantityConversionsBuilderExtensionsTests
         {
             Assert.All(conversionMappingOptions.ConversionExpressions, pair =>
             {
-                var conversionKey = new QuantityConversionKey(pair.Key.FromUnitKey, pair.Key.ToUnitKey.UnitType);
+                var conversionKey = new QuantityConversionKey(pair.Key.FromUnitKey, pair.Key.ToUnitKey.UnitEnumType);
                 Assert.True(conversionExpressions.ContainsKey(conversionKey));
                 Assert.Equal(pair.Value.ConversionExpression.Evaluate(10), conversionExpressions[conversionKey].Convert(10));
             });
@@ -854,7 +854,7 @@ public class QuantityConversionsBuilderExtensionsTests
         {
             Assert.All(conversionMappingOptions.CustomUnitMappings, pair =>
             {
-                var conversionKey = new QuantityConversionKey(pair.Key.FromUnitKey, pair.Key.ToUnitKey.UnitType);
+                var conversionKey = new QuantityConversionKey(pair.Key.FromUnitKey, pair.Key.ToUnitKey.UnitEnumType);
                 UnitInfo sourceUnit = pair.Value.SourceUnit;
                 UnitInfo targetUnit = pair.Value.TargetUnit;
                 QuantityValue valueToConvert = 10;

@@ -42,7 +42,7 @@ public abstract class InterfaceQuantityConverterBase<TJsonUnit> : JsonConverter<
                 WriteValueProperty(writer, quantity, options);
             }
 
-            if (quantity.UnitKey.UnitValue != quantity.QuantityInfo.BaseUnitInfo.UnitKey.UnitValue)
+            if (quantity.UnitKey.UnitEnumValue != quantity.QuantityInfo.BaseUnitInfo.UnitKey.UnitEnumValue)
             {
                 // write the Unit property
                 writer.WritePropertyName(unitProperty);

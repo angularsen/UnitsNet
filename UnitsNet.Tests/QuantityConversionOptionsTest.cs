@@ -46,7 +46,7 @@ public class QuantityConversionOptionsTest
         options.SetConversionUnits(LengthUnit.Meter, MassUnit.Kilogram);
 
         Assert.Contains(options.ConversionUnits, mapping =>
-            mapping.FromUnitKey.UnitType == typeof(LengthUnit) && mapping.ToUnitKey.UnitType == typeof(MassUnit));
+            mapping.FromUnitKey.UnitEnumType == typeof(LengthUnit) && mapping.ToUnitKey.UnitEnumType == typeof(MassUnit));
     }
 
     [Fact]

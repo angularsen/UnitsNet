@@ -136,9 +136,15 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the provided type is not an enumeration type.
+        /// </exception>
         public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
         {
-            MapUnitToAbbreviation(new UnitKey(unitType, unitValue), formatProvider, abbreviations);
+            MapUnitToAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider, abbreviations);
         }
 
         /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>>
@@ -181,6 +187,10 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviation">Unit abbreviations to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="unit" />.
+        /// </exception>
         public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation)
             where TUnitType : struct, Enum
         {
@@ -211,9 +221,15 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the provided type is not an enumeration type.
+        /// </exception>
         public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, string abbreviation)
         {
-            MapUnitToDefaultAbbreviation(new UnitKey(unitType, unitValue), formatProvider, abbreviation);
+            MapUnitToDefaultAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider, abbreviation);
         }
 
         /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>>
@@ -262,6 +278,12 @@ namespace UnitsNet
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the provided type is not an enumeration type.
+        /// </exception>
         /// <exception cref="UnitNotFoundException">
         ///     Thrown when no unit information is found for the specified
         ///     <paramref name="unitType" /> and <paramref name="unitValue" />.
@@ -271,7 +293,7 @@ namespace UnitsNet
         /// </exception>
         public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            return GetDefaultAbbreviation(new UnitKey(unitType, unitValue), formatProvider);
+            return GetDefaultAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider);
         }
 
         /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}" />
@@ -289,7 +311,7 @@ namespace UnitsNet
             IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
             if (abbreviations.Count == 0)
             {
-                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
+                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitEnumType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
             }
 
             return abbreviations[0];
@@ -319,13 +341,19 @@ namespace UnitsNet
         /// <param name="unitValue">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the provided type is not an enumeration type.
+        /// </exception>
         /// <exception cref="UnitNotFoundException">
         ///     Thrown when no unit information is found for the specified
         ///     <paramref name="unitType" /> and <paramref name="unitValue" />.
         /// </exception>
-        public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
+        public IReadOnlyList<string> GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            return GetUnitAbbreviations(new UnitKey(unitType, unitValue), formatProvider).ToArray(); // TODO can we change this to return an IReadOnlyList (as the GetAbbreviations)?
+            return GetUnitAbbreviations(UnitKey.Create(unitType, unitValue), formatProvider);
         }
         
         /// <summary>
@@ -358,19 +386,27 @@ namespace UnitsNet
         /// <returns>
         ///     A read-only list of unit abbreviations associated with the specified unit type.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        ///     Thrown when the provided <paramref name="unitEnumType" /> is not an enum type.
+        ///     Thrown when the provided type is not an enumeration type.
         /// </exception>
         /// <exception cref="UnitNotFoundException">
         ///     Thrown when no quantity is found for the specified unit type.
         /// </exception>
         public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
+            if (unitEnumType == null)
+            {
+                throw new ArgumentNullException(nameof(unitEnumType));
+            }
+            
             if (!Quantities.TryGetQuantityByUnitType(unitEnumType, out QuantityInfo? quantityInfo))
             {
                 if (!unitEnumType.IsEnum)
                 {
-                    throw new ArgumentException($"Type {unitEnumType.FullName} is not a supported unit type.");
+                    throw new ArgumentException($"Unit type must be an enumeration, but was {unitEnumType.FullName}.", nameof(unitEnumType));
                 }
                 
                 throw new UnitNotFoundException($"No quantity was found with the specified unit type: '{unitEnumType}'.") { Data = { ["unitType"] = unitEnumType.Name } };

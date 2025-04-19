@@ -24,7 +24,7 @@ public class GetBoxedEnumValuesBenchmarks
             foreach (Enum unitValue in Enum.GetValues(unitType).Cast<Enum>())
             {
                 var unitKey = (UnitKey)unitValue;
-                total += unitKey.UnitValue;
+                total += unitKey.UnitEnumValue;
             }
         }
 
@@ -39,7 +39,7 @@ public class GetBoxedEnumValuesBenchmarks
         {
             foreach (UnitInfo unitInfo in _quantityInfos[unitType].UnitInfos)
             {
-                total += unitInfo.UnitKey.UnitValue;
+                total += unitInfo.UnitKey.UnitEnumValue;
             }
         }
 

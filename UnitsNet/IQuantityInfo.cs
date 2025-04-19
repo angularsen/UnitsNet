@@ -67,7 +67,7 @@ public interface IQuantityInfo
     /// <returns>The <see cref="UnitInfo" /> associated with the specified unit.</returns>
     /// <exception cref="KeyNotFoundException">Thrown if the specified unit is not found.</exception>
     /// <exception cref="InvalidOperationException">
-    ///     Thrown when the type of <see cref="UnitType"/>> does not match the type of the current <see cref="UnitKey.UnitType" />.
+    ///     Thrown when the type of <see cref="UnitType"/>> does not match the type of the current <see cref="UnitKey.UnitEnumType" />.
     /// </exception>
     UnitInfo this[UnitKey unit] { get; }
 

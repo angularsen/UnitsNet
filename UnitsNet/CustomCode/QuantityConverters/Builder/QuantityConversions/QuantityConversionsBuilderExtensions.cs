@@ -265,9 +265,9 @@ internal static class QuantityConversionsBuilderExtensions
     {
         // filter the customUnitConversions for specified conversion direction
         Type sourceUnitType = fromQuantity.UnitType;
-        var unitMappings = customUnitConversions.CustomUnitMappings.Where(x => x.Key.FromUnitKey.UnitType == sourceUnitType)
+        var unitMappings = customUnitConversions.CustomUnitMappings.Where(x => x.Key.FromUnitKey.UnitEnumType == sourceUnitType)
             .ToDictionary(x => x.Key.FromUnitKey, pair => pair.Value);
-        var conversionExpressions = customUnitConversions.ConversionExpressions.Where(x => x.Key.FromUnitKey.UnitType == sourceUnitType)
+        var conversionExpressions = customUnitConversions.ConversionExpressions.Where(x => x.Key.FromUnitKey.UnitEnumType == sourceUnitType)
             .ToDictionary(x => x.Key.FromUnitKey, pair => pair.Value);
         // if there are any custom conversionExpressions we ignore the caching mode and calculate an expression for all units
         if (conversionExpressions.Count != 0)
@@ -332,7 +332,7 @@ internal static class QuantityConversionsBuilderExtensions
         {
             if (toQuantity.TryGetConversionFrom(fromUnit, conversionExpression, reduceConstants, out QuantityConversionFunction conversionFunction))
             {
-                yield return new ConversionEntry(new QuantityConversionKey(fromUnit.UnitKey, conversionFunction.TargetUnit.UnitType), conversionFunction);
+                yield return new ConversionEntry(new QuantityConversionKey(fromUnit.UnitKey, conversionFunction.TargetUnit.UnitEnumType), conversionFunction);
             }
             else
             {

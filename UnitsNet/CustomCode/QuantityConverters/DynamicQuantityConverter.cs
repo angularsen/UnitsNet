@@ -34,7 +34,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
     public override bool TryConvertValue(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey, out QuantityValue convertedValue)
     {
-        return fromUnitKey.UnitType == toUnitKey.UnitType
+        return fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType
             ? TryConvertValue(value, UnitConversionKey.Create(fromUnitKey, toUnitKey), out convertedValue)
             : TryConvertValueFromOneQuantityToAnother(value, fromUnitKey, toUnitKey, out convertedValue);
     }
@@ -54,7 +54,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
         }
 
         if (TryGetUnitInfo(conversionKey.FromUnitKey, out UnitInfo? fromUnitInfo) &&
-            TryGetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitType, conversionKey.ToUnitValue), out UnitInfo? toUnitInfo))
+            TryGetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue), out UnitInfo? toUnitInfo))
             // TryGetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue }, out UnitInfo? toUnitInfo))
         {
             cachedConversion = _unitConversions.GetOrAdd(conversionKey, fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo, _reduceConstants));
@@ -68,10 +68,10 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
     private bool TryConvertValueFromOneQuantityToAnother(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey, out QuantityValue convertedValue)
     {
-        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitType);
+        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitEnumType);
         if (_quantityConversions.TryGetValue(defaultConversionKey, out QuantityConversionFunction conversionFunction))
         {
-            return TryConvertValue(conversionFunction.Convert(value), new UnitConversionKey(conversionFunction.TargetUnit, toUnitKey.UnitValue),
+            return TryConvertValue(conversionFunction.Convert(value), new UnitConversionKey(conversionFunction.TargetUnit, toUnitKey.UnitEnumValue),
                 out convertedValue);
         }
 
@@ -95,14 +95,14 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
         UnitKey fromUnitKey = fromUnitInfo.UnitKey;
         UnitKey toUnitKey = toUnitInfo.UnitKey;
-        if (fromUnitKey.UnitType == toUnitKey.UnitType)
+        if (fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType)
         {
             ConvertValueDelegate conversionDelegate = GetOrAdd(UnitConversionKey.Create(fromUnitKey, toUnitKey), fromUnitInfo, toUnitInfo);
             convertedValue = conversionDelegate(value);
             return true;
         }
 
-        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitType);
+        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitEnumType);
         if (!_quantityConversions.TryGetValue(defaultConversionKey, out QuantityConversionFunction conversionFunction))
         {
             if (ConversionDefined(fromUnitInfo.QuantityInfo, toUnitInfo.QuantityInfo) &&
@@ -135,7 +135,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
     public override QuantityValue ConvertValue(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey)
     {
-        return fromUnitKey.UnitType == toUnitKey.UnitType
+        return fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType
             ? ConvertValue(value, UnitConversionKey.Create(fromUnitKey, toUnitKey))
             : ConvertValueFromOneQuantityToAnother(value, fromUnitKey, toUnitKey);
     }
@@ -153,10 +153,10 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
     private QuantityValue ConvertValueFromOneQuantityToAnother(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey)
     {
-        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitType);
+        var defaultConversionKey = new QuantityConversionKey(fromUnitKey, toUnitKey.UnitEnumType);
         if (_quantityConversions.TryGetValue(defaultConversionKey, out QuantityConversionFunction defaultConversion))
         {
-            return defaultConversion.TargetUnit.UnitValue == toUnitKey.UnitValue
+            return defaultConversion.TargetUnit.UnitEnumValue == toUnitKey.UnitEnumValue
                 ? defaultConversion.Convert(value)
                 : ConvertValue(defaultConversion.Convert(value), UnitConversionKey.Create(defaultConversion.TargetUnit, toUnitKey));
         }
@@ -179,14 +179,14 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
         UnitKey fromUnitKey = fromUnitInfo.UnitKey;
         UnitKey toUnitKey = toUnitInfo.UnitKey;
-        if (fromUnitKey.UnitType == toUnitKey.UnitType)
+        if (fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType)
         {
             ConvertValueDelegate conversionDelegate = GetOrAdd(UnitConversionKey.Create(fromUnitKey, toUnitKey), fromUnitInfo, toUnitInfo);
             return conversionDelegate(value);
         }
 
-        QuantityConversionFunction conversionFunction = GetOrAdd(new QuantityConversionKey(fromUnitKey, toUnitKey.UnitType), fromUnitInfo, toUnitInfo);
-        if (conversionFunction.TargetUnit.UnitValue == toUnitKey.UnitValue)
+        QuantityConversionFunction conversionFunction = GetOrAdd(new QuantityConversionKey(fromUnitKey, toUnitKey.UnitEnumType), fromUnitInfo, toUnitInfo);
+        if (conversionFunction.TargetUnit.UnitEnumValue == toUnitKey.UnitEnumValue)
         {
             return conversionFunction.Convert(value);
         }
@@ -202,7 +202,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
             return value => value;
         }
         
-        if (fromUnitKey.UnitType == toUnitKey.UnitType)
+        if (fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType)
         {
             return _unitConversions.GetOrAdd(UnitConversionKey.Create(fromUnitKey, toUnitKey), _unitConversionExpressionFactory);
         }
@@ -238,7 +238,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
             return true;
         }
 
-        if (fromUnitKey.UnitType == toUnitKey.UnitType)
+        if (fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType)
         {
             var conversionKey = UnitConversionKey.Create(fromUnitKey, toUnitKey);
             if (_unitConversions.TryGetValue(conversionKey, out conversionFunction))
@@ -358,7 +358,7 @@ internal sealed class DynamicQuantityConverter : UnitConverter
     private ConvertValueDelegate GetConversionExpression(UnitConversionKey conversionKey)
     {
         UnitInfo fromUnitInfo = GetUnitInfo(conversionKey.FromUnitKey);
-        UnitInfo toUnitInfo = GetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitType, conversionKey.ToUnitValue));
+        UnitInfo toUnitInfo = GetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue));
         // UnitInfo toUnitInfo = GetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue });
         return fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo, _reduceConstants);
     }
