@@ -871,15 +871,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 BTU/(lb·°F)", new SpecificEntropy(1, SpecificEntropyUnit.BtuPerPoundFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 cal/g·K", new SpecificEntropy(1, SpecificEntropyUnit.CaloriePerGramKelvin).ToString(swedishCulture));
-            Assert.Equal("1 J/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 J/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString(swedishCulture));
-            Assert.Equal("1 kcal/g·K", new SpecificEntropy(1, SpecificEntropyUnit.KilocaloriePerGramKelvin).ToString(swedishCulture));
-            Assert.Equal("1 kJ/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 kJ/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString(swedishCulture));
-            Assert.Equal("1 MJ/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 MJ/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin).ToString(swedishCulture));
+            Assert.Equal("1 BTU/(lb·°F)", new SpecificEntropy(1, SpecificEntropyUnit.BtuPerPoundFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 cal/g·K", new SpecificEntropy(1, SpecificEntropyUnit.CaloriePerGramKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 J/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 J/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/g·K", new SpecificEntropy(1, SpecificEntropyUnit.KilocaloriePerGramKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/kg·°C", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/kg·K", new SpecificEntropy(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin).ToString(null, swedishCulture));
         }
 
         [Fact]

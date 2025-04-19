@@ -986,15 +986,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cSt", new KinematicViscosity(1, KinematicViscosityUnit.Centistokes).ToString(swedishCulture));
-            Assert.Equal("1 dSt", new KinematicViscosity(1, KinematicViscosityUnit.Decistokes).ToString(swedishCulture));
-            Assert.Equal("1 kSt", new KinematicViscosity(1, KinematicViscosityUnit.Kilostokes).ToString(swedishCulture));
-            Assert.Equal("1 µSt", new KinematicViscosity(1, KinematicViscosityUnit.Microstokes).ToString(swedishCulture));
-            Assert.Equal("1 mSt", new KinematicViscosity(1, KinematicViscosityUnit.Millistokes).ToString(swedishCulture));
-            Assert.Equal("1 nSt", new KinematicViscosity(1, KinematicViscosityUnit.Nanostokes).ToString(swedishCulture));
-            Assert.Equal("1 ft²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareFootPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 m²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 St", new KinematicViscosity(1, KinematicViscosityUnit.Stokes).ToString(swedishCulture));
+            Assert.Equal("1 cSt", new KinematicViscosity(1, KinematicViscosityUnit.Centistokes).ToString(null, swedishCulture));
+            Assert.Equal("1 dSt", new KinematicViscosity(1, KinematicViscosityUnit.Decistokes).ToString(null, swedishCulture));
+            Assert.Equal("1 kSt", new KinematicViscosity(1, KinematicViscosityUnit.Kilostokes).ToString(null, swedishCulture));
+            Assert.Equal("1 µSt", new KinematicViscosity(1, KinematicViscosityUnit.Microstokes).ToString(null, swedishCulture));
+            Assert.Equal("1 mSt", new KinematicViscosity(1, KinematicViscosityUnit.Millistokes).ToString(null, swedishCulture));
+            Assert.Equal("1 nSt", new KinematicViscosity(1, KinematicViscosityUnit.Nanostokes).ToString(null, swedishCulture));
+            Assert.Equal("1 ft²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareFootPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 m²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 St", new KinematicViscosity(1, KinematicViscosityUnit.Stokes).ToString(null, swedishCulture));
         }
 
         [Fact]

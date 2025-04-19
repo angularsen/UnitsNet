@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 ppm/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 ppm/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 ppm/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin).ToString(swedishCulture));
+            Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 ppm/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 ppm/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 ppm/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin).ToString(null, swedishCulture));
         }
 
         [Fact]

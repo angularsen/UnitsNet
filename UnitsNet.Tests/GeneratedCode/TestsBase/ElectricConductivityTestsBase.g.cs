@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 µS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MicrosiemensPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MillisiemensPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 S/cm", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 S/ft", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 S/in", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerInch).ToString(swedishCulture));
-            Assert.Equal("1 S/m", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 µS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MicrosiemensPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mS/cm", new ElectricConductivity(1, ElectricConductivityUnit.MillisiemensPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 S/cm", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 S/ft", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 S/in", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 S/m", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

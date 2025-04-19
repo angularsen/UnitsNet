@@ -1468,20 +1468,20 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString(swedishCulture));
-            Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString(swedishCulture));
-            Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString(swedishCulture));
-            Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString(swedishCulture));
-            Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString(swedishCulture));
-            Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString(swedishCulture));
-            Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString(swedishCulture));
-            Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString(swedishCulture));
-            Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString(swedishCulture));
+            Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString(null, swedishCulture));
+            Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString(null, swedishCulture));
+            Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString(null, swedishCulture));
+            Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString(null, swedishCulture));
+            Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString(null, swedishCulture));
+            Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString(null, swedishCulture));
+            Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString(null, swedishCulture));
+            Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString(null, swedishCulture));
         }
 
         [Fact]

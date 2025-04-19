@@ -1045,7 +1045,7 @@ namespace UnitsNet.Tests
             foreach (var unit in _quantity.Units)
             {
                 Writer.WL($@"
-            Assert.Equal(""1{GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString(swedishCulture));");
+            Assert.Equal(""1{GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString(null, swedishCulture));");
             }
             Writer.WL($@"
         }}

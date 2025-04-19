@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth).ToString(swedishCulture));
-            Assert.Equal("1 dm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth).ToString(swedishCulture));
-            Assert.Equal("1 ft⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.FootToTheFourth).ToString(swedishCulture));
-            Assert.Equal("1 in⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.InchToTheFourth).ToString(swedishCulture));
-            Assert.Equal("1 m⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString(swedishCulture));
-            Assert.Equal("1 mm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).ToString(swedishCulture));
+            Assert.Equal("1 cm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth).ToString(null, swedishCulture));
+            Assert.Equal("1 dm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth).ToString(null, swedishCulture));
+            Assert.Equal("1 ft⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.FootToTheFourth).ToString(null, swedishCulture));
+            Assert.Equal("1 in⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.InchToTheFourth).ToString(null, swedishCulture));
+            Assert.Equal("1 m⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString(null, swedishCulture));
+            Assert.Equal("1 mm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).ToString(null, swedishCulture));
         }
 
         [Fact]

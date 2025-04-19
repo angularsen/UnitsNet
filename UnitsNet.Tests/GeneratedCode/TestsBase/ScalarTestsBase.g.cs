@@ -525,7 +525,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1", new Scalar(1, ScalarUnit.Amount).ToString(swedishCulture));
+            Assert.Equal("1", new Scalar(1, ScalarUnit.Amount).ToString(null, swedishCulture));
         }
 
         [Fact]

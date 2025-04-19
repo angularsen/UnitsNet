@@ -1553,26 +1553,26 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 cGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 cGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 cGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 dGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 dGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 dGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 dGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 Gy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Gy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 Gy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 Gy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 µGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 µGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 µGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 µGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 mGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 mGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 mGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 cGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 cGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 cGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 cGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.CentigraySquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.DecigraySquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Gy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Gy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Gy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Gy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.MicrograySquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mGy·cm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mGy·dm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mGy·m²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mGy·mm²", new DoseAreaProduct(1, DoseAreaProductUnit.MilligraySquareMillimeter).ToString(null, swedishCulture));
         }
 
         [Fact]

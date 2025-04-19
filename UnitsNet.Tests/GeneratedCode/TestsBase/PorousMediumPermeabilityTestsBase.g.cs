@@ -718,11 +718,11 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 D", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Darcy).ToString(swedishCulture));
-            Assert.Equal("1 µD", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Microdarcy).ToString(swedishCulture));
-            Assert.Equal("1 mD", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Millidarcy).ToString(swedishCulture));
-            Assert.Equal("1 cm²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 m²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 D", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Darcy).ToString(null, swedishCulture));
+            Assert.Equal("1 µD", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Microdarcy).ToString(null, swedishCulture));
+            Assert.Equal("1 mD", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.Millidarcy).ToString(null, swedishCulture));
+            Assert.Equal("1 cm²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 m²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -619,8 +619,8 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 BTU/(h·ft·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 W/(m·K)", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString(swedishCulture));
+            Assert.Equal("1 BTU/(h·ft·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 W/(m·K)", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString(null, swedishCulture));
         }
 
         [Fact]

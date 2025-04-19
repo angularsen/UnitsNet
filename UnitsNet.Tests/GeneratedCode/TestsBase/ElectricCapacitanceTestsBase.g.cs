@@ -772,13 +772,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 F", new ElectricCapacitance(1, ElectricCapacitanceUnit.Farad).ToString(swedishCulture));
-            Assert.Equal("1 kF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Kilofarad).ToString(swedishCulture));
-            Assert.Equal("1 MF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Megafarad).ToString(swedishCulture));
-            Assert.Equal("1 µF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Microfarad).ToString(swedishCulture));
-            Assert.Equal("1 mF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Millifarad).ToString(swedishCulture));
-            Assert.Equal("1 nF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Nanofarad).ToString(swedishCulture));
-            Assert.Equal("1 pF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Picofarad).ToString(swedishCulture));
+            Assert.Equal("1 F", new ElectricCapacitance(1, ElectricCapacitanceUnit.Farad).ToString(null, swedishCulture));
+            Assert.Equal("1 kF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Kilofarad).ToString(null, swedishCulture));
+            Assert.Equal("1 MF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Megafarad).ToString(null, swedishCulture));
+            Assert.Equal("1 µF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Microfarad).ToString(null, swedishCulture));
+            Assert.Equal("1 mF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Millifarad).ToString(null, swedishCulture));
+            Assert.Equal("1 nF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Nanofarad).ToString(null, swedishCulture));
+            Assert.Equal("1 pF", new ElectricCapacitance(1, ElectricCapacitanceUnit.Picofarad).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -629,10 +629,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 dBµV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelMicrovolt).ToString(swedishCulture));
-            Assert.Equal("1 dBmV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelMillivolt).ToString(swedishCulture));
-            Assert.Equal("1 dBu", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelUnloaded).ToString(swedishCulture));
-            Assert.Equal("1 dBV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt).ToString(swedishCulture));
+            Assert.Equal("1 dBµV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelMicrovolt).ToString(null, swedishCulture));
+            Assert.Equal("1 dBmV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelMillivolt).ToString(null, swedishCulture));
+            Assert.Equal("1 dBu", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelUnloaded).ToString(null, swedishCulture));
+            Assert.Equal("1 dBV", new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt).ToString(null, swedishCulture));
         }
 
         [Fact]

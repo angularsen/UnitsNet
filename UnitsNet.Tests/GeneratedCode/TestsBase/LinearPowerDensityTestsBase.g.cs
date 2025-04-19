@@ -1318,31 +1318,31 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 GW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 GW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 GW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerInch).ToString(swedishCulture));
-            Assert.Equal("1 GW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 GW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 kW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerInch).ToString(swedishCulture));
-            Assert.Equal("1 kW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 kW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 MW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 MW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 MW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerInch).ToString(swedishCulture));
-            Assert.Equal("1 MW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 MW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 mW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 mW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerInch).ToString(swedishCulture));
-            Assert.Equal("1 mW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 mW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 W/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 W/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 W/in", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerInch).ToString(swedishCulture));
-            Assert.Equal("1 W/m", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 W/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 GW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 GW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 GW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 GW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 GW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.KilowattPerMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 MW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 MW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.MegawattPerMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/in", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/m", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.MilliwattPerMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 W/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 W/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 W/in", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerInch).ToString(null, swedishCulture));
+            Assert.Equal("1 W/m", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 W/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMillimeter).ToString(null, swedishCulture));
         }
 
         [Fact]

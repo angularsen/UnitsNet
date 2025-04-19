@@ -1165,26 +1165,26 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerHour).ToString(swedishCulture));
-            Assert.Equal("1 kV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 kV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 MV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerHour).ToString(swedishCulture));
-            Assert.Equal("1 MV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 MV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 MV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 µV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerHour).ToString(swedishCulture));
-            Assert.Equal("1 µV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 µV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 µV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 mV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerHour).ToString(swedishCulture));
-            Assert.Equal("1 mV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 mV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 mV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 V/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerHour).ToString(swedishCulture));
-            Assert.Equal("1 V/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 V/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 V/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 kV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 kV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.KilovoltPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 MV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 MV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 MV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 MV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MegavoltPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 µV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 µV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 µV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 µV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MicrovoltPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mV/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 mV/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mV/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 mV/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.MillivoltPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 V/h", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 V/μs", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 V/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 V/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]
