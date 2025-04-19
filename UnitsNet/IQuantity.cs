@@ -99,6 +99,15 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
+        
+        /// <summary>
+        ///     Gets the unique key for the unit type and its corresponding value.
+        /// </summary>
+        /// <remarks>
+        ///     This property is particularly useful when using an enum-based unit in a hash-based collection,
+        ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
+        /// </remarks>
+        UnitKey UnitKey { get; }
     }
 
     /// <summary>

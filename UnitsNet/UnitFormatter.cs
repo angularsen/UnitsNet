@@ -64,16 +64,13 @@ namespace UnitsNet
         /// <summary>
         ///     Gets ToString format arguments.
         /// </summary>
-        /// <typeparam name="TUnitType">The type of units to format.</typeparam>
-        /// <param name="unit">The units</param>
+        /// <param name="abbreviation">The unit abbreviation</param>
         /// <param name="value">The unit value to format.</param>
         /// <param name="culture">The current culture.</param>
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
-        public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
-            where TUnitType : struct, Enum
+        public static object[] GetFormatArgs(double value, string abbreviation, IFormatProvider? culture, IEnumerable<object> args)
         {
-            string abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

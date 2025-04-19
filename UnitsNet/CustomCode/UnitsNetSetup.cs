@@ -14,7 +14,7 @@ namespace UnitsNet;
 ///     abbreviations.<br />
 ///     Alternatively, a setup instance may be provided for most static methods, such as
 ///     <see cref="Quantity.Parse(System.Type,string)" /> and
-///     <see cref="QuantityFormatter.Format{TUnitType}(UnitsNet.IQuantity{TUnitType},string)" />.
+///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string)" />.
 /// </summary>
 public sealed class UnitsNetSetup
 {
@@ -35,9 +35,10 @@ public sealed class UnitsNetSetup
     {
         var quantityInfoLookup = new QuantityInfoLookup(quantityInfos);
         var unitAbbreviations = new UnitAbbreviationsCache(quantityInfoLookup);
-
+        
         UnitConverter = unitConverter;
         UnitAbbreviations = unitAbbreviations;
+        Formatter = new QuantityFormatter(unitAbbreviations);
         UnitParser = new UnitParser(unitAbbreviations);
         QuantityParser = new QuantityParser(unitAbbreviations);
         QuantityInfoLookup = quantityInfoLookup;
@@ -65,6 +66,11 @@ public sealed class UnitsNetSetup
     ///     quantities.
     /// </summary>
     public UnitAbbreviationsCache UnitAbbreviations { get; }
+    
+    /// <summary>
+    ///     Converts a quantity to string using the specified format strings and culture-specific format providers.
+    /// </summary>
+    public QuantityFormatter Formatter { get; }
 
     /// <summary>
     ///     Parses units from strings, such as <see cref="LengthUnit.Centimeter" /> from "cm".

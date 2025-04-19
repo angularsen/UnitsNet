@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(InvariantCulture, typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(DateTime), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 

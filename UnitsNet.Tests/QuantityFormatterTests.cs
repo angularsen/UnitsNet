@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using UnitsNet.Tests.Helpers;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -95,9 +96,9 @@ namespace UnitsNet.Tests
             var length = Length.FromMeters(123456789.987654321);
 
             var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
-            Assert.Equal(expected, QuantityFormatter.Format(length, format));
+            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
-        
+
         [Theory]
         [InlineData("U")]
         [InlineData("u")]
@@ -140,9 +141,9 @@ namespace UnitsNet.Tests
         public static void Format_WithUnsupportedFormatString_ThrowsFormatException(string format)
         {
             var length = Length.FromMeters(123456789.987654321);
-            Assert.Throws<FormatException>(() => QuantityFormatter.Format(length, format));
+            Assert.Throws<FormatException>(() => QuantityFormatter.Default.Format(length, format));
         }
-        
+
         [Fact]
         public static void StandardNumericFormatStringsAsPartOfLongerFormatStringsWork()
         {
@@ -173,7 +174,27 @@ namespace UnitsNet.Tests
             var length = Length.FromMeters(123456789.987654321);
 
             var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
-            Assert.Equal(expected, QuantityFormatter.Format(length, format));
+            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
+        }
+
+        [Fact]
+        public void Format_WithoutParameters_FormatsWithGeneralFormatWithCurrentCulture()
+        {
+            using var cultureScope = new CultureScope(CultureInfo.InvariantCulture);
+            var length = Length.FromMeters(123.321);
+            var expected = "123.321 m";
+            var actual = QuantityFormatter.Default.Format(length);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Format_WithInterfaceQuantity_FormatsWithCurrentCulture()
+        {
+            using var cultureScope = new CultureScope(CultureInfo.InvariantCulture);
+            var length = Length.FromMeters(123.321);
+            var expected = "123.321 m";
+            var actual = QuantityFormatter.Format(length, "G");
+            Assert.Equal(expected, actual);
         }
     }
 }
