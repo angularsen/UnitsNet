@@ -52,7 +52,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
             var objectToSerialize = new TestObject { NonNullableQuantity = quantity, NullableQuantity = quantity };
 
             var serializedQuantity = JsonConvert.SerializeObject(objectToSerialize, jsonSerializerSettings);
-            TestObject deserializedQuantity = JsonConvert.DeserializeObject<TestObject>(serializedQuantity, jsonSerializerSettings); // exception here
+            TestObject deserializedQuantity = JsonConvert.DeserializeObject<TestObject>(serializedQuantity, jsonSerializerSettings);
 
             Assert.Equal(quantity, deserializedQuantity.NonNullableQuantity);
             Assert.Equal(quantity, deserializedQuantity.NullableQuantity);

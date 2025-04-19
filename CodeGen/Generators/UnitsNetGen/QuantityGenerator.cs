@@ -403,11 +403,9 @@ namespace UnitsNet
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => {_quantity.Name}.BaseDimensions;
-");
-            Writer.WL($@"
+
         #region Explicit implementations
-");
-            Writer.WL($@"
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
         
@@ -436,9 +434,7 @@ namespace UnitsNet
 
             Writer.WL($@"
         #endregion
-");
 
-            Writer.WL($@"
         #endregion
 ");
         }

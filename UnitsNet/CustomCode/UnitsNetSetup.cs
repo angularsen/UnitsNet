@@ -14,7 +14,7 @@ namespace UnitsNet;
 ///     abbreviations.<br />
 ///     Alternatively, a setup instance may be provided for most static methods, such as
 ///     <see cref="Quantity.Parse(System.Type,string)" /> and
-///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string,IFormatProvider)" />.
+///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string)" />.
 /// </summary>
 public sealed class UnitsNetSetup
 {
@@ -303,6 +303,11 @@ public sealed class UnitsNetSetup
     ///     Maps unit enums to unit abbreviation strings for one or more cultures, used by the <see cref="UnitParser"/>, <see cref="QuantityParser"/> and the <see cref="Formatter"/>.
     /// </summary>
     public UnitAbbreviationsCache UnitAbbreviations { get; }
+    
+    /// <summary>
+    ///     Converts a quantity to string using the specified format strings and culture-specific format providers.
+    /// </summary>
+    public QuantityFormatter Formatter { get; }
 
     /// <summary>
     ///     Parses units from strings, such as <see cref="LengthUnit.Centimeter" /> from "cm".
@@ -313,11 +318,6 @@ public sealed class UnitsNetSetup
     ///     Parses quantities from strings, such as parsing <see cref="Mass" /> from "1.2 kg".
     /// </summary>
     public QuantityParser QuantityParser { get; }
-    
-    /// <summary>
-    ///     Converts a quantity to string using the specified format strings and culture-specific format providers.
-    /// </summary>
-    public QuantityFormatter Formatter { get; }
 
     /// <summary>
     ///     The quantities and units that are loaded.

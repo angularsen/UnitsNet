@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Diagnostics;
 using System.Globalization;
 #if NET7_0_OR_GREATER
 using System.Numerics;
@@ -124,7 +123,6 @@ namespace UnitsNet
         ///     This property is particularly useful when using an enum-based unit in a hash-based collection,
         ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
         /// </remarks>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey UnitKey { get; }
     }
 
