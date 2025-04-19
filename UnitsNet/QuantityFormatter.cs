@@ -170,7 +170,7 @@ public class QuantityFormatter
                 {
                     var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
-                    if (abbreviationIndex >= abbreviations.Length)
+                    if (abbreviationIndex >= abbreviations.Count)
                     {
                         throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
                     }
@@ -188,7 +188,7 @@ public class QuantityFormatter
                 {
                     var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
-                    if (abbreviationIndex >= abbreviations.Length)
+                    if (abbreviationIndex >= abbreviations.Count)
                     {
                         throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
                     }

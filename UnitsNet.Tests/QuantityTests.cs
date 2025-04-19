@@ -174,21 +174,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TryFromUnitAbbreviation_MatchingCulture_ReturnsQuantity()
+        public void FromUnitAbbreviation_MatchingFallbackCulture_ReturnsQuantity()
         {
-            Assert.False(Quantity.TryFromUnitAbbreviation(Russian, 5, "cm", out IQuantity? q));
+            // The localized abbreviation is "см"
+            IQuantity quantity = Quantity.FromUnitAbbreviation(Russian, 5, "cm");  
+            Assert.Equal(5, quantity.Value);
+            Assert.Equal(LengthUnit.Centimeter, quantity.Unit);
         }
 
         [Fact]
-        public void FromUnitAbbreviation_MismatchingCulture_ThrowsUnitNotFoundException()
+        public void TryFromUnitAbbreviation_MatchingFallbackCulture_ReturnsQuantity()
         {
-            Assert.Throws<UnitNotFoundException>(() => Quantity.FromUnitAbbreviation(Russian, 5, "cm")); // Expected "см"
-        }
-
-        [Fact]
-        public void TryFromUnitAbbreviation_MismatchingCulture_ThrowsUnitNotFoundException()
-        {
-            Assert.Throws<UnitNotFoundException>(() => Quantity.FromUnitAbbreviation(Russian, 5, "cm")); // Expected "см"
+            // The localized abbreviation is "см"
+            var success = Quantity.TryFromUnitAbbreviation(Russian, 5, "cm", out IQuantity? quantity);
+            Assert.True(success); 
+            Assert.NotNull(quantity);  
+            Assert.Equal(5, quantity.Value);
+            Assert.Equal(LengthUnit.Centimeter, quantity.Unit);
         }
 
         [Fact]

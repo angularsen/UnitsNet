@@ -47,25 +47,4 @@ public class UnitAbbreviationsCacheInitializationBenchmarks
         cache.MapUnitToDefaultAbbreviation(MassUnit.Gram, "zz");
         return cache.GetDefaultAbbreviation(MassUnit.Gram);
     }
-
-    [Benchmark]
-    public string DefaultWithoutLookup()
-    {
-        var cache = UnitAbbreviationsCache.CreateDefault();
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
-    }
-
-    [Benchmark]
-    public string EmptyWithoutLookup()
-    {
-        var cache = new UnitAbbreviationsCache();
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
-    }
-
-    [Benchmark]
-    public string WithSpecificQuantityWithoutLookup()
-    {
-        var cache = new UnitAbbreviationsCache([Mass.Info]);
-        return cache.GetAbbreviations(Mass.Info.BaseUnitInfo)[0];
-    }
 }
