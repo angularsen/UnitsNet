@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
 #endif
         public void DefaultToStringFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(AmericanCulture);
+            string actual = Length.FromMeters(value).ToString(null, AmericanCulture);
             Assert.Equal(expected, actual);
         }
         [Theory]
@@ -95,7 +95,7 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
             string ds = culture.NumberFormat.NumberDecimalSeparator;
-            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToString(culture));
+            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToString(null, culture));
         }
 
         [Theory]
@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
         public void ToString_WithCultureWithoutGroupingSeparator(string cultureName)
         {
             CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
-            Assert.Equal("1111 m", Length.FromMeters(1111).ToString(culture));
+            Assert.Equal("1111 m", Length.FromMeters(1111).ToString(null, culture));
         }
 
         [Theory]
@@ -273,18 +273,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 N", Force.FromNewtons(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 m", Length.FromMeters(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString(CultureInfo.InvariantCulture));
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 °", Angle.FromDegrees(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 N", Force.FromNewtons(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 m", Length.FromMeters(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString(null, CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString(null, CultureInfo.InvariantCulture));
 
             Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString(CultureInfo.InvariantCulture));
             Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString(CultureInfo.InvariantCulture));
@@ -293,35 +293,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_WithNorwegianCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(NorwegianCulture));
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(NorwegianCulture));
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(NorwegianCulture));
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(NorwegianCulture));
-            Assert.Equal("1 N", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(NorwegianCulture));
-            Assert.Equal("1 m", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(NorwegianCulture));
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(NorwegianCulture));
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(NorwegianCulture));
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(NorwegianCulture));
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(NorwegianCulture));
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(NorwegianCulture));
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(NorwegianCulture));
+            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(null, NorwegianCulture));
+            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(null, NorwegianCulture));
+            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(null, NorwegianCulture));
+            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(null, NorwegianCulture));
+            Assert.Equal("1 N", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(null, NorwegianCulture));
+            Assert.Equal("1 m", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(null, NorwegianCulture));
+            Assert.Equal("1 kg", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(null, NorwegianCulture));
+            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(null, NorwegianCulture));
+            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(null, NorwegianCulture));
+            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(null, NorwegianCulture));
+            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(null, NorwegianCulture));
+            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(null, NorwegianCulture));
         }
 
         [Fact]
         public void ToString_WithRussianCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(RussianCulture));
-            Assert.Equal("1 м²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(RussianCulture));
-            Assert.Equal("1 В", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(RussianCulture));
-            Assert.Equal("1 м³/с", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(RussianCulture));
-            Assert.Equal("1 Н", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(RussianCulture));
-            Assert.Equal("1 м", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(RussianCulture));
-            Assert.Equal("1 кг", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(RussianCulture));
-            Assert.Equal("1 Па", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(RussianCulture));
-            Assert.Equal("1 рад/с", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(RussianCulture));
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(RussianCulture));
-            Assert.Equal("1 Н·м", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(RussianCulture));
-            Assert.Equal("1 м³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(RussianCulture));
+            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(null, RussianCulture));
+            Assert.Equal("1 м²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(null, RussianCulture));
+            Assert.Equal("1 В", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(null, RussianCulture));
+            Assert.Equal("1 м³/с", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(null, RussianCulture));
+            Assert.Equal("1 Н", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(null, RussianCulture));
+            Assert.Equal("1 м", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(null, RussianCulture));
+            Assert.Equal("1 кг", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(null, RussianCulture));
+            Assert.Equal("1 Па", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(null, RussianCulture));
+            Assert.Equal("1 рад/с", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(null, RussianCulture));
+            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(null, RussianCulture));
+            Assert.Equal("1 Н·м", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(null, RussianCulture));
+            Assert.Equal("1 м³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(null, RussianCulture));
         }
 
     }

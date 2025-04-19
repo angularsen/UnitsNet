@@ -949,18 +949,18 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 J/m³", new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/m³", new EnergyDensity(1, EnergyDensityUnit.KilojoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kWh/m³", new EnergyDensity(1, EnergyDensityUnit.KilowattHourPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/m³", new EnergyDensity(1, EnergyDensityUnit.MegajoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MWh/m³", new EnergyDensity(1, EnergyDensityUnit.MegawattHourPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 PJ/m³", new EnergyDensity(1, EnergyDensityUnit.PetajoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 PWh/m³", new EnergyDensity(1, EnergyDensityUnit.PetawattHourPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 TJ/m³", new EnergyDensity(1, EnergyDensityUnit.TerajoulePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

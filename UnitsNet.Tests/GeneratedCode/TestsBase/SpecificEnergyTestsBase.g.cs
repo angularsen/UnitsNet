@@ -1543,36 +1543,36 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 btu/lb", new SpecificEnergy(1, SpecificEnergyUnit.BtuPerPound).ToString(swedishCulture));
-            Assert.Equal("1 cal/g", new SpecificEnergy(1, SpecificEnergyUnit.CaloriePerGram).ToString(swedishCulture));
-            Assert.Equal("1 GWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 GWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerShortTon).ToString(swedishCulture));
-            Assert.Equal("1 GWd/t", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerTonne).ToString(swedishCulture));
-            Assert.Equal("1 GWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.GigawattHourPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 GWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.GigawattHourPerPound).ToString(swedishCulture));
-            Assert.Equal("1 J/kg", new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 kcal/g", new SpecificEnergy(1, SpecificEnergyUnit.KilocaloriePerGram).ToString(swedishCulture));
-            Assert.Equal("1 kJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilojoulePerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 kWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 kWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerShortTon).ToString(swedishCulture));
-            Assert.Equal("1 kWd/t", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerTonne).ToString(swedishCulture));
-            Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 kWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerPound).ToString(swedishCulture));
-            Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegaJoulePerTonne).ToString(swedishCulture));
-            Assert.Equal("1 MWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 MWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerShortTon).ToString(swedishCulture));
-            Assert.Equal("1 MWd/t", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerTonne).ToString(swedishCulture));
-            Assert.Equal("1 MWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 MWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerPound).ToString(swedishCulture));
-            Assert.Equal("1 TWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 TWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerShortTon).ToString(swedishCulture));
-            Assert.Equal("1 TWd/t", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerTonne).ToString(swedishCulture));
-            Assert.Equal("1 Wd/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 Wd/ST", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerShortTon).ToString(swedishCulture));
-            Assert.Equal("1 Wd/t", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerTonne).ToString(swedishCulture));
-            Assert.Equal("1 Wh/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 Wh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerPound).ToString(swedishCulture));
+            Assert.Equal("1 btu/lb", new SpecificEnergy(1, SpecificEnergyUnit.BtuPerPound).ToString(null, swedishCulture));
+            Assert.Equal("1 cal/g", new SpecificEnergy(1, SpecificEnergyUnit.CaloriePerGram).ToString(null, swedishCulture));
+            Assert.Equal("1 GWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 GWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 GWd/t", new SpecificEnergy(1, SpecificEnergyUnit.GigawattDayPerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 GWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.GigawattHourPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 GWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.GigawattHourPerPound).ToString(null, swedishCulture));
+            Assert.Equal("1 J/kg", new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/g", new SpecificEnergy(1, SpecificEnergyUnit.KilocaloriePerGram).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilojoulePerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 kWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 kWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 kWd/t", new SpecificEnergy(1, SpecificEnergyUnit.KilowattDayPerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 kWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerPound).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegaJoulePerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 MWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 MWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 MWd/t", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 MWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 MWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerPound).ToString(null, swedishCulture));
+            Assert.Equal("1 TWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 TWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 TWd/t", new SpecificEnergy(1, SpecificEnergyUnit.TerawattDayPerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 Wd/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 Wd/ST", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 Wd/t", new SpecificEnergy(1, SpecificEnergyUnit.WattDayPerTonne).ToString(null, swedishCulture));
+            Assert.Equal("1 Wh/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 Wh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerPound).ToString(null, swedishCulture));
         }
 
         [Fact]

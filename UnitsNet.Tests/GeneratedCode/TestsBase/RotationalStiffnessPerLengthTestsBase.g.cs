@@ -886,11 +886,11 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kN·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 kipf·ft/°/ft", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 MN·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 N·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 lbf·ft/deg/ft", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot).ToString(swedishCulture));
+            Assert.Equal("1 kN·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf·ft/°/ft", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 MN·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 N·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·ft/deg/ft", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot).ToString(null, swedishCulture));
         }
 
         [Fact]

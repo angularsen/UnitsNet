@@ -829,12 +829,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kV", new ElectricPotential(1, ElectricPotentialUnit.Kilovolt).ToString(swedishCulture));
-            Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString(swedishCulture));
-            Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString(swedishCulture));
-            Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString(swedishCulture));
-            Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString(swedishCulture));
-            Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString(swedishCulture));
+            Assert.Equal("1 kV", new ElectricPotential(1, ElectricPotentialUnit.Kilovolt).ToString(null, swedishCulture));
+            Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString(null, swedishCulture));
+            Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString(null, swedishCulture));
+            Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString(null, swedishCulture));
+            Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString(null, swedishCulture));
+            Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString(null, swedishCulture));
         }
 
         [Fact]

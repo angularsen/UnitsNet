@@ -69,7 +69,6 @@ namespace UnitsNet.Tests.CustomQuantities
 
         public override string ToString() => $"{Value} {Unit}";
         public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
-        public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
 
         #endregion
     }

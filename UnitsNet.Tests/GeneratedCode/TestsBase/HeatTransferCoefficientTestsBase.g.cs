@@ -907,11 +907,11 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString(swedishCulture));
-            Assert.Equal("1 W/(m²·K)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString(swedishCulture));
+            Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 W/(m²·K)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).ToString(null, swedishCulture));
         }
 
         [Fact]

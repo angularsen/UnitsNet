@@ -883,16 +883,16 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kCd/m²", new Luminance(1, LuminanceUnit.KilocandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 µCd/m²", new Luminance(1, LuminanceUnit.MicrocandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 mCd/m²", new Luminance(1, LuminanceUnit.MillicandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 nCd/m²", new Luminance(1, LuminanceUnit.NanocandelaPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 nt", new Luminance(1, LuminanceUnit.Nit).ToString(swedishCulture));
+            Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kCd/m²", new Luminance(1, LuminanceUnit.KilocandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µCd/m²", new Luminance(1, LuminanceUnit.MicrocandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mCd/m²", new Luminance(1, LuminanceUnit.MillicandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nCd/m²", new Luminance(1, LuminanceUnit.NanocandelaPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nt", new Luminance(1, LuminanceUnit.Nit).ToString(null, swedishCulture));
         }
 
         [Fact]

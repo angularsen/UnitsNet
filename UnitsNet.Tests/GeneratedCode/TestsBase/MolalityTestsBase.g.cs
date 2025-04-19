@@ -652,9 +652,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 mmol/kg", new Molality(1, MolalityUnit.MillimolePerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 mol/g", new Molality(1, MolalityUnit.MolePerGram).ToString(swedishCulture));
-            Assert.Equal("1 mol/kg", new Molality(1, MolalityUnit.MolePerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 mmol/kg", new Molality(1, MolalityUnit.MillimolePerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/g", new Molality(1, MolalityUnit.MolePerGram).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/kg", new Molality(1, MolalityUnit.MolePerKilogram).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -685,10 +685,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 ∆°C/km", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 ∆°C/m", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 ∆°F/ft", new TemperatureGradient(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 ∆°K/m", new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 ∆°C/km", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°C/m", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°F/ft", new TemperatureGradient(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°K/m", new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -1914,18 +1914,18 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString(swedishCulture));
-            Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString(swedishCulture));
-            Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString(swedishCulture));
-            Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString(swedishCulture));
-            Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString(swedishCulture));
-            Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(swedishCulture));
-            Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
-            Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
-            Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
-            Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(swedishCulture));
-            Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));
-            Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString(swedishCulture));
+            Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString(null, swedishCulture));
+            Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString(null, swedishCulture));
+            Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString(null, swedishCulture));
+            Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString(null, swedishCulture));
+            Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString(null, swedishCulture));
+            Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(null, swedishCulture));
+            Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(null, swedishCulture));
+            Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(null, swedishCulture));
+            Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(null, swedishCulture));
+            Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(null, swedishCulture));
+            Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString(null, swedishCulture));
         }
 
         [Fact]

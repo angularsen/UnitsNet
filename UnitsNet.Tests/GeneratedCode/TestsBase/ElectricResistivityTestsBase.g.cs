@@ -991,20 +991,20 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmMeter).ToString(swedishCulture));
-            Assert.Equal("1 MΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 MΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmMeter).ToString(swedishCulture));
-            Assert.Equal("1 µΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 µΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmMeter).ToString(swedishCulture));
-            Assert.Equal("1 mΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmMeter).ToString(swedishCulture));
-            Assert.Equal("1 nΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 nΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmMeter).ToString(swedishCulture));
-            Assert.Equal("1 Ω·cm", new ElectricResistivity(1, ElectricResistivityUnit.OhmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Ω·m", new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter).ToString(swedishCulture));
-            Assert.Equal("1 pΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 pΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmMeter).ToString(swedishCulture));
+            Assert.Equal("1 kΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.KiloohmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MegaohmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MicroohmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.MilliohmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.NanoohmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Ω·cm", new ElectricResistivity(1, ElectricResistivityUnit.OhmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Ω·m", new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 pΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 pΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

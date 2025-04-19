@@ -1057,22 +1057,22 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 G℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigamho).ToString(swedishCulture));
-            Assert.Equal("1 GS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigasiemens).ToString(swedishCulture));
-            Assert.Equal("1 k℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilomho).ToString(swedishCulture));
-            Assert.Equal("1 kS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilosiemens).ToString(swedishCulture));
-            Assert.Equal("1 M℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megamho).ToString(swedishCulture));
-            Assert.Equal("1 MS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megasiemens).ToString(swedishCulture));
-            Assert.Equal("1 ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Mho).ToString(swedishCulture));
-            Assert.Equal("1 µ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Micromho).ToString(swedishCulture));
-            Assert.Equal("1 µS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Microsiemens).ToString(swedishCulture));
-            Assert.Equal("1 m℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millimho).ToString(swedishCulture));
-            Assert.Equal("1 mS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millisiemens).ToString(swedishCulture));
-            Assert.Equal("1 n℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanomho).ToString(swedishCulture));
-            Assert.Equal("1 nS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanosiemens).ToString(swedishCulture));
-            Assert.Equal("1 S", new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens).ToString(swedishCulture));
-            Assert.Equal("1 T℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Teramho).ToString(swedishCulture));
-            Assert.Equal("1 TS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Terasiemens).ToString(swedishCulture));
+            Assert.Equal("1 G℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigamho).ToString(null, swedishCulture));
+            Assert.Equal("1 GS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Gigasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 k℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilomho).ToString(null, swedishCulture));
+            Assert.Equal("1 kS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Kilosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 M℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megamho).ToString(null, swedishCulture));
+            Assert.Equal("1 MS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Megasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Mho).ToString(null, swedishCulture));
+            Assert.Equal("1 µ℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Micromho).ToString(null, swedishCulture));
+            Assert.Equal("1 µS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Microsiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 m℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millimho).ToString(null, swedishCulture));
+            Assert.Equal("1 mS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Millisiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 n℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanomho).ToString(null, swedishCulture));
+            Assert.Equal("1 nS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Nanosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 S", new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens).ToString(null, swedishCulture));
+            Assert.Equal("1 T℧", new ElectricSusceptance(1, ElectricSusceptanceUnit.Teramho).ToString(null, swedishCulture));
+            Assert.Equal("1 TS", new ElectricSusceptance(1, ElectricSusceptanceUnit.Terasiemens).ToString(null, swedishCulture));
         }
 
         [Fact]

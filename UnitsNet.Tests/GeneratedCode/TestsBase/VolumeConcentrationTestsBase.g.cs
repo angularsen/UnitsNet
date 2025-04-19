@@ -1174,26 +1174,26 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentiliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentiliterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DeciliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DeciliterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString(swedishCulture));
-            Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LiterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LiterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicroliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicroliterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MilliliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MilliliterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanoliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanoliterPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString(swedishCulture));
-            Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString(swedishCulture));
-            Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString(swedishCulture));
-            Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString(swedishCulture));
-            Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString(swedishCulture));
-            Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicoliterPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicoliterPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 cl/l", new VolumeConcentration(1, VolumeConcentrationUnit.CentiliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 cl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.CentiliterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 dl/l", new VolumeConcentration(1, VolumeConcentrationUnit.DeciliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 dl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.DeciliterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString(null, swedishCulture));
+            Assert.Equal("1 l/l", new VolumeConcentration(1, VolumeConcentrationUnit.LiterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 l/ml", new VolumeConcentration(1, VolumeConcentrationUnit.LiterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 µl/l", new VolumeConcentration(1, VolumeConcentrationUnit.MicroliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 µl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MicroliterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 ml/l", new VolumeConcentration(1, VolumeConcentrationUnit.MilliliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 ml/ml", new VolumeConcentration(1, VolumeConcentrationUnit.MilliliterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 nl/l", new VolumeConcentration(1, VolumeConcentrationUnit.NanoliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 nl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.NanoliterPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 ppb", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerBillion).ToString(null, swedishCulture));
+            Assert.Equal("1 ppm", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerMillion).ToString(null, swedishCulture));
+            Assert.Equal("1 ‰", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerThousand).ToString(null, swedishCulture));
+            Assert.Equal("1 ppt", new VolumeConcentration(1, VolumeConcentrationUnit.PartPerTrillion).ToString(null, swedishCulture));
+            Assert.Equal("1 %", new VolumeConcentration(1, VolumeConcentrationUnit.Percent).ToString(null, swedishCulture));
+            Assert.Equal("1 pl/l", new VolumeConcentration(1, VolumeConcentrationUnit.PicoliterPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 pl/ml", new VolumeConcentration(1, VolumeConcentrationUnit.PicoliterPerMilliliter).ToString(null, swedishCulture));
         }
 
         [Fact]

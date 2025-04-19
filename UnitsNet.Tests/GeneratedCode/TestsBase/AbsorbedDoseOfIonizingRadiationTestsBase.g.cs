@@ -1281,22 +1281,22 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Centigray).ToString(swedishCulture));
-            Assert.Equal("1 fGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray).ToString(swedishCulture));
-            Assert.Equal("1 GGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray).ToString(swedishCulture));
-            Assert.Equal("1 Gy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gray).ToString(swedishCulture));
-            Assert.Equal("1 kGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Kilogray).ToString(swedishCulture));
-            Assert.Equal("1 krad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Kilorad).ToString(swedishCulture));
-            Assert.Equal("1 MGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Megagray).ToString(swedishCulture));
-            Assert.Equal("1 Mrad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Megarad).ToString(swedishCulture));
-            Assert.Equal("1 µGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Microgray).ToString(swedishCulture));
-            Assert.Equal("1 mGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Milligray).ToString(swedishCulture));
-            Assert.Equal("1 mrad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Millirad).ToString(swedishCulture));
-            Assert.Equal("1 nGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Nanogray).ToString(swedishCulture));
-            Assert.Equal("1 PGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Petagray).ToString(swedishCulture));
-            Assert.Equal("1 pGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Picogray).ToString(swedishCulture));
-            Assert.Equal("1 rad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Rad).ToString(swedishCulture));
-            Assert.Equal("1 TGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Teragray).ToString(swedishCulture));
+            Assert.Equal("1 cGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Centigray).ToString(null, swedishCulture));
+            Assert.Equal("1 fGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray).ToString(null, swedishCulture));
+            Assert.Equal("1 GGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray).ToString(null, swedishCulture));
+            Assert.Equal("1 Gy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gray).ToString(null, swedishCulture));
+            Assert.Equal("1 kGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Kilogray).ToString(null, swedishCulture));
+            Assert.Equal("1 krad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Kilorad).ToString(null, swedishCulture));
+            Assert.Equal("1 MGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Megagray).ToString(null, swedishCulture));
+            Assert.Equal("1 Mrad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Megarad).ToString(null, swedishCulture));
+            Assert.Equal("1 µGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Microgray).ToString(null, swedishCulture));
+            Assert.Equal("1 mGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Milligray).ToString(null, swedishCulture));
+            Assert.Equal("1 mrad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Millirad).ToString(null, swedishCulture));
+            Assert.Equal("1 nGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Nanogray).ToString(null, swedishCulture));
+            Assert.Equal("1 PGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Petagray).ToString(null, swedishCulture));
+            Assert.Equal("1 pGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Picogray).ToString(null, swedishCulture));
+            Assert.Equal("1 rad", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Rad).ToString(null, swedishCulture));
+            Assert.Equal("1 TGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Teragray).ToString(null, swedishCulture));
         }
 
         [Fact]

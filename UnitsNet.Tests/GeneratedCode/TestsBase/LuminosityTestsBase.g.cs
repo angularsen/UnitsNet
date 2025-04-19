@@ -991,20 +991,20 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 daW", new Luminosity(1, LuminosityUnit.Decawatt).ToString(swedishCulture));
-            Assert.Equal("1 dW", new Luminosity(1, LuminosityUnit.Deciwatt).ToString(swedishCulture));
-            Assert.Equal("1 fW", new Luminosity(1, LuminosityUnit.Femtowatt).ToString(swedishCulture));
-            Assert.Equal("1 GW", new Luminosity(1, LuminosityUnit.Gigawatt).ToString(swedishCulture));
-            Assert.Equal("1 kW", new Luminosity(1, LuminosityUnit.Kilowatt).ToString(swedishCulture));
-            Assert.Equal("1 MW", new Luminosity(1, LuminosityUnit.Megawatt).ToString(swedishCulture));
-            Assert.Equal("1 µW", new Luminosity(1, LuminosityUnit.Microwatt).ToString(swedishCulture));
-            Assert.Equal("1 mW", new Luminosity(1, LuminosityUnit.Milliwatt).ToString(swedishCulture));
-            Assert.Equal("1 nW", new Luminosity(1, LuminosityUnit.Nanowatt).ToString(swedishCulture));
-            Assert.Equal("1 PW", new Luminosity(1, LuminosityUnit.Petawatt).ToString(swedishCulture));
-            Assert.Equal("1 pW", new Luminosity(1, LuminosityUnit.Picowatt).ToString(swedishCulture));
-            Assert.Equal("1 L⊙", new Luminosity(1, LuminosityUnit.SolarLuminosity).ToString(swedishCulture));
-            Assert.Equal("1 TW", new Luminosity(1, LuminosityUnit.Terawatt).ToString(swedishCulture));
-            Assert.Equal("1 W", new Luminosity(1, LuminosityUnit.Watt).ToString(swedishCulture));
+            Assert.Equal("1 daW", new Luminosity(1, LuminosityUnit.Decawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 dW", new Luminosity(1, LuminosityUnit.Deciwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 fW", new Luminosity(1, LuminosityUnit.Femtowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 GW", new Luminosity(1, LuminosityUnit.Gigawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 kW", new Luminosity(1, LuminosityUnit.Kilowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 MW", new Luminosity(1, LuminosityUnit.Megawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 µW", new Luminosity(1, LuminosityUnit.Microwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 mW", new Luminosity(1, LuminosityUnit.Milliwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 nW", new Luminosity(1, LuminosityUnit.Nanowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 PW", new Luminosity(1, LuminosityUnit.Petawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 pW", new Luminosity(1, LuminosityUnit.Picowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 L⊙", new Luminosity(1, LuminosityUnit.SolarLuminosity).ToString(null, swedishCulture));
+            Assert.Equal("1 TW", new Luminosity(1, LuminosityUnit.Terawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 W", new Luminosity(1, LuminosityUnit.Watt).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -264,7 +264,7 @@ namespace UnitsNet.Tests
                 culture: CultureInfo.GetCultureInfo("de-AT"), // uses comma as decimal separator
                 uiCulture: CultureInfo.InvariantCulture); // uses dot as decimal separator
             Length length = Length.FromMeters(1.5);
-            string expectedResult = length.ToString(CultureInfo.CurrentCulture);
+            string expectedResult = length.ToString(null, CultureInfo.CurrentCulture);
 
             var convertedQuantity = (string?)converter.ConvertTo(context, CultureInfo.CurrentCulture, length, typeof(string));
 

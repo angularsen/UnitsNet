@@ -916,17 +916,17 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 dm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 ft⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 in⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 km⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareKilometer).ToString(swedishCulture));
-            Assert.Equal("1 m⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 µm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMicrometer).ToString(swedishCulture));
-            Assert.Equal("1 mi⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMile).ToString(swedishCulture));
-            Assert.Equal("1 mm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 yd⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareYard).ToString(swedishCulture));
-            Assert.Equal("1 ft⁻² (US)", new ReciprocalArea(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot).ToString(swedishCulture));
+            Assert.Equal("1 cm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 ft⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 in⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 km⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareKilometer).ToString(null, swedishCulture));
+            Assert.Equal("1 m⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMicrometer).ToString(null, swedishCulture));
+            Assert.Equal("1 mi⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMile).ToString(null, swedishCulture));
+            Assert.Equal("1 mm⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 yd⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareYard).ToString(null, swedishCulture));
+            Assert.Equal("1 ft⁻² (US)", new ReciprocalArea(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot).ToString(null, swedishCulture));
         }
 
         [Fact]

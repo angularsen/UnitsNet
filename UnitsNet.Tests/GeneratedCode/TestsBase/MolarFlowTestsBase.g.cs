@@ -850,15 +850,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(swedishCulture));
-            Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(swedishCulture));
-            Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString(swedishCulture));
-            Assert.Equal("1 lbmol/min", new MolarFlow(1, MolarFlowUnit.PoundMolePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 lbmol/s", new MolarFlow(1, MolarFlowUnit.PoundMolePerSecond).ToString(swedishCulture));
+            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 lbmol/min", new MolarFlow(1, MolarFlowUnit.PoundMolePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 lbmol/s", new MolarFlow(1, MolarFlowUnit.PoundMolePerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

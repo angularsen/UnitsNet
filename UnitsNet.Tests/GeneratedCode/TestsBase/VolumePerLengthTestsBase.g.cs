@@ -850,15 +850,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 m³/m", new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 yd³/ft", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 yd³/ftUS", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot).ToString(swedishCulture));
-            Assert.Equal("1 gal (imp.)/mi", new VolumePerLength(1, VolumePerLengthUnit.ImperialGallonPerMile).ToString(swedishCulture));
-            Assert.Equal("1 l/km", new VolumePerLength(1, VolumePerLengthUnit.LiterPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString(swedishCulture));
-            Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString(swedishCulture));
+            Assert.Equal("1 m³/m", new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 yd³/ft", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 yd³/ftUS", new VolumePerLength(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 gal (imp.)/mi", new VolumePerLength(1, VolumePerLengthUnit.ImperialGallonPerMile).ToString(null, swedishCulture));
+            Assert.Equal("1 l/km", new VolumePerLength(1, VolumePerLengthUnit.LiterPerKilometer).ToString(null, swedishCulture));
+            Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString(null, swedishCulture));
         }
 
         [Fact]

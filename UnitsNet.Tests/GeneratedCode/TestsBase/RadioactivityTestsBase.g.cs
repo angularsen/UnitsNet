@@ -1907,35 +1907,35 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Bq", new Radioactivity(1, RadioactivityUnit.Becquerel).ToString(swedishCulture));
-            Assert.Equal("1 Ci", new Radioactivity(1, RadioactivityUnit.Curie).ToString(swedishCulture));
-            Assert.Equal("1 EBq", new Radioactivity(1, RadioactivityUnit.Exabecquerel).ToString(swedishCulture));
-            Assert.Equal("1 GBq", new Radioactivity(1, RadioactivityUnit.Gigabecquerel).ToString(swedishCulture));
-            Assert.Equal("1 GCi", new Radioactivity(1, RadioactivityUnit.Gigacurie).ToString(swedishCulture));
-            Assert.Equal("1 GRd", new Radioactivity(1, RadioactivityUnit.Gigarutherford).ToString(swedishCulture));
-            Assert.Equal("1 kBq", new Radioactivity(1, RadioactivityUnit.Kilobecquerel).ToString(swedishCulture));
-            Assert.Equal("1 kCi", new Radioactivity(1, RadioactivityUnit.Kilocurie).ToString(swedishCulture));
-            Assert.Equal("1 kRd", new Radioactivity(1, RadioactivityUnit.Kilorutherford).ToString(swedishCulture));
-            Assert.Equal("1 MBq", new Radioactivity(1, RadioactivityUnit.Megabecquerel).ToString(swedishCulture));
-            Assert.Equal("1 MCi", new Radioactivity(1, RadioactivityUnit.Megacurie).ToString(swedishCulture));
-            Assert.Equal("1 MRd", new Radioactivity(1, RadioactivityUnit.Megarutherford).ToString(swedishCulture));
-            Assert.Equal("1 µBq", new Radioactivity(1, RadioactivityUnit.Microbecquerel).ToString(swedishCulture));
-            Assert.Equal("1 µCi", new Radioactivity(1, RadioactivityUnit.Microcurie).ToString(swedishCulture));
-            Assert.Equal("1 µRd", new Radioactivity(1, RadioactivityUnit.Microrutherford).ToString(swedishCulture));
-            Assert.Equal("1 mBq", new Radioactivity(1, RadioactivityUnit.Millibecquerel).ToString(swedishCulture));
-            Assert.Equal("1 mCi", new Radioactivity(1, RadioactivityUnit.Millicurie).ToString(swedishCulture));
-            Assert.Equal("1 mRd", new Radioactivity(1, RadioactivityUnit.Millirutherford).ToString(swedishCulture));
-            Assert.Equal("1 nBq", new Radioactivity(1, RadioactivityUnit.Nanobecquerel).ToString(swedishCulture));
-            Assert.Equal("1 nCi", new Radioactivity(1, RadioactivityUnit.Nanocurie).ToString(swedishCulture));
-            Assert.Equal("1 nRd", new Radioactivity(1, RadioactivityUnit.Nanorutherford).ToString(swedishCulture));
-            Assert.Equal("1 PBq", new Radioactivity(1, RadioactivityUnit.Petabecquerel).ToString(swedishCulture));
-            Assert.Equal("1 pBq", new Radioactivity(1, RadioactivityUnit.Picobecquerel).ToString(swedishCulture));
-            Assert.Equal("1 pCi", new Radioactivity(1, RadioactivityUnit.Picocurie).ToString(swedishCulture));
-            Assert.Equal("1 pRd", new Radioactivity(1, RadioactivityUnit.Picorutherford).ToString(swedishCulture));
-            Assert.Equal("1 Rd", new Radioactivity(1, RadioactivityUnit.Rutherford).ToString(swedishCulture));
-            Assert.Equal("1 TBq", new Radioactivity(1, RadioactivityUnit.Terabecquerel).ToString(swedishCulture));
-            Assert.Equal("1 TCi", new Radioactivity(1, RadioactivityUnit.Teracurie).ToString(swedishCulture));
-            Assert.Equal("1 TRd", new Radioactivity(1, RadioactivityUnit.Terarutherford).ToString(swedishCulture));
+            Assert.Equal("1 Bq", new Radioactivity(1, RadioactivityUnit.Becquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 Ci", new Radioactivity(1, RadioactivityUnit.Curie).ToString(null, swedishCulture));
+            Assert.Equal("1 EBq", new Radioactivity(1, RadioactivityUnit.Exabecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 GBq", new Radioactivity(1, RadioactivityUnit.Gigabecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 GCi", new Radioactivity(1, RadioactivityUnit.Gigacurie).ToString(null, swedishCulture));
+            Assert.Equal("1 GRd", new Radioactivity(1, RadioactivityUnit.Gigarutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 kBq", new Radioactivity(1, RadioactivityUnit.Kilobecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 kCi", new Radioactivity(1, RadioactivityUnit.Kilocurie).ToString(null, swedishCulture));
+            Assert.Equal("1 kRd", new Radioactivity(1, RadioactivityUnit.Kilorutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 MBq", new Radioactivity(1, RadioactivityUnit.Megabecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 MCi", new Radioactivity(1, RadioactivityUnit.Megacurie).ToString(null, swedishCulture));
+            Assert.Equal("1 MRd", new Radioactivity(1, RadioactivityUnit.Megarutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 µBq", new Radioactivity(1, RadioactivityUnit.Microbecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 µCi", new Radioactivity(1, RadioactivityUnit.Microcurie).ToString(null, swedishCulture));
+            Assert.Equal("1 µRd", new Radioactivity(1, RadioactivityUnit.Microrutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 mBq", new Radioactivity(1, RadioactivityUnit.Millibecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 mCi", new Radioactivity(1, RadioactivityUnit.Millicurie).ToString(null, swedishCulture));
+            Assert.Equal("1 mRd", new Radioactivity(1, RadioactivityUnit.Millirutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 nBq", new Radioactivity(1, RadioactivityUnit.Nanobecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 nCi", new Radioactivity(1, RadioactivityUnit.Nanocurie).ToString(null, swedishCulture));
+            Assert.Equal("1 nRd", new Radioactivity(1, RadioactivityUnit.Nanorutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 PBq", new Radioactivity(1, RadioactivityUnit.Petabecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 pBq", new Radioactivity(1, RadioactivityUnit.Picobecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 pCi", new Radioactivity(1, RadioactivityUnit.Picocurie).ToString(null, swedishCulture));
+            Assert.Equal("1 pRd", new Radioactivity(1, RadioactivityUnit.Picorutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 Rd", new Radioactivity(1, RadioactivityUnit.Rutherford).ToString(null, swedishCulture));
+            Assert.Equal("1 TBq", new Radioactivity(1, RadioactivityUnit.Terabecquerel).ToString(null, swedishCulture));
+            Assert.Equal("1 TCi", new Radioactivity(1, RadioactivityUnit.Teracurie).ToString(null, swedishCulture));
+            Assert.Equal("1 TRd", new Radioactivity(1, RadioactivityUnit.Terarutherford).ToString(null, swedishCulture));
         }
 
         [Fact]

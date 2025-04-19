@@ -652,9 +652,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString(swedishCulture));
-            Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString(swedishCulture));
-            Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString(swedishCulture));
+            Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString(null, swedishCulture));
         }
 
         [Fact]

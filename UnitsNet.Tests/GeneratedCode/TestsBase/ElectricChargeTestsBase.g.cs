@@ -964,17 +964,17 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 A-h", new ElectricCharge(1, ElectricChargeUnit.AmpereHour).ToString(swedishCulture));
-            Assert.Equal("1 C", new ElectricCharge(1, ElectricChargeUnit.Coulomb).ToString(swedishCulture));
-            Assert.Equal("1 kA-h", new ElectricCharge(1, ElectricChargeUnit.KiloampereHour).ToString(swedishCulture));
-            Assert.Equal("1 kC", new ElectricCharge(1, ElectricChargeUnit.Kilocoulomb).ToString(swedishCulture));
-            Assert.Equal("1 MA-h", new ElectricCharge(1, ElectricChargeUnit.MegaampereHour).ToString(swedishCulture));
-            Assert.Equal("1 MC", new ElectricCharge(1, ElectricChargeUnit.Megacoulomb).ToString(swedishCulture));
-            Assert.Equal("1 µC", new ElectricCharge(1, ElectricChargeUnit.Microcoulomb).ToString(swedishCulture));
-            Assert.Equal("1 mA-h", new ElectricCharge(1, ElectricChargeUnit.MilliampereHour).ToString(swedishCulture));
-            Assert.Equal("1 mC", new ElectricCharge(1, ElectricChargeUnit.Millicoulomb).ToString(swedishCulture));
-            Assert.Equal("1 nC", new ElectricCharge(1, ElectricChargeUnit.Nanocoulomb).ToString(swedishCulture));
-            Assert.Equal("1 pC", new ElectricCharge(1, ElectricChargeUnit.Picocoulomb).ToString(swedishCulture));
+            Assert.Equal("1 A-h", new ElectricCharge(1, ElectricChargeUnit.AmpereHour).ToString(null, swedishCulture));
+            Assert.Equal("1 C", new ElectricCharge(1, ElectricChargeUnit.Coulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 kA-h", new ElectricCharge(1, ElectricChargeUnit.KiloampereHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kC", new ElectricCharge(1, ElectricChargeUnit.Kilocoulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 MA-h", new ElectricCharge(1, ElectricChargeUnit.MegaampereHour).ToString(null, swedishCulture));
+            Assert.Equal("1 MC", new ElectricCharge(1, ElectricChargeUnit.Megacoulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 µC", new ElectricCharge(1, ElectricChargeUnit.Microcoulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 mA-h", new ElectricCharge(1, ElectricChargeUnit.MilliampereHour).ToString(null, swedishCulture));
+            Assert.Equal("1 mC", new ElectricCharge(1, ElectricChargeUnit.Millicoulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 nC", new ElectricCharge(1, ElectricChargeUnit.Nanocoulomb).ToString(null, swedishCulture));
+            Assert.Equal("1 pC", new ElectricCharge(1, ElectricChargeUnit.Picocoulomb).ToString(null, swedishCulture));
         }
 
         [Fact]

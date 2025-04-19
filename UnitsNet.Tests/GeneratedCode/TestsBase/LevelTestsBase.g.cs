@@ -563,8 +563,8 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 dB", new Level(1, LevelUnit.Decibel).ToString(swedishCulture));
-            Assert.Equal("1 Np", new Level(1, LevelUnit.Neper).ToString(swedishCulture));
+            Assert.Equal("1 dB", new Level(1, LevelUnit.Decibel).ToString(null, swedishCulture));
+            Assert.Equal("1 Np", new Level(1, LevelUnit.Neper).ToString(null, swedishCulture));
         }
 
         [Fact]

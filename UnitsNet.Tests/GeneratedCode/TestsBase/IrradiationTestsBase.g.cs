@@ -850,15 +850,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 Btu/ft²", new Irradiation(1, IrradiationUnit.BtuPerSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 J/cm²", new Irradiation(1, IrradiationUnit.JoulePerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 J/m²", new Irradiation(1, IrradiationUnit.JoulePerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 J/mm²", new Irradiation(1, IrradiationUnit.JoulePerSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kBtu/ft²", new Irradiation(1, IrradiationUnit.KilobtuPerSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/m²", new Irradiation(1, IrradiationUnit.KilojoulePerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kWh/m²", new Irradiation(1, IrradiationUnit.KilowattHourPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -850,15 +850,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString(swedishCulture));
-            Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString(swedishCulture));
-            Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString(swedishCulture));
-            Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 sccm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 scfh", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 scfm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 Sft³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 Sm³/d", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay).ToString(null, swedishCulture));
+            Assert.Equal("1 Sm³/h", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 Sm³/min", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 Sm³/s", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -1477,34 +1477,34 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 g·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 g·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 g·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 kt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 Mt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Mt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 Mt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 Mt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 mg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 mg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 mg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 lb·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 lb·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 slug·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 slug·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 t·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 t·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).ToString(swedishCulture));
-            Assert.Equal("1 t·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 t·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 g·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.GramSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilotonneSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Mt·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Mt·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Mt·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Mt·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MegatonneSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mg·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mg·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mg·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mg·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 lb·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 lb·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.PoundSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 slug·ft²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 slug·in²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.SlugSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 t·cm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 t·dm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 t·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 t·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMillimeter).ToString(null, swedishCulture));
         }
 
         [Fact]

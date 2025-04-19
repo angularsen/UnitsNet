@@ -838,15 +838,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 A", new ElectricCurrent(1, ElectricCurrentUnit.Ampere).ToString(swedishCulture));
-            Assert.Equal("1 cA", new ElectricCurrent(1, ElectricCurrentUnit.Centiampere).ToString(swedishCulture));
-            Assert.Equal("1 fA", new ElectricCurrent(1, ElectricCurrentUnit.Femtoampere).ToString(swedishCulture));
-            Assert.Equal("1 kA", new ElectricCurrent(1, ElectricCurrentUnit.Kiloampere).ToString(swedishCulture));
-            Assert.Equal("1 MA", new ElectricCurrent(1, ElectricCurrentUnit.Megaampere).ToString(swedishCulture));
-            Assert.Equal("1 µA", new ElectricCurrent(1, ElectricCurrentUnit.Microampere).ToString(swedishCulture));
-            Assert.Equal("1 mA", new ElectricCurrent(1, ElectricCurrentUnit.Milliampere).ToString(swedishCulture));
-            Assert.Equal("1 nA", new ElectricCurrent(1, ElectricCurrentUnit.Nanoampere).ToString(swedishCulture));
-            Assert.Equal("1 pA", new ElectricCurrent(1, ElectricCurrentUnit.Picoampere).ToString(swedishCulture));
+            Assert.Equal("1 A", new ElectricCurrent(1, ElectricCurrentUnit.Ampere).ToString(null, swedishCulture));
+            Assert.Equal("1 cA", new ElectricCurrent(1, ElectricCurrentUnit.Centiampere).ToString(null, swedishCulture));
+            Assert.Equal("1 fA", new ElectricCurrent(1, ElectricCurrentUnit.Femtoampere).ToString(null, swedishCulture));
+            Assert.Equal("1 kA", new ElectricCurrent(1, ElectricCurrentUnit.Kiloampere).ToString(null, swedishCulture));
+            Assert.Equal("1 MA", new ElectricCurrent(1, ElectricCurrentUnit.Megaampere).ToString(null, swedishCulture));
+            Assert.Equal("1 µA", new ElectricCurrent(1, ElectricCurrentUnit.Microampere).ToString(null, swedishCulture));
+            Assert.Equal("1 mA", new ElectricCurrent(1, ElectricCurrentUnit.Milliampere).ToString(null, swedishCulture));
+            Assert.Equal("1 nA", new ElectricCurrent(1, ElectricCurrentUnit.Nanoampere).ToString(null, swedishCulture));
+            Assert.Equal("1 pA", new ElectricCurrent(1, ElectricCurrentUnit.Picoampere).ToString(null, swedishCulture));
         }
 
         [Fact]

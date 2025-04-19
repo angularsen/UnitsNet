@@ -1132,21 +1132,21 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString(swedishCulture));
+            Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

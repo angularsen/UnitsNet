@@ -691,12 +691,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString(swedishCulture));
-            Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString(swedishCulture));
-            Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString(swedishCulture));
-            Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString(swedishCulture));
-            Assert.Equal("1 ppt", new Ratio(1, RatioUnit.PartPerTrillion).ToString(swedishCulture));
-            Assert.Equal("1 %", new Ratio(1, RatioUnit.Percent).ToString(swedishCulture));
+            Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString(null, swedishCulture));
+            Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString(null, swedishCulture));
+            Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString(null, swedishCulture));
+            Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString(null, swedishCulture));
+            Assert.Equal("1 ppt", new Ratio(1, RatioUnit.PartPerTrillion).ToString(null, swedishCulture));
+            Assert.Equal("1 %", new Ratio(1, RatioUnit.Percent).ToString(null, swedishCulture));
         }
 
         [Fact]

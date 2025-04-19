@@ -850,15 +850,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 ∆°C", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 ∆°De", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeDelisle).ToString(swedishCulture));
-            Assert.Equal("1 ∆°F", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 ∆°N", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeNewton).ToString(swedishCulture));
-            Assert.Equal("1 ∆°R", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRankine).ToString(swedishCulture));
-            Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString(swedishCulture));
-            Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString(swedishCulture));
-            Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString(swedishCulture));
-            Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 ∆°C", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°De", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeDelisle).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°F", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°N", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeNewton).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°R", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRankine).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString(null, swedishCulture));
         }
 
         [Fact]

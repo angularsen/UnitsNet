@@ -1186,19 +1186,19 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cg/mol", new MolarMass(1, MolarMassUnit.CentigramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 dag/mol", new MolarMass(1, MolarMassUnit.DecagramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 dg/mol", new MolarMass(1, MolarMassUnit.DecigramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 g/mol", new MolarMass(1, MolarMassUnit.GramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 hg/mol", new MolarMass(1, MolarMassUnit.HectogramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 kg/kmol", new MolarMass(1, MolarMassUnit.KilogramPerKilomole).ToString(swedishCulture));
-            Assert.Equal("1 kg/mol", new MolarMass(1, MolarMassUnit.KilogramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 klb/mol", new MolarMass(1, MolarMassUnit.KilopoundPerMole).ToString(swedishCulture));
-            Assert.Equal("1 Mlb/mol", new MolarMass(1, MolarMassUnit.MegapoundPerMole).ToString(swedishCulture));
-            Assert.Equal("1 µg/mol", new MolarMass(1, MolarMassUnit.MicrogramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 mg/mol", new MolarMass(1, MolarMassUnit.MilligramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 ng/mol", new MolarMass(1, MolarMassUnit.NanogramPerMole).ToString(swedishCulture));
-            Assert.Equal("1 lb/mol", new MolarMass(1, MolarMassUnit.PoundPerMole).ToString(swedishCulture));
+            Assert.Equal("1 cg/mol", new MolarMass(1, MolarMassUnit.CentigramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 dag/mol", new MolarMass(1, MolarMassUnit.DecagramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 dg/mol", new MolarMass(1, MolarMassUnit.DecigramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 g/mol", new MolarMass(1, MolarMassUnit.GramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 hg/mol", new MolarMass(1, MolarMassUnit.HectogramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 kg/kmol", new MolarMass(1, MolarMassUnit.KilogramPerKilomole).ToString(null, swedishCulture));
+            Assert.Equal("1 kg/mol", new MolarMass(1, MolarMassUnit.KilogramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 klb/mol", new MolarMass(1, MolarMassUnit.KilopoundPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 Mlb/mol", new MolarMass(1, MolarMassUnit.MegapoundPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 µg/mol", new MolarMass(1, MolarMassUnit.MicrogramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 mg/mol", new MolarMass(1, MolarMassUnit.MilligramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 ng/mol", new MolarMass(1, MolarMassUnit.NanogramPerMole).ToString(null, swedishCulture));
+            Assert.Equal("1 lb/mol", new MolarMass(1, MolarMassUnit.PoundPerMole).ToString(null, swedishCulture));
         }
 
         [Fact]

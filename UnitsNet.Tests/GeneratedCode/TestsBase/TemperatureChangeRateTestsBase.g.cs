@@ -1114,23 +1114,23 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 c°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 da°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 d°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 °C/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour).ToString(swedishCulture));
-            Assert.Equal("1 °C/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 °C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 °F/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour).ToString(swedishCulture));
-            Assert.Equal("1 °F/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 °F/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 K/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerHour).ToString(swedishCulture));
-            Assert.Equal("1 K/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 K/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 h°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 k°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 µ°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 m°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 n°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 c°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 da°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 d°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 °C/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 °C/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 °C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 °F/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 °F/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 °F/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 K/h", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 K/min", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 K/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 h°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 k°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 µ°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 m°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 n°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

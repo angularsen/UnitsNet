@@ -652,9 +652,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 C/cm²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 C/in²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 C/m²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 C/cm²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 C/in²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 C/m²", new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

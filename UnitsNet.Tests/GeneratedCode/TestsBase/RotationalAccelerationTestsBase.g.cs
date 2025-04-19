@@ -706,10 +706,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 °/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.DegreePerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 rad/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 rpm/s", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 r/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).ToString(swedishCulture));
+            Assert.Equal("1 °/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.DegreePerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 rad/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 rpm/s", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 r/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).ToString(null, swedishCulture));
         }
 
         [Fact]

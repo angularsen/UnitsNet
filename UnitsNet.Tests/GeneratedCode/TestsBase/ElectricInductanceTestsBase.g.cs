@@ -718,11 +718,11 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString(swedishCulture));
-            Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString(swedishCulture));
-            Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString(swedishCulture));
-            Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString(swedishCulture));
-            Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString(swedishCulture));
+            Assert.Equal("1 H", new ElectricInductance(1, ElectricInductanceUnit.Henry).ToString(null, swedishCulture));
+            Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString(null, swedishCulture));
+            Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString(null, swedishCulture));
+            Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString(null, swedishCulture));
+            Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString(null, swedishCulture));
         }
 
         [Fact]

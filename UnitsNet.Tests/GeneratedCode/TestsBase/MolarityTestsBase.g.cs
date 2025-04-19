@@ -1084,17 +1084,17 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cmol/l", new Molarity(1, MolarityUnit.CentimolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 dmol/l", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 fmol/l", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 kmol/m³", new Molarity(1, MolarityUnit.KilomolePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 µmol/l", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 mmol/l", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 mol/l", new Molarity(1, MolarityUnit.MolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 nmol/l", new Molarity(1, MolarityUnit.NanomolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 pmol/l", new Molarity(1, MolarityUnit.PicomolePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 lbmol/ft³", new Molarity(1, MolarityUnit.PoundMolePerCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 cmol/l", new Molarity(1, MolarityUnit.CentimolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 dmol/l", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 fmol/l", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 kmol/m³", new Molarity(1, MolarityUnit.KilomolePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µmol/l", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmol/l", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mol/l", new Molarity(1, MolarityUnit.MolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 nmol/l", new Molarity(1, MolarityUnit.NanomolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 pmol/l", new Molarity(1, MolarityUnit.PicomolePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 lbmol/ft³", new Molarity(1, MolarityUnit.PoundMolePerCubicFoot).ToString(null, swedishCulture));
         }
 
         [Fact]

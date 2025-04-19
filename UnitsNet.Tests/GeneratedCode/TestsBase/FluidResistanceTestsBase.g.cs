@@ -1579,25 +1579,25 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 dyn·s/cm⁵", new FluidResistance(1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth).ToString(swedishCulture));
-            Assert.Equal("1 MPa·s/m³", new FluidResistance(1, FluidResistanceUnit.MegapascalSecondPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·min/cm³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·min/m³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·min/l", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·min/ml", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·s/cm³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·s/m³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·s/l", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 mmHg·s/ml", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·min/cm³", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerCubicCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·min/m³", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·min/l", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerLiter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·min/ml", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·s/cm³", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·s/m³", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·s/l", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerLiter).ToString(swedishCulture));
-            Assert.Equal("1 Pa·s/ml", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerMilliliter).ToString(swedishCulture));
-            Assert.Equal("1 WU", new FluidResistance(1, FluidResistanceUnit.WoodUnit).ToString(swedishCulture));
+            Assert.Equal("1 dyn·s/cm⁵", new FluidResistance(1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth).ToString(null, swedishCulture));
+            Assert.Equal("1 MPa·s/m³", new FluidResistance(1, FluidResistanceUnit.MegapascalSecondPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·min/cm³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·min/m³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·min/l", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·min/ml", new FluidResistance(1, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·s/cm³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·s/m³", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·s/l", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 mmHg·s/ml", new FluidResistance(1, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·min/cm³", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerCubicCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·min/m³", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·min/l", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·min/ml", new FluidResistance(1, FluidResistanceUnit.PascalMinutePerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·s/cm³", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·s/m³", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·s/l", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerLiter).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·s/ml", new FluidResistance(1, FluidResistanceUnit.PascalSecondPerMilliliter).ToString(null, swedishCulture));
+            Assert.Equal("1 WU", new FluidResistance(1, FluidResistanceUnit.WoodUnit).ToString(null, swedishCulture));
         }
 
         [Fact]
