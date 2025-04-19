@@ -13,6 +13,11 @@ namespace UnitsNet.Tests.CustomQuantities
             Unit = unit;
             Value = value;
         }
+        
+        public static HowMuch From(double value, HowMuchUnit unit)
+        {
+            return new HowMuch(value, unit);
+        }
 
         public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
 
