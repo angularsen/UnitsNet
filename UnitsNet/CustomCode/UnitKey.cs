@@ -17,8 +17,8 @@ namespace UnitsNet;
 public readonly record struct UnitKey
 {
     // apparently, on netstandard, the use of auto-properties is significantly slower
-    private readonly Type _unitType;
-    private readonly int _unitValue;
+    private readonly Type _unitEnumType;
+    private readonly int _unitEnumValue;
 
     /// <summary>
     ///     Represents a unique key for a unit type and its corresponding value.
@@ -27,10 +27,10 @@ public readonly record struct UnitKey
     ///     This key is particularly useful when using an enum-based unit in a hash-based collection,
     ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
     /// </remarks>
-    public UnitKey(Type UnitType, int UnitValue)
+    internal UnitKey(Type UnitEnumType, int UnitEnumValue)
     {
-        _unitType = UnitType;
-        _unitValue = UnitValue;
+        _unitEnumType = UnitEnumType;
+        _unitEnumValue = UnitEnumValue;
     }
 
     /// <summary>
@@ -40,9 +40,9 @@ public readonly record struct UnitKey
     ///     This property holds the <see cref="Type" /> of the unit enumeration associated with this key.
     ///     It is particularly useful for identifying the unit type in scenarios where multiple unit types are used.
     /// </remarks>
-    public Type UnitType
+    public Type UnitEnumType
     {
-        get => _unitType;
+        get => _unitEnumType;
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public readonly record struct UnitKey
     ///     This property represents the unique value of the unit within its type, typically corresponding to the underlying
     ///     integer value of an enumeration.
     /// </remarks>
-    public int UnitValue
+    public int UnitEnumValue
     {
-        get => _unitValue;
+        get => _unitEnumValue;
     }
 
     /// <summary>
@@ -79,6 +79,36 @@ public readonly record struct UnitKey
         where TUnit : struct, Enum
     {
         return new UnitKey(typeof(TUnit), unitValue);
+    }
+
+    /// <summary>
+    ///     Creates a new instance of the <see cref="UnitKey" /> struct for the specified unit type and value.
+    /// </summary>
+    /// <param name="unitType">The type of the unit, which must be an enumeration.</param>
+    /// <param name="unitValue">The integer value representing the unit.</param>
+    /// <returns>A new instance of the <see cref="UnitKey" /> struct.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitType" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    ///     Thrown if <paramref name="unitType" /> is not an enumeration type.
+    /// </exception>
+    /// <remarks>
+    ///     This method is useful for creating a <see cref="UnitKey" /> when the unit type and value are known.
+    /// </remarks>
+    public static UnitKey Create(Type unitType, int unitValue)
+    {
+        if (unitType is null)
+        {
+            throw new ArgumentNullException(nameof(unitType));
+        }
+
+        if (!unitType.IsEnum)
+        {
+            throw new ArgumentException($"Unit type must be an enumeration, but was {unitType.FullName}.");
+        }
+
+        return new UnitKey(unitType, unitValue);
     }
 
     /// <summary>
@@ -111,7 +141,7 @@ public readonly record struct UnitKey
     /// </remarks>
     public static explicit operator Enum(UnitKey unitKey)
     {
-        return (Enum)Enum.ToObject(unitKey._unitType, unitKey._unitValue);
+        return (Enum)Enum.ToObject(unitKey._unitEnumType, unitKey._unitEnumValue);
     }
 
     /// <summary>
@@ -129,12 +159,12 @@ public readonly record struct UnitKey
     /// </remarks>
     public TUnit ToUnit<TUnit>() where TUnit : struct, Enum
     {
-        if (typeof(TUnit) != _unitType)
+        if (typeof(TUnit) != _unitEnumType)
         {
-            throw new InvalidOperationException($"Cannot convert UnitKey of type {_unitType} to {typeof(TUnit)}.");
+            throw new InvalidOperationException($"Cannot convert UnitKey of type {_unitEnumType} to {typeof(TUnit)}.");
         }
 
-        var unitValue = _unitValue;
+        var unitValue = _unitEnumValue;
         return Unsafe.As<int, TUnit>(ref unitValue);
     }
 
@@ -142,12 +172,12 @@ public readonly record struct UnitKey
     {
         try
         {
-            var unitName = Enum.GetName(_unitType, _unitValue);
-            return string.IsNullOrEmpty(unitName) ? $"{nameof(UnitType)}: {_unitType}, {nameof(UnitValue)} = {_unitValue}" : $"{_unitType.Name}.{unitName}";
+            var unitName = Enum.GetName(_unitEnumType, _unitEnumValue);
+            return string.IsNullOrEmpty(unitName) ? $"{nameof(UnitEnumType)}: {_unitEnumType}, {nameof(UnitEnumValue)} = {_unitEnumValue}" : $"{_unitEnumType.Name}.{unitName}";
         }
         catch
         {
-            return $"{nameof(UnitType)}: {_unitType}, {nameof(UnitValue)} = {_unitValue}";
+            return $"{nameof(UnitEnumType)}: {_unitEnumType}, {nameof(UnitEnumValue)} = {_unitEnumValue}";
         }
     }
 
@@ -162,8 +192,8 @@ public readonly record struct UnitKey
     /// </remarks>
     public void Deconstruct(out Type unitType, out int unitValue)
     {
-        unitType = _unitType;
-        unitValue = _unitValue;
+        unitType = _unitEnumType;
+        unitValue = _unitEnumValue;
     }
 
     #region Equality members
@@ -172,21 +202,21 @@ public readonly record struct UnitKey
     public bool Equals(UnitKey other)
     {
         // implementing the Equality members on net48 is 5x faster than the default
-        return _unitType == other._unitType && _unitValue == other._unitValue;
+        return _unitEnumType == other._unitEnumType && _unitEnumValue == other._unitEnumValue;
     }
 
     /// <inheritdoc />
     public override int GetHashCode()
     {
         // implementing the Equality members on net48 is 5x faster than the default
-        if (_unitType == null)
+        if (_unitEnumType == null)
         {
-            return _unitValue;
+            return _unitEnumValue;
         }
 
         unchecked
         {
-            return (_unitType.GetHashCode() * 397) ^ _unitValue;
+            return (_unitEnumType.GetHashCode() * 397) ^ _unitEnumValue;
         }
     }
 

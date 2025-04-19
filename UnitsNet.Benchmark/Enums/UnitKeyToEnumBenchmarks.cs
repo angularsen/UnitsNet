@@ -23,7 +23,7 @@ public class UnitKeyToEnumBenchmarks
         var total = 0;
         for (var i = 0; i < NbIterations; i++)
         {
-            if ((MassUnit)unitKey.UnitValue == MassUnit.Gram)
+            if ((MassUnit)unitKey.UnitEnumValue == MassUnit.Gram)
             {
                 total++;
             }

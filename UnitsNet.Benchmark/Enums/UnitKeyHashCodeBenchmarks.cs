@@ -17,8 +17,8 @@ public class UnitKeyHashCodeBenchmarks
 
     private static readonly UnitKey UnitKey = UnitKey.ForUnit(VolumeUnit.CubicMeter);
 
-    private readonly Type UnitType = UnitKey.UnitType;
-    private readonly int UnitValue = UnitKey.UnitValue;
+    private readonly Type UnitType = UnitKey.UnitEnumType;
+    private readonly int UnitValue = UnitKey.UnitEnumValue;
 
     [Benchmark(Baseline = true)]
     public int GetHashCodeRecord()

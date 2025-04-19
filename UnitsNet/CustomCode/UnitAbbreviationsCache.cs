@@ -267,7 +267,7 @@ namespace UnitsNet
             IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
             if (abbreviations.Count == 0)
             {
-                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
+                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitEnumType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
             }
 
             return abbreviations[0];
@@ -463,7 +463,7 @@ namespace UnitsNet
         {
             var abbreviationsList = new List<string>();
             // we currently don't have any way of providing external resource dictionaries
-            Assembly unitAssembly = unitInfo.UnitKey.UnitType.Assembly;
+            Assembly unitAssembly = unitInfo.UnitKey.UnitEnumType.Assembly;
             if (unitAssembly != typeof(UnitAbbreviationsCache).Assembly)
             {
                 return abbreviationsList;
