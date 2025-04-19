@@ -126,6 +126,12 @@ namespace UnitsNet.Tests
             // Assert
             Assert.Equal("Invariant abbreviation for Unit1", abbreviation);
         }
+        
+        [Fact]
+        public void GetDefaultAbbreviation_WithNullUnitType_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetDefaultAbbreviation(null!, 1));
+        }
 
         [Fact]
         public void GetDefaultAbbreviationThrowsUnitNotFoundExceptionIfNoneExist()
@@ -147,6 +153,12 @@ namespace UnitsNet.Tests
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
             Assert.Empty(unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(HowMuchUnit)));
+        }
+
+        [Fact]
+        public void GetAllUnitAbbreviationsForQuantity_WithNullUnitType_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetAllUnitAbbreviationsForQuantity(null!));
         }
 
         [Fact]

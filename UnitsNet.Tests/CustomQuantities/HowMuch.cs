@@ -49,6 +49,11 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             get { return Info; }
         }
+        
+        public UnitKey UnitKey
+        {
+            get => UnitKey.ForUnit(Unit);
+        }
 
         public double As(Enum unit) => Convert.ToDouble(unit);
 

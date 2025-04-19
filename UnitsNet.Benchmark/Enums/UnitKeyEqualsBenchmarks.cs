@@ -16,11 +16,11 @@ public class UnitKeyEqualsBenchmarks
 
     private static readonly UnitKey UnitKey = UnitKey.ForUnit(VolumeUnit.CubicMeter);
     private static readonly UnitKey OtherUnitKey = UnitKey.ForUnit(VolumeUnit.AcreFoot);
-    private readonly Type OtherUnitType = UnitKey.UnitType;
-    private readonly int OtherUnitValue = UnitKey.UnitValue;
+    private readonly Type OtherUnitType = UnitKey.UnitEnumType;
+    private readonly int OtherUnitValue = UnitKey.UnitEnumValue;
 
-    private readonly Type UnitType = UnitKey.UnitType;
-    private readonly int UnitValue = UnitKey.UnitValue;
+    private readonly Type UnitType = UnitKey.UnitEnumType;
+    private readonly int UnitValue = UnitKey.UnitEnumValue;
 
     [Benchmark(Baseline = true)]
     public bool EqualsRecord()

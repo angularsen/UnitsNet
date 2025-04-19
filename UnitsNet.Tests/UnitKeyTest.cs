@@ -23,16 +23,16 @@ public class UnitKeyTest
     public void Constructor_ShouldCreateUnitKey(int unitValue)
     {
         var unitKey = new UnitKey(typeof(TestUnit), unitValue);
-        Assert.Equal(typeof(TestUnit), unitKey.UnitType);
-        Assert.Equal(unitValue, unitKey.UnitValue);
+        Assert.Equal(typeof(TestUnit), unitKey.UnitEnumType);
+        Assert.Equal(unitValue, unitKey.UnitEnumValue);
     }
 
     [Fact]
     public void Constructor_WithNullType_ShouldNotThrow()
     {
         var unitKey = new UnitKey(null!, 0);
-        Assert.Null(unitKey.UnitType);
-        Assert.Equal(0, unitKey.UnitValue);
+        Assert.Null(unitKey.UnitEnumType);
+        Assert.Equal(0, unitKey.UnitEnumValue);
     }
 
     [Theory]
@@ -42,8 +42,8 @@ public class UnitKeyTest
     public void ForUnit_ShouldCreateUnitKey(TestUnit unit)
     {
         var unitKey = UnitKey.ForUnit(unit);
-        Assert.Equal(typeof(TestUnit), unitKey.UnitType);
-        Assert.Equal((int)unit, unitKey.UnitValue);
+        Assert.Equal(typeof(TestUnit), unitKey.UnitEnumType);
+        Assert.Equal((int)unit, unitKey.UnitEnumValue);
     }
 
     [Theory]
@@ -53,8 +53,31 @@ public class UnitKeyTest
     public void Create_ShouldCreateUnitKey(int unitValue)
     {
         var unitKey = UnitKey.Create<TestUnit>(unitValue);
-        Assert.Equal(typeof(TestUnit), unitKey.UnitType);
-        Assert.Equal(unitValue, unitKey.UnitValue);
+        Assert.Equal(typeof(TestUnit), unitKey.UnitEnumType);
+        Assert.Equal(unitValue, unitKey.UnitEnumValue);
+    }
+
+    [Theory]
+    [InlineData(typeof(TestUnit), 1)]
+    [InlineData(typeof(TestUnit), 2)]
+    [InlineData(typeof(TestUnit), 3)]
+    public void Create_WithUnitTypeAndUnitValue_ShouldCreateUnitKey(Type unitType, int unitValue)
+    {
+        var unitKey = UnitKey.Create(unitType, unitValue);
+        Assert.Equal(unitType, unitKey.UnitEnumType);
+        Assert.Equal(unitValue, unitKey.UnitEnumValue);
+    }
+
+    [Fact]
+    public void Create_WithNullUnitType_ShouldThrowArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => UnitKey.Create(null!, 0));
+    }
+
+    [Fact]
+    public void Create_WithNonEnumType_ShouldThrowArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() => UnitKey.Create(typeof(int), 1));
     }
 
     [Theory]
@@ -64,8 +87,8 @@ public class UnitKeyTest
     public void ImplicitConversion_ShouldCreateUnitKey(TestUnit unit)
     {
         UnitKey unitKey = unit;
-        Assert.Equal(typeof(TestUnit), unitKey.UnitType);
-        Assert.Equal((int)unit, unitKey.UnitValue);
+        Assert.Equal(typeof(TestUnit), unitKey.UnitEnumType);
+        Assert.Equal((int)unit, unitKey.UnitEnumValue);
     }
 
     [Theory]
@@ -94,8 +117,8 @@ public class UnitKeyTest
     public void Default_InitializesWithoutAType()
     {
         var defaultUnitKey = default(UnitKey);
-        Assert.Null(defaultUnitKey.UnitType);
-        Assert.Equal(0, defaultUnitKey.UnitValue);
+        Assert.Null(defaultUnitKey.UnitEnumType);
+        Assert.Equal(0, defaultUnitKey.UnitEnumValue);
     }
 
     [Fact]
@@ -139,7 +162,7 @@ public class UnitKeyTest
     [InlineData(TestUnit.Unit1, "TestUnit.Unit1")]
     [InlineData(TestUnit.Unit2, "TestUnit.Unit2")]
     [InlineData(TestUnit.Unit3, "TestUnit.Unit3")]
-    [InlineData((TestUnit)(-1), "UnitType: UnitsNet.Tests.UnitKeyTest+TestUnit, UnitValue = -1")]
+    [InlineData((TestUnit)(-1), "UnitEnumType: UnitsNet.Tests.UnitKeyTest+TestUnit, UnitEnumValue = -1")]
     public void GetDebuggerDisplay_ShouldReturnCorrectString(TestUnit unit, string expectedDisplay)
     {
         var unitKey = UnitKey.ForUnit(unit);
@@ -154,6 +177,6 @@ public class UnitKeyTest
         var defaultUnitKey = default(UnitKey);
         var display = defaultUnitKey.GetType().GetMethod("GetDebuggerDisplay", BindingFlags.NonPublic | BindingFlags.Instance)!
             .Invoke(defaultUnitKey, null);
-        Assert.Equal("UnitType: , UnitValue = 0", display);
+        Assert.Equal("UnitEnumType: , UnitEnumValue = 0", display);
     }
 }
