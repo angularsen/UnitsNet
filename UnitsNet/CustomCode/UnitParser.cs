@@ -41,8 +41,11 @@ public sealed class UnitParser
     ///     Initializes a new instance of the <see cref="UnitParser" /> class using the specified unit abbreviations cache.
     /// </summary>
     /// <param name="unitAbbreviationsCache">
-    ///     The cache containing unit abbreviations. If null, the default cache will be used.
+    ///     The cache containing unit abbreviations. If <c>null</c>, an <see cref="ArgumentNullException" /> will be thrown.
     /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown when <paramref name="unitAbbreviationsCache" /> is <c>null</c>.
+    /// </exception>
     public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
     {
         Abbreviations = unitAbbreviationsCache ?? throw new ArgumentNullException(nameof(unitAbbreviationsCache));
