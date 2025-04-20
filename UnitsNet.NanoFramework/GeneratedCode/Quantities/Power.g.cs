@@ -89,6 +89,11 @@ namespace UnitsNet
         public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.CaloriePerHour"/>
+        /// </summary>
+        public double CaloriesPerHour => As(PowerUnit.CaloriePerHour);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Decawatt"/>
         /// </summary>
         public double Decawatts => As(PowerUnit.Decawatt);
@@ -107,6 +112,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Femtowatt"/>
         /// </summary>
         public double Femtowatts => As(PowerUnit.Femtowatt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.GigacaloriePerHour"/>
+        /// </summary>
+        public double GigacaloriesPerHour => As(PowerUnit.GigacaloriePerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.GigajoulePerHour"/>
@@ -134,6 +144,11 @@ namespace UnitsNet
         public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.KilocaloriePerHour"/>
+        /// </summary>
+        public double KilocaloriesPerHour => As(PowerUnit.KilocaloriePerHour);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.KilojoulePerHour"/>
         /// </summary>
         public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
@@ -152,6 +167,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>
         /// </summary>
         public double MegabritishThermalUnitsPerHour => As(PowerUnit.MegabritishThermalUnitPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegacaloriePerHour"/>
+        /// </summary>
+        public double MegacaloriesPerHour => As(PowerUnit.MegacaloriePerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegajoulePerHour"/>
@@ -228,6 +248,11 @@ namespace UnitsNet
         public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour) => new Power(britishthermalunitsperhour, PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.CaloriePerHour"/>.
+        /// </summary>
+        public static Power FromCaloriesPerHour(double caloriesperhour) => new Power(caloriesperhour, PowerUnit.CaloriePerHour);
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Decawatt"/>.
         /// </summary>
         public static Power FromDecawatts(double decawatts) => new Power(decawatts, PowerUnit.Decawatt);
@@ -246,6 +271,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Femtowatt"/>.
         /// </summary>
         public static Power FromFemtowatts(double femtowatts) => new Power(femtowatts, PowerUnit.Femtowatt);
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigacaloriePerHour"/>.
+        /// </summary>
+        public static Power FromGigacaloriesPerHour(double gigacaloriesperhour) => new Power(gigacaloriesperhour, PowerUnit.GigacaloriePerHour);
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigajoulePerHour"/>.
@@ -273,6 +303,11 @@ namespace UnitsNet
         public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour) => new Power(kilobritishthermalunitsperhour, PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilocaloriePerHour"/>.
+        /// </summary>
+        public static Power FromKilocaloriesPerHour(double kilocaloriesperhour) => new Power(kilocaloriesperhour, PowerUnit.KilocaloriePerHour);
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilojoulePerHour"/>.
         /// </summary>
         public static Power FromKilojoulesPerHour(double kilojoulesperhour) => new Power(kilojoulesperhour, PowerUnit.KilojoulePerHour);
@@ -291,6 +326,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>.
         /// </summary>
         public static Power FromMegabritishThermalUnitsPerHour(double megabritishthermalunitsperhour) => new Power(megabritishthermalunitsperhour, PowerUnit.MegabritishThermalUnitPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegacaloriePerHour"/>.
+        /// </summary>
+        public static Power FromMegacaloriesPerHour(double megacaloriesperhour) => new Power(megacaloriesperhour, PowerUnit.MegacaloriePerHour);
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegajoulePerHour"/>.
@@ -394,19 +434,23 @@ namespace UnitsNet
                     {
                         PowerUnit.BoilerHorsepower => _value * 9812.5,
                         PowerUnit.BritishThermalUnitPerHour => _value * 1055.05585262 / 3600,
+                        PowerUnit.CaloriePerHour => _value / 859.8452279,
                         PowerUnit.Decawatt => (_value) * 1e1d,
                         PowerUnit.Deciwatt => (_value) * 1e-1d,
                         PowerUnit.ElectricalHorsepower => _value * 746,
                         PowerUnit.Femtowatt => (_value) * 1e-15d,
+                        PowerUnit.GigacaloriePerHour => (_value / 859.8452279) * 1e9d,
                         PowerUnit.GigajoulePerHour => (_value / 3600) * 1e9d,
                         PowerUnit.Gigawatt => (_value) * 1e9d,
                         PowerUnit.HydraulicHorsepower => _value * 745.69987158227022,
                         PowerUnit.JoulePerHour => _value / 3600,
                         PowerUnit.KilobritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e3d,
+                        PowerUnit.KilocaloriePerHour => (_value / 859.8452279) * 1e3d,
                         PowerUnit.KilojoulePerHour => (_value / 3600) * 1e3d,
                         PowerUnit.Kilowatt => (_value) * 1e3d,
                         PowerUnit.MechanicalHorsepower => _value * 76.0402249 * 9.80665,
                         PowerUnit.MegabritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e6d,
+                        PowerUnit.MegacaloriePerHour => (_value / 859.8452279) * 1e6d,
                         PowerUnit.MegajoulePerHour => (_value / 3600) * 1e6d,
                         PowerUnit.Megawatt => (_value) * 1e6d,
                         PowerUnit.MetricHorsepower => _value * 75 * 9.80665,
@@ -434,19 +478,23 @@ namespace UnitsNet
                     {
                         PowerUnit.BoilerHorsepower => baseUnitValue / 9812.5,
                         PowerUnit.BritishThermalUnitPerHour => baseUnitValue * 3600 / 1055.05585262,
+                        PowerUnit.CaloriePerHour => baseUnitValue * 859.8452279,
                         PowerUnit.Decawatt => (baseUnitValue) / 1e1d,
                         PowerUnit.Deciwatt => (baseUnitValue) / 1e-1d,
                         PowerUnit.ElectricalHorsepower => baseUnitValue / 746,
                         PowerUnit.Femtowatt => (baseUnitValue) / 1e-15d,
+                        PowerUnit.GigacaloriePerHour => (baseUnitValue * 859.8452279) / 1e9d,
                         PowerUnit.GigajoulePerHour => (baseUnitValue * 3600) / 1e9d,
                         PowerUnit.Gigawatt => (baseUnitValue) / 1e9d,
                         PowerUnit.HydraulicHorsepower => baseUnitValue / 745.69987158227022,
                         PowerUnit.JoulePerHour => baseUnitValue * 3600,
                         PowerUnit.KilobritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e3d,
+                        PowerUnit.KilocaloriePerHour => (baseUnitValue * 859.8452279) / 1e3d,
                         PowerUnit.KilojoulePerHour => (baseUnitValue * 3600) / 1e3d,
                         PowerUnit.Kilowatt => (baseUnitValue) / 1e3d,
                         PowerUnit.MechanicalHorsepower => baseUnitValue / (76.0402249 * 9.80665),
                         PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e6d,
+                        PowerUnit.MegacaloriePerHour => (baseUnitValue * 859.8452279) / 1e6d,
                         PowerUnit.MegajoulePerHour => (baseUnitValue * 3600) / 1e6d,
                         PowerUnit.Megawatt => (baseUnitValue) / 1e6d,
                         PowerUnit.MetricHorsepower => baseUnitValue / (75 * 9.80665),
