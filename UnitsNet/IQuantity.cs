@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 #if NET7_0_OR_GREATER
 using System.Numerics;
+
 #endif
 using UnitsNet.Units;
 
@@ -108,13 +109,6 @@ namespace UnitsNet
             => UnitConverter.Default.ConvertTo(this, QuantityInfo.GetDefaultUnit(unitSystem).UnitKey)
 #endif
         ;
-
-        // /// <summary>
-        // ///     Gets the string representation of value and unit. Uses two significant digits after radix.
-        // /// </summary>
-        // /// <returns>String representation.</returns>
-        // /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        // string ToString(IFormatProvider? provider);
 
         /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.

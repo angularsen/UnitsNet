@@ -109,7 +109,7 @@ public class QuantityFormatter
     /// </remarks>
     /// <returns>The string representation.</returns>
     /// <exception cref="FormatException">Thrown when the format specifier is invalid.</exception>
-    public string Format<TQuantity>(TQuantity quantity, string? format, IFormatProvider? formatProvider)
+    public string Format<TQuantity>(TQuantity quantity, string? format = null, IFormatProvider? formatProvider = null)
         where TQuantity : IQuantity
     {
         formatProvider ??= CultureInfo.CurrentCulture;
@@ -197,34 +197,5 @@ public class QuantityFormatter
 #else
         return quantity.Value.ToString(format, formatProvider) + ' ' + abbreviation;
 #endif
-    }
-
-    /// <summary>
-    ///     Formats a <typeparamref name="TQuantity" /> using the given format string using
-    ///     <see cref="CultureInfo.CurrentCulture" />.
-    /// </summary>
-    /// <inheritdoc cref="Format{TQuantity}(TQuantity,string,IFormatProvider)" />
-    public string Format<TQuantity>(TQuantity quantity, string? format)
-        where TQuantity : IQuantity
-    {
-        return Format(quantity, format, null);
-    }
-
-    /// <summary>
-    ///     Formats a <typeparamref name="TQuantity" /> using the "G" format and the <see cref="CultureInfo.CurrentCulture" />.
-    /// </summary>
-    /// <typeparam name="TQuantity">
-    ///     The type of the quantity to format. Must implement <see cref="IQuantity" />.
-    /// </typeparam>
-    /// <param name="quantity">
-    ///     The quantity to format.
-    /// </param>
-    /// <returns>
-    ///     A string representation of the quantity, formatted using the "G" format and the current culture.
-    /// </returns>
-    public string Format<TQuantity>(TQuantity quantity)
-        where TQuantity : IQuantity
-    {
-        return Format(quantity, null, null);
     }
 }

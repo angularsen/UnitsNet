@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using UnitsNet.Units;
+using UnitsNet;
 #if NET
 using System.Numerics;
 #endif
@@ -91,7 +92,7 @@ public static class AffineQuantityExtensions
     /// <inheritdoc cref="EqualsAbsolute" />
     public static bool Equals(this Temperature quantity, Temperature other, TemperatureDelta tolerance)
     {
-        return EqualsAbsolute(quantity, other, tolerance);
+        return quantity.EqualsAbsolute(other, tolerance);
         // return other.HasValue && quantity.EqualsAbsolute(other.Value, tolerance);
     }
 
@@ -176,7 +177,7 @@ public static class AffineQuantityExtensions
     /// <exception cref="InvalidOperationException">Thrown if the <paramref name="temperatures" /> collection is empty.</exception>
     /// <remarks>
     ///     This method is slightly more performant than the alternative
-    ///     <see cref="Average(System.Collections.Generic.IEnumerable{UnitsNet.Temperature})" />
+    ///     <see cref="Average(IEnumerable{Temperature})" />
     ///     when most of the quantities in the collection are expected to be in the target unit.
     /// </remarks>
     public static Temperature Average(this IEnumerable<Temperature> temperatures, TemperatureUnit unit)

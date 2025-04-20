@@ -12,14 +12,14 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
-    /// <inheritdoc cref="UnitConverter.ConvertValue(UnitsNet.QuantityValue,UnitsNet.UnitKey,UnitsNet.UnitKey)" />
+    /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
     internal static QuantityValue GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
     {
         return UnitConverter.Default.ConvertValue(quantity, toUnit);
     }
 
-    /// <inheritdoc cref="UnitConverter.ConvertValue(UnitsNet.QuantityValue,UnitsNet.UnitKey,UnitsNet.UnitKey)" />
+    /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
     internal static QuantityValue ConvertValue<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
     {

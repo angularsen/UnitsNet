@@ -14,7 +14,7 @@ namespace UnitsNet;
 ///     abbreviations.<br />
 ///     Alternatively, a setup instance may be provided for most static methods, such as
 ///     <see cref="Quantity.Parse(System.Type,string)" /> and
-///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string)" />.
+///     <see cref="QuantityFormatter.Format{TQuantity}(TQuantity,string?,IFormatProvider?)" />.
 /// </summary>
 public sealed class UnitsNetSetup
 {

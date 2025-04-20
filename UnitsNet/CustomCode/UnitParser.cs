@@ -36,13 +36,16 @@ public sealed class UnitParser
         : this(new UnitAbbreviationsCache(quantitiesLookup))
     {
     }
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitParser" /> class using the specified unit abbreviations cache.
     /// </summary>
     /// <param name="unitAbbreviationsCache">
-    ///     The cache containing unit abbreviations. If null, the default cache will be used.
+    ///     The cache containing unit abbreviations. If <c>null</c>, an <see cref="ArgumentNullException" /> will be thrown.
     /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown when <paramref name="unitAbbreviationsCache" /> is <c>null</c>.
+    /// </exception>
     public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
     {
         Abbreviations = unitAbbreviationsCache ?? throw new ArgumentNullException(nameof(unitAbbreviationsCache));
@@ -745,17 +748,5 @@ public sealed class UnitParser
     internal IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation, IFormatProvider? formatProvider)
     {
         return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
-    }
-    
-    /// <inheritdoc cref="UnitAbbreviationsCache.GetUnitAbbreviations(UnitKey,IFormatProvider?)" />
-    public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider)
-    {
-        return Abbreviations.GetUnitAbbreviations(unitKey, formatProvider);
-    }
-
-    /// <inheritdoc cref="UnitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity" />
-    public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitType, IFormatProvider? formatProvider)
-    {
-        return Abbreviations.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider);
     }
 }

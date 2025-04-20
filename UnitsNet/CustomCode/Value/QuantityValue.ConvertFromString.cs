@@ -766,19 +766,19 @@ public partial struct QuantityValue
         {
             if (!byte.TryParse(value, numberStyles, formatProvider, out var singleDigit))
             {
-                if (value.SequenceEqual(numberFormatInfo.PositiveInfinitySymbol))
+                if (value == numberFormatInfo.PositiveInfinitySymbol)
                 {
                     quantityValue = PositiveInfinity;
                     return true;
                 }
 
-                if (value.SequenceEqual(numberFormatInfo.NegativeInfinitySymbol))
+                if (value == numberFormatInfo.NegativeInfinitySymbol)
                 {
                     quantityValue = NegativeInfinity;
                     return true;
                 }
 
-                if (value.SequenceEqual(numberFormatInfo.NaNSymbol))
+                if (value == numberFormatInfo.NaNSymbol)
                 {
                     quantityValue = NaN;
                     return true;

@@ -1,4 +1,5 @@
-﻿namespace UnitsNet.Units;
+﻿// ReSharper disable once CheckNamespace
+namespace UnitsNet.Units;
 
 /// <summary>
 ///     Provides extension methods for converting quantities in the UnitsNet library to another unit.

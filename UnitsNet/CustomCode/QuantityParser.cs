@@ -36,20 +36,13 @@ public class QuantityParser
     private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
     private readonly UnitParser _unitParser;
-
+    
     /// <summary>
-    ///     The default instance of <see cref="QuantityParser" />, which uses the default <see cref="UnitsNetSetup.UnitAbbreviations" /> unit abbreviations.
-    /// </summary>
-    public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
-
-    /// <summary>
-    ///     Creates an instance of <see cref="QuantityParser" />, optionally specifying an
-    ///     <see cref="UnitAbbreviationsCache" />
-    ///     with unit abbreviations to use when parsing.
+    ///     Initializes a new instance of the <see cref="QuantityParser" /> class using the specified
+    ///     <see cref="UnitAbbreviationsCache" />.
     /// </summary>
     /// <param name="unitAbbreviationsCache">
-    ///     (Optional) The unit abbreviations cache, or specify <c>null</c> to use
-    ///     <see cref="UnitsNetSetup.UnitAbbreviations" />.
+    ///     The cache containing mappings of units to their abbreviations, used for parsing quantities.
     /// </param>
     public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
         : this(new UnitParser(unitAbbreviationsCache))
@@ -57,7 +50,7 @@ public class QuantityParser
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="QuantityParser"/> class using the specified <see cref="UnitParser"/>.
+    ///     Initializes a new instance of the <see cref="QuantityParser" /> class using the specified <see cref="UnitParser" />.
     /// </summary>
     /// <param name="unitParser">
     ///     The unit parser to use for parsing units.
@@ -65,6 +58,15 @@ public class QuantityParser
     public QuantityParser(UnitParser unitParser)
     {
         _unitParser = unitParser ?? throw new ArgumentNullException(nameof(unitParser));
+    }
+
+    /// <summary>
+    ///     The default instance of <see cref="QuantityParser" />, which uses the default
+    ///     <see cref="UnitsNetSetup.UnitAbbreviations" /> unit abbreviations.
+    /// </summary>
+    public static QuantityParser Default
+    {
+        get => UnitsNetSetup.Default.QuantityParser;
     }
 
     /// <summary>
@@ -96,16 +98,16 @@ public class QuantityParser
         if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
         {
             throw new FormatException(
-                "Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.") { Data =
+                "Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.")
             {
-                ["input"] = str
-            } };
+                Data = { ["input"] = str }
+            };
         }
 
         return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
     }
-    
-    /// <inheritdoc cref="Parse{TQuantity,TUnitType}"/>
+
+    /// <inheritdoc cref="Parse{TQuantity,TUnitType}" />
     internal IQuantity Parse(string str, IFormatProvider? formatProvider, QuantityInfo quantityInfo)
     {
         if (str == null) throw new ArgumentNullException(nameof(str));
@@ -160,8 +162,8 @@ public class QuantityParser
                TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
     }
 
-    /// <inheritdoc cref="TryParse{TQuantity,TUnitType}"/>
-    public bool TryParse(string? str, IFormatProvider? formatProvider, QuantityInfo quantityInfo, [NotNullWhen(true)] out IQuantity? result)
+    /// <inheritdoc cref="TryParse{TQuantity,TUnitType}" />
+    internal bool TryParse(string? str, IFormatProvider? formatProvider, QuantityInfo quantityInfo, [NotNullWhen(true)] out IQuantity? result)
     {
         result = null;
 
@@ -177,7 +179,7 @@ public class QuantityParser
     internal string CreateRegexPatternForUnit<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, bool matchEntireString = true)
         where TUnitType : struct, Enum
     {
-        IReadOnlyList<string> unitAbbreviations = _unitParser.GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider);
+        IReadOnlyList<string> unitAbbreviations = _unitParser.Abbreviations.GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider);
         var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
         return matchEntireString ? $"^{pattern}$" : pattern;
     }
@@ -197,7 +199,8 @@ public class QuantityParser
     ///     Parse a string given a particular regular expression.
     /// </summary>
     /// <exception cref="UnitsNetException">Error parsing string.</exception>
-    private TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString, string unitString, QuantityFromDelegate<TQuantity, TUnitType> fromDelegate, IFormatProvider? formatProvider)
+    private TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString, string unitString, QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+        IFormatProvider? formatProvider)
         where TQuantity : IQuantity
         where TUnitType : struct, Enum
     {
@@ -297,7 +300,7 @@ public class QuantityParser
 
     private string CreateRegexPatternForQuantity(Type unitType, IFormatProvider? formatProvider)
     {
-        IReadOnlyList<string> unitAbbreviations = _unitParser.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider);
+        IReadOnlyList<string> unitAbbreviations = _unitParser.Abbreviations.GetAllUnitAbbreviationsForQuantity(unitType, formatProvider);
         var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
 
         // Match entire string exactly
