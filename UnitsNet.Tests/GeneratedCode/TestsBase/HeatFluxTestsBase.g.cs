@@ -1168,24 +1168,24 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 BTU/(h·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerHourSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 BTU/(min·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerMinuteSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 BTU/(s·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 BTU/(s·in²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 cal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.CaloriePerSecondSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 cW/m²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 dW/m²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kcal/(h·m²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerHourSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kcal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kW/m²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 µW/m²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 mW/m²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 nW/m²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 lbf/(ft·s)", new HeatFlux(1, HeatFluxUnit.PoundForcePerFootSecond).ToString(swedishCulture));
-            Assert.Equal("1 lb/s³", new HeatFlux(1, HeatFluxUnit.PoundPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 W/ft²", new HeatFlux(1, HeatFluxUnit.WattPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 W/in²", new HeatFlux(1, HeatFluxUnit.WattPerSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 W/m²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 BTU/(h·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerHourSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 BTU/(min·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerMinuteSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 BTU/(s·ft²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 BTU/(s·in²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 cal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.CaloriePerSecondSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 cW/m²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 dW/m²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/(h·m²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerHourSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kW/m²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µW/m²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 mW/m²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 nW/m²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf/(ft·s)", new HeatFlux(1, HeatFluxUnit.PoundForcePerFootSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lb/s³", new HeatFlux(1, HeatFluxUnit.PoundPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 W/ft²", new HeatFlux(1, HeatFluxUnit.WattPerSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 W/in²", new HeatFlux(1, HeatFluxUnit.WattPerSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 W/m²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -739,12 +739,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 GVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Gigavoltampere).ToString(swedishCulture));
-            Assert.Equal("1 kVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Kilovoltampere).ToString(swedishCulture));
-            Assert.Equal("1 MVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Megavoltampere).ToString(swedishCulture));
-            Assert.Equal("1 µVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Microvoltampere).ToString(swedishCulture));
-            Assert.Equal("1 mVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Millivoltampere).ToString(swedishCulture));
-            Assert.Equal("1 VA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Voltampere).ToString(swedishCulture));
+            Assert.Equal("1 GVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Gigavoltampere).ToString(null, swedishCulture));
+            Assert.Equal("1 kVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Kilovoltampere).ToString(null, swedishCulture));
+            Assert.Equal("1 MVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Megavoltampere).ToString(null, swedishCulture));
+            Assert.Equal("1 µVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Microvoltampere).ToString(null, swedishCulture));
+            Assert.Equal("1 mVA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Millivoltampere).ToString(null, swedishCulture));
+            Assert.Equal("1 VA", new ElectricApparentPower(1, ElectricApparentPowerUnit.Voltampere).ToString(null, swedishCulture));
         }
 
         [Fact]

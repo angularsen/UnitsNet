@@ -819,12 +819,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 µSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Microsievert).ToString(swedishCulture));
-            Assert.Equal("1 mrem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan).ToString(swedishCulture));
-            Assert.Equal("1 mSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Millisievert).ToString(swedishCulture));
-            Assert.Equal("1 nSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Nanosievert).ToString(swedishCulture));
-            Assert.Equal("1 rem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan).ToString(swedishCulture));
-            Assert.Equal("1 Sv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert).ToString(swedishCulture));
+            Assert.Equal("1 µSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Microsievert).ToString(null, swedishCulture));
+            Assert.Equal("1 mrem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan).ToString(null, swedishCulture));
+            Assert.Equal("1 mSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Millisievert).ToString(null, swedishCulture));
+            Assert.Equal("1 nSv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Nanosievert).ToString(null, swedishCulture));
+            Assert.Equal("1 rem", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan).ToString(null, swedishCulture));
+            Assert.Equal("1 Sv", new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert).ToString(null, swedishCulture));
         }
 
         [Fact]

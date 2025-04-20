@@ -931,13 +931,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString(swedishCulture));
-            Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString(swedishCulture));
-            Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString(swedishCulture));
-            Assert.Equal("1 MPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString(swedishCulture));
-            Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString(swedishCulture));
-            Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString(swedishCulture));
-            Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString(swedishCulture));
+            Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString(null, swedishCulture));
+            Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString(null, swedishCulture));
+            Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString(null, swedishCulture));
+            Assert.Equal("1 MPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString(null, swedishCulture));
+            Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString(null, swedishCulture));
+            Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString(null, swedishCulture));
         }
 
         [Fact]

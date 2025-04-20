@@ -1378,21 +1378,21 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString(swedishCulture));
-            Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString(swedishCulture));
-            Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString(swedishCulture));
-            Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString(swedishCulture));
-            Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString(swedishCulture));
-            Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString(swedishCulture));
-            Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString(swedishCulture));
-            Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString(swedishCulture));
-            Assert.Equal("1 mN", new Force(1, ForceUnit.Millinewton).ToString(swedishCulture));
-            Assert.Equal("1 N", new Force(1, ForceUnit.Newton).ToString(swedishCulture));
-            Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString(swedishCulture));
-            Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString(swedishCulture));
-            Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString(swedishCulture));
-            Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString(swedishCulture));
-            Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString(swedishCulture));
+            Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString(null, swedishCulture));
+            Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString(null, swedishCulture));
+            Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString(null, swedishCulture));
+            Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString(null, swedishCulture));
+            Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString(null, swedishCulture));
+            Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString(null, swedishCulture));
+            Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString(null, swedishCulture));
+            Assert.Equal("1 mN", new Force(1, ForceUnit.Millinewton).ToString(null, swedishCulture));
+            Assert.Equal("1 N", new Force(1, ForceUnit.Newton).ToString(null, swedishCulture));
+            Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString(null, swedishCulture));
+            Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString(null, swedishCulture));
+            Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString(null, swedishCulture));
+            Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString(null, swedishCulture));
         }
 
         [Fact]

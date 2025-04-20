@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 G", new MagneticField(1, MagneticFieldUnit.Gauss).ToString(swedishCulture));
-            Assert.Equal("1 µT", new MagneticField(1, MagneticFieldUnit.Microtesla).ToString(swedishCulture));
-            Assert.Equal("1 mG", new MagneticField(1, MagneticFieldUnit.Milligauss).ToString(swedishCulture));
-            Assert.Equal("1 mT", new MagneticField(1, MagneticFieldUnit.Millitesla).ToString(swedishCulture));
-            Assert.Equal("1 nT", new MagneticField(1, MagneticFieldUnit.Nanotesla).ToString(swedishCulture));
-            Assert.Equal("1 T", new MagneticField(1, MagneticFieldUnit.Tesla).ToString(swedishCulture));
+            Assert.Equal("1 G", new MagneticField(1, MagneticFieldUnit.Gauss).ToString(null, swedishCulture));
+            Assert.Equal("1 µT", new MagneticField(1, MagneticFieldUnit.Microtesla).ToString(null, swedishCulture));
+            Assert.Equal("1 mG", new MagneticField(1, MagneticFieldUnit.Milligauss).ToString(null, swedishCulture));
+            Assert.Equal("1 mT", new MagneticField(1, MagneticFieldUnit.Millitesla).ToString(null, swedishCulture));
+            Assert.Equal("1 nT", new MagneticField(1, MagneticFieldUnit.Nanotesla).ToString(null, swedishCulture));
+            Assert.Equal("1 T", new MagneticField(1, MagneticFieldUnit.Tesla).ToString(null, swedishCulture));
         }
 
         [Fact]

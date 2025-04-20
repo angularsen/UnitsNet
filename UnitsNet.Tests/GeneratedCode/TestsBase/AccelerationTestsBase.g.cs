@@ -1253,20 +1253,20 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm/s²", new Acceleration(1, AccelerationUnit.CentimeterPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 dm/s²", new Acceleration(1, AccelerationUnit.DecimeterPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 ft/s²", new Acceleration(1, AccelerationUnit.FootPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 in/s²", new Acceleration(1, AccelerationUnit.InchPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 km/s²", new Acceleration(1, AccelerationUnit.KilometerPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 kn/h", new Acceleration(1, AccelerationUnit.KnotPerHour).ToString(swedishCulture));
-            Assert.Equal("1 kn/min", new Acceleration(1, AccelerationUnit.KnotPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kn/s", new Acceleration(1, AccelerationUnit.KnotPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 m/s²", new Acceleration(1, AccelerationUnit.MeterPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 µm/s²", new Acceleration(1, AccelerationUnit.MicrometerPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 mm/s²", new Acceleration(1, AccelerationUnit.MillimeterPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 mg", new Acceleration(1, AccelerationUnit.MillistandardGravity).ToString(swedishCulture));
-            Assert.Equal("1 nm/s²", new Acceleration(1, AccelerationUnit.NanometerPerSecondSquared).ToString(swedishCulture));
-            Assert.Equal("1 g", new Acceleration(1, AccelerationUnit.StandardGravity).ToString(swedishCulture));
+            Assert.Equal("1 cm/s²", new Acceleration(1, AccelerationUnit.CentimeterPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 dm/s²", new Acceleration(1, AccelerationUnit.DecimeterPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 ft/s²", new Acceleration(1, AccelerationUnit.FootPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 in/s²", new Acceleration(1, AccelerationUnit.InchPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 km/s²", new Acceleration(1, AccelerationUnit.KilometerPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 kn/h", new Acceleration(1, AccelerationUnit.KnotPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kn/min", new Acceleration(1, AccelerationUnit.KnotPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 kn/s", new Acceleration(1, AccelerationUnit.KnotPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 m/s²", new Acceleration(1, AccelerationUnit.MeterPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 µm/s²", new Acceleration(1, AccelerationUnit.MicrometerPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 mm/s²", new Acceleration(1, AccelerationUnit.MillimeterPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 mg", new Acceleration(1, AccelerationUnit.MillistandardGravity).ToString(null, swedishCulture));
+            Assert.Equal("1 nm/s²", new Acceleration(1, AccelerationUnit.NanometerPerSecondSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 g", new Acceleration(1, AccelerationUnit.StandardGravity).ToString(null, swedishCulture));
         }
 
         [Fact]

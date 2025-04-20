@@ -1103,17 +1103,17 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString(swedishCulture));
-            Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 cm/s³", new Jerk(1, JerkUnit.CentimeterPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 dm/s³", new Jerk(1, JerkUnit.DecimeterPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 ft/s³", new Jerk(1, JerkUnit.FootPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 in/s³", new Jerk(1, JerkUnit.InchPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 km/s³", new Jerk(1, JerkUnit.KilometerPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 m/s³", new Jerk(1, JerkUnit.MeterPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 µm/s³", new Jerk(1, JerkUnit.MicrometerPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 mm/s³", new Jerk(1, JerkUnit.MillimeterPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 mg/s", new Jerk(1, JerkUnit.MillistandardGravitiesPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString(null, swedishCulture));
+            Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -685,10 +685,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Gvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.GigavoltampereReactive).ToString(swedishCulture));
-            Assert.Equal("1 kvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.KilovoltampereReactive).ToString(swedishCulture));
-            Assert.Equal("1 Mvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.MegavoltampereReactive).ToString(swedishCulture));
-            Assert.Equal("1 var", new ElectricReactivePower(1, ElectricReactivePowerUnit.VoltampereReactive).ToString(swedishCulture));
+            Assert.Equal("1 Gvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.GigavoltampereReactive).ToString(null, swedishCulture));
+            Assert.Equal("1 kvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.KilovoltampereReactive).ToString(null, swedishCulture));
+            Assert.Equal("1 Mvar", new ElectricReactivePower(1, ElectricReactivePowerUnit.MegavoltampereReactive).ToString(null, swedishCulture));
+            Assert.Equal("1 var", new ElectricReactivePower(1, ElectricReactivePowerUnit.VoltampereReactive).ToString(null, swedishCulture));
         }
 
         [Fact]

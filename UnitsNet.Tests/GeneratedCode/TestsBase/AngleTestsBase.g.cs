@@ -1402,21 +1402,21 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString(swedishCulture));
-            Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString(swedishCulture));
-            Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString(swedishCulture));
-            Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString(swedishCulture));
-            Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString(swedishCulture));
-            Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString(swedishCulture));
-            Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString(swedishCulture));
-            Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString(swedishCulture));
-            Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString(swedishCulture));
-            Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString(swedishCulture));
-            Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString(swedishCulture));
-            Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString(swedishCulture));
-            Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString(swedishCulture));
-            Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString(swedishCulture));
-            Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString(swedishCulture));
+            Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString(null, swedishCulture));
+            Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString(null, swedishCulture));
+            Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString(null, swedishCulture));
+            Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString(null, swedishCulture));
+            Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString(null, swedishCulture));
+            Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString(null, swedishCulture));
+            Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString(null, swedishCulture));
+            Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString(null, swedishCulture));
+            Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString(null, swedishCulture));
+            Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString(null, swedishCulture));
+            Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString(null, swedishCulture));
+            Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString(null, swedishCulture));
+            Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString(null, swedishCulture));
+            Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString(null, swedishCulture));
+            Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString(null, swedishCulture));
         }
 
         [Fact]

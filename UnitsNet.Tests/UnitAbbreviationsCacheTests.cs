@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
             var newZealandCulture = CultureInfo.GetCultureInfo("en-NZ");
             UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
-            Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+            Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(null, newZealandCulture));
         }
 
         [Fact]
