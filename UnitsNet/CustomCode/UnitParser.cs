@@ -1,13 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet;
@@ -146,7 +142,9 @@ public sealed class UnitParser
     /// <param name="unitAbbreviation"></param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <typeparam name="TUnitType"></typeparam>
-    /// <returns></returns>
+    /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
         where TUnitType : struct, Enum
     {
@@ -167,6 +165,9 @@ public sealed class UnitParser
     /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="unitAbbreviation"/> or the <paramref name="unitType"/> is null.</exception>
+    /// <exception cref="ArgumentException">The <paramref name="unitType"/> is not a valid enumeration type.</exception>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
     /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
     public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
@@ -186,6 +187,7 @@ public sealed class UnitParser
     /// <returns>
     ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
     /// </returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="quantityName"/> or the <paramref name="unitAbbreviation"/> is null.</exception>
     /// <exception cref="ArgumentException">
     ///     Thrown if the specified <paramref name="quantityName" /> does not correspond to a known quantity.
     /// </exception>
@@ -214,12 +216,12 @@ public sealed class UnitParser
     /// <returns>
     ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
     /// </returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="quantityType"/> or the <paramref name="unitAbbreviation"/> is null.</exception>
     /// <exception cref="ArgumentException">
     ///     Thrown if the specified <paramref name="quantityType" /> does not correspond to a known quantity.
     /// </exception>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if the <paramref name="unitAbbreviation" /> cannot be resolved to a valid unit for the specified quantity.
-    /// </exception>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <remarks>
     ///     When a specific <paramref name="formatProvider" /> is provided, both localized and non-localized units would be compared.
     ///     <para>The <paramref name="unitAbbreviation" /> comparisons are case-insensitive.</para>

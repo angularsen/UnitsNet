@@ -1,12 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
-using System.Runtime;
 using UnitsNet.Tests.CustomQuantities;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -91,6 +87,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>(null!));
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, Length.Info.UnitInfos));
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, typeof(LengthUnit)));
+        }
+
+        [Fact]
+        public void Parse_UnknownUnitTypeThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitsNetSetup.Default.UnitParser.Parse<StringComparison>("something"));
         }
 
         [Fact]
@@ -202,6 +204,12 @@ namespace UnitsNet.Tests
                 var success = unitParser.TryParse(null, [], null, out UnitInfo<Length, LengthUnit>? _);
                 Assert.False(success);
             });
+        }
+
+        [Fact]
+        public void TryParse_UnknownUnitType_ReturnsFalse()
+        {
+            Assert.False(UnitsNetSetup.Default.UnitParser.TryParse("something", out StringComparison _));
         }
 
         [Theory]

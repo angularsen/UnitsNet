@@ -38,6 +38,12 @@ namespace UnitsNet.Tests
             Enum? nullUnit = null;
             Assert.False(Quantity.TryFrom(1, nullUnit, out IQuantity? _));
         }
+        
+        [Fact]
+        public void TryFrom_GivenUnknownUnitType_ReturnsFalse()
+        {
+            Assert.False(Quantity.TryFrom(1, ConsoleColor.Red, out IQuantity? _));
+        }
 
         [Fact]
         public void From_GivenValueAndUnit_ReturnsQuantity()
