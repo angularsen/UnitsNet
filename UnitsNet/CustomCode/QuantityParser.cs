@@ -1,13 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet;
@@ -36,7 +32,7 @@ public class QuantityParser
     private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
     private readonly UnitParser _unitParser;
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityParser" /> class using the specified
     ///     <see cref="UnitAbbreviationsCache" />.
@@ -107,6 +103,26 @@ public class QuantityParser
         return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
     }
 
+    /// <inheritdoc cref="Parse{TQuantity,TUnitType}" />
+    internal IQuantity Parse(string str, IFormatProvider? formatProvider, QuantityInfo quantityInfo)
+    {
+        if (str == null) throw new ArgumentNullException(nameof(str));
+        str = str.Trim();
+
+        Regex regex = CreateRegexForQuantity(quantityInfo.UnitType, formatProvider);
+
+        if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
+        {
+            throw new FormatException(
+                "Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.")
+            {
+                Data = { ["input"] = str }
+            };
+        }
+
+        return ParseWithRegex(valueString, unitString, quantityInfo.UnitInfos, formatProvider);
+    }
+
     /// <summary>
     ///     Tries to parse a quantity from a string, such as "1.2 kg" to <see cref="Length" /> or "100 cm" to
     ///     <see cref="Mass" />.
@@ -142,47 +158,18 @@ public class QuantityParser
                TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
     }
 
-    /// <summary>
-    ///     Tries to parse a quantity from a string, such as "1.2 kg" to <see cref="Length" /> or "100 cm" to
-    ///     <see cref="Mass" />.
-    /// </summary>
-    /// <remarks>
-    ///     Similar to
-    ///     <see
-    ///         cref="TryParse{TQuantity,TUnitType}(string?,System.IFormatProvider?,UnitsNet.QuantityFromDelegate{TQuantity,TUnitType},out TQuantity)" />
-    ///     ,
-    ///     but returns <see cref="IQuantity" /> instead. This is workaround for C# not allowing to pass on 'out' param from
-    ///     type Length to IQuantity,
-    ///     even though they are compatible.
-    /// </remarks>
-    /// <param name="str">The string to parse, such as "1.2 kg".</param>
-    /// <param name="formatProvider">
-    ///     The culture for looking up localized unit abbreviations for a language, and for parsing
-    ///     the number formatted in this culture. Defaults to <see cref="CultureInfo.CurrentCulture" />.
-    /// </param>
-    /// <param name="fromDelegate">A function to create a quantity given a numeric value and a unit enum value.</param>
-    /// <param name="result">The parsed quantity if successful, otherwise null.</param>
-    /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length" />.</typeparam>
-    /// <typeparam name="TUnitType">
-    ///     The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit" /> for
-    ///     <see cref="Length" />.
-    /// </typeparam>
-    /// <returns>True if successful.</returns>
-    /// <exception cref="ArgumentNullException">The string was null.</exception>
-    /// <exception cref="FormatException">Failed to parse quantity.</exception>
-    internal bool TryParse<TQuantity, TUnitType>(string? str, IFormatProvider? formatProvider, QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
-        [NotNullWhen(true)] out IQuantity? result)
-        where TQuantity : IQuantity
-        where TUnitType : struct, Enum
+    /// <inheritdoc cref="TryParse{TQuantity,TUnitType}" />
+    internal bool TryParse(string? str, IFormatProvider? formatProvider, QuantityInfo quantityInfo, [NotNullWhen(true)] out IQuantity? result)
     {
-        if (TryParse(str, formatProvider, fromDelegate, out TQuantity? quantityParsed))
-        {
-            result = quantityParsed;
-            return true;
-        }
-
         result = null;
-        return false;
+
+        if (string.IsNullOrWhiteSpace(str)) return false;
+        str = str!.Trim(); // netstandard2.0 nullable quirk
+
+        Regex regex = CreateRegexForQuantity(quantityInfo.UnitType, formatProvider);
+
+        return TryExtractValueAndUnit(regex, str, out var valueString, out var unitString) &&
+               TryParseWithRegex(valueString, unitString, quantityInfo.UnitInfos, formatProvider, out result);
     }
 
     internal string CreateRegexPatternForUnit<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, bool matchEntireString = true)
@@ -222,6 +209,17 @@ public class QuantityParser
     ///     Parse a string given a particular regular expression.
     /// </summary>
     /// <exception cref="UnitsNetException">Error parsing string.</exception>
+    private IQuantity ParseWithRegex(string valueString, string unitString, IReadOnlyList<UnitInfo> units, IFormatProvider? formatProvider)
+    {
+        var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
+        UnitInfo unitInfo = _unitParser.Parse(unitString, units, formatProvider);
+        return unitInfo.From(value);
+    }
+
+    /// <summary>
+    ///     Parse a string given a particular regular expression.
+    /// </summary>
+    /// <exception cref="UnitsNetException">Error parsing string.</exception>
     private bool TryParseWithRegex<TQuantity, TUnitType>(string? valueString, string? unitString, QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
         IFormatProvider? formatProvider, [NotNullWhen(true)] out TQuantity? result)
         where TQuantity : IQuantity
@@ -240,6 +238,29 @@ public class QuantityParser
         }
 
         result = fromDelegate(value, parsedUnit);
+        return true;
+    }
+
+    /// <summary>
+    ///     Parse a string given a particular regular expression.
+    /// </summary>
+    /// <exception cref="UnitsNetException">Error parsing string.</exception>
+    private bool TryParseWithRegex(string? valueString, string? unitString, IReadOnlyList<UnitInfo> units, IFormatProvider? formatProvider,
+        [NotNullWhen(true)] out IQuantity? result)
+    {
+        result = null;
+
+        if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
+        {
+            return false;
+        }
+
+        if (!_unitParser.TryParse(unitString, units, formatProvider, out UnitInfo? parsedUnit))
+        {
+            return false;
+        }
+
+        result = parsedUnit.From(value);
         return true;
     }
 

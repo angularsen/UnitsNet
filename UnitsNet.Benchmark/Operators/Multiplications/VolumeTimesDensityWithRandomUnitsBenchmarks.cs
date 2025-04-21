@@ -26,8 +26,8 @@ public class VolumeTimesDensityWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<Density, DensityUnit>(DensityValue, Density.Units, NbOperations),
+        _operands = _random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<Density, DensityUnit>(DensityValue, Density.Units.ToArray(), NbOperations),
                 (volume, density) => (volume, density))
             .ToArray();
     }
