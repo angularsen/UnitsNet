@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,21 +62,72 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LeakRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="LeakRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LeakRateInfo: QuantityInfo<LeakRate, LeakRateUnit>
+        {
+            /// <inheritdoc />
+            public LeakRateInfo(string name, LeakRateUnit baseUnit, IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings, LeakRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<LeakRate, LeakRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LeakRateInfo(string name, LeakRateUnit baseUnit, IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings, LeakRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, LeakRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LeakRate", typeof(LeakRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LeakRateInfo"/> class with the default settings for the LeakRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LeakRateInfo"/> class with the default settings.</returns>
+            public static LeakRateInfo CreateDefault()
+            {
+                return new LeakRateInfo(nameof(LeakRate), DefaultBaseUnit, GetDefaultMappings(), new LeakRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LeakRateInfo"/> class with the default settings for the LeakRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LeakRateInfo"/> class with the default settings.
+            /// </returns>
+            public static LeakRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<LeakRateUnit>>, IEnumerable<IUnitDefinition<LeakRateUnit>>> customizeUnits)
+            {
+                return new LeakRateInfo(nameof(LeakRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LeakRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="LeakRate"/> is [T^-3][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of LeakRate is PascalCubicMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LeakRateUnit DefaultBaseUnit { get; } = LeakRateUnit.PascalCubicMeterPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LeakRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
+            public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
+            {
+                yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined);
+                yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static LeakRate()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = LeakRateUnit.PascalCubicMeterPerSecond;
-            Units = Enum.GetValues(typeof(LeakRateUnit)).Cast<LeakRateUnit>().ToArray();
-            Zero = new LeakRate(0, BaseUnit);
-            Info = new QuantityInfo<LeakRateUnit>("LeakRate",
-                new UnitInfo<LeakRateUnit>[]
-                {
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.MillibarLiterPerSecond, "MillibarLitersPerSecond", BaseUnits.Undefined, "LeakRate"),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LeakRate"),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.TorrLiterPerSecond, "TorrLitersPerSecond", BaseUnits.Undefined, "LeakRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LeakRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -118,27 +165,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LeakRateUnit> Info { get; }
+        public static QuantityInfo<LeakRate, LeakRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of LeakRate, which is PascalCubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static LeakRateUnit BaseUnit { get; }
+        public static LeakRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the LeakRate quantity.
         /// </summary>
-        public static LeakRateUnit[] Units { get; }
+        public static IReadOnlyCollection<LeakRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit PascalCubicMeterPerSecond.
         /// </summary>
-        public static LeakRate Zero { get; }
+        public static LeakRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static LeakRate AdditiveIdentity => Zero;
@@ -156,7 +203,7 @@ namespace UnitsNet
         public LeakRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LeakRateUnit> QuantityInfo => Info;
+        public QuantityInfo<LeakRate, LeakRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -173,6 +220,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LeakRateUnit> IQuantity<LeakRateUnit>.QuantityInfo => Info;
 
         #endregion
 
