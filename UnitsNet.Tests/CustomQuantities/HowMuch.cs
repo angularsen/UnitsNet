@@ -27,14 +27,6 @@ namespace UnitsNet.Tests.CustomQuantities
 
         #region IQuantity
 
-        private static readonly HowMuch Zero = new(0, HowMuchUnit.Some);
-
-        public BaseDimensions Dimensions
-        {
-            get => BaseDimensions.Dimensionless;
-        }
-
-
         public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
             nameof(HowMuch),
             HowMuchUnit.Some,
@@ -44,14 +36,11 @@ namespace UnitsNet.Tests.CustomQuantities
                 new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne), new QuantityValue(1, 10)),
                 new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
             },
-            Zero,
+            new HowMuch(0, HowMuchUnit.Some),
             new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
             From);
 
-        QuantityInfo IQuantity.QuantityInfo
-        {
-            get => Info;
-        }
+        public BaseDimensions Dimensions => Info.BaseDimensions;
 
         QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
         {
@@ -63,7 +52,12 @@ namespace UnitsNet.Tests.CustomQuantities
             get => Info;
         }
 
-        public UnitKey UnitKey
+        QuantityInfo IQuantity.QuantityInfo
+        {
+            get => Info;
+        }
+
+        UnitKey IQuantity.UnitKey
         {
             get => UnitKey.ForUnit(Unit);
         }

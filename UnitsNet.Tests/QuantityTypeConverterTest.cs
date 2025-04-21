@@ -1,14 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Tests.Helpers;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -142,25 +139,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertFrom_GivenEmptyString_ThrowsNotSupportedException()
-        {
-            var converter = new QuantityTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
-
-            Assert.Throws<NotSupportedException>(() => converter.ConvertFrom(context, Culture, ""));
-        }
-
-        [Fact]
-        public void ConvertFrom_GivenAValueStringForNonRegisteredQuantity_ThrowsUnitNotFoundException()
-        {
-            var converter = new QuantityTypeConverter<HowMuch>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
-
-            Assert.Throws<UnitNotFoundException>(() => converter.ConvertFrom(context, Culture, "42"));
-        }
-
-        [Fact]
-        public void ConvertFrom_GivenAQuantityStringForNonRegisteredQuantity_ThrowsQuantityNotFoundException()
+        public void ConvertFrom_WithUnknownQuantity_ThrowsQuantityNotFoundException()
         {
             var converter = new QuantityTypeConverter<HowMuch>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
@@ -169,12 +148,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertFrom_GivenWrongQuantity_ThrowsFormatException()
+        public void ConvertFrom_WithUnknownUnit_ThrowsUnitNotFoundException()
         {
-            var converter = new QuantityTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+            var converter = new QuantityTypeConverter<HowMuch>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(HowMuchUnit.Some)
+            });
 
-            Assert.Throws<FormatException>(() => converter.ConvertFrom(context, Culture, "1m^2"));
+            Assert.Throws<UnitNotFoundException>(() => converter.ConvertFrom(context, Culture, "42"));
         }
 
         [Fact]
@@ -184,6 +166,24 @@ namespace UnitsNet.Tests
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Throws<NotSupportedException>(() => converter.ConvertFrom(context, Culture, DateTime.Now));
+        }
+
+        [Fact]
+        public void ConvertFrom_GivenEmptyString_ThrowsNotSupportedException()
+        {
+            var converter = new QuantityTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+
+            Assert.Throws<NotSupportedException>(() => converter.ConvertFrom(context, Culture, ""));
+        }
+
+        [Fact]
+        public void ConvertFrom_GivenWrongQuantityStringFormat_ThrowsFormatException()
+        {
+            var converter = new QuantityTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+
+            Assert.Throws<FormatException>(() => converter.ConvertFrom(context, Culture, "1 meter"));
         }
 
         [Theory]

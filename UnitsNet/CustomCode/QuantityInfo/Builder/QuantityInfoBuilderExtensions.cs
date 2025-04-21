@@ -21,7 +21,7 @@ public static class QuantityInfoBuilderExtensions
     /// <param name="unitMappings">The collection of unit mappings to filter, such as the ones provided by <see cref="Length.LengthInfo.GetDefaultMappings"/>.</param>
     /// <param name="units">The units to include in the filtered collection.</param>
     /// <returns>An enumerable collection of unit definitions that includes only the specified units.</returns>
-    public static IEnumerable<TUnitDefinition> SelectUnits<TUnitDefinition, TUnit>(this IEnumerable<TUnitDefinition> unitMappings, params TUnit[] units)
+    public static IEnumerable<TUnitDefinition> SelectUnits<TUnitDefinition, TUnit>(this IEnumerable<TUnitDefinition> unitMappings, params IEnumerable<TUnit> units)
         where TUnitDefinition : IUnitDefinition<TUnit>
         where TUnit : struct, Enum
     {
@@ -36,7 +36,7 @@ public static class QuantityInfoBuilderExtensions
     /// <param name="unitMappings">The collection of unit mappings to filter, such as the ones provided by <see cref="Length.LengthInfo.GetDefaultMappings"/>.</param>
     /// <param name="units">The units to exclude from the filtered collection.</param>
     /// <returns>An enumerable collection of unit definitions that excludes the specified units.</returns>
-    public static IEnumerable<TUnitDefinition> ExcludeUnits<TUnitDefinition, TUnit>(this IEnumerable<TUnitDefinition> unitMappings, params TUnit[] units)
+    public static IEnumerable<TUnitDefinition> ExcludeUnits<TUnitDefinition, TUnit>(this IEnumerable<TUnitDefinition> unitMappings, params IEnumerable<TUnit> units)
         where TUnitDefinition : IUnitDefinition<TUnit>
         where TUnit : struct, Enum
     {

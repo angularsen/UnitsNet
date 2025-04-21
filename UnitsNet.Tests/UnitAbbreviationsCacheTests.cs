@@ -172,12 +172,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetAbbreviationsThrowsArgumentNullExceptionWhenGivenANullUnitInfo()
-        {
-            Assert.Throws<ArgumentNullException>(() => new UnitAbbreviationsCache().GetAbbreviations(null!));
-        }
-
-        [Fact]
         public void GetAllUnitAbbreviationsForQuantity_WithQuantityWithoutAbbreviations_ReturnsEmpty()
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);

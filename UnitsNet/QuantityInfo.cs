@@ -1,13 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Resources;
-using UnitsNet.Units;
 
 namespace UnitsNet;
 
@@ -521,7 +516,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
         _unitMappings = _unitInfos.ToDictionary(info => info.Value);
 #else
         _unitMappings = unitMappings.ToDictionary(unit => unit.Value, unit => new UnitInfo<TQuantity, TUnit>(this, unit), UnitEqualityComparer<TUnit>.Default);
-         _unitInfos = _unitMappings.Values.ToArray();
+        _unitInfos = _unitMappings.Values.ToArray();
 #endif
         if (!_unitMappings.TryGetValue(baseUnit, out UnitInfo<TQuantity, TUnit>? baseUnitInfo))
         {

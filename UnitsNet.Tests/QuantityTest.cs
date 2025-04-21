@@ -1,12 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using UnitsNet.Units;
-using Xunit;
 using static System.Globalization.CultureInfo;
 
 namespace UnitsNet.Tests
@@ -106,7 +101,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetUnitInfo_ThrowsKeyNotFoundExceptionIfNotFound()
+        public void GetUnitInfo_ThrowsUnitNotFoundExceptionIfNotFound()
         {
             Assert.Throws<UnitNotFoundException>(() => Quantity.GetUnitInfo(ConsoleColor.Red));
         }
@@ -124,6 +119,12 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.Parse(InvariantCulture, typeof(Length), "3 cm"));
             Assert.Equal(Mass.FromTonnes(3), Quantity.Parse(InvariantCulture, typeof(Mass), "03t"));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.Parse(InvariantCulture, typeof(Pressure), "3.0 Mbar"));
+        }
+
+        [Fact]
+        public void Parse_GivenInvalidType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.Parse(typeof(bool), "3 cm"));
         }
 
         [Theory]

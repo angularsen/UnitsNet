@@ -165,6 +165,7 @@ namespace UnitsNet
         {
             get => QuantityInfo;
         }
+
         Enum IQuantity.Unit
         {
             get => Unit;
@@ -214,7 +215,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new QuantityInfo<TSelf, TUnitType> QuantityInfo { get; }
 
-#if NET7_0_OR_GREATER
+#if NET
         /// <summary>
         ///     Creates an instance of the quantity from a specified value and unit.
         /// </summary>

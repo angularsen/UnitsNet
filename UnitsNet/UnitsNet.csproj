@@ -59,7 +59,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="System"/>
-    <Using Include="System.Numerics" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Numerics" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="UnitsNet.Units" />
   </ItemGroup>
 </Project>

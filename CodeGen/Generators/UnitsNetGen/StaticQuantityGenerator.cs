@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CodeGen.JsonTypes;
 
@@ -19,7 +17,6 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
-using System.Collections.Generic;
 
 #nullable enable
 

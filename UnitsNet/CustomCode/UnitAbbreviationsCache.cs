@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
 using UnitsNet.Units;
 using AbbreviationMapKey = System.ValueTuple<UnitsNet.UnitKey, string>;
 
@@ -430,30 +431,6 @@ namespace UnitsNet
         ///    Get all abbreviations for the given unit and culture.
         /// </summary>
         /// <param name="unitInfo">The unit.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        /// <returns>The list of abbreviations mapped for this unit. The first in the list is the primary abbreviation used by ToString().</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="unitInfo"/> was null.</exception>
-        /// <exception cref="UnitNotFoundException">
-        ///     Thrown when the specified <paramref name="unitInfo" /> is not registered with the associated <see cref="Quantities"/>.
-        /// </exception>
-        public IReadOnlyList<string> GetAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null) // TODO see about removing this overload
-        {
-            if (unitInfo == null) throw new ArgumentNullException(nameof(unitInfo));
-
-            unitInfo = Quantities.GetUnitInfo(unitInfo.UnitKey); // makes sure that the unit is part of the mapped quantities
-
-            if (formatProvider is not CultureInfo culture)
-            {
-                culture = CultureInfo.CurrentCulture;
-            }
-
-            return GetAbbreviationsWithFallbackCulture(unitInfo, culture);
-        }
-
-        /// <summary>
-        ///    Get all abbreviations for the given unit and culture.
-        /// </summary>
-        /// <param name="unitInfo">The unit.</param>
         /// <param name="culture">The culture to get localized abbreviations for.</param>
         /// <returns>The list of abbreviations mapped for this unit. The first in the list is the primary abbreviation used by ToString().</returns>
         /// <exception cref="ArgumentNullException"><paramref name="unitInfo"/> was null.</exception>
@@ -545,15 +522,17 @@ namespace UnitsNet
         {
             var abbreviationsList = new List<string>();
             QuantityInfo quantityInfo = unitInfo.QuantityInfo;
-            var resourceManager = quantityInfo.UnitAbbreviations;
+            ResourceManager? resourceManager = quantityInfo.UnitAbbreviations;
             if (resourceManager is null)
             {
                 return abbreviationsList;
             }
 
             var abbreviationsString = resourceManager.GetString(unitInfo.PluralName, culture);
-            if(abbreviationsString is not null)
+            if (abbreviationsString is not null)
+            {
                 abbreviationsList.AddRange(abbreviationsString.Split(','));
+            }
 
             return abbreviationsList;
         }

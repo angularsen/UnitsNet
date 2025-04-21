@@ -17,15 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Numerics;
 using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 using UnitsNet.Debug;
 
 #nullable enable

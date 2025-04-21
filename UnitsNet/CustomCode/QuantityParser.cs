@@ -179,7 +179,7 @@ public class QuantityParser
     internal string CreateRegexPatternForUnit<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, bool matchEntireString = true)
         where TUnitType : struct, Enum
     {
-        IReadOnlyList<string> unitAbbreviations = _unitParser.Abbreviations.GetUnitAbbreviations(UnitKey.ForUnit(unit), formatProvider);
+        IReadOnlyList<string> unitAbbreviations = _unitParser.Abbreviations.GetUnitAbbreviations(unit, formatProvider);
         var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
         return matchEntireString ? $"^{pattern}$" : pattern;
     }

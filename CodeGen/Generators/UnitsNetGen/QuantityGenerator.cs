@@ -37,15 +37,9 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Numerics;
 using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 using UnitsNet.Debug;
 
 #nullable enable
