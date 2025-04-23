@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,47 +59,98 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly RadioactivityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Radioactivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class RadioactivityInfo: QuantityInfo<Radioactivity, RadioactivityUnit>
+        {
+            /// <inheritdoc />
+            public RadioactivityInfo(string name, RadioactivityUnit baseUnit, IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings, Radioactivity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Radioactivity, RadioactivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public RadioactivityInfo(string name, RadioactivityUnit baseUnit, IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings, Radioactivity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Radioactivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Radioactivity", typeof(Radioactivity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RadioactivityInfo"/> class with the default settings for the Radioactivity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="RadioactivityInfo"/> class with the default settings.</returns>
+            public static RadioactivityInfo CreateDefault()
+            {
+                return new RadioactivityInfo(nameof(Radioactivity), DefaultBaseUnit, GetDefaultMappings(), new Radioactivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RadioactivityInfo"/> class with the default settings for the Radioactivity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="RadioactivityInfo"/> class with the default settings.
+            /// </returns>
+            public static RadioactivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<RadioactivityUnit>>, IEnumerable<IUnitDefinition<RadioactivityUnit>>> customizeUnits)
+            {
+                return new RadioactivityInfo(nameof(Radioactivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Radioactivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Radioactivity"/> is [T^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Radioactivity is Becquerel. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static RadioactivityUnit DefaultBaseUnit { get; } = RadioactivityUnit.Becquerel;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="RadioactivityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadioactivityUnit}"/> representing the default unit mappings for Radioactivity.</returns>
+            public static IEnumerable<UnitDefinition<RadioactivityUnit>> GetDefaultMappings()
+            {
+                yield return new (RadioactivityUnit.Becquerel, "Becquerel", "Becquerels", new BaseUnits(time: DurationUnit.Second));
+                yield return new (RadioactivityUnit.Curie, "Curie", "Curies", new BaseUnits(time: DurationUnit.Second));
+                yield return new (RadioactivityUnit.Exabecquerel, "Exabecquerel", "Exabecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Gigabecquerel, "Gigabecquerel", "Gigabecquerels", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (RadioactivityUnit.Gigacurie, "Gigacurie", "Gigacuries", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (RadioactivityUnit.Gigarutherford, "Gigarutherford", "Gigarutherfords", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (RadioactivityUnit.Kilobecquerel, "Kilobecquerel", "Kilobecquerels", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (RadioactivityUnit.Kilocurie, "Kilocurie", "Kilocuries", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (RadioactivityUnit.Kilorutherford, "Kilorutherford", "Kilorutherfords", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (RadioactivityUnit.Megabecquerel, "Megabecquerel", "Megabecquerels", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (RadioactivityUnit.Megacurie, "Megacurie", "Megacuries", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (RadioactivityUnit.Megarutherford, "Megarutherford", "Megarutherfords", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (RadioactivityUnit.Microbecquerel, "Microbecquerel", "Microbecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Microcurie, "Microcurie", "Microcuries", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Microrutherford, "Microrutherford", "Microrutherfords", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Millibecquerel, "Millibecquerel", "Millibecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Millicurie, "Millicurie", "Millicuries", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Millirutherford, "Millirutherford", "Millirutherfords", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Nanobecquerel, "Nanobecquerel", "Nanobecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Nanocurie, "Nanocurie", "Nanocuries", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Nanorutherford, "Nanorutherford", "Nanorutherfords", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Petabecquerel, "Petabecquerel", "Petabecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Picobecquerel, "Picobecquerel", "Picobecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Picocurie, "Picocurie", "Picocuries", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Picorutherford, "Picorutherford", "Picorutherfords", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Rutherford, "Rutherford", "Rutherfords", new BaseUnits(time: DurationUnit.Second));
+                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", BaseUnits.Undefined);
+            }
+        }
+
         static Radioactivity()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            BaseUnit = RadioactivityUnit.Becquerel;
-            Units = Enum.GetValues(typeof(RadioactivityUnit)).Cast<RadioactivityUnit>().ToArray();
-            Zero = new Radioactivity(0, BaseUnit);
-            Info = new QuantityInfo<RadioactivityUnit>("Radioactivity",
-                new UnitInfo<RadioactivityUnit>[]
-                {
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Becquerel, "Becquerels", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Curie, "Curies", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Exabecquerel, "Exabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigabecquerel, "Gigabecquerels", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigacurie, "Gigacuries", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Gigarutherford, "Gigarutherfords", new BaseUnits(time: DurationUnit.Nanosecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilobecquerel, "Kilobecquerels", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilocurie, "Kilocuries", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Kilorutherford, "Kilorutherfords", new BaseUnits(time: DurationUnit.Millisecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megabecquerel, "Megabecquerels", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megacurie, "Megacuries", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Megarutherford, "Megarutherfords", new BaseUnits(time: DurationUnit.Microsecond), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microbecquerel, "Microbecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microcurie, "Microcuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Microrutherford, "Microrutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Millibecquerel, "Millibecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Millicurie, "Millicuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Millirutherford, "Millirutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Nanobecquerel, "Nanobecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Nanocurie, "Nanocuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Nanorutherford, "Nanorutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Petabecquerel, "Petabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Picobecquerel, "Picobecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Picocurie, "Picocuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Picorutherford, "Picorutherfords", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Rutherford, "Rutherfords", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terabecquerel, "Terabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Teracurie, "Teracuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terarutherford, "Terarutherfords", BaseUnits.Undefined, "Radioactivity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = RadioactivityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -141,27 +188,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RadioactivityUnit> Info { get; }
+        public static QuantityInfo<Radioactivity, RadioactivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Radioactivity, which is Becquerel. All conversions go via this value.
         /// </summary>
-        public static RadioactivityUnit BaseUnit { get; }
+        public static RadioactivityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Radioactivity quantity.
         /// </summary>
-        public static RadioactivityUnit[] Units { get; }
+        public static IReadOnlyCollection<RadioactivityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Becquerel.
         /// </summary>
-        public static Radioactivity Zero { get; }
+        public static Radioactivity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Radioactivity AdditiveIdentity => Zero;
@@ -179,7 +226,7 @@ namespace UnitsNet
         public RadioactivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RadioactivityUnit> QuantityInfo => Info;
+        public QuantityInfo<Radioactivity, RadioactivityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -196,6 +243,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<RadioactivityUnit> IQuantity<RadioactivityUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -69,26 +65,77 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricResistanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricResistance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricResistanceInfo: QuantityInfo<ElectricResistance, ElectricResistanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricResistanceInfo(string name, ElectricResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistanceUnit>> unitMappings, ElectricResistance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricResistance, ElectricResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricResistanceInfo(string name, ElectricResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistanceUnit>> unitMappings, ElectricResistance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricResistance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricResistance", typeof(ElectricResistance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings for the ElectricResistance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings.</returns>
+            public static ElectricResistanceInfo CreateDefault()
+            {
+                return new ElectricResistanceInfo(nameof(ElectricResistance), DefaultBaseUnit, GetDefaultMappings(), new ElectricResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings for the ElectricResistance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricResistanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricResistanceUnit>>, IEnumerable<IUnitDefinition<ElectricResistanceUnit>>> customizeUnits)
+            {
+                return new ElectricResistanceInfo(nameof(ElectricResistance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricResistance"/> is [T^-3][L^2][M][I^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricResistance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricResistanceUnit DefaultBaseUnit { get; } = ElectricResistanceUnit.Ohm;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricResistanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricResistanceUnit}"/> representing the default unit mappings for ElectricResistance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricResistanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricResistanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined);
+                yield return new (ElectricResistanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricResistance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-            BaseUnit = ElectricResistanceUnit.Ohm;
-            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().ToArray();
-            Zero = new ElectricResistance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
-                new UnitInfo<ElectricResistanceUnit>[]
-                {
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricResistanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -126,27 +173,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricResistanceUnit> Info { get; }
+        public static QuantityInfo<ElectricResistance, ElectricResistanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit { get; }
+        public static ElectricResistanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
         /// </summary>
-        public static ElectricResistanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricResistanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero { get; }
+        public static ElectricResistance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricResistance AdditiveIdentity => Zero;
@@ -164,7 +211,7 @@ namespace UnitsNet
         public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricResistanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricResistance, ElectricResistanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -181,6 +228,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.QuantityInfo => Info;
 
         #endregion
 

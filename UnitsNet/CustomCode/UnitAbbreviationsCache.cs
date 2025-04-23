@@ -1,14 +1,10 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Resources;
-using UnitsNet.Units;
 using AbbreviationMapKey = System.ValueTuple<UnitsNet.UnitKey, string>;
 
 // ReSharper disable once CheckNamespace
@@ -88,9 +84,9 @@ namespace UnitsNet
         {
             return new UnitAbbreviationsCache();
         }
-        
+
         #region MapUnitToAbbreviation overloads
-        
+
         /// <summary>
         /// Adds one or more unit abbreviation for the given unit enum value.
         /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
@@ -114,6 +110,12 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the provided type is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the provided type is not an enumeration type.
+        /// </exception>
         public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
         {
             MapUnitToAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider, abbreviations);
@@ -492,20 +494,18 @@ namespace UnitsNet
         private static List<string> ReadAbbreviationsFromResourceFile(UnitInfo unitInfo, CultureInfo culture)
         {
             var abbreviationsList = new List<string>();
-            // we currently don't have any way of providing external resource dictionaries
-            Assembly unitAssembly = unitInfo.UnitKey.UnitEnumType.Assembly;
-            if (unitAssembly != typeof(UnitAbbreviationsCache).Assembly)
+            QuantityInfo quantityInfo = unitInfo.QuantityInfo;
+            ResourceManager? resourceManager = quantityInfo.UnitAbbreviations;
+            if (resourceManager is null)
             {
                 return abbreviationsList;
             }
-            
-            var quantityName = unitInfo.QuantityName;
-            string resourceName = $"UnitsNet.GeneratedCode.Resources.{quantityName}";
-            var resourceManager = new ResourceManager(resourceName, unitAssembly);
 
             var abbreviationsString = resourceManager.GetString(unitInfo.PluralName, culture);
-            if(abbreviationsString is not null)
+            if (abbreviationsString is not null)
+            {
                 abbreviationsList.AddRange(abbreviationsString.Split(','));
+            }
 
             return abbreviationsList;
         }

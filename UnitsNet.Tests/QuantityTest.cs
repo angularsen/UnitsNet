@@ -1,12 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using UnitsNet.Units;
-using Xunit;
 using static System.Globalization.CultureInfo;
 
 namespace UnitsNet.Tests
@@ -20,7 +15,7 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void From_GivenNaNOrInfinity_DoNotThrowsArgumentException(double value)
+        public void From_GivenNaNOrInfinity_DoesNotThrowArgumentException(double value)
         {
             var exception = Record.Exception(() => Quantity.From(value, LengthUnit.Centimeter));
 
@@ -43,6 +38,12 @@ namespace UnitsNet.Tests
             Enum? nullUnit = null;
             Assert.False(Quantity.TryFrom(1, nullUnit, out IQuantity? _));
         }
+        
+        [Fact]
+        public void TryFrom_GivenUnknownUnitType_ReturnsFalse()
+        {
+            Assert.False(Quantity.TryFrom(1, ConsoleColor.Red, out IQuantity? _));
+        }
 
         [Fact]
         public void From_GivenValueAndUnit_ReturnsQuantity()
@@ -50,6 +51,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.From(3, LengthUnit.Centimeter));
             Assert.Equal(Mass.FromTonnes(3), Quantity.From(3, MassUnit.Tonne));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.From(3, PressureUnit.Megabar));
+        }
+
+        [Fact]
+        public void FromQuantityInfo_ReturnsQuantityWithBaseUnit()
+        {
+            IQuantity quantity = Quantity.FromQuantityInfo(Length.Info, 1);
+            Assert.Equal(1, quantity.Value);
+            Assert.Equal(Length.BaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -215,7 +224,7 @@ namespace UnitsNet.Tests
         {
             var knownQuantities = new List<QuantityInfo> { Length.Info, Force.Info, Mass.Info };
 
-            ICollection<QuantityInfo> types = Quantity.ByName.Values;
+            IEnumerable<QuantityInfo> types = Quantity.ByName.Values;
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }

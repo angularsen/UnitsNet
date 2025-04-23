@@ -25,7 +25,7 @@ public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _quantities = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(Value, TemperatureDelta.Units, NbOperations).ToArray();
+        _quantities = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(Value, TemperatureDelta.Units.ToArray(), NbOperations).ToArray();
     }
 
     [Benchmark(Baseline = true)]

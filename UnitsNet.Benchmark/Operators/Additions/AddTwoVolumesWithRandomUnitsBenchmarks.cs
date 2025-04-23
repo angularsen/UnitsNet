@@ -26,8 +26,8 @@ public class AddTwoVolumesWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<Volume, VolumeUnit>(LeftValue, Volume.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(RightValue, Volume.Units, NbOperations),
+        _operands = _random.GetRandomQuantities<Volume, VolumeUnit>(LeftValue, Volume.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(RightValue, Volume.Units.ToArray(), NbOperations),
                 (left, right) => (left, right))
             .ToArray();
     }

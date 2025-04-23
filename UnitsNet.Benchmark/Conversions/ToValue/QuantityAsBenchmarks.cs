@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using UnitsNet.Units;
@@ -29,31 +30,31 @@ public class QuantityAsBenchmarks
     [GlobalSetup(Target = nameof(MassAs))]
     public void PrepareMassConversionsToTest()
     {
-        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units, NbConversions);
+        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbConversions);
     }
 
     [GlobalSetup(Target = nameof(VolumeAs))]
     public void PrepareVolumeConversionsToTest()
     {
-        _volumeConversions = _random.GetRandomConversions<Volume, VolumeUnit>(Value, Volume.Units, NbConversions);
+        _volumeConversions = _random.GetRandomConversions<Volume, VolumeUnit>(Value, Volume.Units.ToArray(), NbConversions);
     }
 
     [GlobalSetup(Target = nameof(DensityAs))]
     public void PrepareDensityConversionsToTest()
     {
-        _densityConversions = _random.GetRandomConversions<Density, DensityUnit>(Value, Density.Units, NbConversions);
+        _densityConversions = _random.GetRandomConversions<Density, DensityUnit>(Value, Density.Units.ToArray(), NbConversions);
     }
     
     [GlobalSetup(Target = nameof(PressureAs))]
     public void PreparePressureConversionsToTest()
     {
-        _pressureConversions = _random.GetRandomConversions<Pressure, PressureUnit>(Value, Pressure.Units, NbConversions);
+        _pressureConversions = _random.GetRandomConversions<Pressure, PressureUnit>(Value, Pressure.Units.ToArray(), NbConversions);
     }
     
     [GlobalSetup(Target = nameof(VolumeFlowAs))]
     public void PrepareVolumeFlowConversionsToTest()
     {
-        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units, NbConversions);
+        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units.ToArray(), NbConversions);
     }
 
     [Benchmark(Baseline = true)]

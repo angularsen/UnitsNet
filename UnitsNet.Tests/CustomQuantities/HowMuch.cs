@@ -1,4 +1,5 @@
 ﻿using System;
+using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -6,51 +7,62 @@ namespace UnitsNet.Tests.CustomQuantities
     /// <summary>
     /// Example of a custom/third-party quantity implementation, for plugging in quantities and units at runtime.
     /// </summary>
-    public readonly struct HowMuch : IQuantity
+    public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
     {
         public HowMuch(double value, HowMuchUnit unit)
         {
             Unit = unit;
             Value = value;
         }
-        
+
         public static HowMuch From(double value, HowMuchUnit unit)
         {
             return new HowMuch(value, unit);
         }
 
-        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+        public double As(HowMuchUnit unit)
+        {
+            throw new NotImplementedException();
+        }
 
-        Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
         public double Value { get; }
 
         #region IQuantity
-
-        private static readonly HowMuch Zero = new HowMuch(0, HowMuchUnit.Some);
-
-        public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
-
-        public static QuantityInfo Info = new(
+        
+        public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
             nameof(HowMuch),
-            typeof(HowMuchUnit),
-            new UnitInfo[]
-            {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, "Some", BaseUnits.Undefined, nameof(HowMuch)),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined, nameof(HowMuch)),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, nameof(HowMuch)),
-            },
             HowMuchUnit.Some,
-            Zero,
-            BaseDimensions.Dimensionless);
+            new UnitDefinition<HowMuchUnit>[]
+            {
+                new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
+                new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne)),
+                new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined)
+            },
+            new HowMuch(0, HowMuchUnit.Some),
+            new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
+            From);
+
+        QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
 
         QuantityInfo IQuantity.QuantityInfo
         {
-            get { return Info; }
+            get => Info;
         }
-        
-        public UnitKey UnitKey
+
+        public BaseDimensions Dimensions => Info.BaseDimensions;
+
+
+        UnitKey IQuantity.UnitKey
         {
             get => UnitKey.ForUnit(Unit);
         }
@@ -65,12 +77,38 @@ namespace UnitsNet.Tests.CustomQuantities
             throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
         }
 
+        public IQuantity<HowMuchUnit> ToUnit(HowMuchUnit unit)
+        {
+            throw new NotImplementedException();
+        }
+        
+        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
         public override string ToString() => $"{Value} {Unit}";
         public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
         public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
 
+        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+
+        public bool Equals(HowMuch other, HowMuch tolerance)
+        {
+            throw new NotImplementedException();
+        }
+        
+#if !NET
+
+        QuantityInfo IQuantity.QuantityInfo
+        {
+            get { return Info; }
+        }
+
+        Enum IQuantity.Unit => Unit;
+#endif
         #endregion
     }
 }

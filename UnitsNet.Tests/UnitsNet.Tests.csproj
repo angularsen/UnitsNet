@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn><!-- CS0618: 'member' is obsolete: 'text' (we often obsolete things before removal) -->
     <Nullable>enable</Nullable>
+    <TestFramework>xunit</TestFramework>
   </PropertyGroup>
 
   <!-- Strong name signing -->
@@ -34,6 +36,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="UnitsNet.Units" />
   </ItemGroup>
 
 </Project>

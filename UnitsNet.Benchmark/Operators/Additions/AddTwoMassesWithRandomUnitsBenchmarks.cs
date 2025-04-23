@@ -26,8 +26,8 @@ public class AddTwoMassesWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<Mass, MassUnit>(LeftValue, Mass.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<Mass, MassUnit>(RightValue, Mass.Units, NbOperations),
+        _operands = _random.GetRandomQuantities<Mass, MassUnit>(LeftValue, Mass.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<Mass, MassUnit>(RightValue, Mass.Units.ToArray(), NbOperations),
                 (left, right) => (left, right))
             .ToArray();
     }
