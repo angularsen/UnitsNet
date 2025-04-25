@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = AmplitudeRatioUnit.DecibelVolt;
-            Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AmplitudeRatioUnit>();
             Zero = new AmplitudeRatio(0, BaseUnit);
             Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
                 new UnitInfo<AmplitudeRatioUnit>[]
@@ -151,7 +152,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

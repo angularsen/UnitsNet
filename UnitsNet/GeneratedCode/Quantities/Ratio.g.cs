@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = RatioUnit.DecimalFraction;
-            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().ToArray();
+            Units = EnumHelpers.GetValues<RatioUnit>();
             Zero = new Ratio(0, BaseUnit);
             Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[]
@@ -153,7 +154,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

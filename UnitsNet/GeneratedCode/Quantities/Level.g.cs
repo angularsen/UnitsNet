@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = LevelUnit.Decibel;
-            Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().ToArray();
+            Units = EnumHelpers.GetValues<LevelUnit>();
             Zero = new Level(0, BaseUnit);
             Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[]
@@ -149,7 +150,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

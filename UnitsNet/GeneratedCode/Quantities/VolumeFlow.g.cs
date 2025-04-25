@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -74,7 +75,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
             BaseUnit = VolumeFlowUnit.CubicMeterPerSecond;
-            Units = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().ToArray();
+            Units = EnumHelpers.GetValues<VolumeFlowUnit>();
             Zero = new VolumeFlow(0, BaseUnit);
             Info = new QuantityInfo<VolumeFlowUnit>("VolumeFlow",
                 new UnitInfo<VolumeFlowUnit>[]
@@ -243,7 +244,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
