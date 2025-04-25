@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -79,7 +80,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
             BaseUnit = ReciprocalLengthUnit.InverseMeter;
-            Units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ReciprocalLengthUnit>();
             Zero = new ReciprocalLength(0, BaseUnit);
             Info = new QuantityInfo<ReciprocalLengthUnit>("ReciprocalLength",
                 new UnitInfo<ReciprocalLengthUnit>[]
@@ -183,7 +184,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -85,7 +86,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
             BaseUnit = AreaUnit.SquareMeter;
-            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AreaUnit>();
             Zero = new Area(0, BaseUnit);
             Info = new QuantityInfo<AreaUnit>("Area",
                 new UnitInfo<AreaUnit>[]
@@ -193,7 +194,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -50,7 +50,7 @@ namespace CodeGen.Generators.UnitsNetGen
         /// Example: "LengthUnit.Centimeter".
         /// </summary>
         private readonly string _otherOrBaseUnitFullName;
-        
+
         /// <summary>
         /// Indicates whether the quantity is dimensionless.
         /// </summary>
@@ -178,6 +178,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -374,7 +375,7 @@ namespace UnitsNet.Tests
             var quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }}
 
@@ -420,7 +421,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {{
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {{
                 var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -496,7 +497,7 @@ namespace UnitsNet.Tests
                 IQuantity<{_unitEnumName}> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }}, () =>
             {{
                 IQuantity quantityToConvert = quantity;
@@ -504,7 +505,7 @@ namespace UnitsNet.Tests
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }});
         }}
 
@@ -512,7 +513,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {{
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {{
                 var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -1011,7 +1012,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {{
-            var units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>();
+            var units = EnumHelpers.GetValues<{_unitEnumName}>();
             foreach (var unit in units)
             {{
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
             BaseUnit = PermeabilityUnit.HenryPerMeter;
-            Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<PermeabilityUnit>();
             Zero = new Permeability(0, BaseUnit);
             Info = new QuantityInfo<PermeabilityUnit>("Permeability",
                 new UnitInfo<PermeabilityUnit>[]
@@ -165,7 +166,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

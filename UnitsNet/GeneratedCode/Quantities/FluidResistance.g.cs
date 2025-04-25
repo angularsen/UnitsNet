@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-4, 1, -1, 0, 0, 0, 0);
             BaseUnit = FluidResistanceUnit.PascalSecondPerCubicMeter;
-            Units = Enum.GetValues(typeof(FluidResistanceUnit)).Cast<FluidResistanceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<FluidResistanceUnit>();
             Zero = new FluidResistance(0, BaseUnit);
             Info = new QuantityInfo<FluidResistanceUnit>("FluidResistance",
                 new UnitInfo<FluidResistanceUnit>[]
@@ -183,7 +184,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

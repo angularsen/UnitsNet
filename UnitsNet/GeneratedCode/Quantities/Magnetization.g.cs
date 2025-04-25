@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
             BaseUnit = MagnetizationUnit.AmperePerMeter;
-            Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MagnetizationUnit>();
             Zero = new Magnetization(0, BaseUnit);
             Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
                 new UnitInfo<MagnetizationUnit>[]
@@ -165,7 +166,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

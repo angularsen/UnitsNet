@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -74,7 +75,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
             BaseUnit = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
-            Units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<DynamicViscosityUnit>();
             Zero = new DynamicViscosity(0, BaseUnit);
             Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[]
@@ -178,7 +179,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

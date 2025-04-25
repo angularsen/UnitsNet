@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -76,7 +77,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
             BaseUnit = TemperatureDeltaUnit.Kelvin;
-            Units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().ToArray();
+            Units = EnumHelpers.GetValues<TemperatureDeltaUnit>();
             Zero = new TemperatureDelta(0, BaseUnit);
             Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[]
@@ -179,7 +180,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

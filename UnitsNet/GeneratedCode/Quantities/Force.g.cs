@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -81,7 +82,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
             BaseUnit = ForceUnit.Newton;
-            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ForceUnit>();
             Zero = new Force(0, BaseUnit);
             Info = new QuantityInfo<ForceUnit>("Force",
                 new UnitInfo<ForceUnit>[]
@@ -190,7 +191,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

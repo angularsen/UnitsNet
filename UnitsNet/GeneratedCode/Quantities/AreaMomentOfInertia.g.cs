@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
             BaseUnit = AreaMomentOfInertiaUnit.MeterToTheFourth;
-            Units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AreaMomentOfInertiaUnit>();
             Zero = new AreaMomentOfInertia(0, BaseUnit);
             Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
                 new UnitInfo<AreaMomentOfInertiaUnit>[]
@@ -171,7 +172,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

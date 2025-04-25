@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = InformationUnit.Bit;
-            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<InformationUnit>();
             Zero = new Information(0, BaseUnit);
             Info = new QuantityInfo<InformationUnit>("Information",
                 new UnitInfo<InformationUnit>[]
@@ -186,7 +187,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

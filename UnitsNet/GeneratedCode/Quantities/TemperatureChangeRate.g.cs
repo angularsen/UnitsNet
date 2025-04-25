@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
             BaseUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
-            Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().ToArray();
+            Units = EnumHelpers.GetValues<TemperatureChangeRateUnit>();
             Zero = new TemperatureChangeRate(0, BaseUnit);
             Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
                 new UnitInfo<TemperatureChangeRateUnit>[]
@@ -181,7 +182,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

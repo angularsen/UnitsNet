@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -74,7 +75,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
             BaseUnit = LuminousFluxUnit.Lumen;
-            Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().ToArray();
+            Units = EnumHelpers.GetValues<LuminousFluxUnit>();
             Zero = new LuminousFlux(0, BaseUnit);
             Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[]
@@ -169,7 +170,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -72,7 +73,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
             BaseUnit = EntropyUnit.JoulePerKelvin;
-            Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<EntropyUnit>();
             Zero = new Entropy(0, BaseUnit);
             Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[]
@@ -173,7 +174,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

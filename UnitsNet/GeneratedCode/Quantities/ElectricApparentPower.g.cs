@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = ElectricApparentPowerUnit.Voltampere;
-            Units = Enum.GetValues(typeof(ElectricApparentPowerUnit)).Cast<ElectricApparentPowerUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ElectricApparentPowerUnit>();
             Zero = new ElectricApparentPower(0, BaseUnit);
             Info = new QuantityInfo<ElectricApparentPowerUnit>("ElectricApparentPower",
                 new UnitInfo<ElectricApparentPowerUnit>[]
@@ -170,7 +171,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

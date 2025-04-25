@@ -40,6 +40,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -154,7 +155,7 @@ namespace UnitsNet
 
             Writer.WL($@"
             BaseUnit = {_unitEnumName}.{_quantity.BaseUnit};
-            Units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().ToArray();
+            Units = EnumHelpers.GetValues<{_unitEnumName}>();
             Zero = new {_quantity.Name}(0, BaseUnit);
             Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
                 new UnitInfo<{_unitEnumName}>[]
@@ -305,7 +306,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
@@ -1195,7 +1196,7 @@ namespace UnitsNet
         #endregion
 " );
         }
-        
+
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
         private static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 

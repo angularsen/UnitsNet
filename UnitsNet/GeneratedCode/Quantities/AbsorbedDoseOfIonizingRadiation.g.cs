@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
             BaseUnit = AbsorbedDoseOfIonizingRadiationUnit.Gray;
-            Units = Enum.GetValues(typeof(AbsorbedDoseOfIonizingRadiationUnit)).Cast<AbsorbedDoseOfIonizingRadiationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AbsorbedDoseOfIonizingRadiationUnit>();
             Zero = new AbsorbedDoseOfIonizingRadiation(0, BaseUnit);
             Info = new QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit>("AbsorbedDoseOfIonizingRadiation",
                 new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
@@ -180,7 +181,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

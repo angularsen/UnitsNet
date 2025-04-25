@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = RatioChangeRateUnit.DecimalFractionPerSecond;
-            Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().ToArray();
+            Units = EnumHelpers.GetValues<RatioChangeRateUnit>();
             Zero = new RatioChangeRate(0, BaseUnit);
             Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
                 new UnitInfo<RatioChangeRateUnit>[]
@@ -163,7 +164,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
