@@ -1,11 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -90,6 +87,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse<LengthUnit>(null!));
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, Length.Info.UnitInfos));
             Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, typeof(LengthUnit)));
+        }
+
+        [Fact]
+        public void Parse_UnknownUnitTypeThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitsNetSetup.Default.UnitParser.Parse<StringComparison>("something"));
         }
 
         [Fact]
@@ -198,9 +201,15 @@ namespace UnitsNet.Tests
                 Assert.False(success);
             }, () =>
             {
-                var success = unitParser.TryParse(null, [], null, out UnitInfo<LengthUnit>? _);
+                var success = unitParser.TryParse(null, [], null, out UnitInfo<Length, LengthUnit>? _);
                 Assert.False(success);
             });
+        }
+
+        [Fact]
+        public void TryParse_UnknownUnitType_ReturnsFalse()
+        {
+            Assert.False(UnitsNetSetup.Default.UnitParser.TryParse("something", out StringComparison _));
         }
 
         [Theory]
@@ -217,7 +226,7 @@ namespace UnitsNet.Tests
         {
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
             Assert.False(unitParser.TryParse("pt", CultureInfo.InvariantCulture, out LengthUnit _));
-            Assert.False(unitParser.TryParse("pt", Length.Info.UnitInfos, CultureInfo.InvariantCulture, out UnitInfo<LengthUnit>? _));
+            Assert.False(unitParser.TryParse("pt", Length.Info.UnitInfos, CultureInfo.InvariantCulture, out UnitInfo<Length, LengthUnit>? _));
         }
 
         [Theory]
@@ -248,8 +257,7 @@ namespace UnitsNet.Tests
             var success = unitParser.TryGetUnitFromAbbreviation("кг", formatProvider, out UnitInfo? unitInfo);
 
             Assert.True(success);
-            Assert.NotNull(unitInfo);
-            Assert.Equal(MassUnit.Kilogram, unitInfo.Value);
+            Assert.Equal(Mass.Info[MassUnit.Kilogram], unitInfo);
         }
 
         [Fact]
@@ -261,8 +269,7 @@ namespace UnitsNet.Tests
             var success = unitParser.TryGetUnitFromAbbreviation("kg", formatProvider, out UnitInfo? unitInfo);
             
             Assert.True(success);
-            Assert.NotNull(unitInfo);
-            Assert.Equal(MassUnit.Kilogram, unitInfo.Value);
+            Assert.Equal(Mass.Info[MassUnit.Kilogram], unitInfo);
         }
 
         [Fact]

@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,35 +62,86 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly TemperatureChangeRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="TemperatureChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class TemperatureChangeRateInfo: QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit>
+        {
+            /// <inheritdoc />
+            public TemperatureChangeRateInfo(string name, TemperatureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings, TemperatureChangeRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<TemperatureChangeRate, TemperatureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public TemperatureChangeRateInfo(string name, TemperatureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings, TemperatureChangeRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, TemperatureChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.TemperatureChangeRate", typeof(TemperatureChangeRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings for the TemperatureChangeRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings.</returns>
+            public static TemperatureChangeRateInfo CreateDefault()
+            {
+                return new TemperatureChangeRateInfo(nameof(TemperatureChangeRate), DefaultBaseUnit, GetDefaultMappings(), new TemperatureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings for the TemperatureChangeRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings.
+            /// </returns>
+            public static TemperatureChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureChangeRateUnit>>, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>>> customizeUnits)
+            {
+                return new TemperatureChangeRateInfo(nameof(TemperatureChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new TemperatureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="TemperatureChangeRate"/> is [T^-1][Θ].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of TemperatureChangeRate is DegreeCelsiusPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static TemperatureChangeRateUnit DefaultBaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="TemperatureChangeRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureChangeRateUnit}"/> representing the default unit mappings for TemperatureChangeRate.</returns>
+            public static IEnumerable<UnitDefinition<TemperatureChangeRateUnit>> GetDefaultMappings()
+            {
+                yield return new (TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreeCelsiusPerSecond", "CentidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreeCelsiusPerSecond", "DecadegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreeCelsiusPerSecond", "DecidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.DegreeCelsiusPerHour, "DegreeCelsiusPerHour", "DegreesCelsiusPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreeCelsiusPerMinute", "DegreesCelsiusPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreeCelsiusPerSecond", "DegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureChangeRateUnit.DegreeFahrenheitPerHour, "DegreeFahrenheitPerHour", "DegreesFahrenheitPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.DegreeFahrenheit));
+                yield return new (TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, "DegreeFahrenheitPerMinute", "DegreesFahrenheitPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.DegreeFahrenheit));
+                yield return new (TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, "DegreeFahrenheitPerSecond", "DegreesFahrenheitPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.DegreeFahrenheit));
+                yield return new (TemperatureChangeRateUnit.DegreeKelvinPerHour, "DegreeKelvinPerHour", "DegreesKelvinPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.Kelvin));
+                yield return new (TemperatureChangeRateUnit.DegreeKelvinPerMinute, "DegreeKelvinPerMinute", "DegreesKelvinPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.Kelvin));
+                yield return new (TemperatureChangeRateUnit.DegreeKelvinPerSecond, "DegreeKelvinPerSecond", "DegreesKelvinPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                yield return new (TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreeCelsiusPerSecond", "HectodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreeCelsiusPerSecond", "KilodegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Millisecond, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreeCelsiusPerSecond", "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreeCelsiusPerSecond", "MillidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                yield return new (TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreeCelsiusPerSecond", "NanodegreesCelsiusPerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static TemperatureChangeRate()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-            BaseUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
-            Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().ToArray();
-            Zero = new TemperatureChangeRate(0, BaseUnit);
-            Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
-                new UnitInfo<TemperatureChangeRateUnit>[]
-                {
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerHour, "DegreesCelsiusPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, "DegreesFahrenheitPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, "DegreesFahrenheitPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, "DegreesFahrenheitPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerHour, "DegreesKelvinPerHour", new BaseUnits(time: DurationUnit.Hour, temperature: TemperatureUnit.Kelvin), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerMinute, "DegreesKelvinPerMinute", new BaseUnits(time: DurationUnit.Minute, temperature: TemperatureUnit.Kelvin), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeKelvinPerSecond, "DegreesKelvinPerSecond", new BaseUnits(time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", new BaseUnits(time: DurationUnit.Millisecond, temperature: TemperatureUnit.DegreeCelsius), "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = TemperatureChangeRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -132,27 +179,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureChangeRateUnit> Info { get; }
+        public static QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit { get; }
+        public static TemperatureChangeRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
         /// </summary>
-        public static TemperatureChangeRateUnit[] Units { get; }
+        public static IReadOnlyCollection<TemperatureChangeRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate Zero { get; }
+        public static TemperatureChangeRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static TemperatureChangeRate AdditiveIdentity => Zero;
@@ -170,7 +217,7 @@ namespace UnitsNet
         public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<TemperatureChangeRateUnit> QuantityInfo => Info;
+        public QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -187,6 +234,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,36 +62,87 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly HeatFluxUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="HeatFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class HeatFluxInfo: QuantityInfo<HeatFlux, HeatFluxUnit>
+        {
+            /// <inheritdoc />
+            public HeatFluxInfo(string name, HeatFluxUnit baseUnit, IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings, HeatFlux zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<HeatFlux, HeatFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public HeatFluxInfo(string name, HeatFluxUnit baseUnit, IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings, HeatFlux zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, HeatFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.HeatFlux", typeof(HeatFlux).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="HeatFluxInfo"/> class with the default settings for the HeatFlux quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="HeatFluxInfo"/> class with the default settings.</returns>
+            public static HeatFluxInfo CreateDefault()
+            {
+                return new HeatFluxInfo(nameof(HeatFlux), DefaultBaseUnit, GetDefaultMappings(), new HeatFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="HeatFluxInfo"/> class with the default settings for the HeatFlux quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="HeatFluxInfo"/> class with the default settings.
+            /// </returns>
+            public static HeatFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<HeatFluxUnit>>, IEnumerable<IUnitDefinition<HeatFluxUnit>>> customizeUnits)
+            {
+                return new HeatFluxInfo(nameof(HeatFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new HeatFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="HeatFlux"/> is [T^-3][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of HeatFlux is WattPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static HeatFluxUnit DefaultBaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="HeatFluxUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{HeatFluxUnit}"/> representing the default unit mappings for HeatFlux.</returns>
+            public static IEnumerable<UnitDefinition<HeatFluxUnit>> GetDefaultMappings()
+            {
+                yield return new (HeatFluxUnit.BtuPerHourSquareFoot, "BtuPerHourSquareFoot", "BtusPerHourSquareFoot", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.BtuPerMinuteSquareFoot, "BtuPerMinuteSquareFoot", "BtusPerMinuteSquareFoot", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.BtuPerSecondSquareFoot, "BtuPerSecondSquareFoot", "BtusPerSecondSquareFoot", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.BtuPerSecondSquareInch, "BtuPerSecondSquareInch", "BtusPerSecondSquareInch", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriePerSecondSquareCentimeter", "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattPerSquareMeter", "CentiwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattPerSquareMeter", "DeciwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriePerHourSquareMeter", "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriePerSecondSquareCentimeter", "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattPerSquareMeter", "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattPerSquareMeter", "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.NanowattPerSquareMeter, "NanowattPerSquareMeter", "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.PoundForcePerFootSecond, "PoundForcePerFootSecond", "PoundsForcePerFootSecond", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.PoundPerSecondCubed, "PoundPerSecondCubed", "PoundsPerSecondCubed", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.WattPerSquareFoot, "WattPerSquareFoot", "WattsPerSquareFoot", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.WattPerSquareInch, "WattPerSquareInch", "WattsPerSquareInch", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.WattPerSquareMeter, "WattPerSquareMeter", "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static HeatFlux()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            BaseUnit = HeatFluxUnit.WattPerSquareMeter;
-            Units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().ToArray();
-            Zero = new HeatFlux(0, BaseUnit);
-            Info = new QuantityInfo<HeatFluxUnit>("HeatFlux",
-                new UnitInfo<HeatFluxUnit>[]
-                {
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, "BtusPerSecondSquareFoot", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, "BtusPerSecondSquareInch", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined, "HeatFlux"),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "HeatFlux"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = HeatFluxInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -133,27 +180,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<HeatFluxUnit> Info { get; }
+        public static QuantityInfo<HeatFlux, HeatFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static HeatFluxUnit BaseUnit { get; }
+        public static HeatFluxUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>
-        public static HeatFluxUnit[] Units { get; }
+        public static IReadOnlyCollection<HeatFluxUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static HeatFlux Zero { get; }
+        public static HeatFlux Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static HeatFlux AdditiveIdentity => Zero;
@@ -171,7 +218,7 @@ namespace UnitsNet
         public HeatFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<HeatFluxUnit> QuantityInfo => Info;
+        public QuantityInfo<HeatFlux, HeatFluxUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -188,6 +235,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<HeatFluxUnit> IQuantity<HeatFluxUnit>.QuantityInfo => Info;
 
         #endregion
 

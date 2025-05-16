@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,25 +62,76 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricCapacitanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricCapacitance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricCapacitanceInfo: QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricCapacitanceInfo(string name, ElectricCapacitanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings, ElectricCapacitance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricCapacitance, ElectricCapacitanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricCapacitanceInfo(string name, ElectricCapacitanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings, ElectricCapacitance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCapacitance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCapacitance", typeof(ElectricCapacitance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings for the ElectricCapacitance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings.</returns>
+            public static ElectricCapacitanceInfo CreateDefault()
+            {
+                return new ElectricCapacitanceInfo(nameof(ElectricCapacitance), DefaultBaseUnit, GetDefaultMappings(), new ElectricCapacitance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings for the ElectricCapacitance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricCapacitanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCapacitanceUnit>>, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>>> customizeUnits)
+            {
+                return new ElectricCapacitanceInfo(nameof(ElectricCapacitance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCapacitance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCapacitance"/> is [T^4][L^-2][M^-1][I^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricCapacitance is Farad. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricCapacitanceUnit DefaultBaseUnit { get; } = ElectricCapacitanceUnit.Farad;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricCapacitanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCapacitanceUnit}"/> representing the default unit mappings for ElectricCapacitance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricCapacitanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined);
+                yield return new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined);
+                yield return new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
+            }
+        }
+
         static ElectricCapacitance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
-            BaseUnit = ElectricCapacitanceUnit.Farad;
-            Units = Enum.GetValues(typeof(ElectricCapacitanceUnit)).Cast<ElectricCapacitanceUnit>().ToArray();
-            Zero = new ElectricCapacitance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricCapacitanceUnit>("ElectricCapacitance",
-                new UnitInfo<ElectricCapacitanceUnit>[]
-                {
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Kilofarad, "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Megafarad, "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Microfarad, "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined, "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined, "ElectricCapacitance"),
-                    new UnitInfo<ElectricCapacitanceUnit>(ElectricCapacitanceUnit.Picofarad, "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricCapacitance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricCapacitanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -122,27 +169,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCapacitanceUnit> Info { get; }
+        public static QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricCapacitance, which is Farad. All conversions go via this value.
         /// </summary>
-        public static ElectricCapacitanceUnit BaseUnit { get; }
+        public static ElectricCapacitanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricCapacitance quantity.
         /// </summary>
-        public static ElectricCapacitanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricCapacitanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Farad.
         /// </summary>
-        public static ElectricCapacitance Zero { get; }
+        public static ElectricCapacitance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricCapacitance AdditiveIdentity => Zero;
@@ -160,7 +207,7 @@ namespace UnitsNet
         public ElectricCapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricCapacitanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -177,6 +224,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricCapacitanceUnit> IQuantity<ElectricCapacitanceUnit>.QuantityInfo => Info;
 
         #endregion
 

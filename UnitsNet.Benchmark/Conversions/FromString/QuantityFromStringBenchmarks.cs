@@ -9,7 +9,7 @@ namespace UnitsNet.Benchmark.Conversions.FromString;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class QuantityFromStringBenchmarks
 {
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
@@ -28,20 +28,20 @@ public class QuantityFromStringBenchmarks
         _quantitiesToParse = _random.GetItems(["kg", "lbs", "Mlbs"], NbAbbreviations).Select(abbreviation => $"{ValueToParse} {abbreviation}").ToArray();
     }
 
-    [GlobalSetup(Target = nameof(FromVolumeUnitAbbreviation))]
+    [GlobalSetup(Target = nameof(FromVolumeString))]
     public void PrepareVolumeStrings()
     {
         _quantitiesToParse = _random.GetItems(["ml", "l", "cm³", "m³"], NbAbbreviations).Select(abbreviation => $"{ValueToParse} {abbreviation}").ToArray();;
     }
 
-    [GlobalSetup(Target = nameof(FromPressureUnitAbbreviation))]
-    public void PreparePressureUnits()
+    [GlobalSetup(Target = nameof(FromPressureString))]
+    public void PreparePressureStrings()
     {
         _quantitiesToParse = _random.GetRandomAbbreviations<PressureUnit>(UnitsNetSetup.Default.UnitAbbreviations, NbAbbreviations).Select(abbreviation => $"{ValueToParse} {abbreviation}").ToArray();;
     }
 
-    [GlobalSetup(Target = nameof(FromVolumeFlowUnitAbbreviation))]
-    public void PrepareVolumeFlowUnits()
+    [GlobalSetup(Target = nameof(FromVolumeFlowString))]
+    public void PrepareVolumeFlowStrings()
     {
         // can't have "bpm" (see Frequency)
         _quantitiesToParse =
@@ -63,7 +63,7 @@ public class QuantityFromStringBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromVolumeUnitAbbreviation()
+    public IQuantity FromVolumeString()
     {
         IQuantity quantity = null;
         foreach (var quantityString in _quantitiesToParse)
@@ -75,7 +75,7 @@ public class QuantityFromStringBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromPressureUnitAbbreviation()
+    public IQuantity FromPressureString()
     {
         IQuantity quantity = null;
         foreach (var quantityString in _quantitiesToParse)
@@ -87,7 +87,7 @@ public class QuantityFromStringBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public IQuantity FromVolumeFlowUnitAbbreviation()
+    public IQuantity FromVolumeFlowString()
     {
         IQuantity quantity = null;
         foreach (var quantityString in _quantitiesToParse)

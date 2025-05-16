@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,21 +62,72 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificVolumeUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="SpecificVolume"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class SpecificVolumeInfo: QuantityInfo<SpecificVolume, SpecificVolumeUnit>
+        {
+            /// <inheritdoc />
+            public SpecificVolumeInfo(string name, SpecificVolumeUnit baseUnit, IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings, SpecificVolume zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<SpecificVolume, SpecificVolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public SpecificVolumeInfo(string name, SpecificVolumeUnit baseUnit, IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings, SpecificVolume zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificVolume.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificVolume", typeof(SpecificVolume).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings for the SpecificVolume quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings.</returns>
+            public static SpecificVolumeInfo CreateDefault()
+            {
+                return new SpecificVolumeInfo(nameof(SpecificVolume), DefaultBaseUnit, GetDefaultMappings(), new SpecificVolume(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings for the SpecificVolume quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings.
+            /// </returns>
+            public static SpecificVolumeInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificVolumeUnit>>, IEnumerable<IUnitDefinition<SpecificVolumeUnit>>> customizeUnits)
+            {
+                return new SpecificVolumeInfo(nameof(SpecificVolume), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificVolume(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="SpecificVolume"/> is [L^3][M^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of SpecificVolume is CubicMeterPerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static SpecificVolumeUnit DefaultBaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="SpecificVolumeUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificVolumeUnit}"/> representing the default unit mappings for SpecificVolume.</returns>
+            public static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
+            {
+                yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
+                yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram));
+            }
+        }
+
         static SpecificVolume()
         {
-            BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
-            BaseUnit = SpecificVolumeUnit.CubicMeterPerKilogram;
-            Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
-            Zero = new SpecificVolume(0, BaseUnit);
-            Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
-                new UnitInfo<SpecificVolumeUnit>[]
-                {
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "SpecificVolume"),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "SpecificVolume"),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram), "SpecificVolume"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = SpecificVolumeInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -118,27 +165,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificVolumeUnit> Info { get; }
+        public static QuantityInfo<SpecificVolume, SpecificVolumeUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of SpecificVolume, which is CubicMeterPerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificVolumeUnit BaseUnit { get; }
+        public static SpecificVolumeUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
         /// </summary>
-        public static SpecificVolumeUnit[] Units { get; }
+        public static IReadOnlyCollection<SpecificVolumeUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerKilogram.
         /// </summary>
-        public static SpecificVolume Zero { get; }
+        public static SpecificVolume Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static SpecificVolume AdditiveIdentity => Zero;
@@ -156,7 +203,7 @@ namespace UnitsNet
         public SpecificVolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<SpecificVolumeUnit> QuantityInfo => Info;
+        public QuantityInfo<SpecificVolume, SpecificVolumeUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -173,6 +220,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.QuantityInfo => Info;
 
         #endregion
 

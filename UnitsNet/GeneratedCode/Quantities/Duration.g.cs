@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -80,30 +76,81 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly DurationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Duration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class DurationInfo: QuantityInfo<Duration, DurationUnit>
+        {
+            /// <inheritdoc />
+            public DurationInfo(string name, DurationUnit baseUnit, IEnumerable<IUnitDefinition<DurationUnit>> unitMappings, Duration zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Duration, DurationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public DurationInfo(string name, DurationUnit baseUnit, IEnumerable<IUnitDefinition<DurationUnit>> unitMappings, Duration zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Duration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Duration", typeof(Duration).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DurationInfo"/> class with the default settings for the Duration quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="DurationInfo"/> class with the default settings.</returns>
+            public static DurationInfo CreateDefault()
+            {
+                return new DurationInfo(nameof(Duration), DefaultBaseUnit, GetDefaultMappings(), new Duration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DurationInfo"/> class with the default settings for the Duration quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="DurationInfo"/> class with the default settings.
+            /// </returns>
+            public static DurationInfo CreateDefault(Func<IEnumerable<UnitDefinition<DurationUnit>>, IEnumerable<IUnitDefinition<DurationUnit>>> customizeUnits)
+            {
+                return new DurationInfo(nameof(Duration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Duration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Duration"/> is [T].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Duration is Second. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static DurationUnit DefaultBaseUnit { get; } = DurationUnit.Second;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="DurationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DurationUnit}"/> representing the default unit mappings for Duration.</returns>
+            public static IEnumerable<UnitDefinition<DurationUnit>> GetDefaultMappings()
+            {
+                yield return new (DurationUnit.Day, "Day", "Days", new BaseUnits(time: DurationUnit.Day));
+                yield return new (DurationUnit.Hour, "Hour", "Hours", new BaseUnits(time: DurationUnit.Hour));
+                yield return new (DurationUnit.JulianYear, "JulianYear", "JulianYears", new BaseUnits(time: DurationUnit.JulianYear));
+                yield return new (DurationUnit.Microsecond, "Microsecond", "Microseconds", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (DurationUnit.Millisecond, "Millisecond", "Milliseconds", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (DurationUnit.Minute, "Minute", "Minutes", new BaseUnits(time: DurationUnit.Minute));
+                yield return new (DurationUnit.Month30, "Month30", "Months30", new BaseUnits(time: DurationUnit.Month30));
+                yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (DurationUnit.Second, "Second", "Seconds", new BaseUnits(time: DurationUnit.Second));
+                yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol));
+                yield return new (DurationUnit.Week, "Week", "Weeks", new BaseUnits(time: DurationUnit.Week));
+                yield return new (DurationUnit.Year365, "Year365", "Years365", new BaseUnits(time: DurationUnit.Year365));
+            }
+        }
+
         static Duration()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
-            BaseUnit = DurationUnit.Second;
-            Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().ToArray();
-            Zero = new Duration(0, BaseUnit);
-            Info = new QuantityInfo<DurationUnit>("Duration",
-                new UnitInfo<DurationUnit>[]
-                {
-                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", new BaseUnits(time: DurationUnit.Microsecond), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", new BaseUnits(time: DurationUnit.Millisecond), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Sol, "Sols", new BaseUnits(time: DurationUnit.Sol), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week), "Duration"),
-                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365), "Duration"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = DurationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -141,27 +188,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DurationUnit> Info { get; }
+        public static QuantityInfo<Duration, DurationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static DurationUnit BaseUnit { get; }
+        public static DurationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Duration quantity.
         /// </summary>
-        public static DurationUnit[] Units { get; }
+        public static IReadOnlyCollection<DurationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Duration Zero { get; }
+        public static Duration Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Duration AdditiveIdentity => Zero;
@@ -179,7 +226,7 @@ namespace UnitsNet
         public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<DurationUnit> QuantityInfo => Info;
+        public QuantityInfo<Duration, DurationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -196,6 +243,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<DurationUnit> IQuantity<DurationUnit>.QuantityInfo => Info;
 
         #endregion
 

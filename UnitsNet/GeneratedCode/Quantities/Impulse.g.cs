@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,31 +59,82 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ImpulseUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Impulse"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ImpulseInfo: QuantityInfo<Impulse, ImpulseUnit>
+        {
+            /// <inheritdoc />
+            public ImpulseInfo(string name, ImpulseUnit baseUnit, IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings, Impulse zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Impulse, ImpulseUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ImpulseInfo(string name, ImpulseUnit baseUnit, IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings, Impulse zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Impulse.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Impulse", typeof(Impulse).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ImpulseInfo"/> class with the default settings for the Impulse quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ImpulseInfo"/> class with the default settings.</returns>
+            public static ImpulseInfo CreateDefault()
+            {
+                return new ImpulseInfo(nameof(Impulse), DefaultBaseUnit, GetDefaultMappings(), new Impulse(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ImpulseInfo"/> class with the default settings for the Impulse quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ImpulseInfo"/> class with the default settings.
+            /// </returns>
+            public static ImpulseInfo CreateDefault(Func<IEnumerable<UnitDefinition<ImpulseUnit>>, IEnumerable<IUnitDefinition<ImpulseUnit>>> customizeUnits)
+            {
+                return new ImpulseInfo(nameof(Impulse), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Impulse(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Impulse"/> is [T^-1][L][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Impulse is NewtonSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ImpulseUnit DefaultBaseUnit { get; } = ImpulseUnit.NewtonSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ImpulseUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ImpulseUnit}"/> representing the default unit mappings for Impulse.</returns>
+            public static IEnumerable<UnitDefinition<ImpulseUnit>> GetDefaultMappings()
+            {
+                yield return new (ImpulseUnit.CentinewtonSecond, "CentinewtonSecond", "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.DecanewtonSecond, "DecanewtonSecond", "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.DecinewtonSecond, "DecinewtonSecond", "DecinewtonSeconds", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.KilogramMeterPerSecond, "KilogramMeterPerSecond", "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.KilonewtonSecond, "KilonewtonSecond", "KilonewtonSeconds", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.MeganewtonSecond, "MeganewtonSecond", "MeganewtonSeconds", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.MicronewtonSecond, "MicronewtonSecond", "MicronewtonSeconds", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.MillinewtonSecond, "MillinewtonSecond", "MillinewtonSeconds", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.NanonewtonSecond, "NanonewtonSecond", "NanonewtonSeconds", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.NewtonSecond, "NewtonSecond", "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.PoundFootPerSecond, "PoundFootPerSecond", "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second));
+                yield return new (ImpulseUnit.PoundForceSecond, "PoundForceSecond", "PoundForceSeconds", BaseUnits.Undefined);
+                yield return new (ImpulseUnit.SlugFootPerSecond, "SlugFootPerSecond", "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second));
+            }
+        }
+
         static Impulse()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -1, 0, 0, 0, 0);
-            BaseUnit = ImpulseUnit.NewtonSecond;
-            Units = Enum.GetValues(typeof(ImpulseUnit)).Cast<ImpulseUnit>().ToArray();
-            Zero = new Impulse(0, BaseUnit);
-            Info = new QuantityInfo<ImpulseUnit>("Impulse",
-                new UnitInfo<ImpulseUnit>[]
-                {
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second), "Impulse"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ImpulseInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -125,27 +172,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ImpulseUnit> Info { get; }
+        public static QuantityInfo<Impulse, ImpulseUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Impulse, which is NewtonSecond. All conversions go via this value.
         /// </summary>
-        public static ImpulseUnit BaseUnit { get; }
+        public static ImpulseUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Impulse quantity.
         /// </summary>
-        public static ImpulseUnit[] Units { get; }
+        public static IReadOnlyCollection<ImpulseUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonSecond.
         /// </summary>
-        public static Impulse Zero { get; }
+        public static Impulse Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Impulse AdditiveIdentity => Zero;
@@ -163,7 +210,7 @@ namespace UnitsNet
         public ImpulseUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ImpulseUnit> QuantityInfo => Info;
+        public QuantityInfo<Impulse, ImpulseUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -180,6 +227,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ImpulseUnit> IQuantity<ImpulseUnit>.QuantityInfo => Info;
 
         #endregion
 

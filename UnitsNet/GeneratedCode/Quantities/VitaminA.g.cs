@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,19 +59,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly VitaminAUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="VitaminA"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class VitaminAInfo: QuantityInfo<VitaminA, VitaminAUnit>
+        {
+            /// <inheritdoc />
+            public VitaminAInfo(string name, VitaminAUnit baseUnit, IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings, VitaminA zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<VitaminA, VitaminAUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public VitaminAInfo(string name, VitaminAUnit baseUnit, IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings, VitaminA zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, VitaminA.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VitaminA", typeof(VitaminA).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VitaminAInfo"/> class with the default settings for the VitaminA quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="VitaminAInfo"/> class with the default settings.</returns>
+            public static VitaminAInfo CreateDefault()
+            {
+                return new VitaminAInfo(nameof(VitaminA), DefaultBaseUnit, GetDefaultMappings(), new VitaminA(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VitaminAInfo"/> class with the default settings for the VitaminA quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="VitaminAInfo"/> class with the default settings.
+            /// </returns>
+            public static VitaminAInfo CreateDefault(Func<IEnumerable<UnitDefinition<VitaminAUnit>>, IEnumerable<IUnitDefinition<VitaminAUnit>>> customizeUnits)
+            {
+                return new VitaminAInfo(nameof(VitaminA), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VitaminA(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="VitaminA"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of VitaminA is InternationalUnit. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static VitaminAUnit DefaultBaseUnit { get; } = VitaminAUnit.InternationalUnit;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="VitaminAUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VitaminAUnit}"/> representing the default unit mappings for VitaminA.</returns>
+            public static IEnumerable<UnitDefinition<VitaminAUnit>> GetDefaultMappings()
+            {
+                yield return new (VitaminAUnit.InternationalUnit, "InternationalUnit", "InternationalUnits", BaseUnits.Undefined);
+            }
+        }
+
         static VitaminA()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = VitaminAUnit.InternationalUnit;
-            Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().ToArray();
-            Zero = new VitaminA(0, BaseUnit);
-            Info = new QuantityInfo<VitaminAUnit>("VitaminA",
-                new UnitInfo<VitaminAUnit>[]
-                {
-                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined, "VitaminA"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = VitaminAInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -99,27 +146,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VitaminAUnit> Info { get; }
+        public static QuantityInfo<VitaminA, VitaminAUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit BaseUnit { get; }
+        public static VitaminAUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the VitaminA quantity.
         /// </summary>
-        public static VitaminAUnit[] Units { get; }
+        public static IReadOnlyCollection<VitaminAUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero { get; }
+        public static VitaminA Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static VitaminA AdditiveIdentity => Zero;
@@ -137,7 +184,7 @@ namespace UnitsNet
         public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<VitaminAUnit> QuantityInfo => Info;
+        public QuantityInfo<VitaminA, VitaminAUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,6 +201,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<VitaminAUnit> IQuantity<VitaminAUnit>.QuantityInfo => Info;
 
         #endregion
 

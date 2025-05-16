@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,21 +62,72 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricSurfaceChargeDensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricSurfaceChargeDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricSurfaceChargeDensityInfo: QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>
+        {
+            /// <inheritdoc />
+            public ElectricSurfaceChargeDensityInfo(string name, ElectricSurfaceChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings, ElectricSurfaceChargeDensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricSurfaceChargeDensityInfo(string name, ElectricSurfaceChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings, ElectricSurfaceChargeDensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricSurfaceChargeDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricSurfaceChargeDensity", typeof(ElectricSurfaceChargeDensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings for the ElectricSurfaceChargeDensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings.</returns>
+            public static ElectricSurfaceChargeDensityInfo CreateDefault()
+            {
+                return new ElectricSurfaceChargeDensityInfo(nameof(ElectricSurfaceChargeDensity), DefaultBaseUnit, GetDefaultMappings(), new ElectricSurfaceChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings for the ElectricSurfaceChargeDensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricSurfaceChargeDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>>, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>>> customizeUnits)
+            {
+                return new ElectricSurfaceChargeDensityInfo(nameof(ElectricSurfaceChargeDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricSurfaceChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricSurfaceChargeDensity"/> is [T][L^-2][I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricSurfaceChargeDensity is CoulombPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricSurfaceChargeDensityUnit DefaultBaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricSurfaceChargeDensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricSurfaceChargeDensityUnit}"/> representing the default unit mappings for ElectricSurfaceChargeDensity.</returns>
+            public static IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombPerSquareCentimeter", "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombPerSquareInch", "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombPerSquareMeter", "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricSurfaceChargeDensity()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
-            BaseUnit = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
-            Units = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().ToArray();
-            Zero = new ElectricSurfaceChargeDensity(0, BaseUnit);
-            Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>("ElectricSurfaceChargeDensity",
-                new UnitInfo<ElectricSurfaceChargeDensityUnit>[]
-                {
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSurfaceChargeDensity"),
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSurfaceChargeDensity"),
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSurfaceChargeDensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricSurfaceChargeDensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -118,27 +165,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricSurfaceChargeDensityUnit> Info { get; }
+        public static QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricSurfaceChargeDensity, which is CoulombPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricSurfaceChargeDensityUnit BaseUnit { get; }
+        public static ElectricSurfaceChargeDensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricSurfaceChargeDensity quantity.
         /// </summary>
-        public static ElectricSurfaceChargeDensityUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricSurfaceChargeDensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerSquareMeter.
         /// </summary>
-        public static ElectricSurfaceChargeDensity Zero { get; }
+        public static ElectricSurfaceChargeDensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricSurfaceChargeDensity AdditiveIdentity => Zero;
@@ -156,7 +203,7 @@ namespace UnitsNet
         public ElectricSurfaceChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricSurfaceChargeDensityUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -173,6 +220,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.QuantityInfo => Info;
 
         #endregion
 

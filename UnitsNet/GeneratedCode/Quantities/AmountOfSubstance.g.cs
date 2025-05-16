@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -71,35 +67,86 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AmountOfSubstanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="AmountOfSubstance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AmountOfSubstanceInfo: QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit>
+        {
+            /// <inheritdoc />
+            public AmountOfSubstanceInfo(string name, AmountOfSubstanceUnit baseUnit, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings, AmountOfSubstance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<AmountOfSubstance, AmountOfSubstanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AmountOfSubstanceInfo(string name, AmountOfSubstanceUnit baseUnit, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings, AmountOfSubstance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, AmountOfSubstance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AmountOfSubstance", typeof(AmountOfSubstance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings for the AmountOfSubstance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings.</returns>
+            public static AmountOfSubstanceInfo CreateDefault()
+            {
+                return new AmountOfSubstanceInfo(nameof(AmountOfSubstance), DefaultBaseUnit, GetDefaultMappings(), new AmountOfSubstance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings for the AmountOfSubstance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings.
+            /// </returns>
+            public static AmountOfSubstanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<AmountOfSubstanceUnit>>, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>>> customizeUnits)
+            {
+                return new AmountOfSubstanceInfo(nameof(AmountOfSubstance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AmountOfSubstance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="AmountOfSubstance"/> is [N].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+
+            /// <summary>
+            ///     The default base unit of AmountOfSubstance is Mole. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AmountOfSubstanceUnit DefaultBaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AmountOfSubstanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AmountOfSubstanceUnit}"/> representing the default unit mappings for AmountOfSubstance.</returns>
+            public static IEnumerable<UnitDefinition<AmountOfSubstanceUnit>> GetDefaultMappings()
+            {
+                yield return new (AmountOfSubstanceUnit.Centimole, "Centimole", "Centimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Centimole));
+                yield return new (AmountOfSubstanceUnit.CentipoundMole, "CentipoundMole", "CentipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.CentipoundMole));
+                yield return new (AmountOfSubstanceUnit.Decimole, "Decimole", "Decimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Decimole));
+                yield return new (AmountOfSubstanceUnit.DecipoundMole, "DecipoundMole", "DecipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.DecipoundMole));
+                yield return new (AmountOfSubstanceUnit.Femtomole, "Femtomole", "Femtomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Femtomole));
+                yield return new (AmountOfSubstanceUnit.Kilomole, "Kilomole", "Kilomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (AmountOfSubstanceUnit.KilopoundMole, "KilopoundMole", "KilopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.KilopoundMole));
+                yield return new (AmountOfSubstanceUnit.Megamole, "Megamole", "Megamoles", new BaseUnits(amount: AmountOfSubstanceUnit.Megamole));
+                yield return new (AmountOfSubstanceUnit.Micromole, "Micromole", "Micromoles", new BaseUnits(amount: AmountOfSubstanceUnit.Micromole));
+                yield return new (AmountOfSubstanceUnit.MicropoundMole, "MicropoundMole", "MicropoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MicropoundMole));
+                yield return new (AmountOfSubstanceUnit.Millimole, "Millimole", "Millimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Millimole));
+                yield return new (AmountOfSubstanceUnit.MillipoundMole, "MillipoundMole", "MillipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MillipoundMole));
+                yield return new (AmountOfSubstanceUnit.Mole, "Mole", "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole));
+                yield return new (AmountOfSubstanceUnit.Nanomole, "Nanomole", "Nanomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Nanomole));
+                yield return new (AmountOfSubstanceUnit.NanopoundMole, "NanopoundMole", "NanopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.NanopoundMole));
+                yield return new (AmountOfSubstanceUnit.Picomole, "Picomole", "Picomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Picomole));
+                yield return new (AmountOfSubstanceUnit.PoundMole, "PoundMole", "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole));
+            }
+        }
+
         static AmountOfSubstance()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-            BaseUnit = AmountOfSubstanceUnit.Mole;
-            Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().ToArray();
-            Zero = new AmountOfSubstance(0, BaseUnit);
-            Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
-                new UnitInfo<AmountOfSubstanceUnit>[]
-                {
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Centimole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.CentipoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Decimole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.DecipoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Femtomole, "Femtomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Femtomole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Kilomole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.KilopoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", new BaseUnits(amount: AmountOfSubstanceUnit.Megamole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", new BaseUnits(amount: AmountOfSubstanceUnit.Micromole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MicropoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Millimole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.MillipoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Nanomole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.NanopoundMole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Picomole, "Picomoles", new BaseUnits(amount: AmountOfSubstanceUnit.Picomole), "AmountOfSubstance"),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole), "AmountOfSubstance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AmountOfSubstanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -137,27 +184,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AmountOfSubstanceUnit> Info { get; }
+        public static QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit { get; }
+        public static AmountOfSubstanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
         /// </summary>
-        public static AmountOfSubstanceUnit[] Units { get; }
+        public static IReadOnlyCollection<AmountOfSubstanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance Zero { get; }
+        public static AmountOfSubstance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static AmountOfSubstance AdditiveIdentity => Zero;
@@ -175,7 +222,7 @@ namespace UnitsNet
         public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AmountOfSubstanceUnit> QuantityInfo => Info;
+        public QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -192,6 +239,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.QuantityInfo => Info;
 
         #endregion
 
