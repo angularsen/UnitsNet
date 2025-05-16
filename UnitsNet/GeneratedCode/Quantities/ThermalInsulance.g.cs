@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
             BaseUnit = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
-            Units = Enum.GetValues(typeof(ThermalInsulanceUnit)).Cast<ThermalInsulanceUnit>().ToArray();
+            Units = EnumHelpers.GetValues<ThermalInsulanceUnit>();
             Zero = new ThermalInsulance(0, BaseUnit);
             Info = new QuantityInfo<ThermalInsulanceUnit>("ThermalInsulance",
                 new UnitInfo<ThermalInsulanceUnit>[]
@@ -167,7 +168,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -12,6 +13,10 @@ namespace UnitsNet.Serialization.JsonNet
     /// JSON.net converter for IQuantity types (e.g. all units in UnitsNet)
     /// Use this converter to serialize and deserialize UnitsNet types to and from JSON
     /// </summary>
+#if NET
+    [RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
+#endif
     public sealed class UnitsNetIQuantityJsonConverter : UnitsNetBaseJsonConverter<IQuantity?>
     {
         /// <summary>

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -3, 0, 0, 0, 0);
             BaseUnit = JerkUnit.MeterPerSecondCubed;
-            Units = Enum.GetValues(typeof(JerkUnit)).Cast<JerkUnit>().ToArray();
+            Units = EnumHelpers.GetValues<JerkUnit>();
             Zero = new Jerk(0, BaseUnit);
             Info = new QuantityInfo<JerkUnit>("Jerk",
                 new UnitInfo<JerkUnit>[]
@@ -175,7 +176,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
