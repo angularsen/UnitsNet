@@ -784,13 +784,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cal/K", new Entropy(1, EntropyUnit.CaloriePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 J/°C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 J/K", new Entropy(1, EntropyUnit.JoulePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 kcal/K", new Entropy(1, EntropyUnit.KilocaloriePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 kJ/°C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 kJ/K", new Entropy(1, EntropyUnit.KilojoulePerKelvin).ToString(swedishCulture));
-            Assert.Equal("1 MJ/K", new Entropy(1, EntropyUnit.MegajoulePerKelvin).ToString(swedishCulture));
+            Assert.Equal("1 cal/K", new Entropy(1, EntropyUnit.CaloriePerKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 J/°C", new Entropy(1, EntropyUnit.JoulePerDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 J/K", new Entropy(1, EntropyUnit.JoulePerKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 kcal/K", new Entropy(1, EntropyUnit.KilocaloriePerKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/°C", new Entropy(1, EntropyUnit.KilojoulePerDegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/K", new Entropy(1, EntropyUnit.KilojoulePerKelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/K", new Entropy(1, EntropyUnit.MegajoulePerKelvin).ToString(null, swedishCulture));
         }
 
         [Fact]

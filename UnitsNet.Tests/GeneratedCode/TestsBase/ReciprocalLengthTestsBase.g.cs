@@ -1093,16 +1093,16 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 ft⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseFoot).ToString(swedishCulture));
-            Assert.Equal("1 in⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseInch).ToString(swedishCulture));
-            Assert.Equal("1 m⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter).ToString(swedishCulture));
-            Assert.Equal("1 µin⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMicroinch).ToString(swedishCulture));
-            Assert.Equal("1 mil⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMil).ToString(swedishCulture));
-            Assert.Equal("1 mi⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMile).ToString(swedishCulture));
-            Assert.Equal("1 mm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 ftUS⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseUsSurveyFoot).ToString(swedishCulture));
-            Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString(swedishCulture));
+            Assert.Equal("1 cm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 ft⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 in⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseInch).ToString(null, swedishCulture));
+            Assert.Equal("1 m⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 µin⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMicroinch).ToString(null, swedishCulture));
+            Assert.Equal("1 mil⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMil).ToString(null, swedishCulture));
+            Assert.Equal("1 mi⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMile).ToString(null, swedishCulture));
+            Assert.Equal("1 mm⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 ftUS⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseUsSurveyFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString(null, swedishCulture));
         }
 
         [Fact]

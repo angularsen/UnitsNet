@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             var meter = Length.FromMeters(5);
-            string meterString = meter.ToString(CultureInfo.InvariantCulture);
+            string meterString = meter.ToString(null, CultureInfo.InvariantCulture);
             Assert.Equal("5 m", meterString);
         }
 
@@ -175,7 +175,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefaultUnit()
         {
             var value = Length.From(2, LengthUnit.Centimeter);
-            string valueString = value.ToString(CultureInfo.InvariantCulture);
+            string valueString = value.ToString(null, CultureInfo.InvariantCulture);
             Assert.Equal("2 cm", valueString);
         }
 

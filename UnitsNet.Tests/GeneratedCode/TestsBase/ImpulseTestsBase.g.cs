@@ -970,19 +970,19 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cN·s", new Impulse(1, ImpulseUnit.CentinewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 daN·s", new Impulse(1, ImpulseUnit.DecanewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 dN·s", new Impulse(1, ImpulseUnit.DecinewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 kg·m/s", new Impulse(1, ImpulseUnit.KilogramMeterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kN·s", new Impulse(1, ImpulseUnit.KilonewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 MN·s", new Impulse(1, ImpulseUnit.MeganewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 µN·s", new Impulse(1, ImpulseUnit.MicronewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 mN·s", new Impulse(1, ImpulseUnit.MillinewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString(swedishCulture));
-            Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 cN·s", new Impulse(1, ImpulseUnit.CentinewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 daN·s", new Impulse(1, ImpulseUnit.DecanewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 dN·s", new Impulse(1, ImpulseUnit.DecinewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·m/s", new Impulse(1, ImpulseUnit.KilogramMeterPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kN·s", new Impulse(1, ImpulseUnit.KilonewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 MN·s", new Impulse(1, ImpulseUnit.MeganewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 µN·s", new Impulse(1, ImpulseUnit.MicronewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mN·s", new Impulse(1, ImpulseUnit.MillinewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

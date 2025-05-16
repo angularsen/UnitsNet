@@ -817,14 +817,14 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 C/kg", new RadiationExposure(1, RadiationExposureUnit.CoulombPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 µC/kg", new RadiationExposure(1, RadiationExposureUnit.MicrocoulombPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 µR", new RadiationExposure(1, RadiationExposureUnit.Microroentgen).ToString(swedishCulture));
-            Assert.Equal("1 mC/kg", new RadiationExposure(1, RadiationExposureUnit.MillicoulombPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 mR", new RadiationExposure(1, RadiationExposureUnit.Milliroentgen).ToString(swedishCulture));
-            Assert.Equal("1 nC/kg", new RadiationExposure(1, RadiationExposureUnit.NanocoulombPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 pC/kg", new RadiationExposure(1, RadiationExposureUnit.PicocoulombPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 R", new RadiationExposure(1, RadiationExposureUnit.Roentgen).ToString(swedishCulture));
+            Assert.Equal("1 C/kg", new RadiationExposure(1, RadiationExposureUnit.CoulombPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 µC/kg", new RadiationExposure(1, RadiationExposureUnit.MicrocoulombPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 µR", new RadiationExposure(1, RadiationExposureUnit.Microroentgen).ToString(null, swedishCulture));
+            Assert.Equal("1 mC/kg", new RadiationExposure(1, RadiationExposureUnit.MillicoulombPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 mR", new RadiationExposure(1, RadiationExposureUnit.Milliroentgen).ToString(null, swedishCulture));
+            Assert.Equal("1 nC/kg", new RadiationExposure(1, RadiationExposureUnit.NanocoulombPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 pC/kg", new RadiationExposure(1, RadiationExposureUnit.PicocoulombPerKilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 R", new RadiationExposure(1, RadiationExposureUnit.Roentgen).ToString(null, swedishCulture));
         }
 
         [Fact]

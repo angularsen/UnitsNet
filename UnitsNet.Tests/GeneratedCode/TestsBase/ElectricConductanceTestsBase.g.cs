@@ -1057,22 +1057,22 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 G℧", new ElectricConductance(1, ElectricConductanceUnit.Gigamho).ToString(swedishCulture));
-            Assert.Equal("1 GS", new ElectricConductance(1, ElectricConductanceUnit.Gigasiemens).ToString(swedishCulture));
-            Assert.Equal("1 k℧", new ElectricConductance(1, ElectricConductanceUnit.Kilomho).ToString(swedishCulture));
-            Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString(swedishCulture));
-            Assert.Equal("1 M℧", new ElectricConductance(1, ElectricConductanceUnit.Megamho).ToString(swedishCulture));
-            Assert.Equal("1 MS", new ElectricConductance(1, ElectricConductanceUnit.Megasiemens).ToString(swedishCulture));
-            Assert.Equal("1 ℧", new ElectricConductance(1, ElectricConductanceUnit.Mho).ToString(swedishCulture));
-            Assert.Equal("1 µ℧", new ElectricConductance(1, ElectricConductanceUnit.Micromho).ToString(swedishCulture));
-            Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString(swedishCulture));
-            Assert.Equal("1 m℧", new ElectricConductance(1, ElectricConductanceUnit.Millimho).ToString(swedishCulture));
-            Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString(swedishCulture));
-            Assert.Equal("1 n℧", new ElectricConductance(1, ElectricConductanceUnit.Nanomho).ToString(swedishCulture));
-            Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString(swedishCulture));
-            Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString(swedishCulture));
-            Assert.Equal("1 T℧", new ElectricConductance(1, ElectricConductanceUnit.Teramho).ToString(swedishCulture));
-            Assert.Equal("1 TS", new ElectricConductance(1, ElectricConductanceUnit.Terasiemens).ToString(swedishCulture));
+            Assert.Equal("1 G℧", new ElectricConductance(1, ElectricConductanceUnit.Gigamho).ToString(null, swedishCulture));
+            Assert.Equal("1 GS", new ElectricConductance(1, ElectricConductanceUnit.Gigasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 k℧", new ElectricConductance(1, ElectricConductanceUnit.Kilomho).ToString(null, swedishCulture));
+            Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 M℧", new ElectricConductance(1, ElectricConductanceUnit.Megamho).ToString(null, swedishCulture));
+            Assert.Equal("1 MS", new ElectricConductance(1, ElectricConductanceUnit.Megasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 ℧", new ElectricConductance(1, ElectricConductanceUnit.Mho).ToString(null, swedishCulture));
+            Assert.Equal("1 µ℧", new ElectricConductance(1, ElectricConductanceUnit.Micromho).ToString(null, swedishCulture));
+            Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 m℧", new ElectricConductance(1, ElectricConductanceUnit.Millimho).ToString(null, swedishCulture));
+            Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 n℧", new ElectricConductance(1, ElectricConductanceUnit.Nanomho).ToString(null, swedishCulture));
+            Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString(null, swedishCulture));
+            Assert.Equal("1 T℧", new ElectricConductance(1, ElectricConductanceUnit.Teramho).ToString(null, swedishCulture));
+            Assert.Equal("1 TS", new ElectricConductance(1, ElectricConductanceUnit.Terasiemens).ToString(null, swedishCulture));
         }
 
         [Fact]

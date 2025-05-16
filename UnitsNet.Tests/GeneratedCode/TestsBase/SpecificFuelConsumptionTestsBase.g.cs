@@ -685,10 +685,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 kg/(kgf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(swedishCulture));
-            Assert.Equal("1 kg/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 lb/(lbf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString(swedishCulture));
+            Assert.Equal("1 g/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 kg/(kgf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kg/(kN·s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 lb/(lbf·h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -949,18 +949,18 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g·h⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 g·h⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 g·h⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 g·s⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 g·s⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 g·s⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·h⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·h⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·h⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·s⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·s⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString(swedishCulture));
-            Assert.Equal("1 kg·s⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 g·h⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·h⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·h⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·s⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·s⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 g·s⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.GramPerSecondPerSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·h⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·h⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·h⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerHourPerSquareMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·s⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·s⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kg·s⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMillimeter).ToString(null, swedishCulture));
         }
 
         [Fact]

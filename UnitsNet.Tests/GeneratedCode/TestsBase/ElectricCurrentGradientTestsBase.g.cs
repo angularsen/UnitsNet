@@ -784,13 +784,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString(swedishCulture));
-            Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString(swedishCulture));
-            Assert.Equal("1 A/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString(swedishCulture));
-            Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 mA/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 mA/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerSecond).ToString(swedishCulture));
+            Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString(null, swedishCulture));
+            Assert.Equal("1 A/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString(null, swedishCulture));
+            Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mA/min", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 mA/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.MilliamperePerSecond).ToString(null, swedishCulture));
         }
 
         [Fact]

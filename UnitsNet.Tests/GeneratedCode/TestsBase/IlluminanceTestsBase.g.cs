@@ -673,10 +673,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString(swedishCulture));
-            Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString(swedishCulture));
-            Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString(swedishCulture));
-            Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString(swedishCulture));
+            Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString(null, swedishCulture));
+            Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString(null, swedishCulture));
+            Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString(null, swedishCulture));
+            Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString(null, swedishCulture));
         }
 
         [Fact]

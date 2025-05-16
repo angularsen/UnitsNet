@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 Hrft²°F/Btu", new ThermalInsulance(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString(swedishCulture));
-            Assert.Equal("1 cm²Hr°C/kcal", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString(swedishCulture));
-            Assert.Equal("1 cm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt).ToString(swedishCulture));
-            Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString(swedishCulture));
-            Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString(swedishCulture));
-            Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString(swedishCulture));
+            Assert.Equal("1 Hrft²°F/Btu", new ThermalInsulance(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu).ToString(null, swedishCulture));
+            Assert.Equal("1 cm²Hr°C/kcal", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie).ToString(null, swedishCulture));
+            Assert.Equal("1 cm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt).ToString(null, swedishCulture));
+            Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString(null, swedishCulture));
+            Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString(null, swedishCulture));
         }
 
         [Fact]

@@ -946,16 +946,16 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cP", new DynamicViscosity(1, DynamicViscosityUnit.Centipoise).ToString(swedishCulture));
-            Assert.Equal("1 µPa·s", new DynamicViscosity(1, DynamicViscosityUnit.MicropascalSecond).ToString(swedishCulture));
-            Assert.Equal("1 mPa·s", new DynamicViscosity(1, DynamicViscosityUnit.MillipascalSecond).ToString(swedishCulture));
-            Assert.Equal("1 Ns/m²", new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared).ToString(swedishCulture));
-            Assert.Equal("1 Pa·s", new DynamicViscosity(1, DynamicViscosityUnit.PascalSecond).ToString(swedishCulture));
-            Assert.Equal("1 P", new DynamicViscosity(1, DynamicViscosityUnit.Poise).ToString(swedishCulture));
-            Assert.Equal("1 lbf·s/ft²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 lbf·s/in²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 lb/(ft·s)", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString(swedishCulture));
-            Assert.Equal("1 reyn", new DynamicViscosity(1, DynamicViscosityUnit.Reyn).ToString(swedishCulture));
+            Assert.Equal("1 cP", new DynamicViscosity(1, DynamicViscosityUnit.Centipoise).ToString(null, swedishCulture));
+            Assert.Equal("1 µPa·s", new DynamicViscosity(1, DynamicViscosityUnit.MicropascalSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 mPa·s", new DynamicViscosity(1, DynamicViscosityUnit.MillipascalSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 Ns/m²", new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared).ToString(null, swedishCulture));
+            Assert.Equal("1 Pa·s", new DynamicViscosity(1, DynamicViscosityUnit.PascalSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 P", new DynamicViscosity(1, DynamicViscosityUnit.Poise).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·s/ft²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·s/in²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch).ToString(null, swedishCulture));
+            Assert.Equal("1 lb/(ft·s)", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 reyn", new DynamicViscosity(1, DynamicViscosityUnit.Reyn).ToString(null, swedishCulture));
         }
 
         [Fact]

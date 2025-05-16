@@ -1429,31 +1429,31 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 gf·cm", new Torque(1, TorqueUnit.GramForceCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 gf·m", new Torque(1, TorqueUnit.GramForceMeter).ToString(swedishCulture));
-            Assert.Equal("1 gf·mm", new Torque(1, TorqueUnit.GramForceMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kgf·cm", new Torque(1, TorqueUnit.KilogramForceCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kgf·m", new Torque(1, TorqueUnit.KilogramForceMeter).ToString(swedishCulture));
-            Assert.Equal("1 kgf·mm", new Torque(1, TorqueUnit.KilogramForceMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kN·cm", new Torque(1, TorqueUnit.KilonewtonCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 kN·m", new Torque(1, TorqueUnit.KilonewtonMeter).ToString(swedishCulture));
-            Assert.Equal("1 kN·mm", new Torque(1, TorqueUnit.KilonewtonMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 kipf·ft", new Torque(1, TorqueUnit.KilopoundForceFoot).ToString(swedishCulture));
-            Assert.Equal("1 kipf·in", new Torque(1, TorqueUnit.KilopoundForceInch).ToString(swedishCulture));
-            Assert.Equal("1 MN·cm", new Torque(1, TorqueUnit.MeganewtonCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 MN·m", new Torque(1, TorqueUnit.MeganewtonMeter).ToString(swedishCulture));
-            Assert.Equal("1 MN·mm", new Torque(1, TorqueUnit.MeganewtonMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 Mlbf·ft", new Torque(1, TorqueUnit.MegapoundForceFoot).ToString(swedishCulture));
-            Assert.Equal("1 Mlbf·in", new Torque(1, TorqueUnit.MegapoundForceInch).ToString(swedishCulture));
-            Assert.Equal("1 N·cm", new Torque(1, TorqueUnit.NewtonCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 N·m", new Torque(1, TorqueUnit.NewtonMeter).ToString(swedishCulture));
-            Assert.Equal("1 N·mm", new Torque(1, TorqueUnit.NewtonMillimeter).ToString(swedishCulture));
-            Assert.Equal("1 pdl·ft", new Torque(1, TorqueUnit.PoundalFoot).ToString(swedishCulture));
-            Assert.Equal("1 lbf·ft", new Torque(1, TorqueUnit.PoundForceFoot).ToString(swedishCulture));
-            Assert.Equal("1 lbf·in", new Torque(1, TorqueUnit.PoundForceInch).ToString(swedishCulture));
-            Assert.Equal("1 tf·cm", new Torque(1, TorqueUnit.TonneForceCentimeter).ToString(swedishCulture));
-            Assert.Equal("1 tf·m", new Torque(1, TorqueUnit.TonneForceMeter).ToString(swedishCulture));
-            Assert.Equal("1 tf·mm", new Torque(1, TorqueUnit.TonneForceMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 gf·cm", new Torque(1, TorqueUnit.GramForceCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 gf·m", new Torque(1, TorqueUnit.GramForceMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 gf·mm", new Torque(1, TorqueUnit.GramForceMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kgf·cm", new Torque(1, TorqueUnit.KilogramForceCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kgf·m", new Torque(1, TorqueUnit.KilogramForceMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kgf·mm", new Torque(1, TorqueUnit.KilogramForceMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kN·cm", new Torque(1, TorqueUnit.KilonewtonCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kN·m", new Torque(1, TorqueUnit.KilonewtonMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kN·mm", new Torque(1, TorqueUnit.KilonewtonMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf·ft", new Torque(1, TorqueUnit.KilopoundForceFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 kipf·in", new Torque(1, TorqueUnit.KilopoundForceInch).ToString(null, swedishCulture));
+            Assert.Equal("1 MN·cm", new Torque(1, TorqueUnit.MeganewtonCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MN·m", new Torque(1, TorqueUnit.MeganewtonMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 MN·mm", new Torque(1, TorqueUnit.MeganewtonMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 Mlbf·ft", new Torque(1, TorqueUnit.MegapoundForceFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 Mlbf·in", new Torque(1, TorqueUnit.MegapoundForceInch).ToString(null, swedishCulture));
+            Assert.Equal("1 N·cm", new Torque(1, TorqueUnit.NewtonCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 N·m", new Torque(1, TorqueUnit.NewtonMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 N·mm", new Torque(1, TorqueUnit.NewtonMillimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 pdl·ft", new Torque(1, TorqueUnit.PoundalFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·ft", new Torque(1, TorqueUnit.PoundForceFoot).ToString(null, swedishCulture));
+            Assert.Equal("1 lbf·in", new Torque(1, TorqueUnit.PoundForceInch).ToString(null, swedishCulture));
+            Assert.Equal("1 tf·cm", new Torque(1, TorqueUnit.TonneForceCentimeter).ToString(null, swedishCulture));
+            Assert.Equal("1 tf·m", new Torque(1, TorqueUnit.TonneForceMeter).ToString(null, swedishCulture));
+            Assert.Equal("1 tf·mm", new Torque(1, TorqueUnit.TonneForceMillimeter).ToString(null, swedishCulture));
         }
 
         [Fact]

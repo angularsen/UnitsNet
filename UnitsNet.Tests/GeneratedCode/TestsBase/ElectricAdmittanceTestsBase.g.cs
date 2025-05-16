@@ -1057,22 +1057,22 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 G℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Gigamho).ToString(swedishCulture));
-            Assert.Equal("1 GS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Gigasiemens).ToString(swedishCulture));
-            Assert.Equal("1 k℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Kilomho).ToString(swedishCulture));
-            Assert.Equal("1 kS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Kilosiemens).ToString(swedishCulture));
-            Assert.Equal("1 M℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Megamho).ToString(swedishCulture));
-            Assert.Equal("1 MS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Megasiemens).ToString(swedishCulture));
-            Assert.Equal("1 ℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Mho).ToString(swedishCulture));
-            Assert.Equal("1 µ℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Micromho).ToString(swedishCulture));
-            Assert.Equal("1 µS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Microsiemens).ToString(swedishCulture));
-            Assert.Equal("1 m℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Millimho).ToString(swedishCulture));
-            Assert.Equal("1 mS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Millisiemens).ToString(swedishCulture));
-            Assert.Equal("1 n℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Nanomho).ToString(swedishCulture));
-            Assert.Equal("1 nS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Nanosiemens).ToString(swedishCulture));
-            Assert.Equal("1 S", new ElectricAdmittance(1, ElectricAdmittanceUnit.Siemens).ToString(swedishCulture));
-            Assert.Equal("1 T℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Teramho).ToString(swedishCulture));
-            Assert.Equal("1 TS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Terasiemens).ToString(swedishCulture));
+            Assert.Equal("1 G℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Gigamho).ToString(null, swedishCulture));
+            Assert.Equal("1 GS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Gigasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 k℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Kilomho).ToString(null, swedishCulture));
+            Assert.Equal("1 kS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Kilosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 M℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Megamho).ToString(null, swedishCulture));
+            Assert.Equal("1 MS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Megasiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 ℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Mho).ToString(null, swedishCulture));
+            Assert.Equal("1 µ℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Micromho).ToString(null, swedishCulture));
+            Assert.Equal("1 µS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Microsiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 m℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Millimho).ToString(null, swedishCulture));
+            Assert.Equal("1 mS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Millisiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 n℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Nanomho).ToString(null, swedishCulture));
+            Assert.Equal("1 nS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Nanosiemens).ToString(null, swedishCulture));
+            Assert.Equal("1 S", new ElectricAdmittance(1, ElectricAdmittanceUnit.Siemens).ToString(null, swedishCulture));
+            Assert.Equal("1 T℧", new ElectricAdmittance(1, ElectricAdmittanceUnit.Teramho).ToString(null, swedishCulture));
+            Assert.Equal("1 TS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Terasiemens).ToString(null, swedishCulture));
         }
 
         [Fact]

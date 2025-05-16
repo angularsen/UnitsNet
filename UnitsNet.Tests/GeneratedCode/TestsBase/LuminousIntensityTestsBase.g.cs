@@ -585,7 +585,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cd", new LuminousIntensity(1, LuminousIntensityUnit.Candela).ToString(swedishCulture));
+            Assert.Equal("1 cd", new LuminousIntensity(1, LuminousIntensityUnit.Candela).ToString(null, swedishCulture));
         }
 
         [Fact]

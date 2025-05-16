@@ -1471,33 +1471,33 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString(swedishCulture));
-            Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString(swedishCulture));
-            Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString(swedishCulture));
-            Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString(swedishCulture));
-            Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString(swedishCulture));
-            Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString(swedishCulture));
-            Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString(swedishCulture));
-            Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString(swedishCulture));
-            Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString(swedishCulture));
-            Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString(swedishCulture));
-            Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString(swedishCulture));
-            Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString(swedishCulture));
-            Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString(swedishCulture));
-            Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString(swedishCulture));
-            Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString(swedishCulture));
-            Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString(swedishCulture));
-            Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString(swedishCulture));
-            Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString(swedishCulture));
-            Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString(swedishCulture));
-            Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString(swedishCulture));
-            Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString(swedishCulture));
-            Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString(swedishCulture));
-            Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString(swedishCulture));
-            Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString(swedishCulture));
-            Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString(swedishCulture));
-            Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString(swedishCulture));
-            Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString(swedishCulture));
+            Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString(null, swedishCulture));
+            Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString(null, swedishCulture));
+            Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString(null, swedishCulture));
+            Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString(null, swedishCulture));
+            Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString(null, swedishCulture));
+            Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString(null, swedishCulture));
+            Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString(null, swedishCulture));
+            Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString(null, swedishCulture));
+            Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString(null, swedishCulture));
+            Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString(null, swedishCulture));
         }
 
         [Fact]

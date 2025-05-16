@@ -805,14 +805,14 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString(swedishCulture));
-            Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString(swedishCulture));
-            Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString(swedishCulture));
-            Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString(swedishCulture));
-            Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString(swedishCulture));
-            Assert.Equal("1 nΩ", new ElectricResistance(1, ElectricResistanceUnit.Nanoohm).ToString(swedishCulture));
-            Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString(swedishCulture));
-            Assert.Equal("1 TΩ", new ElectricResistance(1, ElectricResistanceUnit.Teraohm).ToString(swedishCulture));
+            Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString(null, swedishCulture));
+            Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString(null, swedishCulture));
+            Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString(null, swedishCulture));
+            Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString(null, swedishCulture));
+            Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString(null, swedishCulture));
+            Assert.Equal("1 nΩ", new ElectricResistance(1, ElectricResistanceUnit.Nanoohm).ToString(null, swedishCulture));
+            Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString(null, swedishCulture));
+            Assert.Equal("1 TΩ", new ElectricResistance(1, ElectricResistanceUnit.Teraohm).ToString(null, swedishCulture));
         }
 
         [Fact]

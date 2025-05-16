@@ -1078,18 +1078,18 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 bpm", new Frequency(1, FrequencyUnit.BeatPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 cph", new Frequency(1, FrequencyUnit.CyclePerHour).ToString(swedishCulture));
-            Assert.Equal("1 cpm", new Frequency(1, FrequencyUnit.CyclePerMinute).ToString(swedishCulture));
-            Assert.Equal("1 GHz", new Frequency(1, FrequencyUnit.Gigahertz).ToString(swedishCulture));
-            Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString(swedishCulture));
-            Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString(swedishCulture));
-            Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString(swedishCulture));
-            Assert.Equal("1 µHz", new Frequency(1, FrequencyUnit.Microhertz).ToString(swedishCulture));
-            Assert.Equal("1 mHz", new Frequency(1, FrequencyUnit.Millihertz).ToString(swedishCulture));
-            Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString(swedishCulture));
-            Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString(swedishCulture));
+            Assert.Equal("1 bpm", new Frequency(1, FrequencyUnit.BeatPerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 cph", new Frequency(1, FrequencyUnit.CyclePerHour).ToString(null, swedishCulture));
+            Assert.Equal("1 cpm", new Frequency(1, FrequencyUnit.CyclePerMinute).ToString(null, swedishCulture));
+            Assert.Equal("1 GHz", new Frequency(1, FrequencyUnit.Gigahertz).ToString(null, swedishCulture));
+            Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString(null, swedishCulture));
+            Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString(null, swedishCulture));
+            Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString(null, swedishCulture));
+            Assert.Equal("1 µHz", new Frequency(1, FrequencyUnit.Microhertz).ToString(null, swedishCulture));
+            Assert.Equal("1 mHz", new Frequency(1, FrequencyUnit.Millihertz).ToString(null, swedishCulture));
+            Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString(null, swedishCulture));
+            Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString(null, swedishCulture));
         }
 
         [Fact]

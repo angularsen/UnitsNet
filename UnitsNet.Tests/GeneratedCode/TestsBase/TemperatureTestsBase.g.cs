@@ -871,16 +871,16 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString(swedishCulture));
-            Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString(swedishCulture));
-            Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString(swedishCulture));
-            Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString(swedishCulture));
-            Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString(swedishCulture));
-            Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString(swedishCulture));
-            Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString(swedishCulture));
+            Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString(null, swedishCulture));
+            Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString(null, swedishCulture));
+            Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString(null, swedishCulture));
+            Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString(null, swedishCulture));
+            Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString(null, swedishCulture));
+            Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString(null, swedishCulture));
+            Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString(null, swedishCulture));
+            Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString(null, swedishCulture));
+            Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString(null, swedishCulture));
         }
 
         [Fact]

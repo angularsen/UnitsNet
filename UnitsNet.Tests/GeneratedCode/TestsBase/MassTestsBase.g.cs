@@ -2270,33 +2270,33 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString(swedishCulture));
-            Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString(swedishCulture));
-            Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString(swedishCulture));
-            Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString(swedishCulture));
-            Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString(swedishCulture));
-            Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString(swedishCulture));
-            Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString(swedishCulture));
-            Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString(swedishCulture));
-            Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString(swedishCulture));
-            Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString(swedishCulture));
-            Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString(swedishCulture));
-            Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString(swedishCulture));
-            Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString(swedishCulture));
-            Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString(swedishCulture));
-            Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString(swedishCulture));
-            Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString(swedishCulture));
-            Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString(swedishCulture));
-            Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString(swedishCulture));
-            Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString(swedishCulture));
-            Assert.Equal("1 pg", new Mass(1, MassUnit.Picogram).ToString(swedishCulture));
-            Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString(swedishCulture));
-            Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString(swedishCulture));
-            Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString(swedishCulture));
-            Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString(swedishCulture));
-            Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
-            Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(swedishCulture));
-            Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString(swedishCulture));
+            Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString(null, swedishCulture));
+            Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString(null, swedishCulture));
+            Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString(null, swedishCulture));
+            Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString(null, swedishCulture));
+            Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString(null, swedishCulture));
+            Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString(null, swedishCulture));
+            Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString(null, swedishCulture));
+            Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString(null, swedishCulture));
+            Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString(null, swedishCulture));
+            Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString(null, swedishCulture));
+            Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString(null, swedishCulture));
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString(null, swedishCulture));
+            Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString(null, swedishCulture));
+            Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString(null, swedishCulture));
+            Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString(null, swedishCulture));
+            Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString(null, swedishCulture));
+            Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString(null, swedishCulture));
+            Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString(null, swedishCulture));
+            Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString(null, swedishCulture));
+            Assert.Equal("1 pg", new Mass(1, MassUnit.Picogram).ToString(null, swedishCulture));
+            Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString(null, swedishCulture));
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString(null, swedishCulture));
+            Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString(null, swedishCulture));
+            Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString(null, swedishCulture));
+            Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString(null, swedishCulture));
+            Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(null, swedishCulture));
+            Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString(null, swedishCulture));
         }
 
         [Fact]

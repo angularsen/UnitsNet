@@ -652,9 +652,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g/kWh", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour).ToString(swedishCulture));
-            Assert.Equal("1 kg/J", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString(swedishCulture));
-            Assert.Equal("1 lb/hph", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour).ToString(swedishCulture));
+            Assert.Equal("1 g/kWh", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour).ToString(null, swedishCulture));
+            Assert.Equal("1 kg/J", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString(null, swedishCulture));
+            Assert.Equal("1 lb/hph", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour).ToString(null, swedishCulture));
         }
 
         [Fact]

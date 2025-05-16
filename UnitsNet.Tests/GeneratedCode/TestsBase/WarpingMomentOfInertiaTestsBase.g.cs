@@ -751,12 +751,12 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 cm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth).ToString(swedishCulture));
-            Assert.Equal("1 dm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth).ToString(swedishCulture));
-            Assert.Equal("1 ft⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.FootToTheSixth).ToString(swedishCulture));
-            Assert.Equal("1 in⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.InchToTheSixth).ToString(swedishCulture));
-            Assert.Equal("1 m⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString(swedishCulture));
-            Assert.Equal("1 mm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth).ToString(swedishCulture));
+            Assert.Equal("1 cm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth).ToString(null, swedishCulture));
+            Assert.Equal("1 dm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth).ToString(null, swedishCulture));
+            Assert.Equal("1 ft⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.FootToTheSixth).ToString(null, swedishCulture));
+            Assert.Equal("1 in⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.InchToTheSixth).ToString(null, swedishCulture));
+            Assert.Equal("1 m⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString(null, swedishCulture));
+            Assert.Equal("1 mm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth).ToString(null, swedishCulture));
         }
 
         [Fact]
