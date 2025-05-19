@@ -1490,7 +1490,9 @@
     "SquareCentimeterKelvinPerWatt": 3,
     "SquareMeterDegreeCelsiusPerWatt": 4,
     "SquareMeterKelvinPerKilowatt": 5,
-    "SquareMeterKelvinPerWatt": 6
+    "SquareMeterKelvinPerWatt": 6,
+    "KelvinPerWatt": 12,
+    "DegreeCelsiusPerWatt": 8
   },
   "Torque": {
     "GramForceCentimeter": 1,
