@@ -155,6 +155,7 @@ namespace UnitsNet
             { "TemperatureGradient", TemperatureGradient.Info },
             { "ThermalConductivity", ThermalConductivity.Info },
             { "ThermalInsulance", ThermalInsulance.Info },
+            { "ThermalResistance", ThermalResistance.Info },
             { "Torque", Torque.Info },
             { "Turbidity", Turbidity.Info },
             { "VitaminA", VitaminA.Info },
@@ -294,6 +295,7 @@ namespace UnitsNet
                 "TemperatureGradient" => TemperatureGradient.From(value, TemperatureGradient.BaseUnit),
                 "ThermalConductivity" => ThermalConductivity.From(value, ThermalConductivity.BaseUnit),
                 "ThermalInsulance" => ThermalInsulance.From(value, ThermalInsulance.BaseUnit),
+                "ThermalResistance" => ThermalResistance.From(value, ThermalResistance.BaseUnit),
                 "Torque" => Torque.From(value, Torque.BaseUnit),
                 "Turbidity" => Turbidity.From(value, Turbidity.BaseUnit),
                 "VitaminA" => VitaminA.From(value, VitaminA.BaseUnit),
@@ -436,6 +438,7 @@ namespace UnitsNet
                 TemperatureGradientUnit temperatureGradientUnit => TemperatureGradient.From(value, temperatureGradientUnit),
                 ThermalConductivityUnit thermalConductivityUnit => ThermalConductivity.From(value, thermalConductivityUnit),
                 ThermalInsulanceUnit thermalInsulanceUnit => ThermalInsulance.From(value, thermalInsulanceUnit),
+                ThermalResistanceUnit thermalResistanceUnit => ThermalResistance.From(value, thermalResistanceUnit),
                 TorqueUnit torqueUnit => Torque.From(value, torqueUnit),
                 TurbidityUnit turbidityUnit => Turbidity.From(value, turbidityUnit),
                 VitaminAUnit vitaminAUnit => VitaminA.From(value, vitaminAUnit),
@@ -588,6 +591,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(TemperatureGradient) => parser.TryParse<TemperatureGradient, TemperatureGradientUnit>(quantityString, formatProvider, TemperatureGradient.From, out quantity),
                 Type _ when quantityType == typeof(ThermalConductivity) => parser.TryParse<ThermalConductivity, ThermalConductivityUnit>(quantityString, formatProvider, ThermalConductivity.From, out quantity),
                 Type _ when quantityType == typeof(ThermalInsulance) => parser.TryParse<ThermalInsulance, ThermalInsulanceUnit>(quantityString, formatProvider, ThermalInsulance.From, out quantity),
+                Type _ when quantityType == typeof(ThermalResistance) => parser.TryParse<ThermalResistance, ThermalResistanceUnit>(quantityString, formatProvider, ThermalResistance.From, out quantity),
                 Type _ when quantityType == typeof(Torque) => parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity),
                 Type _ when quantityType == typeof(Turbidity) => parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity),
                 Type _ when quantityType == typeof(VitaminA) => parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity),
@@ -721,6 +725,7 @@ namespace UnitsNet
             yield return typeof(TemperatureGradient);
             yield return typeof(ThermalConductivity);
             yield return typeof(ThermalInsulance);
+            yield return typeof(ThermalResistance);
             yield return typeof(Torque);
             yield return typeof(Turbidity);
             yield return typeof(VitaminA);
