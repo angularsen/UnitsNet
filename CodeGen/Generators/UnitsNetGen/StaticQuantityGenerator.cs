@@ -123,11 +123,14 @@ namespace UnitsNet
             };
         }
 
-        internal static IEnumerable<Type> GetQuantityTypes()
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {");
             foreach (var quantity in _quantities)
+            {
                 Writer.WL($@"
-            yield return typeof({quantity.Name});");
+            {quantity.Name}.RegisterDefaultConversions(unitConverter);");
+            }
+
             Writer.WL(@"
         }
     }

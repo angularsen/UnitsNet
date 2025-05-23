@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -71,7 +72,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
             BaseUnit = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
-            Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().ToArray();
+            Units = EnumHelpers.GetValues<BrakeSpecificFuelConsumptionUnit>();
             Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
             Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
                 new UnitInfo<BrakeSpecificFuelConsumptionUnit>[]
@@ -168,7 +169,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

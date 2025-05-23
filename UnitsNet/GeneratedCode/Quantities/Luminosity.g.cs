@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = LuminosityUnit.Watt;
-            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<LuminosityUnit>();
             Zero = new Luminosity(0, BaseUnit);
             Info = new QuantityInfo<LuminosityUnit>("Luminosity",
                 new UnitInfo<LuminosityUnit>[]
@@ -178,7 +179,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

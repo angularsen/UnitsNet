@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -72,7 +73,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = AngleUnit.Radian;
-            Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().ToArray();
+            Units = EnumHelpers.GetValues<AngleUnit>();
             Zero = new Angle(0, BaseUnit);
             Info = new QuantityInfo<AngleUnit>("Angle",
                 new UnitInfo<AngleUnit>[]
@@ -167,7 +168,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

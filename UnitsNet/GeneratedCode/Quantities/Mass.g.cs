@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -85,7 +86,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
             BaseUnit = MassUnit.Kilogram;
-            Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MassUnit>();
             Zero = new Mass(0, BaseUnit);
             Info = new QuantityInfo<MassUnit>("Mass",
                 new UnitInfo<MassUnit>[]
@@ -206,7 +207,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

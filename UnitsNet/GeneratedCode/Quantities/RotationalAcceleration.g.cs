@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
             BaseUnit = RotationalAccelerationUnit.RadianPerSecondSquared;
-            Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().ToArray();
+            Units = EnumHelpers.GetValues<RotationalAccelerationUnit>();
             Zero = new RotationalAcceleration(0, BaseUnit);
             Info = new QuantityInfo<RotationalAccelerationUnit>("RotationalAcceleration",
                 new UnitInfo<RotationalAccelerationUnit>[]
@@ -165,7 +166,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = VitaminAUnit.InternationalUnit;
-            Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().ToArray();
+            Units = EnumHelpers.GetValues<VitaminAUnit>();
             Zero = new VitaminA(0, BaseUnit);
             Info = new QuantityInfo<VitaminAUnit>("VitaminA",
                 new UnitInfo<VitaminAUnit>[]
@@ -148,7 +149,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

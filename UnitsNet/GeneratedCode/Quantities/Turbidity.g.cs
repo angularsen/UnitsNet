@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -70,7 +71,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = TurbidityUnit.NTU;
-            Units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().ToArray();
+            Units = EnumHelpers.GetValues<TurbidityUnit>();
             Zero = new Turbidity(0, BaseUnit);
             Info = new QuantityInfo<TurbidityUnit>("Turbidity",
                 new UnitInfo<TurbidityUnit>[]
@@ -151,7 +152,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
