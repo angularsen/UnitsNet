@@ -1,0 +1,49 @@
+{
+  "Name": "ThermalResistance",
+  "BaseUnit": "KelvinPerWatt",
+  "XmlDocSummary": "Thermal resistance (R) measures the opposition to the heat current in a material or system. It is measured in units of kelvins per watt (K/W) and indicates how much temperature difference (in kelvins) is required to transfer a unit of heat current (in watts) through the material or object. It is essential to optimize the building insulation, evaluate the efficiency of electronic devices, and enhance the performance of heat sinks in various applications.",
+  "BaseDimensions": {
+    "L": -2,
+    "M": -1,
+    "T": 3,
+    "Θ": 1
+  },
+  "Units": [
+    {
+      "SingularName": "KelvinPerWatt",
+      "PluralName": "KelvinsPerWatt",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K/W" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerWatt",
+      "PluralName": "DegreesCelsiusPerWatt",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C/W" ]
+        }
+      ]
+    }
+  ]
+}
