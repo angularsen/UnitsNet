@@ -152,6 +152,7 @@ namespace UnitsNet.Tests
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
             Assertion(3, ThermalInsulanceUnit.SquareMeterKelvinPerWatt, Quantity.From(3, ThermalInsulanceUnit.SquareMeterKelvinPerWatt));
             Assertion(3, ThermalResistanceUnit.KelvinPerWatt, Quantity.From(3, ThermalResistanceUnit.KelvinPerWatt));
+            Assertion(3, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, Quantity.From(3, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
             Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));

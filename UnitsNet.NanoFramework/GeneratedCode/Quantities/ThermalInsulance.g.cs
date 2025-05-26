@@ -108,6 +108,11 @@ namespace UnitsNet
         /// </summary>
         public double SquareMeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>
+        /// </summary>
+        public double SquareMillimeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
+
         #endregion
 
         #region Static Factory Methods
@@ -141,6 +146,11 @@ namespace UnitsNet
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
         public static ThermalInsulance FromSquareMeterKelvinsPerWatt(double squaremeterkelvinsperwatt) => new ThermalInsulance(squaremeterkelvinsperwatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>.
+        /// </summary>
+        public static ThermalInsulance FromSquareMillimeterKelvinsPerWatt(double squaremillimeterkelvinsperwatt) => new ThermalInsulance(squaremillimeterkelvinsperwatt, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ThermalInsulanceUnit" /> to <see cref="ThermalInsulance" />.
@@ -188,6 +198,7 @@ namespace UnitsNet
                         ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.0,
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => _value,
                         ThermalInsulanceUnit.SquareMeterKelvinPerWatt => _value * 1000,
+                        ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => _value * 0.001,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -207,6 +218,7 @@ namespace UnitsNet
                         ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.0,
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
                         ThermalInsulanceUnit.SquareMeterKelvinPerWatt => baseUnitValue / 1000,
+                        ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => baseUnitValue / 0.001,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

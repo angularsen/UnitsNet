@@ -2007,6 +2007,7 @@
     "SquareCentimeterKelvinPerWatt": 7,
     "SquareMeterDegreeCelsiusPerWatt": 3,
     "SquareMeterKelvinPerKilowatt": 5,
-    "SquareMeterKelvinPerWatt": 4
+    "SquareMeterKelvinPerWatt": 4,
+    "SquareMillimeterKelvinPerWatt": 13
   }
 }
