@@ -10,4 +10,5 @@ The resulting value (`1530`) is computed instantly and reacts to whenever the nu
 This sample also highlights a limitation in the library that requires reflection in order to enumerate units for a selected quantity and to get the abbreviation for a unit, since the library does not provide a generic means to retrieve these without referencing types like `Length` and `LengthUnit` directly. There is definitely room for improvement in the library here.
 
 ### Dependencies
+
 http://mahapps.com/ - UI toolkit for WPF
