@@ -10,6 +10,7 @@
         "Kontrol",
         "lts",
         "Milnthorp",
+        "minstar",
         "MvvmSample",
         "nanoFramework",
         "Newton",
@@ -37,7 +38,7 @@
         "Gullberg",
         "haimkastner",
         "hexmaps",
-        "Andreas",
+        "Andreas"
     ],
     "ignorePaths": [
         "**/node_modules/**",
