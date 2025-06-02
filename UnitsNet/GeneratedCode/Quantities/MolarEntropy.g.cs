@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
             BaseUnit = MolarEntropyUnit.JoulePerMoleKelvin;
-            Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().ToArray();
+            Units = EnumHelpers.GetValues<MolarEntropyUnit>();
             Zero = new MolarEntropy(0, BaseUnit);
             Info = new QuantityInfo<MolarEntropyUnit>("MolarEntropy",
                 new UnitInfo<MolarEntropyUnit>[]
@@ -164,7 +165,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

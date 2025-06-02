@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if NET
 using System.Numerics;
@@ -83,7 +84,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = PowerUnit.Watt;
-            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().ToArray();
+            Units = EnumHelpers.GetValues<PowerUnit>();
             Zero = new Power(0, BaseUnit);
             Info = new QuantityInfo<PowerUnit>("Power",
                 new UnitInfo<PowerUnit>[]
@@ -204,7 +205,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

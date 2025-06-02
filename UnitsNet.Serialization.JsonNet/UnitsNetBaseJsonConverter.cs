@@ -3,7 +3,7 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,6 +15,10 @@ namespace UnitsNet.Serialization.JsonNet
     /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
+#if NET
+    [RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
+#endif
     public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
