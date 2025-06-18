@@ -54,6 +54,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromBritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromCaloriesPerHour(double)" />
+        public static Power CaloriesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromCaloriesPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromCaloriesPerHour(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromDecawatts(double)" />
         public static Power Decawatts<T>(this T value)
             where T : notnull
@@ -96,6 +107,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromFemtowatts(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromGigacaloriesPerHour(double)" />
+        public static Power GigacaloriesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromGigacaloriesPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromGigacaloriesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromGigajoulesPerHour(double)" />
@@ -153,6 +175,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromKilobritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromKilocaloriesPerHour(double)" />
+        public static Power KilocaloriesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromKilocaloriesPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromKilocaloriesPerHour(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromKilojoulesPerHour(double)" />
         public static Power KilojoulesPerHour<T>(this T value)
             where T : notnull
@@ -195,6 +228,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromMegabritishThermalUnitsPerHour(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromMegacaloriesPerHour(double)" />
+        public static Power MegacaloriesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromMegacaloriesPerHour(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromMegacaloriesPerHour(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMegajoulesPerHour(double)" />
