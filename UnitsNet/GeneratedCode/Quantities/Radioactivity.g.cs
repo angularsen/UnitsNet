@@ -98,9 +98,9 @@ namespace UnitsNet
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Picocurie, "Picocuries", BaseUnits.Undefined, "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Picorutherford, "Picorutherfords", BaseUnits.Undefined, "Radioactivity"),
                     new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Rutherford, "Rutherfords", new BaseUnits(time: DurationUnit.Second), "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terabecquerel, "Terabecquerels", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Teracurie, "Teracuries", BaseUnits.Undefined, "Radioactivity"),
-                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terarutherford, "Terarutherfords", BaseUnits.Undefined, "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terabecquerel, "Terabecquerels", new BaseUnits(time: DurationUnit.Picosecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Teracurie, "Teracuries", new BaseUnits(time: DurationUnit.Picosecond), "Radioactivity"),
+                    new UnitInfo<RadioactivityUnit>(RadioactivityUnit.Terarutherford, "Terarutherfords", new BaseUnits(time: DurationUnit.Picosecond), "Radioactivity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

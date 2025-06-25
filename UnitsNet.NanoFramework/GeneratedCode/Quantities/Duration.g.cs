@@ -119,6 +119,11 @@ namespace UnitsNet
         public double Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
+        /// </summary>
+        public double Picoseconds => As(DurationUnit.Picosecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
@@ -181,6 +186,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
         public static Duration FromNanoseconds(double nanoseconds) => new Duration(nanoseconds, DurationUnit.Nanosecond);
+
+        /// <summary>
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Picosecond"/>.
+        /// </summary>
+        public static Duration FromPicoseconds(double picoseconds) => new Duration(picoseconds, DurationUnit.Picosecond);
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
@@ -250,6 +260,7 @@ namespace UnitsNet
                         DurationUnit.Minute => _value * 60,
                         DurationUnit.Month30 => _value * 30 * 24 * 3600,
                         DurationUnit.Nanosecond => (_value) * 1e-9d,
+                        DurationUnit.Picosecond => (_value) * 1e-12d,
                         DurationUnit.Second => _value,
                         DurationUnit.Sol => _value * 88775.244,
                         DurationUnit.Week => _value * 7 * 24 * 3600,
@@ -275,6 +286,7 @@ namespace UnitsNet
                         DurationUnit.Minute => baseUnitValue / 60,
                         DurationUnit.Month30 => baseUnitValue / (30 * 24 * 3600),
                         DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
+                        DurationUnit.Picosecond => (baseUnitValue) / 1e-12d,
                         DurationUnit.Second => baseUnitValue,
                         DurationUnit.Sol => baseUnitValue / 88775.244,
                         DurationUnit.Week => baseUnitValue / (7 * 24 * 3600),

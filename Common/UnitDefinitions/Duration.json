@@ -128,7 +128,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

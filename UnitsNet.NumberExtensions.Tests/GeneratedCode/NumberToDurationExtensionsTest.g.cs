@@ -57,6 +57,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Duration.FromNanoseconds(2), 2.Nanoseconds());
 
         [Fact]
+        public void NumberToPicosecondsTest() =>
+            Assert.Equal(Duration.FromPicoseconds(2), 2.Picoseconds());
+
+        [Fact]
         public void NumberToSecondsTest() =>
             Assert.Equal(Duration.FromSeconds(2), 2.Seconds());
 

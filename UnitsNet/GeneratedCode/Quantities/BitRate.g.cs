@@ -111,7 +111,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TebioctetPerSecond, "TebioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond), "BitRate"),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined, "BitRate"),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TeraoctetPerSecond, "TeraoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
                 },
