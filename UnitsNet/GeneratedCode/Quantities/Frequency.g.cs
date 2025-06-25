@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Millihertz, "Millihertz", BaseUnits.Undefined, "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", new BaseUnits(time: DurationUnit.Second), "Frequency"),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined, "Frequency"),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", new BaseUnits(time: DurationUnit.Picosecond), "Frequency"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
