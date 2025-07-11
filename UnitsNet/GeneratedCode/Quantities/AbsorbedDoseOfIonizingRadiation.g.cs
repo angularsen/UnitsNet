@@ -76,6 +76,7 @@ namespace UnitsNet
                 new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
                 {
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Decigray, "Decigrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                     new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
@@ -199,6 +200,11 @@ namespace UnitsNet
         public double Centigrays => As(AbsorbedDoseOfIonizingRadiationUnit.Centigray);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>
+        /// </summary>
+        public double Decigrays => As(AbsorbedDoseOfIonizingRadiationUnit.Decigray);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>
         /// </summary>
         public double Femtograys => As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
@@ -285,6 +291,7 @@ namespace UnitsNet
         {
             // Register in unit converter: AbsorbedDoseOfIonizingRadiationUnit -> BaseUnit
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Decigray, AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gray));
@@ -305,6 +312,7 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> AbsorbedDoseOfIonizingRadiationUnit
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Centigray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Centigray));
+            unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Decigray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Decigray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Femtogray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Femtogray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Gigagray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Gigagray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Kilogray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Kilogray));
@@ -352,6 +360,14 @@ namespace UnitsNet
         public static AbsorbedDoseOfIonizingRadiation FromCentigrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>.
+        /// </summary>
+        public static AbsorbedDoseOfIonizingRadiation FromDecigrays(double value)
+        {
+            return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
         }
 
         /// <summary>
@@ -941,6 +957,7 @@ namespace UnitsNet
             {
                 // AbsorbedDoseOfIonizingRadiationUnit -> BaseUnit
                 (AbsorbedDoseOfIonizingRadiationUnit.Centigray, AbsorbedDoseOfIonizingRadiationUnit.Gray) => new AbsorbedDoseOfIonizingRadiation((_value) * 1e-2d, AbsorbedDoseOfIonizingRadiationUnit.Gray),
+                (AbsorbedDoseOfIonizingRadiationUnit.Decigray, AbsorbedDoseOfIonizingRadiationUnit.Gray) => new AbsorbedDoseOfIonizingRadiation((_value) * 1e-1d, AbsorbedDoseOfIonizingRadiationUnit.Gray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Femtogray, AbsorbedDoseOfIonizingRadiationUnit.Gray) => new AbsorbedDoseOfIonizingRadiation((_value) * 1e-15d, AbsorbedDoseOfIonizingRadiationUnit.Gray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Gigagray, AbsorbedDoseOfIonizingRadiationUnit.Gray) => new AbsorbedDoseOfIonizingRadiation((_value) * 1e9d, AbsorbedDoseOfIonizingRadiationUnit.Gray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Kilogray, AbsorbedDoseOfIonizingRadiationUnit.Gray) => new AbsorbedDoseOfIonizingRadiation((_value) * 1e3d, AbsorbedDoseOfIonizingRadiationUnit.Gray),
@@ -958,6 +975,7 @@ namespace UnitsNet
 
                 // BaseUnit -> AbsorbedDoseOfIonizingRadiationUnit
                 (AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Centigray) => new AbsorbedDoseOfIonizingRadiation((_value) / 1e-2d, AbsorbedDoseOfIonizingRadiationUnit.Centigray),
+                (AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Decigray) => new AbsorbedDoseOfIonizingRadiation((_value) / 1e-1d, AbsorbedDoseOfIonizingRadiationUnit.Decigray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Femtogray) => new AbsorbedDoseOfIonizingRadiation((_value) / 1e-15d, AbsorbedDoseOfIonizingRadiationUnit.Femtogray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Gigagray) => new AbsorbedDoseOfIonizingRadiation((_value) / 1e9d, AbsorbedDoseOfIonizingRadiationUnit.Gigagray),
                 (AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Kilogray) => new AbsorbedDoseOfIonizingRadiation((_value) / 1e3d, AbsorbedDoseOfIonizingRadiationUnit.Kilogray),

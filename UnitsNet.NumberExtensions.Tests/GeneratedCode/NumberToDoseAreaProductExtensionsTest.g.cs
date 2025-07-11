@@ -37,6 +37,10 @@ namespace UnitsNet.Tests
             Assert.Equal(DoseAreaProduct.FromCentigraySquareMeters(2), 2.CentigraySquareMeters());
 
         [Fact]
+        public void NumberToCentigraySquareMicrometersTest() =>
+            Assert.Equal(DoseAreaProduct.FromCentigraySquareMicrometers(2), 2.CentigraySquareMicrometers());
+
+        [Fact]
         public void NumberToCentigraySquareMillimetersTest() =>
             Assert.Equal(DoseAreaProduct.FromCentigraySquareMillimeters(2), 2.CentigraySquareMillimeters());
 
@@ -51,6 +55,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToDecigraySquareMetersTest() =>
             Assert.Equal(DoseAreaProduct.FromDecigraySquareMeters(2), 2.DecigraySquareMeters());
+
+        [Fact]
+        public void NumberToDecigraySquareMicrometersTest() =>
+            Assert.Equal(DoseAreaProduct.FromDecigraySquareMicrometers(2), 2.DecigraySquareMicrometers());
 
         [Fact]
         public void NumberToDecigraySquareMillimetersTest() =>
@@ -69,6 +77,10 @@ namespace UnitsNet.Tests
             Assert.Equal(DoseAreaProduct.FromGraySquareMeters(2), 2.GraySquareMeters());
 
         [Fact]
+        public void NumberToGraySquareMicrometersTest() =>
+            Assert.Equal(DoseAreaProduct.FromGraySquareMicrometers(2), 2.GraySquareMicrometers());
+
+        [Fact]
         public void NumberToGraySquareMillimetersTest() =>
             Assert.Equal(DoseAreaProduct.FromGraySquareMillimeters(2), 2.GraySquareMillimeters());
 
@@ -85,6 +97,10 @@ namespace UnitsNet.Tests
             Assert.Equal(DoseAreaProduct.FromMicrograySquareMeters(2), 2.MicrograySquareMeters());
 
         [Fact]
+        public void NumberToMicrograySquareMicrometersTest() =>
+            Assert.Equal(DoseAreaProduct.FromMicrograySquareMicrometers(2), 2.MicrograySquareMicrometers());
+
+        [Fact]
         public void NumberToMicrograySquareMillimetersTest() =>
             Assert.Equal(DoseAreaProduct.FromMicrograySquareMillimeters(2), 2.MicrograySquareMillimeters());
 
@@ -99,6 +115,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMilligraySquareMetersTest() =>
             Assert.Equal(DoseAreaProduct.FromMilligraySquareMeters(2), 2.MilligraySquareMeters());
+
+        [Fact]
+        public void NumberToMilligraySquareMicrometersTest() =>
+            Assert.Equal(DoseAreaProduct.FromMilligraySquareMicrometers(2), 2.MilligraySquareMicrometers());
 
         [Fact]
         public void NumberToMilligraySquareMillimetersTest() =>

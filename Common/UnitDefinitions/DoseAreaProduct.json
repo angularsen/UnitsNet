@@ -115,6 +115,32 @@
           ]
         }
       ]
+    },
+    {
+      "SingularName": "GraySquareMicrometer",
+      "PluralName": "GraySquareMicrometers",
+      "FromUnitToBaseFunc": "{x} / 1000000000000",
+      "FromBaseToUnitFunc": "{x} * 1000000000000",
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Gy·μm²"
+          ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [
+            "Гр·мкм²"
+          ]
+        }
+      ]
     }
   ]
 }
