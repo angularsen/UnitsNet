@@ -65,6 +65,17 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
             => DoseAreaProduct.FromCentigraySquareMeters(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMicrometers(double)" />
+        public static DoseAreaProduct CentigraySquareMicrometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => DoseAreaProduct.FromCentigraySquareMicrometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => DoseAreaProduct.FromCentigraySquareMicrometers(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMillimeters(double)" />
         public static DoseAreaProduct CentigraySquareMillimeters<T>(this T value)
             where T : notnull
@@ -107,6 +118,17 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
 #else
             , IConvertible
             => DoseAreaProduct.FromDecigraySquareMeters(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMicrometers(double)" />
+        public static DoseAreaProduct DecigraySquareMicrometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => DoseAreaProduct.FromDecigraySquareMicrometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => DoseAreaProduct.FromDecigraySquareMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMillimeters(double)" />
@@ -153,6 +175,17 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
             => DoseAreaProduct.FromGraySquareMeters(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMicrometers(double)" />
+        public static DoseAreaProduct GraySquareMicrometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => DoseAreaProduct.FromGraySquareMicrometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => DoseAreaProduct.FromGraySquareMicrometers(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMillimeters(double)" />
         public static DoseAreaProduct GraySquareMillimeters<T>(this T value)
             where T : notnull
@@ -197,6 +230,17 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
             => DoseAreaProduct.FromMicrograySquareMeters(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMicrometers(double)" />
+        public static DoseAreaProduct MicrograySquareMicrometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => DoseAreaProduct.FromMicrograySquareMicrometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => DoseAreaProduct.FromMicrograySquareMicrometers(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMillimeters(double)" />
         public static DoseAreaProduct MicrograySquareMillimeters<T>(this T value)
             where T : notnull
@@ -239,6 +283,17 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
 #else
             , IConvertible
             => DoseAreaProduct.FromMilligraySquareMeters(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMicrometers(double)" />
+        public static DoseAreaProduct MilligraySquareMicrometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => DoseAreaProduct.FromMilligraySquareMicrometers(double.CreateChecked(value));
+#else
+            , IConvertible
+            => DoseAreaProduct.FromMilligraySquareMicrometers(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMillimeters(double)" />

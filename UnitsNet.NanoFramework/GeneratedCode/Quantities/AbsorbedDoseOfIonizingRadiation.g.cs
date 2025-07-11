@@ -87,6 +87,11 @@ namespace UnitsNet
         public double Centigrays => As(AbsorbedDoseOfIonizingRadiationUnit.Centigray);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>
+        /// </summary>
+        public double Decigrays => As(AbsorbedDoseOfIonizingRadiationUnit.Decigray);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>
         /// </summary>
         public double Femtograys => As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
@@ -169,6 +174,11 @@ namespace UnitsNet
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>.
         /// </summary>
         public static AbsorbedDoseOfIonizingRadiation FromCentigrays(double centigrays) => new AbsorbedDoseOfIonizingRadiation(centigrays, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
+
+        /// <summary>
+        ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>.
+        /// </summary>
+        public static AbsorbedDoseOfIonizingRadiation FromDecigrays(double decigrays) => new AbsorbedDoseOfIonizingRadiation(decigrays, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
 
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>.
@@ -286,6 +296,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         AbsorbedDoseOfIonizingRadiationUnit.Centigray => (_value) * 1e-2d,
+                        AbsorbedDoseOfIonizingRadiationUnit.Decigray => (_value) * 1e-1d,
                         AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (_value) * 1e-15d,
                         AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (_value) * 1e9d,
                         AbsorbedDoseOfIonizingRadiationUnit.Gray => _value,
@@ -315,6 +326,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         AbsorbedDoseOfIonizingRadiationUnit.Centigray => (baseUnitValue) / 1e-2d,
+                        AbsorbedDoseOfIonizingRadiationUnit.Decigray => (baseUnitValue) / 1e-1d,
                         AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (baseUnitValue) / 1e-15d,
                         AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (baseUnitValue) / 1e9d,
                         AbsorbedDoseOfIonizingRadiationUnit.Gray => baseUnitValue,

@@ -26,22 +26,27 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CentigraySquareCentimetersInOneGraySquareMeter => 1E+6;
         protected override double CentigraySquareDecimetersInOneGraySquareMeter => 1E+4;
         protected override double CentigraySquareMetersInOneGraySquareMeter => 100;
+        protected override double CentigraySquareMicrometersInOneGraySquareMeter => 1E+14;
         protected override double CentigraySquareMillimetersInOneGraySquareMeter => 1E+8;
         protected override double DecigraySquareCentimetersInOneGraySquareMeter => 1E+5;
         protected override double DecigraySquareDecimetersInOneGraySquareMeter => 1E+3;
         protected override double DecigraySquareMetersInOneGraySquareMeter => 10;
+        protected override double DecigraySquareMicrometersInOneGraySquareMeter => 1E+13;
         protected override double DecigraySquareMillimetersInOneGraySquareMeter => 1E+7;
         protected override double GraySquareCentimetersInOneGraySquareMeter => 1E+4;
         protected override double GraySquareDecimetersInOneGraySquareMeter => 1E+2;
         protected override double GraySquareMetersInOneGraySquareMeter => 1;
+        protected override double GraySquareMicrometersInOneGraySquareMeter => 1E+12;
         protected override double GraySquareMillimetersInOneGraySquareMeter => 1E+6;
         protected override double MicrograySquareCentimetersInOneGraySquareMeter => 1E+10;
         protected override double MicrograySquareDecimetersInOneGraySquareMeter => 1E+8;
         protected override double MicrograySquareMetersInOneGraySquareMeter => 1E+6;
+        protected override double MicrograySquareMicrometersInOneGraySquareMeter => 1E+18;
         protected override double MicrograySquareMillimetersInOneGraySquareMeter => 1E+12;
         protected override double MilligraySquareCentimetersInOneGraySquareMeter => 1E+7;
         protected override double MilligraySquareDecimetersInOneGraySquareMeter => 1E+5;
         protected override double MilligraySquareMetersInOneGraySquareMeter => 1E+3;
+        protected override double MilligraySquareMicrometersInOneGraySquareMeter => 1E+15;
         protected override double MilligraySquareMillimetersInOneGraySquareMeter => 1E+9;
     }
 }
