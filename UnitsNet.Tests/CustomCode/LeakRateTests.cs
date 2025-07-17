@@ -25,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond => 1;
 
+        protected override double AtmCubicCentimetersPerSecondInOnePascalCubicMeterPerSecond => 9.8692326671601;
+
         protected override double MillibarLitersPerSecondInOnePascalCubicMeterPerSecond => 10;
 
         protected override double TorrLitersPerSecondInOnePascalCubicMeterPerSecond => 7.5;
