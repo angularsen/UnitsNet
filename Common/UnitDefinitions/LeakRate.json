@@ -55,6 +55,20 @@
           ]
         }
       ]
+    },
+	{
+      "SingularName": "AtmCubicCentimeterPerSecond",
+      "PluralName": "AtmCubicCentimetersPerSecond",
+	  "FromUnitToBaseFunc": "{x} / 9.8692",
+	  "FromBaseToUnitFunc": "{x} * 9.8692",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "atm·cm³/s"
+          ]
+        }
+      ]
     }
   ]
 }

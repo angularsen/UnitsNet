@@ -25,6 +25,7 @@ namespace UnitsNet.Units
 
     public enum LeakRateUnit
     {
+        AtmCubicCentimeterPerSecond = 10,
         MillibarLiterPerSecond = 7,
         PascalCubicMeterPerSecond = 2,
         TorrLiterPerSecond = 4,

@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToLeakRateExtensionsTests
     {
         [Fact]
+        public void NumberToAtmCubicCentimetersPerSecondTest() =>
+            Assert.Equal(LeakRate.FromAtmCubicCentimetersPerSecond(2), 2.AtmCubicCentimetersPerSecond());
+
+        [Fact]
         public void NumberToMillibarLitersPerSecondTest() =>
             Assert.Equal(LeakRate.FromMillibarLitersPerSecond(2), 2.MillibarLitersPerSecond());
 
