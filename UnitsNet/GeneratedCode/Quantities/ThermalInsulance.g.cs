@@ -260,6 +260,11 @@ namespace UnitsNet
         /// </summary>
         public double SquareMeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>
+        /// </summary>
+        public double SquareMillimeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
+
         #endregion
 
         #region Static Methods
@@ -276,6 +281,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity);
@@ -286,6 +292,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt));
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt));
             unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerWatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt));
         }
 
         /// <summary>
@@ -359,6 +366,14 @@ namespace UnitsNet
         public static ThermalInsulance FromSquareMeterKelvinsPerWatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>.
+        /// </summary>
+        public static ThermalInsulance FromSquareMillimeterKelvinsPerWatt(double value)
+        {
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
         }
 
         /// <summary>
@@ -832,6 +847,7 @@ namespace UnitsNet
                 (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
                 (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000.0, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.001, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
 
                 // BaseUnit -> ThermalInsulanceUnit
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalInsulance(_value * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600), ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
@@ -839,6 +855,7 @@ namespace UnitsNet
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt) => new ThermalInsulance(_value / 0.1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt) => new ThermalInsulance(_value / 1000.0, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt),
                 (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt) => new ThermalInsulance(_value / 1000, ThermalInsulanceUnit.SquareMeterKelvinPerWatt),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt) => new ThermalInsulance(_value / 0.001, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt),
 
                 _ => null
             };

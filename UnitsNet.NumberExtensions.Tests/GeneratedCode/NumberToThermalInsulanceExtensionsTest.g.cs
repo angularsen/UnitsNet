@@ -48,5 +48,9 @@ namespace UnitsNet.Tests
         public void NumberToSquareMeterKelvinsPerWattTest() =>
             Assert.Equal(ThermalInsulance.FromSquareMeterKelvinsPerWatt(2), 2.SquareMeterKelvinsPerWatt());
 
+        [Fact]
+        public void NumberToSquareMillimeterKelvinsPerWattTest() =>
+            Assert.Equal(ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(2), 2.SquareMillimeterKelvinsPerWatt());
+
     }
 }

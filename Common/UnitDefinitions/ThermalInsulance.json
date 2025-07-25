@@ -67,6 +67,18 @@
       ]
     },
     {
+      "SingularName": "SquareMillimeterKelvinPerWatt",
+      "PluralName": "SquareMillimeterKelvinsPerWatt",
+      "FromUnitToBaseFunc": "{x} * 0.001",
+      "FromBaseToUnitFunc": "{x} / 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm²K/W" ]
+        }
+      ]
+    },
+    {
       "SingularName": "SquareCentimeterHourDegreeCelsiusPerKilocalorie",
       "PluralName": "SquareCentimeterHourDegreesCelsiusPerKilocalorie",
       "FromUnitToBaseFunc": "{x} * (0.0001 * 3600) / 4.184",

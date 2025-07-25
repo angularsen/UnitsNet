@@ -27,7 +27,7 @@ namespace UnitsNet
     ///     The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.
     /// </summary>
     /// <remarks>
-    ///     http://en.wikipedia.org/wiki/Specificweight
+    ///     https://en.wikipedia.org/wiki/Specific_weight
     /// </remarks>
     public struct  SpecificWeight
     {
