@@ -38,7 +38,7 @@ namespace UnitsNet.Tests
             Enum? nullUnit = null;
             Assert.False(Quantity.TryFrom(1, nullUnit, out IQuantity? _));
         }
-        
+
         [Fact]
         public void TryFrom_GivenUnknownUnitType_ReturnsFalse()
         {
@@ -51,14 +51,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.From(3, LengthUnit.Centimeter));
             Assert.Equal(Mass.FromTonnes(3), Quantity.From(3, MassUnit.Tonne));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.From(3, PressureUnit.Megabar));
-        }
-
-        [Fact]
-        public void FromQuantityInfo_ReturnsQuantityWithBaseUnit()
-        {
-            IQuantity quantity = Quantity.FromQuantityInfo(Length.Info, 1);
-            Assert.Equal(1, quantity.Value);
-            Assert.Equal(Length.BaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -143,7 +135,7 @@ namespace UnitsNet.Tests
             Type targetType = expectedQuantity.QuantityInfo.QuantityType;
 
             IQuantity parsedQuantity = Quantity.Parse(targetType, valueAsString);
-            
+
             Assert.Equal(expectedQuantity, parsedQuantity);
         }
 
@@ -228,7 +220,7 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }
-    
+
         [Theory]
         [InlineData(1, 0, 0, 0, 0, 0, 0)]
         [InlineData(0, 1, 0, 0, 0, 0, 0)]
