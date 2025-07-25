@@ -9,7 +9,7 @@ namespace UnitsNet.Benchmark.Conversions.FromString;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class QuantityFromStringBenchmarks
 {
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
