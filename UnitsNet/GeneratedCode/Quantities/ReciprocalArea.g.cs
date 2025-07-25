@@ -72,59 +72,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ReciprocalArea"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ReciprocalAreaInfo: QuantityInfo<ReciprocalArea, ReciprocalAreaUnit>
+        private static class ReciprocalAreaInfo
         {
-            /// <inheritdoc />
-            public ReciprocalAreaInfo(string name, ReciprocalAreaUnit baseUnit, IEnumerable<IUnitDefinition<ReciprocalAreaUnit>> unitMappings, ReciprocalArea zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ReciprocalArea, ReciprocalAreaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ReciprocalArea.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ReciprocalAreaInfo(string name, ReciprocalAreaUnit baseUnit, IEnumerable<IUnitDefinition<ReciprocalAreaUnit>> unitMappings, ReciprocalArea zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ReciprocalArea.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ReciprocalArea", typeof(ReciprocalArea).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ReciprocalAreaInfo"/> class with the default settings for the ReciprocalArea quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ReciprocalAreaInfo"/> class with the default settings.</returns>
-            public static ReciprocalAreaInfo CreateDefault()
-            {
-                return new ReciprocalAreaInfo(nameof(ReciprocalArea), DefaultBaseUnit, GetDefaultMappings(), new ReciprocalArea(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ReciprocalAreaInfo"/> class with the default settings for the ReciprocalArea quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ReciprocalAreaInfo"/> class with the default settings.
             /// </returns>
-            public static ReciprocalAreaInfo CreateDefault(Func<IEnumerable<UnitDefinition<ReciprocalAreaUnit>>, IEnumerable<IUnitDefinition<ReciprocalAreaUnit>>> customizeUnits)
+            private static QuantityInfo<ReciprocalArea, ReciprocalAreaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ReciprocalAreaUnit>>, IEnumerable<IUnitDefinition<ReciprocalAreaUnit>>>? customizeUnits = null)
             {
-                return new ReciprocalAreaInfo(nameof(ReciprocalArea), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ReciprocalArea(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ReciprocalAreaUnit>> unitMappings = ReciprocalAreaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ReciprocalArea, ReciprocalAreaUnit>(
+                    name: nameof(ReciprocalArea),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ReciprocalArea(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ReciprocalArea"/> is [L^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ReciprocalArea is InverseSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ReciprocalAreaUnit DefaultBaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
+            private static ReciprocalAreaUnit DefaultBaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ReciprocalArea quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ReciprocalArea", typeof(ReciprocalArea).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ReciprocalAreaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ReciprocalAreaUnit}"/> representing the default unit mappings for ReciprocalArea.</returns>
-            public static IEnumerable<UnitDefinition<ReciprocalAreaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ReciprocalAreaUnit>> GetDefaultMappings()
             {
                 yield return new (ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeter", "InverseSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
                 yield return new (ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeter", "InverseSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter));
@@ -142,7 +142,7 @@ namespace UnitsNet
 
         static ReciprocalArea()
         {
-            Info = ReciprocalAreaInfo.CreateDefault();
+            Info = ReciprocalAreaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

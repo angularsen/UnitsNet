@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MagneticFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MagneticFluxInfo: QuantityInfo<MagneticFlux, MagneticFluxUnit>
+        private static class MagneticFluxInfo
         {
-            /// <inheritdoc />
-            public MagneticFluxInfo(string name, MagneticFluxUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings, MagneticFlux zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MagneticFlux, MagneticFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MagneticFlux.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MagneticFluxInfo(string name, MagneticFluxUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings, MagneticFlux zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MagneticFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MagneticFlux", typeof(MagneticFlux).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MagneticFluxInfo"/> class with the default settings for the MagneticFlux quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MagneticFluxInfo"/> class with the default settings.</returns>
-            public static MagneticFluxInfo CreateDefault()
-            {
-                return new MagneticFluxInfo(nameof(MagneticFlux), DefaultBaseUnit, GetDefaultMappings(), new MagneticFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MagneticFluxInfo"/> class with the default settings for the MagneticFlux quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MagneticFluxInfo"/> class with the default settings.
             /// </returns>
-            public static MagneticFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<MagneticFluxUnit>>, IEnumerable<IUnitDefinition<MagneticFluxUnit>>> customizeUnits)
+            private static QuantityInfo<MagneticFlux, MagneticFluxUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MagneticFluxUnit>>, IEnumerable<IUnitDefinition<MagneticFluxUnit>>>? customizeUnits = null)
             {
-                return new MagneticFluxInfo(nameof(MagneticFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MagneticFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings = MagneticFluxInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MagneticFlux, MagneticFluxUnit>(
+                    name: nameof(MagneticFlux),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MagneticFlux(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MagneticFlux"/> is [T^-2][L^2][M][I^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MagneticFlux is Weber. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MagneticFluxUnit DefaultBaseUnit { get; } = MagneticFluxUnit.Weber;
+            private static MagneticFluxUnit DefaultBaseUnit { get; } = MagneticFluxUnit.Weber;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MagneticFlux quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MagneticFlux", typeof(MagneticFlux).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MagneticFluxUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagneticFluxUnit}"/> representing the default unit mappings for MagneticFlux.</returns>
-            public static IEnumerable<UnitDefinition<MagneticFluxUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MagneticFluxUnit>> GetDefaultMappings()
             {
                 yield return new (MagneticFluxUnit.Weber, "Weber", "Webers", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static MagneticFlux()
         {
-            Info = MagneticFluxInfo.CreateDefault();
+            Info = MagneticFluxInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

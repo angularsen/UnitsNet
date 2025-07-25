@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ForceChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ForceChangeRateInfo: QuantityInfo<ForceChangeRate, ForceChangeRateUnit>
+        private static class ForceChangeRateInfo
         {
-            /// <inheritdoc />
-            public ForceChangeRateInfo(string name, ForceChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings, ForceChangeRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ForceChangeRate, ForceChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ForceChangeRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ForceChangeRateInfo(string name, ForceChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings, ForceChangeRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ForceChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ForceChangeRate", typeof(ForceChangeRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings for the ForceChangeRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings.</returns>
-            public static ForceChangeRateInfo CreateDefault()
-            {
-                return new ForceChangeRateInfo(nameof(ForceChangeRate), DefaultBaseUnit, GetDefaultMappings(), new ForceChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings for the ForceChangeRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings.
             /// </returns>
-            public static ForceChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<ForceChangeRateUnit>>, IEnumerable<IUnitDefinition<ForceChangeRateUnit>>> customizeUnits)
+            private static QuantityInfo<ForceChangeRate, ForceChangeRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ForceChangeRateUnit>>, IEnumerable<IUnitDefinition<ForceChangeRateUnit>>>? customizeUnits = null)
             {
-                return new ForceChangeRateInfo(nameof(ForceChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ForceChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings = ForceChangeRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ForceChangeRate, ForceChangeRateUnit>(
+                    name: nameof(ForceChangeRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ForceChangeRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ForceChangeRate"/> is [T^-3][L][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ForceChangeRate is NewtonPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ForceChangeRateUnit DefaultBaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+            private static ForceChangeRateUnit DefaultBaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ForceChangeRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ForceChangeRate", typeof(ForceChangeRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ForceChangeRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForceChangeRateUnit}"/> representing the default unit mappings for ForceChangeRate.</returns>
-            public static IEnumerable<UnitDefinition<ForceChangeRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ForceChangeRateUnit>> GetDefaultMappings()
             {
                 yield return new (ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonPerSecond", "CentinewtonsPerSecond", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonPerMinute", "DecanewtonsPerMinute", BaseUnits.Undefined);
@@ -139,7 +139,7 @@ namespace UnitsNet
 
         static ForceChangeRate()
         {
-            Info = ForceChangeRateInfo.CreateDefault();
+            Info = ForceChangeRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

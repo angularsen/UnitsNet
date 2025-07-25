@@ -69,59 +69,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Acceleration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AccelerationInfo: QuantityInfo<Acceleration, AccelerationUnit>
+        private static class AccelerationInfo
         {
-            /// <inheritdoc />
-            public AccelerationInfo(string name, AccelerationUnit baseUnit, IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings, Acceleration zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Acceleration, AccelerationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Acceleration.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AccelerationInfo(string name, AccelerationUnit baseUnit, IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings, Acceleration zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Acceleration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Acceleration", typeof(Acceleration).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AccelerationInfo"/> class with the default settings for the Acceleration quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AccelerationInfo"/> class with the default settings.</returns>
-            public static AccelerationInfo CreateDefault()
-            {
-                return new AccelerationInfo(nameof(Acceleration), DefaultBaseUnit, GetDefaultMappings(), new Acceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AccelerationInfo"/> class with the default settings for the Acceleration quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AccelerationInfo"/> class with the default settings.
             /// </returns>
-            public static AccelerationInfo CreateDefault(Func<IEnumerable<UnitDefinition<AccelerationUnit>>, IEnumerable<IUnitDefinition<AccelerationUnit>>> customizeUnits)
+            private static QuantityInfo<Acceleration, AccelerationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AccelerationUnit>>, IEnumerable<IUnitDefinition<AccelerationUnit>>>? customizeUnits = null)
             {
-                return new AccelerationInfo(nameof(Acceleration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Acceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings = AccelerationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Acceleration, AccelerationUnit>(
+                    name: nameof(Acceleration),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Acceleration(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Acceleration"/> is [T^-2][L].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Acceleration is MeterPerSecondSquared. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AccelerationUnit DefaultBaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+            private static AccelerationUnit DefaultBaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Acceleration quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Acceleration", typeof(Acceleration).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AccelerationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AccelerationUnit}"/> representing the default unit mappings for Acceleration.</returns>
-            public static IEnumerable<UnitDefinition<AccelerationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AccelerationUnit>> GetDefaultMappings()
             {
                 yield return new (AccelerationUnit.CentimeterPerSecondSquared, "CentimeterPerSecondSquared", "CentimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second));
                 yield return new (AccelerationUnit.DecimeterPerSecondSquared, "DecimeterPerSecondSquared", "DecimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
@@ -142,7 +142,7 @@ namespace UnitsNet
 
         static Acceleration()
         {
-            Info = AccelerationInfo.CreateDefault();
+            Info = AccelerationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

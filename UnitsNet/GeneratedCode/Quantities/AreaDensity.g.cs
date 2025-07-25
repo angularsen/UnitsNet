@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="AreaDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AreaDensityInfo: QuantityInfo<AreaDensity, AreaDensityUnit>
+        private static class AreaDensityInfo
         {
-            /// <inheritdoc />
-            public AreaDensityInfo(string name, AreaDensityUnit baseUnit, IEnumerable<IUnitDefinition<AreaDensityUnit>> unitMappings, AreaDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<AreaDensity, AreaDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AreaDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AreaDensityInfo(string name, AreaDensityUnit baseUnit, IEnumerable<IUnitDefinition<AreaDensityUnit>> unitMappings, AreaDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, AreaDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AreaDensity", typeof(AreaDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AreaDensityInfo"/> class with the default settings for the AreaDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AreaDensityInfo"/> class with the default settings.</returns>
-            public static AreaDensityInfo CreateDefault()
-            {
-                return new AreaDensityInfo(nameof(AreaDensity), DefaultBaseUnit, GetDefaultMappings(), new AreaDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AreaDensityInfo"/> class with the default settings for the AreaDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AreaDensityInfo"/> class with the default settings.
             /// </returns>
-            public static AreaDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<AreaDensityUnit>>, IEnumerable<IUnitDefinition<AreaDensityUnit>>> customizeUnits)
+            private static QuantityInfo<AreaDensity, AreaDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AreaDensityUnit>>, IEnumerable<IUnitDefinition<AreaDensityUnit>>>? customizeUnits = null)
             {
-                return new AreaDensityInfo(nameof(AreaDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AreaDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AreaDensityUnit>> unitMappings = AreaDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<AreaDensity, AreaDensityUnit>(
+                    name: nameof(AreaDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new AreaDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="AreaDensity"/> is [L^-2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of AreaDensity is KilogramPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AreaDensityUnit DefaultBaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
+            private static AreaDensityUnit DefaultBaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the AreaDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.AreaDensity", typeof(AreaDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AreaDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaDensityUnit}"/> representing the default unit mappings for AreaDensity.</returns>
-            public static IEnumerable<UnitDefinition<AreaDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AreaDensityUnit>> GetDefaultMappings()
             {
                 yield return new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram));
                 yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static AreaDensity()
         {
-            Info = AreaDensityInfo.CreateDefault();
+            Info = AreaDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

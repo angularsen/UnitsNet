@@ -74,59 +74,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Density"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class DensityInfo: QuantityInfo<Density, DensityUnit>
+        private static class DensityInfo
         {
-            /// <inheritdoc />
-            public DensityInfo(string name, DensityUnit baseUnit, IEnumerable<IUnitDefinition<DensityUnit>> unitMappings, Density zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Density, DensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Density.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public DensityInfo(string name, DensityUnit baseUnit, IEnumerable<IUnitDefinition<DensityUnit>> unitMappings, Density zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Density.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Density", typeof(Density).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="DensityInfo"/> class with the default settings for the Density quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="DensityInfo"/> class with the default settings.</returns>
-            public static DensityInfo CreateDefault()
-            {
-                return new DensityInfo(nameof(Density), DefaultBaseUnit, GetDefaultMappings(), new Density(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="DensityInfo"/> class with the default settings for the Density quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="DensityInfo"/> class with the default settings.
             /// </returns>
-            public static DensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<DensityUnit>>, IEnumerable<IUnitDefinition<DensityUnit>>> customizeUnits)
+            private static QuantityInfo<Density, DensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<DensityUnit>>, IEnumerable<IUnitDefinition<DensityUnit>>>? customizeUnits = null)
             {
-                return new DensityInfo(nameof(Density), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Density(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<DensityUnit>> unitMappings = DensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Density, DensityUnit>(
+                    name: nameof(Density),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Density(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Density"/> is [L^-3][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Density is KilogramPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static DensityUnit DefaultBaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+            private static DensityUnit DefaultBaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Density quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Density", typeof(Density).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="DensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DensityUnit}"/> representing the default unit mappings for Density.</returns>
-            public static IEnumerable<UnitDefinition<DensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<DensityUnit>> GetDefaultMappings()
             {
                 yield return new (DensityUnit.CentigramPerDeciliter, "CentigramPerDeciliter", "CentigramsPerDeciliter", BaseUnits.Undefined);
                 yield return new (DensityUnit.CentigramPerLiter, "CentigramPerLiter", "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram));
@@ -189,7 +189,7 @@ namespace UnitsNet
 
         static Density()
         {
-            Info = DensityInfo.CreateDefault();
+            Info = DensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

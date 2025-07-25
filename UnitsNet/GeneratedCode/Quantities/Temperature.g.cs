@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Temperature"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class TemperatureInfo: QuantityInfo<Temperature, TemperatureUnit>
+        private static class TemperatureInfo
         {
-            /// <inheritdoc />
-            public TemperatureInfo(string name, TemperatureUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings, Temperature zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Temperature, TemperatureUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Temperature.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public TemperatureInfo(string name, TemperatureUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings, Temperature zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Temperature.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Temperature", typeof(Temperature).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="TemperatureInfo"/> class with the default settings for the Temperature quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="TemperatureInfo"/> class with the default settings.</returns>
-            public static TemperatureInfo CreateDefault()
-            {
-                return new TemperatureInfo(nameof(Temperature), DefaultBaseUnit, GetDefaultMappings(), new Temperature(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="TemperatureInfo"/> class with the default settings for the Temperature quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="TemperatureInfo"/> class with the default settings.
             /// </returns>
-            public static TemperatureInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureUnit>>, IEnumerable<IUnitDefinition<TemperatureUnit>>> customizeUnits)
+            private static QuantityInfo<Temperature, TemperatureUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<TemperatureUnit>>, IEnumerable<IUnitDefinition<TemperatureUnit>>>? customizeUnits = null)
             {
-                return new TemperatureInfo(nameof(Temperature), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Temperature(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings = TemperatureInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Temperature, TemperatureUnit>(
+                    name: nameof(Temperature),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Temperature(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Temperature"/> is [Θ].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
             /// <summary>
             ///     The default base unit of Temperature is Kelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static TemperatureUnit DefaultBaseUnit { get; } = TemperatureUnit.Kelvin;
+            private static TemperatureUnit DefaultBaseUnit { get; } = TemperatureUnit.Kelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Temperature quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Temperature", typeof(Temperature).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="TemperatureUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureUnit}"/> representing the default unit mappings for Temperature.</returns>
-            public static IEnumerable<UnitDefinition<TemperatureUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<TemperatureUnit>> GetDefaultMappings()
             {
                 yield return new (TemperatureUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 yield return new (TemperatureUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
@@ -131,7 +131,7 @@ namespace UnitsNet
 
         static Temperature()
         {
-            Info = TemperatureInfo.CreateDefault();
+            Info = TemperatureInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

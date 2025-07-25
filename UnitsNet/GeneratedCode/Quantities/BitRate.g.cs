@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="BitRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class BitRateInfo: QuantityInfo<BitRate, BitRateUnit>
+        private static class BitRateInfo
         {
-            /// <inheritdoc />
-            public BitRateInfo(string name, BitRateUnit baseUnit, IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings, BitRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<BitRate, BitRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, BitRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public BitRateInfo(string name, BitRateUnit baseUnit, IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings, BitRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, BitRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.BitRate", typeof(BitRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="BitRateInfo"/> class with the default settings for the BitRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="BitRateInfo"/> class with the default settings.</returns>
-            public static BitRateInfo CreateDefault()
-            {
-                return new BitRateInfo(nameof(BitRate), DefaultBaseUnit, GetDefaultMappings(), new BitRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="BitRateInfo"/> class with the default settings for the BitRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="BitRateInfo"/> class with the default settings.
             /// </returns>
-            public static BitRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<BitRateUnit>>, IEnumerable<IUnitDefinition<BitRateUnit>>> customizeUnits)
+            private static QuantityInfo<BitRate, BitRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<BitRateUnit>>, IEnumerable<IUnitDefinition<BitRateUnit>>>? customizeUnits = null)
             {
-                return new BitRateInfo(nameof(BitRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new BitRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings = BitRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<BitRate, BitRateUnit>(
+                    name: nameof(BitRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new BitRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="BitRate"/> is [T^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of BitRate is BitPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static BitRateUnit DefaultBaseUnit { get; } = BitRateUnit.BitPerSecond;
+            private static BitRateUnit DefaultBaseUnit { get; } = BitRateUnit.BitPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the BitRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.BitRate", typeof(BitRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="BitRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{BitRateUnit}"/> representing the default unit mappings for BitRate.</returns>
-            public static IEnumerable<UnitDefinition<BitRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<BitRateUnit>> GetDefaultMappings()
             {
                 yield return new (BitRateUnit.BitPerSecond, "BitPerSecond", "BitsPerSecond", new BaseUnits(time: DurationUnit.Second));
                 yield return new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined);
@@ -163,7 +163,7 @@ namespace UnitsNet
 
         static BitRate()
         {
-            Info = BitRateInfo.CreateDefault();
+            Info = BitRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -71,59 +71,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricPotential"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricPotentialInfo: QuantityInfo<ElectricPotential, ElectricPotentialUnit>
+        private static class ElectricPotentialInfo
         {
-            /// <inheritdoc />
-            public ElectricPotentialInfo(string name, ElectricPotentialUnit baseUnit, IEnumerable<IUnitDefinition<ElectricPotentialUnit>> unitMappings, ElectricPotential zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricPotential, ElectricPotentialUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricPotential.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricPotentialInfo(string name, ElectricPotentialUnit baseUnit, IEnumerable<IUnitDefinition<ElectricPotentialUnit>> unitMappings, ElectricPotential zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricPotential.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricPotential", typeof(ElectricPotential).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricPotentialInfo"/> class with the default settings for the ElectricPotential quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricPotentialInfo"/> class with the default settings.</returns>
-            public static ElectricPotentialInfo CreateDefault()
-            {
-                return new ElectricPotentialInfo(nameof(ElectricPotential), DefaultBaseUnit, GetDefaultMappings(), new ElectricPotential(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricPotentialInfo"/> class with the default settings for the ElectricPotential quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricPotentialInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricPotentialInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricPotentialUnit>>, IEnumerable<IUnitDefinition<ElectricPotentialUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricPotential, ElectricPotentialUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricPotentialUnit>>, IEnumerable<IUnitDefinition<ElectricPotentialUnit>>>? customizeUnits = null)
             {
-                return new ElectricPotentialInfo(nameof(ElectricPotential), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricPotential(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricPotentialUnit>> unitMappings = ElectricPotentialInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricPotential, ElectricPotentialUnit>(
+                    name: nameof(ElectricPotential),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricPotential(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricPotential"/> is [T^-3][L^2][M][I^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricPotential is Volt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricPotentialUnit DefaultBaseUnit { get; } = ElectricPotentialUnit.Volt;
+            private static ElectricPotentialUnit DefaultBaseUnit { get; } = ElectricPotentialUnit.Volt;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricPotential quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricPotential", typeof(ElectricPotential).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricPotentialUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricPotentialUnit}"/> representing the default unit mappings for ElectricPotential.</returns>
-            public static IEnumerable<UnitDefinition<ElectricPotentialUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricPotentialUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricPotentialUnit.Kilovolt, "Kilovolt", "Kilovolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
                 yield return new (ElectricPotentialUnit.Megavolt, "Megavolt", "Megavolts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
@@ -136,7 +136,7 @@ namespace UnitsNet
 
         static ElectricPotential()
         {
-            Info = ElectricPotentialInfo.CreateDefault();
+            Info = ElectricPotentialInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

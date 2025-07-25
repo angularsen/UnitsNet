@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricSurfaceChargeDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricSurfaceChargeDensityInfo: QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>
+        private static class ElectricSurfaceChargeDensityInfo
         {
-            /// <inheritdoc />
-            public ElectricSurfaceChargeDensityInfo(string name, ElectricSurfaceChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings, ElectricSurfaceChargeDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricSurfaceChargeDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricSurfaceChargeDensityInfo(string name, ElectricSurfaceChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings, ElectricSurfaceChargeDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricSurfaceChargeDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricSurfaceChargeDensity", typeof(ElectricSurfaceChargeDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings for the ElectricSurfaceChargeDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings.</returns>
-            public static ElectricSurfaceChargeDensityInfo CreateDefault()
-            {
-                return new ElectricSurfaceChargeDensityInfo(nameof(ElectricSurfaceChargeDensity), DefaultBaseUnit, GetDefaultMappings(), new ElectricSurfaceChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings for the ElectricSurfaceChargeDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricSurfaceChargeDensityInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricSurfaceChargeDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>>, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>>, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>>>? customizeUnits = null)
             {
-                return new ElectricSurfaceChargeDensityInfo(nameof(ElectricSurfaceChargeDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricSurfaceChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings = ElectricSurfaceChargeDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(
+                    name: nameof(ElectricSurfaceChargeDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricSurfaceChargeDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricSurfaceChargeDensity"/> is [T][L^-2][I].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricSurfaceChargeDensity is CoulombPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricSurfaceChargeDensityUnit DefaultBaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+            private static ElectricSurfaceChargeDensityUnit DefaultBaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricSurfaceChargeDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricSurfaceChargeDensity", typeof(ElectricSurfaceChargeDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricSurfaceChargeDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricSurfaceChargeDensityUnit}"/> representing the default unit mappings for ElectricSurfaceChargeDensity.</returns>
-            public static IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombPerSquareCentimeter", "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombPerSquareInch", "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static ElectricSurfaceChargeDensity()
         {
-            Info = ElectricSurfaceChargeDensityInfo.CreateDefault();
+            Info = ElectricSurfaceChargeDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

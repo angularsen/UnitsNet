@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Ratio"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RatioInfo: QuantityInfo<Ratio, RatioUnit>
+        private static class RatioInfo
         {
-            /// <inheritdoc />
-            public RatioInfo(string name, RatioUnit baseUnit, IEnumerable<IUnitDefinition<RatioUnit>> unitMappings, Ratio zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Ratio, RatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Ratio.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RatioInfo(string name, RatioUnit baseUnit, IEnumerable<IUnitDefinition<RatioUnit>> unitMappings, Ratio zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Ratio.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Ratio", typeof(Ratio).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RatioInfo"/> class with the default settings for the Ratio quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RatioInfo"/> class with the default settings.</returns>
-            public static RatioInfo CreateDefault()
-            {
-                return new RatioInfo(nameof(Ratio), DefaultBaseUnit, GetDefaultMappings(), new Ratio(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RatioInfo"/> class with the default settings for the Ratio quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RatioInfo"/> class with the default settings.
             /// </returns>
-            public static RatioInfo CreateDefault(Func<IEnumerable<UnitDefinition<RatioUnit>>, IEnumerable<IUnitDefinition<RatioUnit>>> customizeUnits)
+            private static QuantityInfo<Ratio, RatioUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RatioUnit>>, IEnumerable<IUnitDefinition<RatioUnit>>>? customizeUnits = null)
             {
-                return new RatioInfo(nameof(Ratio), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Ratio(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RatioUnit>> unitMappings = RatioInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Ratio, RatioUnit>(
+                    name: nameof(Ratio),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Ratio(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Ratio"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of Ratio is DecimalFraction. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RatioUnit DefaultBaseUnit { get; } = RatioUnit.DecimalFraction;
+            private static RatioUnit DefaultBaseUnit { get; } = RatioUnit.DecimalFraction;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Ratio quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Ratio", typeof(Ratio).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RatioUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RatioUnit}"/> representing the default unit mappings for Ratio.</returns>
-            public static IEnumerable<UnitDefinition<RatioUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RatioUnit>> GetDefaultMappings()
             {
                 yield return new (RatioUnit.DecimalFraction, "DecimalFraction", "DecimalFractions", BaseUnits.Undefined);
                 yield return new (RatioUnit.PartPerBillion, "PartPerBillion", "PartsPerBillion", BaseUnits.Undefined);
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static Ratio()
         {
-            Info = RatioInfo.CreateDefault();
+            Info = RatioInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Jerk"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class JerkInfo: QuantityInfo<Jerk, JerkUnit>
+        private static class JerkInfo
         {
-            /// <inheritdoc />
-            public JerkInfo(string name, JerkUnit baseUnit, IEnumerable<IUnitDefinition<JerkUnit>> unitMappings, Jerk zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Jerk, JerkUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Jerk.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public JerkInfo(string name, JerkUnit baseUnit, IEnumerable<IUnitDefinition<JerkUnit>> unitMappings, Jerk zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Jerk.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Jerk", typeof(Jerk).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="JerkInfo"/> class with the default settings for the Jerk quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="JerkInfo"/> class with the default settings.</returns>
-            public static JerkInfo CreateDefault()
-            {
-                return new JerkInfo(nameof(Jerk), DefaultBaseUnit, GetDefaultMappings(), new Jerk(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="JerkInfo"/> class with the default settings for the Jerk quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="JerkInfo"/> class with the default settings.
             /// </returns>
-            public static JerkInfo CreateDefault(Func<IEnumerable<UnitDefinition<JerkUnit>>, IEnumerable<IUnitDefinition<JerkUnit>>> customizeUnits)
+            private static QuantityInfo<Jerk, JerkUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<JerkUnit>>, IEnumerable<IUnitDefinition<JerkUnit>>>? customizeUnits = null)
             {
-                return new JerkInfo(nameof(Jerk), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Jerk(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<JerkUnit>> unitMappings = JerkInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Jerk, JerkUnit>(
+                    name: nameof(Jerk),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Jerk(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Jerk"/> is [T^-3][L].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Jerk is MeterPerSecondCubed. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static JerkUnit DefaultBaseUnit { get; } = JerkUnit.MeterPerSecondCubed;
+            private static JerkUnit DefaultBaseUnit { get; } = JerkUnit.MeterPerSecondCubed;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Jerk quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Jerk", typeof(Jerk).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="JerkUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{JerkUnit}"/> representing the default unit mappings for Jerk.</returns>
-            public static IEnumerable<UnitDefinition<JerkUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<JerkUnit>> GetDefaultMappings()
             {
                 yield return new (JerkUnit.CentimeterPerSecondCubed, "CentimeterPerSecondCubed", "CentimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second));
                 yield return new (JerkUnit.DecimeterPerSecondCubed, "DecimeterPerSecondCubed", "DecimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
@@ -135,7 +135,7 @@ namespace UnitsNet
 
         static Jerk()
         {
-            Info = JerkInfo.CreateDefault();
+            Info = JerkInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

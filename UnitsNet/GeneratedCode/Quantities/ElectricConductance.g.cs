@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricConductance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricConductanceInfo: QuantityInfo<ElectricConductance, ElectricConductanceUnit>
+        private static class ElectricConductanceInfo
         {
-            /// <inheritdoc />
-            public ElectricConductanceInfo(string name, ElectricConductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings, ElectricConductance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricConductance, ElectricConductanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricConductance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricConductanceInfo(string name, ElectricConductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings, ElectricConductance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricConductance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricConductance", typeof(ElectricConductance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings for the ElectricConductance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings.</returns>
-            public static ElectricConductanceInfo CreateDefault()
-            {
-                return new ElectricConductanceInfo(nameof(ElectricConductance), DefaultBaseUnit, GetDefaultMappings(), new ElectricConductance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings for the ElectricConductance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricConductanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricConductanceUnit>>, IEnumerable<IUnitDefinition<ElectricConductanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricConductance, ElectricConductanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricConductanceUnit>>, IEnumerable<IUnitDefinition<ElectricConductanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricConductanceInfo(nameof(ElectricConductance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricConductance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings = ElectricConductanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricConductance, ElectricConductanceUnit>(
+                    name: nameof(ElectricConductance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricConductance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricConductance"/> is [T^3][L^-2][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricConductance is Siemens. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricConductanceUnit DefaultBaseUnit { get; } = ElectricConductanceUnit.Siemens;
+            private static ElectricConductanceUnit DefaultBaseUnit { get; } = ElectricConductanceUnit.Siemens;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricConductance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricConductance", typeof(ElectricConductance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricConductanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricConductanceUnit}"/> representing the default unit mappings for ElectricConductance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricConductanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricConductanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricConductanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined);
                 yield return new (ElectricConductanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
@@ -140,7 +140,7 @@ namespace UnitsNet
 
         static ElectricConductance()
         {
-            Info = ElectricConductanceInfo.CreateDefault();
+            Info = ElectricConductanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

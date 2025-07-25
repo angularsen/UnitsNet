@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricConductivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricConductivityInfo: QuantityInfo<ElectricConductivity, ElectricConductivityUnit>
+        private static class ElectricConductivityInfo
         {
-            /// <inheritdoc />
-            public ElectricConductivityInfo(string name, ElectricConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings, ElectricConductivity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricConductivity, ElectricConductivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricConductivity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricConductivityInfo(string name, ElectricConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings, ElectricConductivity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricConductivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricConductivity", typeof(ElectricConductivity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings for the ElectricConductivity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings.</returns>
-            public static ElectricConductivityInfo CreateDefault()
-            {
-                return new ElectricConductivityInfo(nameof(ElectricConductivity), DefaultBaseUnit, GetDefaultMappings(), new ElectricConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings for the ElectricConductivity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricConductivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricConductivityUnit>>, IEnumerable<IUnitDefinition<ElectricConductivityUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricConductivity, ElectricConductivityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricConductivityUnit>>, IEnumerable<IUnitDefinition<ElectricConductivityUnit>>>? customizeUnits = null)
             {
-                return new ElectricConductivityInfo(nameof(ElectricConductivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings = ElectricConductivityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricConductivity, ElectricConductivityUnit>(
+                    name: nameof(ElectricConductivity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricConductivity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricConductivity"/> is [T^3][L^-3][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricConductivity is SiemensPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricConductivityUnit DefaultBaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
+            private static ElectricConductivityUnit DefaultBaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricConductivity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricConductivity", typeof(ElectricConductivity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricConductivityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricConductivityUnit}"/> representing the default unit mappings for ElectricConductivity.</returns>
-            public static IEnumerable<UnitDefinition<ElectricConductivityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricConductivityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", "MicrosiemensPerCentimeter", BaseUnits.Undefined);
                 yield return new (ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", "MillisiemensPerCentimeter", BaseUnits.Undefined);
@@ -130,7 +130,7 @@ namespace UnitsNet
 
         static ElectricConductivity()
         {
-            Info = ElectricConductivityInfo.CreateDefault();
+            Info = ElectricConductivityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

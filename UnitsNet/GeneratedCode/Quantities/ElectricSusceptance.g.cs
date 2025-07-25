@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricSusceptance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricSusceptanceInfo: QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit>
+        private static class ElectricSusceptanceInfo
         {
-            /// <inheritdoc />
-            public ElectricSusceptanceInfo(string name, ElectricSusceptanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings, ElectricSusceptance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricSusceptance, ElectricSusceptanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricSusceptance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricSusceptanceInfo(string name, ElectricSusceptanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings, ElectricSusceptance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricSusceptance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricSusceptance", typeof(ElectricSusceptance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings for the ElectricSusceptance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings.</returns>
-            public static ElectricSusceptanceInfo CreateDefault()
-            {
-                return new ElectricSusceptanceInfo(nameof(ElectricSusceptance), DefaultBaseUnit, GetDefaultMappings(), new ElectricSusceptance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings for the ElectricSusceptance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricSusceptanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricSusceptanceUnit>>, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>>, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricSusceptanceInfo(nameof(ElectricSusceptance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricSusceptance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings = ElectricSusceptanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit>(
+                    name: nameof(ElectricSusceptance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricSusceptance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricSusceptance"/> is [T^3][L^-2][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricSusceptance is Siemens. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricSusceptanceUnit DefaultBaseUnit { get; } = ElectricSusceptanceUnit.Siemens;
+            private static ElectricSusceptanceUnit DefaultBaseUnit { get; } = ElectricSusceptanceUnit.Siemens;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricSusceptance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricSusceptance", typeof(ElectricSusceptance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricSusceptanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricSusceptanceUnit}"/> representing the default unit mappings for ElectricSusceptance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricSusceptanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricSusceptanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricSusceptanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined);
                 yield return new (ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
@@ -140,7 +140,7 @@ namespace UnitsNet
 
         static ElectricSusceptance()
         {
-            Info = ElectricSusceptanceInfo.CreateDefault();
+            Info = ElectricSusceptanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

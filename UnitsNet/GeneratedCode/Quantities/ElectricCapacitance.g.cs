@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricCapacitance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricCapacitanceInfo: QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit>
+        private static class ElectricCapacitanceInfo
         {
-            /// <inheritdoc />
-            public ElectricCapacitanceInfo(string name, ElectricCapacitanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings, ElectricCapacitance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricCapacitance, ElectricCapacitanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCapacitance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricCapacitanceInfo(string name, ElectricCapacitanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings, ElectricCapacitance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCapacitance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCapacitance", typeof(ElectricCapacitance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings for the ElectricCapacitance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings.</returns>
-            public static ElectricCapacitanceInfo CreateDefault()
-            {
-                return new ElectricCapacitanceInfo(nameof(ElectricCapacitance), DefaultBaseUnit, GetDefaultMappings(), new ElectricCapacitance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings for the ElectricCapacitance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricCapacitanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricCapacitanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCapacitanceUnit>>, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>>, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricCapacitanceInfo(nameof(ElectricCapacitance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCapacitance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings = ElectricCapacitanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit>(
+                    name: nameof(ElectricCapacitance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricCapacitance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCapacitance"/> is [T^4][L^-2][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricCapacitance is Farad. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricCapacitanceUnit DefaultBaseUnit { get; } = ElectricCapacitanceUnit.Farad;
+            private static ElectricCapacitanceUnit DefaultBaseUnit { get; } = ElectricCapacitanceUnit.Farad;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricCapacitance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricCapacitance", typeof(ElectricCapacitance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricCapacitanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCapacitanceUnit}"/> representing the default unit mappings for ElectricCapacitance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricCapacitanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricCapacitanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
@@ -131,7 +131,7 @@ namespace UnitsNet
 
         static ElectricCapacitance()
         {
-            Info = ElectricCapacitanceInfo.CreateDefault();
+            Info = ElectricCapacitanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

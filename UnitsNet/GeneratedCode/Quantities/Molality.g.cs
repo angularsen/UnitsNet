@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Molality"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MolalityInfo: QuantityInfo<Molality, MolalityUnit>
+        private static class MolalityInfo
         {
-            /// <inheritdoc />
-            public MolalityInfo(string name, MolalityUnit baseUnit, IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings, Molality zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Molality, MolalityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Molality.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MolalityInfo(string name, MolalityUnit baseUnit, IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings, Molality zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Molality.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Molality", typeof(Molality).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MolalityInfo"/> class with the default settings for the Molality quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MolalityInfo"/> class with the default settings.</returns>
-            public static MolalityInfo CreateDefault()
-            {
-                return new MolalityInfo(nameof(Molality), DefaultBaseUnit, GetDefaultMappings(), new Molality(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MolalityInfo"/> class with the default settings for the Molality quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MolalityInfo"/> class with the default settings.
             /// </returns>
-            public static MolalityInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolalityUnit>>, IEnumerable<IUnitDefinition<MolalityUnit>>> customizeUnits)
+            private static QuantityInfo<Molality, MolalityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MolalityUnit>>, IEnumerable<IUnitDefinition<MolalityUnit>>>? customizeUnits = null)
             {
-                return new MolalityInfo(nameof(Molality), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Molality(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings = MolalityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Molality, MolalityUnit>(
+                    name: nameof(Molality),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Molality(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Molality"/> is [M^-1][N].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 0, 0, 0, 1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 0, 0, 0, 1, 0);
 
             /// <summary>
             ///     The default base unit of Molality is MolePerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MolalityUnit DefaultBaseUnit { get; } = MolalityUnit.MolePerKilogram;
+            private static MolalityUnit DefaultBaseUnit { get; } = MolalityUnit.MolePerKilogram;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Molality quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Molality", typeof(Molality).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MolalityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolalityUnit}"/> representing the default unit mappings for Molality.</returns>
-            public static IEnumerable<UnitDefinition<MolalityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MolalityUnit>> GetDefaultMappings()
             {
                 yield return new (MolalityUnit.MillimolePerKilogram, "MillimolePerKilogram", "MillimolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Millimole));
                 yield return new (MolalityUnit.MolePerGram, "MolePerGram", "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static Molality()
         {
-            Info = MolalityInfo.CreateDefault();
+            Info = MolalityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -152,60 +152,60 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref=""{_quantity.Name}""/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class {quantityInfoClassName}: QuantityInfo<{_quantity.Name}, {_unitEnumName}>
+        private static class {quantityInfoClassName}
         {{");
             Writer.WL($@"
-            /// <inheritdoc />
-            public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<{_quantity.Name}, {_unitEnumName}> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, {_quantity.Name}.RegisterDefaultConversions, unitAbbreviations)
-            {{
-            }}
-
-            /// <inheritdoc />
-            public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, {_quantity.Name}.From, new ResourceManager(""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"", typeof({_quantity.Name}).Assembly))
-            {{
-            }}
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings for the {_quantity.Name} quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings.</returns>
-            public static {quantityInfoClassName} CreateDefault()
-            {{
-                return new {quantityInfoClassName}(nameof({_quantity.Name}), DefaultBaseUnit, GetDefaultMappings(), new {_quantity.Name}(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }}
-
             /// <summary>
             ///     Creates a new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings for the {_quantity.Name} quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name=""unitAbbreviations"">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name=""customizeUnits"">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings.
             /// </returns>
-            public static {quantityInfoClassName} CreateDefault(Func<IEnumerable<UnitDefinition<{_unitEnumName}>>, IEnumerable<IUnitDefinition<{_unitEnumName}>>> customizeUnits)
+            private static QuantityInfo<{_quantity.Name}, {_unitEnumName}> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<{_unitEnumName}>>, IEnumerable<IUnitDefinition<{_unitEnumName}>>>? customizeUnits = null)
             {{
-                return new {quantityInfoClassName}(nameof({_quantity.Name}), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new {_quantity.Name}(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings = {_quantity.Name}Info.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<{_quantity.Name}, {_unitEnumName}>(
+                    name: nameof({_quantity.Name}),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new {_quantity.Name}(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }}
 
             /// <summary>
             ///     The <see cref=""BaseDimensions"" /> for <see cref=""{_quantity.Name}""/> is {_quantity.BaseDimensions}.
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions {{ get; }} = {createDimensionsExpression};
+            private static BaseDimensions DefaultBaseDimensions {{ get; }} = {createDimensionsExpression};
 
             /// <summary>
             ///     The default base unit of {_quantity.Name} is {_baseUnit.SingularName}. All conversions, as defined in the <see cref=""GetDefaultMappings""/>, go via this value.
             /// </summary>
-            public static {_unitEnumName} DefaultBaseUnit {{ get; }} = {_unitEnumName}.{_baseUnit.SingularName};
+            private static {_unitEnumName} DefaultBaseUnit {{ get; }} = {_unitEnumName}.{_baseUnit.SingularName};
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the {_quantity.Name} quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations {{ get; }} = new(""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"", typeof({_quantity.Name}).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref=""{_unitEnumName}""/>.
             /// </summary>
             /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
-            public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
             {{");
 
             foreach (Unit unit in _quantity.Units)
@@ -247,7 +247,7 @@ namespace UnitsNet
         static {_quantity.Name}()
         {{");
             Writer.WL($@"
-            Info = {_quantity.Name}Info.CreateDefault();
+            Info = {_quantity.Name}Info.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}

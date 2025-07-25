@@ -74,59 +74,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Pressure"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PressureInfo: QuantityInfo<Pressure, PressureUnit>
+        private static class PressureInfo
         {
-            /// <inheritdoc />
-            public PressureInfo(string name, PressureUnit baseUnit, IEnumerable<IUnitDefinition<PressureUnit>> unitMappings, Pressure zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Pressure, PressureUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Pressure.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PressureInfo(string name, PressureUnit baseUnit, IEnumerable<IUnitDefinition<PressureUnit>> unitMappings, Pressure zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Pressure.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Pressure", typeof(Pressure).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PressureInfo"/> class with the default settings for the Pressure quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PressureInfo"/> class with the default settings.</returns>
-            public static PressureInfo CreateDefault()
-            {
-                return new PressureInfo(nameof(Pressure), DefaultBaseUnit, GetDefaultMappings(), new Pressure(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PressureInfo"/> class with the default settings for the Pressure quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PressureInfo"/> class with the default settings.
             /// </returns>
-            public static PressureInfo CreateDefault(Func<IEnumerable<UnitDefinition<PressureUnit>>, IEnumerable<IUnitDefinition<PressureUnit>>> customizeUnits)
+            private static QuantityInfo<Pressure, PressureUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PressureUnit>>, IEnumerable<IUnitDefinition<PressureUnit>>>? customizeUnits = null)
             {
-                return new PressureInfo(nameof(Pressure), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Pressure(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PressureUnit>> unitMappings = PressureInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Pressure, PressureUnit>(
+                    name: nameof(Pressure),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Pressure(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Pressure"/> is [T^-2][L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Pressure is Pascal. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PressureUnit DefaultBaseUnit { get; } = PressureUnit.Pascal;
+            private static PressureUnit DefaultBaseUnit { get; } = PressureUnit.Pascal;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Pressure quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Pressure", typeof(Pressure).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PressureUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PressureUnit}"/> representing the default unit mappings for Pressure.</returns>
-            public static IEnumerable<UnitDefinition<PressureUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PressureUnit>> GetDefaultMappings()
             {
                 yield return new (PressureUnit.Atmosphere, "Atmosphere", "Atmospheres", BaseUnits.Undefined);
                 yield return new (PressureUnit.Bar, "Bar", "Bars", BaseUnits.Undefined);
@@ -180,7 +180,7 @@ namespace UnitsNet
 
         static Pressure()
         {
-            Info = PressureInfo.CreateDefault();
+            Info = PressureInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

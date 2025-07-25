@@ -82,59 +82,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Length"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LengthInfo: QuantityInfo<Length, LengthUnit>
+        private static class LengthInfo
         {
-            /// <inheritdoc />
-            public LengthInfo(string name, LengthUnit baseUnit, IEnumerable<IUnitDefinition<LengthUnit>> unitMappings, Length zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Length, LengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Length.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LengthInfo(string name, LengthUnit baseUnit, IEnumerable<IUnitDefinition<LengthUnit>> unitMappings, Length zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Length.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LengthInfo"/> class with the default settings for the Length quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LengthInfo"/> class with the default settings.</returns>
-            public static LengthInfo CreateDefault()
-            {
-                return new LengthInfo(nameof(Length), DefaultBaseUnit, GetDefaultMappings(), new Length(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LengthInfo"/> class with the default settings for the Length quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LengthInfo"/> class with the default settings.
             /// </returns>
-            public static LengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<LengthUnit>>, IEnumerable<IUnitDefinition<LengthUnit>>> customizeUnits)
+            private static QuantityInfo<Length, LengthUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LengthUnit>>, IEnumerable<IUnitDefinition<LengthUnit>>>? customizeUnits = null)
             {
-                return new LengthInfo(nameof(Length), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Length(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LengthUnit>> unitMappings = LengthInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Length, LengthUnit>(
+                    name: nameof(Length),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Length(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Length"/> is [L].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Length is Meter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LengthUnit DefaultBaseUnit { get; } = LengthUnit.Meter;
+            private static LengthUnit DefaultBaseUnit { get; } = LengthUnit.Meter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Length quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LengthUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LengthUnit}"/> representing the default unit mappings for Length.</returns>
-            public static IEnumerable<UnitDefinition<LengthUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LengthUnit>> GetDefaultMappings()
             {
                 yield return new (LengthUnit.Angstrom, "Angstrom", "Angstroms", new BaseUnits(length: LengthUnit.Angstrom));
                 yield return new (LengthUnit.AstronomicalUnit, "AstronomicalUnit", "AstronomicalUnits", new BaseUnits(length: LengthUnit.AstronomicalUnit));
@@ -183,7 +183,7 @@ namespace UnitsNet
 
         static Length()
         {
-            Info = LengthInfo.CreateDefault();
+            Info = LengthInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

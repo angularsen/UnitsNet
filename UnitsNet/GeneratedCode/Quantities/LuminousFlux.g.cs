@@ -69,59 +69,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="LuminousFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LuminousFluxInfo: QuantityInfo<LuminousFlux, LuminousFluxUnit>
+        private static class LuminousFluxInfo
         {
-            /// <inheritdoc />
-            public LuminousFluxInfo(string name, LuminousFluxUnit baseUnit, IEnumerable<IUnitDefinition<LuminousFluxUnit>> unitMappings, LuminousFlux zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<LuminousFlux, LuminousFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LuminousFlux.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LuminousFluxInfo(string name, LuminousFluxUnit baseUnit, IEnumerable<IUnitDefinition<LuminousFluxUnit>> unitMappings, LuminousFlux zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, LuminousFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LuminousFlux", typeof(LuminousFlux).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LuminousFluxInfo"/> class with the default settings for the LuminousFlux quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LuminousFluxInfo"/> class with the default settings.</returns>
-            public static LuminousFluxInfo CreateDefault()
-            {
-                return new LuminousFluxInfo(nameof(LuminousFlux), DefaultBaseUnit, GetDefaultMappings(), new LuminousFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LuminousFluxInfo"/> class with the default settings for the LuminousFlux quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LuminousFluxInfo"/> class with the default settings.
             /// </returns>
-            public static LuminousFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminousFluxUnit>>, IEnumerable<IUnitDefinition<LuminousFluxUnit>>> customizeUnits)
+            private static QuantityInfo<LuminousFlux, LuminousFluxUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LuminousFluxUnit>>, IEnumerable<IUnitDefinition<LuminousFluxUnit>>>? customizeUnits = null)
             {
-                return new LuminousFluxInfo(nameof(LuminousFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LuminousFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LuminousFluxUnit>> unitMappings = LuminousFluxInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<LuminousFlux, LuminousFluxUnit>(
+                    name: nameof(LuminousFlux),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new LuminousFlux(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="LuminousFlux"/> is [J].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
             /// <summary>
             ///     The default base unit of LuminousFlux is Lumen. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LuminousFluxUnit DefaultBaseUnit { get; } = LuminousFluxUnit.Lumen;
+            private static LuminousFluxUnit DefaultBaseUnit { get; } = LuminousFluxUnit.Lumen;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the LuminousFlux quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.LuminousFlux", typeof(LuminousFlux).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LuminousFluxUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminousFluxUnit}"/> representing the default unit mappings for LuminousFlux.</returns>
-            public static IEnumerable<UnitDefinition<LuminousFluxUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LuminousFluxUnit>> GetDefaultMappings()
             {
                 yield return new (LuminousFluxUnit.Lumen, "Lumen", "Lumens", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela));
             }
@@ -129,7 +129,7 @@ namespace UnitsNet
 
         static LuminousFlux()
         {
-            Info = LuminousFluxInfo.CreateDefault();
+            Info = LuminousFluxInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

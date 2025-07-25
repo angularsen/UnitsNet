@@ -73,59 +73,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="SpecificEnergy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SpecificEnergyInfo: QuantityInfo<SpecificEnergy, SpecificEnergyUnit>
+        private static class SpecificEnergyInfo
         {
-            /// <inheritdoc />
-            public SpecificEnergyInfo(string name, SpecificEnergyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings, SpecificEnergy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<SpecificEnergy, SpecificEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificEnergy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SpecificEnergyInfo(string name, SpecificEnergyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings, SpecificEnergy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificEnergy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificEnergy", typeof(SpecificEnergy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings for the SpecificEnergy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings.</returns>
-            public static SpecificEnergyInfo CreateDefault()
-            {
-                return new SpecificEnergyInfo(nameof(SpecificEnergy), DefaultBaseUnit, GetDefaultMappings(), new SpecificEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings for the SpecificEnergy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings.
             /// </returns>
-            public static SpecificEnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificEnergyUnit>>, IEnumerable<IUnitDefinition<SpecificEnergyUnit>>> customizeUnits)
+            private static QuantityInfo<SpecificEnergy, SpecificEnergyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SpecificEnergyUnit>>, IEnumerable<IUnitDefinition<SpecificEnergyUnit>>>? customizeUnits = null)
             {
-                return new SpecificEnergyInfo(nameof(SpecificEnergy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings = SpecificEnergyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<SpecificEnergy, SpecificEnergyUnit>(
+                    name: nameof(SpecificEnergy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new SpecificEnergy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="SpecificEnergy"/> is [T^-2][L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of SpecificEnergy is JoulePerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SpecificEnergyUnit DefaultBaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+            private static SpecificEnergyUnit DefaultBaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the SpecificEnergy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.SpecificEnergy", typeof(SpecificEnergy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SpecificEnergyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificEnergyUnit}"/> representing the default unit mappings for SpecificEnergy.</returns>
-            public static IEnumerable<UnitDefinition<SpecificEnergyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SpecificEnergyUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificEnergyUnit.BtuPerPound, "BtuPerPound", "BtuPerPound", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.CaloriePerGram, "CaloriePerGram", "CaloriesPerGram", BaseUnits.Undefined);
@@ -162,7 +162,7 @@ namespace UnitsNet
 
         static SpecificEnergy()
         {
-            Info = SpecificEnergyInfo.CreateDefault();
+            Info = SpecificEnergyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

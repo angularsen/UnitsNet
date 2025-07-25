@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Information"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class InformationInfo: QuantityInfo<Information, InformationUnit>
+        private static class InformationInfo
         {
-            /// <inheritdoc />
-            public InformationInfo(string name, InformationUnit baseUnit, IEnumerable<IUnitDefinition<InformationUnit>> unitMappings, Information zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Information, InformationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Information.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public InformationInfo(string name, InformationUnit baseUnit, IEnumerable<IUnitDefinition<InformationUnit>> unitMappings, Information zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Information.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Information", typeof(Information).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="InformationInfo"/> class with the default settings for the Information quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="InformationInfo"/> class with the default settings.</returns>
-            public static InformationInfo CreateDefault()
-            {
-                return new InformationInfo(nameof(Information), DefaultBaseUnit, GetDefaultMappings(), new Information(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="InformationInfo"/> class with the default settings for the Information quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="InformationInfo"/> class with the default settings.
             /// </returns>
-            public static InformationInfo CreateDefault(Func<IEnumerable<UnitDefinition<InformationUnit>>, IEnumerable<IUnitDefinition<InformationUnit>>> customizeUnits)
+            private static QuantityInfo<Information, InformationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<InformationUnit>>, IEnumerable<IUnitDefinition<InformationUnit>>>? customizeUnits = null)
             {
-                return new InformationInfo(nameof(Information), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Information(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<InformationUnit>> unitMappings = InformationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Information, InformationUnit>(
+                    name: nameof(Information),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Information(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Information"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of Information is Bit. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static InformationUnit DefaultBaseUnit { get; } = InformationUnit.Bit;
+            private static InformationUnit DefaultBaseUnit { get; } = InformationUnit.Bit;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Information quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Information", typeof(Information).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="InformationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{InformationUnit}"/> representing the default unit mappings for Information.</returns>
-            public static IEnumerable<UnitDefinition<InformationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<InformationUnit>> GetDefaultMappings()
             {
                 yield return new (InformationUnit.Bit, "Bit", "Bits", BaseUnits.Undefined);
                 yield return new (InformationUnit.Byte, "Byte", "Bytes", BaseUnits.Undefined);
@@ -160,7 +160,7 @@ namespace UnitsNet
 
         static Information()
         {
-            Info = InformationInfo.CreateDefault();
+            Info = InformationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

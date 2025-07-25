@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Permittivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PermittivityInfo: QuantityInfo<Permittivity, PermittivityUnit>
+        private static class PermittivityInfo
         {
-            /// <inheritdoc />
-            public PermittivityInfo(string name, PermittivityUnit baseUnit, IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings, Permittivity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Permittivity, PermittivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Permittivity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PermittivityInfo(string name, PermittivityUnit baseUnit, IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings, Permittivity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Permittivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Permittivity", typeof(Permittivity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PermittivityInfo"/> class with the default settings for the Permittivity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PermittivityInfo"/> class with the default settings.</returns>
-            public static PermittivityInfo CreateDefault()
-            {
-                return new PermittivityInfo(nameof(Permittivity), DefaultBaseUnit, GetDefaultMappings(), new Permittivity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PermittivityInfo"/> class with the default settings for the Permittivity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PermittivityInfo"/> class with the default settings.
             /// </returns>
-            public static PermittivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PermittivityUnit>>, IEnumerable<IUnitDefinition<PermittivityUnit>>> customizeUnits)
+            private static QuantityInfo<Permittivity, PermittivityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PermittivityUnit>>, IEnumerable<IUnitDefinition<PermittivityUnit>>>? customizeUnits = null)
             {
-                return new PermittivityInfo(nameof(Permittivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Permittivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings = PermittivityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Permittivity, PermittivityUnit>(
+                    name: nameof(Permittivity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Permittivity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Permittivity"/> is [T^4][L^-3][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Permittivity is FaradPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PermittivityUnit DefaultBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+            private static PermittivityUnit DefaultBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Permittivity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Permittivity", typeof(Permittivity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PermittivityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PermittivityUnit}"/> representing the default unit mappings for Permittivity.</returns>
-            public static IEnumerable<UnitDefinition<PermittivityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PermittivityUnit>> GetDefaultMappings()
             {
                 yield return new (PermittivityUnit.FaradPerMeter, "FaradPerMeter", "FaradsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static Permittivity()
         {
-            Info = PermittivityInfo.CreateDefault();
+            Info = PermittivityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

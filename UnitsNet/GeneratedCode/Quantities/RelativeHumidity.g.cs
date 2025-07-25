@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RelativeHumidity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RelativeHumidityInfo: QuantityInfo<RelativeHumidity, RelativeHumidityUnit>
+        private static class RelativeHumidityInfo
         {
-            /// <inheritdoc />
-            public RelativeHumidityInfo(string name, RelativeHumidityUnit baseUnit, IEnumerable<IUnitDefinition<RelativeHumidityUnit>> unitMappings, RelativeHumidity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RelativeHumidity, RelativeHumidityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RelativeHumidity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RelativeHumidityInfo(string name, RelativeHumidityUnit baseUnit, IEnumerable<IUnitDefinition<RelativeHumidityUnit>> unitMappings, RelativeHumidity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RelativeHumidity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RelativeHumidity", typeof(RelativeHumidity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RelativeHumidityInfo"/> class with the default settings for the RelativeHumidity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RelativeHumidityInfo"/> class with the default settings.</returns>
-            public static RelativeHumidityInfo CreateDefault()
-            {
-                return new RelativeHumidityInfo(nameof(RelativeHumidity), DefaultBaseUnit, GetDefaultMappings(), new RelativeHumidity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RelativeHumidityInfo"/> class with the default settings for the RelativeHumidity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RelativeHumidityInfo"/> class with the default settings.
             /// </returns>
-            public static RelativeHumidityInfo CreateDefault(Func<IEnumerable<UnitDefinition<RelativeHumidityUnit>>, IEnumerable<IUnitDefinition<RelativeHumidityUnit>>> customizeUnits)
+            private static QuantityInfo<RelativeHumidity, RelativeHumidityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RelativeHumidityUnit>>, IEnumerable<IUnitDefinition<RelativeHumidityUnit>>>? customizeUnits = null)
             {
-                return new RelativeHumidityInfo(nameof(RelativeHumidity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RelativeHumidity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RelativeHumidityUnit>> unitMappings = RelativeHumidityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RelativeHumidity, RelativeHumidityUnit>(
+                    name: nameof(RelativeHumidity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RelativeHumidity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RelativeHumidity"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of RelativeHumidity is Percent. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RelativeHumidityUnit DefaultBaseUnit { get; } = RelativeHumidityUnit.Percent;
+            private static RelativeHumidityUnit DefaultBaseUnit { get; } = RelativeHumidityUnit.Percent;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RelativeHumidity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RelativeHumidity", typeof(RelativeHumidity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RelativeHumidityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RelativeHumidityUnit}"/> representing the default unit mappings for RelativeHumidity.</returns>
-            public static IEnumerable<UnitDefinition<RelativeHumidityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RelativeHumidityUnit>> GetDefaultMappings()
             {
                 yield return new (RelativeHumidityUnit.Percent, "Percent", "Percent", BaseUnits.Undefined);
             }
@@ -122,7 +122,7 @@ namespace UnitsNet
 
         static RelativeHumidity()
         {
-            Info = RelativeHumidityInfo.CreateDefault();
+            Info = RelativeHumidityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

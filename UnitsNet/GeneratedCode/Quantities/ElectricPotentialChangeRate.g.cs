@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricPotentialChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricPotentialChangeRateInfo: QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>
+        private static class ElectricPotentialChangeRateInfo
         {
-            /// <inheritdoc />
-            public ElectricPotentialChangeRateInfo(string name, ElectricPotentialChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>> unitMappings, ElectricPotentialChangeRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricPotentialChangeRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricPotentialChangeRateInfo(string name, ElectricPotentialChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>> unitMappings, ElectricPotentialChangeRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricPotentialChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricPotentialChangeRate", typeof(ElectricPotentialChangeRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricPotentialChangeRateInfo"/> class with the default settings for the ElectricPotentialChangeRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricPotentialChangeRateInfo"/> class with the default settings.</returns>
-            public static ElectricPotentialChangeRateInfo CreateDefault()
-            {
-                return new ElectricPotentialChangeRateInfo(nameof(ElectricPotentialChangeRate), DefaultBaseUnit, GetDefaultMappings(), new ElectricPotentialChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricPotentialChangeRateInfo"/> class with the default settings for the ElectricPotentialChangeRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricPotentialChangeRateInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricPotentialChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricPotentialChangeRateUnit>>, IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>>, IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>>>? customizeUnits = null)
             {
-                return new ElectricPotentialChangeRateInfo(nameof(ElectricPotentialChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricPotentialChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>> unitMappings = ElectricPotentialChangeRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(
+                    name: nameof(ElectricPotentialChangeRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricPotentialChangeRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricPotentialChangeRate"/> is [T^-4][L^2][M][I^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricPotentialChangeRate is VoltPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricPotentialChangeRateUnit DefaultBaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
+            private static ElectricPotentialChangeRateUnit DefaultBaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricPotentialChangeRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricPotentialChangeRate", typeof(ElectricPotentialChangeRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricPotentialChangeRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricPotentialChangeRateUnit}"/> representing the default unit mappings for ElectricPotentialChangeRate.</returns>
-            public static IEnumerable<UnitDefinition<ElectricPotentialChangeRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricPotentialChangeRateUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltPerHour", "KilovoltsPerHour", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere));
                 yield return new (ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltPerMicrosecond", "KilovoltsPerMicrosecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Milliampere));
@@ -141,7 +141,7 @@ namespace UnitsNet
 
         static ElectricPotentialChangeRate()
         {
-            Info = ElectricPotentialChangeRateInfo.CreateDefault();
+            Info = ElectricPotentialChangeRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

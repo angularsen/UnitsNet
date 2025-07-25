@@ -68,59 +68,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Luminance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LuminanceInfo: QuantityInfo<Luminance, LuminanceUnit>
+        private static class LuminanceInfo
         {
-            /// <inheritdoc />
-            public LuminanceInfo(string name, LuminanceUnit baseUnit, IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings, Luminance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Luminance, LuminanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Luminance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LuminanceInfo(string name, LuminanceUnit baseUnit, IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings, Luminance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Luminance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Luminance", typeof(Luminance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LuminanceInfo"/> class with the default settings for the Luminance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LuminanceInfo"/> class with the default settings.</returns>
-            public static LuminanceInfo CreateDefault()
-            {
-                return new LuminanceInfo(nameof(Luminance), DefaultBaseUnit, GetDefaultMappings(), new Luminance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LuminanceInfo"/> class with the default settings for the Luminance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LuminanceInfo"/> class with the default settings.
             /// </returns>
-            public static LuminanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminanceUnit>>, IEnumerable<IUnitDefinition<LuminanceUnit>>> customizeUnits)
+            private static QuantityInfo<Luminance, LuminanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LuminanceUnit>>, IEnumerable<IUnitDefinition<LuminanceUnit>>>? customizeUnits = null)
             {
-                return new LuminanceInfo(nameof(Luminance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Luminance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings = LuminanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Luminance, LuminanceUnit>(
+                    name: nameof(Luminance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Luminance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Luminance"/> is [L^-2][J].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
             /// <summary>
             ///     The default base unit of Luminance is CandelaPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LuminanceUnit DefaultBaseUnit { get; } = LuminanceUnit.CandelaPerSquareMeter;
+            private static LuminanceUnit DefaultBaseUnit { get; } = LuminanceUnit.CandelaPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Luminance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Luminance", typeof(Luminance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LuminanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminanceUnit}"/> representing the default unit mappings for Luminance.</returns>
-            public static IEnumerable<UnitDefinition<LuminanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LuminanceUnit>> GetDefaultMappings()
             {
                 yield return new (LuminanceUnit.CandelaPerSquareFoot, "CandelaPerSquareFoot", "CandelasPerSquareFoot", BaseUnits.Undefined);
                 yield return new (LuminanceUnit.CandelaPerSquareInch, "CandelaPerSquareInch", "CandelasPerSquareInch", BaseUnits.Undefined);
@@ -137,7 +137,7 @@ namespace UnitsNet
 
         static Luminance()
         {
-            Info = LuminanceInfo.CreateDefault();
+            Info = LuminanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Compressibility"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class CompressibilityInfo: QuantityInfo<Compressibility, CompressibilityUnit>
+        private static class CompressibilityInfo
         {
-            /// <inheritdoc />
-            public CompressibilityInfo(string name, CompressibilityUnit baseUnit, IEnumerable<IUnitDefinition<CompressibilityUnit>> unitMappings, Compressibility zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Compressibility, CompressibilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Compressibility.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public CompressibilityInfo(string name, CompressibilityUnit baseUnit, IEnumerable<IUnitDefinition<CompressibilityUnit>> unitMappings, Compressibility zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Compressibility.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Compressibility", typeof(Compressibility).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="CompressibilityInfo"/> class with the default settings for the Compressibility quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="CompressibilityInfo"/> class with the default settings.</returns>
-            public static CompressibilityInfo CreateDefault()
-            {
-                return new CompressibilityInfo(nameof(Compressibility), DefaultBaseUnit, GetDefaultMappings(), new Compressibility(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="CompressibilityInfo"/> class with the default settings for the Compressibility quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="CompressibilityInfo"/> class with the default settings.
             /// </returns>
-            public static CompressibilityInfo CreateDefault(Func<IEnumerable<UnitDefinition<CompressibilityUnit>>, IEnumerable<IUnitDefinition<CompressibilityUnit>>> customizeUnits)
+            private static QuantityInfo<Compressibility, CompressibilityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<CompressibilityUnit>>, IEnumerable<IUnitDefinition<CompressibilityUnit>>>? customizeUnits = null)
             {
-                return new CompressibilityInfo(nameof(Compressibility), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Compressibility(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<CompressibilityUnit>> unitMappings = CompressibilityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Compressibility, CompressibilityUnit>(
+                    name: nameof(Compressibility),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Compressibility(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Compressibility"/> is [T^2][L][M^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, -1, 2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, -1, 2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Compressibility is InversePascal. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static CompressibilityUnit DefaultBaseUnit { get; } = CompressibilityUnit.InversePascal;
+            private static CompressibilityUnit DefaultBaseUnit { get; } = CompressibilityUnit.InversePascal;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Compressibility quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Compressibility", typeof(Compressibility).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="CompressibilityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{CompressibilityUnit}"/> representing the default unit mappings for Compressibility.</returns>
-            public static IEnumerable<UnitDefinition<CompressibilityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<CompressibilityUnit>> GetDefaultMappings()
             {
                 yield return new (CompressibilityUnit.InverseAtmosphere, "InverseAtmosphere", "InverseAtmospheres", BaseUnits.Undefined);
                 yield return new (CompressibilityUnit.InverseBar, "InverseBar", "InverseBars", BaseUnits.Undefined);
@@ -128,7 +128,7 @@ namespace UnitsNet
 
         static Compressibility()
         {
-            Info = CompressibilityInfo.CreateDefault();
+            Info = CompressibilityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

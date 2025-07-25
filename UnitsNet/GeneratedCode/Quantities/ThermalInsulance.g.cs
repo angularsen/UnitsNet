@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ThermalInsulance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ThermalInsulanceInfo: QuantityInfo<ThermalInsulance, ThermalInsulanceUnit>
+        private static class ThermalInsulanceInfo
         {
-            /// <inheritdoc />
-            public ThermalInsulanceInfo(string name, ThermalInsulanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings, ThermalInsulance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ThermalInsulance, ThermalInsulanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ThermalInsulance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ThermalInsulanceInfo(string name, ThermalInsulanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings, ThermalInsulance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ThermalInsulance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ThermalInsulance", typeof(ThermalInsulance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings for the ThermalInsulance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings.</returns>
-            public static ThermalInsulanceInfo CreateDefault()
-            {
-                return new ThermalInsulanceInfo(nameof(ThermalInsulance), DefaultBaseUnit, GetDefaultMappings(), new ThermalInsulance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings for the ThermalInsulance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings.
             /// </returns>
-            public static ThermalInsulanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ThermalInsulanceUnit>>, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>>> customizeUnits)
+            private static QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ThermalInsulanceUnit>>, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>>>? customizeUnits = null)
             {
-                return new ThermalInsulanceInfo(nameof(ThermalInsulance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ThermalInsulance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings = ThermalInsulanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ThermalInsulance, ThermalInsulanceUnit>(
+                    name: nameof(ThermalInsulance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ThermalInsulance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ThermalInsulance"/> is [T^3][M^-1][Θ].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
 
             /// <summary>
             ///     The default base unit of ThermalInsulance is SquareMeterKelvinPerKilowatt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ThermalInsulanceUnit DefaultBaseUnit { get; } = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
+            private static ThermalInsulanceUnit DefaultBaseUnit { get; } = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ThermalInsulance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ThermalInsulance", typeof(ThermalInsulance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ThermalInsulanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalInsulanceUnit}"/> representing the default unit mappings for ThermalInsulance.</returns>
-            public static IEnumerable<UnitDefinition<ThermalInsulanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ThermalInsulanceUnit>> GetDefaultMappings()
             {
                 yield return new (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreeFahrenheitPerBtu", "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined);
                 yield return new (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreeCelsiusPerKilocalorie", "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined);
@@ -128,7 +128,7 @@ namespace UnitsNet
 
         static ThermalInsulance()
         {
-            Info = ThermalInsulanceInfo.CreateDefault();
+            Info = ThermalInsulanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

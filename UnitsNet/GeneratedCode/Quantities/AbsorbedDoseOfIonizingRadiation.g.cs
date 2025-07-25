@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="AbsorbedDoseOfIonizingRadiation"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AbsorbedDoseOfIonizingRadiationInfo: QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>
+        private static class AbsorbedDoseOfIonizingRadiationInfo
         {
-            /// <inheritdoc />
-            public AbsorbedDoseOfIonizingRadiationInfo(string name, AbsorbedDoseOfIonizingRadiationUnit baseUnit, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings, AbsorbedDoseOfIonizingRadiation zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AbsorbedDoseOfIonizingRadiation.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AbsorbedDoseOfIonizingRadiationInfo(string name, AbsorbedDoseOfIonizingRadiationUnit baseUnit, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings, AbsorbedDoseOfIonizingRadiation zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, AbsorbedDoseOfIonizingRadiation.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AbsorbedDoseOfIonizingRadiation", typeof(AbsorbedDoseOfIonizingRadiation).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings for the AbsorbedDoseOfIonizingRadiation quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings.</returns>
-            public static AbsorbedDoseOfIonizingRadiationInfo CreateDefault()
-            {
-                return new AbsorbedDoseOfIonizingRadiationInfo(nameof(AbsorbedDoseOfIonizingRadiation), DefaultBaseUnit, GetDefaultMappings(), new AbsorbedDoseOfIonizingRadiation(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings for the AbsorbedDoseOfIonizingRadiation quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings.
             /// </returns>
-            public static AbsorbedDoseOfIonizingRadiationInfo CreateDefault(Func<IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>> customizeUnits)
+            private static QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>>? customizeUnits = null)
             {
-                return new AbsorbedDoseOfIonizingRadiationInfo(nameof(AbsorbedDoseOfIonizingRadiation), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AbsorbedDoseOfIonizingRadiation(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings = AbsorbedDoseOfIonizingRadiationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>(
+                    name: nameof(AbsorbedDoseOfIonizingRadiation),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new AbsorbedDoseOfIonizingRadiation(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="AbsorbedDoseOfIonizingRadiation"/> is [T^-2][L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of AbsorbedDoseOfIonizingRadiation is Gray. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AbsorbedDoseOfIonizingRadiationUnit DefaultBaseUnit { get; } = AbsorbedDoseOfIonizingRadiationUnit.Gray;
+            private static AbsorbedDoseOfIonizingRadiationUnit DefaultBaseUnit { get; } = AbsorbedDoseOfIonizingRadiationUnit.Gray;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the AbsorbedDoseOfIonizingRadiation quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.AbsorbedDoseOfIonizingRadiation", typeof(AbsorbedDoseOfIonizingRadiation).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AbsorbedDoseOfIonizingRadiationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AbsorbedDoseOfIonizingRadiationUnit}"/> representing the default unit mappings for AbsorbedDoseOfIonizingRadiation.</returns>
-            public static IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> GetDefaultMappings()
             {
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigray", "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtogray", "Femtograys", BaseUnits.Undefined);
@@ -140,7 +140,7 @@ namespace UnitsNet
 
         static AbsorbedDoseOfIonizingRadiation()
         {
-            Info = AbsorbedDoseOfIonizingRadiationInfo.CreateDefault();
+            Info = AbsorbedDoseOfIonizingRadiationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

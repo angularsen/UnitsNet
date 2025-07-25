@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Irradiance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class IrradianceInfo: QuantityInfo<Irradiance, IrradianceUnit>
+        private static class IrradianceInfo
         {
-            /// <inheritdoc />
-            public IrradianceInfo(string name, IrradianceUnit baseUnit, IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings, Irradiance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Irradiance, IrradianceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Irradiance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public IrradianceInfo(string name, IrradianceUnit baseUnit, IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings, Irradiance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Irradiance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Irradiance", typeof(Irradiance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="IrradianceInfo"/> class with the default settings for the Irradiance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="IrradianceInfo"/> class with the default settings.</returns>
-            public static IrradianceInfo CreateDefault()
-            {
-                return new IrradianceInfo(nameof(Irradiance), DefaultBaseUnit, GetDefaultMappings(), new Irradiance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="IrradianceInfo"/> class with the default settings for the Irradiance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="IrradianceInfo"/> class with the default settings.
             /// </returns>
-            public static IrradianceInfo CreateDefault(Func<IEnumerable<UnitDefinition<IrradianceUnit>>, IEnumerable<IUnitDefinition<IrradianceUnit>>> customizeUnits)
+            private static QuantityInfo<Irradiance, IrradianceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<IrradianceUnit>>, IEnumerable<IUnitDefinition<IrradianceUnit>>>? customizeUnits = null)
             {
-                return new IrradianceInfo(nameof(Irradiance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Irradiance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings = IrradianceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Irradiance, IrradianceUnit>(
+                    name: nameof(Irradiance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Irradiance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Irradiance"/> is [T^-3][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Irradiance is WattPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static IrradianceUnit DefaultBaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+            private static IrradianceUnit DefaultBaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Irradiance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Irradiance", typeof(Irradiance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="IrradianceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IrradianceUnit}"/> representing the default unit mappings for Irradiance.</returns>
-            public static IEnumerable<UnitDefinition<IrradianceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<IrradianceUnit>> GetDefaultMappings()
             {
                 yield return new (IrradianceUnit.KilowattPerSquareCentimeter, "KilowattPerSquareCentimeter", "KilowattsPerSquareCentimeter", BaseUnits.Undefined);
                 yield return new (IrradianceUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined);
@@ -135,7 +135,7 @@ namespace UnitsNet
 
         static Irradiance()
         {
-            Info = IrradianceInfo.CreateDefault();
+            Info = IrradianceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

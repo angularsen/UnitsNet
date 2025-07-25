@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Impulse"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ImpulseInfo: QuantityInfo<Impulse, ImpulseUnit>
+        private static class ImpulseInfo
         {
-            /// <inheritdoc />
-            public ImpulseInfo(string name, ImpulseUnit baseUnit, IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings, Impulse zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Impulse, ImpulseUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Impulse.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ImpulseInfo(string name, ImpulseUnit baseUnit, IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings, Impulse zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Impulse.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Impulse", typeof(Impulse).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ImpulseInfo"/> class with the default settings for the Impulse quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ImpulseInfo"/> class with the default settings.</returns>
-            public static ImpulseInfo CreateDefault()
-            {
-                return new ImpulseInfo(nameof(Impulse), DefaultBaseUnit, GetDefaultMappings(), new Impulse(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ImpulseInfo"/> class with the default settings for the Impulse quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ImpulseInfo"/> class with the default settings.
             /// </returns>
-            public static ImpulseInfo CreateDefault(Func<IEnumerable<UnitDefinition<ImpulseUnit>>, IEnumerable<IUnitDefinition<ImpulseUnit>>> customizeUnits)
+            private static QuantityInfo<Impulse, ImpulseUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ImpulseUnit>>, IEnumerable<IUnitDefinition<ImpulseUnit>>>? customizeUnits = null)
             {
-                return new ImpulseInfo(nameof(Impulse), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Impulse(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings = ImpulseInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Impulse, ImpulseUnit>(
+                    name: nameof(Impulse),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Impulse(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Impulse"/> is [T^-1][L][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Impulse is NewtonSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ImpulseUnit DefaultBaseUnit { get; } = ImpulseUnit.NewtonSecond;
+            private static ImpulseUnit DefaultBaseUnit { get; } = ImpulseUnit.NewtonSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Impulse quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Impulse", typeof(Impulse).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ImpulseUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ImpulseUnit}"/> representing the default unit mappings for Impulse.</returns>
-            public static IEnumerable<UnitDefinition<ImpulseUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ImpulseUnit>> GetDefaultMappings()
             {
                 yield return new (ImpulseUnit.CentinewtonSecond, "CentinewtonSecond", "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (ImpulseUnit.DecanewtonSecond, "DecanewtonSecond", "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
@@ -134,7 +134,7 @@ namespace UnitsNet
 
         static Impulse()
         {
-            Info = ImpulseInfo.CreateDefault();
+            Info = ImpulseInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

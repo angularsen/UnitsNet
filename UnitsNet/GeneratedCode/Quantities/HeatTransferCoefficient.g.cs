@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="HeatTransferCoefficient"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class HeatTransferCoefficientInfo: QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit>
+        private static class HeatTransferCoefficientInfo
         {
-            /// <inheritdoc />
-            public HeatTransferCoefficientInfo(string name, HeatTransferCoefficientUnit baseUnit, IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>> unitMappings, HeatTransferCoefficient zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<HeatTransferCoefficient, HeatTransferCoefficientUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, HeatTransferCoefficient.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public HeatTransferCoefficientInfo(string name, HeatTransferCoefficientUnit baseUnit, IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>> unitMappings, HeatTransferCoefficient zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, HeatTransferCoefficient.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.HeatTransferCoefficient", typeof(HeatTransferCoefficient).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="HeatTransferCoefficientInfo"/> class with the default settings for the HeatTransferCoefficient quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="HeatTransferCoefficientInfo"/> class with the default settings.</returns>
-            public static HeatTransferCoefficientInfo CreateDefault()
-            {
-                return new HeatTransferCoefficientInfo(nameof(HeatTransferCoefficient), DefaultBaseUnit, GetDefaultMappings(), new HeatTransferCoefficient(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="HeatTransferCoefficientInfo"/> class with the default settings for the HeatTransferCoefficient quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="HeatTransferCoefficientInfo"/> class with the default settings.
             /// </returns>
-            public static HeatTransferCoefficientInfo CreateDefault(Func<IEnumerable<UnitDefinition<HeatTransferCoefficientUnit>>, IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>>> customizeUnits)
+            private static QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>>, IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>>>? customizeUnits = null)
             {
-                return new HeatTransferCoefficientInfo(nameof(HeatTransferCoefficient), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new HeatTransferCoefficient(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>> unitMappings = HeatTransferCoefficientInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit>(
+                    name: nameof(HeatTransferCoefficient),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new HeatTransferCoefficient(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="HeatTransferCoefficient"/> is [T^-3][M][Θ^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
 
             /// <summary>
             ///     The default base unit of HeatTransferCoefficient is WattPerSquareMeterKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static HeatTransferCoefficientUnit DefaultBaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+            private static HeatTransferCoefficientUnit DefaultBaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the HeatTransferCoefficient quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.HeatTransferCoefficient", typeof(HeatTransferCoefficient).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="HeatTransferCoefficientUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{HeatTransferCoefficientUnit}"/> representing the default unit mappings for HeatTransferCoefficient.</returns>
-            public static IEnumerable<UnitDefinition<HeatTransferCoefficientUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<HeatTransferCoefficientUnit>> GetDefaultMappings()
             {
                 yield return new (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtuPerHourSquareFootDegreeFahrenheit", "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined);
                 yield return new (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriePerHourSquareMeterDegreeCelsius", "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined);
@@ -126,7 +126,7 @@ namespace UnitsNet
 
         static HeatTransferCoefficient()
         {
-            Info = HeatTransferCoefficientInfo.CreateDefault();
+            Info = HeatTransferCoefficientInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MagneticField"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MagneticFieldInfo: QuantityInfo<MagneticField, MagneticFieldUnit>
+        private static class MagneticFieldInfo
         {
-            /// <inheritdoc />
-            public MagneticFieldInfo(string name, MagneticFieldUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFieldUnit>> unitMappings, MagneticField zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MagneticField, MagneticFieldUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MagneticField.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MagneticFieldInfo(string name, MagneticFieldUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFieldUnit>> unitMappings, MagneticField zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MagneticField.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MagneticField", typeof(MagneticField).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MagneticFieldInfo"/> class with the default settings for the MagneticField quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MagneticFieldInfo"/> class with the default settings.</returns>
-            public static MagneticFieldInfo CreateDefault()
-            {
-                return new MagneticFieldInfo(nameof(MagneticField), DefaultBaseUnit, GetDefaultMappings(), new MagneticField(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MagneticFieldInfo"/> class with the default settings for the MagneticField quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MagneticFieldInfo"/> class with the default settings.
             /// </returns>
-            public static MagneticFieldInfo CreateDefault(Func<IEnumerable<UnitDefinition<MagneticFieldUnit>>, IEnumerable<IUnitDefinition<MagneticFieldUnit>>> customizeUnits)
+            private static QuantityInfo<MagneticField, MagneticFieldUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MagneticFieldUnit>>, IEnumerable<IUnitDefinition<MagneticFieldUnit>>>? customizeUnits = null)
             {
-                return new MagneticFieldInfo(nameof(MagneticField), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MagneticField(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MagneticFieldUnit>> unitMappings = MagneticFieldInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MagneticField, MagneticFieldUnit>(
+                    name: nameof(MagneticField),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MagneticField(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MagneticField"/> is [T^-2][M][I^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MagneticField is Tesla. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MagneticFieldUnit DefaultBaseUnit { get; } = MagneticFieldUnit.Tesla;
+            private static MagneticFieldUnit DefaultBaseUnit { get; } = MagneticFieldUnit.Tesla;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MagneticField quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MagneticField", typeof(MagneticField).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MagneticFieldUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagneticFieldUnit}"/> representing the default unit mappings for MagneticField.</returns>
-            public static IEnumerable<UnitDefinition<MagneticFieldUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MagneticFieldUnit>> GetDefaultMappings()
             {
                 yield return new (MagneticFieldUnit.Gauss, "Gauss", "Gausses", BaseUnits.Undefined);
                 yield return new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere));
@@ -130,7 +130,7 @@ namespace UnitsNet
 
         static MagneticField()
         {
-            Info = MagneticFieldInfo.CreateDefault();
+            Info = MagneticFieldInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricReactiveEnergy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricReactiveEnergyInfo: QuantityInfo<ElectricReactiveEnergy, ElectricReactiveEnergyUnit>
+        private static class ElectricReactiveEnergyInfo
         {
-            /// <inheritdoc />
-            public ElectricReactiveEnergyInfo(string name, ElectricReactiveEnergyUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>> unitMappings, ElectricReactiveEnergy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricReactiveEnergy, ElectricReactiveEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricReactiveEnergy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricReactiveEnergyInfo(string name, ElectricReactiveEnergyUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>> unitMappings, ElectricReactiveEnergy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricReactiveEnergy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricReactiveEnergy", typeof(ElectricReactiveEnergy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricReactiveEnergyInfo"/> class with the default settings for the ElectricReactiveEnergy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricReactiveEnergyInfo"/> class with the default settings.</returns>
-            public static ElectricReactiveEnergyInfo CreateDefault()
-            {
-                return new ElectricReactiveEnergyInfo(nameof(ElectricReactiveEnergy), DefaultBaseUnit, GetDefaultMappings(), new ElectricReactiveEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricReactiveEnergyInfo"/> class with the default settings for the ElectricReactiveEnergy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricReactiveEnergyInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricReactiveEnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricReactiveEnergyUnit>>, IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricReactiveEnergy, ElectricReactiveEnergyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>>, IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>>>? customizeUnits = null)
             {
-                return new ElectricReactiveEnergyInfo(nameof(ElectricReactiveEnergy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricReactiveEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricReactiveEnergyUnit>> unitMappings = ElectricReactiveEnergyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricReactiveEnergy, ElectricReactiveEnergyUnit>(
+                    name: nameof(ElectricReactiveEnergy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricReactiveEnergy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricReactiveEnergy"/> is [T^-2][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricReactiveEnergy is VoltampereReactiveHour. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricReactiveEnergyUnit DefaultBaseUnit { get; } = ElectricReactiveEnergyUnit.VoltampereReactiveHour;
+            private static ElectricReactiveEnergyUnit DefaultBaseUnit { get; } = ElectricReactiveEnergyUnit.VoltampereReactiveHour;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricReactiveEnergy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricReactiveEnergy", typeof(ElectricReactiveEnergy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricReactiveEnergyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactiveEnergyUnit}"/> representing the default unit mappings for ElectricReactiveEnergy.</returns>
-            public static IEnumerable<UnitDefinition<ElectricReactiveEnergyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricReactiveEnergyUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHour", "KilovoltampereReactiveHours", BaseUnits.Undefined);
                 yield return new (ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHour", "MegavoltampereReactiveHours", BaseUnits.Undefined);
@@ -124,7 +124,7 @@ namespace UnitsNet
 
         static ElectricReactiveEnergy()
         {
-            Info = ElectricReactiveEnergyInfo.CreateDefault();
+            Info = ElectricReactiveEnergyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

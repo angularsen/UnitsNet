@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricApparentEnergy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricApparentEnergyInfo: QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit>
+        private static class ElectricApparentEnergyInfo
         {
-            /// <inheritdoc />
-            public ElectricApparentEnergyInfo(string name, ElectricApparentEnergyUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>> unitMappings, ElectricApparentEnergy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricApparentEnergy, ElectricApparentEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricApparentEnergy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricApparentEnergyInfo(string name, ElectricApparentEnergyUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>> unitMappings, ElectricApparentEnergy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricApparentEnergy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricApparentEnergy", typeof(ElectricApparentEnergy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricApparentEnergyInfo"/> class with the default settings for the ElectricApparentEnergy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricApparentEnergyInfo"/> class with the default settings.</returns>
-            public static ElectricApparentEnergyInfo CreateDefault()
-            {
-                return new ElectricApparentEnergyInfo(nameof(ElectricApparentEnergy), DefaultBaseUnit, GetDefaultMappings(), new ElectricApparentEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricApparentEnergyInfo"/> class with the default settings for the ElectricApparentEnergy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricApparentEnergyInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricApparentEnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>>, IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>>, IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>>>? customizeUnits = null)
             {
-                return new ElectricApparentEnergyInfo(nameof(ElectricApparentEnergy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricApparentEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>> unitMappings = ElectricApparentEnergyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit>(
+                    name: nameof(ElectricApparentEnergy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricApparentEnergy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricApparentEnergy"/> is [T^-2][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricApparentEnergy is VoltampereHour. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricApparentEnergyUnit DefaultBaseUnit { get; } = ElectricApparentEnergyUnit.VoltampereHour;
+            private static ElectricApparentEnergyUnit DefaultBaseUnit { get; } = ElectricApparentEnergyUnit.VoltampereHour;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricApparentEnergy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricApparentEnergy", typeof(ElectricApparentEnergy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricApparentEnergyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricApparentEnergyUnit}"/> representing the default unit mappings for ElectricApparentEnergy.</returns>
-            public static IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHour", "KilovoltampereHours", BaseUnits.Undefined);
                 yield return new (ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHour", "MegavoltampereHours", BaseUnits.Undefined);
@@ -124,7 +124,7 @@ namespace UnitsNet
 
         static ElectricApparentEnergy()
         {
-            Info = ElectricApparentEnergyInfo.CreateDefault();
+            Info = ElectricApparentEnergyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

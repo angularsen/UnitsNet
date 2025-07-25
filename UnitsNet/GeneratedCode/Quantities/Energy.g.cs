@@ -77,59 +77,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Energy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class EnergyInfo: QuantityInfo<Energy, EnergyUnit>
+        private static class EnergyInfo
         {
-            /// <inheritdoc />
-            public EnergyInfo(string name, EnergyUnit baseUnit, IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings, Energy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Energy, EnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Energy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public EnergyInfo(string name, EnergyUnit baseUnit, IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings, Energy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Energy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Energy", typeof(Energy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="EnergyInfo"/> class with the default settings for the Energy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="EnergyInfo"/> class with the default settings.</returns>
-            public static EnergyInfo CreateDefault()
-            {
-                return new EnergyInfo(nameof(Energy), DefaultBaseUnit, GetDefaultMappings(), new Energy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="EnergyInfo"/> class with the default settings for the Energy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="EnergyInfo"/> class with the default settings.
             /// </returns>
-            public static EnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<EnergyUnit>>, IEnumerable<IUnitDefinition<EnergyUnit>>> customizeUnits)
+            private static QuantityInfo<Energy, EnergyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<EnergyUnit>>, IEnumerable<IUnitDefinition<EnergyUnit>>>? customizeUnits = null)
             {
-                return new EnergyInfo(nameof(Energy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Energy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings = EnergyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Energy, EnergyUnit>(
+                    name: nameof(Energy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Energy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Energy"/> is [T^-2][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Energy is Joule. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static EnergyUnit DefaultBaseUnit { get; } = EnergyUnit.Joule;
+            private static EnergyUnit DefaultBaseUnit { get; } = EnergyUnit.Joule;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Energy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Energy", typeof(Energy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="EnergyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyUnit}"/> representing the default unit mappings for Energy.</returns>
-            public static IEnumerable<UnitDefinition<EnergyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<EnergyUnit>> GetDefaultMappings()
             {
                 yield return new (EnergyUnit.BritishThermalUnit, "BritishThermalUnit", "BritishThermalUnits", BaseUnits.Undefined);
                 yield return new (EnergyUnit.Calorie, "Calorie", "Calories", BaseUnits.Undefined);
@@ -176,7 +176,7 @@ namespace UnitsNet
 
         static Energy()
         {
-            Info = EnergyInfo.CreateDefault();
+            Info = EnergyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

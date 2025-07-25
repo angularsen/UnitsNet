@@ -74,59 +74,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MassFlow"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassFlowInfo: QuantityInfo<MassFlow, MassFlowUnit>
+        private static class MassFlowInfo
         {
-            /// <inheritdoc />
-            public MassFlowInfo(string name, MassFlowUnit baseUnit, IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings, MassFlow zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MassFlow, MassFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassFlow.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassFlowInfo(string name, MassFlowUnit baseUnit, IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings, MassFlow zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFlow.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFlow", typeof(MassFlow).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassFlowInfo"/> class with the default settings for the MassFlow quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassFlowInfo"/> class with the default settings.</returns>
-            public static MassFlowInfo CreateDefault()
-            {
-                return new MassFlowInfo(nameof(MassFlow), DefaultBaseUnit, GetDefaultMappings(), new MassFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassFlowInfo"/> class with the default settings for the MassFlow quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassFlowInfo"/> class with the default settings.
             /// </returns>
-            public static MassFlowInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFlowUnit>>, IEnumerable<IUnitDefinition<MassFlowUnit>>> customizeUnits)
+            private static QuantityInfo<MassFlow, MassFlowUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassFlowUnit>>, IEnumerable<IUnitDefinition<MassFlowUnit>>>? customizeUnits = null)
             {
-                return new MassFlowInfo(nameof(MassFlow), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings = MassFlowInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MassFlow, MassFlowUnit>(
+                    name: nameof(MassFlow),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MassFlow(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MassFlow"/> is [T^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MassFlow is GramPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassFlowUnit DefaultBaseUnit { get; } = MassFlowUnit.GramPerSecond;
+            private static MassFlowUnit DefaultBaseUnit { get; } = MassFlowUnit.GramPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MassFlow quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MassFlow", typeof(MassFlow).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassFlowUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFlowUnit}"/> representing the default unit mappings for MassFlow.</returns>
-            public static IEnumerable<UnitDefinition<MassFlowUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassFlowUnit>> GetDefaultMappings()
             {
                 yield return new (MassFlowUnit.CentigramPerDay, "CentigramPerDay", "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day));
                 yield return new (MassFlowUnit.CentigramPerSecond, "CentigramPerSecond", "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second));
@@ -166,7 +166,7 @@ namespace UnitsNet
 
         static MassFlow()
         {
-            Info = MassFlowInfo.CreateDefault();
+            Info = MassFlowInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

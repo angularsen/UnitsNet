@@ -77,59 +77,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Volume"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VolumeInfo: QuantityInfo<Volume, VolumeUnit>
+        private static class VolumeInfo
         {
-            /// <inheritdoc />
-            public VolumeInfo(string name, VolumeUnit baseUnit, IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings, Volume zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Volume, VolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Volume.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VolumeInfo(string name, VolumeUnit baseUnit, IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings, Volume zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Volume.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Volume", typeof(Volume).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VolumeInfo"/> class with the default settings for the Volume quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VolumeInfo"/> class with the default settings.</returns>
-            public static VolumeInfo CreateDefault()
-            {
-                return new VolumeInfo(nameof(Volume), DefaultBaseUnit, GetDefaultMappings(), new Volume(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VolumeInfo"/> class with the default settings for the Volume quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VolumeInfo"/> class with the default settings.
             /// </returns>
-            public static VolumeInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumeUnit>>, IEnumerable<IUnitDefinition<VolumeUnit>>> customizeUnits)
+            private static QuantityInfo<Volume, VolumeUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VolumeUnit>>, IEnumerable<IUnitDefinition<VolumeUnit>>>? customizeUnits = null)
             {
-                return new VolumeInfo(nameof(Volume), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Volume(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings = VolumeInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Volume, VolumeUnit>(
+                    name: nameof(Volume),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Volume(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Volume"/> is [L^3].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Volume is CubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VolumeUnit DefaultBaseUnit { get; } = VolumeUnit.CubicMeter;
+            private static VolumeUnit DefaultBaseUnit { get; } = VolumeUnit.CubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Volume quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Volume", typeof(Volume).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VolumeUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeUnit}"/> representing the default unit mappings for Volume.</returns>
-            public static IEnumerable<UnitDefinition<VolumeUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VolumeUnit>> GetDefaultMappings()
             {
                 yield return new (VolumeUnit.AcreFoot, "AcreFoot", "AcreFeet", BaseUnits.Undefined);
                 yield return new (VolumeUnit.AuTablespoon, "AuTablespoon", "AuTablespoons", BaseUnits.Undefined);
@@ -190,7 +190,7 @@ namespace UnitsNet
 
         static Volume()
         {
-            Info = VolumeInfo.CreateDefault();
+            Info = VolumeInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

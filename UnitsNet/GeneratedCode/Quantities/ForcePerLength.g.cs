@@ -73,59 +73,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ForcePerLength"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ForcePerLengthInfo: QuantityInfo<ForcePerLength, ForcePerLengthUnit>
+        private static class ForcePerLengthInfo
         {
-            /// <inheritdoc />
-            public ForcePerLengthInfo(string name, ForcePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings, ForcePerLength zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ForcePerLength, ForcePerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ForcePerLength.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ForcePerLengthInfo(string name, ForcePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings, ForcePerLength zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ForcePerLength.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ForcePerLength", typeof(ForcePerLength).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings for the ForcePerLength quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings.</returns>
-            public static ForcePerLengthInfo CreateDefault()
-            {
-                return new ForcePerLengthInfo(nameof(ForcePerLength), DefaultBaseUnit, GetDefaultMappings(), new ForcePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings for the ForcePerLength quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings.
             /// </returns>
-            public static ForcePerLengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<ForcePerLengthUnit>>, IEnumerable<IUnitDefinition<ForcePerLengthUnit>>> customizeUnits)
+            private static QuantityInfo<ForcePerLength, ForcePerLengthUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ForcePerLengthUnit>>, IEnumerable<IUnitDefinition<ForcePerLengthUnit>>>? customizeUnits = null)
             {
-                return new ForcePerLengthInfo(nameof(ForcePerLength), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ForcePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings = ForcePerLengthInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ForcePerLength, ForcePerLengthUnit>(
+                    name: nameof(ForcePerLength),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ForcePerLength(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ForcePerLength"/> is [T^-2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ForcePerLength is NewtonPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ForcePerLengthUnit DefaultBaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+            private static ForcePerLengthUnit DefaultBaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ForcePerLength quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ForcePerLength", typeof(ForcePerLength).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ForcePerLengthUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForcePerLengthUnit}"/> representing the default unit mappings for ForcePerLength.</returns>
-            public static IEnumerable<UnitDefinition<ForcePerLengthUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ForcePerLengthUnit>> GetDefaultMappings()
             {
                 yield return new (ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonPerCentimeter", "CentinewtonsPerCentimeter", BaseUnits.Undefined);
                 yield return new (ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonPerMeter", "CentinewtonsPerMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
@@ -170,7 +170,7 @@ namespace UnitsNet
 
         static ForcePerLength()
         {
-            Info = ForcePerLengthInfo.CreateDefault();
+            Info = ForcePerLengthInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

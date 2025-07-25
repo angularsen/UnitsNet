@@ -68,59 +68,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MassFraction"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassFractionInfo: QuantityInfo<MassFraction, MassFractionUnit>
+        private static class MassFractionInfo
         {
-            /// <inheritdoc />
-            public MassFractionInfo(string name, MassFractionUnit baseUnit, IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings, MassFraction zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MassFraction, MassFractionUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassFraction.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassFractionInfo(string name, MassFractionUnit baseUnit, IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings, MassFraction zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFraction.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFraction", typeof(MassFraction).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassFractionInfo"/> class with the default settings for the MassFraction quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassFractionInfo"/> class with the default settings.</returns>
-            public static MassFractionInfo CreateDefault()
-            {
-                return new MassFractionInfo(nameof(MassFraction), DefaultBaseUnit, GetDefaultMappings(), new MassFraction(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassFractionInfo"/> class with the default settings for the MassFraction quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassFractionInfo"/> class with the default settings.
             /// </returns>
-            public static MassFractionInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFractionUnit>>, IEnumerable<IUnitDefinition<MassFractionUnit>>> customizeUnits)
+            private static QuantityInfo<MassFraction, MassFractionUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassFractionUnit>>, IEnumerable<IUnitDefinition<MassFractionUnit>>>? customizeUnits = null)
             {
-                return new MassFractionInfo(nameof(MassFraction), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFraction(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings = MassFractionInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MassFraction, MassFractionUnit>(
+                    name: nameof(MassFraction),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MassFraction(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MassFraction"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of MassFraction is DecimalFraction. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassFractionUnit DefaultBaseUnit { get; } = MassFractionUnit.DecimalFraction;
+            private static MassFractionUnit DefaultBaseUnit { get; } = MassFractionUnit.DecimalFraction;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MassFraction quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MassFraction", typeof(MassFraction).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassFractionUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFractionUnit}"/> representing the default unit mappings for MassFraction.</returns>
-            public static IEnumerable<UnitDefinition<MassFractionUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassFractionUnit>> GetDefaultMappings()
             {
                 yield return new (MassFractionUnit.CentigramPerGram, "CentigramPerGram", "CentigramsPerGram", BaseUnits.Undefined);
                 yield return new (MassFractionUnit.CentigramPerKilogram, "CentigramPerKilogram", "CentigramsPerKilogram", BaseUnits.Undefined);
@@ -151,7 +151,7 @@ namespace UnitsNet
 
         static MassFraction()
         {
-            Info = MassFractionInfo.CreateDefault();
+            Info = MassFractionInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

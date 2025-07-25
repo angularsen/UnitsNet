@@ -72,59 +72,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Molarity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MolarityInfo: QuantityInfo<Molarity, MolarityUnit>
+        private static class MolarityInfo
         {
-            /// <inheritdoc />
-            public MolarityInfo(string name, MolarityUnit baseUnit, IEnumerable<IUnitDefinition<MolarityUnit>> unitMappings, Molarity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Molarity, MolarityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Molarity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MolarityInfo(string name, MolarityUnit baseUnit, IEnumerable<IUnitDefinition<MolarityUnit>> unitMappings, Molarity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Molarity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Molarity", typeof(Molarity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MolarityInfo"/> class with the default settings for the Molarity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MolarityInfo"/> class with the default settings.</returns>
-            public static MolarityInfo CreateDefault()
-            {
-                return new MolarityInfo(nameof(Molarity), DefaultBaseUnit, GetDefaultMappings(), new Molarity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MolarityInfo"/> class with the default settings for the Molarity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MolarityInfo"/> class with the default settings.
             /// </returns>
-            public static MolarityInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarityUnit>>, IEnumerable<IUnitDefinition<MolarityUnit>>> customizeUnits)
+            private static QuantityInfo<Molarity, MolarityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MolarityUnit>>, IEnumerable<IUnitDefinition<MolarityUnit>>>? customizeUnits = null)
             {
-                return new MolarityInfo(nameof(Molarity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Molarity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MolarityUnit>> unitMappings = MolarityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Molarity, MolarityUnit>(
+                    name: nameof(Molarity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Molarity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Molarity"/> is [L^-3][N].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
             /// <summary>
             ///     The default base unit of Molarity is MolePerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MolarityUnit DefaultBaseUnit { get; } = MolarityUnit.MolePerCubicMeter;
+            private static MolarityUnit DefaultBaseUnit { get; } = MolarityUnit.MolePerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Molarity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Molarity", typeof(Molarity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MolarityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarityUnit}"/> representing the default unit mappings for Molarity.</returns>
-            public static IEnumerable<UnitDefinition<MolarityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MolarityUnit>> GetDefaultMappings()
             {
                 yield return new (MolarityUnit.CentimolePerLiter, "CentimolePerLiter", "CentimolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Centimole));
                 yield return new (MolarityUnit.DecimolePerLiter, "DecimolePerLiter", "DecimolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Decimole));
@@ -142,7 +142,7 @@ namespace UnitsNet
 
         static Molarity()
         {
-            Info = MolarityInfo.CreateDefault();
+            Info = MolarityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

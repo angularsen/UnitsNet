@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="FluidResistance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class FluidResistanceInfo: QuantityInfo<FluidResistance, FluidResistanceUnit>
+        private static class FluidResistanceInfo
         {
-            /// <inheritdoc />
-            public FluidResistanceInfo(string name, FluidResistanceUnit baseUnit, IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings, FluidResistance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<FluidResistance, FluidResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, FluidResistance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public FluidResistanceInfo(string name, FluidResistanceUnit baseUnit, IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings, FluidResistance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, FluidResistance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.FluidResistance", typeof(FluidResistance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="FluidResistanceInfo"/> class with the default settings for the FluidResistance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="FluidResistanceInfo"/> class with the default settings.</returns>
-            public static FluidResistanceInfo CreateDefault()
-            {
-                return new FluidResistanceInfo(nameof(FluidResistance), DefaultBaseUnit, GetDefaultMappings(), new FluidResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="FluidResistanceInfo"/> class with the default settings for the FluidResistance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="FluidResistanceInfo"/> class with the default settings.
             /// </returns>
-            public static FluidResistanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<FluidResistanceUnit>>, IEnumerable<IUnitDefinition<FluidResistanceUnit>>> customizeUnits)
+            private static QuantityInfo<FluidResistance, FluidResistanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<FluidResistanceUnit>>, IEnumerable<IUnitDefinition<FluidResistanceUnit>>>? customizeUnits = null)
             {
-                return new FluidResistanceInfo(nameof(FluidResistance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new FluidResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings = FluidResistanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<FluidResistance, FluidResistanceUnit>(
+                    name: nameof(FluidResistance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new FluidResistance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="FluidResistance"/> is [T^-1][L^-4][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-4, 1, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-4, 1, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of FluidResistance is PascalSecondPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static FluidResistanceUnit DefaultBaseUnit { get; } = FluidResistanceUnit.PascalSecondPerCubicMeter;
+            private static FluidResistanceUnit DefaultBaseUnit { get; } = FluidResistanceUnit.PascalSecondPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the FluidResistance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.FluidResistance", typeof(FluidResistance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="FluidResistanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FluidResistanceUnit}"/> representing the default unit mappings for FluidResistance.</returns>
-            public static IEnumerable<UnitDefinition<FluidResistanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<FluidResistanceUnit>> GetDefaultMappings()
             {
                 yield return new (FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondPerCentimeterToTheFifth", "DyneSecondsPerCentimeterToTheFifth", BaseUnits.Undefined);
                 yield return new (FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondPerCubicMeter", "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond));
@@ -143,7 +143,7 @@ namespace UnitsNet
 
         static FluidResistance()
         {
-            Info = FluidResistanceInfo.CreateDefault();
+            Info = FluidResistanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

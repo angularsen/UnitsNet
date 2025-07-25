@@ -79,59 +79,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Duration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class DurationInfo: QuantityInfo<Duration, DurationUnit>
+        private static class DurationInfo
         {
-            /// <inheritdoc />
-            public DurationInfo(string name, DurationUnit baseUnit, IEnumerable<IUnitDefinition<DurationUnit>> unitMappings, Duration zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Duration, DurationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Duration.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public DurationInfo(string name, DurationUnit baseUnit, IEnumerable<IUnitDefinition<DurationUnit>> unitMappings, Duration zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Duration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Duration", typeof(Duration).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="DurationInfo"/> class with the default settings for the Duration quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="DurationInfo"/> class with the default settings.</returns>
-            public static DurationInfo CreateDefault()
-            {
-                return new DurationInfo(nameof(Duration), DefaultBaseUnit, GetDefaultMappings(), new Duration(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="DurationInfo"/> class with the default settings for the Duration quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="DurationInfo"/> class with the default settings.
             /// </returns>
-            public static DurationInfo CreateDefault(Func<IEnumerable<UnitDefinition<DurationUnit>>, IEnumerable<IUnitDefinition<DurationUnit>>> customizeUnits)
+            private static QuantityInfo<Duration, DurationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<DurationUnit>>, IEnumerable<IUnitDefinition<DurationUnit>>>? customizeUnits = null)
             {
-                return new DurationInfo(nameof(Duration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Duration(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<DurationUnit>> unitMappings = DurationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Duration, DurationUnit>(
+                    name: nameof(Duration),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Duration(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Duration"/> is [T].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Duration is Second. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static DurationUnit DefaultBaseUnit { get; } = DurationUnit.Second;
+            private static DurationUnit DefaultBaseUnit { get; } = DurationUnit.Second;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Duration quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Duration", typeof(Duration).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="DurationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DurationUnit}"/> representing the default unit mappings for Duration.</returns>
-            public static IEnumerable<UnitDefinition<DurationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<DurationUnit>> GetDefaultMappings()
             {
                 yield return new (DurationUnit.Day, "Day", "Days", new BaseUnits(time: DurationUnit.Day));
                 yield return new (DurationUnit.Hour, "Hour", "Hours", new BaseUnits(time: DurationUnit.Hour));
@@ -150,7 +150,7 @@ namespace UnitsNet
 
         static Duration()
         {
-            Info = DurationInfo.CreateDefault();
+            Info = DurationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

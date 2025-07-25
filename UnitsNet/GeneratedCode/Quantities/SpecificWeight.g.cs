@@ -71,59 +71,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="SpecificWeight"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SpecificWeightInfo: QuantityInfo<SpecificWeight, SpecificWeightUnit>
+        private static class SpecificWeightInfo
         {
-            /// <inheritdoc />
-            public SpecificWeightInfo(string name, SpecificWeightUnit baseUnit, IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings, SpecificWeight zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<SpecificWeight, SpecificWeightUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificWeight.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SpecificWeightInfo(string name, SpecificWeightUnit baseUnit, IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings, SpecificWeight zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificWeight.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificWeight", typeof(SpecificWeight).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SpecificWeightInfo"/> class with the default settings for the SpecificWeight quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SpecificWeightInfo"/> class with the default settings.</returns>
-            public static SpecificWeightInfo CreateDefault()
-            {
-                return new SpecificWeightInfo(nameof(SpecificWeight), DefaultBaseUnit, GetDefaultMappings(), new SpecificWeight(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SpecificWeightInfo"/> class with the default settings for the SpecificWeight quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SpecificWeightInfo"/> class with the default settings.
             /// </returns>
-            public static SpecificWeightInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificWeightUnit>>, IEnumerable<IUnitDefinition<SpecificWeightUnit>>> customizeUnits)
+            private static QuantityInfo<SpecificWeight, SpecificWeightUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SpecificWeightUnit>>, IEnumerable<IUnitDefinition<SpecificWeightUnit>>>? customizeUnits = null)
             {
-                return new SpecificWeightInfo(nameof(SpecificWeight), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificWeight(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings = SpecificWeightInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<SpecificWeight, SpecificWeightUnit>(
+                    name: nameof(SpecificWeight),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new SpecificWeight(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="SpecificWeight"/> is [T^-2][L^-2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of SpecificWeight is NewtonPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SpecificWeightUnit DefaultBaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+            private static SpecificWeightUnit DefaultBaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the SpecificWeight quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.SpecificWeight", typeof(SpecificWeight).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SpecificWeightUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificWeightUnit}"/> representing the default unit mappings for SpecificWeight.</returns>
-            public static IEnumerable<UnitDefinition<SpecificWeightUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SpecificWeightUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramForcePerCubicCentimeter", "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined);
                 yield return new (SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramForcePerCubicMeter", "KilogramsForcePerCubicMeter", BaseUnits.Undefined);
@@ -147,7 +147,7 @@ namespace UnitsNet
 
         static SpecificWeight()
         {
-            Info = SpecificWeightInfo.CreateDefault();
+            Info = SpecificWeightInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

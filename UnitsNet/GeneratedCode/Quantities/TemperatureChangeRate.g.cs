@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="TemperatureChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class TemperatureChangeRateInfo: QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit>
+        private static class TemperatureChangeRateInfo
         {
-            /// <inheritdoc />
-            public TemperatureChangeRateInfo(string name, TemperatureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings, TemperatureChangeRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<TemperatureChangeRate, TemperatureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, TemperatureChangeRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public TemperatureChangeRateInfo(string name, TemperatureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings, TemperatureChangeRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, TemperatureChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.TemperatureChangeRate", typeof(TemperatureChangeRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings for the TemperatureChangeRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings.</returns>
-            public static TemperatureChangeRateInfo CreateDefault()
-            {
-                return new TemperatureChangeRateInfo(nameof(TemperatureChangeRate), DefaultBaseUnit, GetDefaultMappings(), new TemperatureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings for the TemperatureChangeRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="TemperatureChangeRateInfo"/> class with the default settings.
             /// </returns>
-            public static TemperatureChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureChangeRateUnit>>, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>>> customizeUnits)
+            private static QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>>, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>>>? customizeUnits = null)
             {
-                return new TemperatureChangeRateInfo(nameof(TemperatureChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new TemperatureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings = TemperatureChangeRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit>(
+                    name: nameof(TemperatureChangeRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new TemperatureChangeRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="TemperatureChangeRate"/> is [T^-1][Θ].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
 
             /// <summary>
             ///     The default base unit of TemperatureChangeRate is DegreeCelsiusPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static TemperatureChangeRateUnit DefaultBaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+            private static TemperatureChangeRateUnit DefaultBaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the TemperatureChangeRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.TemperatureChangeRate", typeof(TemperatureChangeRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="TemperatureChangeRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureChangeRateUnit}"/> representing the default unit mappings for TemperatureChangeRate.</returns>
-            public static IEnumerable<UnitDefinition<TemperatureChangeRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<TemperatureChangeRateUnit>> GetDefaultMappings()
             {
                 yield return new (TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreeCelsiusPerSecond", "CentidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 yield return new (TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreeCelsiusPerSecond", "DecadegreesCelsiusPerSecond", BaseUnits.Undefined);
@@ -141,7 +141,7 @@ namespace UnitsNet
 
         static TemperatureChangeRate()
         {
-            Info = TemperatureChangeRateInfo.CreateDefault();
+            Info = TemperatureChangeRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

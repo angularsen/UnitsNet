@@ -70,59 +70,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="LinearDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LinearDensityInfo: QuantityInfo<LinearDensity, LinearDensityUnit>
+        private static class LinearDensityInfo
         {
-            /// <inheritdoc />
-            public LinearDensityInfo(string name, LinearDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearDensityUnit>> unitMappings, LinearDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<LinearDensity, LinearDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LinearDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LinearDensityInfo(string name, LinearDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearDensityUnit>> unitMappings, LinearDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, LinearDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LinearDensity", typeof(LinearDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LinearDensityInfo"/> class with the default settings for the LinearDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LinearDensityInfo"/> class with the default settings.</returns>
-            public static LinearDensityInfo CreateDefault()
-            {
-                return new LinearDensityInfo(nameof(LinearDensity), DefaultBaseUnit, GetDefaultMappings(), new LinearDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LinearDensityInfo"/> class with the default settings for the LinearDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LinearDensityInfo"/> class with the default settings.
             /// </returns>
-            public static LinearDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LinearDensityUnit>>, IEnumerable<IUnitDefinition<LinearDensityUnit>>> customizeUnits)
+            private static QuantityInfo<LinearDensity, LinearDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LinearDensityUnit>>, IEnumerable<IUnitDefinition<LinearDensityUnit>>>? customizeUnits = null)
             {
-                return new LinearDensityInfo(nameof(LinearDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LinearDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LinearDensityUnit>> unitMappings = LinearDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<LinearDensity, LinearDensityUnit>(
+                    name: nameof(LinearDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new LinearDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="LinearDensity"/> is [L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of LinearDensity is KilogramPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LinearDensityUnit DefaultBaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+            private static LinearDensityUnit DefaultBaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the LinearDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.LinearDensity", typeof(LinearDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LinearDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearDensityUnit}"/> representing the default unit mappings for LinearDensity.</returns>
-            public static IEnumerable<UnitDefinition<LinearDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LinearDensityUnit>> GetDefaultMappings()
             {
                 yield return new (LinearDensityUnit.GramPerCentimeter, "GramPerCentimeter", "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram));
                 yield return new (LinearDensityUnit.GramPerFoot, "GramPerFoot", "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram));
@@ -147,7 +147,7 @@ namespace UnitsNet
 
         static LinearDensity()
         {
-            Info = LinearDensityInfo.CreateDefault();
+            Info = LinearDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

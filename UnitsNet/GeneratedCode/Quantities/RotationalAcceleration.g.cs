@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RotationalAcceleration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RotationalAccelerationInfo: QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit>
+        private static class RotationalAccelerationInfo
         {
-            /// <inheritdoc />
-            public RotationalAccelerationInfo(string name, RotationalAccelerationUnit baseUnit, IEnumerable<IUnitDefinition<RotationalAccelerationUnit>> unitMappings, RotationalAcceleration zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RotationalAcceleration, RotationalAccelerationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalAcceleration.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RotationalAccelerationInfo(string name, RotationalAccelerationUnit baseUnit, IEnumerable<IUnitDefinition<RotationalAccelerationUnit>> unitMappings, RotationalAcceleration zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RotationalAcceleration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RotationalAcceleration", typeof(RotationalAcceleration).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RotationalAccelerationInfo"/> class with the default settings for the RotationalAcceleration quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RotationalAccelerationInfo"/> class with the default settings.</returns>
-            public static RotationalAccelerationInfo CreateDefault()
-            {
-                return new RotationalAccelerationInfo(nameof(RotationalAcceleration), DefaultBaseUnit, GetDefaultMappings(), new RotationalAcceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RotationalAccelerationInfo"/> class with the default settings for the RotationalAcceleration quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RotationalAccelerationInfo"/> class with the default settings.
             /// </returns>
-            public static RotationalAccelerationInfo CreateDefault(Func<IEnumerable<UnitDefinition<RotationalAccelerationUnit>>, IEnumerable<IUnitDefinition<RotationalAccelerationUnit>>> customizeUnits)
+            private static QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RotationalAccelerationUnit>>, IEnumerable<IUnitDefinition<RotationalAccelerationUnit>>>? customizeUnits = null)
             {
-                return new RotationalAccelerationInfo(nameof(RotationalAcceleration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RotationalAcceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RotationalAccelerationUnit>> unitMappings = RotationalAccelerationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit>(
+                    name: nameof(RotationalAcceleration),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RotationalAcceleration(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RotationalAcceleration"/> is [T^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RotationalAcceleration is RadianPerSecondSquared. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RotationalAccelerationUnit DefaultBaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+            private static RotationalAccelerationUnit DefaultBaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RotationalAcceleration quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RotationalAcceleration", typeof(RotationalAcceleration).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RotationalAccelerationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalAccelerationUnit}"/> representing the default unit mappings for RotationalAcceleration.</returns>
-            public static IEnumerable<UnitDefinition<RotationalAccelerationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RotationalAccelerationUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalAccelerationUnit.DegreePerSecondSquared, "DegreePerSecondSquared", "DegreesPerSecondSquared", BaseUnits.Undefined);
                 yield return new (RotationalAccelerationUnit.RadianPerSecondSquared, "RadianPerSecondSquared", "RadiansPerSecondSquared", new BaseUnits(time: DurationUnit.Second));
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static RotationalAcceleration()
         {
-            Info = RotationalAccelerationInfo.CreateDefault();
+            Info = RotationalAccelerationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

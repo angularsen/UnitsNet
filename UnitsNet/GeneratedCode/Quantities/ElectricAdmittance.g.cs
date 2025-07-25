@@ -66,59 +66,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricAdmittance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricAdmittanceInfo: QuantityInfo<ElectricAdmittance, ElectricAdmittanceUnit>
+        private static class ElectricAdmittanceInfo
         {
-            /// <inheritdoc />
-            public ElectricAdmittanceInfo(string name, ElectricAdmittanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>> unitMappings, ElectricAdmittance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricAdmittance, ElectricAdmittanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricAdmittance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricAdmittanceInfo(string name, ElectricAdmittanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>> unitMappings, ElectricAdmittance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricAdmittance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricAdmittance", typeof(ElectricAdmittance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricAdmittanceInfo"/> class with the default settings for the ElectricAdmittance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricAdmittanceInfo"/> class with the default settings.</returns>
-            public static ElectricAdmittanceInfo CreateDefault()
-            {
-                return new ElectricAdmittanceInfo(nameof(ElectricAdmittance), DefaultBaseUnit, GetDefaultMappings(), new ElectricAdmittance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricAdmittanceInfo"/> class with the default settings for the ElectricAdmittance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricAdmittanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricAdmittanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricAdmittanceUnit>>, IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricAdmittance, ElectricAdmittanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>>, IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricAdmittanceInfo(nameof(ElectricAdmittance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricAdmittance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>> unitMappings = ElectricAdmittanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricAdmittance, ElectricAdmittanceUnit>(
+                    name: nameof(ElectricAdmittance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricAdmittance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricAdmittance"/> is [T^3][L^-2][M^-1][I^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricAdmittance is Siemens. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricAdmittanceUnit DefaultBaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+            private static ElectricAdmittanceUnit DefaultBaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricAdmittance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricAdmittance", typeof(ElectricAdmittance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricAdmittanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricAdmittanceUnit}"/> representing the default unit mappings for ElectricAdmittance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricAdmittanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricAdmittanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricAdmittanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined);
                 yield return new (ElectricAdmittanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
@@ -141,7 +141,7 @@ namespace UnitsNet
 
         static ElectricAdmittance()
         {
-            Info = ElectricAdmittanceInfo.CreateDefault();
+            Info = ElectricAdmittanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

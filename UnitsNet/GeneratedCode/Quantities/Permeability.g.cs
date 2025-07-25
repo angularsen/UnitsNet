@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Permeability"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PermeabilityInfo: QuantityInfo<Permeability, PermeabilityUnit>
+        private static class PermeabilityInfo
         {
-            /// <inheritdoc />
-            public PermeabilityInfo(string name, PermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PermeabilityUnit>> unitMappings, Permeability zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Permeability, PermeabilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Permeability.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PermeabilityInfo(string name, PermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PermeabilityUnit>> unitMappings, Permeability zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Permeability.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Permeability", typeof(Permeability).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PermeabilityInfo"/> class with the default settings for the Permeability quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PermeabilityInfo"/> class with the default settings.</returns>
-            public static PermeabilityInfo CreateDefault()
-            {
-                return new PermeabilityInfo(nameof(Permeability), DefaultBaseUnit, GetDefaultMappings(), new Permeability(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PermeabilityInfo"/> class with the default settings for the Permeability quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PermeabilityInfo"/> class with the default settings.
             /// </returns>
-            public static PermeabilityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PermeabilityUnit>>, IEnumerable<IUnitDefinition<PermeabilityUnit>>> customizeUnits)
+            private static QuantityInfo<Permeability, PermeabilityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PermeabilityUnit>>, IEnumerable<IUnitDefinition<PermeabilityUnit>>>? customizeUnits = null)
             {
-                return new PermeabilityInfo(nameof(Permeability), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Permeability(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PermeabilityUnit>> unitMappings = PermeabilityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Permeability, PermeabilityUnit>(
+                    name: nameof(Permeability),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Permeability(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Permeability"/> is [T^-2][L][M][I^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Permeability is HenryPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PermeabilityUnit DefaultBaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
+            private static PermeabilityUnit DefaultBaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Permeability quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Permeability", typeof(Permeability).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PermeabilityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PermeabilityUnit}"/> representing the default unit mappings for Permeability.</returns>
-            public static IEnumerable<UnitDefinition<PermeabilityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PermeabilityUnit>> GetDefaultMappings()
             {
                 yield return new (PermeabilityUnit.HenryPerMeter, "HenryPerMeter", "HenriesPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static Permeability()
         {
-            Info = PermeabilityInfo.CreateDefault();
+            Info = PermeabilityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

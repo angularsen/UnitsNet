@@ -67,59 +67,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Angle"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AngleInfo: QuantityInfo<Angle, AngleUnit>
+        private static class AngleInfo
         {
-            /// <inheritdoc />
-            public AngleInfo(string name, AngleUnit baseUnit, IEnumerable<IUnitDefinition<AngleUnit>> unitMappings, Angle zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Angle, AngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Angle.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AngleInfo(string name, AngleUnit baseUnit, IEnumerable<IUnitDefinition<AngleUnit>> unitMappings, Angle zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Angle.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Angle", typeof(Angle).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AngleInfo"/> class with the default settings for the Angle quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AngleInfo"/> class with the default settings.</returns>
-            public static AngleInfo CreateDefault()
-            {
-                return new AngleInfo(nameof(Angle), DefaultBaseUnit, GetDefaultMappings(), new Angle(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AngleInfo"/> class with the default settings for the Angle quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AngleInfo"/> class with the default settings.
             /// </returns>
-            public static AngleInfo CreateDefault(Func<IEnumerable<UnitDefinition<AngleUnit>>, IEnumerable<IUnitDefinition<AngleUnit>>> customizeUnits)
+            private static QuantityInfo<Angle, AngleUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AngleUnit>>, IEnumerable<IUnitDefinition<AngleUnit>>>? customizeUnits = null)
             {
-                return new AngleInfo(nameof(Angle), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Angle(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AngleUnit>> unitMappings = AngleInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Angle, AngleUnit>(
+                    name: nameof(Angle),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Angle(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Angle"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of Angle is Radian. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AngleUnit DefaultBaseUnit { get; } = AngleUnit.Radian;
+            private static AngleUnit DefaultBaseUnit { get; } = AngleUnit.Radian;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Angle quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Angle", typeof(Angle).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AngleUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AngleUnit}"/> representing the default unit mappings for Angle.</returns>
-            public static IEnumerable<UnitDefinition<AngleUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AngleUnit>> GetDefaultMappings()
             {
                 yield return new (AngleUnit.Arcminute, "Arcminute", "Arcminutes", BaseUnits.Undefined);
                 yield return new (AngleUnit.Arcsecond, "Arcsecond", "Arcseconds", BaseUnits.Undefined);
@@ -141,7 +141,7 @@ namespace UnitsNet
 
         static Angle()
         {
-            Info = AngleInfo.CreateDefault();
+            Info = AngleInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -69,59 +69,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="VolumeFlow"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VolumeFlowInfo: QuantityInfo<VolumeFlow, VolumeFlowUnit>
+        private static class VolumeFlowInfo
         {
-            /// <inheritdoc />
-            public VolumeFlowInfo(string name, VolumeFlowUnit baseUnit, IEnumerable<IUnitDefinition<VolumeFlowUnit>> unitMappings, VolumeFlow zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<VolumeFlow, VolumeFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumeFlow.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VolumeFlowInfo(string name, VolumeFlowUnit baseUnit, IEnumerable<IUnitDefinition<VolumeFlowUnit>> unitMappings, VolumeFlow zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, VolumeFlow.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VolumeFlow", typeof(VolumeFlow).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VolumeFlowInfo"/> class with the default settings for the VolumeFlow quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VolumeFlowInfo"/> class with the default settings.</returns>
-            public static VolumeFlowInfo CreateDefault()
-            {
-                return new VolumeFlowInfo(nameof(VolumeFlow), DefaultBaseUnit, GetDefaultMappings(), new VolumeFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VolumeFlowInfo"/> class with the default settings for the VolumeFlow quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VolumeFlowInfo"/> class with the default settings.
             /// </returns>
-            public static VolumeFlowInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumeFlowUnit>>, IEnumerable<IUnitDefinition<VolumeFlowUnit>>> customizeUnits)
+            private static QuantityInfo<VolumeFlow, VolumeFlowUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VolumeFlowUnit>>, IEnumerable<IUnitDefinition<VolumeFlowUnit>>>? customizeUnits = null)
             {
-                return new VolumeFlowInfo(nameof(VolumeFlow), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VolumeFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VolumeFlowUnit>> unitMappings = VolumeFlowInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<VolumeFlow, VolumeFlowUnit>(
+                    name: nameof(VolumeFlow),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new VolumeFlow(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="VolumeFlow"/> is [T^-1][L^3].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of VolumeFlow is CubicMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VolumeFlowUnit DefaultBaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
+            private static VolumeFlowUnit DefaultBaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the VolumeFlow quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.VolumeFlow", typeof(VolumeFlow).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VolumeFlowUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeFlowUnit}"/> representing the default unit mappings for VolumeFlow.</returns>
-            public static IEnumerable<UnitDefinition<VolumeFlowUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VolumeFlowUnit>> GetDefaultMappings()
             {
                 yield return new (VolumeFlowUnit.AcreFootPerDay, "AcreFootPerDay", "AcreFeetPerDay", BaseUnits.Undefined);
                 yield return new (VolumeFlowUnit.AcreFootPerHour, "AcreFootPerHour", "AcreFeetPerHour", BaseUnits.Undefined);
@@ -203,7 +203,7 @@ namespace UnitsNet
 
         static VolumeFlow()
         {
-            Info = VolumeFlowInfo.CreateDefault();
+            Info = VolumeFlowInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

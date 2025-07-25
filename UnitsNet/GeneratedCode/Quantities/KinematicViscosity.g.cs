@@ -71,59 +71,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="KinematicViscosity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class KinematicViscosityInfo: QuantityInfo<KinematicViscosity, KinematicViscosityUnit>
+        private static class KinematicViscosityInfo
         {
-            /// <inheritdoc />
-            public KinematicViscosityInfo(string name, KinematicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings, KinematicViscosity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<KinematicViscosity, KinematicViscosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, KinematicViscosity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public KinematicViscosityInfo(string name, KinematicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings, KinematicViscosity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, KinematicViscosity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.KinematicViscosity", typeof(KinematicViscosity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings for the KinematicViscosity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings.</returns>
-            public static KinematicViscosityInfo CreateDefault()
-            {
-                return new KinematicViscosityInfo(nameof(KinematicViscosity), DefaultBaseUnit, GetDefaultMappings(), new KinematicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings for the KinematicViscosity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings.
             /// </returns>
-            public static KinematicViscosityInfo CreateDefault(Func<IEnumerable<UnitDefinition<KinematicViscosityUnit>>, IEnumerable<IUnitDefinition<KinematicViscosityUnit>>> customizeUnits)
+            private static QuantityInfo<KinematicViscosity, KinematicViscosityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<KinematicViscosityUnit>>, IEnumerable<IUnitDefinition<KinematicViscosityUnit>>>? customizeUnits = null)
             {
-                return new KinematicViscosityInfo(nameof(KinematicViscosity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new KinematicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings = KinematicViscosityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<KinematicViscosity, KinematicViscosityUnit>(
+                    name: nameof(KinematicViscosity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new KinematicViscosity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="KinematicViscosity"/> is [T^-1][L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of KinematicViscosity is SquareMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static KinematicViscosityUnit DefaultBaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
+            private static KinematicViscosityUnit DefaultBaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the KinematicViscosity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.KinematicViscosity", typeof(KinematicViscosity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="KinematicViscosityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{KinematicViscosityUnit}"/> representing the default unit mappings for KinematicViscosity.</returns>
-            public static IEnumerable<UnitDefinition<KinematicViscosityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<KinematicViscosityUnit>> GetDefaultMappings()
             {
                 yield return new (KinematicViscosityUnit.Centistokes, "Centistokes", "Centistokes", BaseUnits.Undefined);
                 yield return new (KinematicViscosityUnit.Decistokes, "Decistokes", "Decistokes", BaseUnits.Undefined);
@@ -139,7 +139,7 @@ namespace UnitsNet
 
         static KinematicViscosity()
         {
-            Info = KinematicViscosityInfo.CreateDefault();
+            Info = KinematicViscosityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

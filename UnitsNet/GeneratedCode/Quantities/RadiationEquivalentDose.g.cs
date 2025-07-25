@@ -66,59 +66,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RadiationEquivalentDose"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RadiationEquivalentDoseInfo: QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit>
+        private static class RadiationEquivalentDoseInfo
         {
-            /// <inheritdoc />
-            public RadiationEquivalentDoseInfo(string name, RadiationEquivalentDoseUnit baseUnit, IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>> unitMappings, RadiationEquivalentDose zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RadiationEquivalentDose, RadiationEquivalentDoseUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RadiationEquivalentDose.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RadiationEquivalentDoseInfo(string name, RadiationEquivalentDoseUnit baseUnit, IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>> unitMappings, RadiationEquivalentDose zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RadiationEquivalentDose.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RadiationEquivalentDose", typeof(RadiationEquivalentDose).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RadiationEquivalentDoseInfo"/> class with the default settings for the RadiationEquivalentDose quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RadiationEquivalentDoseInfo"/> class with the default settings.</returns>
-            public static RadiationEquivalentDoseInfo CreateDefault()
-            {
-                return new RadiationEquivalentDoseInfo(nameof(RadiationEquivalentDose), DefaultBaseUnit, GetDefaultMappings(), new RadiationEquivalentDose(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RadiationEquivalentDoseInfo"/> class with the default settings for the RadiationEquivalentDose quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RadiationEquivalentDoseInfo"/> class with the default settings.
             /// </returns>
-            public static RadiationEquivalentDoseInfo CreateDefault(Func<IEnumerable<UnitDefinition<RadiationEquivalentDoseUnit>>, IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>>> customizeUnits)
+            private static QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>>, IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>>>? customizeUnits = null)
             {
-                return new RadiationEquivalentDoseInfo(nameof(RadiationEquivalentDose), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RadiationEquivalentDose(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>> unitMappings = RadiationEquivalentDoseInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit>(
+                    name: nameof(RadiationEquivalentDose),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RadiationEquivalentDose(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RadiationEquivalentDose"/> is [T^-2][L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RadiationEquivalentDose is Sievert. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RadiationEquivalentDoseUnit DefaultBaseUnit { get; } = RadiationEquivalentDoseUnit.Sievert;
+            private static RadiationEquivalentDoseUnit DefaultBaseUnit { get; } = RadiationEquivalentDoseUnit.Sievert;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RadiationEquivalentDose quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RadiationEquivalentDose", typeof(RadiationEquivalentDose).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RadiationEquivalentDoseUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadiationEquivalentDoseUnit}"/> representing the default unit mappings for RadiationEquivalentDose.</returns>
-            public static IEnumerable<UnitDefinition<RadiationEquivalentDoseUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RadiationEquivalentDoseUnit>> GetDefaultMappings()
             {
                 yield return new (RadiationEquivalentDoseUnit.Microsievert, "Microsievert", "Microsieverts", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second));
                 yield return new (RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgenEquivalentMan", "MilliroentgensEquivalentMan", BaseUnits.Undefined);
@@ -131,7 +131,7 @@ namespace UnitsNet
 
         static RadiationEquivalentDose()
         {
-            Info = RadiationEquivalentDoseInfo.CreateDefault();
+            Info = RadiationEquivalentDoseInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

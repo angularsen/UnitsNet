@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MassMomentOfInertia"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassMomentOfInertiaInfo: QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit>
+        private static class MassMomentOfInertiaInfo
         {
-            /// <inheritdoc />
-            public MassMomentOfInertiaInfo(string name, MassMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>> unitMappings, MassMomentOfInertia zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MassMomentOfInertia, MassMomentOfInertiaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassMomentOfInertia.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassMomentOfInertiaInfo(string name, MassMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>> unitMappings, MassMomentOfInertia zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassMomentOfInertia.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassMomentOfInertia", typeof(MassMomentOfInertia).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassMomentOfInertiaInfo"/> class with the default settings for the MassMomentOfInertia quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassMomentOfInertiaInfo"/> class with the default settings.</returns>
-            public static MassMomentOfInertiaInfo CreateDefault()
-            {
-                return new MassMomentOfInertiaInfo(nameof(MassMomentOfInertia), DefaultBaseUnit, GetDefaultMappings(), new MassMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassMomentOfInertiaInfo"/> class with the default settings for the MassMomentOfInertia quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassMomentOfInertiaInfo"/> class with the default settings.
             /// </returns>
-            public static MassMomentOfInertiaInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassMomentOfInertiaUnit>>, IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>>> customizeUnits)
+            private static QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>>, IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>>>? customizeUnits = null)
             {
-                return new MassMomentOfInertiaInfo(nameof(MassMomentOfInertia), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>> unitMappings = MassMomentOfInertiaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit>(
+                    name: nameof(MassMomentOfInertia),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MassMomentOfInertia(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MassMomentOfInertia"/> is [L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MassMomentOfInertia is KilogramSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassMomentOfInertiaUnit DefaultBaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
+            private static MassMomentOfInertiaUnit DefaultBaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MassMomentOfInertia quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MassMomentOfInertia", typeof(MassMomentOfInertia).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassMomentOfInertiaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassMomentOfInertiaUnit}"/> representing the default unit mappings for MassMomentOfInertia.</returns>
-            public static IEnumerable<UnitDefinition<MassMomentOfInertiaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassMomentOfInertiaUnit>> GetDefaultMappings()
             {
                 yield return new (MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeter", "GramSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram));
                 yield return new (MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeter", "GramSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram));
@@ -149,7 +149,7 @@ namespace UnitsNet
 
         static MassMomentOfInertia()
         {
-            Info = MassMomentOfInertiaInfo.CreateDefault();
+            Info = MassMomentOfInertiaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

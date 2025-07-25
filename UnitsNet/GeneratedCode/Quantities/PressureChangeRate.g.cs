@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="PressureChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PressureChangeRateInfo: QuantityInfo<PressureChangeRate, PressureChangeRateUnit>
+        private static class PressureChangeRateInfo
         {
-            /// <inheritdoc />
-            public PressureChangeRateInfo(string name, PressureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings, PressureChangeRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<PressureChangeRate, PressureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, PressureChangeRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PressureChangeRateInfo(string name, PressureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings, PressureChangeRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, PressureChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PressureChangeRate", typeof(PressureChangeRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings for the PressureChangeRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings.</returns>
-            public static PressureChangeRateInfo CreateDefault()
-            {
-                return new PressureChangeRateInfo(nameof(PressureChangeRate), DefaultBaseUnit, GetDefaultMappings(), new PressureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings for the PressureChangeRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings.
             /// </returns>
-            public static PressureChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<PressureChangeRateUnit>>, IEnumerable<IUnitDefinition<PressureChangeRateUnit>>> customizeUnits)
+            private static QuantityInfo<PressureChangeRate, PressureChangeRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PressureChangeRateUnit>>, IEnumerable<IUnitDefinition<PressureChangeRateUnit>>>? customizeUnits = null)
             {
-                return new PressureChangeRateInfo(nameof(PressureChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PressureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings = PressureChangeRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<PressureChangeRate, PressureChangeRateUnit>(
+                    name: nameof(PressureChangeRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new PressureChangeRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="PressureChangeRate"/> is [T^-3][L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of PressureChangeRate is PascalPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PressureChangeRateUnit DefaultBaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
+            private static PressureChangeRateUnit DefaultBaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the PressureChangeRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.PressureChangeRate", typeof(PressureChangeRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PressureChangeRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PressureChangeRateUnit}"/> representing the default unit mappings for PressureChangeRate.</returns>
-            public static IEnumerable<UnitDefinition<PressureChangeRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PressureChangeRateUnit>> GetDefaultMappings()
             {
                 yield return new (PressureChangeRateUnit.AtmospherePerSecond, "AtmospherePerSecond", "AtmospheresPerSecond", BaseUnits.Undefined);
                 yield return new (PressureChangeRateUnit.BarPerMinute, "BarPerMinute", "BarsPerMinute", BaseUnits.Undefined);
@@ -142,7 +142,7 @@ namespace UnitsNet
 
         static PressureChangeRate()
         {
-            Info = PressureChangeRateInfo.CreateDefault();
+            Info = PressureChangeRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

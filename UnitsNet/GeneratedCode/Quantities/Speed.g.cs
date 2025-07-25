@@ -72,59 +72,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Speed"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SpeedInfo: QuantityInfo<Speed, SpeedUnit>
+        private static class SpeedInfo
         {
-            /// <inheritdoc />
-            public SpeedInfo(string name, SpeedUnit baseUnit, IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings, Speed zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Speed, SpeedUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Speed.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SpeedInfo(string name, SpeedUnit baseUnit, IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings, Speed zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Speed.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Speed", typeof(Speed).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SpeedInfo"/> class with the default settings for the Speed quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SpeedInfo"/> class with the default settings.</returns>
-            public static SpeedInfo CreateDefault()
-            {
-                return new SpeedInfo(nameof(Speed), DefaultBaseUnit, GetDefaultMappings(), new Speed(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SpeedInfo"/> class with the default settings for the Speed quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SpeedInfo"/> class with the default settings.
             /// </returns>
-            public static SpeedInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpeedUnit>>, IEnumerable<IUnitDefinition<SpeedUnit>>> customizeUnits)
+            private static QuantityInfo<Speed, SpeedUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SpeedUnit>>, IEnumerable<IUnitDefinition<SpeedUnit>>>? customizeUnits = null)
             {
-                return new SpeedInfo(nameof(Speed), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Speed(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings = SpeedInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Speed, SpeedUnit>(
+                    name: nameof(Speed),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Speed(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Speed"/> is [T^-1][L].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Speed is MeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SpeedUnit DefaultBaseUnit { get; } = SpeedUnit.MeterPerSecond;
+            private static SpeedUnit DefaultBaseUnit { get; } = SpeedUnit.MeterPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Speed quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Speed", typeof(Speed).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SpeedUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpeedUnit}"/> representing the default unit mappings for Speed.</returns>
-            public static IEnumerable<UnitDefinition<SpeedUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SpeedUnit>> GetDefaultMappings()
             {
                 yield return new (SpeedUnit.CentimeterPerHour, "CentimeterPerHour", "CentimetersPerHour", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Hour));
                 yield return new (SpeedUnit.CentimeterPerMinute, "CentimeterPerMinute", "CentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute));
@@ -164,7 +164,7 @@ namespace UnitsNet
 
         static Speed()
         {
-            Info = SpeedInfo.CreateDefault();
+            Info = SpeedInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

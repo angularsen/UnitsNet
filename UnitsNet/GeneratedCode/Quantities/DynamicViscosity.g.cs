@@ -69,59 +69,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="DynamicViscosity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class DynamicViscosityInfo: QuantityInfo<DynamicViscosity, DynamicViscosityUnit>
+        private static class DynamicViscosityInfo
         {
-            /// <inheritdoc />
-            public DynamicViscosityInfo(string name, DynamicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<DynamicViscosityUnit>> unitMappings, DynamicViscosity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<DynamicViscosity, DynamicViscosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, DynamicViscosity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public DynamicViscosityInfo(string name, DynamicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<DynamicViscosityUnit>> unitMappings, DynamicViscosity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, DynamicViscosity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.DynamicViscosity", typeof(DynamicViscosity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="DynamicViscosityInfo"/> class with the default settings for the DynamicViscosity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="DynamicViscosityInfo"/> class with the default settings.</returns>
-            public static DynamicViscosityInfo CreateDefault()
-            {
-                return new DynamicViscosityInfo(nameof(DynamicViscosity), DefaultBaseUnit, GetDefaultMappings(), new DynamicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="DynamicViscosityInfo"/> class with the default settings for the DynamicViscosity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="DynamicViscosityInfo"/> class with the default settings.
             /// </returns>
-            public static DynamicViscosityInfo CreateDefault(Func<IEnumerable<UnitDefinition<DynamicViscosityUnit>>, IEnumerable<IUnitDefinition<DynamicViscosityUnit>>> customizeUnits)
+            private static QuantityInfo<DynamicViscosity, DynamicViscosityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<DynamicViscosityUnit>>, IEnumerable<IUnitDefinition<DynamicViscosityUnit>>>? customizeUnits = null)
             {
-                return new DynamicViscosityInfo(nameof(DynamicViscosity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new DynamicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<DynamicViscosityUnit>> unitMappings = DynamicViscosityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<DynamicViscosity, DynamicViscosityUnit>(
+                    name: nameof(DynamicViscosity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new DynamicViscosity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="DynamicViscosity"/> is [T^-1][L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of DynamicViscosity is NewtonSecondPerMeterSquared. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static DynamicViscosityUnit DefaultBaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
+            private static DynamicViscosityUnit DefaultBaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the DynamicViscosity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.DynamicViscosity", typeof(DynamicViscosity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="DynamicViscosityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DynamicViscosityUnit}"/> representing the default unit mappings for DynamicViscosity.</returns>
-            public static IEnumerable<UnitDefinition<DynamicViscosityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<DynamicViscosityUnit>> GetDefaultMappings()
             {
                 yield return new (DynamicViscosityUnit.Centipoise, "Centipoise", "Centipoise", BaseUnits.Undefined);
                 yield return new (DynamicViscosityUnit.MicropascalSecond, "MicropascalSecond", "MicropascalSeconds", BaseUnits.Undefined);
@@ -138,7 +138,7 @@ namespace UnitsNet
 
         static DynamicViscosity()
         {
-            Info = DynamicViscosityInfo.CreateDefault();
+            Info = DynamicViscosityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

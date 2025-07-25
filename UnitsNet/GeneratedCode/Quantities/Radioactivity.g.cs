@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Radioactivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RadioactivityInfo: QuantityInfo<Radioactivity, RadioactivityUnit>
+        private static class RadioactivityInfo
         {
-            /// <inheritdoc />
-            public RadioactivityInfo(string name, RadioactivityUnit baseUnit, IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings, Radioactivity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Radioactivity, RadioactivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Radioactivity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RadioactivityInfo(string name, RadioactivityUnit baseUnit, IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings, Radioactivity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Radioactivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Radioactivity", typeof(Radioactivity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RadioactivityInfo"/> class with the default settings for the Radioactivity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RadioactivityInfo"/> class with the default settings.</returns>
-            public static RadioactivityInfo CreateDefault()
-            {
-                return new RadioactivityInfo(nameof(Radioactivity), DefaultBaseUnit, GetDefaultMappings(), new Radioactivity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RadioactivityInfo"/> class with the default settings for the Radioactivity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RadioactivityInfo"/> class with the default settings.
             /// </returns>
-            public static RadioactivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<RadioactivityUnit>>, IEnumerable<IUnitDefinition<RadioactivityUnit>>> customizeUnits)
+            private static QuantityInfo<Radioactivity, RadioactivityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RadioactivityUnit>>, IEnumerable<IUnitDefinition<RadioactivityUnit>>>? customizeUnits = null)
             {
-                return new RadioactivityInfo(nameof(Radioactivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Radioactivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings = RadioactivityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Radioactivity, RadioactivityUnit>(
+                    name: nameof(Radioactivity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Radioactivity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Radioactivity"/> is [T^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Radioactivity is Becquerel. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RadioactivityUnit DefaultBaseUnit { get; } = RadioactivityUnit.Becquerel;
+            private static RadioactivityUnit DefaultBaseUnit { get; } = RadioactivityUnit.Becquerel;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Radioactivity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Radioactivity", typeof(Radioactivity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RadioactivityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadioactivityUnit}"/> representing the default unit mappings for Radioactivity.</returns>
-            public static IEnumerable<UnitDefinition<RadioactivityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RadioactivityUnit>> GetDefaultMappings()
             {
                 yield return new (RadioactivityUnit.Becquerel, "Becquerel", "Becquerels", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RadioactivityUnit.Curie, "Curie", "Curies", new BaseUnits(time: DurationUnit.Second));
@@ -150,7 +150,7 @@ namespace UnitsNet
 
         static Radioactivity()
         {
-            Info = RadioactivityInfo.CreateDefault();
+            Info = RadioactivityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

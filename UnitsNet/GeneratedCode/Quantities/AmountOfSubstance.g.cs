@@ -70,59 +70,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="AmountOfSubstance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AmountOfSubstanceInfo: QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit>
+        private static class AmountOfSubstanceInfo
         {
-            /// <inheritdoc />
-            public AmountOfSubstanceInfo(string name, AmountOfSubstanceUnit baseUnit, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings, AmountOfSubstance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<AmountOfSubstance, AmountOfSubstanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AmountOfSubstance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AmountOfSubstanceInfo(string name, AmountOfSubstanceUnit baseUnit, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings, AmountOfSubstance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, AmountOfSubstance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AmountOfSubstance", typeof(AmountOfSubstance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings for the AmountOfSubstance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings.</returns>
-            public static AmountOfSubstanceInfo CreateDefault()
-            {
-                return new AmountOfSubstanceInfo(nameof(AmountOfSubstance), DefaultBaseUnit, GetDefaultMappings(), new AmountOfSubstance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings for the AmountOfSubstance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AmountOfSubstanceInfo"/> class with the default settings.
             /// </returns>
-            public static AmountOfSubstanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<AmountOfSubstanceUnit>>, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>>> customizeUnits)
+            private static QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>>, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>>>? customizeUnits = null)
             {
-                return new AmountOfSubstanceInfo(nameof(AmountOfSubstance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AmountOfSubstance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings = AmountOfSubstanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit>(
+                    name: nameof(AmountOfSubstance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new AmountOfSubstance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="AmountOfSubstance"/> is [N].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
 
             /// <summary>
             ///     The default base unit of AmountOfSubstance is Mole. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AmountOfSubstanceUnit DefaultBaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+            private static AmountOfSubstanceUnit DefaultBaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the AmountOfSubstance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.AmountOfSubstance", typeof(AmountOfSubstance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AmountOfSubstanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AmountOfSubstanceUnit}"/> representing the default unit mappings for AmountOfSubstance.</returns>
-            public static IEnumerable<UnitDefinition<AmountOfSubstanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AmountOfSubstanceUnit>> GetDefaultMappings()
             {
                 yield return new (AmountOfSubstanceUnit.Centimole, "Centimole", "Centimoles", new BaseUnits(amount: AmountOfSubstanceUnit.Centimole));
                 yield return new (AmountOfSubstanceUnit.CentipoundMole, "CentipoundMole", "CentipoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.CentipoundMole));
@@ -146,7 +146,7 @@ namespace UnitsNet
 
         static AmountOfSubstance()
         {
-            Info = AmountOfSubstanceInfo.CreateDefault();
+            Info = AmountOfSubstanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
