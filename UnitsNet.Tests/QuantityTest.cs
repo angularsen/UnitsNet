@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
             Type targetType = expectedQuantity.QuantityInfo.QuantityType;
 
             IQuantity parsedQuantity = Quantity.Parse(targetType, valueAsString);
-            
+
             Assert.Equal(expectedQuantity, parsedQuantity);
         }
 
@@ -220,7 +220,7 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }
-    
+
         [Theory]
         [InlineData(1, 0, 0, 0, 0, 0, 0)]
         [InlineData(0, 1, 0, 0, 0, 0, 0)]

@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
             Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
-        
+
         [Theory]
         [InlineData("U")]
         [InlineData("u")]

@@ -131,6 +131,9 @@ namespace UnitsNet
                 yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinPerWatt", "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
                      new QuantityValue(1, 1000)             
                 );
+                yield return new (ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "SquareMillimeterKelvinPerWatt", "SquareMillimeterKelvinsPerWatt", BaseUnits.Undefined,
+                     1000             
+                );
             }
         }
 
@@ -268,6 +271,11 @@ namespace UnitsNet
         /// </summary>
         public QuantityValue SquareMeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
 
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>
+        /// </summary>
+        public QuantityValue SquareMillimeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
+
         #endregion
 
         #region Static Methods
@@ -343,6 +351,14 @@ namespace UnitsNet
         public static ThermalInsulance FromSquareMeterKelvinsPerWatt(QuantityValue value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>.
+        /// </summary>
+        public static ThermalInsulance FromSquareMillimeterKelvinsPerWatt(QuantityValue value)
+        {
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
         }
 
         /// <summary>

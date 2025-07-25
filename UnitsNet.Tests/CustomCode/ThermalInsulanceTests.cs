@@ -30,6 +30,7 @@ namespace UnitsNet.Tests.CustomCode
        protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt => 1e-3;
        protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt => 1;
        protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 0.001;
+       protected override double SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 1000;
 
        // TODO see about changing the base unit
        

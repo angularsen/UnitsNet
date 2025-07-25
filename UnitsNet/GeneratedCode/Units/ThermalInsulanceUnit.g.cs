@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         SquareMeterDegreeCelsiusPerWatt = 3,
         SquareMeterKelvinPerKilowatt = 5,
         SquareMeterKelvinPerWatt = 4,
+        SquareMillimeterKelvinPerWatt = 13,
     }
 
     #pragma warning restore 1591

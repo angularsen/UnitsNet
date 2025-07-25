@@ -45,6 +45,7 @@ namespace UnitsNet.Tests
         protected abstract double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt { get; }
         protected abstract double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt { get; }
         protected abstract double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt { get; }
+        protected abstract double SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double HourSquareFeetDegreesFahrenheitPerBtuTolerance { get { return 1e-5; } }
@@ -53,6 +54,7 @@ namespace UnitsNet.Tests
         protected virtual double SquareMeterDegreesCelsiusPerWattTolerance { get { return 1e-5; } }
         protected virtual double SquareMeterKelvinsPerKilowattTolerance { get { return 1e-5; } }
         protected virtual double SquareMeterKelvinsPerWattTolerance { get { return 1e-5; } }
+        protected virtual double SquareMillimeterKelvinsPerWattTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ThermalInsulanceUnit unit)
@@ -65,6 +67,7 @@ namespace UnitsNet.Tests
                 ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => (SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt, SquareMeterDegreesCelsiusPerWattTolerance),
                 ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => (SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, SquareMeterKelvinsPerKilowattTolerance),
                 ThermalInsulanceUnit.SquareMeterKelvinPerWatt => (SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, SquareMeterKelvinsPerWattTolerance),
+                ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => (SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, SquareMillimeterKelvinsPerWattTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -77,6 +80,7 @@ namespace UnitsNet.Tests
             new object[] { ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt },
             new object[] { ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt },
             new object[] { ThermalInsulanceUnit.SquareMeterKelvinPerWatt },
+            new object[] { ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt },
         };
 
         [Fact]
@@ -168,6 +172,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
+            AssertEx.EqualTolerance(SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
         }
 
         [Fact]
@@ -196,6 +201,10 @@ namespace UnitsNet.Tests
             var quantity05 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
             Assert.Equal(1, quantity05.SquareMeterKelvinsPerWatt);
             Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, quantity05.Unit);
+
+            var quantity06 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
+            Assert.Equal(1, quantity06.SquareMillimeterKelvinsPerWatt);
+            Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, quantity06.Unit);
 
         }
 
@@ -227,6 +236,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.As(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt), SquareMeterDegreesCelsiusPerWattTolerance);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.As(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt), SquareMeterKelvinsPerKilowattTolerance);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt), SquareMeterKelvinsPerWattTolerance);
+            AssertEx.EqualTolerance(SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowatt.As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt), SquareMillimeterKelvinsPerWattTolerance);
         }
 
         [Fact]
@@ -342,6 +352,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
         public void Parse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -357,6 +368,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
         public void TryParse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -372,6 +384,7 @@ namespace UnitsNet.Tests
         [InlineData("m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -387,6 +400,7 @@ namespace UnitsNet.Tests
         [InlineData("m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -402,6 +416,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("en-US", "m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("en-US", "m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("en-US", "mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -416,6 +431,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("en-US", "m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("en-US", "m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("en-US", "mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             ThermalInsulanceUnit parsedUnit = ThermalInsulance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -429,6 +445,7 @@ namespace UnitsNet.Tests
         [InlineData("m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -444,6 +461,7 @@ namespace UnitsNet.Tests
         [InlineData("m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -459,6 +477,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("en-US", "m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("en-US", "m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("en-US", "mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -473,6 +492,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt)]
         [InlineData("en-US", "m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt)]
         [InlineData("en-US", "m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt)]
+        [InlineData("en-US", "mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, ThermalInsulanceUnit expectedUnit)
         {
             Assert.True(ThermalInsulance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalInsulanceUnit parsedUnit));
@@ -486,6 +506,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "m²°C/W")]
         [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "m²K/kW")]
         [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "m²K/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "mm²K/W")]
         public void GetAbbreviationForCulture(string culture, ThermalInsulanceUnit unit, string expectedAbbreviation)
         {
             var defaultAbbreviation = ThermalInsulance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
@@ -579,6 +600,7 @@ namespace UnitsNet.Tests
             Assert.Equal(3, ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(squaremeterkelvinperkilowatt.SquareMeterDegreesCelsiusPerWatt).SquareMeterKelvinsPerKilowatt);
             Assert.Equal(3, ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(squaremeterkelvinperkilowatt.SquareMeterKelvinsPerKilowatt).SquareMeterKelvinsPerKilowatt);
             Assert.Equal(3, ThermalInsulance.FromSquareMeterKelvinsPerWatt(squaremeterkelvinperkilowatt.SquareMeterKelvinsPerWatt).SquareMeterKelvinsPerKilowatt);
+            Assert.Equal(3, ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(squaremeterkelvinperkilowatt.SquareMillimeterKelvinsPerWatt).SquareMeterKelvinsPerKilowatt);
         }
 
         [Fact]
@@ -751,6 +773,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString());
             Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString());
             Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString());
+            Assert.Equal("1 mm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt).ToString());
         }
 
         [Fact]
@@ -765,6 +788,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m²°C/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt).ToString(swedishCulture));
             Assert.Equal("1 m²K/kW", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt).ToString(swedishCulture));
             Assert.Equal("1 m²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt).ToString(swedishCulture));
+            Assert.Equal("1 mm²K/W", new ThermalInsulance(1, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt).ToString(swedishCulture));
         }
 
         [Fact]

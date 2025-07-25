@@ -76,6 +76,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromExabytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromExaoctetsPerSecond(QuantityValue)" />
+        public static BitRate ExaoctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromExaoctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExaoctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(QuantityValue)" />
         public static BitRate ExbibitsPerSecond<T>(this T value)
             where T : notnull
@@ -96,6 +107,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromExbibytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromExbioctetsPerSecond(QuantityValue)" />
+        public static BitRate ExbioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromExbioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromExbioctetsPerSecond(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(QuantityValue)" />
@@ -120,6 +142,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromGibibytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromGibioctetsPerSecond(QuantityValue)" />
+        public static BitRate GibioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromGibioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGibioctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(QuantityValue)" />
         public static BitRate GigabitsPerSecond<T>(this T value)
             where T : notnull
@@ -140,6 +173,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromGigabytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromGigaoctetsPerSecond(QuantityValue)" />
+        public static BitRate GigaoctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromGigaoctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromGigaoctetsPerSecond(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(QuantityValue)" />
@@ -164,6 +208,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromKibibytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromKibioctetsPerSecond(QuantityValue)" />
+        public static BitRate KibioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromKibioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKibioctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(QuantityValue)" />
         public static BitRate KilobitsPerSecond<T>(this T value)
             where T : notnull
@@ -184,6 +239,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromKilobytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromKilooctetsPerSecond(QuantityValue)" />
+        public static BitRate KilooctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromKilooctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromKilooctetsPerSecond(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(QuantityValue)" />
@@ -208,6 +274,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromMebibytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromMebioctetsPerSecond(QuantityValue)" />
+        public static BitRate MebioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromMebioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMebioctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(QuantityValue)" />
         public static BitRate MegabitsPerSecond<T>(this T value)
             where T : notnull
@@ -228,6 +305,28 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromMegabytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromMegaoctetsPerSecond(QuantityValue)" />
+        public static BitRate MegaoctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromMegaoctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromMegaoctetsPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromOctetsPerSecond(QuantityValue)" />
+        public static BitRate OctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromOctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromOctetsPerSecond(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(QuantityValue)" />
@@ -252,6 +351,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromPebibytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromPebioctetsPerSecond(QuantityValue)" />
+        public static BitRate PebioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromPebioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPebioctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(QuantityValue)" />
         public static BitRate PetabitsPerSecond<T>(this T value)
             where T : notnull
@@ -272,6 +382,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromPetabytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromPetaoctetsPerSecond(QuantityValue)" />
+        public static BitRate PetaoctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromPetaoctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromPetaoctetsPerSecond(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(QuantityValue)" />
@@ -296,6 +417,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
             => BitRate.FromTebibytesPerSecond(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="BitRate.FromTebioctetsPerSecond(QuantityValue)" />
+        public static BitRate TebioctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromTebioctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTebioctetsPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(QuantityValue)" />
         public static BitRate TerabitsPerSecond<T>(this T value)
             where T : notnull
@@ -316,6 +448,17 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #else
             , IConvertible
             => BitRate.FromTerabytesPerSecond(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="BitRate.FromTeraoctetsPerSecond(QuantityValue)" />
+        public static BitRate TeraoctetsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => BitRate.FromTeraoctetsPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => BitRate.FromTeraoctetsPerSecond(value.ToQuantityValue());
 #endif
 
     }

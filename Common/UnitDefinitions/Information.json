@@ -17,6 +17,19 @@
       ]
     },
     {
+      "SingularName": "Octet",
+      "PluralName": "Octets",
+      "FromUnitToBaseFunc": "{x} * 8",
+      "FromBaseToUnitFunc": "{x} / 8",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "o" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Bit",
       "PluralName": "Bits",
       "FromUnitToBaseFunc": "{x}",

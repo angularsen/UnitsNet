@@ -125,10 +125,16 @@ namespace UnitsNet
                 yield return new (InformationUnit.Exabyte, "Exabyte", "Exabytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8000000000000000000)             
                 );
+                yield return new (InformationUnit.Exaoctet, "Exaoctet", "Exaoctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000000)             
+                );
                 yield return new (InformationUnit.Exbibit, "Exbibit", "Exbibits", BaseUnits.Undefined,
                      new QuantityValue(1, 1152921504606846976)             
                 );
                 yield return new (InformationUnit.Exbibyte, "Exbibyte", "Exbibytes", BaseUnits.Undefined,
+                     new QuantityValue(1, BigInteger.Pow(2, 63))             
+                );
+                yield return new (InformationUnit.Exbioctet, "Exbioctet", "Exbioctets", BaseUnits.Undefined,
                      new QuantityValue(1, BigInteger.Pow(2, 63))             
                 );
                 yield return new (InformationUnit.Gibibit, "Gibibit", "Gibibits", BaseUnits.Undefined,
@@ -137,10 +143,16 @@ namespace UnitsNet
                 yield return new (InformationUnit.Gibibyte, "Gibibyte", "Gibibytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8589934592)             
                 );
+                yield return new (InformationUnit.Gibioctet, "Gibioctet", "Gibioctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8589934592)             
+                );
                 yield return new (InformationUnit.Gigabit, "Gigabit", "Gigabits", BaseUnits.Undefined,
                      new QuantityValue(1, 1000000000)             
                 );
                 yield return new (InformationUnit.Gigabyte, "Gigabyte", "Gigabytes", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000)             
+                );
+                yield return new (InformationUnit.Gigaoctet, "Gigaoctet", "Gigaoctets", BaseUnits.Undefined,
                      new QuantityValue(1, 8000000000)             
                 );
                 yield return new (InformationUnit.Kibibit, "Kibibit", "Kibibits", BaseUnits.Undefined,
@@ -149,10 +161,16 @@ namespace UnitsNet
                 yield return new (InformationUnit.Kibibyte, "Kibibyte", "Kibibytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8192)             
                 );
+                yield return new (InformationUnit.Kibioctet, "Kibioctet", "Kibioctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8192)             
+                );
                 yield return new (InformationUnit.Kilobit, "Kilobit", "Kilobits", BaseUnits.Undefined,
                      new QuantityValue(1, 1000)             
                 );
                 yield return new (InformationUnit.Kilobyte, "Kilobyte", "Kilobytes", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000)             
+                );
+                yield return new (InformationUnit.Kilooctet, "Kilooctet", "Kilooctets", BaseUnits.Undefined,
                      new QuantityValue(1, 8000)             
                 );
                 yield return new (InformationUnit.Mebibit, "Mebibit", "Mebibits", BaseUnits.Undefined,
@@ -161,16 +179,28 @@ namespace UnitsNet
                 yield return new (InformationUnit.Mebibyte, "Mebibyte", "Mebibytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8388608)             
                 );
+                yield return new (InformationUnit.Mebioctet, "Mebioctet", "Mebioctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8388608)             
+                );
                 yield return new (InformationUnit.Megabit, "Megabit", "Megabits", BaseUnits.Undefined,
                      new QuantityValue(1, 1000000)             
                 );
                 yield return new (InformationUnit.Megabyte, "Megabyte", "Megabytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8000000)             
                 );
+                yield return new (InformationUnit.Megaoctet, "Megaoctet", "Megaoctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000)             
+                );
+                yield return new (InformationUnit.Octet, "Octet", "Octets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8)             
+                );
                 yield return new (InformationUnit.Pebibit, "Pebibit", "Pebibits", BaseUnits.Undefined,
                      new QuantityValue(1, 1125899906842624)             
                 );
                 yield return new (InformationUnit.Pebibyte, "Pebibyte", "Pebibytes", BaseUnits.Undefined,
+                     new QuantityValue(1, 9007199254740992)             
+                );
+                yield return new (InformationUnit.Pebioctet, "Pebioctet", "Pebioctets", BaseUnits.Undefined,
                      new QuantityValue(1, 9007199254740992)             
                 );
                 yield return new (InformationUnit.Petabit, "Petabit", "Petabits", BaseUnits.Undefined,
@@ -179,16 +209,25 @@ namespace UnitsNet
                 yield return new (InformationUnit.Petabyte, "Petabyte", "Petabytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8000000000000000)             
                 );
+                yield return new (InformationUnit.Petaoctet, "Petaoctet", "Petaoctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000)             
+                );
                 yield return new (InformationUnit.Tebibit, "Tebibit", "Tebibits", BaseUnits.Undefined,
                      new QuantityValue(1, 1099511627776)             
                 );
                 yield return new (InformationUnit.Tebibyte, "Tebibyte", "Tebibytes", BaseUnits.Undefined,
                      new QuantityValue(1, 8796093022208)             
                 );
+                yield return new (InformationUnit.Tebioctet, "Tebioctet", "Tebioctets", BaseUnits.Undefined,
+                     new QuantityValue(1, 8796093022208)             
+                );
                 yield return new (InformationUnit.Terabit, "Terabit", "Terabits", BaseUnits.Undefined,
                      new QuantityValue(1, 1000000000000)             
                 );
                 yield return new (InformationUnit.Terabyte, "Terabyte", "Terabytes", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000)             
+                );
+                yield return new (InformationUnit.Teraoctet, "Teraoctet", "Teraoctets", BaseUnits.Undefined,
                      new QuantityValue(1, 8000000000000)             
                 );
             }
@@ -305,6 +344,11 @@ namespace UnitsNet
         public QuantityValue Exabytes => this.As(InformationUnit.Exabyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exaoctet"/>
+        /// </summary>
+        public QuantityValue Exaoctets => this.As(InformationUnit.Exaoctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
         public QuantityValue Exbibits => this.As(InformationUnit.Exbibit);
@@ -313,6 +357,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
         public QuantityValue Exbibytes => this.As(InformationUnit.Exbibyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbioctet"/>
+        /// </summary>
+        public QuantityValue Exbioctets => this.As(InformationUnit.Exbioctet);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
@@ -325,6 +374,11 @@ namespace UnitsNet
         public QuantityValue Gibibytes => this.As(InformationUnit.Gibibyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gibioctet"/>
+        /// </summary>
+        public QuantityValue Gibioctets => this.As(InformationUnit.Gibioctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
         public QuantityValue Gigabits => this.As(InformationUnit.Gigabit);
@@ -333,6 +387,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
         public QuantityValue Gigabytes => this.As(InformationUnit.Gigabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigaoctet"/>
+        /// </summary>
+        public QuantityValue Gigaoctets => this.As(InformationUnit.Gigaoctet);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
@@ -345,6 +404,11 @@ namespace UnitsNet
         public QuantityValue Kibibytes => this.As(InformationUnit.Kibibyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kibioctet"/>
+        /// </summary>
+        public QuantityValue Kibioctets => this.As(InformationUnit.Kibioctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
         public QuantityValue Kilobits => this.As(InformationUnit.Kilobit);
@@ -353,6 +417,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
         public QuantityValue Kilobytes => this.As(InformationUnit.Kilobyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilooctet"/>
+        /// </summary>
+        public QuantityValue Kilooctets => this.As(InformationUnit.Kilooctet);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
@@ -365,6 +434,11 @@ namespace UnitsNet
         public QuantityValue Mebibytes => this.As(InformationUnit.Mebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Mebioctet"/>
+        /// </summary>
+        public QuantityValue Mebioctets => this.As(InformationUnit.Mebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
         public QuantityValue Megabits => this.As(InformationUnit.Megabit);
@@ -373,6 +447,16 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
         public QuantityValue Megabytes => this.As(InformationUnit.Megabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megaoctet"/>
+        /// </summary>
+        public QuantityValue Megaoctets => this.As(InformationUnit.Megaoctet);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Octet"/>
+        /// </summary>
+        public QuantityValue Octets => this.As(InformationUnit.Octet);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
@@ -385,6 +469,11 @@ namespace UnitsNet
         public QuantityValue Pebibytes => this.As(InformationUnit.Pebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Pebioctet"/>
+        /// </summary>
+        public QuantityValue Pebioctets => this.As(InformationUnit.Pebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
         public QuantityValue Petabits => this.As(InformationUnit.Petabit);
@@ -393,6 +482,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
         public QuantityValue Petabytes => this.As(InformationUnit.Petabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petaoctet"/>
+        /// </summary>
+        public QuantityValue Petaoctets => this.As(InformationUnit.Petaoctet);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
@@ -405,6 +499,11 @@ namespace UnitsNet
         public QuantityValue Tebibytes => this.As(InformationUnit.Tebibyte);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Tebioctet"/>
+        /// </summary>
+        public QuantityValue Tebioctets => this.As(InformationUnit.Tebioctet);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
         public QuantityValue Terabits => this.As(InformationUnit.Terabit);
@@ -413,6 +512,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
         public QuantityValue Terabytes => this.As(InformationUnit.Terabyte);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Teraoctet"/>
+        /// </summary>
+        public QuantityValue Teraoctets => this.As(InformationUnit.Teraoctet);
 
         #endregion
 
@@ -476,6 +580,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exaoctet"/>.
+        /// </summary>
+        public static Information FromExaoctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Exaoctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
         public static Information FromExbibits(QuantityValue value)
@@ -489,6 +601,14 @@ namespace UnitsNet
         public static Information FromExbibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Exbibyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbioctet"/>.
+        /// </summary>
+        public static Information FromExbioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Exbioctet);
         }
 
         /// <summary>
@@ -508,6 +628,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibioctet"/>.
+        /// </summary>
+        public static Information FromGibioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Gibioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
         public static Information FromGigabits(QuantityValue value)
@@ -521,6 +649,14 @@ namespace UnitsNet
         public static Information FromGigabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Gigabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigaoctet"/>.
+        /// </summary>
+        public static Information FromGigaoctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Gigaoctet);
         }
 
         /// <summary>
@@ -540,6 +676,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibioctet"/>.
+        /// </summary>
+        public static Information FromKibioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Kibioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
         public static Information FromKilobits(QuantityValue value)
@@ -553,6 +697,14 @@ namespace UnitsNet
         public static Information FromKilobytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Kilobyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilooctet"/>.
+        /// </summary>
+        public static Information FromKilooctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Kilooctet);
         }
 
         /// <summary>
@@ -572,6 +724,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebioctet"/>.
+        /// </summary>
+        public static Information FromMebioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Mebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
         public static Information FromMegabits(QuantityValue value)
@@ -585,6 +745,22 @@ namespace UnitsNet
         public static Information FromMegabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Megabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megaoctet"/>.
+        /// </summary>
+        public static Information FromMegaoctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Megaoctet);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Octet"/>.
+        /// </summary>
+        public static Information FromOctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Octet);
         }
 
         /// <summary>
@@ -604,6 +780,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebioctet"/>.
+        /// </summary>
+        public static Information FromPebioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Pebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
         public static Information FromPetabits(QuantityValue value)
@@ -617,6 +801,14 @@ namespace UnitsNet
         public static Information FromPetabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Petabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petaoctet"/>.
+        /// </summary>
+        public static Information FromPetaoctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Petaoctet);
         }
 
         /// <summary>
@@ -636,6 +828,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebioctet"/>.
+        /// </summary>
+        public static Information FromTebioctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Tebioctet);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
         public static Information FromTerabits(QuantityValue value)
@@ -649,6 +849,14 @@ namespace UnitsNet
         public static Information FromTerabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Terabyte);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Teraoctet"/>.
+        /// </summary>
+        public static Information FromTeraoctets(QuantityValue value)
+        {
+            return new Information(value, InformationUnit.Teraoctet);
         }
 
         /// <summary>

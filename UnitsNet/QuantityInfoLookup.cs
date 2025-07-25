@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
@@ -187,7 +184,7 @@ public class QuantityInfoLookup
     {
         return GetUnitInfo(unit).From(value);
     }
-    
+
     /// <summary>
     ///     Attempts to create a quantity from the specified value and unit.
     /// </summary>
@@ -283,7 +280,7 @@ public class QuantityInfoLookup
                    Data = { ["quantityName"] = quantityName, ["unitName"] = unitName }
                };
     }
-    
+
     /// <summary>
     ///     Attempts to parse unit information based on its quantity and unit names.
     /// </summary>

@@ -76,6 +76,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromExabytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromExaoctets(QuantityValue)" />
+        public static Information Exaoctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromExaoctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExaoctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromExbibits(QuantityValue)" />
         public static Information Exbibits<T>(this T value)
             where T : notnull
@@ -96,6 +107,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromExbibytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromExbioctets(QuantityValue)" />
+        public static Information Exbioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromExbioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromExbioctets(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="Information.FromGibibits(QuantityValue)" />
@@ -120,6 +142,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromGibibytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromGibioctets(QuantityValue)" />
+        public static Information Gibioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromGibioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGibioctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromGigabits(QuantityValue)" />
         public static Information Gigabits<T>(this T value)
             where T : notnull
@@ -140,6 +173,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromGigabytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromGigaoctets(QuantityValue)" />
+        public static Information Gigaoctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromGigaoctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromGigaoctets(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="Information.FromKibibits(QuantityValue)" />
@@ -164,6 +208,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromKibibytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromKibioctets(QuantityValue)" />
+        public static Information Kibioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromKibioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKibioctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromKilobits(QuantityValue)" />
         public static Information Kilobits<T>(this T value)
             where T : notnull
@@ -184,6 +239,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromKilobytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromKilooctets(QuantityValue)" />
+        public static Information Kilooctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromKilooctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromKilooctets(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="Information.FromMebibits(QuantityValue)" />
@@ -208,6 +274,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromMebibytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromMebioctets(QuantityValue)" />
+        public static Information Mebioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromMebioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMebioctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromMegabits(QuantityValue)" />
         public static Information Megabits<T>(this T value)
             where T : notnull
@@ -228,6 +305,28 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromMegabytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromMegaoctets(QuantityValue)" />
+        public static Information Megaoctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromMegaoctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromMegaoctets(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromOctets(QuantityValue)" />
+        public static Information Octets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromOctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromOctets(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="Information.FromPebibits(QuantityValue)" />
@@ -252,6 +351,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromPebibytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromPebioctets(QuantityValue)" />
+        public static Information Pebioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromPebioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPebioctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromPetabits(QuantityValue)" />
         public static Information Petabits<T>(this T value)
             where T : notnull
@@ -272,6 +382,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromPetabytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromPetaoctets(QuantityValue)" />
+        public static Information Petaoctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromPetaoctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromPetaoctets(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="Information.FromTebibits(QuantityValue)" />
@@ -296,6 +417,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             => Information.FromTebibytes(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Information.FromTebioctets(QuantityValue)" />
+        public static Information Tebioctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromTebioctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTebioctets(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Information.FromTerabits(QuantityValue)" />
         public static Information Terabits<T>(this T value)
             where T : notnull
@@ -316,6 +448,17 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #else
             , IConvertible
             => Information.FromTerabytes(value.ToQuantityValue());
+#endif
+
+        /// <inheritdoc cref="Information.FromTeraoctets(QuantityValue)" />
+        public static Information Teraoctets<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Information.FromTeraoctets(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Information.FromTeraoctets(value.ToQuantityValue());
 #endif
 
     }

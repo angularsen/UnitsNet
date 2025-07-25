@@ -11,7 +11,7 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-// [SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfMassesWithRandomUnitsBenchmarks
 {
     private static readonly QuantityValue Value = 1.23;
