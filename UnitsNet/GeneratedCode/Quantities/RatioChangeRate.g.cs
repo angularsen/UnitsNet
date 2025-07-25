@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RatioChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RatioChangeRateInfo: QuantityInfo<RatioChangeRate, RatioChangeRateUnit>
+        private static class RatioChangeRateInfo
         {
-            /// <inheritdoc />
-            public RatioChangeRateInfo(string name, RatioChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings, RatioChangeRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RatioChangeRate, RatioChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RatioChangeRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RatioChangeRateInfo(string name, RatioChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings, RatioChangeRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RatioChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RatioChangeRate", typeof(RatioChangeRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings for the RatioChangeRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings.</returns>
-            public static RatioChangeRateInfo CreateDefault()
-            {
-                return new RatioChangeRateInfo(nameof(RatioChangeRate), DefaultBaseUnit, GetDefaultMappings(), new RatioChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings for the RatioChangeRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings.
             /// </returns>
-            public static RatioChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<RatioChangeRateUnit>>, IEnumerable<IUnitDefinition<RatioChangeRateUnit>>> customizeUnits)
+            private static QuantityInfo<RatioChangeRate, RatioChangeRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RatioChangeRateUnit>>, IEnumerable<IUnitDefinition<RatioChangeRateUnit>>>? customizeUnits = null)
             {
-                return new RatioChangeRateInfo(nameof(RatioChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RatioChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings = RatioChangeRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RatioChangeRate, RatioChangeRateUnit>(
+                    name: nameof(RatioChangeRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RatioChangeRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RatioChangeRate"/> is [T^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RatioChangeRate is DecimalFractionPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RatioChangeRateUnit DefaultBaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+            private static RatioChangeRateUnit DefaultBaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RatioChangeRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RatioChangeRate", typeof(RatioChangeRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RatioChangeRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RatioChangeRateUnit}"/> representing the default unit mappings for RatioChangeRate.</returns>
-            public static IEnumerable<UnitDefinition<RatioChangeRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RatioChangeRateUnit>> GetDefaultMappings()
             {
                 yield return new (RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionPerSecond", "DecimalFractionsPerSecond", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RatioChangeRateUnit.PercentPerSecond, "PercentPerSecond", "PercentsPerSecond", BaseUnits.Undefined);
@@ -123,7 +123,7 @@ namespace UnitsNet
 
         static RatioChangeRate()
         {
-            Info = RatioChangeRateInfo.CreateDefault();
+            Info = RatioChangeRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

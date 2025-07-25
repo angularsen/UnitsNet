@@ -72,59 +72,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MassConcentration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassConcentrationInfo: QuantityInfo<MassConcentration, MassConcentrationUnit>
+        private static class MassConcentrationInfo
         {
-            /// <inheritdoc />
-            public MassConcentrationInfo(string name, MassConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<MassConcentrationUnit>> unitMappings, MassConcentration zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MassConcentration, MassConcentrationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassConcentration.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassConcentrationInfo(string name, MassConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<MassConcentrationUnit>> unitMappings, MassConcentration zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassConcentration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassConcentration", typeof(MassConcentration).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassConcentrationInfo"/> class with the default settings for the MassConcentration quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassConcentrationInfo"/> class with the default settings.</returns>
-            public static MassConcentrationInfo CreateDefault()
-            {
-                return new MassConcentrationInfo(nameof(MassConcentration), DefaultBaseUnit, GetDefaultMappings(), new MassConcentration(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassConcentrationInfo"/> class with the default settings for the MassConcentration quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassConcentrationInfo"/> class with the default settings.
             /// </returns>
-            public static MassConcentrationInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassConcentrationUnit>>, IEnumerable<IUnitDefinition<MassConcentrationUnit>>> customizeUnits)
+            private static QuantityInfo<MassConcentration, MassConcentrationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassConcentrationUnit>>, IEnumerable<IUnitDefinition<MassConcentrationUnit>>>? customizeUnits = null)
             {
-                return new MassConcentrationInfo(nameof(MassConcentration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassConcentration(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassConcentrationUnit>> unitMappings = MassConcentrationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MassConcentration, MassConcentrationUnit>(
+                    name: nameof(MassConcentration),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MassConcentration(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MassConcentration"/> is [L^-3][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MassConcentration is KilogramPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassConcentrationUnit DefaultBaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
+            private static MassConcentrationUnit DefaultBaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MassConcentration quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MassConcentration", typeof(MassConcentration).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassConcentrationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassConcentrationUnit}"/> representing the default unit mappings for MassConcentration.</returns>
-            public static IEnumerable<UnitDefinition<MassConcentrationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassConcentrationUnit>> GetDefaultMappings()
             {
                 yield return new (MassConcentrationUnit.CentigramPerDeciliter, "CentigramPerDeciliter", "CentigramsPerDeciliter", BaseUnits.Undefined);
                 yield return new (MassConcentrationUnit.CentigramPerLiter, "CentigramPerLiter", "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram));
@@ -180,7 +180,7 @@ namespace UnitsNet
 
         static MassConcentration()
         {
-            Info = MassConcentrationInfo.CreateDefault();
+            Info = MassConcentrationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

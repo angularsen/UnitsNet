@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Frequency"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class FrequencyInfo: QuantityInfo<Frequency, FrequencyUnit>
+        private static class FrequencyInfo
         {
-            /// <inheritdoc />
-            public FrequencyInfo(string name, FrequencyUnit baseUnit, IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings, Frequency zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Frequency, FrequencyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Frequency.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public FrequencyInfo(string name, FrequencyUnit baseUnit, IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings, Frequency zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Frequency.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Frequency", typeof(Frequency).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="FrequencyInfo"/> class with the default settings for the Frequency quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="FrequencyInfo"/> class with the default settings.</returns>
-            public static FrequencyInfo CreateDefault()
-            {
-                return new FrequencyInfo(nameof(Frequency), DefaultBaseUnit, GetDefaultMappings(), new Frequency(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="FrequencyInfo"/> class with the default settings for the Frequency quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="FrequencyInfo"/> class with the default settings.
             /// </returns>
-            public static FrequencyInfo CreateDefault(Func<IEnumerable<UnitDefinition<FrequencyUnit>>, IEnumerable<IUnitDefinition<FrequencyUnit>>> customizeUnits)
+            private static QuantityInfo<Frequency, FrequencyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<FrequencyUnit>>, IEnumerable<IUnitDefinition<FrequencyUnit>>>? customizeUnits = null)
             {
-                return new FrequencyInfo(nameof(Frequency), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Frequency(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings = FrequencyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Frequency, FrequencyUnit>(
+                    name: nameof(Frequency),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Frequency(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Frequency"/> is [T^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Frequency is Hertz. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static FrequencyUnit DefaultBaseUnit { get; } = FrequencyUnit.Hertz;
+            private static FrequencyUnit DefaultBaseUnit { get; } = FrequencyUnit.Hertz;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Frequency quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Frequency", typeof(Frequency).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="FrequencyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FrequencyUnit}"/> representing the default unit mappings for Frequency.</returns>
-            public static IEnumerable<UnitDefinition<FrequencyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<FrequencyUnit>> GetDefaultMappings()
             {
                 yield return new (FrequencyUnit.BeatPerMinute, "BeatPerMinute", "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute));
                 yield return new (FrequencyUnit.CyclePerHour, "CyclePerHour", "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour));
@@ -136,7 +136,7 @@ namespace UnitsNet
 
         static Frequency()
         {
-            Info = FrequencyInfo.CreateDefault();
+            Info = FrequencyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

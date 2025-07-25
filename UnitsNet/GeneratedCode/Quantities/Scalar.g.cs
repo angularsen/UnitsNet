@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Scalar"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ScalarInfo: QuantityInfo<Scalar, ScalarUnit>
+        private static class ScalarInfo
         {
-            /// <inheritdoc />
-            public ScalarInfo(string name, ScalarUnit baseUnit, IEnumerable<IUnitDefinition<ScalarUnit>> unitMappings, Scalar zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Scalar, ScalarUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Scalar.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ScalarInfo(string name, ScalarUnit baseUnit, IEnumerable<IUnitDefinition<ScalarUnit>> unitMappings, Scalar zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Scalar.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Scalar", typeof(Scalar).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ScalarInfo"/> class with the default settings for the Scalar quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ScalarInfo"/> class with the default settings.</returns>
-            public static ScalarInfo CreateDefault()
-            {
-                return new ScalarInfo(nameof(Scalar), DefaultBaseUnit, GetDefaultMappings(), new Scalar(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ScalarInfo"/> class with the default settings for the Scalar quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ScalarInfo"/> class with the default settings.
             /// </returns>
-            public static ScalarInfo CreateDefault(Func<IEnumerable<UnitDefinition<ScalarUnit>>, IEnumerable<IUnitDefinition<ScalarUnit>>> customizeUnits)
+            private static QuantityInfo<Scalar, ScalarUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ScalarUnit>>, IEnumerable<IUnitDefinition<ScalarUnit>>>? customizeUnits = null)
             {
-                return new ScalarInfo(nameof(Scalar), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Scalar(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ScalarUnit>> unitMappings = ScalarInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Scalar, ScalarUnit>(
+                    name: nameof(Scalar),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Scalar(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Scalar"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of Scalar is Amount. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ScalarUnit DefaultBaseUnit { get; } = ScalarUnit.Amount;
+            private static ScalarUnit DefaultBaseUnit { get; } = ScalarUnit.Amount;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Scalar quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Scalar", typeof(Scalar).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ScalarUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ScalarUnit}"/> representing the default unit mappings for Scalar.</returns>
-            public static IEnumerable<UnitDefinition<ScalarUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ScalarUnit>> GetDefaultMappings()
             {
                 yield return new (ScalarUnit.Amount, "Amount", "Amount", BaseUnits.Undefined);
             }
@@ -122,7 +122,7 @@ namespace UnitsNet
 
         static Scalar()
         {
-            Info = ScalarInfo.CreateDefault();
+            Info = ScalarInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

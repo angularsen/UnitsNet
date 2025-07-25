@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="HeatFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class HeatFluxInfo: QuantityInfo<HeatFlux, HeatFluxUnit>
+        private static class HeatFluxInfo
         {
-            /// <inheritdoc />
-            public HeatFluxInfo(string name, HeatFluxUnit baseUnit, IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings, HeatFlux zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<HeatFlux, HeatFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, HeatFlux.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public HeatFluxInfo(string name, HeatFluxUnit baseUnit, IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings, HeatFlux zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, HeatFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.HeatFlux", typeof(HeatFlux).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="HeatFluxInfo"/> class with the default settings for the HeatFlux quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="HeatFluxInfo"/> class with the default settings.</returns>
-            public static HeatFluxInfo CreateDefault()
-            {
-                return new HeatFluxInfo(nameof(HeatFlux), DefaultBaseUnit, GetDefaultMappings(), new HeatFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="HeatFluxInfo"/> class with the default settings for the HeatFlux quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="HeatFluxInfo"/> class with the default settings.
             /// </returns>
-            public static HeatFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<HeatFluxUnit>>, IEnumerable<IUnitDefinition<HeatFluxUnit>>> customizeUnits)
+            private static QuantityInfo<HeatFlux, HeatFluxUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<HeatFluxUnit>>, IEnumerable<IUnitDefinition<HeatFluxUnit>>>? customizeUnits = null)
             {
-                return new HeatFluxInfo(nameof(HeatFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new HeatFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings = HeatFluxInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<HeatFlux, HeatFluxUnit>(
+                    name: nameof(HeatFlux),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new HeatFlux(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="HeatFlux"/> is [T^-3][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of HeatFlux is WattPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static HeatFluxUnit DefaultBaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+            private static HeatFluxUnit DefaultBaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the HeatFlux quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.HeatFlux", typeof(HeatFlux).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="HeatFluxUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{HeatFluxUnit}"/> representing the default unit mappings for HeatFlux.</returns>
-            public static IEnumerable<UnitDefinition<HeatFluxUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<HeatFluxUnit>> GetDefaultMappings()
             {
                 yield return new (HeatFluxUnit.BtuPerHourSquareFoot, "BtuPerHourSquareFoot", "BtusPerHourSquareFoot", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.BtuPerMinuteSquareFoot, "BtuPerMinuteSquareFoot", "BtusPerMinuteSquareFoot", BaseUnits.Undefined);
@@ -142,7 +142,7 @@ namespace UnitsNet
 
         static HeatFlux()
         {
-            Info = HeatFluxInfo.CreateDefault();
+            Info = HeatFluxInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

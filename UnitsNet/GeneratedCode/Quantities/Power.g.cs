@@ -78,59 +78,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Power"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PowerInfo: QuantityInfo<Power, PowerUnit>
+        private static class PowerInfo
         {
-            /// <inheritdoc />
-            public PowerInfo(string name, PowerUnit baseUnit, IEnumerable<IUnitDefinition<PowerUnit>> unitMappings, Power zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Power, PowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Power.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PowerInfo(string name, PowerUnit baseUnit, IEnumerable<IUnitDefinition<PowerUnit>> unitMappings, Power zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Power.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Power", typeof(Power).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PowerInfo"/> class with the default settings for the Power quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PowerInfo"/> class with the default settings.</returns>
-            public static PowerInfo CreateDefault()
-            {
-                return new PowerInfo(nameof(Power), DefaultBaseUnit, GetDefaultMappings(), new Power(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PowerInfo"/> class with the default settings for the Power quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PowerInfo"/> class with the default settings.
             /// </returns>
-            public static PowerInfo CreateDefault(Func<IEnumerable<UnitDefinition<PowerUnit>>, IEnumerable<IUnitDefinition<PowerUnit>>> customizeUnits)
+            private static QuantityInfo<Power, PowerUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PowerUnit>>, IEnumerable<IUnitDefinition<PowerUnit>>>? customizeUnits = null)
             {
-                return new PowerInfo(nameof(Power), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Power(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PowerUnit>> unitMappings = PowerInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Power, PowerUnit>(
+                    name: nameof(Power),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Power(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Power"/> is [T^-3][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Power is Watt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PowerUnit DefaultBaseUnit { get; } = PowerUnit.Watt;
+            private static PowerUnit DefaultBaseUnit { get; } = PowerUnit.Watt;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Power quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Power", typeof(Power).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PowerUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerUnit}"/> representing the default unit mappings for Power.</returns>
-            public static IEnumerable<UnitDefinition<PowerUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PowerUnit>> GetDefaultMappings()
             {
                 yield return new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined);
                 yield return new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined);
@@ -164,7 +164,7 @@ namespace UnitsNet
 
         static Power()
         {
-            Info = PowerInfo.CreateDefault();
+            Info = PowerInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="VolumetricHeatCapacity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VolumetricHeatCapacityInfo: QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>
+        private static class VolumetricHeatCapacityInfo
         {
-            /// <inheritdoc />
-            public VolumetricHeatCapacityInfo(string name, VolumetricHeatCapacityUnit baseUnit, IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>> unitMappings, VolumetricHeatCapacity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumetricHeatCapacity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VolumetricHeatCapacityInfo(string name, VolumetricHeatCapacityUnit baseUnit, IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>> unitMappings, VolumetricHeatCapacity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, VolumetricHeatCapacity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VolumetricHeatCapacity", typeof(VolumetricHeatCapacity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VolumetricHeatCapacityInfo"/> class with the default settings for the VolumetricHeatCapacity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VolumetricHeatCapacityInfo"/> class with the default settings.</returns>
-            public static VolumetricHeatCapacityInfo CreateDefault()
-            {
-                return new VolumetricHeatCapacityInfo(nameof(VolumetricHeatCapacity), DefaultBaseUnit, GetDefaultMappings(), new VolumetricHeatCapacity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VolumetricHeatCapacityInfo"/> class with the default settings for the VolumetricHeatCapacity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VolumetricHeatCapacityInfo"/> class with the default settings.
             /// </returns>
-            public static VolumetricHeatCapacityInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumetricHeatCapacityUnit>>, IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>>> customizeUnits)
+            private static QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>>, IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>>>? customizeUnits = null)
             {
-                return new VolumetricHeatCapacityInfo(nameof(VolumetricHeatCapacity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VolumetricHeatCapacity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VolumetricHeatCapacityUnit>> unitMappings = VolumetricHeatCapacityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(
+                    name: nameof(VolumetricHeatCapacity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new VolumetricHeatCapacity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="VolumetricHeatCapacity"/> is [T^-2][L^-1][M][Θ^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
 
             /// <summary>
             ///     The default base unit of VolumetricHeatCapacity is JoulePerCubicMeterKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VolumetricHeatCapacityUnit DefaultBaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+            private static VolumetricHeatCapacityUnit DefaultBaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the VolumetricHeatCapacity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.VolumetricHeatCapacity", typeof(VolumetricHeatCapacity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VolumetricHeatCapacityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumetricHeatCapacityUnit}"/> representing the default unit mappings for VolumetricHeatCapacity.</returns>
-            public static IEnumerable<UnitDefinition<VolumetricHeatCapacityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VolumetricHeatCapacityUnit>> GetDefaultMappings()
             {
                 yield return new (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtuPerCubicFootDegreeFahrenheit", "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined);
                 yield return new (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriePerCubicCentimeterDegreeCelsius", "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined);
@@ -133,7 +133,7 @@ namespace UnitsNet
 
         static VolumetricHeatCapacity()
         {
-            Info = VolumetricHeatCapacityInfo.CreateDefault();
+            Info = VolumetricHeatCapacityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

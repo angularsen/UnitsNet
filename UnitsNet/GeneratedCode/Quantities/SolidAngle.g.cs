@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="SolidAngle"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SolidAngleInfo: QuantityInfo<SolidAngle, SolidAngleUnit>
+        private static class SolidAngleInfo
         {
-            /// <inheritdoc />
-            public SolidAngleInfo(string name, SolidAngleUnit baseUnit, IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings, SolidAngle zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<SolidAngle, SolidAngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SolidAngle.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SolidAngleInfo(string name, SolidAngleUnit baseUnit, IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings, SolidAngle zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, SolidAngle.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SolidAngle", typeof(SolidAngle).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SolidAngleInfo"/> class with the default settings for the SolidAngle quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SolidAngleInfo"/> class with the default settings.</returns>
-            public static SolidAngleInfo CreateDefault()
-            {
-                return new SolidAngleInfo(nameof(SolidAngle), DefaultBaseUnit, GetDefaultMappings(), new SolidAngle(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SolidAngleInfo"/> class with the default settings for the SolidAngle quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SolidAngleInfo"/> class with the default settings.
             /// </returns>
-            public static SolidAngleInfo CreateDefault(Func<IEnumerable<UnitDefinition<SolidAngleUnit>>, IEnumerable<IUnitDefinition<SolidAngleUnit>>> customizeUnits)
+            private static QuantityInfo<SolidAngle, SolidAngleUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SolidAngleUnit>>, IEnumerable<IUnitDefinition<SolidAngleUnit>>>? customizeUnits = null)
             {
-                return new SolidAngleInfo(nameof(SolidAngle), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SolidAngle(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings = SolidAngleInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<SolidAngle, SolidAngleUnit>(
+                    name: nameof(SolidAngle),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new SolidAngle(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="SolidAngle"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of SolidAngle is Steradian. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SolidAngleUnit DefaultBaseUnit { get; } = SolidAngleUnit.Steradian;
+            private static SolidAngleUnit DefaultBaseUnit { get; } = SolidAngleUnit.Steradian;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the SolidAngle quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.SolidAngle", typeof(SolidAngle).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SolidAngleUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SolidAngleUnit}"/> representing the default unit mappings for SolidAngle.</returns>
-            public static IEnumerable<UnitDefinition<SolidAngleUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SolidAngleUnit>> GetDefaultMappings()
             {
                 yield return new (SolidAngleUnit.Steradian, "Steradian", "Steradians", BaseUnits.Undefined);
             }
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static SolidAngle()
         {
-            Info = SolidAngleInfo.CreateDefault();
+            Info = SolidAngleInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

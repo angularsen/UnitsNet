@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RadiationExposure"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RadiationExposureInfo: QuantityInfo<RadiationExposure, RadiationExposureUnit>
+        private static class RadiationExposureInfo
         {
-            /// <inheritdoc />
-            public RadiationExposureInfo(string name, RadiationExposureUnit baseUnit, IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings, RadiationExposure zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RadiationExposure, RadiationExposureUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RadiationExposure.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RadiationExposureInfo(string name, RadiationExposureUnit baseUnit, IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings, RadiationExposure zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RadiationExposure.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RadiationExposure", typeof(RadiationExposure).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RadiationExposureInfo"/> class with the default settings for the RadiationExposure quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RadiationExposureInfo"/> class with the default settings.</returns>
-            public static RadiationExposureInfo CreateDefault()
-            {
-                return new RadiationExposureInfo(nameof(RadiationExposure), DefaultBaseUnit, GetDefaultMappings(), new RadiationExposure(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RadiationExposureInfo"/> class with the default settings for the RadiationExposure quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RadiationExposureInfo"/> class with the default settings.
             /// </returns>
-            public static RadiationExposureInfo CreateDefault(Func<IEnumerable<UnitDefinition<RadiationExposureUnit>>, IEnumerable<IUnitDefinition<RadiationExposureUnit>>> customizeUnits)
+            private static QuantityInfo<RadiationExposure, RadiationExposureUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RadiationExposureUnit>>, IEnumerable<IUnitDefinition<RadiationExposureUnit>>>? customizeUnits = null)
             {
-                return new RadiationExposureInfo(nameof(RadiationExposure), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RadiationExposure(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings = RadiationExposureInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RadiationExposure, RadiationExposureUnit>(
+                    name: nameof(RadiationExposure),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RadiationExposure(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RadiationExposure"/> is [T][M^-1][I].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 1, 1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 1, 1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RadiationExposure is CoulombPerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RadiationExposureUnit DefaultBaseUnit { get; } = RadiationExposureUnit.CoulombPerKilogram;
+            private static RadiationExposureUnit DefaultBaseUnit { get; } = RadiationExposureUnit.CoulombPerKilogram;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RadiationExposure quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RadiationExposure", typeof(RadiationExposure).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RadiationExposureUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadiationExposureUnit}"/> representing the default unit mappings for RadiationExposure.</returns>
-            public static IEnumerable<UnitDefinition<RadiationExposureUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RadiationExposureUnit>> GetDefaultMappings()
             {
                 yield return new (RadiationExposureUnit.CoulombPerKilogram, "CoulombPerKilogram", "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombPerKilogram", "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
@@ -129,7 +129,7 @@ namespace UnitsNet
 
         static RadiationExposure()
         {
-            Info = RadiationExposureInfo.CreateDefault();
+            Info = RadiationExposureInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -68,59 +68,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricResistance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricResistanceInfo: QuantityInfo<ElectricResistance, ElectricResistanceUnit>
+        private static class ElectricResistanceInfo
         {
-            /// <inheritdoc />
-            public ElectricResistanceInfo(string name, ElectricResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistanceUnit>> unitMappings, ElectricResistance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricResistance, ElectricResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricResistance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricResistanceInfo(string name, ElectricResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistanceUnit>> unitMappings, ElectricResistance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricResistance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricResistance", typeof(ElectricResistance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings for the ElectricResistance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings.</returns>
-            public static ElectricResistanceInfo CreateDefault()
-            {
-                return new ElectricResistanceInfo(nameof(ElectricResistance), DefaultBaseUnit, GetDefaultMappings(), new ElectricResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings for the ElectricResistance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricResistanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricResistanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricResistanceUnit>>, IEnumerable<IUnitDefinition<ElectricResistanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricResistance, ElectricResistanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricResistanceUnit>>, IEnumerable<IUnitDefinition<ElectricResistanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricResistanceInfo(nameof(ElectricResistance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricResistanceUnit>> unitMappings = ElectricResistanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricResistance, ElectricResistanceUnit>(
+                    name: nameof(ElectricResistance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricResistance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricResistance"/> is [T^-3][L^2][M][I^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricResistance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricResistanceUnit DefaultBaseUnit { get; } = ElectricResistanceUnit.Ohm;
+            private static ElectricResistanceUnit DefaultBaseUnit { get; } = ElectricResistanceUnit.Ohm;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricResistance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricResistance", typeof(ElectricResistance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricResistanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricResistanceUnit}"/> representing the default unit mappings for ElectricResistance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricResistanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricResistanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricResistanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricResistanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined);
@@ -135,7 +135,7 @@ namespace UnitsNet
 
         static ElectricResistance()
         {
-            Info = ElectricResistanceInfo.CreateDefault();
+            Info = ElectricResistanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

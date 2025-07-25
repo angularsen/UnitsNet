@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Level"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LevelInfo: QuantityInfo<Level, LevelUnit>
+        private static class LevelInfo
         {
-            /// <inheritdoc />
-            public LevelInfo(string name, LevelUnit baseUnit, IEnumerable<IUnitDefinition<LevelUnit>> unitMappings, Level zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Level, LevelUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Level.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LevelInfo(string name, LevelUnit baseUnit, IEnumerable<IUnitDefinition<LevelUnit>> unitMappings, Level zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Level.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Level", typeof(Level).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LevelInfo"/> class with the default settings for the Level quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LevelInfo"/> class with the default settings.</returns>
-            public static LevelInfo CreateDefault()
-            {
-                return new LevelInfo(nameof(Level), DefaultBaseUnit, GetDefaultMappings(), new Level(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LevelInfo"/> class with the default settings for the Level quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LevelInfo"/> class with the default settings.
             /// </returns>
-            public static LevelInfo CreateDefault(Func<IEnumerable<UnitDefinition<LevelUnit>>, IEnumerable<IUnitDefinition<LevelUnit>>> customizeUnits)
+            private static QuantityInfo<Level, LevelUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LevelUnit>>, IEnumerable<IUnitDefinition<LevelUnit>>>? customizeUnits = null)
             {
-                return new LevelInfo(nameof(Level), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Level(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LevelUnit>> unitMappings = LevelInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Level, LevelUnit>(
+                    name: nameof(Level),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Level(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Level"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of Level is Decibel. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LevelUnit DefaultBaseUnit { get; } = LevelUnit.Decibel;
+            private static LevelUnit DefaultBaseUnit { get; } = LevelUnit.Decibel;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Level quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Level", typeof(Level).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LevelUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LevelUnit}"/> representing the default unit mappings for Level.</returns>
-            public static IEnumerable<UnitDefinition<LevelUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LevelUnit>> GetDefaultMappings()
             {
                 yield return new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined);
                 yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined);
@@ -123,7 +123,7 @@ namespace UnitsNet
 
         static Level()
         {
-            Info = LevelInfo.CreateDefault();
+            Info = LevelInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

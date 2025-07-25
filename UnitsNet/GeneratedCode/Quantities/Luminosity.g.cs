@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Luminosity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LuminosityInfo: QuantityInfo<Luminosity, LuminosityUnit>
+        private static class LuminosityInfo
         {
-            /// <inheritdoc />
-            public LuminosityInfo(string name, LuminosityUnit baseUnit, IEnumerable<IUnitDefinition<LuminosityUnit>> unitMappings, Luminosity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Luminosity, LuminosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Luminosity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LuminosityInfo(string name, LuminosityUnit baseUnit, IEnumerable<IUnitDefinition<LuminosityUnit>> unitMappings, Luminosity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Luminosity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Luminosity", typeof(Luminosity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LuminosityInfo"/> class with the default settings for the Luminosity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LuminosityInfo"/> class with the default settings.</returns>
-            public static LuminosityInfo CreateDefault()
-            {
-                return new LuminosityInfo(nameof(Luminosity), DefaultBaseUnit, GetDefaultMappings(), new Luminosity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LuminosityInfo"/> class with the default settings for the Luminosity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LuminosityInfo"/> class with the default settings.
             /// </returns>
-            public static LuminosityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminosityUnit>>, IEnumerable<IUnitDefinition<LuminosityUnit>>> customizeUnits)
+            private static QuantityInfo<Luminosity, LuminosityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LuminosityUnit>>, IEnumerable<IUnitDefinition<LuminosityUnit>>>? customizeUnits = null)
             {
-                return new LuminosityInfo(nameof(Luminosity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Luminosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LuminosityUnit>> unitMappings = LuminosityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Luminosity, LuminosityUnit>(
+                    name: nameof(Luminosity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Luminosity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Luminosity"/> is [T^-3][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Luminosity is Watt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LuminosityUnit DefaultBaseUnit { get; } = LuminosityUnit.Watt;
+            private static LuminosityUnit DefaultBaseUnit { get; } = LuminosityUnit.Watt;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Luminosity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Luminosity", typeof(Luminosity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LuminosityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminosityUnit}"/> representing the default unit mappings for Luminosity.</returns>
-            public static IEnumerable<UnitDefinition<LuminosityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LuminosityUnit>> GetDefaultMappings()
             {
                 yield return new (LuminosityUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined);
                 yield return new (LuminosityUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
@@ -138,7 +138,7 @@ namespace UnitsNet
 
         static Luminosity()
         {
-            Info = LuminosityInfo.CreateDefault();
+            Info = LuminosityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

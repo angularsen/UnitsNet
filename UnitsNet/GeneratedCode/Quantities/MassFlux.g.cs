@@ -67,59 +67,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MassFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassFluxInfo: QuantityInfo<MassFlux, MassFluxUnit>
+        private static class MassFluxInfo
         {
-            /// <inheritdoc />
-            public MassFluxInfo(string name, MassFluxUnit baseUnit, IEnumerable<IUnitDefinition<MassFluxUnit>> unitMappings, MassFlux zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MassFlux, MassFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassFlux.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassFluxInfo(string name, MassFluxUnit baseUnit, IEnumerable<IUnitDefinition<MassFluxUnit>> unitMappings, MassFlux zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFlux", typeof(MassFlux).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassFluxInfo"/> class with the default settings for the MassFlux quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassFluxInfo"/> class with the default settings.</returns>
-            public static MassFluxInfo CreateDefault()
-            {
-                return new MassFluxInfo(nameof(MassFlux), DefaultBaseUnit, GetDefaultMappings(), new MassFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassFluxInfo"/> class with the default settings for the MassFlux quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassFluxInfo"/> class with the default settings.
             /// </returns>
-            public static MassFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFluxUnit>>, IEnumerable<IUnitDefinition<MassFluxUnit>>> customizeUnits)
+            private static QuantityInfo<MassFlux, MassFluxUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassFluxUnit>>, IEnumerable<IUnitDefinition<MassFluxUnit>>>? customizeUnits = null)
             {
-                return new MassFluxInfo(nameof(MassFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassFluxUnit>> unitMappings = MassFluxInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MassFlux, MassFluxUnit>(
+                    name: nameof(MassFlux),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MassFlux(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MassFlux"/> is [T^-1][L^-2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of MassFlux is KilogramPerSecondPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassFluxUnit DefaultBaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+            private static MassFluxUnit DefaultBaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MassFlux quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MassFlux", typeof(MassFlux).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassFluxUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFluxUnit}"/> representing the default unit mappings for MassFlux.</returns>
-            public static IEnumerable<UnitDefinition<MassFluxUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassFluxUnit>> GetDefaultMappings()
             {
                 yield return new (MassFluxUnit.GramPerHourPerSquareCentimeter, "GramPerHourPerSquareCentimeter", "GramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Hour));
                 yield return new (MassFluxUnit.GramPerHourPerSquareMeter, "GramPerHourPerSquareMeter", "GramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Hour));
@@ -138,7 +138,7 @@ namespace UnitsNet
 
         static MassFlux()
         {
-            Info = MassFluxInfo.CreateDefault();
+            Info = MassFluxInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

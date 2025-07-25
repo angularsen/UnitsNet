@@ -71,59 +71,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="TemperatureDelta"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class TemperatureDeltaInfo: QuantityInfo<TemperatureDelta, TemperatureDeltaUnit>
+        private static class TemperatureDeltaInfo
         {
-            /// <inheritdoc />
-            public TemperatureDeltaInfo(string name, TemperatureDeltaUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureDeltaUnit>> unitMappings, TemperatureDelta zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<TemperatureDelta, TemperatureDeltaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, TemperatureDelta.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public TemperatureDeltaInfo(string name, TemperatureDeltaUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureDeltaUnit>> unitMappings, TemperatureDelta zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, TemperatureDelta.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.TemperatureDelta", typeof(TemperatureDelta).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="TemperatureDeltaInfo"/> class with the default settings for the TemperatureDelta quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="TemperatureDeltaInfo"/> class with the default settings.</returns>
-            public static TemperatureDeltaInfo CreateDefault()
-            {
-                return new TemperatureDeltaInfo(nameof(TemperatureDelta), DefaultBaseUnit, GetDefaultMappings(), new TemperatureDelta(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="TemperatureDeltaInfo"/> class with the default settings for the TemperatureDelta quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="TemperatureDeltaInfo"/> class with the default settings.
             /// </returns>
-            public static TemperatureDeltaInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureDeltaUnit>>, IEnumerable<IUnitDefinition<TemperatureDeltaUnit>>> customizeUnits)
+            private static QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<TemperatureDeltaUnit>>, IEnumerable<IUnitDefinition<TemperatureDeltaUnit>>>? customizeUnits = null)
             {
-                return new TemperatureDeltaInfo(nameof(TemperatureDelta), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new TemperatureDelta(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<TemperatureDeltaUnit>> unitMappings = TemperatureDeltaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<TemperatureDelta, TemperatureDeltaUnit>(
+                    name: nameof(TemperatureDelta),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new TemperatureDelta(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="TemperatureDelta"/> is [Θ].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
             /// <summary>
             ///     The default base unit of TemperatureDelta is Kelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static TemperatureDeltaUnit DefaultBaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+            private static TemperatureDeltaUnit DefaultBaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the TemperatureDelta quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.TemperatureDelta", typeof(TemperatureDelta).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="TemperatureDeltaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureDeltaUnit}"/> representing the default unit mappings for TemperatureDelta.</returns>
-            public static IEnumerable<UnitDefinition<TemperatureDeltaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<TemperatureDeltaUnit>> GetDefaultMappings()
             {
                 yield return new (TemperatureDeltaUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 yield return new (TemperatureDeltaUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
@@ -139,7 +139,7 @@ namespace UnitsNet
 
         static TemperatureDelta()
         {
-            Info = TemperatureDeltaInfo.CreateDefault();
+            Info = TemperatureDeltaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -71,59 +71,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Torque"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class TorqueInfo: QuantityInfo<Torque, TorqueUnit>
+        private static class TorqueInfo
         {
-            /// <inheritdoc />
-            public TorqueInfo(string name, TorqueUnit baseUnit, IEnumerable<IUnitDefinition<TorqueUnit>> unitMappings, Torque zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Torque, TorqueUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Torque.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public TorqueInfo(string name, TorqueUnit baseUnit, IEnumerable<IUnitDefinition<TorqueUnit>> unitMappings, Torque zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Torque.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Torque", typeof(Torque).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="TorqueInfo"/> class with the default settings for the Torque quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="TorqueInfo"/> class with the default settings.</returns>
-            public static TorqueInfo CreateDefault()
-            {
-                return new TorqueInfo(nameof(Torque), DefaultBaseUnit, GetDefaultMappings(), new Torque(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="TorqueInfo"/> class with the default settings for the Torque quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="TorqueInfo"/> class with the default settings.
             /// </returns>
-            public static TorqueInfo CreateDefault(Func<IEnumerable<UnitDefinition<TorqueUnit>>, IEnumerable<IUnitDefinition<TorqueUnit>>> customizeUnits)
+            private static QuantityInfo<Torque, TorqueUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<TorqueUnit>>, IEnumerable<IUnitDefinition<TorqueUnit>>>? customizeUnits = null)
             {
-                return new TorqueInfo(nameof(Torque), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Torque(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<TorqueUnit>> unitMappings = TorqueInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Torque, TorqueUnit>(
+                    name: nameof(Torque),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Torque(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Torque"/> is [T^-2][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Torque is NewtonMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static TorqueUnit DefaultBaseUnit { get; } = TorqueUnit.NewtonMeter;
+            private static TorqueUnit DefaultBaseUnit { get; } = TorqueUnit.NewtonMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Torque quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Torque", typeof(Torque).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="TorqueUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TorqueUnit}"/> representing the default unit mappings for Torque.</returns>
-            public static IEnumerable<UnitDefinition<TorqueUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<TorqueUnit>> GetDefaultMappings()
             {
                 yield return new (TorqueUnit.GramForceCentimeter, "GramForceCentimeter", "GramForceCentimeters", BaseUnits.Undefined);
                 yield return new (TorqueUnit.GramForceMeter, "GramForceMeter", "GramForceMeters", BaseUnits.Undefined);
@@ -155,7 +155,7 @@ namespace UnitsNet
 
         static Torque()
         {
-            Info = TorqueInfo.CreateDefault();
+            Info = TorqueInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

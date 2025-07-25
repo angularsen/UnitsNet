@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricReactance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricReactanceInfo: QuantityInfo<ElectricReactance, ElectricReactanceUnit>
+        private static class ElectricReactanceInfo
         {
-            /// <inheritdoc />
-            public ElectricReactanceInfo(string name, ElectricReactanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactanceUnit>> unitMappings, ElectricReactance zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricReactance, ElectricReactanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricReactance.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricReactanceInfo(string name, ElectricReactanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactanceUnit>> unitMappings, ElectricReactance zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricReactance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricReactance", typeof(ElectricReactance).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings for the ElectricReactance quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings.</returns>
-            public static ElectricReactanceInfo CreateDefault()
-            {
-                return new ElectricReactanceInfo(nameof(ElectricReactance), DefaultBaseUnit, GetDefaultMappings(), new ElectricReactance(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings for the ElectricReactance quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricReactanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricReactanceUnit>>, IEnumerable<IUnitDefinition<ElectricReactanceUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricReactance, ElectricReactanceUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricReactanceUnit>>, IEnumerable<IUnitDefinition<ElectricReactanceUnit>>>? customizeUnits = null)
             {
-                return new ElectricReactanceInfo(nameof(ElectricReactance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricReactance(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricReactanceUnit>> unitMappings = ElectricReactanceInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricReactance, ElectricReactanceUnit>(
+                    name: nameof(ElectricReactance),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricReactance(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricReactance"/> is [T^-3][L^2][M][I^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricReactance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricReactanceUnit DefaultBaseUnit { get; } = ElectricReactanceUnit.Ohm;
+            private static ElectricReactanceUnit DefaultBaseUnit { get; } = ElectricReactanceUnit.Ohm;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricReactance quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricReactance", typeof(ElectricReactance).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricReactanceUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactanceUnit}"/> representing the default unit mappings for ElectricReactance.</returns>
-            public static IEnumerable<UnitDefinition<ElectricReactanceUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricReactanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricReactanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricReactanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined);
@@ -132,7 +132,7 @@ namespace UnitsNet
 
         static ElectricReactance()
         {
-            Info = ElectricReactanceInfo.CreateDefault();
+            Info = ElectricReactanceInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

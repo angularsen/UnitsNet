@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="VolumePerLength"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VolumePerLengthInfo: QuantityInfo<VolumePerLength, VolumePerLengthUnit>
+        private static class VolumePerLengthInfo
         {
-            /// <inheritdoc />
-            public VolumePerLengthInfo(string name, VolumePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<VolumePerLengthUnit>> unitMappings, VolumePerLength zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<VolumePerLength, VolumePerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumePerLength.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VolumePerLengthInfo(string name, VolumePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<VolumePerLengthUnit>> unitMappings, VolumePerLength zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, VolumePerLength.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VolumePerLength", typeof(VolumePerLength).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VolumePerLengthInfo"/> class with the default settings for the VolumePerLength quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VolumePerLengthInfo"/> class with the default settings.</returns>
-            public static VolumePerLengthInfo CreateDefault()
-            {
-                return new VolumePerLengthInfo(nameof(VolumePerLength), DefaultBaseUnit, GetDefaultMappings(), new VolumePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VolumePerLengthInfo"/> class with the default settings for the VolumePerLength quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VolumePerLengthInfo"/> class with the default settings.
             /// </returns>
-            public static VolumePerLengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumePerLengthUnit>>, IEnumerable<IUnitDefinition<VolumePerLengthUnit>>> customizeUnits)
+            private static QuantityInfo<VolumePerLength, VolumePerLengthUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VolumePerLengthUnit>>, IEnumerable<IUnitDefinition<VolumePerLengthUnit>>>? customizeUnits = null)
             {
-                return new VolumePerLengthInfo(nameof(VolumePerLength), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VolumePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VolumePerLengthUnit>> unitMappings = VolumePerLengthInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<VolumePerLength, VolumePerLengthUnit>(
+                    name: nameof(VolumePerLength),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new VolumePerLength(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="VolumePerLength"/> is [L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of VolumePerLength is CubicMeterPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VolumePerLengthUnit DefaultBaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
+            private static VolumePerLengthUnit DefaultBaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the VolumePerLength quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.VolumePerLength", typeof(VolumePerLength).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VolumePerLengthUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumePerLengthUnit}"/> representing the default unit mappings for VolumePerLength.</returns>
-            public static IEnumerable<UnitDefinition<VolumePerLengthUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VolumePerLengthUnit>> GetDefaultMappings()
             {
                 yield return new (VolumePerLengthUnit.CubicMeterPerMeter, "CubicMeterPerMeter", "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
                 yield return new (VolumePerLengthUnit.CubicYardPerFoot, "CubicYardPerFoot", "CubicYardsPerFoot", BaseUnits.Undefined);
@@ -130,7 +130,7 @@ namespace UnitsNet
 
         static VolumePerLength()
         {
-            Info = VolumePerLengthInfo.CreateDefault();
+            Info = VolumePerLengthInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

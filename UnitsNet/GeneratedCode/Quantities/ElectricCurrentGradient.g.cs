@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricCurrentGradient"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricCurrentGradientInfo: QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit>
+        private static class ElectricCurrentGradientInfo
         {
-            /// <inheritdoc />
-            public ElectricCurrentGradientInfo(string name, ElectricCurrentGradientUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>> unitMappings, ElectricCurrentGradient zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricCurrentGradient, ElectricCurrentGradientUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCurrentGradient.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricCurrentGradientInfo(string name, ElectricCurrentGradientUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>> unitMappings, ElectricCurrentGradient zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCurrentGradient.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCurrentGradient", typeof(ElectricCurrentGradient).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings for the ElectricCurrentGradient quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings.</returns>
-            public static ElectricCurrentGradientInfo CreateDefault()
-            {
-                return new ElectricCurrentGradientInfo(nameof(ElectricCurrentGradient), DefaultBaseUnit, GetDefaultMappings(), new ElectricCurrentGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings for the ElectricCurrentGradient quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricCurrentGradientInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCurrentGradientUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>>>? customizeUnits = null)
             {
-                return new ElectricCurrentGradientInfo(nameof(ElectricCurrentGradient), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCurrentGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>> unitMappings = ElectricCurrentGradientInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit>(
+                    name: nameof(ElectricCurrentGradient),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricCurrentGradient(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCurrentGradient"/> is [T^-1][I].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricCurrentGradient is AmperePerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricCurrentGradientUnit DefaultBaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+            private static ElectricCurrentGradientUnit DefaultBaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricCurrentGradient quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricCurrentGradient", typeof(ElectricCurrentGradient).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricCurrentGradientUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCurrentGradientUnit}"/> representing the default unit mappings for ElectricCurrentGradient.</returns>
-            public static IEnumerable<UnitDefinition<ElectricCurrentGradientUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricCurrentGradientUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperePerMicrosecond", "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperePerMillisecond", "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
@@ -131,7 +131,7 @@ namespace UnitsNet
 
         static ElectricCurrentGradient()
         {
-            Info = ElectricCurrentGradientInfo.CreateDefault();
+            Info = ElectricCurrentGradientInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MolarEntropy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MolarEntropyInfo: QuantityInfo<MolarEntropy, MolarEntropyUnit>
+        private static class MolarEntropyInfo
         {
-            /// <inheritdoc />
-            public MolarEntropyInfo(string name, MolarEntropyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEntropyUnit>> unitMappings, MolarEntropy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MolarEntropy, MolarEntropyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarEntropy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MolarEntropyInfo(string name, MolarEntropyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEntropyUnit>> unitMappings, MolarEntropy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MolarEntropy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MolarEntropy", typeof(MolarEntropy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MolarEntropyInfo"/> class with the default settings for the MolarEntropy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MolarEntropyInfo"/> class with the default settings.</returns>
-            public static MolarEntropyInfo CreateDefault()
-            {
-                return new MolarEntropyInfo(nameof(MolarEntropy), DefaultBaseUnit, GetDefaultMappings(), new MolarEntropy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MolarEntropyInfo"/> class with the default settings for the MolarEntropy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MolarEntropyInfo"/> class with the default settings.
             /// </returns>
-            public static MolarEntropyInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarEntropyUnit>>, IEnumerable<IUnitDefinition<MolarEntropyUnit>>> customizeUnits)
+            private static QuantityInfo<MolarEntropy, MolarEntropyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MolarEntropyUnit>>, IEnumerable<IUnitDefinition<MolarEntropyUnit>>>? customizeUnits = null)
             {
-                return new MolarEntropyInfo(nameof(MolarEntropy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MolarEntropy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MolarEntropyUnit>> unitMappings = MolarEntropyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MolarEntropy, MolarEntropyUnit>(
+                    name: nameof(MolarEntropy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MolarEntropy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MolarEntropy"/> is [T^-2][L^2][M][Θ^-1][N^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
 
             /// <summary>
             ///     The default base unit of MolarEntropy is JoulePerMoleKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MolarEntropyUnit DefaultBaseUnit { get; } = MolarEntropyUnit.JoulePerMoleKelvin;
+            private static MolarEntropyUnit DefaultBaseUnit { get; } = MolarEntropyUnit.JoulePerMoleKelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MolarEntropy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MolarEntropy", typeof(MolarEntropy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MolarEntropyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarEntropyUnit}"/> representing the default unit mappings for MolarEntropy.</returns>
-            public static IEnumerable<UnitDefinition<MolarEntropyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MolarEntropyUnit>> GetDefaultMappings()
             {
                 yield return new (MolarEntropyUnit.JoulePerMoleKelvin, "JoulePerMoleKelvin", "JoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulePerMoleKelvin", "KilojoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Millimole));
@@ -124,7 +124,7 @@ namespace UnitsNet
 
         static MolarEntropy()
         {
-            Info = MolarEntropyInfo.CreateDefault();
+            Info = MolarEntropyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="WarpingMomentOfInertia"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class WarpingMomentOfInertiaInfo: QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>
+        private static class WarpingMomentOfInertiaInfo
         {
-            /// <inheritdoc />
-            public WarpingMomentOfInertiaInfo(string name, WarpingMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>> unitMappings, WarpingMomentOfInertia zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, WarpingMomentOfInertia.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public WarpingMomentOfInertiaInfo(string name, WarpingMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>> unitMappings, WarpingMomentOfInertia zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, WarpingMomentOfInertia.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.WarpingMomentOfInertia", typeof(WarpingMomentOfInertia).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="WarpingMomentOfInertiaInfo"/> class with the default settings for the WarpingMomentOfInertia quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="WarpingMomentOfInertiaInfo"/> class with the default settings.</returns>
-            public static WarpingMomentOfInertiaInfo CreateDefault()
-            {
-                return new WarpingMomentOfInertiaInfo(nameof(WarpingMomentOfInertia), DefaultBaseUnit, GetDefaultMappings(), new WarpingMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="WarpingMomentOfInertiaInfo"/> class with the default settings for the WarpingMomentOfInertia quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="WarpingMomentOfInertiaInfo"/> class with the default settings.
             /// </returns>
-            public static WarpingMomentOfInertiaInfo CreateDefault(Func<IEnumerable<UnitDefinition<WarpingMomentOfInertiaUnit>>, IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>>> customizeUnits)
+            private static QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>>, IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>>>? customizeUnits = null)
             {
-                return new WarpingMomentOfInertiaInfo(nameof(WarpingMomentOfInertia), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new WarpingMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<WarpingMomentOfInertiaUnit>> unitMappings = WarpingMomentOfInertiaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
+                    name: nameof(WarpingMomentOfInertia),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new WarpingMomentOfInertia(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="WarpingMomentOfInertia"/> is [L^6].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of WarpingMomentOfInertia is MeterToTheSixth. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static WarpingMomentOfInertiaUnit DefaultBaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
+            private static WarpingMomentOfInertiaUnit DefaultBaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the WarpingMomentOfInertia quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.WarpingMomentOfInertia", typeof(WarpingMomentOfInertia).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="WarpingMomentOfInertiaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{WarpingMomentOfInertiaUnit}"/> representing the default unit mappings for WarpingMomentOfInertia.</returns>
-            public static IEnumerable<UnitDefinition<WarpingMomentOfInertiaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<WarpingMomentOfInertiaUnit>> GetDefaultMappings()
             {
                 yield return new (WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimeterToTheSixth", "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter));
                 yield return new (WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimeterToTheSixth", "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static WarpingMomentOfInertia()
         {
-            Info = WarpingMomentOfInertiaInfo.CreateDefault();
+            Info = WarpingMomentOfInertiaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

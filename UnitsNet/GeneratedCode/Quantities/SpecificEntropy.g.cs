@@ -66,59 +66,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="SpecificEntropy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SpecificEntropyInfo: QuantityInfo<SpecificEntropy, SpecificEntropyUnit>
+        private static class SpecificEntropyInfo
         {
-            /// <inheritdoc />
-            public SpecificEntropyInfo(string name, SpecificEntropyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEntropyUnit>> unitMappings, SpecificEntropy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<SpecificEntropy, SpecificEntropyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificEntropy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SpecificEntropyInfo(string name, SpecificEntropyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEntropyUnit>> unitMappings, SpecificEntropy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificEntropy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificEntropy", typeof(SpecificEntropy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SpecificEntropyInfo"/> class with the default settings for the SpecificEntropy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SpecificEntropyInfo"/> class with the default settings.</returns>
-            public static SpecificEntropyInfo CreateDefault()
-            {
-                return new SpecificEntropyInfo(nameof(SpecificEntropy), DefaultBaseUnit, GetDefaultMappings(), new SpecificEntropy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SpecificEntropyInfo"/> class with the default settings for the SpecificEntropy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SpecificEntropyInfo"/> class with the default settings.
             /// </returns>
-            public static SpecificEntropyInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificEntropyUnit>>, IEnumerable<IUnitDefinition<SpecificEntropyUnit>>> customizeUnits)
+            private static QuantityInfo<SpecificEntropy, SpecificEntropyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SpecificEntropyUnit>>, IEnumerable<IUnitDefinition<SpecificEntropyUnit>>>? customizeUnits = null)
             {
-                return new SpecificEntropyInfo(nameof(SpecificEntropy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificEntropy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SpecificEntropyUnit>> unitMappings = SpecificEntropyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<SpecificEntropy, SpecificEntropyUnit>(
+                    name: nameof(SpecificEntropy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new SpecificEntropy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="SpecificEntropy"/> is [T^-2][L^2][Θ^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
 
             /// <summary>
             ///     The default base unit of SpecificEntropy is JoulePerKilogramKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SpecificEntropyUnit DefaultBaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
+            private static SpecificEntropyUnit DefaultBaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the SpecificEntropy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.SpecificEntropy", typeof(SpecificEntropy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SpecificEntropyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificEntropyUnit}"/> representing the default unit mappings for SpecificEntropy.</returns>
-            public static IEnumerable<UnitDefinition<SpecificEntropyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SpecificEntropyUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtuPerPoundFahrenheit", "BtusPerPoundFahrenheit", BaseUnits.Undefined);
                 yield return new (SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriePerGramKelvin", "CaloriesPerGramKelvin", BaseUnits.Undefined);
@@ -134,7 +134,7 @@ namespace UnitsNet
 
         static SpecificEntropy()
         {
-            Info = SpecificEntropyInfo.CreateDefault();
+            Info = SpecificEntropyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

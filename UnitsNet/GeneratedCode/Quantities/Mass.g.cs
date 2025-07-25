@@ -80,59 +80,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Mass"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MassInfo: QuantityInfo<Mass, MassUnit>
+        private static class MassInfo
         {
-            /// <inheritdoc />
-            public MassInfo(string name, MassUnit baseUnit, IEnumerable<IUnitDefinition<MassUnit>> unitMappings, Mass zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Mass, MassUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Mass.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MassInfo(string name, MassUnit baseUnit, IEnumerable<IUnitDefinition<MassUnit>> unitMappings, Mass zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Mass.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Mass", typeof(Mass).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MassInfo"/> class with the default settings for the Mass quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MassInfo"/> class with the default settings.</returns>
-            public static MassInfo CreateDefault()
-            {
-                return new MassInfo(nameof(Mass), DefaultBaseUnit, GetDefaultMappings(), new Mass(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MassInfo"/> class with the default settings for the Mass quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MassInfo"/> class with the default settings.
             /// </returns>
-            public static MassInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassUnit>>, IEnumerable<IUnitDefinition<MassUnit>>> customizeUnits)
+            private static QuantityInfo<Mass, MassUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MassUnit>>, IEnumerable<IUnitDefinition<MassUnit>>>? customizeUnits = null)
             {
-                return new MassInfo(nameof(Mass), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Mass(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MassUnit>> unitMappings = MassInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Mass, MassUnit>(
+                    name: nameof(Mass),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Mass(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Mass"/> is [M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Mass is Kilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MassUnit DefaultBaseUnit { get; } = MassUnit.Kilogram;
+            private static MassUnit DefaultBaseUnit { get; } = MassUnit.Kilogram;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Mass quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Mass", typeof(Mass).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MassUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassUnit}"/> representing the default unit mappings for Mass.</returns>
-            public static IEnumerable<UnitDefinition<MassUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MassUnit>> GetDefaultMappings()
             {
                 yield return new (MassUnit.Centigram, "Centigram", "Centigrams", new BaseUnits(mass: MassUnit.Centigram));
                 yield return new (MassUnit.Decagram, "Decagram", "Decagrams", new BaseUnits(mass: MassUnit.Decagram));
@@ -166,7 +166,7 @@ namespace UnitsNet
 
         static Mass()
         {
-            Info = MassInfo.CreateDefault();
+            Info = MassInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

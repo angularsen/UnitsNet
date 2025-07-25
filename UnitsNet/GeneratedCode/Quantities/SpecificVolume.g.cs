@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="SpecificVolume"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class SpecificVolumeInfo: QuantityInfo<SpecificVolume, SpecificVolumeUnit>
+        private static class SpecificVolumeInfo
         {
-            /// <inheritdoc />
-            public SpecificVolumeInfo(string name, SpecificVolumeUnit baseUnit, IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings, SpecificVolume zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<SpecificVolume, SpecificVolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificVolume.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public SpecificVolumeInfo(string name, SpecificVolumeUnit baseUnit, IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings, SpecificVolume zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificVolume.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificVolume", typeof(SpecificVolume).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings for the SpecificVolume quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings.</returns>
-            public static SpecificVolumeInfo CreateDefault()
-            {
-                return new SpecificVolumeInfo(nameof(SpecificVolume), DefaultBaseUnit, GetDefaultMappings(), new SpecificVolume(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings for the SpecificVolume quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="SpecificVolumeInfo"/> class with the default settings.
             /// </returns>
-            public static SpecificVolumeInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificVolumeUnit>>, IEnumerable<IUnitDefinition<SpecificVolumeUnit>>> customizeUnits)
+            private static QuantityInfo<SpecificVolume, SpecificVolumeUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<SpecificVolumeUnit>>, IEnumerable<IUnitDefinition<SpecificVolumeUnit>>>? customizeUnits = null)
             {
-                return new SpecificVolumeInfo(nameof(SpecificVolume), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificVolume(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings = SpecificVolumeInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<SpecificVolume, SpecificVolumeUnit>(
+                    name: nameof(SpecificVolume),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new SpecificVolume(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="SpecificVolume"/> is [L^3][M^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of SpecificVolume is CubicMeterPerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static SpecificVolumeUnit DefaultBaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
+            private static SpecificVolumeUnit DefaultBaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the SpecificVolume quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.SpecificVolume", typeof(SpecificVolume).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="SpecificVolumeUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificVolumeUnit}"/> representing the default unit mappings for SpecificVolume.</returns>
-            public static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
                 yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static SpecificVolume()
         {
-            Info = SpecificVolumeInfo.CreateDefault();
+            Info = SpecificVolumeInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

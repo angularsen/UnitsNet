@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="DoseAreaProduct"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class DoseAreaProductInfo: QuantityInfo<DoseAreaProduct, DoseAreaProductUnit>
+        private static class DoseAreaProductInfo
         {
-            /// <inheritdoc />
-            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<DoseAreaProduct, DoseAreaProductUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, DoseAreaProduct.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, DoseAreaProduct.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.DoseAreaProduct", typeof(DoseAreaProduct).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.</returns>
-            public static DoseAreaProductInfo CreateDefault()
-            {
-                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, GetDefaultMappings(), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.
             /// </returns>
-            public static DoseAreaProductInfo CreateDefault(Func<IEnumerable<UnitDefinition<DoseAreaProductUnit>>, IEnumerable<IUnitDefinition<DoseAreaProductUnit>>> customizeUnits)
+            private static QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<DoseAreaProductUnit>>, IEnumerable<IUnitDefinition<DoseAreaProductUnit>>>? customizeUnits = null)
             {
-                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings = DoseAreaProductInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<DoseAreaProduct, DoseAreaProductUnit>(
+                    name: nameof(DoseAreaProduct),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new DoseAreaProduct(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="DoseAreaProduct"/> is [T^-2][L^4].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of DoseAreaProduct is GraySquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static DoseAreaProductUnit DefaultBaseUnit { get; } = DoseAreaProductUnit.GraySquareMeter;
+            private static DoseAreaProductUnit DefaultBaseUnit { get; } = DoseAreaProductUnit.GraySquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the DoseAreaProduct quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.DoseAreaProduct", typeof(DoseAreaProduct).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="DoseAreaProductUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DoseAreaProductUnit}"/> representing the default unit mappings for DoseAreaProduct.</returns>
-            public static IEnumerable<UnitDefinition<DoseAreaProductUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<DoseAreaProductUnit>> GetDefaultMappings()
             {
                 yield return new (DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeter", "CentigraySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeter", "CentigraySquareDecimeters", BaseUnits.Undefined);
@@ -144,7 +144,7 @@ namespace UnitsNet
 
         static DoseAreaProduct()
         {
-            Info = DoseAreaProductInfo.CreateDefault();
+            Info = DoseAreaProductInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

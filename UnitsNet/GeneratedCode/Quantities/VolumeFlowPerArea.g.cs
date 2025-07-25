@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="VolumeFlowPerArea"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VolumeFlowPerAreaInfo: QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit>
+        private static class VolumeFlowPerAreaInfo
         {
-            /// <inheritdoc />
-            public VolumeFlowPerAreaInfo(string name, VolumeFlowPerAreaUnit baseUnit, IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>> unitMappings, VolumeFlowPerArea zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<VolumeFlowPerArea, VolumeFlowPerAreaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumeFlowPerArea.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VolumeFlowPerAreaInfo(string name, VolumeFlowPerAreaUnit baseUnit, IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>> unitMappings, VolumeFlowPerArea zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, VolumeFlowPerArea.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VolumeFlowPerArea", typeof(VolumeFlowPerArea).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VolumeFlowPerAreaInfo"/> class with the default settings for the VolumeFlowPerArea quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VolumeFlowPerAreaInfo"/> class with the default settings.</returns>
-            public static VolumeFlowPerAreaInfo CreateDefault()
-            {
-                return new VolumeFlowPerAreaInfo(nameof(VolumeFlowPerArea), DefaultBaseUnit, GetDefaultMappings(), new VolumeFlowPerArea(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VolumeFlowPerAreaInfo"/> class with the default settings for the VolumeFlowPerArea quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VolumeFlowPerAreaInfo"/> class with the default settings.
             /// </returns>
-            public static VolumeFlowPerAreaInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumeFlowPerAreaUnit>>, IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>>> customizeUnits)
+            private static QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>>, IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>>>? customizeUnits = null)
             {
-                return new VolumeFlowPerAreaInfo(nameof(VolumeFlowPerArea), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VolumeFlowPerArea(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>> unitMappings = VolumeFlowPerAreaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit>(
+                    name: nameof(VolumeFlowPerArea),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new VolumeFlowPerArea(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="VolumeFlowPerArea"/> is [T^-1][L].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of VolumeFlowPerArea is CubicMeterPerSecondPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VolumeFlowPerAreaUnit DefaultBaseUnit { get; } = VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter;
+            private static VolumeFlowPerAreaUnit DefaultBaseUnit { get; } = VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the VolumeFlowPerArea quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.VolumeFlowPerArea", typeof(VolumeFlowPerArea).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VolumeFlowPerAreaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeFlowPerAreaUnit}"/> representing the default unit mappings for VolumeFlowPerArea.</returns>
-            public static IEnumerable<UnitDefinition<VolumeFlowPerAreaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VolumeFlowPerAreaUnit>> GetDefaultMappings()
             {
                 yield return new (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFootPerMinutePerSquareFoot", "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
                 yield return new (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMeterPerSecondPerSquareMeter", "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
@@ -123,7 +123,7 @@ namespace UnitsNet
 
         static VolumeFlowPerArea()
         {
-            Info = VolumeFlowPerAreaInfo.CreateDefault();
+            Info = VolumeFlowPerAreaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

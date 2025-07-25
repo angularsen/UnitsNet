@@ -66,59 +66,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RotationalSpeed"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RotationalSpeedInfo: QuantityInfo<RotationalSpeed, RotationalSpeedUnit>
+        private static class RotationalSpeedInfo
         {
-            /// <inheritdoc />
-            public RotationalSpeedInfo(string name, RotationalSpeedUnit baseUnit, IEnumerable<IUnitDefinition<RotationalSpeedUnit>> unitMappings, RotationalSpeed zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RotationalSpeed, RotationalSpeedUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalSpeed.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RotationalSpeedInfo(string name, RotationalSpeedUnit baseUnit, IEnumerable<IUnitDefinition<RotationalSpeedUnit>> unitMappings, RotationalSpeed zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RotationalSpeed.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RotationalSpeed", typeof(RotationalSpeed).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RotationalSpeedInfo"/> class with the default settings for the RotationalSpeed quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RotationalSpeedInfo"/> class with the default settings.</returns>
-            public static RotationalSpeedInfo CreateDefault()
-            {
-                return new RotationalSpeedInfo(nameof(RotationalSpeed), DefaultBaseUnit, GetDefaultMappings(), new RotationalSpeed(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RotationalSpeedInfo"/> class with the default settings for the RotationalSpeed quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RotationalSpeedInfo"/> class with the default settings.
             /// </returns>
-            public static RotationalSpeedInfo CreateDefault(Func<IEnumerable<UnitDefinition<RotationalSpeedUnit>>, IEnumerable<IUnitDefinition<RotationalSpeedUnit>>> customizeUnits)
+            private static QuantityInfo<RotationalSpeed, RotationalSpeedUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RotationalSpeedUnit>>, IEnumerable<IUnitDefinition<RotationalSpeedUnit>>>? customizeUnits = null)
             {
-                return new RotationalSpeedInfo(nameof(RotationalSpeed), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RotationalSpeed(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RotationalSpeedUnit>> unitMappings = RotationalSpeedInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RotationalSpeed, RotationalSpeedUnit>(
+                    name: nameof(RotationalSpeed),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RotationalSpeed(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RotationalSpeed"/> is [T^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RotationalSpeed is RadianPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RotationalSpeedUnit DefaultBaseUnit { get; } = RotationalSpeedUnit.RadianPerSecond;
+            private static RotationalSpeedUnit DefaultBaseUnit { get; } = RotationalSpeedUnit.RadianPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RotationalSpeed quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RotationalSpeed", typeof(RotationalSpeed).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RotationalSpeedUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalSpeedUnit}"/> representing the default unit mappings for RotationalSpeed.</returns>
-            public static IEnumerable<UnitDefinition<RotationalSpeedUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RotationalSpeedUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalSpeedUnit.CentiradianPerSecond, "CentiradianPerSecond", "CentiradiansPerSecond", BaseUnits.Undefined);
                 yield return new (RotationalSpeedUnit.DeciradianPerSecond, "DeciradianPerSecond", "DeciradiansPerSecond", BaseUnits.Undefined);
@@ -138,7 +138,7 @@ namespace UnitsNet
 
         static RotationalSpeed()
         {
-            Info = RotationalSpeedInfo.CreateDefault();
+            Info = RotationalSpeedInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

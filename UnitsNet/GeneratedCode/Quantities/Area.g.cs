@@ -80,59 +80,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Area"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class AreaInfo: QuantityInfo<Area, AreaUnit>
+        private static class AreaInfo
         {
-            /// <inheritdoc />
-            public AreaInfo(string name, AreaUnit baseUnit, IEnumerable<IUnitDefinition<AreaUnit>> unitMappings, Area zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Area, AreaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Area.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public AreaInfo(string name, AreaUnit baseUnit, IEnumerable<IUnitDefinition<AreaUnit>> unitMappings, Area zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Area.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Area", typeof(Area).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="AreaInfo"/> class with the default settings for the Area quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="AreaInfo"/> class with the default settings.</returns>
-            public static AreaInfo CreateDefault()
-            {
-                return new AreaInfo(nameof(Area), DefaultBaseUnit, GetDefaultMappings(), new Area(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="AreaInfo"/> class with the default settings for the Area quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="AreaInfo"/> class with the default settings.
             /// </returns>
-            public static AreaInfo CreateDefault(Func<IEnumerable<UnitDefinition<AreaUnit>>, IEnumerable<IUnitDefinition<AreaUnit>>> customizeUnits)
+            private static QuantityInfo<Area, AreaUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<AreaUnit>>, IEnumerable<IUnitDefinition<AreaUnit>>>? customizeUnits = null)
             {
-                return new AreaInfo(nameof(Area), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Area(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<AreaUnit>> unitMappings = AreaInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Area, AreaUnit>(
+                    name: nameof(Area),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Area(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Area"/> is [L^2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Area is SquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static AreaUnit DefaultBaseUnit { get; } = AreaUnit.SquareMeter;
+            private static AreaUnit DefaultBaseUnit { get; } = AreaUnit.SquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Area quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Area", typeof(Area).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="AreaUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaUnit}"/> representing the default unit mappings for Area.</returns>
-            public static IEnumerable<UnitDefinition<AreaUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<AreaUnit>> GetDefaultMappings()
             {
                 yield return new (AreaUnit.Acre, "Acre", "Acres", BaseUnits.Undefined);
                 yield return new (AreaUnit.Hectare, "Hectare", "Hectares", BaseUnits.Undefined);
@@ -153,7 +153,7 @@ namespace UnitsNet
 
         static Area()
         {
-            Info = AreaInfo.CreateDefault();
+            Info = AreaInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

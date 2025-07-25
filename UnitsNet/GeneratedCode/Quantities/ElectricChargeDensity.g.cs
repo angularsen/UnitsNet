@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricChargeDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricChargeDensityInfo: QuantityInfo<ElectricChargeDensity, ElectricChargeDensityUnit>
+        private static class ElectricChargeDensityInfo
         {
-            /// <inheritdoc />
-            public ElectricChargeDensityInfo(string name, ElectricChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>> unitMappings, ElectricChargeDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricChargeDensity, ElectricChargeDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricChargeDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricChargeDensityInfo(string name, ElectricChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>> unitMappings, ElectricChargeDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricChargeDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricChargeDensity", typeof(ElectricChargeDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricChargeDensityInfo"/> class with the default settings for the ElectricChargeDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricChargeDensityInfo"/> class with the default settings.</returns>
-            public static ElectricChargeDensityInfo CreateDefault()
-            {
-                return new ElectricChargeDensityInfo(nameof(ElectricChargeDensity), DefaultBaseUnit, GetDefaultMappings(), new ElectricChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricChargeDensityInfo"/> class with the default settings for the ElectricChargeDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricChargeDensityInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricChargeDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricChargeDensityUnit>>, IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricChargeDensity, ElectricChargeDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>>, IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>>>? customizeUnits = null)
             {
-                return new ElectricChargeDensityInfo(nameof(ElectricChargeDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricChargeDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>> unitMappings = ElectricChargeDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricChargeDensity, ElectricChargeDensityUnit>(
+                    name: nameof(ElectricChargeDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricChargeDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricChargeDensity"/> is [T][L^-3][I].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricChargeDensity is CoulombPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricChargeDensityUnit DefaultBaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
+            private static ElectricChargeDensityUnit DefaultBaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricChargeDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricChargeDensity", typeof(ElectricChargeDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricChargeDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricChargeDensityUnit}"/> representing the default unit mappings for ElectricChargeDensity.</returns>
-            public static IEnumerable<UnitDefinition<ElectricChargeDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricChargeDensityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombPerCubicMeter", "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -125,7 +125,7 @@ namespace UnitsNet
 
         static ElectricChargeDensity()
         {
-            Info = ElectricChargeDensityInfo.CreateDefault();
+            Info = ElectricChargeDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

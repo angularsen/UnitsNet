@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="CoefficientOfThermalExpansion"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class CoefficientOfThermalExpansionInfo: QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>
+        private static class CoefficientOfThermalExpansionInfo
         {
-            /// <inheritdoc />
-            public CoefficientOfThermalExpansionInfo(string name, CoefficientOfThermalExpansionUnit baseUnit, IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>> unitMappings, CoefficientOfThermalExpansion zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, CoefficientOfThermalExpansion.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public CoefficientOfThermalExpansionInfo(string name, CoefficientOfThermalExpansionUnit baseUnit, IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>> unitMappings, CoefficientOfThermalExpansion zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, CoefficientOfThermalExpansion.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.CoefficientOfThermalExpansion", typeof(CoefficientOfThermalExpansion).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="CoefficientOfThermalExpansionInfo"/> class with the default settings for the CoefficientOfThermalExpansion quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="CoefficientOfThermalExpansionInfo"/> class with the default settings.</returns>
-            public static CoefficientOfThermalExpansionInfo CreateDefault()
-            {
-                return new CoefficientOfThermalExpansionInfo(nameof(CoefficientOfThermalExpansion), DefaultBaseUnit, GetDefaultMappings(), new CoefficientOfThermalExpansion(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="CoefficientOfThermalExpansionInfo"/> class with the default settings for the CoefficientOfThermalExpansion quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="CoefficientOfThermalExpansionInfo"/> class with the default settings.
             /// </returns>
-            public static CoefficientOfThermalExpansionInfo CreateDefault(Func<IEnumerable<UnitDefinition<CoefficientOfThermalExpansionUnit>>, IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>>> customizeUnits)
+            private static QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>>, IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>>>? customizeUnits = null)
             {
-                return new CoefficientOfThermalExpansionInfo(nameof(CoefficientOfThermalExpansion), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new CoefficientOfThermalExpansion(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>> unitMappings = CoefficientOfThermalExpansionInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(
+                    name: nameof(CoefficientOfThermalExpansion),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new CoefficientOfThermalExpansion(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="CoefficientOfThermalExpansion"/> is [Θ^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
 
             /// <summary>
             ///     The default base unit of CoefficientOfThermalExpansion is PerKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static CoefficientOfThermalExpansionUnit DefaultBaseUnit { get; } = CoefficientOfThermalExpansionUnit.PerKelvin;
+            private static CoefficientOfThermalExpansionUnit DefaultBaseUnit { get; } = CoefficientOfThermalExpansionUnit.PerKelvin;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the CoefficientOfThermalExpansion quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.CoefficientOfThermalExpansion", typeof(CoefficientOfThermalExpansion).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="CoefficientOfThermalExpansionUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{CoefficientOfThermalExpansionUnit}"/> representing the default unit mappings for CoefficientOfThermalExpansion.</returns>
-            public static IEnumerable<UnitDefinition<CoefficientOfThermalExpansionUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<CoefficientOfThermalExpansionUnit>> GetDefaultMappings()
             {
                 yield return new (CoefficientOfThermalExpansionUnit.PerDegreeCelsius, "PerDegreeCelsius", "PerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 yield return new (CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, "PerDegreeFahrenheit", "PerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit));
@@ -130,7 +130,7 @@ namespace UnitsNet
 
         static CoefficientOfThermalExpansion()
         {
-            Info = CoefficientOfThermalExpansionInfo.CreateDefault();
+            Info = CoefficientOfThermalExpansionInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

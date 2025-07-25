@@ -67,59 +67,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MolarMass"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MolarMassInfo: QuantityInfo<MolarMass, MolarMassUnit>
+        private static class MolarMassInfo
         {
-            /// <inheritdoc />
-            public MolarMassInfo(string name, MolarMassUnit baseUnit, IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings, MolarMass zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MolarMass, MolarMassUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarMass.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MolarMassInfo(string name, MolarMassUnit baseUnit, IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings, MolarMass zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MolarMass.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MolarMass", typeof(MolarMass).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MolarMassInfo"/> class with the default settings for the MolarMass quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MolarMassInfo"/> class with the default settings.</returns>
-            public static MolarMassInfo CreateDefault()
-            {
-                return new MolarMassInfo(nameof(MolarMass), DefaultBaseUnit, GetDefaultMappings(), new MolarMass(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MolarMassInfo"/> class with the default settings for the MolarMass quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MolarMassInfo"/> class with the default settings.
             /// </returns>
-            public static MolarMassInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarMassUnit>>, IEnumerable<IUnitDefinition<MolarMassUnit>>> customizeUnits)
+            private static QuantityInfo<MolarMass, MolarMassUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MolarMassUnit>>, IEnumerable<IUnitDefinition<MolarMassUnit>>>? customizeUnits = null)
             {
-                return new MolarMassInfo(nameof(MolarMass), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MolarMass(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings = MolarMassInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MolarMass, MolarMassUnit>(
+                    name: nameof(MolarMass),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MolarMass(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MolarMass"/> is [M][N^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
             /// <summary>
             ///     The default base unit of MolarMass is KilogramPerMole. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MolarMassUnit DefaultBaseUnit { get; } = MolarMassUnit.KilogramPerMole;
+            private static MolarMassUnit DefaultBaseUnit { get; } = MolarMassUnit.KilogramPerMole;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MolarMass quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MolarMass", typeof(MolarMass).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MolarMassUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarMassUnit}"/> representing the default unit mappings for MolarMass.</returns>
-            public static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
             {
                 yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole));
@@ -139,7 +139,7 @@ namespace UnitsNet
 
         static MolarMass()
         {
-            Info = MolarMassInfo.CreateDefault();
+            Info = MolarMassInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

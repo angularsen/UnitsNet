@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="ElectricCurrentDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class ElectricCurrentDensityInfo: QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit>
+        private static class ElectricCurrentDensityInfo
         {
-            /// <inheritdoc />
-            public ElectricCurrentDensityInfo(string name, ElectricCurrentDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>> unitMappings, ElectricCurrentDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<ElectricCurrentDensity, ElectricCurrentDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCurrentDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public ElectricCurrentDensityInfo(string name, ElectricCurrentDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>> unitMappings, ElectricCurrentDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCurrentDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCurrentDensity", typeof(ElectricCurrentDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="ElectricCurrentDensityInfo"/> class with the default settings for the ElectricCurrentDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="ElectricCurrentDensityInfo"/> class with the default settings.</returns>
-            public static ElectricCurrentDensityInfo CreateDefault()
-            {
-                return new ElectricCurrentDensityInfo(nameof(ElectricCurrentDensity), DefaultBaseUnit, GetDefaultMappings(), new ElectricCurrentDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="ElectricCurrentDensityInfo"/> class with the default settings for the ElectricCurrentDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="ElectricCurrentDensityInfo"/> class with the default settings.
             /// </returns>
-            public static ElectricCurrentDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCurrentDensityUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>>> customizeUnits)
+            private static QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>>>? customizeUnits = null)
             {
-                return new ElectricCurrentDensityInfo(nameof(ElectricCurrentDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCurrentDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<ElectricCurrentDensityUnit>> unitMappings = ElectricCurrentDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit>(
+                    name: nameof(ElectricCurrentDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new ElectricCurrentDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCurrentDensity"/> is [L^-2][I].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of ElectricCurrentDensity is AmperePerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static ElectricCurrentDensityUnit DefaultBaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+            private static ElectricCurrentDensityUnit DefaultBaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the ElectricCurrentDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.ElectricCurrentDensity", typeof(ElectricCurrentDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="ElectricCurrentDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCurrentDensityUnit}"/> representing the default unit mappings for ElectricCurrentDensity.</returns>
-            public static IEnumerable<UnitDefinition<ElectricCurrentDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<ElectricCurrentDensityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperePerSquareFoot", "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperePerSquareInch", "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static ElectricCurrentDensity()
         {
-            Info = ElectricCurrentDensityInfo.CreateDefault();
+            Info = ElectricCurrentDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

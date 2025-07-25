@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="MolarEnergy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class MolarEnergyInfo: QuantityInfo<MolarEnergy, MolarEnergyUnit>
+        private static class MolarEnergyInfo
         {
-            /// <inheritdoc />
-            public MolarEnergyInfo(string name, MolarEnergyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEnergyUnit>> unitMappings, MolarEnergy zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<MolarEnergy, MolarEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarEnergy.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public MolarEnergyInfo(string name, MolarEnergyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEnergyUnit>> unitMappings, MolarEnergy zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, MolarEnergy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MolarEnergy", typeof(MolarEnergy).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="MolarEnergyInfo"/> class with the default settings for the MolarEnergy quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="MolarEnergyInfo"/> class with the default settings.</returns>
-            public static MolarEnergyInfo CreateDefault()
-            {
-                return new MolarEnergyInfo(nameof(MolarEnergy), DefaultBaseUnit, GetDefaultMappings(), new MolarEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="MolarEnergyInfo"/> class with the default settings for the MolarEnergy quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="MolarEnergyInfo"/> class with the default settings.
             /// </returns>
-            public static MolarEnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarEnergyUnit>>, IEnumerable<IUnitDefinition<MolarEnergyUnit>>> customizeUnits)
+            private static QuantityInfo<MolarEnergy, MolarEnergyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<MolarEnergyUnit>>, IEnumerable<IUnitDefinition<MolarEnergyUnit>>>? customizeUnits = null)
             {
-                return new MolarEnergyInfo(nameof(MolarEnergy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MolarEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<MolarEnergyUnit>> unitMappings = MolarEnergyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<MolarEnergy, MolarEnergyUnit>(
+                    name: nameof(MolarEnergy),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new MolarEnergy(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="MolarEnergy"/> is [T^-2][L^2][M][N^-1].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
 
             /// <summary>
             ///     The default base unit of MolarEnergy is JoulePerMole. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static MolarEnergyUnit DefaultBaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
+            private static MolarEnergyUnit DefaultBaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the MolarEnergy quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.MolarEnergy", typeof(MolarEnergy).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="MolarEnergyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarEnergyUnit}"/> representing the default unit mappings for MolarEnergy.</returns>
-            public static IEnumerable<UnitDefinition<MolarEnergyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<MolarEnergyUnit>> GetDefaultMappings()
             {
                 yield return new (MolarEnergyUnit.JoulePerMole, "JoulePerMole", "JoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarEnergyUnit.KilojoulePerMole, "KilojoulePerMole", "KilojoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Millimole));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static MolarEnergy()
         {
-            Info = MolarEnergyInfo.CreateDefault();
+            Info = MolarEnergyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

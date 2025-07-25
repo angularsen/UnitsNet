@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="FuelEfficiency"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class FuelEfficiencyInfo: QuantityInfo<FuelEfficiency, FuelEfficiencyUnit>
+        private static class FuelEfficiencyInfo
         {
-            /// <inheritdoc />
-            public FuelEfficiencyInfo(string name, FuelEfficiencyUnit baseUnit, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>> unitMappings, FuelEfficiency zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<FuelEfficiency, FuelEfficiencyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, FuelEfficiency.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public FuelEfficiencyInfo(string name, FuelEfficiencyUnit baseUnit, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>> unitMappings, FuelEfficiency zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, FuelEfficiency.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.FuelEfficiency", typeof(FuelEfficiency).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings for the FuelEfficiency quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings.</returns>
-            public static FuelEfficiencyInfo CreateDefault()
-            {
-                return new FuelEfficiencyInfo(nameof(FuelEfficiency), DefaultBaseUnit, GetDefaultMappings(), new FuelEfficiency(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings for the FuelEfficiency quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings.
             /// </returns>
-            public static FuelEfficiencyInfo CreateDefault(Func<IEnumerable<UnitDefinition<FuelEfficiencyUnit>>, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>>> customizeUnits)
+            private static QuantityInfo<FuelEfficiency, FuelEfficiencyUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<FuelEfficiencyUnit>>, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>>>? customizeUnits = null)
             {
-                return new FuelEfficiencyInfo(nameof(FuelEfficiency), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new FuelEfficiency(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<FuelEfficiencyUnit>> unitMappings = FuelEfficiencyInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<FuelEfficiency, FuelEfficiencyUnit>(
+                    name: nameof(FuelEfficiency),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new FuelEfficiency(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="FuelEfficiency"/> is [L^-2].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of FuelEfficiency is KilometerPerLiter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static FuelEfficiencyUnit DefaultBaseUnit { get; } = FuelEfficiencyUnit.KilometerPerLiter;
+            private static FuelEfficiencyUnit DefaultBaseUnit { get; } = FuelEfficiencyUnit.KilometerPerLiter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the FuelEfficiency quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.FuelEfficiency", typeof(FuelEfficiency).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="FuelEfficiencyUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FuelEfficiencyUnit}"/> representing the default unit mappings for FuelEfficiency.</returns>
-            public static IEnumerable<UnitDefinition<FuelEfficiencyUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<FuelEfficiencyUnit>> GetDefaultMappings()
             {
                 yield return new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined);
                 yield return new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined);
@@ -128,7 +128,7 @@ namespace UnitsNet
 
         static FuelEfficiency()
         {
-            Info = FuelEfficiencyInfo.CreateDefault();
+            Info = FuelEfficiencyInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -67,59 +67,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="RotationalStiffness"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class RotationalStiffnessInfo: QuantityInfo<RotationalStiffness, RotationalStiffnessUnit>
+        private static class RotationalStiffnessInfo
         {
-            /// <inheritdoc />
-            public RotationalStiffnessInfo(string name, RotationalStiffnessUnit baseUnit, IEnumerable<IUnitDefinition<RotationalStiffnessUnit>> unitMappings, RotationalStiffness zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<RotationalStiffness, RotationalStiffnessUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalStiffness.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public RotationalStiffnessInfo(string name, RotationalStiffnessUnit baseUnit, IEnumerable<IUnitDefinition<RotationalStiffnessUnit>> unitMappings, RotationalStiffness zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, RotationalStiffness.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RotationalStiffness", typeof(RotationalStiffness).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="RotationalStiffnessInfo"/> class with the default settings for the RotationalStiffness quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="RotationalStiffnessInfo"/> class with the default settings.</returns>
-            public static RotationalStiffnessInfo CreateDefault()
-            {
-                return new RotationalStiffnessInfo(nameof(RotationalStiffness), DefaultBaseUnit, GetDefaultMappings(), new RotationalStiffness(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="RotationalStiffnessInfo"/> class with the default settings for the RotationalStiffness quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="RotationalStiffnessInfo"/> class with the default settings.
             /// </returns>
-            public static RotationalStiffnessInfo CreateDefault(Func<IEnumerable<UnitDefinition<RotationalStiffnessUnit>>, IEnumerable<IUnitDefinition<RotationalStiffnessUnit>>> customizeUnits)
+            private static QuantityInfo<RotationalStiffness, RotationalStiffnessUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<RotationalStiffnessUnit>>, IEnumerable<IUnitDefinition<RotationalStiffnessUnit>>>? customizeUnits = null)
             {
-                return new RotationalStiffnessInfo(nameof(RotationalStiffness), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RotationalStiffness(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<RotationalStiffnessUnit>> unitMappings = RotationalStiffnessInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<RotationalStiffness, RotationalStiffnessUnit>(
+                    name: nameof(RotationalStiffness),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new RotationalStiffness(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="RotationalStiffness"/> is [T^-2][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of RotationalStiffness is NewtonMeterPerRadian. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static RotationalStiffnessUnit DefaultBaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
+            private static RotationalStiffnessUnit DefaultBaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the RotationalStiffness quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.RotationalStiffness", typeof(RotationalStiffness).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="RotationalStiffnessUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalStiffnessUnit}"/> representing the default unit mappings for RotationalStiffness.</returns>
-            public static IEnumerable<UnitDefinition<RotationalStiffnessUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<RotationalStiffnessUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalStiffnessUnit.CentinewtonMeterPerDegree, "CentinewtonMeterPerDegree", "CentinewtonMetersPerDegree", BaseUnits.Undefined);
                 yield return new (RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, "CentinewtonMillimeterPerDegree", "CentinewtonMillimetersPerDegree", BaseUnits.Undefined);
@@ -159,7 +159,7 @@ namespace UnitsNet
 
         static RotationalStiffness()
         {
-            Info = RotationalStiffnessInfo.CreateDefault();
+            Info = RotationalStiffnessInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="Irradiation"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class IrradiationInfo: QuantityInfo<Irradiation, IrradiationUnit>
+        private static class IrradiationInfo
         {
-            /// <inheritdoc />
-            public IrradiationInfo(string name, IrradiationUnit baseUnit, IEnumerable<IUnitDefinition<IrradiationUnit>> unitMappings, Irradiation zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<Irradiation, IrradiationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Irradiation.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public IrradiationInfo(string name, IrradiationUnit baseUnit, IEnumerable<IUnitDefinition<IrradiationUnit>> unitMappings, Irradiation zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, Irradiation.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Irradiation", typeof(Irradiation).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="IrradiationInfo"/> class with the default settings for the Irradiation quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="IrradiationInfo"/> class with the default settings.</returns>
-            public static IrradiationInfo CreateDefault()
-            {
-                return new IrradiationInfo(nameof(Irradiation), DefaultBaseUnit, GetDefaultMappings(), new Irradiation(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="IrradiationInfo"/> class with the default settings for the Irradiation quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="IrradiationInfo"/> class with the default settings.
             /// </returns>
-            public static IrradiationInfo CreateDefault(Func<IEnumerable<UnitDefinition<IrradiationUnit>>, IEnumerable<IUnitDefinition<IrradiationUnit>>> customizeUnits)
+            private static QuantityInfo<Irradiation, IrradiationUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<IrradiationUnit>>, IEnumerable<IUnitDefinition<IrradiationUnit>>>? customizeUnits = null)
             {
-                return new IrradiationInfo(nameof(Irradiation), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Irradiation(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<IrradiationUnit>> unitMappings = IrradiationInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<Irradiation, IrradiationUnit>(
+                    name: nameof(Irradiation),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new Irradiation(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="Irradiation"/> is [T^-2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of Irradiation is JoulePerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static IrradiationUnit DefaultBaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
+            private static IrradiationUnit DefaultBaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the Irradiation quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.Irradiation", typeof(Irradiation).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="IrradiationUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IrradiationUnit}"/> representing the default unit mappings for Irradiation.</returns>
-            public static IEnumerable<UnitDefinition<IrradiationUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<IrradiationUnit>> GetDefaultMappings()
             {
                 yield return new (IrradiationUnit.BtuPerSquareFoot, "BtuPerSquareFoot", "BtusPerSquareFoot", BaseUnits.Undefined);
                 yield return new (IrradiationUnit.JoulePerSquareCentimeter, "JoulePerSquareCentimeter", "JoulesPerSquareCentimeter", BaseUnits.Undefined);
@@ -133,7 +133,7 @@ namespace UnitsNet
 
         static Irradiation()
         {
-            Info = IrradiationInfo.CreateDefault();
+            Info = IrradiationInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

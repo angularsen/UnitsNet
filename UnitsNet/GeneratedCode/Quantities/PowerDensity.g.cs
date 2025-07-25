@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="PowerDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class PowerDensityInfo: QuantityInfo<PowerDensity, PowerDensityUnit>
+        private static class PowerDensityInfo
         {
-            /// <inheritdoc />
-            public PowerDensityInfo(string name, PowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<PowerDensityUnit>> unitMappings, PowerDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<PowerDensity, PowerDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, PowerDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public PowerDensityInfo(string name, PowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<PowerDensityUnit>> unitMappings, PowerDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, PowerDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PowerDensity", typeof(PowerDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="PowerDensityInfo"/> class with the default settings for the PowerDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="PowerDensityInfo"/> class with the default settings.</returns>
-            public static PowerDensityInfo CreateDefault()
-            {
-                return new PowerDensityInfo(nameof(PowerDensity), DefaultBaseUnit, GetDefaultMappings(), new PowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="PowerDensityInfo"/> class with the default settings for the PowerDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="PowerDensityInfo"/> class with the default settings.
             /// </returns>
-            public static PowerDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PowerDensityUnit>>, IEnumerable<IUnitDefinition<PowerDensityUnit>>> customizeUnits)
+            private static QuantityInfo<PowerDensity, PowerDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<PowerDensityUnit>>, IEnumerable<IUnitDefinition<PowerDensityUnit>>>? customizeUnits = null)
             {
-                return new PowerDensityInfo(nameof(PowerDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<PowerDensityUnit>> unitMappings = PowerDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<PowerDensity, PowerDensityUnit>(
+                    name: nameof(PowerDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new PowerDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="PowerDensity"/> is [T^-3][L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of PowerDensity is WattPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static PowerDensityUnit DefaultBaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+            private static PowerDensityUnit DefaultBaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the PowerDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.PowerDensity", typeof(PowerDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="PowerDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerDensityUnit}"/> representing the default unit mappings for PowerDensity.</returns>
-            public static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
             {
                 yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined);
                 yield return new (PowerDensityUnit.DecawattPerCubicInch, "DecawattPerCubicInch", "DecawattsPerCubicInch", BaseUnits.Undefined);
@@ -165,7 +165,7 @@ namespace UnitsNet
 
         static PowerDensity()
         {
-            Info = PowerDensityInfo.CreateDefault();
+            Info = PowerDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

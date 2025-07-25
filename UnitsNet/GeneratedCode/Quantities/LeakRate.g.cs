@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="LeakRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LeakRateInfo: QuantityInfo<LeakRate, LeakRateUnit>
+        private static class LeakRateInfo
         {
-            /// <inheritdoc />
-            public LeakRateInfo(string name, LeakRateUnit baseUnit, IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings, LeakRate zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<LeakRate, LeakRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LeakRate.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LeakRateInfo(string name, LeakRateUnit baseUnit, IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings, LeakRate zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, LeakRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LeakRate", typeof(LeakRate).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LeakRateInfo"/> class with the default settings for the LeakRate quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LeakRateInfo"/> class with the default settings.</returns>
-            public static LeakRateInfo CreateDefault()
-            {
-                return new LeakRateInfo(nameof(LeakRate), DefaultBaseUnit, GetDefaultMappings(), new LeakRate(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LeakRateInfo"/> class with the default settings for the LeakRate quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LeakRateInfo"/> class with the default settings.
             /// </returns>
-            public static LeakRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<LeakRateUnit>>, IEnumerable<IUnitDefinition<LeakRateUnit>>> customizeUnits)
+            private static QuantityInfo<LeakRate, LeakRateUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LeakRateUnit>>, IEnumerable<IUnitDefinition<LeakRateUnit>>>? customizeUnits = null)
             {
-                return new LeakRateInfo(nameof(LeakRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LeakRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings = LeakRateInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<LeakRate, LeakRateUnit>(
+                    name: nameof(LeakRate),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new LeakRate(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="LeakRate"/> is [T^-3][L^2][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of LeakRate is PascalCubicMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LeakRateUnit DefaultBaseUnit { get; } = LeakRateUnit.PascalCubicMeterPerSecond;
+            private static LeakRateUnit DefaultBaseUnit { get; } = LeakRateUnit.PascalCubicMeterPerSecond;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the LeakRate quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.LeakRate", typeof(LeakRate).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LeakRateUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
-            public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
                 yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined);
                 yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
@@ -127,7 +127,7 @@ namespace UnitsNet
 
         static LeakRate()
         {
-            Info = LeakRateInfo.CreateDefault();
+            Info = LeakRateInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

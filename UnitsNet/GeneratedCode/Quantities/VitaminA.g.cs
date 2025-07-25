@@ -62,59 +62,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="VitaminA"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class VitaminAInfo: QuantityInfo<VitaminA, VitaminAUnit>
+        private static class VitaminAInfo
         {
-            /// <inheritdoc />
-            public VitaminAInfo(string name, VitaminAUnit baseUnit, IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings, VitaminA zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<VitaminA, VitaminAUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VitaminA.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public VitaminAInfo(string name, VitaminAUnit baseUnit, IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings, VitaminA zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, VitaminA.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VitaminA", typeof(VitaminA).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="VitaminAInfo"/> class with the default settings for the VitaminA quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="VitaminAInfo"/> class with the default settings.</returns>
-            public static VitaminAInfo CreateDefault()
-            {
-                return new VitaminAInfo(nameof(VitaminA), DefaultBaseUnit, GetDefaultMappings(), new VitaminA(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="VitaminAInfo"/> class with the default settings for the VitaminA quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="VitaminAInfo"/> class with the default settings.
             /// </returns>
-            public static VitaminAInfo CreateDefault(Func<IEnumerable<UnitDefinition<VitaminAUnit>>, IEnumerable<IUnitDefinition<VitaminAUnit>>> customizeUnits)
+            private static QuantityInfo<VitaminA, VitaminAUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<VitaminAUnit>>, IEnumerable<IUnitDefinition<VitaminAUnit>>>? customizeUnits = null)
             {
-                return new VitaminAInfo(nameof(VitaminA), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VitaminA(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings = VitaminAInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<VitaminA, VitaminAUnit>(
+                    name: nameof(VitaminA),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new VitaminA(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="VitaminA"/> is .
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+            private static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
 
             /// <summary>
             ///     The default base unit of VitaminA is InternationalUnit. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static VitaminAUnit DefaultBaseUnit { get; } = VitaminAUnit.InternationalUnit;
+            private static VitaminAUnit DefaultBaseUnit { get; } = VitaminAUnit.InternationalUnit;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the VitaminA quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.VitaminA", typeof(VitaminA).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="VitaminAUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VitaminAUnit}"/> representing the default unit mappings for VitaminA.</returns>
-            public static IEnumerable<UnitDefinition<VitaminAUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<VitaminAUnit>> GetDefaultMappings()
             {
                 yield return new (VitaminAUnit.InternationalUnit, "InternationalUnit", "InternationalUnits", BaseUnits.Undefined);
             }
@@ -122,7 +122,7 @@ namespace UnitsNet
 
         static VitaminA()
         {
-            Info = VitaminAInfo.CreateDefault();
+            Info = VitaminAInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

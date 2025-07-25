@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="LinearPowerDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class LinearPowerDensityInfo: QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit>
+        private static class LinearPowerDensityInfo
         {
-            /// <inheritdoc />
-            public LinearPowerDensityInfo(string name, LinearPowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings, LinearPowerDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<LinearPowerDensity, LinearPowerDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LinearPowerDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public LinearPowerDensityInfo(string name, LinearPowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings, LinearPowerDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, LinearPowerDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LinearPowerDensity", typeof(LinearPowerDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings for the LinearPowerDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings.</returns>
-            public static LinearPowerDensityInfo CreateDefault()
-            {
-                return new LinearPowerDensityInfo(nameof(LinearPowerDensity), DefaultBaseUnit, GetDefaultMappings(), new LinearPowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings for the LinearPowerDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings.
             /// </returns>
-            public static LinearPowerDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LinearPowerDensityUnit>>, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>>> customizeUnits)
+            private static QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<LinearPowerDensityUnit>>, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>>>? customizeUnits = null)
             {
-                return new LinearPowerDensityInfo(nameof(LinearPowerDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LinearPowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings = LinearPowerDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit>(
+                    name: nameof(LinearPowerDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new LinearPowerDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="LinearPowerDensity"/> is [T^-3][L][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of LinearPowerDensity is WattPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static LinearPowerDensityUnit DefaultBaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
+            private static LinearPowerDensityUnit DefaultBaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the LinearPowerDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.LinearPowerDensity", typeof(LinearPowerDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="LinearPowerDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearPowerDensityUnit}"/> representing the default unit mappings for LinearPowerDensity.</returns>
-            public static IEnumerable<UnitDefinition<LinearPowerDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<LinearPowerDensityUnit>> GetDefaultMappings()
             {
                 yield return new (LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattPerCentimeter", "GigawattsPerCentimeter", BaseUnits.Undefined);
                 yield return new (LinearPowerDensityUnit.GigawattPerFoot, "GigawattPerFoot", "GigawattsPerFoot", BaseUnits.Undefined);
@@ -149,7 +149,7 @@ namespace UnitsNet
 
         static LinearPowerDensity()
         {
-            Info = LinearPowerDensityInfo.CreateDefault();
+            Info = LinearPowerDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }

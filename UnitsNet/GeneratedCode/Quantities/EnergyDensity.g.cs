@@ -65,59 +65,59 @@ namespace UnitsNet
         /// <summary>
         ///     Provides detailed information about the <see cref="EnergyDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
         /// </summary>
-        public sealed class EnergyDensityInfo: QuantityInfo<EnergyDensity, EnergyDensityUnit>
+        private static class EnergyDensityInfo
         {
-            /// <inheritdoc />
-            public EnergyDensityInfo(string name, EnergyDensityUnit baseUnit, IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings, EnergyDensity zero, BaseDimensions baseDimensions,
-                QuantityFromDelegate<EnergyDensity, EnergyDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, EnergyDensity.RegisterDefaultConversions, unitAbbreviations)
-            {
-            }
-
-            /// <inheritdoc />
-            public EnergyDensityInfo(string name, EnergyDensityUnit baseUnit, IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings, EnergyDensity zero, BaseDimensions baseDimensions)
-                : this(name, baseUnit, unitMappings, zero, baseDimensions, EnergyDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.EnergyDensity", typeof(EnergyDensity).Assembly))
-            {
-            }
-
-            /// <summary>
-            ///     Creates a new instance of the <see cref="EnergyDensityInfo"/> class with the default settings for the EnergyDensity quantity.
-            /// </summary>
-            /// <returns>A new instance of the <see cref="EnergyDensityInfo"/> class with the default settings.</returns>
-            public static EnergyDensityInfo CreateDefault()
-            {
-                return new EnergyDensityInfo(nameof(EnergyDensity), DefaultBaseUnit, GetDefaultMappings(), new EnergyDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
-            }
-
             /// <summary>
             ///     Creates a new instance of the <see cref="EnergyDensityInfo"/> class with the default settings for the EnergyDensity quantity and a callback for customizing the default unit mappings.
             /// </summary>
+            /// <param name="unitAbbreviations">
+            ///     When provided, the resource manager used for localizing the quantity's unit abbreviations. Defaults to the built-in abbreviations.
+            /// </param>
             /// <param name="customizeUnits">
-            ///     A callback function for customizing the default unit mappings.
+            ///     Optionally add, replace or remove unit definitions from the default set of units.
             /// </param>
             /// <returns>
             ///     A new instance of the <see cref="EnergyDensityInfo"/> class with the default settings.
             /// </returns>
-            public static EnergyDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<EnergyDensityUnit>>, IEnumerable<IUnitDefinition<EnergyDensityUnit>>> customizeUnits)
+            private static QuantityInfo<EnergyDensity, EnergyDensityUnit> Create(
+                ResourceManager? unitAbbreviations = null,
+                Func<IEnumerable<IUnitDefinition<EnergyDensityUnit>>, IEnumerable<IUnitDefinition<EnergyDensityUnit>>>? customizeUnits = null)
             {
-                return new EnergyDensityInfo(nameof(EnergyDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new EnergyDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+                IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings = EnergyDensityInfo.GetDefaultMappings();
+                if (customizeUnits != null)
+                    unitMappings = customizeUnits(unitMappings);
+
+                return new QuantityInfo<EnergyDensity, EnergyDensityUnit>(
+                    name: nameof(EnergyDensity),
+                    baseUnit: DefaultBaseUnit,
+                    unitMappings: unitMappings,
+                    zero: new EnergyDensity(0, DefaultBaseUnit),
+                    baseDimensions: DefaultBaseDimensions,
+                    fromDelegate: From,
+                    registerUnitConversions: RegisterDefaultConversions,
+                    unitAbbreviations ?? DefaultUnitAbbreviations);
             }
 
             /// <summary>
             ///     The <see cref="BaseDimensions" /> for <see cref="EnergyDensity"/> is [T^-2][L^-1][M].
             /// </summary>
-            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+            private static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
 
             /// <summary>
             ///     The default base unit of EnergyDensity is JoulePerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
             /// </summary>
-            public static EnergyDensityUnit DefaultBaseUnit { get; } = EnergyDensityUnit.JoulePerCubicMeter;
+            private static EnergyDensityUnit DefaultBaseUnit { get; } = EnergyDensityUnit.JoulePerCubicMeter;
+
+            /// <summary>
+            ///     The default resource manager for unit abbreviations of the EnergyDensity quantity.
+            /// </summary>
+            private static ResourceManager DefaultUnitAbbreviations { get; } = new("UnitsNet.GeneratedCode.Resources.EnergyDensity", typeof(EnergyDensity).Assembly);
 
             /// <summary>
             ///     Retrieves the default mappings for <see cref="EnergyDensityUnit"/>.
             /// </summary>
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyDensityUnit}"/> representing the default unit mappings for EnergyDensity.</returns>
-            public static IEnumerable<UnitDefinition<EnergyDensityUnit>> GetDefaultMappings()
+            private static IEnumerable<UnitDefinition<EnergyDensityUnit>> GetDefaultMappings()
             {
                 yield return new (EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulePerCubicMeter", "GigajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHourPerCubicMeter", "GigawattHoursPerCubicMeter", BaseUnits.Undefined);
@@ -136,7 +136,7 @@ namespace UnitsNet
 
         static EnergyDensity()
         {
-            Info = EnergyDensityInfo.CreateDefault();
+            Info = EnergyDensityInfo.Create();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
