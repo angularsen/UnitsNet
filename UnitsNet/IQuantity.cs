@@ -94,7 +94,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
-        
+
         /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.
         /// </summary>
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
-        
+
 #if NET
 
         #region Implementation of IQuantity
@@ -194,7 +194,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified tolerance.</returns>
         bool Equals(TSelf? other, TSelf tolerance);
-        
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new QuantityInfo<TSelf, TUnitType> QuantityInfo { get; }
 

@@ -122,6 +122,7 @@ namespace UnitsNet
                 yield return new (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreeCelsiusPerWatt", "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
                 yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinPerKilowatt", "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
                 yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinPerWatt", "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                yield return new (ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "SquareMillimeterKelvinPerWatt", "SquareMillimeterKelvinsPerWatt", BaseUnits.Undefined);
             }
         }
 
