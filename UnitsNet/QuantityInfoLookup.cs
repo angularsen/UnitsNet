@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
@@ -23,7 +20,7 @@ namespace UnitsNet;
 /// </remarks>
 internal class QuantityInfoLookup
 {
-    private readonly IReadOnlyList<QuantityInfo> _quantities;
+    private readonly QuantityInfo[] _quantities;
     private readonly Lazy<QuantityByNameLookupDictionary> _quantitiesByName;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByType;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByUnitType;
@@ -80,7 +77,7 @@ internal class QuantityInfoLookup
     /// </remarks>
     public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
-        _quantities = quantityInfos.ToArray();
+        _quantities = quantityInfos as QuantityInfo[] ?? quantityInfos.ToArray();
         _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
         _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByType);
         _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByUnitType);
