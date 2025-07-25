@@ -153,6 +153,7 @@ public partial class Quantity
             TemperatureGradient.Info,
             ThermalConductivity.Info,
             ThermalInsulance.Info,
+            ThermalResistance.Info,
             Torque.Info,
             Turbidity.Info,
             VitaminA.Info,
