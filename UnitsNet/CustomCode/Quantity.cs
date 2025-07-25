@@ -17,7 +17,7 @@ namespace UnitsNet
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>, that are present in the <see cref="UnitsNetSetup.Default"/> configuration.
         /// </summary>
         public static IReadOnlyList<QuantityInfo> Infos => Quantities.Infos;
-        
+
         /// <summary>
         /// All QuantityInfo instances mapped by quantity name that are present in the <see cref="UnitsNetSetup.Default"/> configuration.
         /// </summary>
@@ -35,7 +35,7 @@ namespace UnitsNet
         {
             return Quantities.TryGetUnitInfo(unitEnum, out unitInfo);
         }
-        
+
         /// <summary>
         ///     Dynamically constructs a quantity from a numeric value and a unit enum value.
         /// </summary>
@@ -64,25 +64,6 @@ namespace UnitsNet
         public static IQuantity From(double value, string quantityName, string unitName)
         {
             return Quantities.GetUnitByName(quantityName, unitName).From(value);
-        }
-
-        /// <summary>
-        ///     Dynamically constructs a quantity of the given <see cref="QuantityInfo" /> with the value in the quantity's base
-        ///     units.
-        /// </summary>
-        /// <param name="quantityInfo">The <see cref="QuantityInfo" /> of the quantity to create.</param>
-        /// <param name="value">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        /// <remarks>
-        ///     This is the equivalent to:
-        ///     <code>quantityInfo.From(value, quantityInfo.BaseUnitInfo.Value)</code>
-        ///     or
-        ///     <code>quantityInfo.BaseUnitInfo.From(value)</code>
-        /// </remarks>
-        [Obsolete("Consider using: quantityInfo.BaseUnitInfo.From(value)")]
-        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, double value)
-        {
-            return quantityInfo.BaseUnitInfo.From(value);
         }
 
         /// <summary>
