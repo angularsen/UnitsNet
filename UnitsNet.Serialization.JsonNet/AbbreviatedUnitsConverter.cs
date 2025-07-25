@@ -29,7 +29,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         private readonly UnitAbbreviationsCache _abbreviations;
         private readonly IEqualityComparer<string?> _propertyComparer;
-        private readonly IDictionary<string, QuantityInfo> _quantities;
+        private readonly IReadOnlyDictionary<string, QuantityInfo> _quantities;
         private readonly UnitParser _unitParser;
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// </summary>
         /// <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
         public AbbreviatedUnitsConverter(IEqualityComparer<string?> comparer)
-            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitsNetSetup.Default.UnitAbbreviations, comparer)
+            : this(Quantity.ByName, UnitsNetSetup.Default.UnitAbbreviations, comparer)
         {
         }
 
@@ -55,7 +55,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <param name="quantities">The dictionary of quantity names</param>
         /// <param name="abbreviations">The unit abbreviations used for the serialization </param>
         /// <param name="propertyComparer">The comparer used to compare the property names (e.g. StringComparer.OrdinalIgnoreCase) </param>
-        public AbbreviatedUnitsConverter(IDictionary<string, QuantityInfo> quantities, UnitAbbreviationsCache abbreviations, IEqualityComparer<string?> propertyComparer)
+        public AbbreviatedUnitsConverter(IReadOnlyDictionary<string, QuantityInfo> quantities, UnitAbbreviationsCache abbreviations, IEqualityComparer<string?> propertyComparer)
         {
             _quantities = quantities;
             _abbreviations = abbreviations;

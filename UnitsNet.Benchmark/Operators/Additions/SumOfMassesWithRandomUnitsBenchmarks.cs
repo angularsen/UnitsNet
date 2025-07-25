@@ -25,7 +25,7 @@ public class SumOfMassesWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _quantities = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units, NbOperations).ToArray();
+        _quantities = _random.GetRandomQuantities<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbOperations).ToArray();
     }
     
     [Benchmark(Baseline = true)]

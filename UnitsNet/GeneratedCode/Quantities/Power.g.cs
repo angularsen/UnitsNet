@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -79,45 +75,96 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Power"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PowerInfo: QuantityInfo<Power, PowerUnit>
+        {
+            /// <inheritdoc />
+            public PowerInfo(string name, PowerUnit baseUnit, IEnumerable<IUnitDefinition<PowerUnit>> unitMappings, Power zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Power, PowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PowerInfo(string name, PowerUnit baseUnit, IEnumerable<IUnitDefinition<PowerUnit>> unitMappings, Power zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Power.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Power", typeof(Power).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerInfo"/> class with the default settings for the Power quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PowerInfo"/> class with the default settings.</returns>
+            public static PowerInfo CreateDefault()
+            {
+                return new PowerInfo(nameof(Power), DefaultBaseUnit, GetDefaultMappings(), new Power(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerInfo"/> class with the default settings for the Power quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PowerInfo"/> class with the default settings.
+            /// </returns>
+            public static PowerInfo CreateDefault(Func<IEnumerable<UnitDefinition<PowerUnit>>, IEnumerable<IUnitDefinition<PowerUnit>>> customizeUnits)
+            {
+                return new PowerInfo(nameof(Power), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Power(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Power"/> is [T^-3][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Power is Watt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PowerUnit DefaultBaseUnit { get; } = PowerUnit.Watt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PowerUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerUnit}"/> representing the default unit mappings for Power.</returns>
+            public static IEnumerable<UnitDefinition<PowerUnit>> GetDefaultMappings()
+            {
+                yield return new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined);
+                yield return new (PowerUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", "ElectricalHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.Femtowatt, "Femtowatt", "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.GigajoulePerHour, "GigajoulePerHour", "GigajoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.Gigawatt, "Gigawatt", "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
+                yield return new (PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", "HydraulicHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.JoulePerHour, "JoulePerHour", "JoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitPerHour", "KilobritishThermalUnitsPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.KilojoulePerHour, "KilojoulePerHour", "KilojoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.Kilowatt, "Kilowatt", "Kilowatts", BaseUnits.Undefined);
+                yield return new (PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", "MechanicalHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitPerHour", "MegabritishThermalUnitsPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.MegajoulePerHour, "MegajoulePerHour", "MegajoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.Megawatt, "Megawatt", "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.MetricHorsepower, "MetricHorsepower", "MetricHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.Microwatt, "Microwatt", "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (PowerUnit.MillijoulePerHour, "MillijoulePerHour", "MillijoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.Milliwatt, "Milliwatt", "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PowerUnit.Nanowatt, "Nanowatt", "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (PowerUnit.Petawatt, "Petawatt", "Petawatts", BaseUnits.Undefined);
+                yield return new (PowerUnit.Picowatt, "Picowatt", "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.Terawatt, "Terawatt", "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.TonOfRefrigeration, "TonOfRefrigeration", "TonsOfRefrigeration", BaseUnits.Undefined);
+                yield return new (PowerUnit.Watt, "Watt", "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static Power()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = PowerUnit.Watt;
-            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().ToArray();
-            Zero = new Power(0, BaseUnit);
-            Info = new QuantityInfo<PowerUnit>("Power",
-                new UnitInfo<PowerUnit>[]
-                {
-                    new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.TonOfRefrigeration, "TonsOfRefrigeration", BaseUnits.Undefined, "Power"),
-                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Power"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PowerInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -155,27 +202,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerUnit> Info { get; }
+        public static QuantityInfo<Power, PowerUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit { get; }
+        public static PowerUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
-        public static PowerUnit[] Units { get; }
+        public static IReadOnlyCollection<PowerUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; }
+        public static Power Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Power AdditiveIdentity => Zero;
@@ -193,7 +240,7 @@ namespace UnitsNet
         public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PowerUnit> QuantityInfo => Info;
+        public QuantityInfo<Power, PowerUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -210,6 +257,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PowerUnit> IQuantity<PowerUnit>.QuantityInfo => Info;
 
         #endregion
 

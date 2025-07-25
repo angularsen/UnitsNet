@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,19 +62,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MagneticFluxUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MagneticFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MagneticFluxInfo: QuantityInfo<MagneticFlux, MagneticFluxUnit>
+        {
+            /// <inheritdoc />
+            public MagneticFluxInfo(string name, MagneticFluxUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings, MagneticFlux zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MagneticFlux, MagneticFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MagneticFluxInfo(string name, MagneticFluxUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings, MagneticFlux zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MagneticFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MagneticFlux", typeof(MagneticFlux).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MagneticFluxInfo"/> class with the default settings for the MagneticFlux quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MagneticFluxInfo"/> class with the default settings.</returns>
+            public static MagneticFluxInfo CreateDefault()
+            {
+                return new MagneticFluxInfo(nameof(MagneticFlux), DefaultBaseUnit, GetDefaultMappings(), new MagneticFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MagneticFluxInfo"/> class with the default settings for the MagneticFlux quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MagneticFluxInfo"/> class with the default settings.
+            /// </returns>
+            public static MagneticFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<MagneticFluxUnit>>, IEnumerable<IUnitDefinition<MagneticFluxUnit>>> customizeUnits)
+            {
+                return new MagneticFluxInfo(nameof(MagneticFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MagneticFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MagneticFlux"/> is [T^-2][L^2][M][I^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of MagneticFlux is Weber. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MagneticFluxUnit DefaultBaseUnit { get; } = MagneticFluxUnit.Weber;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MagneticFluxUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagneticFluxUnit}"/> representing the default unit mappings for MagneticFlux.</returns>
+            public static IEnumerable<UnitDefinition<MagneticFluxUnit>> GetDefaultMappings()
+            {
+                yield return new (MagneticFluxUnit.Weber, "Weber", "Webers", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static MagneticFlux()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-            BaseUnit = MagneticFluxUnit.Weber;
-            Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().ToArray();
-            Zero = new MagneticFlux(0, BaseUnit);
-            Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
-                new UnitInfo<MagneticFluxUnit>[]
-                {
-                    new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "MagneticFlux"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MagneticFluxInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -116,27 +163,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagneticFluxUnit> Info { get; }
+        public static QuantityInfo<MagneticFlux, MagneticFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit BaseUnit { get; }
+        public static MagneticFluxUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
-        public static MagneticFluxUnit[] Units { get; }
+        public static IReadOnlyCollection<MagneticFluxUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Weber.
         /// </summary>
-        public static MagneticFlux Zero { get; }
+        public static MagneticFlux Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MagneticFlux AdditiveIdentity => Zero;
@@ -154,7 +201,7 @@ namespace UnitsNet
         public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MagneticFluxUnit> QuantityInfo => Info;
+        public QuantityInfo<MagneticFlux, MagneticFluxUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -171,6 +218,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.QuantityInfo => Info;
 
         #endregion
 

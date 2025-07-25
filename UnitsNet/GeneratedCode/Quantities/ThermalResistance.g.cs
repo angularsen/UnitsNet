@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,20 +59,71 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ThermalResistanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ThermalResistance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ThermalResistanceInfo: QuantityInfo<ThermalResistance, ThermalResistanceUnit>
+        {
+            /// <inheritdoc />
+            public ThermalResistanceInfo(string name, ThermalResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalResistanceUnit>> unitMappings, ThermalResistance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ThermalResistance, ThermalResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ThermalResistanceInfo(string name, ThermalResistanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalResistanceUnit>> unitMappings, ThermalResistance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ThermalResistance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ThermalResistance", typeof(ThermalResistance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalResistanceInfo"/> class with the default settings for the ThermalResistance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ThermalResistanceInfo"/> class with the default settings.</returns>
+            public static ThermalResistanceInfo CreateDefault()
+            {
+                return new ThermalResistanceInfo(nameof(ThermalResistance), DefaultBaseUnit, GetDefaultMappings(), new ThermalResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalResistanceInfo"/> class with the default settings for the ThermalResistance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ThermalResistanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ThermalResistanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ThermalResistanceUnit>>, IEnumerable<IUnitDefinition<ThermalResistanceUnit>>> customizeUnits)
+            {
+                return new ThermalResistanceInfo(nameof(ThermalResistance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ThermalResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ThermalResistance"/> is [T^3][L^-2][M^-1][Θ].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 0, 1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ThermalResistance is KelvinPerWatt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ThermalResistanceUnit DefaultBaseUnit { get; } = ThermalResistanceUnit.KelvinPerWatt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ThermalResistanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalResistanceUnit}"/> representing the default unit mappings for ThermalResistance.</returns>
+            public static IEnumerable<UnitDefinition<ThermalResistanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ThermalResistanceUnit.DegreeCelsiusPerWatt, "DegreeCelsiusPerWatt", "DegreesCelsiusPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (ThermalResistanceUnit.KelvinPerWatt, "KelvinPerWatt", "KelvinsPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+            }
+        }
+
         static ThermalResistance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 0, 1, 0, 0);
-            BaseUnit = ThermalResistanceUnit.KelvinPerWatt;
-            Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
-            Zero = new ThermalResistance(0, BaseUnit);
-            Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
-                new UnitInfo<ThermalResistanceUnit>[]
-                {
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.DegreeCelsiusPerWatt, "DegreesCelsiusPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.KelvinPerWatt, "KelvinsPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "ThermalResistance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ThermalResistanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -114,27 +161,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalResistanceUnit> Info { get; }
+        public static QuantityInfo<ThermalResistance, ThermalResistanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ThermalResistance, which is KelvinPerWatt. All conversions go via this value.
         /// </summary>
-        public static ThermalResistanceUnit BaseUnit { get; }
+        public static ThermalResistanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ThermalResistance quantity.
         /// </summary>
-        public static ThermalResistanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ThermalResistanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KelvinPerWatt.
         /// </summary>
-        public static ThermalResistance Zero { get; }
+        public static ThermalResistance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ThermalResistance AdditiveIdentity => Zero;
@@ -152,7 +199,7 @@ namespace UnitsNet
         public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ThermalResistanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ThermalResistance, ThermalResistanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -169,6 +216,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.QuantityInfo => Info;
 
         #endregion
 
