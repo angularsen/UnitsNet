@@ -80,7 +80,7 @@ public class QuantityInfoLookup
     /// </remarks>
     public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
-        _quantities = quantityInfos.ToArray();
+        _quantities = quantityInfos as QuantityInfo[] ?? quantityInfos.ToArray();
         _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
         _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByType);
         _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByUnitType);
