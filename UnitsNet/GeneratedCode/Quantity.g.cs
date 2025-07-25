@@ -34,7 +34,7 @@ public partial class Quantity
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> DefaultQuantities => new QuantityInfo[]
+        internal static IReadOnlyList<QuantityInfo> DefaultQuantities { get; } = new QuantityInfo[]
         {
             AbsorbedDoseOfIonizingRadiation.Info,
             Acceleration.Info,
