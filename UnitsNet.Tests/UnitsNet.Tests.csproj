@@ -38,9 +38,4 @@
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Xunit" />
-    <Using Include="UnitsNet.Units" />
-  </ItemGroup>
-
 </Project>
