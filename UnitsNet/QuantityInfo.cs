@@ -70,7 +70,7 @@ public abstract class QuantityInfo : IQuantityInfo
     {
         get => GetGenericBaseUnitInfo();
     }
-    
+
     /// <inheritdoc cref="BaseUnitInfo" />
     protected internal abstract UnitInfo GetGenericBaseUnitInfo();
 
@@ -93,13 +93,13 @@ public abstract class QuantityInfo : IQuantityInfo
     /// <inheritdoc />
     public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfo.Get(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitWithBase(UnitInfos, baseUnits);
     }
 
     /// <inheritdoc />
     public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfo.FilterBy(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitsWithBase(UnitInfos, baseUnits);
     }
 
     /// <summary>
@@ -142,7 +142,7 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo//, IQuantityInfo<TUnit>
     {
         get => GetBaseUnitInfo();
     }
-    
+
     /// <inheritdoc cref="BaseUnitInfo" />
     protected internal abstract UnitInfo<TUnit> GetBaseUnitInfo();
 
@@ -179,28 +179,28 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo//, IQuantityInfo<TUnit>
     /// <returns>An <see cref="UnitInfo{TUnit}" /> instance containing information about the specified unit.</returns>
     /// <exception cref="ArgumentException">Thrown if the specified unit is not valid for this quantity.</exception>
     protected internal abstract UnitInfo<TUnit> GetUnitInfo(TUnit unit);
-    
+
     //  /// <inheritdoc cref="QuantityInfo.TryGetUnitInfo" />
     // public abstract bool TryGetUnitInfo(TUnit unit, [NotNullWhen(true)] out UnitInfo<TUnit>? unitInfo);
-    
+
     /// <inheritdoc cref="QuantityInfo.GetUnitInfoFor" />
     public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfo.Get(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitWithBase(UnitInfos, baseUnits);
     }
-    
+
     /// <inheritdoc cref="QuantityInfo.GetUnitInfosFor" />
     public new IEnumerable<UnitInfo<TUnit>> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfo.FilterBy(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitsWithBase(UnitInfos, baseUnits);
     }
-    
+
     /// <inheritdoc cref="QuantityInfo.From" />
     public IQuantity<TUnit> From(double value, TUnit unit)
     {
         return CreateGenericQuantity(value, unit);
     }
-    
+
     /// <inheritdoc cref="From(double,TUnit)" />
     protected internal abstract IQuantity<TUnit> CreateGenericQuantity(double value, TUnit unit);
 
@@ -286,7 +286,7 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
 
     private QuantityFromDelegate<TQuantity, TUnit> FromDelegate { get; }
 
-    
+
     #region Implementation of IQuantityInfo<TQuantity, TUnit>
 
     /// <inheritdoc cref="IQuantityInfo.Zero" />
@@ -307,13 +307,13 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     /// <inheritdoc cref="IQuantityInfo.GetUnitInfosFor" />
     public new IEnumerable<TUnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfo.FilterBy(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitsWithBase(UnitInfos, baseUnits);
     }
 
     /// <inheritdoc cref="IQuantityInfo.GetUnitInfoFor" />
     public new TUnitInfo GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfo.Get(UnitInfos, baseUnits);
+        return UnitInfo.GetUnitWithBase(UnitInfos, baseUnits);
     }
 
     /// <summary>
@@ -334,7 +334,7 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     }
 
     #endregion
-    
+
     #region Overrides of QuantityInfo<TUnit>
 
     /// <inheritdoc />
@@ -393,9 +393,9 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly UnitInfo<TQuantity, TUnit>[] _unitInfos;
-    
+
     #if NET
-    
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity name.
     /// </summary>
@@ -413,7 +413,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
         : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
-    
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class.
     /// </summary>
@@ -432,7 +432,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
         : this(name, baseUnit, unitMappings, TQuantity.From(0, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
-    
+
     #endif
 
     /// <summary>
@@ -454,7 +454,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
         : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, fromDelegate, unitAbbreviations)
     {
     }
-    
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class.
     /// </summary>
@@ -554,7 +554,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     #endregion
 
     #region Explicit implementation of IQuantityInfo<TUnit>
-    
+
     // [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     // IReadOnlyCollection<UnitInfo<TUnit>> IQuantityInfo<TUnit>.UnitInfos
     // {
@@ -605,13 +605,13 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     //     get => Zero;
     // }
 
-    
+
     // /// <inheritdoc />
     // TQuantity IQuantityInstanceInfo<TQuantity>.Create(QuantityValue value, UnitKey unitKey)
     // {
     //     return From(value, unitKey.ToUnit<TUnit>());
     // }
-    
+
     #endregion
 
     #region Implementation of IQuantityInfo<TQuantity,TUnit>
