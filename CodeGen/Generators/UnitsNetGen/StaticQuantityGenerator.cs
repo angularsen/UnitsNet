@@ -28,18 +28,18 @@ public partial class Quantity
     /// <summary>
     ///     Serves as a repository for predefined quantity conversion mappings, facilitating the automatic generation and retrieval of unit conversions in the UnitsNet library.
     /// </summary>
-    internal static class Provider
+    internal static class DefaultProvider
     {
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> DefaultQuantities => new QuantityInfo[]
-        {");
+        internal static IReadOnlyList<QuantityInfo> Quantities { get; } =
+        [");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
             {quantity.Name}.Info,");
             Writer.WL(@"
-        };
+        ];
     }
 }");
             return Writer.ToString();

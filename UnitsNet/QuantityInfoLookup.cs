@@ -23,7 +23,7 @@ namespace UnitsNet;
 /// </remarks>
 internal class QuantityInfoLookup
 {
-    private readonly QuantityInfo[] _quantities;
+    private readonly IReadOnlyList<QuantityInfo> _quantities;
     private readonly Lazy<QuantityByNameLookupDictionary> _quantitiesByName;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByType;
     private readonly Lazy<QuantityByTypeLookupDictionary> _quantitiesByUnitType;
@@ -174,7 +174,7 @@ internal class QuantityInfoLookup
     {
         return GetUnitInfo(unit).From(value);
     }
-    
+
     /// <summary>
     ///     Attempts to create a quantity from the specified value and unit.
     /// </summary>
@@ -194,7 +194,7 @@ internal class QuantityInfoLookup
             quantity = null;
             return false;
         }
-        
+
         if (!TryGetUnitInfo(unit, out UnitInfo? unitInfo))
         {
             quantity = null;
@@ -270,7 +270,7 @@ internal class QuantityInfoLookup
                    Data = { ["quantityName"] = quantityName, ["unitName"] = unitName }
                };
     }
-    
+
     /// <summary>
     ///     Attempts to parse unit information based on its quantity and unit names.
     /// </summary>
