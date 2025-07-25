@@ -79,7 +79,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MassFlowInfo(string name, MassFlowUnit baseUnit, IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings, MassFlow zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MassFlow, MassFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassFlow.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -253,7 +253,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -1,11 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnitsNet.Units;
-
 namespace UnitsNet;
 
 /// <summary>
@@ -21,10 +16,10 @@ public sealed class UnitsNetSetup
 {
     static UnitsNetSetup()
     {
-        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.DefaultProvider.Quantities;
+        IReadOnlyList<QuantityInfo> quantityInfos = Quantity.DefaultProvider.Quantities;
 
         // note: in order to support the ConvertByAbbreviation, the unit converter should require a UnitParser in the constructor
-        var unitConverter = UnitConverter.CreateDefault();
+        var unitConverter = UnitConverter.Create(quantityInfos);
 
         Default = new UnitsNetSetup(quantityInfos, unitConverter);
     }

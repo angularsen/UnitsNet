@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MolalityInfo(string name, MolalityUnit baseUnit, IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings, Molality zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Molality, MolalityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Molality.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -214,7 +214,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ForceChangeRateInfo(string name, ForceChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings, ForceChangeRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ForceChangeRate, ForceChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ForceChangeRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -226,7 +226,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

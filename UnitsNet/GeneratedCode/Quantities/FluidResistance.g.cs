@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public FluidResistanceInfo(string name, FluidResistanceUnit baseUnit, IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings, FluidResistance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<FluidResistance, FluidResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, FluidResistance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -230,7 +230,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

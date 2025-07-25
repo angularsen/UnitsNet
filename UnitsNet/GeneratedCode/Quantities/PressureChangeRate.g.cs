@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PressureChangeRateInfo(string name, PressureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings, PressureChangeRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<PressureChangeRate, PressureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, PressureChangeRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -229,7 +229,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

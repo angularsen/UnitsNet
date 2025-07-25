@@ -77,7 +77,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpeedInfo(string name, SpeedUnit baseUnit, IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings, Speed zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Speed, SpeedUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Speed.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -251,7 +251,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

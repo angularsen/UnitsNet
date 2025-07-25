@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public LinearPowerDensityInfo(string name, LinearPowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings, LinearPowerDensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<LinearPowerDensity, LinearPowerDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LinearPowerDensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -236,7 +236,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

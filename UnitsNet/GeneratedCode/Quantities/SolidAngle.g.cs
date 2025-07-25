@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SolidAngleInfo(string name, SolidAngleUnit baseUnit, IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings, SolidAngle zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SolidAngle, SolidAngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SolidAngle.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -198,7 +198,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -83,7 +83,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PowerInfo(string name, PowerUnit baseUnit, IEnumerable<IUnitDefinition<PowerUnit>> unitMappings, Power zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Power, PowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Power.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -251,7 +251,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public BitRateInfo(string name, BitRateUnit baseUnit, IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings, BitRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<BitRate, BitRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, BitRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -250,7 +250,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

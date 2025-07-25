@@ -84,7 +84,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public DurationInfo(string name, DurationUnit baseUnit, IEnumerable<IUnitDefinition<DurationUnit>> unitMappings, Duration zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Duration, DurationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Duration.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -237,7 +237,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

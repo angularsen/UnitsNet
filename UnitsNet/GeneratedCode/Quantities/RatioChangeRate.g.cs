@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RatioChangeRateInfo(string name, RatioChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings, RatioChangeRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RatioChangeRate, RatioChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RatioChangeRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -210,7 +210,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

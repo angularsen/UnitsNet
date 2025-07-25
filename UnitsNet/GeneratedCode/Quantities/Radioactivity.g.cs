@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RadioactivityInfo(string name, RadioactivityUnit baseUnit, IEnumerable<IUnitDefinition<RadioactivityUnit>> unitMappings, Radioactivity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Radioactivity, RadioactivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Radioactivity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -237,7 +237,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

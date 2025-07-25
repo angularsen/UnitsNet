@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RatioInfo(string name, RatioUnit baseUnit, IEnumerable<IUnitDefinition<RatioUnit>> unitMappings, Ratio zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Ratio, RatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Ratio.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -200,7 +200,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

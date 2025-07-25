@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MassMomentOfInertiaInfo(string name, MassMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<MassMomentOfInertiaUnit>> unitMappings, MassMomentOfInertia zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MassMomentOfInertia, MassMomentOfInertiaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassMomentOfInertia.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -236,7 +236,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

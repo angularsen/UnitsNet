@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public FrequencyInfo(string name, FrequencyUnit baseUnit, IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings, Frequency zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Frequency, FrequencyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Frequency.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -223,7 +223,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

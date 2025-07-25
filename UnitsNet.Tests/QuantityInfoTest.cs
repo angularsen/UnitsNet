@@ -24,7 +24,7 @@ public class QuantityInfoTest
         var abbreviations = new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly);
 
         var quantityInfo = new QuantityInfo<Length, LengthUnit>(nameof(Length), expectedBaseUnit, expectedUnitInfos, expectedZero, expectedBaseDimensions,
-            Length.From, abbreviations);
+            Length.From, Length.RegisterDefaultConversions, abbreviations);
 
         Assert.Equal(nameof(Length), quantityInfo.Name);
         Assert.Equal(typeof(Length), quantityInfo.QuantityType);
@@ -46,7 +46,7 @@ public class QuantityInfoTest
             UnitInfo unitInfos = genericQuantityInfo.BaseUnitInfo;
             Assert.Equal(quantityInfo.BaseUnitInfo, unitInfos);
         });
-        
+
         // UnitInfos
         Assert.Multiple(() =>
         {
@@ -113,7 +113,7 @@ public class QuantityInfoTest
         BaseDimensions expectedBaseDimensions = BaseDimensions.Dimensionless;
 
         var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(nameof(HowMuch), expectedBaseUnit,
-            expectedUnitInfos, expectedZero, expectedBaseDimensions, HowMuch.From);
+            expectedUnitInfos, expectedZero, expectedBaseDimensions, HowMuch.From, HowMuch.RegisterUnitConversions);
 
         Assert.Equal(nameof(HowMuch), quantityInfo.Name);
         Assert.Equal(typeof(HowMuch), quantityInfo.QuantityType);
@@ -158,7 +158,7 @@ public class QuantityInfoTest
         var expectedZero = new HowMuch(0, HowMuchUnit.Some);
 
         var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(nameof(HowMuch), expectedBaseUnit,
-            expectedUnitInfos, expectedBaseDimensions, HowMuch.From);
+            expectedUnitInfos, expectedBaseDimensions, HowMuch.From, HowMuch.RegisterUnitConversions);
 
         Assert.Equal(expectedZero, quantityInfo.Zero);
         Assert.Equal(nameof(HowMuch), quantityInfo.Name);
@@ -186,7 +186,7 @@ public class QuantityInfoTest
         var abbreviations = new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly);
 
         var quantityInfo =
-            new QuantityInfo<HowMuch, HowMuchUnit>(expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, HowMuch.From, abbreviations);
+            new QuantityInfo<HowMuch, HowMuchUnit>(expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, HowMuch.From, HowMuch.RegisterUnitConversions, abbreviations);
 
         Assert.Equal(expectedZero, quantityInfo.Zero);
         Assert.Equal(nameof(HowMuch), quantityInfo.Name);
@@ -206,7 +206,7 @@ public class QuantityInfoTest
     public void Constructor_GivenNullAsQuantityName_ThrowsArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(() => new QuantityInfo<Length, LengthUnit>(null!,
-            LengthUnit.Meter, Length.Info.UnitInfos, Length.BaseDimensions, Length.From));
+            LengthUnit.Meter, Length.Info.UnitInfos, Length.BaseDimensions, Length.From, Length.RegisterDefaultConversions));
     }
 
     [Fact]
@@ -215,7 +215,7 @@ public class QuantityInfoTest
     {
         IEnumerable<UnitDefinition<LengthUnit>> nullCollection = null!;
         Assert.Throws<ArgumentNullException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
-            LengthUnit.Meter, nullCollection, Length.BaseDimensions, Length.From));
+            LengthUnit.Meter, nullCollection, Length.BaseDimensions, Length.From, Length.RegisterDefaultConversions));
     }
 
     [Fact]
@@ -225,7 +225,7 @@ public class QuantityInfoTest
         IEnumerable<UnitDefinition<LengthUnit>> collectionContainingANull = [null!];
 #if NET
         Assert.Throws<ArgumentNullException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
-            LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From));
+            LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From, Length.RegisterDefaultConversions));
 #else
             Assert.Throws<NullReferenceException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
                 LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From));
@@ -237,14 +237,14 @@ public class QuantityInfoTest
     public void Constructor_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
-            LengthUnit.Meter, Length.Info.UnitInfos, null!, Length.From));
+            LengthUnit.Meter, Length.Info.UnitInfos, null!, Length.From, Length.RegisterDefaultConversions));
     }
 
     [Fact]
     public void Constructor_GivenAMissingBaseUnitDefinition_ThrowsUnitNotFoundException()
     {
         Assert.Throws<UnitNotFoundException>(() =>
-            new QuantityInfo<Length, LengthUnit>(Length.BaseUnit, [], Length.BaseDimensions, Length.From));
+            new QuantityInfo<Length, LengthUnit>(Length.BaseUnit, [], Length.BaseDimensions, Length.From, Length.RegisterDefaultConversions));
     }
 
     [Fact]
@@ -296,15 +296,15 @@ public class QuantityInfoTest
         BaseDimensions dimensions = Length.BaseDimensions;
         Assert.Multiple(() =>
         {
-            var quantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From);
+            var quantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From, Length.RegisterDefaultConversions);
             Assert.Throws<InvalidOperationException>(() => quantityInfo.GetUnitInfoFor(baseUnits));
         }, () =>
         {
-            QuantityInfo<LengthUnit> genericQuantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From);
+            QuantityInfo<LengthUnit> genericQuantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From, Length.RegisterDefaultConversions);
             Assert.Throws<InvalidOperationException>(() => genericQuantityInfo.GetUnitInfoFor(baseUnits));
         }, () =>
         {
-            QuantityInfo genericQuantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From);
+            QuantityInfo genericQuantityInfo = new QuantityInfo<Length, LengthUnit>(LengthUnit.Meter, duplicateBaseUnits, dimensions, Length.From, Length.RegisterDefaultConversions);
             Assert.Throws<InvalidOperationException>(() => genericQuantityInfo.GetUnitInfoFor(baseUnits));
         });
     }
@@ -400,7 +400,7 @@ public class QuantityInfoTest
 
         var quantityInfo = new QuantityInfo<Length, LengthUnit>(Length.Info.Name,
             LengthUnit.Meter, new UnitDefinition<LengthUnit>[] { new(LengthUnit.Meter, "Meters", baseUnits), new(LengthUnit.Foot, "Feet", baseUnits) },
-            Length.BaseDimensions, Length.From);
+            Length.BaseDimensions, Length.From, Length.RegisterDefaultConversions);
 
         var result = quantityInfo.GetUnitInfosFor(baseUnits).ToList();
 
@@ -413,9 +413,9 @@ public class QuantityInfoTest
     // public void TryGetUnitInfo_WithEnum_ReturnsTheExpectedResult()
     // {
     //     QuantityInfo quantityInfo = HowMuch.Info;
-    //     
+    //
     //     var success = quantityInfo.TryGetUnitInfo(HowMuchUnit.ATon, out UnitInfo? unitInfo);
-    //     
+    //
     //     Assert.True(success);
     //     Assert.Equal(HowMuchUnit.ATon, unitInfo!.Value);
     // }
@@ -424,9 +424,9 @@ public class QuantityInfoTest
     // public void TryGetUnitInfo_WithInvalidEnum_ReturnsTheExpectedResult()
     // {
     //     QuantityInfo quantityInfo = HowMuch.Info;
-    //     
+    //
     //     var success = quantityInfo.TryGetUnitInfo(LengthUnit.Meter, out UnitInfo? unitInfo);
-    //     
+    //
     //     Assert.False(success);
     //     Assert.Null(unitInfo);
     // }
@@ -625,7 +625,7 @@ public class QuantityInfoTest
         BaseDimensions expectedBaseDimensions = BaseDimensions.Dimensionless;
         var abbreviations = new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly);
 
-        var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(quantityName, expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, abbreviations);
+        var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(quantityName, expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, HowMuch.RegisterUnitConversions, abbreviations);
 
         Assert.Equal(quantityName, quantityInfo.Name);
         Assert.Equal(expectedZero, quantityInfo.Zero);
@@ -652,7 +652,7 @@ public class QuantityInfoTest
         BaseDimensions expectedBaseDimensions = BaseDimensions.Dimensionless;
         var abbreviations = new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly);
 
-        var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, abbreviations);
+        var quantityInfo = new QuantityInfo<HowMuch, HowMuchUnit>(expectedBaseUnit, expectedUnitInfos, expectedBaseDimensions, HowMuch.RegisterUnitConversions, abbreviations);
 
         Assert.Equal(expectedZero, quantityInfo.Zero);
         Assert.Equal(nameof(HowMuch), quantityInfo.Name);

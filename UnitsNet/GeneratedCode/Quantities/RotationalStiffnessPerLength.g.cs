@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RotationalStiffnessPerLengthInfo(string name, RotationalStiffnessPerLengthUnit baseUnit, IEnumerable<IUnitDefinition<RotationalStiffnessPerLengthUnit>> unitMappings, RotationalStiffnessPerLength zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalStiffnessPerLength.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -216,7 +216,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

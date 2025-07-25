@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MolarEntropyInfo(string name, MolarEntropyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEntropyUnit>> unitMappings, MolarEntropy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MolarEntropy, MolarEntropyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarEntropy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -211,7 +211,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

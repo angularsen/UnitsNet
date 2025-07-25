@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RotationalAccelerationInfo(string name, RotationalAccelerationUnit baseUnit, IEnumerable<IUnitDefinition<RotationalAccelerationUnit>> unitMappings, RotationalAcceleration zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RotationalAcceleration, RotationalAccelerationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalAcceleration.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -212,7 +212,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpecificFuelConsumptionInfo(string name, SpecificFuelConsumptionUnit baseUnit, IEnumerable<IUnitDefinition<SpecificFuelConsumptionUnit>> unitMappings, SpecificFuelConsumption zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SpecificFuelConsumption, SpecificFuelConsumptionUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificFuelConsumption.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -215,7 +215,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

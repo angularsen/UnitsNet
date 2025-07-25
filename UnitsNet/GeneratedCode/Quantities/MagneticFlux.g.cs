@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MagneticFluxInfo(string name, MagneticFluxUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFluxUnit>> unitMappings, MagneticFlux zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MagneticFlux, MagneticFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MagneticFlux.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -212,7 +212,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

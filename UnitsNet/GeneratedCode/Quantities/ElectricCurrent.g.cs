@@ -77,7 +77,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricCurrentInfo(string name, ElectricCurrentUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentUnit>> unitMappings, ElectricCurrent zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricCurrent, ElectricCurrentUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCurrent.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -227,7 +227,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

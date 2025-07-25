@@ -82,7 +82,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public EnergyInfo(string name, EnergyUnit baseUnit, IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings, Energy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Energy, EnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Energy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -263,7 +263,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

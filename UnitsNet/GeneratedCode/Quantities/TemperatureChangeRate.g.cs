@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public TemperatureChangeRateInfo(string name, TemperatureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureChangeRateUnit>> unitMappings, TemperatureChangeRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<TemperatureChangeRate, TemperatureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, TemperatureChangeRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -228,7 +228,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

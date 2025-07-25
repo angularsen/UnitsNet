@@ -61,6 +61,11 @@ public interface IQuantityInfo
     ResourceManager? UnitAbbreviations { get; }
 
     /// <summary>
+    ///     Configures the default unit conversions for this quantity, or null if no conversions are configured.
+    /// </summary>
+    Action<UnitConverter>? RegisterUnitConversions { get; }
+
+    /// <summary>
     ///     Gets the <see cref="UnitInfo" /> associated with the specified unit.
     /// </summary>
     /// <param name="unit">The unit for which to get the <see cref="UnitInfo" />.</param>
@@ -145,10 +150,10 @@ public interface IQuantityInfo
 //
 //     /// <inheritdoc cref="IQuantityInfo.BaseUnitInfo" />
 //     new UnitInfo<TUnit> BaseUnitInfo { get; }
-//     
+//
 //     /// <inheritdoc cref="IQuantityInfo.this" />
 //     UnitInfo<TUnit> this[TUnit unit] { get; }
-//     
+//
 //     /// <inheritdoc cref="IQuantityInfo.TryGetUnitInfo" />
 //     bool TryGetUnitInfo(TUnit unit, [NotNullWhen(true)] out UnitInfo<TUnit>? unitInfo);
 //

@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public CompressibilityInfo(string name, CompressibilityUnit baseUnit, IEnumerable<IUnitDefinition<CompressibilityUnit>> unitMappings, Compressibility zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Compressibility, CompressibilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Compressibility.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -215,7 +215,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PermittivityInfo(string name, PermittivityUnit baseUnit, IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings, Permittivity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Permittivity, PermittivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Permittivity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -212,7 +212,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

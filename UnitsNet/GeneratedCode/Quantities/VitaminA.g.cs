@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public VitaminAInfo(string name, VitaminAUnit baseUnit, IEnumerable<IUnitDefinition<VitaminAUnit>> unitMappings, VitaminA zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<VitaminA, VitaminAUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VitaminA.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -195,7 +195,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

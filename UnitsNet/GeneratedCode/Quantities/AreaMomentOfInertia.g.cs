@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AreaMomentOfInertiaInfo(string name, AreaMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<AreaMomentOfInertiaUnit>> unitMappings, AreaMomentOfInertia zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<AreaMomentOfInertia, AreaMomentOfInertiaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AreaMomentOfInertia.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -218,7 +218,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

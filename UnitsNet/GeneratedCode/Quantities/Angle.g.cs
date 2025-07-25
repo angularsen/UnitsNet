@@ -72,7 +72,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AngleInfo(string name, AngleUnit baseUnit, IEnumerable<IUnitDefinition<AngleUnit>> unitMappings, Angle zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Angle, AngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Angle.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -214,7 +214,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

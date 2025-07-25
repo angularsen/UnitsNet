@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricConductanceInfo(string name, ElectricConductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings, ElectricConductance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricConductance, ElectricConductanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricConductance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -227,7 +227,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

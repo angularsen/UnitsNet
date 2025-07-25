@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricSusceptanceInfo(string name, ElectricSusceptanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings, ElectricSusceptance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricSusceptance, ElectricSusceptanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricSusceptance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -227,7 +227,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

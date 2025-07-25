@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RadiationEquivalentDoseInfo(string name, RadiationEquivalentDoseUnit baseUnit, IEnumerable<IUnitDefinition<RadiationEquivalentDoseUnit>> unitMappings, RadiationEquivalentDose zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RadiationEquivalentDose, RadiationEquivalentDoseUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RadiationEquivalentDose.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -218,7 +218,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

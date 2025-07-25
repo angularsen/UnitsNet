@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricChargeDensityInfo(string name, ElectricChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeDensityUnit>> unitMappings, ElectricChargeDensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricChargeDensity, ElectricChargeDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricChargeDensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -212,7 +212,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

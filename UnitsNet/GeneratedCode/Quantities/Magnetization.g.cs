@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MagnetizationInfo(string name, MagnetizationUnit baseUnit, IEnumerable<IUnitDefinition<MagnetizationUnit>> unitMappings, Magnetization zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Magnetization, MagnetizationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Magnetization.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -212,7 +212,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

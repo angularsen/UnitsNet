@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpecificVolumeInfo(string name, SpecificVolumeUnit baseUnit, IEnumerable<IUnitDefinition<SpecificVolumeUnit>> unitMappings, SpecificVolume zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SpecificVolume, SpecificVolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificVolume.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -214,7 +214,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

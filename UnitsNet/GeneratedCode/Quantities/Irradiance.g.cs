@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public IrradianceInfo(string name, IrradianceUnit baseUnit, IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings, Irradiance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Irradiance, IrradianceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Irradiance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -222,7 +222,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

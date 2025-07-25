@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpecificEntropyInfo(string name, SpecificEntropyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEntropyUnit>> unitMappings, SpecificEntropy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SpecificEntropy, SpecificEntropyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificEntropy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -221,7 +221,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

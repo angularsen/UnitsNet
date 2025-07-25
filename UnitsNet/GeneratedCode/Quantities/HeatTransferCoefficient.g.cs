@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public HeatTransferCoefficientInfo(string name, HeatTransferCoefficientUnit baseUnit, IEnumerable<IUnitDefinition<HeatTransferCoefficientUnit>> unitMappings, HeatTransferCoefficient zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<HeatTransferCoefficient, HeatTransferCoefficientUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, HeatTransferCoefficient.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -213,7 +213,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

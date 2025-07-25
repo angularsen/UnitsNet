@@ -74,7 +74,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public DynamicViscosityInfo(string name, DynamicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<DynamicViscosityUnit>> unitMappings, DynamicViscosity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<DynamicViscosity, DynamicViscosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, DynamicViscosity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -225,7 +225,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

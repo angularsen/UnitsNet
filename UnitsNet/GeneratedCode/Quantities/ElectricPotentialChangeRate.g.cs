@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricPotentialChangeRateInfo(string name, ElectricPotentialChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ElectricPotentialChangeRateUnit>> unitMappings, ElectricPotentialChangeRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricPotentialChangeRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -228,7 +228,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

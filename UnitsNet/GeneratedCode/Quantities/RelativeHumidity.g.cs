@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RelativeHumidityInfo(string name, RelativeHumidityUnit baseUnit, IEnumerable<IUnitDefinition<RelativeHumidityUnit>> unitMappings, RelativeHumidity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RelativeHumidity, RelativeHumidityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RelativeHumidity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -195,7 +195,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

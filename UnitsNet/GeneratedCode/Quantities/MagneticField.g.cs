@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MagneticFieldInfo(string name, MagneticFieldUnit baseUnit, IEnumerable<IUnitDefinition<MagneticFieldUnit>> unitMappings, MagneticField zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MagneticField, MagneticFieldUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MagneticField.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -217,7 +217,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

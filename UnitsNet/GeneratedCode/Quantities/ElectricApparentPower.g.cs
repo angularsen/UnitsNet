@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricApparentPowerInfo(string name, ElectricApparentPowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentPowerUnit>> unitMappings, ElectricApparentPower zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricApparentPower, ElectricApparentPowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricApparentPower.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -217,7 +217,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

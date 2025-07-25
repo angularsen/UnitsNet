@@ -74,7 +74,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public LuminousIntensityInfo(string name, LuminousIntensityUnit baseUnit, IEnumerable<IUnitDefinition<LuminousIntensityUnit>> unitMappings, LuminousIntensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<LuminousIntensity, LuminousIntensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LuminousIntensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -216,7 +216,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

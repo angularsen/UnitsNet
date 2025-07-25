@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public LeakRateInfo(string name, LeakRateUnit baseUnit, IEnumerable<IUnitDefinition<LeakRateUnit>> unitMappings, LeakRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<LeakRate, LeakRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, LeakRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -214,7 +214,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

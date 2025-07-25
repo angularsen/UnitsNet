@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public CoefficientOfThermalExpansionInfo(string name, CoefficientOfThermalExpansionUnit baseUnit, IEnumerable<IUnitDefinition<CoefficientOfThermalExpansionUnit>> unitMappings, CoefficientOfThermalExpansion zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, CoefficientOfThermalExpansion.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -217,7 +217,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

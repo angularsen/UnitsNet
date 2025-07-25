@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ThermalInsulanceInfo(string name, ThermalInsulanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings, ThermalInsulance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ThermalInsulance, ThermalInsulanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ThermalInsulance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -215,7 +215,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

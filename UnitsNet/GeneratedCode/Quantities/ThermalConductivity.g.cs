@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ThermalConductivityInfo(string name, ThermalConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ThermalConductivityUnit>> unitMappings, ThermalConductivity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ThermalConductivity, ThermalConductivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ThermalConductivity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -213,7 +213,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

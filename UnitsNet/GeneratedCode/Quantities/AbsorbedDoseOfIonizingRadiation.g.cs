@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AbsorbedDoseOfIonizingRadiationInfo(string name, AbsorbedDoseOfIonizingRadiationUnit baseUnit, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings, AbsorbedDoseOfIonizingRadiation zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AbsorbedDoseOfIonizingRadiation.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -227,7 +227,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeGen.Generators.UnitsNetGen
 {
@@ -71,7 +70,7 @@ namespace UnitsNet
             {
                 Writer.WL(@$"
 #if NET7_0_OR_GREATER");
-                foreach (var relation in _quantity.Relations)
+                foreach (QuantityRelation relation in _quantity.Relations)
                 {
                     if (relation.LeftQuantity == _quantity)
                     {
@@ -140,7 +139,7 @@ namespace UnitsNet
 }}");
             return Writer.ToString();
         }
-        
+
         private void GenerateQuantityInfo()
         {
             var quantityInfoClassName = $"{_quantity.Name}Info";
@@ -148,7 +147,7 @@ namespace UnitsNet
             var createDimensionsExpression = _isDimensionless
                 ? "BaseDimensions.Dimensionless"
                 : $"new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J})";
-            
+
             Writer.WL($@"
         /// <summary>
         ///     Provides detailed information about the <see cref=""{_quantity.Name}""/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
@@ -159,7 +158,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<{_quantity.Name}, {_unitEnumName}> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, {_quantity.Name}.RegisterDefaultConversions, unitAbbreviations)
             {{
             }}
 
@@ -208,7 +207,7 @@ namespace UnitsNet
             /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
             public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
             {{");
-            
+
             foreach (Unit unit in _quantity.Units)
             {
                 BaseUnits? baseUnits = unit.BaseUnits;
@@ -241,7 +240,7 @@ namespace UnitsNet
         }}
 ");
         }
-        
+
         private void GenerateStaticConstructor()
         {
             Writer.WL($@"
@@ -363,7 +362,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
@@ -1256,7 +1255,7 @@ namespace UnitsNet
         #endregion
 " );
         }
-        
+
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
         private static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 

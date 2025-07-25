@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public TemperatureInfo(string name, TemperatureUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings, Temperature zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Temperature, TemperatureUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Temperature.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
@@ -215,7 +215,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
