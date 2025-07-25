@@ -131,7 +131,7 @@ public abstract class UnitInfo : IUnitDefinition
     /// <param name="baseUnits">The base units to filter by.</param>
     /// <returns>An <see cref="IEnumerable{T}" /> containing the unit information that matches the specified base units.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="baseUnits" /> is null.</exception>
-    public static IEnumerable<TUnitInfo> FilterBy<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
+    internal static IEnumerable<TUnitInfo> FilterBy<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
         where TUnitInfo : UnitInfo
     {
         if (baseUnits is null)
@@ -161,7 +161,7 @@ public abstract class UnitInfo : IUnitDefinition
     ///     More than one unit was found that is a subset of
     ///     <paramref name="baseUnits" />.
     /// </exception>
-    public static TUnitInfo Get<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
+    internal static TUnitInfo Get<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
         where TUnitInfo : UnitInfo
     {
         using IEnumerator<TUnitInfo> enumerator = FilterBy(unitInfos, baseUnits).GetEnumerator();
