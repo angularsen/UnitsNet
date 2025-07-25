@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,25 +59,75 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ThermalInsulanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ThermalInsulance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ThermalInsulanceInfo: QuantityInfo<ThermalInsulance, ThermalInsulanceUnit>
+        {
+            /// <inheritdoc />
+            public ThermalInsulanceInfo(string name, ThermalInsulanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings, ThermalInsulance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ThermalInsulance, ThermalInsulanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ThermalInsulanceInfo(string name, ThermalInsulanceUnit baseUnit, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>> unitMappings, ThermalInsulance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ThermalInsulance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ThermalInsulance", typeof(ThermalInsulance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings for the ThermalInsulance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings.</returns>
+            public static ThermalInsulanceInfo CreateDefault()
+            {
+                return new ThermalInsulanceInfo(nameof(ThermalInsulance), DefaultBaseUnit, GetDefaultMappings(), new ThermalInsulance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings for the ThermalInsulance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ThermalInsulanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ThermalInsulanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ThermalInsulanceUnit>>, IEnumerable<IUnitDefinition<ThermalInsulanceUnit>>> customizeUnits)
+            {
+                return new ThermalInsulanceInfo(nameof(ThermalInsulance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ThermalInsulance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ThermalInsulance"/> is [T^3][M^-1][Θ].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ThermalInsulance is SquareMeterKelvinPerKilowatt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ThermalInsulanceUnit DefaultBaseUnit { get; } = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ThermalInsulanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalInsulanceUnit}"/> representing the default unit mappings for ThermalInsulance.</returns>
+            public static IEnumerable<UnitDefinition<ThermalInsulanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreeFahrenheitPerBtu", "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined);
+                yield return new (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreeCelsiusPerKilocalorie", "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined);
+                yield return new (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinPerWatt", "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined);
+                yield return new (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreeCelsiusPerWatt", "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinPerKilowatt", "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
+                yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinPerWatt", "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+            }
+        }
+
         static ThermalInsulance()
         {
-            BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-            BaseUnit = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
-            Units = Enum.GetValues(typeof(ThermalInsulanceUnit)).Cast<ThermalInsulanceUnit>().ToArray();
-            Zero = new ThermalInsulance(0, BaseUnit);
-            Info = new QuantityInfo<ThermalInsulanceUnit>("ThermalInsulance",
-                new UnitInfo<ThermalInsulanceUnit>[]
-                {
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius), "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined, "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "ThermalInsulance"),
-                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "SquareMillimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ThermalInsulanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -119,27 +165,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalInsulanceUnit> Info { get; }
+        public static QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ThermalInsulance, which is SquareMeterKelvinPerKilowatt. All conversions go via this value.
         /// </summary>
-        public static ThermalInsulanceUnit BaseUnit { get; }
+        public static ThermalInsulanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ThermalInsulance quantity.
         /// </summary>
-        public static ThermalInsulanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ThermalInsulanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.
         /// </summary>
-        public static ThermalInsulance Zero { get; }
+        public static ThermalInsulance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ThermalInsulance AdditiveIdentity => Zero;
@@ -157,7 +203,7 @@ namespace UnitsNet
         public ThermalInsulanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ThermalInsulanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -174,6 +220,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.QuantityInfo => Info;
 
         #endregion
 

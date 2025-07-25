@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -72,35 +68,86 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificWeightUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="SpecificWeight"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class SpecificWeightInfo: QuantityInfo<SpecificWeight, SpecificWeightUnit>
+        {
+            /// <inheritdoc />
+            public SpecificWeightInfo(string name, SpecificWeightUnit baseUnit, IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings, SpecificWeight zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<SpecificWeight, SpecificWeightUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public SpecificWeightInfo(string name, SpecificWeightUnit baseUnit, IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings, SpecificWeight zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificWeight.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificWeight", typeof(SpecificWeight).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificWeightInfo"/> class with the default settings for the SpecificWeight quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="SpecificWeightInfo"/> class with the default settings.</returns>
+            public static SpecificWeightInfo CreateDefault()
+            {
+                return new SpecificWeightInfo(nameof(SpecificWeight), DefaultBaseUnit, GetDefaultMappings(), new SpecificWeight(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificWeightInfo"/> class with the default settings for the SpecificWeight quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="SpecificWeightInfo"/> class with the default settings.
+            /// </returns>
+            public static SpecificWeightInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificWeightUnit>>, IEnumerable<IUnitDefinition<SpecificWeightUnit>>> customizeUnits)
+            {
+                return new SpecificWeightInfo(nameof(SpecificWeight), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificWeight(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="SpecificWeight"/> is [T^-2][L^-2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of SpecificWeight is NewtonPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static SpecificWeightUnit DefaultBaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="SpecificWeightUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificWeightUnit}"/> representing the default unit mappings for SpecificWeight.</returns>
+            public static IEnumerable<UnitDefinition<SpecificWeightUnit>> GetDefaultMappings()
+            {
+                yield return new (SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramForcePerCubicCentimeter", "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramForcePerCubicMeter", "KilogramsForcePerCubicMeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramForcePerCubicMillimeter", "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonPerCubicCentimeter", "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonPerCubicMeter", "KilonewtonsPerCubicMeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonPerCubicMillimeter", "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundForcePerCubicFoot", "KilopoundsForcePerCubicFoot", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundForcePerCubicInch", "KilopoundsForcePerCubicInch", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonPerCubicMeter", "MeganewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonPerCubicCentimeter", "NewtonsPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.NewtonPerCubicMeter, "NewtonPerCubicMeter", "NewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonPerCubicMillimeter", "NewtonsPerCubicMillimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.PoundForcePerCubicFoot, "PoundForcePerCubicFoot", "PoundsForcePerCubicFoot", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.PoundForcePerCubicInch, "PoundForcePerCubicInch", "PoundsForcePerCubicInch", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonneForcePerCubicCentimeter", "TonnesForcePerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.TonneForcePerCubicMeter, "TonneForcePerCubicMeter", "TonnesForcePerCubicMeter", BaseUnits.Undefined);
+                yield return new (SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonneForcePerCubicMillimeter", "TonnesForcePerCubicMillimeter", BaseUnits.Undefined);
+            }
+        }
+
         static SpecificWeight()
         {
-            BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
-            BaseUnit = SpecificWeightUnit.NewtonPerCubicMeter;
-            Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().ToArray();
-            Zero = new SpecificWeight(0, BaseUnit);
-            Info = new QuantityInfo<SpecificWeightUnit>("SpecificWeight",
-                new UnitInfo<SpecificWeightUnit>[]
-                {
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramsForcePerCubicMeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonsPerCubicMeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundsForcePerCubicFoot", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundsForcePerCubicInch", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonsPerCubicCentimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMeter, "NewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonsPerCubicMillimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicFoot, "PoundsForcePerCubicFoot", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicInch, "PoundsForcePerCubicInch", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonnesForcePerCubicCentimeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined, "SpecificWeight"),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined, "SpecificWeight"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = SpecificWeightInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -138,27 +185,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificWeightUnit> Info { get; }
+        public static QuantityInfo<SpecificWeight, SpecificWeightUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit { get; }
+        public static SpecificWeightUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
         /// </summary>
-        public static SpecificWeightUnit[] Units { get; }
+        public static IReadOnlyCollection<SpecificWeightUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight Zero { get; }
+        public static SpecificWeight Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static SpecificWeight AdditiveIdentity => Zero;
@@ -176,7 +223,7 @@ namespace UnitsNet
         public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
+        public QuantityInfo<SpecificWeight, SpecificWeightUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -193,6 +240,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.QuantityInfo => Info;
 
         #endregion
 

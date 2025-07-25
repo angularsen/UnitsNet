@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,19 +62,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MagnetizationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Magnetization"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MagnetizationInfo: QuantityInfo<Magnetization, MagnetizationUnit>
+        {
+            /// <inheritdoc />
+            public MagnetizationInfo(string name, MagnetizationUnit baseUnit, IEnumerable<IUnitDefinition<MagnetizationUnit>> unitMappings, Magnetization zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Magnetization, MagnetizationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MagnetizationInfo(string name, MagnetizationUnit baseUnit, IEnumerable<IUnitDefinition<MagnetizationUnit>> unitMappings, Magnetization zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Magnetization.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Magnetization", typeof(Magnetization).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MagnetizationInfo"/> class with the default settings for the Magnetization quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MagnetizationInfo"/> class with the default settings.</returns>
+            public static MagnetizationInfo CreateDefault()
+            {
+                return new MagnetizationInfo(nameof(Magnetization), DefaultBaseUnit, GetDefaultMappings(), new Magnetization(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MagnetizationInfo"/> class with the default settings for the Magnetization quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MagnetizationInfo"/> class with the default settings.
+            /// </returns>
+            public static MagnetizationInfo CreateDefault(Func<IEnumerable<UnitDefinition<MagnetizationUnit>>, IEnumerable<IUnitDefinition<MagnetizationUnit>>> customizeUnits)
+            {
+                return new MagnetizationInfo(nameof(Magnetization), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Magnetization(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Magnetization"/> is [L^-1][I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Magnetization is AmperePerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MagnetizationUnit DefaultBaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MagnetizationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagnetizationUnit}"/> representing the default unit mappings for Magnetization.</returns>
+            public static IEnumerable<UnitDefinition<MagnetizationUnit>> GetDefaultMappings()
+            {
+                yield return new (MagnetizationUnit.AmperePerMeter, "AmperePerMeter", "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static Magnetization()
         {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-            BaseUnit = MagnetizationUnit.AmperePerMeter;
-            Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().ToArray();
-            Zero = new Magnetization(0, BaseUnit);
-            Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
-                new UnitInfo<MagnetizationUnit>[]
-                {
-                    new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere), "Magnetization"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MagnetizationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -116,27 +163,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagnetizationUnit> Info { get; }
+        public static QuantityInfo<Magnetization, MagnetizationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Magnetization, which is AmperePerMeter. All conversions go via this value.
         /// </summary>
-        public static MagnetizationUnit BaseUnit { get; }
+        public static MagnetizationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Magnetization quantity.
         /// </summary>
-        public static MagnetizationUnit[] Units { get; }
+        public static IReadOnlyCollection<MagnetizationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerMeter.
         /// </summary>
-        public static Magnetization Zero { get; }
+        public static Magnetization Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Magnetization AdditiveIdentity => Zero;
@@ -154,7 +201,7 @@ namespace UnitsNet
         public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
+        public QuantityInfo<Magnetization, MagnetizationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -171,6 +218,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MagnetizationUnit> IQuantity<MagnetizationUnit>.QuantityInfo => Info;
 
         #endregion
 

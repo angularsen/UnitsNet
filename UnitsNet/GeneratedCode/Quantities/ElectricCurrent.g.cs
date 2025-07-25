@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -73,27 +69,78 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricCurrentUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricCurrent"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricCurrentInfo: QuantityInfo<ElectricCurrent, ElectricCurrentUnit>
+        {
+            /// <inheritdoc />
+            public ElectricCurrentInfo(string name, ElectricCurrentUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentUnit>> unitMappings, ElectricCurrent zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricCurrent, ElectricCurrentUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricCurrentInfo(string name, ElectricCurrentUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentUnit>> unitMappings, ElectricCurrent zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCurrent.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCurrent", typeof(ElectricCurrent).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCurrentInfo"/> class with the default settings for the ElectricCurrent quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricCurrentInfo"/> class with the default settings.</returns>
+            public static ElectricCurrentInfo CreateDefault()
+            {
+                return new ElectricCurrentInfo(nameof(ElectricCurrent), DefaultBaseUnit, GetDefaultMappings(), new ElectricCurrent(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCurrentInfo"/> class with the default settings for the ElectricCurrent quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricCurrentInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricCurrentInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCurrentUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentUnit>>> customizeUnits)
+            {
+                return new ElectricCurrentInfo(nameof(ElectricCurrent), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCurrent(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCurrent"/> is [I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricCurrent is Ampere. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricCurrentUnit DefaultBaseUnit { get; } = ElectricCurrentUnit.Ampere;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricCurrentUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCurrentUnit}"/> representing the default unit mappings for ElectricCurrent.</returns>
+            public static IEnumerable<UnitDefinition<ElectricCurrentUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricCurrentUnit.Ampere, "Ampere", "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentUnit.Centiampere, "Centiampere", "Centiamperes", new BaseUnits(current: ElectricCurrentUnit.Centiampere));
+                yield return new (ElectricCurrentUnit.Femtoampere, "Femtoampere", "Femtoamperes", new BaseUnits(current: ElectricCurrentUnit.Femtoampere));
+                yield return new (ElectricCurrentUnit.Kiloampere, "Kiloampere", "Kiloamperes", new BaseUnits(current: ElectricCurrentUnit.Kiloampere));
+                yield return new (ElectricCurrentUnit.Megaampere, "Megaampere", "Megaamperes", new BaseUnits(current: ElectricCurrentUnit.Megaampere));
+                yield return new (ElectricCurrentUnit.Microampere, "Microampere", "Microamperes", new BaseUnits(current: ElectricCurrentUnit.Microampere));
+                yield return new (ElectricCurrentUnit.Milliampere, "Milliampere", "Milliamperes", new BaseUnits(current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricCurrentUnit.Nanoampere, "Nanoampere", "Nanoamperes", new BaseUnits(current: ElectricCurrentUnit.Nanoampere));
+                yield return new (ElectricCurrentUnit.Picoampere, "Picoampere", "Picoamperes", new BaseUnits(current: ElectricCurrentUnit.Picoampere));
+            }
+        }
+
         static ElectricCurrent()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
-            BaseUnit = ElectricCurrentUnit.Ampere;
-            Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().ToArray();
-            Zero = new ElectricCurrent(0, BaseUnit);
-            Info = new QuantityInfo<ElectricCurrentUnit>("ElectricCurrent",
-                new UnitInfo<ElectricCurrentUnit>[]
-                {
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", new BaseUnits(current: ElectricCurrentUnit.Centiampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", new BaseUnits(current: ElectricCurrentUnit.Femtoampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", new BaseUnits(current: ElectricCurrentUnit.Kiloampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", new BaseUnits(current: ElectricCurrentUnit.Megaampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", new BaseUnits(current: ElectricCurrentUnit.Microampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", new BaseUnits(current: ElectricCurrentUnit.Milliampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", new BaseUnits(current: ElectricCurrentUnit.Nanoampere), "ElectricCurrent"),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", new BaseUnits(current: ElectricCurrentUnit.Picoampere), "ElectricCurrent"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricCurrentInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -131,27 +178,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCurrentUnit> Info { get; }
+        public static QuantityInfo<ElectricCurrent, ElectricCurrentUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit { get; }
+        public static ElectricCurrentUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
-        public static ElectricCurrentUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricCurrentUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero { get; }
+        public static ElectricCurrent Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricCurrent AdditiveIdentity => Zero;
@@ -169,7 +216,7 @@ namespace UnitsNet
         public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricCurrentUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricCurrent, ElectricCurrentUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -186,6 +233,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.QuantityInfo => Info;
 
         #endregion
 

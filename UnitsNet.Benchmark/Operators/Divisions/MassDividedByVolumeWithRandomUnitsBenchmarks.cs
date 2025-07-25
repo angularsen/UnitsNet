@@ -26,8 +26,8 @@ public class MassDividedByVolumeWithRandomUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<Mass, MassUnit>(MassValue, Mass.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units, NbOperations), (mass, volume) => (volume: mass, density: volume))
+        _operands = _random.GetRandomQuantities<Mass, MassUnit>(MassValue, Mass.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<Volume, VolumeUnit>(VolumeValue, Volume.Units.ToArray(), NbOperations), (mass, volume) => (volume: mass, density: volume))
             .ToArray();
     }
 

@@ -21,8 +21,9 @@ public sealed class UnitsNetSetup
 {
     static UnitsNetSetup()
     {
+        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.Provider.DefaultQuantities;
+        // note: in order to support the ConvertByAbbreviation, the unit converter should require a UnitParser in the constructor
         var unitConverter = UnitConverter.CreateDefault();
-        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.ByName.Values.ToList();
 
         Default = new UnitsNetSetup(quantityInfos, unitConverter);
     }

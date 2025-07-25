@@ -1,13 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet;
@@ -36,7 +32,7 @@ public sealed class UnitParser
         : this(new UnitAbbreviationsCache(quantitiesLookup))
     {
     }
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitParser" /> class using the specified unit abbreviations cache.
     /// </summary>
@@ -93,7 +89,9 @@ public sealed class UnitParser
     /// <param name="unitAbbreviation"></param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <typeparam name="TUnitType"></typeparam>
-    /// <returns></returns>
+    /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
         where TUnitType : struct, Enum
     {
@@ -114,6 +112,9 @@ public sealed class UnitParser
     /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="unitAbbreviation"/> or the <paramref name="unitType"/> is null.</exception>
+    /// <exception cref="ArgumentException">The <paramref name="unitType"/> is not a valid enumeration type.</exception>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
     /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
     public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
@@ -585,5 +586,26 @@ public sealed class UnitParser
         }
 
         return unitAbbreviationsPairs;
+    }
+    
+    /// <summary>
+    ///     Dynamically construct a quantity from a numeric value and a unit abbreviation.
+    /// </summary>
+    /// <remarks>
+    ///     This method is currently not optimized for performance and will enumerate all units and their unit abbreviations
+    ///     each time.<br />
+    ///     Unit abbreviation matching in the <see cref="Parse" /> overload is case-insensitive.<br />
+    ///     <br />
+    ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br />
+    /// </remarks>
+    /// <param name="value">Numeric value.</param>
+    /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram" />.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <returns>An <see cref="IQuantity" /> object.</returns>
+    /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
+    /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
+    internal IQuantity FromUnitAbbreviation(double value, string unitAbbreviation, IFormatProvider? formatProvider)
+    {
+        return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
     }
 }
