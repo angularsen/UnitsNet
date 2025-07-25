@@ -181,6 +181,7 @@ namespace UnitsNet
         /// <param name="quantityInfo">The <see cref="QuantityInfo"/> of the quantity to create.</param>
         /// <param name="value">The value to construct the quantity with.</param>
         /// <returns>The created quantity.</returns>
+        [Obsolete("Use Quantity.TryFrom() instead, which takes both the unit and value. It is rarely a good idea to rely on the base unit for anything, it is mostly used internally for unit conversions and can change in future versions. This method will be removed in a future version.")]
         public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
         {
             return quantityInfo.Name switch
