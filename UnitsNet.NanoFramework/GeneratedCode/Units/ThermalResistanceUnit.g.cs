@@ -25,8 +25,8 @@ namespace UnitsNet.Units
 
     public enum ThermalResistanceUnit
     {
-        DegreeCelsiusPerWatt = 1,
-        KelvinPerWatt = 2,
+        DegreeCelsiusPerWatt = 10,
+        KelvinPerWatt = 11,
     }
 
     #pragma warning restore 1591

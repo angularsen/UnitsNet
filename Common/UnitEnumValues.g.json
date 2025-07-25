@@ -1485,8 +1485,8 @@
     "WattPerMeterKelvin": 2
   },
   "ThermalResistance": {
-    "DegreeCelsiusPerWatt": 1,
-    "KelvinPerWatt": 2
+    "DegreeCelsiusPerWatt": 10,
+    "KelvinPerWatt": 11
   },
   "Torque": {
     "GramForceCentimeter": 1,
