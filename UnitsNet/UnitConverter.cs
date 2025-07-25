@@ -85,7 +85,7 @@ namespace UnitsNet
             if (unitConverter is null)
                 throw new ArgumentNullException(nameof(unitConverter));
 
-            foreach(var quantity in Quantity.Provider.DefaultQuantities)
+            foreach (var quantity in Quantity.DefaultProvider.Quantities)
             {
                 var registerMethod = quantity.QuantityType.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
                 registerMethod?.Invoke(null, new object[]{unitConverter});
@@ -369,7 +369,7 @@ namespace UnitsNet
                 result = quantity.As(toUnitInfo.Value);
                 return true;
             }
-            
+
             result = 0d;
             return false;
         }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
@@ -80,7 +77,7 @@ internal class QuantityInfoLookup
     /// </remarks>
     public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
-        _quantities = quantityInfos.ToArray();
+        _quantities = quantityInfos as QuantityInfo[] ?? quantityInfos.ToArray();
         _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
         _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByType);
         _quantitiesByUnitType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByUnitType);
@@ -174,7 +171,7 @@ internal class QuantityInfoLookup
     {
         return GetUnitInfo(unit).From(value);
     }
-    
+
     /// <summary>
     ///     Attempts to create a quantity from the specified value and unit.
     /// </summary>
@@ -194,7 +191,7 @@ internal class QuantityInfoLookup
             quantity = null;
             return false;
         }
-        
+
         if (!TryGetUnitInfo(unit, out UnitInfo? unitInfo))
         {
             quantity = null;
@@ -270,7 +267,7 @@ internal class QuantityInfoLookup
                    Data = { ["quantityName"] = quantityName, ["unitName"] = unitName }
                };
     }
-    
+
     /// <summary>
     ///     Attempts to parse unit information based on its quantity and unit names.
     /// </summary>

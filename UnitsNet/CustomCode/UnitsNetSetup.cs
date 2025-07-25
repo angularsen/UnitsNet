@@ -21,7 +21,8 @@ public sealed class UnitsNetSetup
 {
     static UnitsNetSetup()
     {
-        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.Provider.DefaultQuantities;
+        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.DefaultProvider.Quantities;
+
         // note: in order to support the ConvertByAbbreviation, the unit converter should require a UnitParser in the constructor
         var unitConverter = UnitConverter.CreateDefault();
 
@@ -37,7 +38,7 @@ public sealed class UnitsNetSetup
     {
         var quantityInfoLookup = new QuantityInfoLookup(quantityInfos);
         var unitAbbreviations = new UnitAbbreviationsCache(quantityInfoLookup);
-        
+
         UnitConverter = unitConverter;
         UnitAbbreviations = unitAbbreviations;
         Formatter = new QuantityFormatter(unitAbbreviations);
@@ -68,7 +69,7 @@ public sealed class UnitsNetSetup
     ///     quantities.
     /// </summary>
     public UnitAbbreviationsCache UnitAbbreviations { get; }
-    
+
     /// <summary>
     ///     Converts a quantity to string using the specified format strings and culture-specific format providers.
     /// </summary>
