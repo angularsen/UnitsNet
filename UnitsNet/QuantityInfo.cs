@@ -93,13 +93,13 @@ public abstract class QuantityInfo : IQuantityInfo
     /// <inheritdoc />
     public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfoFor(baseUnits);
+        return UnitInfo.Get(UnitInfos, baseUnits);
     }
 
     /// <inheritdoc />
     public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfosFor(baseUnits);
+        return UnitInfo.FilterBy(UnitInfos, baseUnits);
     }
 
     /// <summary>
@@ -186,13 +186,13 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo//, IQuantityInfo<TUnit>
     /// <inheritdoc cref="QuantityInfo.GetUnitInfoFor" />
     public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfoFor(baseUnits);
+        return UnitInfo.Get(UnitInfos, baseUnits);
     }
     
     /// <inheritdoc cref="QuantityInfo.GetUnitInfosFor" />
     public new IEnumerable<UnitInfo<TUnit>> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfosFor(baseUnits);
+        return UnitInfo.FilterBy(UnitInfos, baseUnits);
     }
     
     /// <inheritdoc cref="QuantityInfo.From" />
@@ -307,13 +307,13 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     /// <inheritdoc cref="IQuantityInfo.GetUnitInfosFor" />
     public new IEnumerable<TUnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfosFor(baseUnits);
+        return UnitInfo.FilterBy(UnitInfos, baseUnits);
     }
 
     /// <inheritdoc cref="IQuantityInfo.GetUnitInfoFor" />
     public new TUnitInfo GetUnitInfoFor(BaseUnits baseUnits)
     {
-        return UnitInfos.GetUnitInfoFor(baseUnits);
+        return UnitInfo.Get(UnitInfos, baseUnits);
     }
 
     /// <summary>
