@@ -67,25 +67,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Dynamically constructs a quantity of the given <see cref="QuantityInfo" /> with the value in the quantity's base
-        ///     units.
-        /// </summary>
-        /// <param name="quantityInfo">The <see cref="QuantityInfo" /> of the quantity to create.</param>
-        /// <param name="value">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        /// <remarks>
-        ///     This is the equivalent to:
-        ///     <code>quantityInfo.From(value, quantityInfo.BaseUnitInfo.Value)</code>
-        ///     or
-        ///     <code>quantityInfo.BaseUnitInfo.From(value)</code>
-        /// </remarks>
-        [Obsolete("Consider using: quantityInfo.BaseUnitInfo.From(value)")]
-        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
-        {
-            return quantityInfo.BaseUnitInfo.From(value);
-        }
-
-        /// <summary>
         ///     Dynamically construct a quantity from a numeric value and a unit abbreviation using <see cref="CultureInfo.CurrentCulture"/>.
         /// </summary>
         /// <remarks>

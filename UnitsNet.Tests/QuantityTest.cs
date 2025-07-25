@@ -54,14 +54,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromQuantityInfo_ReturnsQuantityWithBaseUnit()
-        {
-            IQuantity quantity = Quantity.FromQuantityInfo(Length.Info, 1);
-            Assert.Equal(1, quantity.Value);
-            Assert.Equal(Length.BaseUnit, quantity.Unit);
-        }
-
-        [Fact]
         public void ByName_GivenLength_ReturnsQuantityInfoForLength()
         {
             QuantityInfo quantityInfo = Quantity.ByName["Length"];
