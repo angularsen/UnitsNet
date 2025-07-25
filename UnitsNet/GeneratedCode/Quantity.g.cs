@@ -29,12 +29,12 @@ public partial class Quantity
     /// <summary>
     ///     Serves as a repository for predefined quantity conversion mappings, facilitating the automatic generation and retrieval of unit conversions in the UnitsNet library.
     /// </summary>
-    internal static class Provider
+    internal static class DefaultProvider
     {
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> DefaultQuantities => new QuantityInfo[]
+        internal static IReadOnlyList<QuantityInfo> Quantities => new QuantityInfo[]
         {
             AbsorbedDoseOfIonizingRadiation.Info,
             Acceleration.Info,
@@ -168,7 +168,7 @@ public partial class Quantity
         /// <summary>
         ///     All implicit quantity conversions that exist by default.
         /// </summary>
-        internal static readonly IReadOnlyList<QuantityConversionMapping> DefaultConversions = new QuantityConversionMapping[]
+        internal static readonly IReadOnlyList<QuantityConversionMapping> Conversions = new QuantityConversionMapping[]
         {
             new (typeof(Area), typeof(ReciprocalArea)),
             new (typeof(Density), typeof(SpecificVolume)),

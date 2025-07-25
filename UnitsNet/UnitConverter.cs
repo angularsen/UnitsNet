@@ -31,7 +31,7 @@ public class UnitConverter
     /// </summary>
     /// <param name="unitParser">The <see cref="UnitParser" /> used for parsing units.</param>
     public UnitConverter(UnitParser unitParser)
-        : this(unitParser, unitParser.Quantities.GetQuantityConversions(Quantity.Provider.DefaultConversions))
+        : this(unitParser, unitParser.Quantities.GetQuantityConversions(Quantity.DefaultProvider.Conversions))
     {
         UnitParser = unitParser;
     }
@@ -100,7 +100,7 @@ public class UnitConverter
         IEnumerable<KeyValuePair<UnitConversionKey, ConvertValueDelegate>> unitConversionFunctions =
             quantityLookup.Infos.GetUnitConversionFunctions(options.DefaultCachingMode, options.ReduceConstants, options.CustomQuantityOptions);
 
-        var quantityConversions = new HashSet<QuantityConversion>(quantityLookup.GetQuantityConversions(Quantity.Provider.DefaultConversions));
+        var quantityConversions = new HashSet<QuantityConversion>(quantityLookup.GetQuantityConversions(Quantity.DefaultProvider.Conversions));
 
         IEnumerable<KeyValuePair<QuantityConversionKey, QuantityConversionFunction>> quantityConversionFunctions;
         if (options.QuantityConversionOptions is { } customConversionOptions)

@@ -96,7 +96,7 @@ namespace UnitsNet
         /// <returns>An instance of <see cref="UnitAbbreviationsCache" /> mapped to the default quantities.</returns>
         public static UnitAbbreviationsCache CreateDefault(Action<QuantitiesSelector> configureQuantities)
         {
-            return Create(Quantity.Provider.DefaultQuantities, configureQuantities);
+            return Create(Quantity.DefaultProvider.Quantities, configureQuantities);
         }
 
         /// <summary>

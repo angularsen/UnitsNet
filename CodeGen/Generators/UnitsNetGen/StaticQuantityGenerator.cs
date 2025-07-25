@@ -30,12 +30,12 @@ public partial class Quantity
     /// <summary>
     ///     Serves as a repository for predefined quantity conversion mappings, facilitating the automatic generation and retrieval of unit conversions in the UnitsNet library.
     /// </summary>
-    internal static class Provider
+    internal static class DefaultProvider
     {
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> DefaultQuantities => new QuantityInfo[]
+        internal static IReadOnlyList<QuantityInfo> Quantities => new QuantityInfo[]
         {");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
@@ -46,7 +46,7 @@ public partial class Quantity
         /// <summary>
         ///     All implicit quantity conversions that exist by default.
         /// </summary>
-        internal static readonly IReadOnlyList<QuantityConversionMapping> DefaultConversions = new QuantityConversionMapping[]
+        internal static readonly IReadOnlyList<QuantityConversionMapping> Conversions = new QuantityConversionMapping[]
         {");
             foreach (var quantityRelation in _quantities.SelectMany(quantity => quantity.Relations.Where(x => x.Operator == "inverse")).Distinct(new CumulativeRelationshipEqualityComparer()).OrderBy(relation => relation.LeftQuantity.Name))
                 Writer.WL($@"

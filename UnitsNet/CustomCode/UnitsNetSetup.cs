@@ -116,7 +116,7 @@ public sealed class UnitsNetSetup
         /// <exception cref="System.InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
         public DefaultConfigurationBuilder WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities)
         {
-            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.Provider.DefaultQuantities);
+            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
             _quantitiesSelector.WithAdditionalQuantities(quantities);
             return this;
         }
@@ -135,7 +135,7 @@ public sealed class UnitsNetSetup
         /// <exception cref="System.InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
         public DefaultConfigurationBuilder WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities, Action<QuantitiesSelector> configureQuantities)
         {
-            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.Provider.DefaultQuantities);
+            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
             configureQuantities(_quantitiesSelector.WithAdditionalQuantities(quantities));
             return this;
         }
@@ -153,7 +153,7 @@ public sealed class UnitsNetSetup
             where TQuantity : IQuantity<TQuantity, TUnit>
             where TUnit : struct, Enum
         {
-            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.Provider.DefaultQuantities);
+            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
             _quantitiesSelector.Configure(createCustomConfigurationDelegate);
             return this;
         }
@@ -184,7 +184,7 @@ public sealed class UnitsNetSetup
         internal UnitsNetSetup Build()
         {
             QuantityInfoLookup quantitiesLookup = _quantitiesSelector is null
-                ? new QuantityInfoLookup(Quantity.Provider.DefaultQuantities)
+                ? new QuantityInfoLookup(Quantity.DefaultProvider.Quantities)
                 : QuantityInfoLookup.Create(_quantitiesSelector);
             
             var unitAbbreviations = new UnitAbbreviationsCache(quantitiesLookup);

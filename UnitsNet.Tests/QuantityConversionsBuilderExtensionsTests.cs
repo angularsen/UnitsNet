@@ -16,7 +16,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void QuantityInfoLookup_GetQuantityConversions_ReturnsConversionsForQuantitiesPresentInTheLookup()
     {
         var quantityInfoLookup = new QuantityInfoLookup([Area.Info, ReciprocalArea.Info]);
-        IEnumerable<QuantityConversionMapping> quantityConversionMappings = Quantity.Provider.DefaultConversions;
+        IEnumerable<QuantityConversionMapping> quantityConversionMappings = Quantity.DefaultProvider.Conversions;
 
         QuantityConversion[] conversions = quantityInfoLookup.GetQuantityConversions(quantityConversionMappings).ToArray();
 
@@ -109,7 +109,7 @@ public class QuantityConversionsBuilderExtensionsTests
     [Fact]
     public void DefaultQuantityInfoLookup_GetQuantityConversions_ReturnsAllDefaultConversions()
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         
         QuantityConversion[] quantityConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
@@ -128,7 +128,7 @@ public class QuantityConversionsBuilderExtensionsTests
     [InlineData(false)]
     public void NoCaching_ReturnsNoConversions(bool reduceConstants)
     {
-        IEnumerable<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IEnumerable<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         
         IEnumerable<QuantityConversion> conversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(conversionMappings);
         
@@ -140,7 +140,7 @@ public class QuantityConversionsBuilderExtensionsTests
     [InlineData(false)]
     public void BaseOnlyCaching_ReturnsBaseUnitConversions(bool reduceConstants)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         
@@ -185,7 +185,7 @@ public class QuantityConversionsBuilderExtensionsTests
     [InlineData(false)]
     public void AllCaching_ReturnsAllUnitConversions(bool reduceConstants)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         // there are currently 156 conversions here
@@ -231,7 +231,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void AllCaching_WithSpecificNoneOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction, Type customizedType,
         bool customConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         // when removing the Density (with it's 56 units) the number of conversions drops from 156 to 100 (there are only 3 units of SpecificVolume which are all cached)
@@ -277,7 +277,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void AllCaching_WithSpecificNoneOptionsForBoth_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction, bool specificVolumeConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         // when removing the Density (with its 56 units) and the SpecificVolume (with its 3 units) the number of conversions drops from 156 to 97
@@ -320,7 +320,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void AllCaching_WithSpecificBaseOnlyOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
@@ -353,7 +353,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void AllCaching_WithSpecificAllOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         // the only difference is in the constants reduction parameter (there should still be 156 conversions here)
@@ -380,7 +380,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void BaseOnlyCaching_WithSpecificNoneOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.None, densityConstantsReduction) };
@@ -412,7 +412,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void BaseOnlyCaching_WithSpecificBaseOnlyOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
@@ -436,7 +436,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void BaseOnlyCaching_WithSpecificAllOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.All, densityConstantsReduction) };
@@ -469,7 +469,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void NoCaching_WithSpecificAllOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         // 56 units of Density
@@ -504,7 +504,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void NoCaching_WithSpecificBaseOnlyOptions_ReturnsSpecifiedUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
@@ -537,7 +537,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void NoCaching_WithSpecificNoneOptions_ReturnsNoUnitConversions(bool defaultConstantsReduction,
         bool densityConstantsReduction)
     {
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customQuantityOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.None, densityConstantsReduction) };
@@ -562,7 +562,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void ReduceConstants_ReturnsUnitConversionsWithReducedCoefficients(ConversionCachingMode cachingMode, bool reduceConstants)
     {
         // Arrange
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings);
         
@@ -633,7 +633,7 @@ public class QuantityConversionsBuilderExtensionsTests
             { new QuantityConversion(Density.Info, SpecificVolume.Info), conversionMappingOptions }
         };
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(densityCachingMode, densityConstantsReduction) };
-        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.Provider.DefaultConversions);
+        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
         
         // Act
         var conversionExpressions = defaultConversions.GetConversionFunctions(conversionOptions, defaultCachingMode, defaultConstantsReduction, customCachingOptions)
@@ -753,7 +753,7 @@ public class QuantityConversionsBuilderExtensionsTests
                 conversionMappingOptions
             }
         };
-        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.Provider.DefaultConversions);
+        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
         var emptyCachingOptions = new Dictionary<Type, ConversionCacheOptions>();
         
         // Act
@@ -834,7 +834,7 @@ public class QuantityConversionsBuilderExtensionsTests
         {
             { new QuantityConversion(Density.Info, SpecificVolume.Info), conversionMappingOptions }
         };
-        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.Provider.DefaultConversions);
+        IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
         var emptyCachingOptions = new Dictionary<Type, ConversionCacheOptions>();
         
         // Act
@@ -883,7 +883,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetConversionFunctions_WithInvalidConversionDimensions_And_Caching_None_ReturnsEmpty(bool reduceConstants)
     {
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-        IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.Provider.DefaultConversions;
+        IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.DefaultProvider.Conversions;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(defaultConversionMappings)
             .Append(new QuantityConversion(Mass.Info, Volume.Info)).ToList();
 
@@ -898,7 +898,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetConversionFunctions_WithInvalidConversionDimensions_And_Caching_ThrowsInvalidConversionException(ConversionCachingMode cachingMode, bool reduceConstants)
     {
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-        IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.Provider.DefaultConversions;
+        IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.DefaultProvider.Conversions;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(defaultConversionMappings)
             .Append(new QuantityConversion(Mass.Info, Volume.Info)).ToList();
 
@@ -942,7 +942,7 @@ public class QuantityConversionsBuilderExtensionsTests
     //     ConversionCachingMode massCachingMode,  bool massConstantsReduction)
     // {
     //     QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.Provider.DefaultConversions;
+    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.DefaultProvider.Conversions;
     //     IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(defaultConversionMappings)
     //         .Append(new QuantityConversion(Mass.Info, Volume.Info)).ToList();
     //     var conversionMappingOptions = new QuantityConversionMappingOptions
@@ -1058,7 +1058,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetConversionFunctions_WithInvalidCachingMode_ThrowsArgumentException(bool reduceConstants)
     {
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.Provider.DefaultConversions;
+        IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         const ConversionCachingMode invalidCachingMode = (ConversionCachingMode)(-1);
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings);
         
@@ -1118,7 +1118,7 @@ public class QuantityConversionsBuilderExtensionsTests
     // public void GetConversionFunctions_WithInvalidConversionDimensions_And_CachingOptions_None_ReturnsEmpty(bool reduceConstants)
     // {
     //     QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.Provider.DefaultConversions;
+    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.DefaultProvider.Conversions;
     //     IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(defaultConversionMappings)
     //         .Append(new QuantityConversion(Mass.Info, Volume.Info)).ToList();
     //     var customCachingOptions = new Dictionary<Type, ConversionCacheOptions>
@@ -1142,7 +1142,7 @@ public class QuantityConversionsBuilderExtensionsTests
     // public void GetConversionFunctions_WithInvalidConversionDimensions_And_CachingOptions_ThrowsInvalidConversionException(ConversionCachingMode cachingMode, bool reduceConstants)
     // {
     //     QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.QuantityInfoLookup;
-    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.Provider.DefaultConversions;
+    //     IEnumerable<QuantityConversionMapping> defaultConversionMappings = Quantity.DefaultProvider.Conversions;
     //     IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(defaultConversionMappings)
     //         .Append(new QuantityConversion(Mass.Info, Volume.Info)).ToList();
     //     var customCachingOptions = new Dictionary<Type, ConversionCacheOptions>
