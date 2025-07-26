@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MolarFlow", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<MolarFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

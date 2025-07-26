@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarMass.Zero, quantityInfo.Zero);
             Assert.Equal("MolarMass", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarMassUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<MolarMassUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

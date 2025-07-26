@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrent.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrent", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricCurrentUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

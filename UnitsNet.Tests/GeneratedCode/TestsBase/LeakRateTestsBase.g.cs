@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LeakRate.Zero, quantityInfo.Zero);
             Assert.Equal("LeakRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

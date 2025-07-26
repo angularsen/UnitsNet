@@ -133,7 +133,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
             Assert.Equal("PorousMediumPermeability", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

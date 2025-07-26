@@ -329,7 +329,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.Zero, quantityInfo.Zero);
             Assert.Equal("Volume", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<VolumeUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

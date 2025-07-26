@@ -289,7 +289,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("PowerDensity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -177,7 +177,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricSusceptance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricSusceptance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

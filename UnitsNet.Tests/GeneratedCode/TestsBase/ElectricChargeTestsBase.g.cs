@@ -157,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCharge.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCharge", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricChargeUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricChargeUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

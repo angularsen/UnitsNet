@@ -157,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Molarity.Zero, quantityInfo.Zero);
             Assert.Equal("Molarity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

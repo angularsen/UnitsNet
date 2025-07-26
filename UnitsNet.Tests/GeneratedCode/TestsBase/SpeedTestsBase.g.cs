@@ -245,7 +245,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.Zero, quantityInfo.Zero);
             Assert.Equal("Speed", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

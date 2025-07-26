@@ -157,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Jerk.Zero, quantityInfo.Zero);
             Assert.Equal("Jerk", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

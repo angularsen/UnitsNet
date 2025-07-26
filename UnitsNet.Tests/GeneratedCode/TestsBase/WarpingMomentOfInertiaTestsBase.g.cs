@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
             Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("WarpingMomentOfInertia", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

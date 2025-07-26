@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

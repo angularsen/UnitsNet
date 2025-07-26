@@ -229,7 +229,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Radioactivity.Zero, quantityInfo.Zero);
             Assert.Equal("Radioactivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RadioactivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

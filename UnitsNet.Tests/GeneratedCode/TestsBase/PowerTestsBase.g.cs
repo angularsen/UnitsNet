@@ -221,7 +221,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.Zero, quantityInfo.Zero);
             Assert.Equal("Power", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

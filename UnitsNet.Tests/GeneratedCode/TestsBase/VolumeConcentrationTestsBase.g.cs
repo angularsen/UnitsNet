@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureDelta", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

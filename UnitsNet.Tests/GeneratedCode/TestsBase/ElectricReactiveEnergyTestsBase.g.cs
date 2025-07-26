@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricReactiveEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricReactiveEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricReactiveEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricReactiveEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

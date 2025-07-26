@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Luminance.Zero, quantityInfo.Zero);
             Assert.Equal("Luminance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<LuminanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<LuminanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticField", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

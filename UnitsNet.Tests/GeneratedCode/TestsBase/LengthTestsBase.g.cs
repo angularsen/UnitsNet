@@ -281,7 +281,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

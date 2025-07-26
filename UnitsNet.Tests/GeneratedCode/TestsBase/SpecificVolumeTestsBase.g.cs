@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificVolume.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificVolume", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -169,7 +169,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
             Assert.Equal("Acceleration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

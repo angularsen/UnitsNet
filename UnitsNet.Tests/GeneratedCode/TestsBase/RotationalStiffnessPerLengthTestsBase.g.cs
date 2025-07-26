@@ -133,7 +133,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalStiffnessPerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

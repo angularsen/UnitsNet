@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("VolumePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

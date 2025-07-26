@@ -141,7 +141,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Compressibility.Zero, quantityInfo.Zero);
             Assert.Equal("Compressibility", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

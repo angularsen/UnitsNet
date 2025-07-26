@@ -141,7 +141,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCapacitance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCapacitance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

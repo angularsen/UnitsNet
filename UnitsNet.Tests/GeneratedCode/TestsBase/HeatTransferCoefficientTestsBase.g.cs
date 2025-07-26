@@ -133,7 +133,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

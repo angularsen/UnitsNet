@@ -193,7 +193,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DoseAreaProduct.Zero, quantityInfo.Zero);
             Assert.Equal("DoseAreaProduct", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<DoseAreaProductUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<DoseAreaProductUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

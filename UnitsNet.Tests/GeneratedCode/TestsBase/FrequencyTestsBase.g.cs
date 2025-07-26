@@ -161,7 +161,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

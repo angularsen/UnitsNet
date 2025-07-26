@@ -157,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

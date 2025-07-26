@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricImpedance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricImpedance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

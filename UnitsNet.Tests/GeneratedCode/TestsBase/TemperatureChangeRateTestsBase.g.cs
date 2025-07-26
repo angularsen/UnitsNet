@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

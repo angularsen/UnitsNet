@@ -233,7 +233,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

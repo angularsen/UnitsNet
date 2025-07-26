@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Torque.Zero, quantityInfo.Zero);
             Assert.Equal("Torque", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

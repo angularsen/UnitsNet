@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
             Assert.Equal("Magnetization", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

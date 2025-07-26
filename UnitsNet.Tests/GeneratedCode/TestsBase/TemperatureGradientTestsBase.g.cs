@@ -129,7 +129,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureGradient.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureGradient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Permittivity.Zero, quantityInfo.Zero);
             Assert.Equal("Permittivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PermittivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<PermittivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

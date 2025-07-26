@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace UnitsNet.InternalHelpers;
 
+/// <summary>
+///     Helper methods for working with <see cref="Enum"/> types.
+/// </summary>
 internal static class EnumHelpers
 {
     /// <summary>Retrieves an array of the values of the constants in a specified enumeration type.</summary>

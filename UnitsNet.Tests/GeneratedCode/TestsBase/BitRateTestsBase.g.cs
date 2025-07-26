@@ -269,7 +269,7 @@ namespace UnitsNet.Tests
             Assert.Equal(BitRate.Zero, quantityInfo.Zero);
             Assert.Equal("BitRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

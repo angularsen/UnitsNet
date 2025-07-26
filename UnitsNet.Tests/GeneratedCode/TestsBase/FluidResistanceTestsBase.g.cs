@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
             Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
             Assert.Equal("FluidResistance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

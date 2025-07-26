@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacity.Zero, quantityInfo.Zero);
             Assert.Equal("VolumetricHeatCapacity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

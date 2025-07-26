@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationEquivalentDoseRate.Zero, quantityInfo.Zero);
             Assert.Equal("RadiationEquivalentDoseRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RadiationEquivalentDoseRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<RadiationEquivalentDoseRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

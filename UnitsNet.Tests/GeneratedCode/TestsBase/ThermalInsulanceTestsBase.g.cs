@@ -141,7 +141,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalInsulance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 

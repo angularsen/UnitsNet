@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Impulse.Zero, quantityInfo.Zero);
             Assert.Equal("Impulse", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ImpulseUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelpers.GetValues<ImpulseUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
