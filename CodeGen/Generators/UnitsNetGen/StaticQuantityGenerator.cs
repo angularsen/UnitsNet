@@ -40,6 +40,17 @@ public partial class Quantity
             {quantity.Name}.Info,");
             Writer.WL(@"
         ];
+
+        internal static void RegisterUnitConversions(UnitConverter unitConverter)
+        {");
+            foreach (Quantity quantity in _quantities)
+            {
+                Writer.WL($@"
+            {quantity.Name}.RegisterDefaultConversions(unitConverter);");
+            }
+
+            Writer.WL(@"
+        }
     }
 }");
             return Writer.ToString();
