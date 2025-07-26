@@ -76,7 +76,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public TemperatureDeltaInfo(string name, TemperatureDeltaUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureDeltaUnit>> unitMappings, TemperatureDelta zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<TemperatureDelta, TemperatureDeltaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, TemperatureDelta.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

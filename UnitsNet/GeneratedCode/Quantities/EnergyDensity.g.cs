@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public EnergyDensityInfo(string name, EnergyDensityUnit baseUnit, IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings, EnergyDensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<EnergyDensity, EnergyDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, EnergyDensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

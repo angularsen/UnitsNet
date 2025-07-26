@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public TurbidityInfo(string name, TurbidityUnit baseUnit, IEnumerable<IUnitDefinition<TurbidityUnit>> unitMappings, Turbidity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Turbidity, TurbidityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Turbidity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -82,7 +82,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public VolumeInfo(string name, VolumeUnit baseUnit, IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings, Volume zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Volume, VolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Volume.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricApparentEnergyInfo(string name, ElectricApparentEnergyUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentEnergyUnit>> unitMappings, ElectricApparentEnergy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricApparentEnergy, ElectricApparentEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricApparentEnergy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

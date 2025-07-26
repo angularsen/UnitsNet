@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MolarEnergyInfo(string name, MolarEnergyUnit baseUnit, IEnumerable<IUnitDefinition<MolarEnergyUnit>> unitMappings, MolarEnergy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MolarEnergy, MolarEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarEnergy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

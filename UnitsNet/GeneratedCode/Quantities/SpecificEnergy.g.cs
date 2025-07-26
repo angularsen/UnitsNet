@@ -78,7 +78,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpecificEnergyInfo(string name, SpecificEnergyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings, SpecificEnergy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SpecificEnergy, SpecificEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificEnergy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -72,7 +72,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public EntropyInfo(string name, EntropyUnit baseUnit, IEnumerable<IUnitDefinition<EntropyUnit>> unitMappings, Entropy zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Entropy, EntropyUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Entropy.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

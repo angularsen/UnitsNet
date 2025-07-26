@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ScalarInfo(string name, ScalarUnit baseUnit, IEnumerable<IUnitDefinition<ScalarUnit>> unitMappings, Scalar zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Scalar, ScalarUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Scalar.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

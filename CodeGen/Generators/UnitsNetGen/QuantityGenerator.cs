@@ -70,7 +70,7 @@ namespace UnitsNet
             {
                 Writer.WL(@$"
 #if NET7_0_OR_GREATER");
-                foreach (var relation in _quantity.Relations)
+                foreach (QuantityRelation relation in _quantity.Relations)
                 {
                     if (relation.LeftQuantity == _quantity)
                     {
@@ -158,7 +158,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<{_quantity.Name}, {_unitEnumName}> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, {_quantity.Name}.RegisterDefaultConversions, unitAbbreviations)
             {{
             }}
 

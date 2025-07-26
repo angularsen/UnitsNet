@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AmplitudeRatioInfo(string name, AmplitudeRatioUnit baseUnit, IEnumerable<IUnitDefinition<AmplitudeRatioUnit>> unitMappings, AmplitudeRatio zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<AmplitudeRatio, AmplitudeRatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AmplitudeRatio.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

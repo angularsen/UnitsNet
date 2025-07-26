@@ -87,7 +87,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public LengthInfo(string name, LengthUnit baseUnit, IEnumerable<IUnitDefinition<LengthUnit>> unitMappings, Length zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Length, LengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Length.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

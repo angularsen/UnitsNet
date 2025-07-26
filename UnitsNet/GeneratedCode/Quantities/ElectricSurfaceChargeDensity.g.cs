@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricSurfaceChargeDensityInfo(string name, ElectricSurfaceChargeDensityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSurfaceChargeDensityUnit>> unitMappings, ElectricSurfaceChargeDensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricSurfaceChargeDensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

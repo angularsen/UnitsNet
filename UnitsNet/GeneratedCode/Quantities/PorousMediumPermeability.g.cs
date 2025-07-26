@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PorousMediumPermeabilityInfo(string name, PorousMediumPermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PorousMediumPermeabilityUnit>> unitMappings, PorousMediumPermeability zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<PorousMediumPermeability, PorousMediumPermeabilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, PorousMediumPermeability.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

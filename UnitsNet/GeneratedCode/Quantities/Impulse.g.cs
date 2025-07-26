@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ImpulseInfo(string name, ImpulseUnit baseUnit, IEnumerable<IUnitDefinition<ImpulseUnit>> unitMappings, Impulse zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Impulse, ImpulseUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Impulse.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

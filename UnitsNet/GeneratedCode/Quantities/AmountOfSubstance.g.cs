@@ -75,7 +75,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AmountOfSubstanceInfo(string name, AmountOfSubstanceUnit baseUnit, IEnumerable<IUnitDefinition<AmountOfSubstanceUnit>> unitMappings, AmountOfSubstance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<AmountOfSubstance, AmountOfSubstanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AmountOfSubstance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

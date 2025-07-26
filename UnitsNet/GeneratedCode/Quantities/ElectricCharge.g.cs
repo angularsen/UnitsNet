@@ -75,7 +75,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricChargeInfo(string name, ElectricChargeUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeUnit>> unitMappings, ElectricCharge zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricCharge, ElectricChargeUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCharge.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

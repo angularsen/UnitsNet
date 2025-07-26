@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricReactivePowerInfo(string name, ElectricReactivePowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactivePowerUnit>> unitMappings, ElectricReactivePower zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricReactivePower, ElectricReactivePowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricReactivePower.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -78,7 +78,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ForcePerLengthInfo(string name, ForcePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings, ForcePerLength zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ForcePerLength, ForcePerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ForcePerLength.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

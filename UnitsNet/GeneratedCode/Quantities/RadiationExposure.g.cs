@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RadiationExposureInfo(string name, RadiationExposureUnit baseUnit, IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings, RadiationExposure zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RadiationExposure, RadiationExposureUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RadiationExposure.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

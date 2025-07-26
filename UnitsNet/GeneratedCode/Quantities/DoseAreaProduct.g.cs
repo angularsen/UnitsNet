@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<DoseAreaProduct, DoseAreaProductUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, DoseAreaProduct.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public JerkInfo(string name, JerkUnit baseUnit, IEnumerable<IUnitDefinition<JerkUnit>> unitMappings, Jerk zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Jerk, JerkUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Jerk.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

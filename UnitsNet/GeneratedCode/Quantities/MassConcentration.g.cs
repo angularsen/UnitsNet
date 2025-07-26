@@ -77,7 +77,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MassConcentrationInfo(string name, MassConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<MassConcentrationUnit>> unitMappings, MassConcentration zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MassConcentration, MassConcentrationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassConcentration.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -77,7 +77,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MolarityInfo(string name, MolarityUnit baseUnit, IEnumerable<IUnitDefinition<MolarityUnit>> unitMappings, Molarity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Molarity, MolarityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Molarity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

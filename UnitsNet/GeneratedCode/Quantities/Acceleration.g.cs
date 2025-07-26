@@ -74,7 +74,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AccelerationInfo(string name, AccelerationUnit baseUnit, IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings, Acceleration zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Acceleration, AccelerationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Acceleration.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

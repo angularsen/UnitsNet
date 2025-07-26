@@ -1,7 +1,4 @@
-﻿using System;
-using UnitsNet.Units;
-
-namespace UnitsNet.Tests.CustomQuantities
+﻿namespace UnitsNet.Tests.CustomQuantities
 {
     /// <inheritdoc cref="IQuantity"/>
     /// <summary>
@@ -30,7 +27,7 @@ namespace UnitsNet.Tests.CustomQuantities
         public double Value { get; }
 
         #region IQuantity
-        
+
         public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
             nameof(HowMuch),
             HowMuchUnit.Some,
@@ -42,7 +39,8 @@ namespace UnitsNet.Tests.CustomQuantities
             },
             new HowMuch(0, HowMuchUnit.Some),
             new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
-            From);
+            From,
+            RegisterUnitConversions);
 
         QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
         {
@@ -81,7 +79,7 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             throw new NotImplementedException();
         }
-        
+
         IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
         {
             throw new NotImplementedException();
@@ -99,7 +97,7 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             throw new NotImplementedException();
         }
-        
+
 #if !NET
 
         QuantityInfo IQuantity.QuantityInfo
@@ -110,5 +108,19 @@ namespace UnitsNet.Tests.CustomQuantities
         Enum IQuantity.Unit => Unit;
 #endif
         #endregion
+
+        internal static void RegisterUnitConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: HowMuchUnit -> BaseUnit
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.ATon, HowMuchUnit.Some, howMuch => new HowMuch(howMuch.Value * 1e3, HowMuchUnit.Some));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.AShitTon, HowMuchUnit.Some, howMuch => new HowMuch(howMuch.Value * 1e6, HowMuchUnit.Some));
+
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.Some, howMuch => howMuch);
+
+            // Register in unit converter: BaseUnit -> HowMuchUnit
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, howMuch => new HowMuch(howMuch.Value * 1e-3, HowMuchUnit.ATon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, howMuch => new HowMuch(howMuch.Value * 1e-6, HowMuchUnit.AShitTon));
+        }
     }
 }

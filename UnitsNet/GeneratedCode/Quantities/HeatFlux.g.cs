@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public HeatFluxInfo(string name, HeatFluxUnit baseUnit, IEnumerable<IUnitDefinition<HeatFluxUnit>> unitMappings, HeatFlux zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<HeatFlux, HeatFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, HeatFlux.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -79,7 +79,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ReciprocalLengthInfo(string name, ReciprocalLengthUnit baseUnit, IEnumerable<IUnitDefinition<ReciprocalLengthUnit>> unitMappings, ReciprocalLength zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ReciprocalLength, ReciprocalLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ReciprocalLength.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

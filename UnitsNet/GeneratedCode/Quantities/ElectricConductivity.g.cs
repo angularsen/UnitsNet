@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricConductivityInfo(string name, ElectricConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings, ElectricConductivity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricConductivity, ElectricConductivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricConductivity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

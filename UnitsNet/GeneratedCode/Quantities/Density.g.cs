@@ -79,7 +79,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public DensityInfo(string name, DensityUnit baseUnit, IEnumerable<IUnitDefinition<DensityUnit>> unitMappings, Density zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Density, DensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Density.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

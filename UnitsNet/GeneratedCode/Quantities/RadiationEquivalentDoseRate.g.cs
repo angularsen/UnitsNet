@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RadiationEquivalentDoseRateInfo(string name, RadiationEquivalentDoseRateUnit baseUnit, IEnumerable<IUnitDefinition<RadiationEquivalentDoseRateUnit>> unitMappings, RadiationEquivalentDoseRate zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RadiationEquivalentDoseRate.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

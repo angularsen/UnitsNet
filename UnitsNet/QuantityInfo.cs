@@ -19,16 +19,18 @@ public abstract class QuantityInfo : IQuantityInfo
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <exception cref="ArgumentNullException">
     ///     Thrown if <paramref name="name" />, <paramref name="quantityType" />, or <paramref name="baseDimensions" /> is
     ///     <c>null</c>.
     /// </exception>
-    protected QuantityInfo(string name, Type quantityType, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations)
+    protected QuantityInfo(string name, Type quantityType, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations, Action<UnitConverter>? registerUnitConversions)
     {
         Name = name ?? throw new ArgumentNullException(nameof(name));
         QuantityType = quantityType ?? throw new ArgumentNullException(nameof(quantityType));
         BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
         UnitAbbreviations = unitAbbreviations;
+        RegisterUnitConversions = registerUnitConversions;
     }
 
     /// <inheritdoc />
@@ -53,6 +55,9 @@ public abstract class QuantityInfo : IQuantityInfo
 
     /// <inheritdoc />
     public ResourceManager? UnitAbbreviations { get; }
+
+    /// <inheritdoc />
+    public Action<UnitConverter>? RegisterUnitConversions { get; }
 
     /// <inheritdoc />
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -130,8 +135,8 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo//, IQuantityInfo<TUnit>
     where TUnit : struct, Enum
 {
     /// <inheritdoc />
-    protected QuantityInfo(string name, Type quantityType, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations = null)
-        : base(name, quantityType, baseDimensions, unitAbbreviations)
+    protected QuantityInfo(string name, Type quantityType, BaseDimensions baseDimensions, Action<UnitConverter>? registerUnitConversions, ResourceManager? unitAbbreviations)
+        : base(name, quantityType, baseDimensions, unitAbbreviations, registerUnitConversions)
     {
     }
 
@@ -273,12 +278,14 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     /// <param name="zero">The zero value of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
     /// <param name="fromDelegate">The delegate for creating a quantity from a value and unit.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
     protected QuantityInfoBase(string name, TQuantity zero, BaseDimensions baseDimensions, QuantityFromDelegate<TQuantity, TUnit> fromDelegate,
+        Action<UnitConverter>? registerUnitConversions,
         ResourceManager? unitAbbreviations)
-        : base(name, zero.GetType(), baseDimensions, unitAbbreviations)
+        : base(name, zero.GetType(), baseDimensions, registerUnitConversions, unitAbbreviations)
     {
         Zero = zero;
         FromDelegate = fromDelegate;
@@ -402,6 +409,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <param name="unitMappings">A collection of unit mapping configurations.</param>
     /// <param name="baseUnit">The base unit of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
@@ -409,8 +417,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <exception cref="UnitNotFoundException">
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
-    public QuantityInfo(TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations = null)
-        : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, TQuantity.From, unitAbbreviations)
+    public QuantityInfo(TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, Action<UnitConverter>? registerUnitConversions = null, ResourceManager? unitAbbreviations = null)
+        : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, TQuantity.From, registerUnitConversions, unitAbbreviations)
     {
     }
 
@@ -421,6 +429,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <param name="unitMappings">A collection of unit mapping configurations.</param>
     /// <param name="baseUnit">The base unit of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
@@ -428,8 +437,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <exception cref="UnitNotFoundException">
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
-    public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, TQuantity.From(0, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
+    public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, Action<UnitConverter>? registerUnitConversions = null, ResourceManager? unitAbbreviations = null)
+        : this(name, baseUnit, unitMappings, TQuantity.From(0, baseUnit), baseDimensions, TQuantity.From, registerUnitConversions, unitAbbreviations)
     {
     }
 
@@ -442,6 +451,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <param name="baseUnit">The base unit of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
     /// <param name="fromDelegate">A delegate to create a quantity from a value and unit.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
@@ -450,8 +460,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
     public QuantityInfo(TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
-        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, ResourceManager? unitAbbreviations = null)
-        : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, fromDelegate, unitAbbreviations)
+        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, Action<UnitConverter>? registerUnitConversions = null, ResourceManager? unitAbbreviations = null)
+        : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, fromDelegate, registerUnitConversions, unitAbbreviations)
     {
     }
 
@@ -463,6 +473,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <param name="baseUnit">The base unit of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
     /// <param name="fromDelegate">A delegate to create a quantity from a value and unit.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
@@ -471,8 +482,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
-        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, fromDelegate(0, baseUnit), baseDimensions, fromDelegate, unitAbbreviations)
+        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, Action<UnitConverter>? registerUnitConversions = null, ResourceManager? unitAbbreviations = null)
+        : this(name, baseUnit, unitMappings, fromDelegate(0, baseUnit), baseDimensions, fromDelegate, registerUnitConversions, unitAbbreviations)
     {
     }
 
@@ -485,6 +496,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <param name="zero">The zero value of the quantity.</param>
     /// <param name="baseDimensions">The base dimensions of the quantity.</param>
     /// <param name="fromDelegate">A delegate to create a quantity from a value and unit.</param>
+    /// <param name="registerUnitConversions">Configures the default unit conversions for this quantity, or null if no conversions are configured.</param>
     /// <param name="unitAbbreviations">
     ///     When provided, the resource manager used for localizing the quantity's unit abbreviations.
     /// </param>
@@ -493,8 +505,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, TQuantity zero, BaseDimensions baseDimensions,
-        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, ResourceManager? unitAbbreviations = null)
-        : base(name, zero, baseDimensions, fromDelegate, unitAbbreviations)
+        QuantityFromDelegate<TQuantity, TUnit> fromDelegate, Action<UnitConverter>? registerUnitConversions = null, ResourceManager? unitAbbreviations = null)
+        : base(name, zero, baseDimensions, fromDelegate, registerUnitConversions, unitAbbreviations)
     {
         if (unitMappings == null)
         {

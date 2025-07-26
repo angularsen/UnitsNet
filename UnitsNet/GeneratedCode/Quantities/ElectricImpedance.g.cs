@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricImpedanceInfo(string name, ElectricImpedanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>> unitMappings, ElectricImpedance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricImpedance, ElectricImpedanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricImpedance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

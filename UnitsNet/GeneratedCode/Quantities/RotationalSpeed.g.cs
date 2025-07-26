@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public RotationalSpeedInfo(string name, RotationalSpeedUnit baseUnit, IEnumerable<IUnitDefinition<RotationalSpeedUnit>> unitMappings, RotationalSpeed zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<RotationalSpeed, RotationalSpeedUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, RotationalSpeed.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricFieldInfo(string name, ElectricFieldUnit baseUnit, IEnumerable<IUnitDefinition<ElectricFieldUnit>> unitMappings, ElectricField zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricField, ElectricFieldUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricField.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

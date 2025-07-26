@@ -81,7 +81,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ForceInfo(string name, ForceUnit baseUnit, IEnumerable<IUnitDefinition<ForceUnit>> unitMappings, Force zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Force, ForceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Force.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

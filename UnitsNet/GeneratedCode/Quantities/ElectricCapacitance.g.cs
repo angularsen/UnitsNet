@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricCapacitanceInfo(string name, ElectricCapacitanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCapacitanceUnit>> unitMappings, ElectricCapacitance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricCapacitance, ElectricCapacitanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricCapacitance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

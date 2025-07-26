@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public IrradiationInfo(string name, IrradiationUnit baseUnit, IEnumerable<IUnitDefinition<IrradiationUnit>> unitMappings, Irradiation zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Irradiation, IrradiationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Irradiation.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

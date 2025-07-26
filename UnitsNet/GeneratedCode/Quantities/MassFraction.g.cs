@@ -73,7 +73,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MassFractionInfo(string name, MassFractionUnit baseUnit, IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings, MassFraction zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MassFraction, MassFractionUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MassFraction.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

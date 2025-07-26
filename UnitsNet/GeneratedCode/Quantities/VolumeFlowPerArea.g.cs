@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public VolumeFlowPerAreaInfo(string name, VolumeFlowPerAreaUnit baseUnit, IEnumerable<IUnitDefinition<VolumeFlowPerAreaUnit>> unitMappings, VolumeFlowPerArea zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<VolumeFlowPerArea, VolumeFlowPerAreaUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumeFlowPerArea.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

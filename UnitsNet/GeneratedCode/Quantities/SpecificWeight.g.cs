@@ -76,7 +76,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public SpecificWeightInfo(string name, SpecificWeightUnit baseUnit, IEnumerable<IUnitDefinition<SpecificWeightUnit>> unitMappings, SpecificWeight zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<SpecificWeight, SpecificWeightUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, SpecificWeight.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricInductanceInfo(string name, ElectricInductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricInductanceUnit>> unitMappings, ElectricInductance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricInductance, ElectricInductanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricInductance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

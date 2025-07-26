@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public AreaDensityInfo(string name, AreaDensityUnit baseUnit, IEnumerable<IUnitDefinition<AreaDensityUnit>> unitMappings, AreaDensity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<AreaDensity, AreaDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, AreaDensity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

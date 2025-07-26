@@ -73,7 +73,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public LuminanceInfo(string name, LuminanceUnit baseUnit, IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings, Luminance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Luminance, LuminanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Luminance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

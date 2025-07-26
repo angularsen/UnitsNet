@@ -72,7 +72,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public MolarMassInfo(string name, MolarMassUnit baseUnit, IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings, MolarMass zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<MolarMass, MolarMassUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, MolarMass.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

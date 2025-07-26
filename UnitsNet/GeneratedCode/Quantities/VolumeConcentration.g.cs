@@ -74,7 +74,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public VolumeConcentrationInfo(string name, VolumeConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<VolumeConcentrationUnit>> unitMappings, VolumeConcentration zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<VolumeConcentration, VolumeConcentrationUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumeConcentration.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

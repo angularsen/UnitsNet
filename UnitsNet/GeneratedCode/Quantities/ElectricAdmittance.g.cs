@@ -71,7 +71,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public ElectricAdmittanceInfo(string name, ElectricAdmittanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricAdmittanceUnit>> unitMappings, ElectricAdmittance zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<ElectricAdmittance, ElectricAdmittanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, ElectricAdmittance.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

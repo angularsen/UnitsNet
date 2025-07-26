@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PowerRatioInfo(string name, PowerRatioUnit baseUnit, IEnumerable<IUnitDefinition<PowerRatioUnit>> unitMappings, PowerRatio zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<PowerRatio, PowerRatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, PowerRatio.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

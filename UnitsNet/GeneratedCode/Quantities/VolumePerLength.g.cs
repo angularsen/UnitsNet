@@ -67,7 +67,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public VolumePerLengthInfo(string name, VolumePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<VolumePerLengthUnit>> unitMappings, VolumePerLength zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<VolumePerLength, VolumePerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, VolumePerLength.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

@@ -76,7 +76,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public KinematicViscosityInfo(string name, KinematicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings, KinematicViscosity zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<KinematicViscosity, KinematicViscosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, KinematicViscosity.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 

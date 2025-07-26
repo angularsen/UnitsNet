@@ -70,7 +70,7 @@ namespace UnitsNet
             /// <inheritdoc />
             public PermeabilityInfo(string name, PermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PermeabilityUnit>> unitMappings, Permeability zero, BaseDimensions baseDimensions,
                 QuantityFromDelegate<Permeability, PermeabilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
-                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, Permeability.RegisterDefaultConversions, unitAbbreviations)
             {
             }
 
