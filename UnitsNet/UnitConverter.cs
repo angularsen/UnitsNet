@@ -1,12 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -80,16 +76,11 @@ namespace UnitsNet
         /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
         /// </summary>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        public static void RegisterDefaultConversions(UnitConverter unitConverter)
+        private static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if (unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
+            if (unitConverter is null) throw new ArgumentNullException(nameof(unitConverter));
 
-            foreach (var quantity in Quantity.DefaultProvider.Quantities)
-            {
-                var registerMethod = quantity.QuantityType.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
-                registerMethod?.Invoke(null, new object[]{unitConverter});
-            }
+            Quantity.DefaultProvider.RegisterUnitConversions(unitConverter);
         }
 
         /// <summary>

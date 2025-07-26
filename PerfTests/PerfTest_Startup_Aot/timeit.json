@@ -1,0 +1,8 @@
+{
+  "warmUpCount": 10,
+  "count": 20,
+  "scenarios": [{ "name": "Default" }],
+  "processName": "../../Artifacts/PerfTest_Startup_Aot/net9.0/win-x64/publish/PerfTest_Startup_Aot.exe",
+  "workingDirectory": "$(CWD)/",
+  "processTimeout": 15
+}
