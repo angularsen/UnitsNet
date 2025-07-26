@@ -977,6 +977,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ForceChangeRate.FromNewtonsPerSecond(10)/ForceChangeRate.FromNewtonsPerSecond(5), NewtonsPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Force.FromNewtons(20), ForceChangeRate.FromNewtonsPerSecond(10) * Duration.FromSeconds(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

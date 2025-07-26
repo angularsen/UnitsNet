@@ -1159,6 +1159,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, RotationalSpeed.FromRadiansPerSecond(10)/RotationalSpeed.FromRadiansPerSecond(5), RadiansPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Angle.FromRadians(20), RotationalSpeed.FromRadiansPerSecond(10) * Duration.FromSeconds(2));
+            Assert.Equal(Power.FromWatts(20), RotationalSpeed.FromRadiansPerSecond(10) * Torque.FromNewtonMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

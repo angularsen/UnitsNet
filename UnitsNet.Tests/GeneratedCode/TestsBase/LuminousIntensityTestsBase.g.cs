@@ -445,6 +445,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, LuminousIntensity.FromCandela(10)/LuminousIntensity.FromCandela(5), CandelaTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(5), LuminousIntensity.FromCandela(10) / Luminance.FromCandelasPerSquareMeter(2));
+            Assert.Equal(Luminance.FromCandelasPerSquareMeter(5), LuminousIntensity.FromCandela(10) / Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

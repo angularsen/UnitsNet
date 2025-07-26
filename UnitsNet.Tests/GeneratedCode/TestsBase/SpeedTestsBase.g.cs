@@ -2003,6 +2003,20 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), MetersPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(5), Speed.FromMetersPerSecond(10) / Duration.FromSeconds(2));
+            Assert.Equal(Duration.FromSeconds(5), Speed.FromMetersPerSecond(10) / Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(20), Speed.FromMetersPerSecond(10) * Length.FromMeters(2));
+            Assert.Equal(Length.FromMeters(20), Speed.FromMetersPerSecond(10) * Duration.FromSeconds(2));
+            Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(20), Speed.FromMetersPerSecond(10) * Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Power.FromWatts(20), Speed.FromMetersPerSecond(10) * Force.FromNewtons(2));
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(20), Speed.FromMetersPerSecond(10) * Speed.FromMetersPerSecond(2));
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(20), Speed.FromMetersPerSecond(10) * Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

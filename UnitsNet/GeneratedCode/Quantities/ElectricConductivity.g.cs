@@ -42,6 +42,9 @@ namespace UnitsNet
     public readonly partial struct ElectricConductivity :
         IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<ElectricConductivity, ElectricResistivity, double>,
+#endif
+#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricConductivity, ElectricConductivity, bool>,
         IParsable<ElectricConductivity>,
 #endif
@@ -574,6 +577,18 @@ namespace UnitsNet
         public ElectricResistivity Inverse()
         {
             return ElectricResistivity.FromOhmMeters(1 / SiemensPerMeter);
+        }
+
+        /// <summary>Get <see cref="ElectricResistivity"/> from <see cref="double"/> / <see cref="ElectricConductivity"/>.</summary>
+        public static ElectricResistivity operator /(double value, ElectricConductivity electricConductivity)
+        {
+            return ElectricResistivity.FromOhmMeters(value / electricConductivity.SiemensPerMeter);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="ElectricConductivity"/> * <see cref="ElectricResistivity"/>.</summary>
+        public static double operator *(ElectricConductivity electricConductivity, ElectricResistivity electricResistivity)
+        {
+            return electricConductivity.SiemensPerMeter * electricResistivity.OhmMeters;
         }
 
         #endregion

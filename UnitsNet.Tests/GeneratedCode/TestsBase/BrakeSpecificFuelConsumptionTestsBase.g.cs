@@ -509,6 +509,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10)/BrakeSpecificFuelConsumption.FromKilogramsPerJoule(5), KilogramsPerJouleTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(20), BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10) * Power.FromWatts(2));
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(5), 10 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2));
+            Assert.Equal(20, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10) * SpecificEnergy.FromJoulesPerKilogram(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

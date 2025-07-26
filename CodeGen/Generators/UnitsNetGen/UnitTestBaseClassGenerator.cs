@@ -884,6 +884,62 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, {_quantity.Name}.From{_baseUnit.PluralName}(10)/{_quantity.Name}.From{_baseUnit.PluralName}(5), {_baseUnit.PluralName}Tolerance);
         }}
 ");
+
+                if (_quantity.Relations.Length > 0)
+                {
+                    Writer.WL($@"
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {{");
+                    foreach (QuantityRelation relation in _quantity.Relations)
+                    {
+                        var leftQuantity = relation.LeftQuantity;
+                        var leftUnit = relation.LeftUnit;
+                        var rightQuantity = relation.RightQuantity;
+                        var rightUnit = relation.RightUnit;
+                        var expectedValue = relation.Operator switch
+                        {
+                            "+" => 12,
+                            "-" => 8,
+                            "*" => 20,
+                            "/" => 5,
+                            _ => throw new NotSupportedException($"Unsupported operator: {relation.Operator}")
+                        };
+                        var left = GetQuantityValueText(leftQuantity, leftUnit, 10);
+                        var right = GetQuantityValueText(rightQuantity, rightUnit, 2);
+                        var expected = GetQuantityValueText(relation.ResultQuantity, relation.ResultUnit, expectedValue);
+
+                        Writer.WL($@"
+            Assert.Equal({expected}, {left} {relation.Operator} {right});");
+                    }
+                    Writer.WL($@"
+        }}
+");
+                }
+
+                if (_quantity.Relations.FirstOrDefault(x => x.IsInverse) is { } inverseRelation)
+                {
+                    var quantityName = _quantity.Name;
+                    Unit unit = inverseRelation.LeftQuantity.Name == quantityName ? inverseRelation.LeftUnit : inverseRelation.RightUnit;
+                    Quantity inverseQuantity = inverseRelation.LeftQuantity.Name == quantityName ? inverseRelation.RightQuantity : inverseRelation.LeftQuantity;
+                    Unit inverseUnit = inverseRelation.LeftQuantity.Name == quantityName ? inverseRelation.RightUnit : inverseRelation.LeftUnit;
+
+                    Writer.WL($@"
+
+        [Fact]
+        public void InverseMethod()
+        {{
+            {quantityName} v = {quantityName}.From{unit.PluralName}(10);
+
+            {inverseQuantity.Name} inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal({inverseQuantity.Name}Unit.{inverseUnit.SingularName}, inverse.Unit);");
+                    Writer.WL($@"
+        }}
+");
+                }
             }
             else
             {
@@ -1117,6 +1173,20 @@ namespace UnitsNet.Tests
     }}
 }}");
             return Writer.ToString();
+        }
+
+        /// <summary>
+        ///     Returns either the number value as string, such as <c>5</c>, or the quantity factory method, such as <c>Length.FromMeters(100)</c>.
+        /// </summary>
+        /// <param name="quantity"></param>
+        /// <param name="unit"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static string GetQuantityValueText(Quantity quantity, Unit unit, int value)
+        {
+            return quantity.Name == "double"
+                ? value.ToString()
+                : $"{quantity.Name}.From{unit.PluralName}({value})";
         }
 
         private bool IsAmbiguousAbbreviation(Localization localization, string abbreviation)

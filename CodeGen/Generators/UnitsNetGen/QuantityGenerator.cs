@@ -788,61 +788,65 @@ namespace UnitsNet
             Writer.WL($@"
         #region Relational Operators
 ");
-
-            foreach (QuantityRelation relation in _quantity.Relations)
+            // Generate an Inverse() method for the original relation definition, if the quantity can be inverted to another quantity.
+            // E.g. double = Length.Meter * ReciprocalLength.InverseMeter
+            if (_quantity.Relations.FirstOrDefault(x => x is { IsInverse: true, }) is { } inverseRelation)
             {
-                if (relation.Operator == "inverse")
-                {
-                    Writer.WL($@"
+                Unit unit = inverseRelation.LeftUnit;
+                Quantity inverseQuantity =  inverseRelation.RightQuantity;
+                Unit inverseUnit = inverseRelation.RightUnit;
+
+                Writer.WL($@"
         /// <summary>Calculates the inverse of this quantity.</summary>
-        /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
-        public {relation.RightQuantity.Name} Inverse()
+        /// <returns>The corresponding inverse quantity, <see cref=""{inverseQuantity.Name}""/>.</returns>
+        public {inverseQuantity.Name} Inverse()
         {{
-            return {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(1 / {relation.LeftUnit.PluralName});
+            return {inverseQuantity.Name}.From{inverseUnit.PluralName}(1 / {unit.PluralName});
         }}
 ");
-                }
-                else
+            }
+
+            // Generate arithmetic operator overloads for each relation, including inverse relations.
+            foreach (QuantityRelation relation in _quantity.Relations)
+            {
+                var leftParameter = relation.LeftQuantity.Name.ToCamelCase();
+                var leftConversionProperty = relation.LeftUnit.PluralName;
+                var rightParameter = relation.RightQuantity.Name.ToCamelCase();
+                var rightConversionProperty = relation.RightUnit.PluralName;
+
+                if (leftParameter == rightParameter)
                 {
-                    var leftParameter = relation.LeftQuantity.Name.ToCamelCase();
-                    var leftConversionProperty = relation.LeftUnit.PluralName;
-                    var rightParameter = relation.RightQuantity.Name.ToCamelCase();
-                    var rightConversionProperty = relation.RightUnit.PluralName;
+                    leftParameter = "left";
+                    rightParameter = "right";
+                }
 
-                    if (leftParameter == rightParameter)
-                    {
-                        leftParameter = "left";
-                        rightParameter = "right";
-                    }
+                var leftPart = $"{leftParameter}.{leftConversionProperty}";
+                var rightPart = $"{rightParameter}.{rightConversionProperty}";
 
-                    var leftPart = $"{leftParameter}.{leftConversionProperty}";
-                    var rightPart = $"{rightParameter}.{rightConversionProperty}";
+                if (leftParameter is "double")
+                {
+                    leftParameter = leftPart = "value";
+                }
 
-                    if (leftParameter is "double")
-                    {
-                        leftParameter = leftPart = "value";
-                    }
+                if (rightParameter is "double")
+                {
+                    rightParameter = rightPart = "value";
+                }
 
-                    if (rightParameter is "double")
-                    {
-                        rightParameter = rightPart = "value";
-                    }
+                var expression = $"{leftPart} {relation.Operator} {rightPart}";
 
-                    var expression = $"{leftPart} {relation.Operator} {rightPart}";
+                if (relation.ResultQuantity.Name is not "double")
+                {
+                    expression = $"{relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({expression})";
+                }
 
-                    if (relation.ResultQuantity.Name is not "double")
-                    {
-                        expression = $"{relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({expression})";
-                    }
-
-                    Writer.WL($@"
+                Writer.WL($@"
         /// <summary>Get <see cref=""{relation.ResultQuantity.Name}""/> from <see cref=""{relation.LeftQuantity.Name}""/> {relation.Operator} <see cref=""{relation.RightQuantity.Name}""/>.</summary>
         public static {relation.ResultQuantity.Name} operator {relation.Operator}({relation.LeftQuantity.Name} {leftParameter}, {relation.RightQuantity.Name} {rightParameter})
         {{
             return {expression};
         }}
 ");
-                }
             }
 
             Writer.WL($@"

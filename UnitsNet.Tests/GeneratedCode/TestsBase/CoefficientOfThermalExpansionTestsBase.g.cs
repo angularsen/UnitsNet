@@ -605,6 +605,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, CoefficientOfThermalExpansion.FromPerKelvin(10)/CoefficientOfThermalExpansion.FromPerKelvin(5), PerKelvinTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Ratio.FromDecimalFractions(20), CoefficientOfThermalExpansion.FromPerKelvin(10) * TemperatureDelta.FromKelvins(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

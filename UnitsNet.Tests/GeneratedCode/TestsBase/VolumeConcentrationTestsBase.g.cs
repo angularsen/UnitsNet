@@ -1014,6 +1014,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, VolumeConcentration.FromDecimalFractions(10)/VolumeConcentration.FromDecimalFractions(5), DecimalFractionsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(MassConcentration.FromKilogramsPerCubicMeter(20), VolumeConcentration.FromDecimalFractions(10) * Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Molarity.FromMolesPerCubicMeter(20), VolumeConcentration.FromDecimalFractions(10) * Molarity.FromMolesPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

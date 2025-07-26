@@ -1142,6 +1142,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, MassFraction.FromDecimalFractions(10)/MassFraction.FromDecimalFractions(5), DecimalFractionsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Mass.FromKilograms(20), MassFraction.FromDecimalFractions(10) * Mass.FromKilograms(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

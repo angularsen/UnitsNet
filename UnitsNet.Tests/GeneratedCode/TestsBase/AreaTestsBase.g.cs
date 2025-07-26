@@ -1314,6 +1314,39 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Area.FromSquareMeters(10)/Area.FromSquareMeters(5), SquareMetersTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Force.FromNewtons(20), Area.FromSquareMeters(10) * Pressure.FromPascals(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), Area.FromSquareMeters(10) * SpecificWeight.FromNewtonsPerCubicMeter(2));
+            Assert.Equal(Length.FromMeters(20), Area.FromSquareMeters(10) * ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Length.FromMeters(5), Area.FromSquareMeters(10) / Length.FromMeters(2));
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(20), Area.FromSquareMeters(10) * Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(LuminousFlux.FromLumens(20), Area.FromSquareMeters(10) * Illuminance.FromLux(2));
+            Assert.Equal(LuminousIntensity.FromCandela(20), Area.FromSquareMeters(10) * Luminance.FromCandelasPerSquareMeter(2));
+            Assert.Equal(Mass.FromKilograms(20), Area.FromSquareMeters(10) * AreaDensity.FromKilogramsPerSquareMeter(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(20), Area.FromSquareMeters(10) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2));
+            Assert.Equal(Power.FromWatts(20), Area.FromSquareMeters(10) * HeatFlux.FromWattsPerSquareMeter(2));
+            Assert.Equal(Ratio.FromDecimalFractions(20), Area.FromSquareMeters(10) * ReciprocalArea.FromInverseSquareMeters(2));
+            Assert.Equal(ReciprocalLength.FromInverseMeters(5), Area.FromSquareMeters(10) / Volume.FromCubicMeters(2));
+            Assert.Equal(Torque.FromNewtonMeters(20), Area.FromSquareMeters(10) * ForcePerLength.FromNewtonsPerMeter(2));
+            Assert.Equal(Volume.FromCubicMeters(20), Area.FromSquareMeters(10) * Length.FromMeters(2));
+            Assert.Equal(Volume.FromCubicMeters(5), Area.FromSquareMeters(10) / ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(20), Area.FromSquareMeters(10) * Speed.FromMetersPerSecond(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            Area v = Area.FromSquareMeters(10);
+
+            ReciprocalArea inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

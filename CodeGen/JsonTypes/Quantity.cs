@@ -3,6 +3,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace CodeGen.JsonTypes
 {
@@ -26,5 +27,7 @@ namespace CodeGen.JsonTypes
 
         // 0649 Field is never assigned to
 #pragma warning restore 0649
+
+        public Unit GetBaseUnit() => Units.First(x => x.SingularName == BaseUnit);
     }
 }

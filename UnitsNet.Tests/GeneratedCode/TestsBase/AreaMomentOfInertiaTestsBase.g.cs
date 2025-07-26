@@ -605,6 +605,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, AreaMomentOfInertia.FromMetersToTheFourth(10)/AreaMomentOfInertia.FromMetersToTheFourth(5), MetersToTheFourthTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Length.FromMeters(5), AreaMomentOfInertia.FromMetersToTheFourth(10) / Volume.FromCubicMeters(2));
+            Assert.Equal(Volume.FromCubicMeters(5), AreaMomentOfInertia.FromMetersToTheFourth(10) / Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

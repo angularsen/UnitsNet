@@ -1373,6 +1373,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, SpecificEnergy.FromJoulesPerKilogram(10)/SpecificEnergy.FromJoulesPerKilogram(5), JoulesPerKilogramTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(5), 10 / SpecificEnergy.FromJoulesPerKilogram(2));
+            Assert.Equal(Energy.FromJoules(20), SpecificEnergy.FromJoulesPerKilogram(10) * Mass.FromKilograms(2));
+            Assert.Equal(Power.FromWatts(20), SpecificEnergy.FromJoulesPerKilogram(10) * MassFlow.FromKilogramsPerSecond(2));
+            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramKelvin(5), SpecificEnergy.FromJoulesPerKilogram(10) / TemperatureDelta.FromKelvins(2));
+            Assert.Equal(Speed.FromMetersPerSecond(5), SpecificEnergy.FromJoulesPerKilogram(10) / Speed.FromMetersPerSecond(2));
+            Assert.Equal(TemperatureDelta.FromKelvins(5), SpecificEnergy.FromJoulesPerKilogram(10) / SpecificEntropy.FromJoulesPerKilogramKelvin(2));
+            Assert.Equal(20, SpecificEnergy.FromJoulesPerKilogram(10) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

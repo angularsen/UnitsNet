@@ -673,6 +673,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, RadiationEquivalentDose.FromSieverts(10)/RadiationEquivalentDose.FromSieverts(5), SievertsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Duration.FromHours(5), RadiationEquivalentDose.FromSieverts(10) / RadiationEquivalentDoseRate.FromSievertsPerHour(2));
+            Assert.Equal(RadiationEquivalentDoseRate.FromSievertsPerHour(5), RadiationEquivalentDose.FromSieverts(10) / Duration.FromHours(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

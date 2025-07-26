@@ -49,6 +49,7 @@ namespace UnitsNet
         IMultiplyOperators<Density, VolumeFlow, MassFlow>,
         IMultiplyOperators<Density, Speed, MassFlux>,
         IMultiplyOperators<Density, Acceleration, SpecificWeight>,
+        IMultiplyOperators<Density, SpecificVolume, double>,
 #endif
 #if NET7_0_OR_GREATER
         IComparisonOperators<Density, Density, bool>,
@@ -1421,10 +1422,22 @@ namespace UnitsNet
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from <see cref="double"/> / <see cref="Density"/>.</summary>
+        public static SpecificVolume operator /(double value, Density density)
+        {
+            return SpecificVolume.FromCubicMetersPerKilogram(value / density.KilogramsPerCubicMeter);
+        }
+
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Density"/> * <see cref="Acceleration"/>.</summary>
         public static SpecificWeight operator *(Density density, Acceleration acceleration)
         {
             return SpecificWeight.FromNewtonsPerCubicMeter(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="Density"/> * <see cref="SpecificVolume"/>.</summary>
+        public static double operator *(Density density, SpecificVolume specificVolume)
+        {
+            return density.KilogramsPerCubicMeter * specificVolume.CubicMetersPerKilogram;
         }
 
         #endregion

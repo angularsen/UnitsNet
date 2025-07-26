@@ -943,6 +943,32 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ReciprocalLength.FromInverseMeters(10)/ReciprocalLength.FromInverseMeters(5), InverseMetersTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(20), ReciprocalLength.FromInverseMeters(10) * Volume.FromCubicMeters(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), ReciprocalLength.FromInverseMeters(10) * Force.FromNewtons(2));
+            Assert.Equal(Length.FromMeters(20), ReciprocalLength.FromInverseMeters(10) * Area.FromSquareMeters(2));
+            Assert.Equal(Length.FromMeters(5), ReciprocalLength.FromInverseMeters(10) / ReciprocalArea.FromInverseSquareMeters(2));
+            Assert.Equal(Length.FromMeters(5), 10 / ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(20), ReciprocalLength.FromInverseMeters(10) * ForcePerLength.FromNewtonsPerMeter(2));
+            Assert.Equal(ReciprocalArea.FromInverseSquareMeters(20), ReciprocalLength.FromInverseMeters(10) * ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(ReciprocalArea.FromInverseSquareMeters(5), ReciprocalLength.FromInverseMeters(10) / Length.FromMeters(2));
+            Assert.Equal(20, ReciprocalLength.FromInverseMeters(10) * Length.FromMeters(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            ReciprocalLength v = ReciprocalLength.FromInverseMeters(10);
+
+            Length inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(LengthUnit.Meter, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {
