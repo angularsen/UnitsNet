@@ -20,7 +20,8 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Fixed to major version, for strong naming -->
+    <FileVersion>$(Version)</FileVersion>      <!-- Will match NuGet version -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
