@@ -141,6 +141,7 @@ namespace UnitsNet
                 yield return new (DurationUnit.Minute, "Minute", "Minutes", new BaseUnits(time: DurationUnit.Minute));
                 yield return new (DurationUnit.Month30, "Month30", "Months30", new BaseUnits(time: DurationUnit.Month30));
                 yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (DurationUnit.Picosecond, "Picosecond", "Picoseconds", new BaseUnits(time: DurationUnit.Picosecond));
                 yield return new (DurationUnit.Second, "Second", "Seconds", new BaseUnits(time: DurationUnit.Second));
                 yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol));
                 yield return new (DurationUnit.Week, "Week", "Weeks", new BaseUnits(time: DurationUnit.Week));
@@ -294,6 +295,11 @@ namespace UnitsNet
         public double Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
+        /// </summary>
+        public double Picoseconds => As(DurationUnit.Picosecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
@@ -332,6 +338,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Nanosecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Picosecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Sol, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
@@ -348,6 +355,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => quantity.ToUnit(DurationUnit.Minute));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => quantity.ToUnit(DurationUnit.Month30));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => quantity.ToUnit(DurationUnit.Nanosecond));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Picosecond, quantity => quantity.ToUnit(DurationUnit.Picosecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Sol, quantity => quantity.ToUnit(DurationUnit.Sol));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => quantity.ToUnit(DurationUnit.Week));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => quantity.ToUnit(DurationUnit.Year365));
@@ -440,6 +448,14 @@ namespace UnitsNet
         public static Duration FromNanoseconds(double value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Picosecond"/>.
+        /// </summary>
+        public static Duration FromPicoseconds(double value)
+        {
+            return new Duration(value, DurationUnit.Picosecond);
         }
 
         /// <summary>
@@ -1042,6 +1058,7 @@ namespace UnitsNet
                 (DurationUnit.Minute, DurationUnit.Second) => new Duration(_value * 60, DurationUnit.Second),
                 (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 30 * 24 * 3600, DurationUnit.Second),
                 (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((_value) * 1e-9d, DurationUnit.Second),
+                (DurationUnit.Picosecond, DurationUnit.Second) => new Duration((_value) * 1e-12d, DurationUnit.Second),
                 (DurationUnit.Sol, DurationUnit.Second) => new Duration(_value * 88775.244, DurationUnit.Second),
                 (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 7 * 24 * 3600, DurationUnit.Second),
                 (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
@@ -1055,6 +1072,7 @@ namespace UnitsNet
                 (DurationUnit.Second, DurationUnit.Minute) => new Duration(_value / 60, DurationUnit.Minute),
                 (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / (30 * 24 * 3600), DurationUnit.Month30),
                 (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((_value) / 1e-9d, DurationUnit.Nanosecond),
+                (DurationUnit.Second, DurationUnit.Picosecond) => new Duration((_value) / 1e-12d, DurationUnit.Picosecond),
                 (DurationUnit.Second, DurationUnit.Sol) => new Duration(_value / 88775.244, DurationUnit.Sol),
                 (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / (7 * 24 * 3600), DurationUnit.Week),
                 (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / (365 * 24 * 3600), DurationUnit.Year365),

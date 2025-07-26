@@ -155,7 +155,7 @@ namespace UnitsNet
                 yield return new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined);
                 yield return new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined);
                 yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond));
                 yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined);
                 yield return new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined);
             }

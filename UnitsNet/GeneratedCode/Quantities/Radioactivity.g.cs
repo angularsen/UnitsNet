@@ -142,9 +142,9 @@ namespace UnitsNet
                 yield return new (RadioactivityUnit.Picocurie, "Picocurie", "Picocuries", BaseUnits.Undefined);
                 yield return new (RadioactivityUnit.Picorutherford, "Picorutherford", "Picorutherfords", BaseUnits.Undefined);
                 yield return new (RadioactivityUnit.Rutherford, "Rutherford", "Rutherfords", new BaseUnits(time: DurationUnit.Second));
-                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", BaseUnits.Undefined);
-                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", BaseUnits.Undefined);
-                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", BaseUnits.Undefined);
+                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", new BaseUnits(time: DurationUnit.Picosecond));
+                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", new BaseUnits(time: DurationUnit.Picosecond));
+                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", new BaseUnits(time: DurationUnit.Picosecond));
             }
         }
 
