@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -78,58 +74,109 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly EnergyUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Energy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class EnergyInfo: QuantityInfo<Energy, EnergyUnit>
+        {
+            /// <inheritdoc />
+            public EnergyInfo(string name, EnergyUnit baseUnit, IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings, Energy zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Energy, EnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public EnergyInfo(string name, EnergyUnit baseUnit, IEnumerable<IUnitDefinition<EnergyUnit>> unitMappings, Energy zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Energy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Energy", typeof(Energy).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="EnergyInfo"/> class with the default settings for the Energy quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="EnergyInfo"/> class with the default settings.</returns>
+            public static EnergyInfo CreateDefault()
+            {
+                return new EnergyInfo(nameof(Energy), DefaultBaseUnit, GetDefaultMappings(), new Energy(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="EnergyInfo"/> class with the default settings for the Energy quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="EnergyInfo"/> class with the default settings.
+            /// </returns>
+            public static EnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<EnergyUnit>>, IEnumerable<IUnitDefinition<EnergyUnit>>> customizeUnits)
+            {
+                return new EnergyInfo(nameof(Energy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Energy(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Energy"/> is [T^-2][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Energy is Joule. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static EnergyUnit DefaultBaseUnit { get; } = EnergyUnit.Joule;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="EnergyUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyUnit}"/> representing the default unit mappings for Energy.</returns>
+            public static IEnumerable<UnitDefinition<EnergyUnit>> GetDefaultMappings()
+            {
+                yield return new (EnergyUnit.BritishThermalUnit, "BritishThermalUnit", "BritishThermalUnits", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Calorie, "Calorie", "Calories", BaseUnits.Undefined);
+                yield return new (EnergyUnit.DecathermEc, "DecathermEc", "DecathermsEc", BaseUnits.Undefined);
+                yield return new (EnergyUnit.DecathermImperial, "DecathermImperial", "DecathermsImperial", BaseUnits.Undefined);
+                yield return new (EnergyUnit.DecathermUs, "DecathermUs", "DecathermsUs", BaseUnits.Undefined);
+                yield return new (EnergyUnit.ElectronVolt, "ElectronVolt", "ElectronVolts", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Erg, "Erg", "Ergs", BaseUnits.Undefined);
+                yield return new (EnergyUnit.FootPound, "FootPound", "FootPounds", BaseUnits.Undefined);
+                yield return new (EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnit", "GigabritishThermalUnits", BaseUnits.Undefined);
+                yield return new (EnergyUnit.GigaelectronVolt, "GigaelectronVolt", "GigaelectronVolts", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Gigajoule, "Gigajoule", "Gigajoules", BaseUnits.Undefined);
+                yield return new (EnergyUnit.GigawattDay, "GigawattDay", "GigawattDays", BaseUnits.Undefined);
+                yield return new (EnergyUnit.GigawattHour, "GigawattHour", "GigawattHours", BaseUnits.Undefined);
+                yield return new (EnergyUnit.HorsepowerHour, "HorsepowerHour", "HorsepowerHours", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Joule, "Joule", "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnit", "KilobritishThermalUnits", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Kilocalorie, "Kilocalorie", "Kilocalories", BaseUnits.Undefined);
+                yield return new (EnergyUnit.KiloelectronVolt, "KiloelectronVolt", "KiloelectronVolts", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Kilojoule, "Kilojoule", "Kilojoules", BaseUnits.Undefined);
+                yield return new (EnergyUnit.KilowattDay, "KilowattDay", "KilowattDays", BaseUnits.Undefined);
+                yield return new (EnergyUnit.KilowattHour, "KilowattHour", "KilowattHours", BaseUnits.Undefined);
+                yield return new (EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnit", "MegabritishThermalUnits", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Megacalorie, "Megacalorie", "Megacalories", BaseUnits.Undefined);
+                yield return new (EnergyUnit.MegaelectronVolt, "MegaelectronVolt", "MegaelectronVolts", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Megajoule, "Megajoule", "Megajoules", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.MegawattDay, "MegawattDay", "MegawattDays", BaseUnits.Undefined);
+                yield return new (EnergyUnit.MegawattHour, "MegawattHour", "MegawattHours", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Microjoule, "Microjoule", "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.Millijoule, "Millijoule", "Millijoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.Nanojoule, "Nanojoule", "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.Petajoule, "Petajoule", "Petajoules", BaseUnits.Undefined);
+                yield return new (EnergyUnit.TeraelectronVolt, "TeraelectronVolt", "TeraelectronVolts", BaseUnits.Undefined);
+                yield return new (EnergyUnit.Terajoule, "Terajoule", "Terajoules", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyUnit.TerawattDay, "TerawattDay", "TerawattDays", BaseUnits.Undefined);
+                yield return new (EnergyUnit.TerawattHour, "TerawattHour", "TerawattHours", BaseUnits.Undefined);
+                yield return new (EnergyUnit.ThermEc, "ThermEc", "ThermsEc", BaseUnits.Undefined);
+                yield return new (EnergyUnit.ThermImperial, "ThermImperial", "ThermsImperial", BaseUnits.Undefined);
+                yield return new (EnergyUnit.ThermUs, "ThermUs", "ThermsUs", BaseUnits.Undefined);
+                yield return new (EnergyUnit.WattDay, "WattDay", "WattDays", BaseUnits.Undefined);
+                yield return new (EnergyUnit.WattHour, "WattHour", "WattHours", BaseUnits.Undefined);
+            }
+        }
+
         static Energy()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            BaseUnit = EnergyUnit.Joule;
-            Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
-            Zero = new Energy(0, BaseUnit);
-            Info = new QuantityInfo<EnergyUnit>("Energy",
-                new UnitInfo<EnergyUnit>[]
-                {
-                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Microjoule, "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Nanojoule, "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined, "Energy"),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined, "Energy"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = EnergyInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -167,27 +214,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<EnergyUnit> Info { get; }
+        public static QuantityInfo<Energy, EnergyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Energy, which is Joule. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit BaseUnit { get; }
+        public static EnergyUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>
-        public static EnergyUnit[] Units { get; }
+        public static IReadOnlyCollection<EnergyUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
         /// </summary>
-        public static Energy Zero { get; }
+        public static Energy Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Energy AdditiveIdentity => Zero;
@@ -205,7 +252,7 @@ namespace UnitsNet
         public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<EnergyUnit> QuantityInfo => Info;
+        public QuantityInfo<Energy, EnergyUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -216,12 +263,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<EnergyUnit> IQuantity<EnergyUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,20 +59,71 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LevelUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Level"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LevelInfo: QuantityInfo<Level, LevelUnit>
+        {
+            /// <inheritdoc />
+            public LevelInfo(string name, LevelUnit baseUnit, IEnumerable<IUnitDefinition<LevelUnit>> unitMappings, Level zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Level, LevelUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LevelInfo(string name, LevelUnit baseUnit, IEnumerable<IUnitDefinition<LevelUnit>> unitMappings, Level zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Level.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Level", typeof(Level).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LevelInfo"/> class with the default settings for the Level quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LevelInfo"/> class with the default settings.</returns>
+            public static LevelInfo CreateDefault()
+            {
+                return new LevelInfo(nameof(Level), DefaultBaseUnit, GetDefaultMappings(), new Level(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LevelInfo"/> class with the default settings for the Level quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LevelInfo"/> class with the default settings.
+            /// </returns>
+            public static LevelInfo CreateDefault(Func<IEnumerable<UnitDefinition<LevelUnit>>, IEnumerable<IUnitDefinition<LevelUnit>>> customizeUnits)
+            {
+                return new LevelInfo(nameof(Level), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Level(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Level"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of Level is Decibel. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LevelUnit DefaultBaseUnit { get; } = LevelUnit.Decibel;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LevelUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LevelUnit}"/> representing the default unit mappings for Level.</returns>
+            public static IEnumerable<UnitDefinition<LevelUnit>> GetDefaultMappings()
+            {
+                yield return new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined);
+                yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined);
+            }
+        }
+
         static Level()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = LevelUnit.Decibel;
-            Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().ToArray();
-            Zero = new Level(0, BaseUnit);
-            Info = new QuantityInfo<LevelUnit>("Level",
-                new UnitInfo<LevelUnit>[]
-                {
-                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined, "Level"),
-                    new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined, "Level"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LevelInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -100,27 +147,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LevelUnit> Info { get; }
+        public static QuantityInfo<Level, LevelUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Level, which is Decibel. All conversions go via this value.
         /// </summary>
-        public static LevelUnit BaseUnit { get; }
+        public static LevelUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Level quantity.
         /// </summary>
-        public static LevelUnit[] Units { get; }
+        public static IReadOnlyCollection<LevelUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Decibel.
         /// </summary>
-        public static Level Zero { get; }
+        public static Level Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Level AdditiveIdentity => Zero;
@@ -138,7 +185,7 @@ namespace UnitsNet
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+        public QuantityInfo<Level, LevelUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -149,12 +196,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LevelUnit> IQuantity<LevelUnit>.QuantityInfo => Info;
 
         #endregion
 

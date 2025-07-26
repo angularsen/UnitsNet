@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -77,33 +73,84 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ForceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Force"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ForceInfo: QuantityInfo<Force, ForceUnit>
+        {
+            /// <inheritdoc />
+            public ForceInfo(string name, ForceUnit baseUnit, IEnumerable<IUnitDefinition<ForceUnit>> unitMappings, Force zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Force, ForceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ForceInfo(string name, ForceUnit baseUnit, IEnumerable<IUnitDefinition<ForceUnit>> unitMappings, Force zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Force.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Force", typeof(Force).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForceInfo"/> class with the default settings for the Force quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ForceInfo"/> class with the default settings.</returns>
+            public static ForceInfo CreateDefault()
+            {
+                return new ForceInfo(nameof(Force), DefaultBaseUnit, GetDefaultMappings(), new Force(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForceInfo"/> class with the default settings for the Force quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ForceInfo"/> class with the default settings.
+            /// </returns>
+            public static ForceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ForceUnit>>, IEnumerable<IUnitDefinition<ForceUnit>>> customizeUnits)
+            {
+                return new ForceInfo(nameof(Force), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Force(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Force"/> is [T^-2][L][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Force is Newton. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ForceUnit DefaultBaseUnit { get; } = ForceUnit.Newton;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ForceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForceUnit}"/> representing the default unit mappings for Force.</returns>
+            public static IEnumerable<UnitDefinition<ForceUnit>> GetDefaultMappings()
+            {
+                yield return new (ForceUnit.Decanewton, "Decanewton", "Decanewtons", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.Dyn, "Dyn", "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (ForceUnit.KilogramForce, "KilogramForce", "KilogramsForce", BaseUnits.Undefined);
+                yield return new (ForceUnit.Kilonewton, "Kilonewton", "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.KiloPond, "KiloPond", "KiloPonds", BaseUnits.Undefined);
+                yield return new (ForceUnit.KilopoundForce, "KilopoundForce", "KilopoundsForce", BaseUnits.Undefined);
+                yield return new (ForceUnit.Meganewton, "Meganewton", "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.Micronewton, "Micronewton", "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.Millinewton, "Millinewton", "Millinewtons", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.Newton, "Newton", "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceUnit.OunceForce, "OunceForce", "OunceForce", BaseUnits.Undefined);
+                yield return new (ForceUnit.Poundal, "Poundal", "Poundals", BaseUnits.Undefined);
+                yield return new (ForceUnit.PoundForce, "PoundForce", "PoundsForce", BaseUnits.Undefined);
+                yield return new (ForceUnit.ShortTonForce, "ShortTonForce", "ShortTonsForce", BaseUnits.Undefined);
+                yield return new (ForceUnit.TonneForce, "TonneForce", "TonnesForce", BaseUnits.Undefined);
+            }
+        }
+
         static Force()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-            BaseUnit = ForceUnit.Newton;
-            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
-            Zero = new Force(0, BaseUnit);
-            Info = new QuantityInfo<ForceUnit>("Force",
-                new UnitInfo<ForceUnit>[]
-                {
-                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined, "Force"),
-                    new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined, "Force"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ForceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -141,27 +188,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForceUnit> Info { get; }
+        public static QuantityInfo<Force, ForceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit { get; }
+        public static ForceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
-        public static ForceUnit[] Units { get; }
+        public static IReadOnlyCollection<ForceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero { get; }
+        public static Force Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Force AdditiveIdentity => Zero;
@@ -179,7 +226,7 @@ namespace UnitsNet
         public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ForceUnit> QuantityInfo => Info;
+        public QuantityInfo<Force, ForceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -190,12 +237,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ForceUnit> IQuantity<ForceUnit>.QuantityInfo => Info;
 
         #endregion
 

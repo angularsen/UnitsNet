@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferencePressureReferences_ReturnsTheExpectedEnumValues()
         {
-            IEnumerable<PressureReference> expectedValues = Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>();
+            IEnumerable<PressureReference> expectedValues = Enum.GetValues<PressureReference>();
 
             PressureReference[] actualValues = ReferencePressure.References;
 

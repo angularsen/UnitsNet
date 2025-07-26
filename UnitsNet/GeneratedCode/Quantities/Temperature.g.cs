@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,28 +59,79 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly TemperatureUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Temperature"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class TemperatureInfo: QuantityInfo<Temperature, TemperatureUnit>
+        {
+            /// <inheritdoc />
+            public TemperatureInfo(string name, TemperatureUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings, Temperature zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Temperature, TemperatureUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public TemperatureInfo(string name, TemperatureUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureUnit>> unitMappings, Temperature zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Temperature.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Temperature", typeof(Temperature).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureInfo"/> class with the default settings for the Temperature quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="TemperatureInfo"/> class with the default settings.</returns>
+            public static TemperatureInfo CreateDefault()
+            {
+                return new TemperatureInfo(nameof(Temperature), DefaultBaseUnit, GetDefaultMappings(), new Temperature(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureInfo"/> class with the default settings for the Temperature quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="TemperatureInfo"/> class with the default settings.
+            /// </returns>
+            public static TemperatureInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureUnit>>, IEnumerable<IUnitDefinition<TemperatureUnit>>> customizeUnits)
+            {
+                return new TemperatureInfo(nameof(Temperature), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Temperature(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Temperature"/> is [Θ].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Temperature is Kelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static TemperatureUnit DefaultBaseUnit { get; } = TemperatureUnit.Kelvin;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="TemperatureUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureUnit}"/> representing the default unit mappings for Temperature.</returns>
+            public static IEnumerable<UnitDefinition<TemperatureUnit>> GetDefaultMappings()
+            {
+                yield return new (TemperatureUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
+                yield return new (TemperatureUnit.DegreeFahrenheit, "DegreeFahrenheit", "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit));
+                yield return new (TemperatureUnit.DegreeNewton, "DegreeNewton", "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton));
+                yield return new (TemperatureUnit.DegreeRankine, "DegreeRankine", "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine));
+                yield return new (TemperatureUnit.DegreeReaumur, "DegreeReaumur", "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur));
+                yield return new (TemperatureUnit.DegreeRoemer, "DegreeRoemer", "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer));
+                yield return new (TemperatureUnit.Kelvin, "Kelvin", "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
+                yield return new (TemperatureUnit.MillidegreeCelsius, "MillidegreeCelsius", "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.MillidegreeCelsius));
+                yield return new (TemperatureUnit.SolarTemperature, "SolarTemperature", "SolarTemperatures", new BaseUnits(temperature: TemperatureUnit.SolarTemperature));
+            }
+        }
+
         static Temperature()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            BaseUnit = TemperatureUnit.Kelvin;
-            Units = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().ToArray();
-            Zero = new Temperature(0, BaseUnit);
-            Info = new QuantityInfo<TemperatureUnit>("Temperature",
-                new UnitInfo<TemperatureUnit>[]
-                {
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.MillidegreeCelsius), "Temperature"),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", new BaseUnits(temperature: TemperatureUnit.SolarTemperature), "Temperature"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = TemperatureInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -122,27 +169,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureUnit> Info { get; }
+        public static QuantityInfo<Temperature, TemperatureUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureUnit BaseUnit { get; }
+        public static TemperatureUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Temperature quantity.
         /// </summary>
-        public static TemperatureUnit[] Units { get; }
+        public static IReadOnlyCollection<TemperatureUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature Zero { get; }
+        public static Temperature Zero => Info.Zero;
 
         #endregion
 
@@ -157,7 +204,7 @@ namespace UnitsNet
         public TemperatureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<TemperatureUnit> QuantityInfo => Info;
+        public QuantityInfo<Temperature, TemperatureUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -168,12 +215,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<TemperatureUnit> IQuantity<TemperatureUnit>.QuantityInfo => Info;
 
         #endregion
 

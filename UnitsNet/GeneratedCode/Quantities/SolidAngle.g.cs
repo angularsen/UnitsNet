@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,19 +62,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly SolidAngleUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="SolidAngle"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class SolidAngleInfo: QuantityInfo<SolidAngle, SolidAngleUnit>
+        {
+            /// <inheritdoc />
+            public SolidAngleInfo(string name, SolidAngleUnit baseUnit, IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings, SolidAngle zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<SolidAngle, SolidAngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public SolidAngleInfo(string name, SolidAngleUnit baseUnit, IEnumerable<IUnitDefinition<SolidAngleUnit>> unitMappings, SolidAngle zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, SolidAngle.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SolidAngle", typeof(SolidAngle).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SolidAngleInfo"/> class with the default settings for the SolidAngle quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="SolidAngleInfo"/> class with the default settings.</returns>
+            public static SolidAngleInfo CreateDefault()
+            {
+                return new SolidAngleInfo(nameof(SolidAngle), DefaultBaseUnit, GetDefaultMappings(), new SolidAngle(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SolidAngleInfo"/> class with the default settings for the SolidAngle quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="SolidAngleInfo"/> class with the default settings.
+            /// </returns>
+            public static SolidAngleInfo CreateDefault(Func<IEnumerable<UnitDefinition<SolidAngleUnit>>, IEnumerable<IUnitDefinition<SolidAngleUnit>>> customizeUnits)
+            {
+                return new SolidAngleInfo(nameof(SolidAngle), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SolidAngle(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="SolidAngle"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of SolidAngle is Steradian. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static SolidAngleUnit DefaultBaseUnit { get; } = SolidAngleUnit.Steradian;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="SolidAngleUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SolidAngleUnit}"/> representing the default unit mappings for SolidAngle.</returns>
+            public static IEnumerable<UnitDefinition<SolidAngleUnit>> GetDefaultMappings()
+            {
+                yield return new (SolidAngleUnit.Steradian, "Steradian", "Steradians", BaseUnits.Undefined);
+            }
+        }
+
         static SolidAngle()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = SolidAngleUnit.Steradian;
-            Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().ToArray();
-            Zero = new SolidAngle(0, BaseUnit);
-            Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
-                new UnitInfo<SolidAngleUnit>[]
-                {
-                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined, "SolidAngle"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = SolidAngleInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -102,27 +149,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SolidAngleUnit> Info { get; }
+        public static QuantityInfo<SolidAngle, SolidAngleUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of SolidAngle, which is Steradian. All conversions go via this value.
         /// </summary>
-        public static SolidAngleUnit BaseUnit { get; }
+        public static SolidAngleUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the SolidAngle quantity.
         /// </summary>
-        public static SolidAngleUnit[] Units { get; }
+        public static IReadOnlyCollection<SolidAngleUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Steradian.
         /// </summary>
-        public static SolidAngle Zero { get; }
+        public static SolidAngle Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static SolidAngle AdditiveIdentity => Zero;
@@ -140,7 +187,7 @@ namespace UnitsNet
         public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
+        public QuantityInfo<SolidAngle, SolidAngleUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,12 +198,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<SolidAngleUnit> IQuantity<SolidAngleUnit>.QuantityInfo => Info;
 
         #endregion
 

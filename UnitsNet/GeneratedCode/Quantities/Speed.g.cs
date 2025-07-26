@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -73,51 +69,102 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly SpeedUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Speed"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class SpeedInfo: QuantityInfo<Speed, SpeedUnit>
+        {
+            /// <inheritdoc />
+            public SpeedInfo(string name, SpeedUnit baseUnit, IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings, Speed zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Speed, SpeedUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public SpeedInfo(string name, SpeedUnit baseUnit, IEnumerable<IUnitDefinition<SpeedUnit>> unitMappings, Speed zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Speed.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Speed", typeof(Speed).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpeedInfo"/> class with the default settings for the Speed quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="SpeedInfo"/> class with the default settings.</returns>
+            public static SpeedInfo CreateDefault()
+            {
+                return new SpeedInfo(nameof(Speed), DefaultBaseUnit, GetDefaultMappings(), new Speed(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpeedInfo"/> class with the default settings for the Speed quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="SpeedInfo"/> class with the default settings.
+            /// </returns>
+            public static SpeedInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpeedUnit>>, IEnumerable<IUnitDefinition<SpeedUnit>>> customizeUnits)
+            {
+                return new SpeedInfo(nameof(Speed), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Speed(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Speed"/> is [T^-1][L].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Speed is MeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static SpeedUnit DefaultBaseUnit { get; } = SpeedUnit.MeterPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="SpeedUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpeedUnit}"/> representing the default unit mappings for Speed.</returns>
+            public static IEnumerable<UnitDefinition<SpeedUnit>> GetDefaultMappings()
+            {
+                yield return new (SpeedUnit.CentimeterPerHour, "CentimeterPerHour", "CentimetersPerHour", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.CentimeterPerMinute, "CentimeterPerMinute", "CentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.CentimeterPerSecond, "CentimeterPerSecond", "CentimetersPerSecond", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second));
+                yield return new (SpeedUnit.DecimeterPerMinute, "DecimeterPerMinute", "DecimetersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.DecimeterPerSecond, "DecimeterPerSecond", "DecimetersPerSecond", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
+                yield return new (SpeedUnit.FootPerHour, "FootPerHour", "FeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.FootPerMinute, "FootPerMinute", "FeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.FootPerSecond, "FootPerSecond", "FeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                yield return new (SpeedUnit.InchPerHour, "InchPerHour", "InchesPerHour", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.InchPerMinute, "InchPerMinute", "InchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.InchPerSecond, "InchPerSecond", "InchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second));
+                yield return new (SpeedUnit.KilometerPerHour, "KilometerPerHour", "KilometersPerHour", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.KilometerPerMinute, "KilometerPerMinute", "KilometersPerMinute", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.KilometerPerSecond, "KilometerPerSecond", "KilometersPerSecond", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
+                yield return new (SpeedUnit.Knot, "Knot", "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.Mach, "Mach", "Mach", BaseUnits.Undefined);
+                yield return new (SpeedUnit.MeterPerHour, "MeterPerHour", "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.MeterPerMinute, "MeterPerMinute", "MetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.MeterPerSecond, "MeterPerSecond", "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (SpeedUnit.MicrometerPerMinute, "MicrometerPerMinute", "MicrometersPerMinute", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.MicrometerPerSecond, "MicrometerPerSecond", "MicrometersPerSecond", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second));
+                yield return new (SpeedUnit.MilePerHour, "MilePerHour", "MilesPerHour", new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.MillimeterPerHour, "MillimeterPerHour", "MillimetersPerHour", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.MillimeterPerMinute, "MillimeterPerMinute", "MillimetersPerMinute", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.MillimeterPerSecond, "MillimeterPerSecond", "MillimetersPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second));
+                yield return new (SpeedUnit.NanometerPerMinute, "NanometerPerMinute", "NanometersPerMinute", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.NanometerPerSecond, "NanometerPerSecond", "NanometersPerSecond", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second));
+                yield return new (SpeedUnit.UsSurveyFootPerHour, "UsSurveyFootPerHour", "UsSurveyFeetPerHour", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.UsSurveyFootPerMinute, "UsSurveyFootPerMinute", "UsSurveyFeetPerMinute", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.UsSurveyFootPerSecond, "UsSurveyFootPerSecond", "UsSurveyFeetPerSecond", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second));
+                yield return new (SpeedUnit.YardPerHour, "YardPerHour", "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour));
+                yield return new (SpeedUnit.YardPerMinute, "YardPerMinute", "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute));
+                yield return new (SpeedUnit.YardPerSecond, "YardPerSecond", "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second));
+            }
+        }
+
         static Speed()
         {
-            BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-            BaseUnit = SpeedUnit.MeterPerSecond;
-            Units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().ToArray();
-            Zero = new Speed(0, BaseUnit);
-            Info = new QuantityInfo<SpeedUnit>("Speed",
-                new UnitInfo<SpeedUnit>[]
-                {
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, "CentimetersPerHour", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, "CentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, "CentimetersPerSecond", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerMinute, "DecimetersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerSecond, "DecimetersPerSecond", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, "FeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, "FeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, "FeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, "InchesPerHour", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, "InchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, "InchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerHour, "KilometersPerHour", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, "KilometersPerMinute", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, "KilometersPerSecond", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.Mach, "Mach", BaseUnits.Undefined, "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, "MetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerMinute, "MicrometersPerMinute", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerSecond, "MicrometersPerSecond", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, "MilesPerHour", new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerHour, "MillimetersPerHour", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerMinute, "MillimetersPerMinute", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerSecond, "MillimetersPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerMinute, "NanometersPerMinute", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerSecond, "NanometersPerSecond", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, "UsSurveyFeetPerHour", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, "UsSurveyFeetPerMinute", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, "UsSurveyFeetPerSecond", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute), "Speed"),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second), "Speed"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = SpeedInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -155,27 +202,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpeedUnit> Info { get; }
+        public static QuantityInfo<Speed, SpeedUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static SpeedUnit BaseUnit { get; }
+        public static SpeedUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Speed quantity.
         /// </summary>
-        public static SpeedUnit[] Units { get; }
+        public static IReadOnlyCollection<SpeedUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
         /// </summary>
-        public static Speed Zero { get; }
+        public static Speed Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Speed AdditiveIdentity => Zero;
@@ -193,7 +240,7 @@ namespace UnitsNet
         public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<SpeedUnit> QuantityInfo => Info;
+        public QuantityInfo<Speed, SpeedUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -204,12 +251,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<SpeedUnit> IQuantity<SpeedUnit>.QuantityInfo => Info;
 
         #endregion
 

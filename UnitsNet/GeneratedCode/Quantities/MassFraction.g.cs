@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -69,42 +65,93 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MassFractionUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MassFraction"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MassFractionInfo: QuantityInfo<MassFraction, MassFractionUnit>
+        {
+            /// <inheritdoc />
+            public MassFractionInfo(string name, MassFractionUnit baseUnit, IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings, MassFraction zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MassFraction, MassFractionUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MassFractionInfo(string name, MassFractionUnit baseUnit, IEnumerable<IUnitDefinition<MassFractionUnit>> unitMappings, MassFraction zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFraction.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFraction", typeof(MassFraction).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFractionInfo"/> class with the default settings for the MassFraction quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MassFractionInfo"/> class with the default settings.</returns>
+            public static MassFractionInfo CreateDefault()
+            {
+                return new MassFractionInfo(nameof(MassFraction), DefaultBaseUnit, GetDefaultMappings(), new MassFraction(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFractionInfo"/> class with the default settings for the MassFraction quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MassFractionInfo"/> class with the default settings.
+            /// </returns>
+            public static MassFractionInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFractionUnit>>, IEnumerable<IUnitDefinition<MassFractionUnit>>> customizeUnits)
+            {
+                return new MassFractionInfo(nameof(MassFraction), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFraction(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MassFraction"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of MassFraction is DecimalFraction. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MassFractionUnit DefaultBaseUnit { get; } = MassFractionUnit.DecimalFraction;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MassFractionUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFractionUnit}"/> representing the default unit mappings for MassFraction.</returns>
+            public static IEnumerable<UnitDefinition<MassFractionUnit>> GetDefaultMappings()
+            {
+                yield return new (MassFractionUnit.CentigramPerGram, "CentigramPerGram", "CentigramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.CentigramPerKilogram, "CentigramPerKilogram", "CentigramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.DecagramPerGram, "DecagramPerGram", "DecagramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.DecagramPerKilogram, "DecagramPerKilogram", "DecagramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.DecigramPerGram, "DecigramPerGram", "DecigramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.DecigramPerKilogram, "DecigramPerKilogram", "DecigramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.DecimalFraction, "DecimalFraction", "DecimalFractions", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.GramPerGram, "GramPerGram", "GramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.GramPerKilogram, "GramPerKilogram", "GramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.HectogramPerGram, "HectogramPerGram", "HectogramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.HectogramPerKilogram, "HectogramPerKilogram", "HectogramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.KilogramPerGram, "KilogramPerGram", "KilogramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.KilogramPerKilogram, "KilogramPerKilogram", "KilogramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.MicrogramPerGram, "MicrogramPerGram", "MicrogramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.MicrogramPerKilogram, "MicrogramPerKilogram", "MicrogramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.MilligramPerGram, "MilligramPerGram", "MilligramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.MilligramPerKilogram, "MilligramPerKilogram", "MilligramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.NanogramPerGram, "NanogramPerGram", "NanogramsPerGram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.NanogramPerKilogram, "NanogramPerKilogram", "NanogramsPerKilogram", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.PartPerBillion, "PartPerBillion", "PartsPerBillion", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.PartPerMillion, "PartPerMillion", "PartsPerMillion", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.PartPerThousand, "PartPerThousand", "PartsPerThousand", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.PartPerTrillion, "PartPerTrillion", "PartsPerTrillion", BaseUnits.Undefined);
+                yield return new (MassFractionUnit.Percent, "Percent", "Percent", BaseUnits.Undefined);
+            }
+        }
+
         static MassFraction()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = MassFractionUnit.DecimalFraction;
-            Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().ToArray();
-            Zero = new MassFraction(0, BaseUnit);
-            Info = new QuantityInfo<MassFractionUnit>("MassFraction",
-                new UnitInfo<MassFractionUnit>[]
-                {
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "MassFraction"),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined, "MassFraction"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MassFractionInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -128,27 +175,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFractionUnit> Info { get; }
+        public static QuantityInfo<MassFraction, MassFractionUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MassFractionUnit BaseUnit { get; }
+        public static MassFractionUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MassFraction quantity.
         /// </summary>
-        public static MassFractionUnit[] Units { get; }
+        public static IReadOnlyCollection<MassFractionUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static MassFraction Zero { get; }
+        public static MassFraction Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MassFraction AdditiveIdentity => Zero;
@@ -166,7 +213,7 @@ namespace UnitsNet
         public MassFractionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MassFractionUnit> QuantityInfo => Info;
+        public QuantityInfo<MassFraction, MassFractionUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -177,12 +224,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MassFractionUnit> IQuantity<MassFractionUnit>.QuantityInfo => Info;
 
         #endregion
 

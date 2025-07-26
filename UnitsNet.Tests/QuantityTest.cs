@@ -1,12 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using UnitsNet.Units;
-using Xunit;
 using static System.Globalization.CultureInfo;
 
 namespace UnitsNet.Tests
@@ -20,7 +15,7 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void From_GivenNaNOrInfinity_DoNotThrowsArgumentException(double value)
+        public void From_GivenNaNOrInfinity_DoesNotThrowArgumentException(double value)
         {
             var exception = Record.Exception(() => Quantity.From(value, LengthUnit.Centimeter));
 
@@ -42,6 +37,12 @@ namespace UnitsNet.Tests
         {
             Enum? nullUnit = null;
             Assert.False(Quantity.TryFrom(1, nullUnit, out IQuantity? _));
+        }
+
+        [Fact]
+        public void TryFrom_GivenUnknownUnitType_ReturnsFalse()
+        {
+            Assert.False(Quantity.TryFrom(1, ConsoleColor.Red, out IQuantity? _));
         }
 
         [Fact]
@@ -134,7 +135,7 @@ namespace UnitsNet.Tests
             Type targetType = expectedQuantity.QuantityInfo.QuantityType;
 
             IQuantity parsedQuantity = Quantity.Parse(targetType, valueAsString);
-            
+
             Assert.Equal(expectedQuantity, parsedQuantity);
         }
 
@@ -215,11 +216,11 @@ namespace UnitsNet.Tests
         {
             var knownQuantities = new List<QuantityInfo> { Length.Info, Force.Info, Mass.Info };
 
-            ICollection<QuantityInfo> types = Quantity.ByName.Values;
+            IEnumerable<QuantityInfo> types = Quantity.ByName.Values;
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }
-    
+
         [Theory]
         [InlineData(1, 0, 0, 0, 0, 0, 0)]
         [InlineData(0, 1, 0, 0, 0, 0, 0)]

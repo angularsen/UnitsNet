@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,23 +62,74 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PorousMediumPermeabilityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="PorousMediumPermeability"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PorousMediumPermeabilityInfo: QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit>
+        {
+            /// <inheritdoc />
+            public PorousMediumPermeabilityInfo(string name, PorousMediumPermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PorousMediumPermeabilityUnit>> unitMappings, PorousMediumPermeability zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<PorousMediumPermeability, PorousMediumPermeabilityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PorousMediumPermeabilityInfo(string name, PorousMediumPermeabilityUnit baseUnit, IEnumerable<IUnitDefinition<PorousMediumPermeabilityUnit>> unitMappings, PorousMediumPermeability zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, PorousMediumPermeability.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PorousMediumPermeability", typeof(PorousMediumPermeability).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PorousMediumPermeabilityInfo"/> class with the default settings for the PorousMediumPermeability quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PorousMediumPermeabilityInfo"/> class with the default settings.</returns>
+            public static PorousMediumPermeabilityInfo CreateDefault()
+            {
+                return new PorousMediumPermeabilityInfo(nameof(PorousMediumPermeability), DefaultBaseUnit, GetDefaultMappings(), new PorousMediumPermeability(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PorousMediumPermeabilityInfo"/> class with the default settings for the PorousMediumPermeability quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PorousMediumPermeabilityInfo"/> class with the default settings.
+            /// </returns>
+            public static PorousMediumPermeabilityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PorousMediumPermeabilityUnit>>, IEnumerable<IUnitDefinition<PorousMediumPermeabilityUnit>>> customizeUnits)
+            {
+                return new PorousMediumPermeabilityInfo(nameof(PorousMediumPermeability), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PorousMediumPermeability(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="PorousMediumPermeability"/> is [L^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of PorousMediumPermeability is SquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PorousMediumPermeabilityUnit DefaultBaseUnit { get; } = PorousMediumPermeabilityUnit.SquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PorousMediumPermeabilityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PorousMediumPermeabilityUnit}"/> representing the default unit mappings for PorousMediumPermeability.</returns>
+            public static IEnumerable<UnitDefinition<PorousMediumPermeabilityUnit>> GetDefaultMappings()
+            {
+                yield return new (PorousMediumPermeabilityUnit.Darcy, "Darcy", "Darcys", BaseUnits.Undefined);
+                yield return new (PorousMediumPermeabilityUnit.Microdarcy, "Microdarcy", "Microdarcys", BaseUnits.Undefined);
+                yield return new (PorousMediumPermeabilityUnit.Millidarcy, "Millidarcy", "Millidarcys", BaseUnits.Undefined);
+                yield return new (PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (PorousMediumPermeabilityUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
+            }
+        }
+
         static PorousMediumPermeability()
         {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            BaseUnit = PorousMediumPermeabilityUnit.SquareMeter;
-            Units = Enum.GetValues(typeof(PorousMediumPermeabilityUnit)).Cast<PorousMediumPermeabilityUnit>().ToArray();
-            Zero = new PorousMediumPermeability(0, BaseUnit);
-            Info = new QuantityInfo<PorousMediumPermeabilityUnit>("PorousMediumPermeability",
-                new UnitInfo<PorousMediumPermeabilityUnit>[]
-                {
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Darcy, "Darcys", BaseUnits.Undefined, "PorousMediumPermeability"),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Microdarcy, "Microdarcys", BaseUnits.Undefined, "PorousMediumPermeability"),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Millidarcy, "Millidarcys", BaseUnits.Undefined, "PorousMediumPermeability"),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "PorousMediumPermeability"),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter), "PorousMediumPermeability"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PorousMediumPermeabilityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -120,27 +167,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PorousMediumPermeabilityUnit> Info { get; }
+        public static QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of PorousMediumPermeability, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static PorousMediumPermeabilityUnit BaseUnit { get; }
+        public static PorousMediumPermeabilityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the PorousMediumPermeability quantity.
         /// </summary>
-        public static PorousMediumPermeabilityUnit[] Units { get; }
+        public static IReadOnlyCollection<PorousMediumPermeabilityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static PorousMediumPermeability Zero { get; }
+        public static PorousMediumPermeability Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static PorousMediumPermeability AdditiveIdentity => Zero;
@@ -158,7 +205,7 @@ namespace UnitsNet
         public PorousMediumPermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PorousMediumPermeabilityUnit> QuantityInfo => Info;
+        public QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -169,12 +216,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PorousMediumPermeabilityUnit> IQuantity<PorousMediumPermeabilityUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -140,7 +140,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalInsulance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -277,7 +277,7 @@ namespace UnitsNet.Tests
                 IQuantity<ThermalInsulanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
@@ -285,7 +285,7 @@ namespace UnitsNet.Tests
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
         }
 
@@ -293,7 +293,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -752,7 +752,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(ThermalInsulanceUnit)).Cast<ThermalInsulanceUnit>();
+            var units = Enum.GetValues<ThermalInsulanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -151,7 +151,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Angle.Zero, quantityInfo.Zero);
             Assert.Equal("Angle", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
             var quantity = new Angle(value: 1, unit: AngleUnit.Radian);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Angle(value: 1, unit: Angle.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -1362,7 +1362,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>();
+            var units = Enum.GetValues<AngleUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

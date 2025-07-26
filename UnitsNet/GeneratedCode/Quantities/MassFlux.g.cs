@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -68,30 +64,81 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MassFluxUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MassFlux"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MassFluxInfo: QuantityInfo<MassFlux, MassFluxUnit>
+        {
+            /// <inheritdoc />
+            public MassFluxInfo(string name, MassFluxUnit baseUnit, IEnumerable<IUnitDefinition<MassFluxUnit>> unitMappings, MassFlux zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MassFlux, MassFluxUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MassFluxInfo(string name, MassFluxUnit baseUnit, IEnumerable<IUnitDefinition<MassFluxUnit>> unitMappings, MassFlux zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFlux.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFlux", typeof(MassFlux).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFluxInfo"/> class with the default settings for the MassFlux quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MassFluxInfo"/> class with the default settings.</returns>
+            public static MassFluxInfo CreateDefault()
+            {
+                return new MassFluxInfo(nameof(MassFlux), DefaultBaseUnit, GetDefaultMappings(), new MassFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFluxInfo"/> class with the default settings for the MassFlux quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MassFluxInfo"/> class with the default settings.
+            /// </returns>
+            public static MassFluxInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFluxUnit>>, IEnumerable<IUnitDefinition<MassFluxUnit>>> customizeUnits)
+            {
+                return new MassFluxInfo(nameof(MassFlux), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFlux(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MassFlux"/> is [T^-1][L^-2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of MassFlux is KilogramPerSecondPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MassFluxUnit DefaultBaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MassFluxUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFluxUnit}"/> representing the default unit mappings for MassFlux.</returns>
+            public static IEnumerable<UnitDefinition<MassFluxUnit>> GetDefaultMappings()
+            {
+                yield return new (MassFluxUnit.GramPerHourPerSquareCentimeter, "GramPerHourPerSquareCentimeter", "GramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.GramPerHourPerSquareMeter, "GramPerHourPerSquareMeter", "GramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.GramPerHourPerSquareMillimeter, "GramPerHourPerSquareMillimeter", "GramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramPerSecondPerSquareCentimeter", "GramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (MassFluxUnit.GramPerSecondPerSquareMeter, "GramPerSecondPerSquareMeter", "GramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramPerSecondPerSquareMillimeter", "GramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramPerHourPerSquareCentimeter", "KilogramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramPerHourPerSquareMeter", "KilogramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramPerHourPerSquareMillimeter", "KilogramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour));
+                yield return new (MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramPerSecondPerSquareCentimeter", "KilogramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramPerSecondPerSquareMeter", "KilogramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramPerSecondPerSquareMillimeter", "KilogramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static MassFlux()
         {
-            BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-            BaseUnit = MassFluxUnit.KilogramPerSecondPerSquareMeter;
-            Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().ToArray();
-            Zero = new MassFlux(0, BaseUnit);
-            Info = new QuantityInfo<MassFluxUnit>("MassFlux",
-                new UnitInfo<MassFluxUnit>[]
-                {
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "MassFlux"),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "MassFlux"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MassFluxInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -129,27 +176,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFluxUnit> Info { get; }
+        public static QuantityInfo<MassFlux, MassFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit { get; }
+        public static MassFluxUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
-        public static MassFluxUnit[] Units { get; }
+        public static IReadOnlyCollection<MassFluxUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero { get; }
+        public static MassFlux Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MassFlux AdditiveIdentity => Zero;
@@ -167,7 +214,7 @@ namespace UnitsNet
         public MassFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MassFluxUnit> QuantityInfo => Info;
+        public QuantityInfo<MassFlux, MassFluxUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -178,12 +225,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MassFluxUnit> IQuantity<MassFluxUnit>.QuantityInfo => Info;
 
         #endregion
 

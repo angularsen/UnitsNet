@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,30 +62,81 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly FrequencyUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Frequency"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class FrequencyInfo: QuantityInfo<Frequency, FrequencyUnit>
+        {
+            /// <inheritdoc />
+            public FrequencyInfo(string name, FrequencyUnit baseUnit, IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings, Frequency zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Frequency, FrequencyUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public FrequencyInfo(string name, FrequencyUnit baseUnit, IEnumerable<IUnitDefinition<FrequencyUnit>> unitMappings, Frequency zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Frequency.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Frequency", typeof(Frequency).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FrequencyInfo"/> class with the default settings for the Frequency quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="FrequencyInfo"/> class with the default settings.</returns>
+            public static FrequencyInfo CreateDefault()
+            {
+                return new FrequencyInfo(nameof(Frequency), DefaultBaseUnit, GetDefaultMappings(), new Frequency(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FrequencyInfo"/> class with the default settings for the Frequency quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="FrequencyInfo"/> class with the default settings.
+            /// </returns>
+            public static FrequencyInfo CreateDefault(Func<IEnumerable<UnitDefinition<FrequencyUnit>>, IEnumerable<IUnitDefinition<FrequencyUnit>>> customizeUnits)
+            {
+                return new FrequencyInfo(nameof(Frequency), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Frequency(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Frequency"/> is [T^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Frequency is Hertz. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static FrequencyUnit DefaultBaseUnit { get; } = FrequencyUnit.Hertz;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="FrequencyUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FrequencyUnit}"/> representing the default unit mappings for Frequency.</returns>
+            public static IEnumerable<UnitDefinition<FrequencyUnit>> GetDefaultMappings()
+            {
+                yield return new (FrequencyUnit.BeatPerMinute, "BeatPerMinute", "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute));
+                yield return new (FrequencyUnit.CyclePerHour, "CyclePerHour", "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour));
+                yield return new (FrequencyUnit.CyclePerMinute, "CyclePerMinute", "CyclesPerMinute", new BaseUnits(time: DurationUnit.Minute));
+                yield return new (FrequencyUnit.Gigahertz, "Gigahertz", "Gigahertz", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (FrequencyUnit.Hertz, "Hertz", "Hertz", new BaseUnits(time: DurationUnit.Second));
+                yield return new (FrequencyUnit.Kilohertz, "Kilohertz", "Kilohertz", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (FrequencyUnit.Megahertz, "Megahertz", "Megahertz", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (FrequencyUnit.Microhertz, "Microhertz", "Microhertz", BaseUnits.Undefined);
+                yield return new (FrequencyUnit.Millihertz, "Millihertz", "Millihertz", BaseUnits.Undefined);
+                yield return new (FrequencyUnit.PerSecond, "PerSecond", "PerSecond", new BaseUnits(time: DurationUnit.Second));
+                yield return new (FrequencyUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", BaseUnits.Undefined);
+                yield return new (FrequencyUnit.Terahertz, "Terahertz", "Terahertz", new BaseUnits(time: DurationUnit.Picosecond));
+            }
+        }
+
         static Frequency()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            BaseUnit = FrequencyUnit.Hertz;
-            Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().ToArray();
-            Zero = new Frequency(0, BaseUnit);
-            Info = new QuantityInfo<FrequencyUnit>("Frequency",
-                new UnitInfo<FrequencyUnit>[]
-                {
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", new BaseUnits(time: DurationUnit.Minute), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, "Gigahertz", new BaseUnits(time: DurationUnit.Nanosecond), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", new BaseUnits(time: DurationUnit.Second), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", new BaseUnits(time: DurationUnit.Millisecond), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", new BaseUnits(time: DurationUnit.Microsecond), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Microhertz, "Microhertz", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Millihertz, "Millihertz", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", new BaseUnits(time: DurationUnit.Second), "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined, "Frequency"),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined, "Frequency"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = FrequencyInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -127,27 +174,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FrequencyUnit> Info { get; }
+        public static QuantityInfo<Frequency, FrequencyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
         /// </summary>
-        public static FrequencyUnit BaseUnit { get; }
+        public static FrequencyUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Frequency quantity.
         /// </summary>
-        public static FrequencyUnit[] Units { get; }
+        public static IReadOnlyCollection<FrequencyUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency Zero { get; }
+        public static Frequency Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Frequency AdditiveIdentity => Zero;
@@ -165,7 +212,7 @@ namespace UnitsNet
         public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
+        public QuantityInfo<Frequency, FrequencyUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,12 +223,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<FrequencyUnit> IQuantity<FrequencyUnit>.QuantityInfo => Info;
 
         #endregion
 

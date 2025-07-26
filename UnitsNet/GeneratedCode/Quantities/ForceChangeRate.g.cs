@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,33 +62,84 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ForceChangeRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ForceChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ForceChangeRateInfo: QuantityInfo<ForceChangeRate, ForceChangeRateUnit>
+        {
+            /// <inheritdoc />
+            public ForceChangeRateInfo(string name, ForceChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings, ForceChangeRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ForceChangeRate, ForceChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ForceChangeRateInfo(string name, ForceChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<ForceChangeRateUnit>> unitMappings, ForceChangeRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ForceChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ForceChangeRate", typeof(ForceChangeRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings for the ForceChangeRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings.</returns>
+            public static ForceChangeRateInfo CreateDefault()
+            {
+                return new ForceChangeRateInfo(nameof(ForceChangeRate), DefaultBaseUnit, GetDefaultMappings(), new ForceChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings for the ForceChangeRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ForceChangeRateInfo"/> class with the default settings.
+            /// </returns>
+            public static ForceChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<ForceChangeRateUnit>>, IEnumerable<IUnitDefinition<ForceChangeRateUnit>>> customizeUnits)
+            {
+                return new ForceChangeRateInfo(nameof(ForceChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ForceChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ForceChangeRate"/> is [T^-3][L][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ForceChangeRate is NewtonPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ForceChangeRateUnit DefaultBaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ForceChangeRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForceChangeRateUnit}"/> representing the default unit mappings for ForceChangeRate.</returns>
+            public static IEnumerable<UnitDefinition<ForceChangeRateUnit>> GetDefaultMappings()
+            {
+                yield return new (ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonPerSecond", "CentinewtonsPerSecond", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonPerMinute", "DecanewtonsPerMinute", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonPerSecond", "DecanewtonsPerSecond", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonPerSecond", "DecinewtonsPerSecond", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonPerMinute", "KilonewtonsPerMinute", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonPerSecond", "KilonewtonsPerSecond", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundForcePerMinute", "KilopoundsForcePerMinute", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundForcePerSecond", "KilopoundsForcePerSecond", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonPerSecond", "MicronewtonsPerSecond", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonPerSecond", "MillinewtonsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonPerSecond", "NanonewtonsPerSecond", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.NewtonPerMinute, "NewtonPerMinute", "NewtonsPerMinute", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.NewtonPerSecond, "NewtonPerSecond", "NewtonsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForceChangeRateUnit.PoundForcePerMinute, "PoundForcePerMinute", "PoundsForcePerMinute", BaseUnits.Undefined);
+                yield return new (ForceChangeRateUnit.PoundForcePerSecond, "PoundForcePerSecond", "PoundsForcePerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static ForceChangeRate()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-            BaseUnit = ForceChangeRateUnit.NewtonPerSecond;
-            Units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().ToArray();
-            Zero = new ForceChangeRate(0, BaseUnit);
-            Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
-                new UnitInfo<ForceChangeRateUnit>[]
-                {
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonsPerSecond", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonsPerSecond", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundsForcePerMinute", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundsForcePerSecond", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonsPerSecond", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonsPerSecond", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, "NewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined, "ForceChangeRate"),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined, "ForceChangeRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ForceChangeRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -130,27 +177,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForceChangeRateUnit> Info { get; }
+        public static QuantityInfo<ForceChangeRate, ForceChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ForceChangeRate, which is NewtonPerSecond. All conversions go via this value.
         /// </summary>
-        public static ForceChangeRateUnit BaseUnit { get; }
+        public static ForceChangeRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ForceChangeRate quantity.
         /// </summary>
-        public static ForceChangeRateUnit[] Units { get; }
+        public static IReadOnlyCollection<ForceChangeRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerSecond.
         /// </summary>
-        public static ForceChangeRate Zero { get; }
+        public static ForceChangeRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ForceChangeRate AdditiveIdentity => Zero;
@@ -168,7 +215,7 @@ namespace UnitsNet
         public ForceChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ForceChangeRateUnit> QuantityInfo => Info;
+        public QuantityInfo<ForceChangeRate, ForceChangeRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -179,12 +226,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.QuantityInfo => Info;
 
         #endregion
 

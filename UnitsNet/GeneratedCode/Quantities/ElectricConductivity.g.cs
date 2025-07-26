@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,24 +62,75 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricConductivityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricConductivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricConductivityInfo: QuantityInfo<ElectricConductivity, ElectricConductivityUnit>
+        {
+            /// <inheritdoc />
+            public ElectricConductivityInfo(string name, ElectricConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings, ElectricConductivity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricConductivity, ElectricConductivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricConductivityInfo(string name, ElectricConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductivityUnit>> unitMappings, ElectricConductivity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricConductivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricConductivity", typeof(ElectricConductivity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings for the ElectricConductivity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings.</returns>
+            public static ElectricConductivityInfo CreateDefault()
+            {
+                return new ElectricConductivityInfo(nameof(ElectricConductivity), DefaultBaseUnit, GetDefaultMappings(), new ElectricConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings for the ElectricConductivity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricConductivityInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricConductivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricConductivityUnit>>, IEnumerable<IUnitDefinition<ElectricConductivityUnit>>> customizeUnits)
+            {
+                return new ElectricConductivityInfo(nameof(ElectricConductivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricConductivity"/> is [T^3][L^-3][M^-1][I^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricConductivity is SiemensPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricConductivityUnit DefaultBaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricConductivityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricConductivityUnit}"/> representing the default unit mappings for ElectricConductivity.</returns>
+            public static IEnumerable<UnitDefinition<ElectricConductivityUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", "MicrosiemensPerCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", "MillisiemensPerCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricConductivityUnit.SiemensPerCentimeter, "SiemensPerCentimeter", "SiemensPerCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", "SiemensPerFoot", BaseUnits.Undefined);
+                yield return new (ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", "SiemensPerInch", BaseUnits.Undefined);
+                yield return new (ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricConductivity()
         {
-            BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-            BaseUnit = ElectricConductivityUnit.SiemensPerMeter;
-            Units = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
-            Zero = new ElectricConductivity(0, BaseUnit);
-            Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
-                new UnitInfo<ElectricConductivityUnit>[]
-                {
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerCentimeter, "SiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined, "ElectricConductivity"),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined, "ElectricConductivity"),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductivity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricConductivityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricConductivityUnit> Info { get; }
+        public static QuantityInfo<ElectricConductivity, ElectricConductivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricConductivity, which is SiemensPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricConductivityUnit BaseUnit { get; }
+        public static ElectricConductivityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>
-        public static ElectricConductivityUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricConductivityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SiemensPerMeter.
         /// </summary>
-        public static ElectricConductivity Zero { get; }
+        public static ElectricConductivity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricConductivity AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public ElectricConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricConductivityUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricConductivity, ElectricConductivityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -170,12 +217,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.QuantityInfo => Info;
 
         #endregion
 

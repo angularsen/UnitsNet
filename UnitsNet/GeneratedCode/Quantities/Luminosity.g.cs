@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,32 +62,83 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LuminosityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Luminosity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LuminosityInfo: QuantityInfo<Luminosity, LuminosityUnit>
+        {
+            /// <inheritdoc />
+            public LuminosityInfo(string name, LuminosityUnit baseUnit, IEnumerable<IUnitDefinition<LuminosityUnit>> unitMappings, Luminosity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Luminosity, LuminosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LuminosityInfo(string name, LuminosityUnit baseUnit, IEnumerable<IUnitDefinition<LuminosityUnit>> unitMappings, Luminosity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Luminosity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Luminosity", typeof(Luminosity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminosityInfo"/> class with the default settings for the Luminosity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LuminosityInfo"/> class with the default settings.</returns>
+            public static LuminosityInfo CreateDefault()
+            {
+                return new LuminosityInfo(nameof(Luminosity), DefaultBaseUnit, GetDefaultMappings(), new Luminosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminosityInfo"/> class with the default settings for the Luminosity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LuminosityInfo"/> class with the default settings.
+            /// </returns>
+            public static LuminosityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminosityUnit>>, IEnumerable<IUnitDefinition<LuminosityUnit>>> customizeUnits)
+            {
+                return new LuminosityInfo(nameof(Luminosity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Luminosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Luminosity"/> is [T^-3][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Luminosity is Watt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LuminosityUnit DefaultBaseUnit { get; } = LuminosityUnit.Watt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LuminosityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminosityUnit}"/> representing the default unit mappings for Luminosity.</returns>
+            public static IEnumerable<UnitDefinition<LuminosityUnit>> GetDefaultMappings()
+            {
+                yield return new (LuminosityUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined);
+                yield return new (LuminosityUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Femtowatt, "Femtowatt", "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Gigawatt, "Gigawatt", "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
+                yield return new (LuminosityUnit.Kilowatt, "Kilowatt", "Kilowatts", BaseUnits.Undefined);
+                yield return new (LuminosityUnit.Megawatt, "Megawatt", "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Microwatt, "Microwatt", "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Milliwatt, "Milliwatt", "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Nanowatt, "Nanowatt", "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Petawatt, "Petawatt", "Petawatts", BaseUnits.Undefined);
+                yield return new (LuminosityUnit.Picowatt, "Picowatt", "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.SolarLuminosity, "SolarLuminosity", "SolarLuminosities", BaseUnits.Undefined);
+                yield return new (LuminosityUnit.Terawatt, "Terawatt", "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LuminosityUnit.Watt, "Watt", "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static Luminosity()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = LuminosityUnit.Watt;
-            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().ToArray();
-            Zero = new Luminosity(0, BaseUnit);
-            Info = new QuantityInfo<LuminosityUnit>("Luminosity",
-                new UnitInfo<LuminosityUnit>[]
-                {
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined, "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined, "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined, "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Luminosity"),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Luminosity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LuminosityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -129,27 +176,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminosityUnit> Info { get; }
+        public static QuantityInfo<Luminosity, LuminosityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static LuminosityUnit BaseUnit { get; }
+        public static LuminosityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Luminosity quantity.
         /// </summary>
-        public static LuminosityUnit[] Units { get; }
+        public static IReadOnlyCollection<LuminosityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Luminosity Zero { get; }
+        public static Luminosity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Luminosity AdditiveIdentity => Zero;
@@ -167,7 +214,7 @@ namespace UnitsNet
         public LuminosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LuminosityUnit> QuantityInfo => Info;
+        public QuantityInfo<Luminosity, LuminosityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -178,12 +225,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LuminosityUnit> IQuantity<LuminosityUnit>.QuantityInfo => Info;
 
         #endregion
 

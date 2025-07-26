@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,32 +62,83 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricResistivityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricResistivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricResistivityInfo: QuantityInfo<ElectricResistivity, ElectricResistivityUnit>
+        {
+            /// <inheritdoc />
+            public ElectricResistivityInfo(string name, ElectricResistivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistivityUnit>> unitMappings, ElectricResistivity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricResistivity, ElectricResistivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricResistivityInfo(string name, ElectricResistivityUnit baseUnit, IEnumerable<IUnitDefinition<ElectricResistivityUnit>> unitMappings, ElectricResistivity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricResistivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricResistivity", typeof(ElectricResistivity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricResistivityInfo"/> class with the default settings for the ElectricResistivity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricResistivityInfo"/> class with the default settings.</returns>
+            public static ElectricResistivityInfo CreateDefault()
+            {
+                return new ElectricResistivityInfo(nameof(ElectricResistivity), DefaultBaseUnit, GetDefaultMappings(), new ElectricResistivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricResistivityInfo"/> class with the default settings for the ElectricResistivity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricResistivityInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricResistivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricResistivityUnit>>, IEnumerable<IUnitDefinition<ElectricResistivityUnit>>> customizeUnits)
+            {
+                return new ElectricResistivityInfo(nameof(ElectricResistivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricResistivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricResistivity"/> is [T^-3][L^3][M][I^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricResistivity is OhmMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricResistivityUnit DefaultBaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricResistivityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricResistivityUnit}"/> representing the default unit mappings for ElectricResistivity.</returns>
+            public static IEnumerable<UnitDefinition<ElectricResistivityUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricResistivityUnit.KiloohmCentimeter, "KiloohmCentimeter", "KiloohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.KiloohmMeter, "KiloohmMeter", "KiloohmMeters", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistivityUnit.MegaohmCentimeter, "MegaohmCentimeter", "MegaohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.MegaohmMeter, "MegaohmMeter", "MegaohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricResistivityUnit.MicroohmCentimeter, "MicroohmCentimeter", "MicroohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.MicroohmMeter, "MicroohmMeter", "MicroohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistivityUnit.MilliohmCentimeter, "MilliohmCentimeter", "MilliohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.MilliohmMeter, "MilliohmMeter", "MilliohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistivityUnit.NanoohmCentimeter, "NanoohmCentimeter", "NanoohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.NanoohmMeter, "NanoohmMeter", "NanoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistivityUnit.OhmCentimeter, "OhmCentimeter", "OhmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.OhmMeter, "OhmMeter", "OhmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricResistivityUnit.PicoohmCentimeter, "PicoohmCentimeter", "PicoohmsCentimeter", BaseUnits.Undefined);
+                yield return new (ElectricResistivityUnit.PicoohmMeter, "PicoohmMeter", "PicoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricResistivity()
         {
-            BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-            BaseUnit = ElectricResistivityUnit.OhmMeter;
-            Units = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().ToArray();
-            Zero = new ElectricResistivity(0, BaseUnit);
-            Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
-                new UnitInfo<ElectricResistivityUnit>[]
-                {
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, "MegaohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricResistivity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricResistivityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -129,27 +176,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricResistivityUnit> Info { get; }
+        public static QuantityInfo<ElectricResistivity, ElectricResistivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit { get; }
+        public static ElectricResistivityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
-        public static ElectricResistivityUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricResistivityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero { get; }
+        public static ElectricResistivity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricResistivity AdditiveIdentity => Zero;
@@ -167,7 +214,7 @@ namespace UnitsNet
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricResistivity, ElectricResistivityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -178,12 +225,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.QuantityInfo => Info;
 
         #endregion
 

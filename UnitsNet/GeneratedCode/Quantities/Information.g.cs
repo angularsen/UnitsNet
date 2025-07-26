@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,57 +59,108 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly InformationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Information"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class InformationInfo: QuantityInfo<Information, InformationUnit>
+        {
+            /// <inheritdoc />
+            public InformationInfo(string name, InformationUnit baseUnit, IEnumerable<IUnitDefinition<InformationUnit>> unitMappings, Information zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Information, InformationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public InformationInfo(string name, InformationUnit baseUnit, IEnumerable<IUnitDefinition<InformationUnit>> unitMappings, Information zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Information.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Information", typeof(Information).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="InformationInfo"/> class with the default settings for the Information quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="InformationInfo"/> class with the default settings.</returns>
+            public static InformationInfo CreateDefault()
+            {
+                return new InformationInfo(nameof(Information), DefaultBaseUnit, GetDefaultMappings(), new Information(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="InformationInfo"/> class with the default settings for the Information quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="InformationInfo"/> class with the default settings.
+            /// </returns>
+            public static InformationInfo CreateDefault(Func<IEnumerable<UnitDefinition<InformationUnit>>, IEnumerable<IUnitDefinition<InformationUnit>>> customizeUnits)
+            {
+                return new InformationInfo(nameof(Information), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Information(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Information"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of Information is Bit. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static InformationUnit DefaultBaseUnit { get; } = InformationUnit.Bit;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="InformationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{InformationUnit}"/> representing the default unit mappings for Information.</returns>
+            public static IEnumerable<UnitDefinition<InformationUnit>> GetDefaultMappings()
+            {
+                yield return new (InformationUnit.Bit, "Bit", "Bits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Byte, "Byte", "Bytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exabit, "Exabit", "Exabits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exabyte, "Exabyte", "Exabytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exaoctet, "Exaoctet", "Exaoctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exbibit, "Exbibit", "Exbibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exbibyte, "Exbibyte", "Exbibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Exbioctet, "Exbioctet", "Exbioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gibibit, "Gibibit", "Gibibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gibibyte, "Gibibyte", "Gibibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gibioctet, "Gibioctet", "Gibioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gigabit, "Gigabit", "Gigabits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gigabyte, "Gigabyte", "Gigabytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Gigaoctet, "Gigaoctet", "Gigaoctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kibibit, "Kibibit", "Kibibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kibibyte, "Kibibyte", "Kibibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kibioctet, "Kibioctet", "Kibioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kilobit, "Kilobit", "Kilobits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kilobyte, "Kilobyte", "Kilobytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Kilooctet, "Kilooctet", "Kilooctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Mebibit, "Mebibit", "Mebibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Mebibyte, "Mebibyte", "Mebibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Mebioctet, "Mebioctet", "Mebioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Megabit, "Megabit", "Megabits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Megabyte, "Megabyte", "Megabytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Megaoctet, "Megaoctet", "Megaoctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Octet, "Octet", "Octets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Pebibit, "Pebibit", "Pebibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Pebibyte, "Pebibyte", "Pebibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Pebioctet, "Pebioctet", "Pebioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Petabit, "Petabit", "Petabits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Petabyte, "Petabyte", "Petabytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Petaoctet, "Petaoctet", "Petaoctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Tebibit, "Tebibit", "Tebibits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Tebibyte, "Tebibyte", "Tebibytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Tebioctet, "Tebioctet", "Tebioctets", BaseUnits.Undefined);
+                yield return new (InformationUnit.Terabit, "Terabit", "Terabits", BaseUnits.Undefined);
+                yield return new (InformationUnit.Terabyte, "Terabyte", "Terabytes", BaseUnits.Undefined);
+                yield return new (InformationUnit.Teraoctet, "Teraoctet", "Teraoctets", BaseUnits.Undefined);
+            }
+        }
+
         static Information()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = InformationUnit.Bit;
-            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().ToArray();
-            Zero = new Information(0, BaseUnit);
-            Info = new QuantityInfo<InformationUnit>("Information",
-                new UnitInfo<InformationUnit>[]
-                {
-                    new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exabit, "Exabits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exabyte, "Exabytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exaoctet, "Exaoctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exbibit, "Exbibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, "Exbibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exbioctet, "Exbioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gibibit, "Gibibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, "Gibibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gibioctet, "Gibioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gigabit, "Gigabits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, "Gigabytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gigaoctet, "Gigaoctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kibibit, "Kibibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, "Kibibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kibioctet, "Kibioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kilobit, "Kilobits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, "Kilobytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kilooctet, "Kilooctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Mebibit, "Mebibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, "Mebibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Mebioctet, "Mebioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Megabit, "Megabits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Megabyte, "Megabytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Megaoctet, "Megaoctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Octet, "Octets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Pebibit, "Pebibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, "Pebibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Pebioctet, "Pebioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Petabit, "Petabits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Petabyte, "Petabytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Petaoctet, "Petaoctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Tebibit, "Tebibits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Tebioctet, "Tebioctets", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined, "Information"),
-                    new UnitInfo<InformationUnit>(InformationUnit.Teraoctet, "Teraoctets", BaseUnits.Undefined, "Information"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = InformationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -137,27 +184,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<InformationUnit> Info { get; }
+        public static QuantityInfo<Information, InformationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit { get; }
+        public static InformationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
-        public static InformationUnit[] Units { get; }
+        public static IReadOnlyCollection<InformationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero { get; }
+        public static Information Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Information AdditiveIdentity => Zero;
@@ -175,7 +222,7 @@ namespace UnitsNet
         public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<InformationUnit> QuantityInfo => Info;
+        public QuantityInfo<Information, InformationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -186,12 +233,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<InformationUnit> IQuantity<InformationUnit>.QuantityInfo => Info;
 
         #endregion
 
