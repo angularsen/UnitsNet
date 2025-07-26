@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -113,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RatioChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioChangeRateUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RatioChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            RatioChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RatioChangeRate(1, RatioChangeRateUnit.DecimalFractionPerSecond);
 
             QuantityInfo<RatioChangeRate, RatioChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -628,7 +629,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>();
+            var units = EnumHelper.GetValues<RatioChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

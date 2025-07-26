@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -129,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotential_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricPotentialUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricPotentialUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricPotentialUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricPotential(1, ElectricPotentialUnit.Volt);
 
             QuantityInfo<ElectricPotential, ElectricPotentialUnit> quantityInfo = quantity.QuantityInfo;
@@ -758,7 +759,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ElectricPotentialUnit>();
+            var units = EnumHelper.GetValues<ElectricPotentialUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -173,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificWeight_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificWeightUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificWeightUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter);
 
             QuantityInfo<SpecificWeight, SpecificWeightUnit> quantityInfo = quantity.QuantityInfo;
@@ -958,7 +959,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>();
+            var units = EnumHelper.GetValues<SpecificWeightUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

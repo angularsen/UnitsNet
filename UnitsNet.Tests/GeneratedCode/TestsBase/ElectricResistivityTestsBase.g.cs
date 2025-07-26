@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -161,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricResistivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricResistivityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter);
 
             QuantityInfo<ElectricResistivity, ElectricResistivityUnit> quantityInfo = quantity.QuantityInfo;
@@ -892,7 +893,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ElectricResistivityUnit>();
+            var units = EnumHelper.GetValues<ElectricResistivityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

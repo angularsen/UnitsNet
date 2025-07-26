@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
             QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -650,7 +651,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>();
+            var units = EnumHelper.GetValues<ElectricCurrentDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

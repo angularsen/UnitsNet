@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -137,7 +138,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricImpedance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricImpedanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricImpedanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricImpedance(1, ElectricImpedanceUnit.Ohm);
 
             QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -760,7 +761,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ElectricImpedanceUnit>();
+            var units = EnumHelper.GetValues<ElectricImpedanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

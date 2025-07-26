@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -173,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureChangeRateUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
             QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -958,7 +959,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>();
+            var units = EnumHelper.GetValues<TemperatureChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -237,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpeedUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
 
             QuantityInfo<Speed, SpeedUnit> quantityInfo = quantity.QuantityInfo;
@@ -1538,7 +1539,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<SpeedUnit>();
+            var units = EnumHelper.GetValues<SpeedUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

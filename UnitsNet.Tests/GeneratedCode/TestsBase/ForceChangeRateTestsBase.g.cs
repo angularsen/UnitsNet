@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -165,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForceChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceChangeRateUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond);
 
             QuantityInfo<ForceChangeRate, ForceChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -954,7 +955,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>();
+            var units = EnumHelper.GetValues<ForceChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

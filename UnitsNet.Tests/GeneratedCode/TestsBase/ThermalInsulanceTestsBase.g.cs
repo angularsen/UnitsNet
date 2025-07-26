@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -133,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalInsulance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ThermalInsulanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ThermalInsulanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
             QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -738,7 +739,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ThermalInsulanceUnit>();
+            var units = EnumHelper.GetValues<ThermalInsulanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

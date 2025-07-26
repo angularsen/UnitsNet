@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ScalarUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
             QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
@@ -546,7 +547,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ScalarUnit>();
+            var units = EnumHelper.GetValues<ScalarUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

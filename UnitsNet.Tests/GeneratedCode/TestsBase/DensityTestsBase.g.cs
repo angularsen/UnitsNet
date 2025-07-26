@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -329,7 +330,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Density_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DensityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            DensityUnit[] unitsOrderedByName = EnumHelper.GetValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Density(1, DensityUnit.KilogramPerCubicMeter);
 
             QuantityInfo<Density, DensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -1904,7 +1905,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<DensityUnit>();
+            var units = EnumHelper.GetValues<DensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -181,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FluidResistanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
             QuantityInfo<FluidResistance, FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -1167,7 +1168,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<FluidResistanceUnit>();
+            var units = EnumHelper.GetValues<FluidResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

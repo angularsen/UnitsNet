@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -164,7 +165,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeConcentrationUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction);
 
             QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> quantityInfo = quantity.QuantityInfo;
@@ -974,7 +975,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>();
+            var units = EnumHelper.GetValues<VolumeConcentrationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

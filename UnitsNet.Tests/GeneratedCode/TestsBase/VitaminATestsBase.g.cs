@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VitaminAUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
+            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
 
             QuantityInfo<VitaminA, VitaminAUnit> quantityInfo = quantity.QuantityInfo;
@@ -546,7 +547,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<VitaminAUnit>();
+            var units = EnumHelper.GetValues<VitaminAUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

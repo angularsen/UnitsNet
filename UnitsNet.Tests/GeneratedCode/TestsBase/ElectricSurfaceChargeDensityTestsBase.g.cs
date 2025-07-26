@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricSurfaceChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricSurfaceChargeDensityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricSurfaceChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
             QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -650,7 +651,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>();
+            var units = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

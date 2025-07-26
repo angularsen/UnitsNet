@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -257,7 +258,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForcePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForcePerLengthUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ForcePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForcePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ForcePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter);
 
             QuantityInfo<ForcePerLength, ForcePerLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -1502,7 +1503,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>();
+            var units = EnumHelper.GetValues<ForcePerLengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

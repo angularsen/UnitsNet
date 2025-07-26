@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -240,7 +241,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            InformationUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
+            InformationUnit[] unitsOrderedByName = EnumHelper.GetValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Information(1, InformationUnit.Bit);
 
             QuantityInfo<Information, InformationUnit> quantityInfo = quantity.QuantityInfo;
@@ -1382,7 +1383,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<InformationUnit>();
+            var units = EnumHelper.GetValues<InformationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

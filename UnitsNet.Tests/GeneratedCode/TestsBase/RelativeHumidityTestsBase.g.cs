@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RelativeHumidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RelativeHumidityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
+            RelativeHumidityUnit[] unitsOrderedByName = EnumHelper.GetValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RelativeHumidity(1, RelativeHumidityUnit.Percent);
 
             QuantityInfo<RelativeHumidity, RelativeHumidityUnit> quantityInfo = quantity.QuantityInfo;
@@ -546,7 +547,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>();
+            var units = EnumHelper.GetValues<RelativeHumidityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

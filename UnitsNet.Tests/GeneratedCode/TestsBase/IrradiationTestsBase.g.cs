@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -141,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Irradiation_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IrradiationUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<IrradiationUnit>().OrderBy(x => x.ToString()).ToArray();
+            IrradiationUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradiationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Irradiation(1, IrradiationUnit.JoulePerSquareMeter);
 
             QuantityInfo<Irradiation, IrradiationUnit> quantityInfo = quantity.QuantityInfo;
@@ -782,7 +783,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<IrradiationUnit>();
+            var units = EnumHelper.GetValues<IrradiationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

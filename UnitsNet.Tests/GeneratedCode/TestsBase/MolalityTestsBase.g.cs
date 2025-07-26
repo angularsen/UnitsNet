@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molality_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolalityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<MolalityUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Molality(1, MolalityUnit.MolePerKilogram);
 
             QuantityInfo<Molality, MolalityUnit> quantityInfo = quantity.QuantityInfo;
@@ -650,7 +651,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<MolalityUnit>();
+            var units = EnumHelper.GetValues<MolalityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

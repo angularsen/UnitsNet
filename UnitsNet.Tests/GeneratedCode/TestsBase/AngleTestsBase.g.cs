@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -144,7 +145,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Angle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AngleUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
+            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Angle(1, AngleUnit.Radian);
 
             QuantityInfo<Angle, AngleUnit> quantityInfo = quantity.QuantityInfo;
@@ -1038,7 +1039,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<AngleUnit>();
+            var units = EnumHelper.GetValues<AngleUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

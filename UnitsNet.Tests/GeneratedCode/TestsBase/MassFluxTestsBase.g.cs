@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -153,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFluxUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
             QuantityInfo<MassFlux, MassFluxUnit> quantityInfo = quantity.QuantityInfo;
@@ -848,7 +849,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<MassFluxUnit>();
+            var units = EnumHelper.GetValues<MassFluxUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

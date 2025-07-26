@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -141,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumetricHeatCapacity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VolumetricHeatCapacity(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
             QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> quantityInfo = quantity.QuantityInfo;
@@ -782,7 +783,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>();
+            var units = EnumHelper.GetValues<VolumetricHeatCapacityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

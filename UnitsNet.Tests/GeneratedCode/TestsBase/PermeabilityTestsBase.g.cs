@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Permeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PermeabilityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            PermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Permeability(1, PermeabilityUnit.HenryPerMeter);
 
             QuantityInfo<Permeability, PermeabilityUnit> quantityInfo = quantity.QuantityInfo;
@@ -606,7 +607,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<PermeabilityUnit>();
+            var units = EnumHelper.GetValues<PermeabilityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

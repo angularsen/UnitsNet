@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -265,7 +266,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Energy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EnergyUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Energy(1, EnergyUnit.Joule);
 
             QuantityInfo<Energy, EnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -1611,7 +1612,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<EnergyUnit>();
+            var units = EnumHelper.GetValues<EnergyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

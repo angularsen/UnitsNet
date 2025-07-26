@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.CustomCode.Units;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using UnitsNet.Wrappers;
 using Xunit;
@@ -167,7 +168,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferencePressureReferences_ReturnsTheExpectedEnumValues()
         {
-            IEnumerable<PressureReference> expectedValues = EnumUtils.GetEnumValues<PressureReference>();
+            IEnumerable<PressureReference> expectedValues = EnumHelper.GetValues<PressureReference>();
 
             PressureReference[] actualValues = ReferencePressure.References;
 

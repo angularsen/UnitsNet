@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -237,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFlowUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassFlow(1, MassFlowUnit.GramPerSecond);
 
             QuantityInfo<MassFlow, MassFlowUnit> quantityInfo = quantity.QuantityInfo;
@@ -1414,7 +1415,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<MassFlowUnit>();
+            var units = EnumHelper.GetValues<MassFlowUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

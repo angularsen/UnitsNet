@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousIntensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminousIntensityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LuminousIntensity(1, LuminousIntensityUnit.Candela);
 
             QuantityInfo<LuminousIntensity, LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -606,7 +607,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<LuminousIntensityUnit>();
+            var units = EnumHelper.GetValues<LuminousIntensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

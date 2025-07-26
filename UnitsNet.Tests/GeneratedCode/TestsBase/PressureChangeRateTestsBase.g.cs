@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -177,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PressureChangeRateUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<PressureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            PressureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond);
 
             QuantityInfo<PressureChangeRate, PressureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -1202,7 +1203,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>();
+            var units = EnumHelper.GetValues<PressureChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

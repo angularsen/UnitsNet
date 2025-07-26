@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -129,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationEquivalentDose_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
+            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert);
 
             QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit> quantityInfo = quantity.QuantityInfo;
@@ -744,7 +745,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RadiationEquivalentDoseUnit>();
+            var units = EnumHelper.GetValues<RadiationEquivalentDoseUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

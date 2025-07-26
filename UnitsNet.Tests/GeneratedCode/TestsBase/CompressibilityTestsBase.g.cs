@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -133,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Compressibility_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            CompressibilityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            CompressibilityUnit[] unitsOrderedByName = EnumHelper.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Compressibility(1, CompressibilityUnit.InversePascal);
 
             QuantityInfo<Compressibility, CompressibilityUnit> quantityInfo = quantity.QuantityInfo;
@@ -808,7 +809,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<CompressibilityUnit>();
+            var units = EnumHelper.GetValues<CompressibilityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

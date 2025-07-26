@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ReciprocalLengthUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            ReciprocalLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter);
 
             QuantityInfo<ReciprocalLength, ReciprocalLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -904,7 +905,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>();
+            var units = EnumHelper.GetValues<ReciprocalLengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

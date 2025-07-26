@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void DynamicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DynamicViscosityUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
+            DynamicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
             QuantityInfo<DynamicViscosity, DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
@@ -834,7 +835,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>();
+            var units = EnumHelper.GetValues<DynamicViscosityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

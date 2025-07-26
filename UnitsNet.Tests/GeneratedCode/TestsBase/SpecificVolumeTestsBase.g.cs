@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificVolume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificVolumeUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram);
 
             QuantityInfo<SpecificVolume, SpecificVolumeUnit> quantityInfo = quantity.QuantityInfo;
@@ -650,7 +651,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>();
+            var units = EnumHelper.GetValues<SpecificVolumeUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

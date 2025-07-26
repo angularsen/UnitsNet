@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -121,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalAcceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalAccelerationUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
+            RotationalAccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared);
 
             QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit> quantityInfo = quantity.QuantityInfo;
@@ -682,7 +683,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>();
+            var units = EnumHelper.GetValues<RotationalAccelerationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

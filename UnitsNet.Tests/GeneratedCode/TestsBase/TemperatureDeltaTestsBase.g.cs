@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -141,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureDelta_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureDeltaUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin);
 
             QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> quantityInfo = quantity.QuantityInfo;
@@ -782,7 +783,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<TemperatureDeltaUnit>();
+            var units = EnumHelper.GetValues<TemperatureDeltaUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

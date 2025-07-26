@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -149,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Jerk_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            JerkUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
+            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Jerk(1, JerkUnit.MeterPerSecondCubed);
 
             QuantityInfo<Jerk, JerkUnit> quantityInfo = quantity.QuantityInfo;
@@ -903,7 +904,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<JerkUnit>();
+            var units = EnumHelper.GetValues<JerkUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

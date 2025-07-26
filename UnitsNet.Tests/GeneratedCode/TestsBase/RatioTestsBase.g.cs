@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -108,7 +109,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ratio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
+            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Ratio(1, RatioUnit.DecimalFraction);
 
             QuantityInfo<Ratio, RatioUnit> quantityInfo = quantity.QuantityInfo;
@@ -656,7 +657,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RatioUnit>();
+            var units = EnumHelper.GetValues<RatioUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

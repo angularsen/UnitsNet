@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -113,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ThermalResistanceUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ThermalResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ThermalResistance(1, ThermalResistanceUnit.KelvinPerWatt);
 
             QuantityInfo<ThermalResistance, ThermalResistanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -628,7 +629,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>();
+            var units = EnumHelper.GetValues<ThermalResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

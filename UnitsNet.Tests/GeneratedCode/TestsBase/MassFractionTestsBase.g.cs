@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -180,7 +181,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFraction_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFractionUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassFraction(1, MassFractionUnit.DecimalFraction);
 
             QuantityInfo<MassFraction, MassFractionUnit> quantityInfo = quantity.QuantityInfo;
@@ -1062,7 +1063,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<MassFractionUnit>();
+            var units = EnumHelper.GetValues<MassFractionUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

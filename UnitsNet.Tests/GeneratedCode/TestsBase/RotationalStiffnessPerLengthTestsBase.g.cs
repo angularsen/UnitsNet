@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -125,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalStiffnessPerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
             QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -774,7 +775,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>();
+            var units = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
