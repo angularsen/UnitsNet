@@ -25,6 +25,7 @@ namespace UnitsNet.Tests.CustomCode
     {
         // Override properties in base class here
         protected override double CentigraysInOneGray => 100;
+        protected override double DecigraysInOneGray => 10;
         protected override double FemtograysInOneGray => 1E+15;
         protected override double GigagraysInOneGray => 1E-9;
         protected override double GraysInOneGray => 1;

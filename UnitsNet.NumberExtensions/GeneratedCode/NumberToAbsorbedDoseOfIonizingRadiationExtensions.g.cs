@@ -43,6 +43,17 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             => AbsorbedDoseOfIonizingRadiation.FromCentigrays(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromDecigrays(QuantityValue)" />
+        public static AbsorbedDoseOfIonizingRadiation Decigrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => AbsorbedDoseOfIonizingRadiation.FromDecigrays(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => AbsorbedDoseOfIonizingRadiation.FromDecigrays(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(QuantityValue)" />
         public static AbsorbedDoseOfIonizingRadiation Femtograys<T>(this T value)
             where T : notnull

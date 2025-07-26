@@ -121,6 +121,9 @@ namespace UnitsNet
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigray", "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second),
                      100             
                 );
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Decigray, "Decigray", "Decigrays", BaseUnits.Undefined,
+                     10             
+                );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtogray", "Femtograys", BaseUnits.Undefined,
                      1000000000000000             
                 );
@@ -277,6 +280,11 @@ namespace UnitsNet
         public QuantityValue Centigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Centigray);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>
+        /// </summary>
+        public QuantityValue Decigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Decigray);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>
         /// </summary>
         public QuantityValue Femtograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
@@ -386,6 +394,14 @@ namespace UnitsNet
         public static AbsorbedDoseOfIonizingRadiation FromCentigrays(QuantityValue value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>.
+        /// </summary>
+        public static AbsorbedDoseOfIonizingRadiation FromDecigrays(QuantityValue value)
+        {
+            return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
         }
 
         /// <summary>

@@ -40,6 +40,7 @@ namespace UnitsNet.Tests
     public abstract partial class AbsorbedDoseOfIonizingRadiationTestsBase : QuantityTestsBase
     {
         protected abstract double CentigraysInOneGray { get; }
+        protected abstract double DecigraysInOneGray { get; }
         protected abstract double FemtograysInOneGray { get; }
         protected abstract double GigagraysInOneGray { get; }
         protected abstract double GraysInOneGray { get; }
@@ -58,6 +59,7 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigraysTolerance { get { return 1e-5; } }
+        protected virtual double DecigraysTolerance { get { return 1e-5; } }
         protected virtual double FemtograysTolerance { get { return 1e-5; } }
         protected virtual double GigagraysTolerance { get { return 1e-5; } }
         protected virtual double GraysTolerance { get { return 1e-5; } }
@@ -80,6 +82,7 @@ namespace UnitsNet.Tests
             return unit switch
             {
                 AbsorbedDoseOfIonizingRadiationUnit.Centigray => (CentigraysInOneGray, CentigraysTolerance),
+                AbsorbedDoseOfIonizingRadiationUnit.Decigray => (DecigraysInOneGray, DecigraysTolerance),
                 AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (FemtograysInOneGray, FemtograysTolerance),
                 AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (GigagraysInOneGray, GigagraysTolerance),
                 AbsorbedDoseOfIonizingRadiationUnit.Gray => (GraysInOneGray, GraysTolerance),
@@ -102,6 +105,7 @@ namespace UnitsNet.Tests
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AbsorbedDoseOfIonizingRadiationUnit.Centigray },
+            new object[] { AbsorbedDoseOfIonizingRadiationUnit.Decigray },
             new object[] { AbsorbedDoseOfIonizingRadiationUnit.Femtogray },
             new object[] { AbsorbedDoseOfIonizingRadiationUnit.Gigagray },
             new object[] { AbsorbedDoseOfIonizingRadiationUnit.Gray },
@@ -203,6 +207,7 @@ namespace UnitsNet.Tests
         {
             AbsorbedDoseOfIonizingRadiation gray = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
             AssertEx.EqualTolerance(CentigraysInOneGray, gray.Centigrays, CentigraysTolerance);
+            AssertEx.EqualTolerance(DecigraysInOneGray, gray.Decigrays, DecigraysTolerance);
             AssertEx.EqualTolerance(FemtograysInOneGray, gray.Femtograys, FemtograysTolerance);
             AssertEx.EqualTolerance(GigagraysInOneGray, gray.Gigagrays, GigagraysTolerance);
             AssertEx.EqualTolerance(GraysInOneGray, gray.Grays, GraysTolerance);
@@ -227,65 +232,69 @@ namespace UnitsNet.Tests
             Assert.Equal(1, quantity00.Centigrays);
             Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, quantity00.Unit);
 
-            var quantity01 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
-            Assert.Equal(1, quantity01.Femtograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, quantity01.Unit);
+            var quantity01 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
+            Assert.Equal(1, quantity01.Decigrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Decigray, quantity01.Unit);
 
-            var quantity02 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
-            Assert.Equal(1, quantity02.Gigagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, quantity02.Unit);
+            var quantity02 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
+            Assert.Equal(1, quantity02.Femtograys);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, quantity02.Unit);
 
-            var quantity03 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gray);
-            Assert.Equal(1, quantity03.Grays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity03.Unit);
+            var quantity03 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
+            Assert.Equal(1, quantity03.Gigagrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, quantity03.Unit);
 
-            var quantity04 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
-            Assert.Equal(1, quantity04.Kilograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, quantity04.Unit);
+            var quantity04 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gray);
+            Assert.Equal(1, quantity04.Grays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity04.Unit);
 
-            var quantity05 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
-            Assert.Equal(1, quantity05.Kilorads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, quantity05.Unit);
+            var quantity05 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
+            Assert.Equal(1, quantity05.Kilograys);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, quantity05.Unit);
 
-            var quantity06 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
-            Assert.Equal(1, quantity06.Megagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megagray, quantity06.Unit);
+            var quantity06 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
+            Assert.Equal(1, quantity06.Kilorads);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, quantity06.Unit);
 
-            var quantity07 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
-            Assert.Equal(1, quantity07.Megarads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megarad, quantity07.Unit);
+            var quantity07 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
+            Assert.Equal(1, quantity07.Megagrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megagray, quantity07.Unit);
 
-            var quantity08 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
-            Assert.Equal(1, quantity08.Micrograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, quantity08.Unit);
+            var quantity08 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
+            Assert.Equal(1, quantity08.Megarads);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megarad, quantity08.Unit);
 
-            var quantity09 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
-            Assert.Equal(1, quantity09.Milligrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Milligray, quantity09.Unit);
+            var quantity09 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
+            Assert.Equal(1, quantity09.Micrograys);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, quantity09.Unit);
 
-            var quantity10 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
-            Assert.Equal(1, quantity10.Millirads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Millirad, quantity10.Unit);
+            var quantity10 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
+            Assert.Equal(1, quantity10.Milligrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Milligray, quantity10.Unit);
 
-            var quantity11 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
-            Assert.Equal(1, quantity11.Nanograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, quantity11.Unit);
+            var quantity11 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
+            Assert.Equal(1, quantity11.Millirads);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Millirad, quantity11.Unit);
 
-            var quantity12 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
-            Assert.Equal(1, quantity12.Petagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Petagray, quantity12.Unit);
+            var quantity12 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
+            Assert.Equal(1, quantity12.Nanograys);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, quantity12.Unit);
 
-            var quantity13 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
-            Assert.Equal(1, quantity13.Picograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Picogray, quantity13.Unit);
+            var quantity13 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
+            Assert.Equal(1, quantity13.Petagrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Petagray, quantity13.Unit);
 
-            var quantity14 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Rad);
-            Assert.Equal(1, quantity14.Rads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, quantity14.Unit);
+            var quantity14 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
+            Assert.Equal(1, quantity14.Picograys);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Picogray, quantity14.Unit);
 
-            var quantity15 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
-            Assert.Equal(1, quantity15.Teragrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, quantity15.Unit);
+            var quantity15 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Rad);
+            Assert.Equal(1, quantity15.Rads);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, quantity15.Unit);
+
+            var quantity16 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
+            Assert.Equal(1, quantity16.Teragrays);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, quantity16.Unit);
 
         }
 
@@ -312,6 +321,7 @@ namespace UnitsNet.Tests
         {
             var gray = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
             AssertEx.EqualTolerance(CentigraysInOneGray, gray.As(AbsorbedDoseOfIonizingRadiationUnit.Centigray), CentigraysTolerance);
+            AssertEx.EqualTolerance(DecigraysInOneGray, gray.As(AbsorbedDoseOfIonizingRadiationUnit.Decigray), DecigraysTolerance);
             AssertEx.EqualTolerance(FemtograysInOneGray, gray.As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray), FemtograysTolerance);
             AssertEx.EqualTolerance(GigagraysInOneGray, gray.As(AbsorbedDoseOfIonizingRadiationUnit.Gigagray), GigagraysTolerance);
             AssertEx.EqualTolerance(GraysInOneGray, gray.As(AbsorbedDoseOfIonizingRadiationUnit.Gray), GraysTolerance);
@@ -437,6 +447,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray, 4.2)]
+        [InlineData("en-US", "4.2 dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray, 4.2)]
         [InlineData("en-US", "4.2 fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, 4.2)]
         [InlineData("en-US", "4.2 GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, 4.2)]
         [InlineData("en-US", "4.2 Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray, 4.2)]
@@ -453,6 +464,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("en-US", "4.2 TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
         [InlineData("ru-RU", "4,2 сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray, 4.2)]
         [InlineData("ru-RU", "4,2 фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, 4.2)]
         [InlineData("ru-RU", "4,2 ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, 4.2)]
         [InlineData("ru-RU", "4,2 Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray, 4.2)]
@@ -478,6 +490,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray, 4.2)]
+        [InlineData("en-US", "4.2 dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray, 4.2)]
         [InlineData("en-US", "4.2 fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, 4.2)]
         [InlineData("en-US", "4.2 GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, 4.2)]
         [InlineData("en-US", "4.2 Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray, 4.2)]
@@ -494,6 +507,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("en-US", "4.2 TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
         [InlineData("ru-RU", "4,2 сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray, 4.2)]
+        [InlineData("ru-RU", "4,2 дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray, 4.2)]
         [InlineData("ru-RU", "4,2 фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, 4.2)]
         [InlineData("ru-RU", "4,2 ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, 4.2)]
         [InlineData("ru-RU", "4,2 Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray, 4.2)]
@@ -519,6 +533,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -544,6 +559,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -569,6 +585,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -585,6 +602,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
         [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
         [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -609,6 +627,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -625,6 +644,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
         [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
         [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -648,6 +668,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -673,6 +694,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -698,6 +720,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -714,6 +737,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
         [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
         [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -738,6 +762,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cGy", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("en-US", "dGy", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("en-US", "fGy", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("en-US", "GGy", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("en-US", "Gy", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -754,6 +779,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "rad", AbsorbedDoseOfIonizingRadiationUnit.Rad)]
         [InlineData("en-US", "TGy", AbsorbedDoseOfIonizingRadiationUnit.Teragray)]
         [InlineData("ru-RU", "сГр", AbsorbedDoseOfIonizingRadiationUnit.Centigray)]
+        [InlineData("ru-RU", "дГр", AbsorbedDoseOfIonizingRadiationUnit.Decigray)]
         [InlineData("ru-RU", "фГр", AbsorbedDoseOfIonizingRadiationUnit.Femtogray)]
         [InlineData("ru-RU", "ГГр", AbsorbedDoseOfIonizingRadiationUnit.Gigagray)]
         [InlineData("ru-RU", "Гр", AbsorbedDoseOfIonizingRadiationUnit.Gray)]
@@ -777,6 +803,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Centigray, "cGy")]
+        [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Decigray, "dGy")]
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "fGy")]
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "GGy")]
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Gray, "Gy")]
@@ -793,6 +820,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Rad, "rad")]
         [InlineData("en-US", AbsorbedDoseOfIonizingRadiationUnit.Teragray, "TGy")]
         [InlineData("ru-RU", AbsorbedDoseOfIonizingRadiationUnit.Centigray, "сГр")]
+        [InlineData("ru-RU", AbsorbedDoseOfIonizingRadiationUnit.Decigray, "дГр")]
         [InlineData("ru-RU", AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "фГр")]
         [InlineData("ru-RU", AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "ГГр")]
         [InlineData("ru-RU", AbsorbedDoseOfIonizingRadiationUnit.Gray, "Гр")]
@@ -896,6 +924,7 @@ namespace UnitsNet.Tests
         {
             AbsorbedDoseOfIonizingRadiation gray = AbsorbedDoseOfIonizingRadiation.FromGrays(3);
             Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromCentigrays(gray.Centigrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromDecigrays(gray.Decigrays).Grays);
             Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromFemtograys(gray.Femtograys).Grays);
             Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromGigagrays(gray.Gigagrays).Grays);
             Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromGrays(gray.Grays).Grays);
@@ -1078,6 +1107,7 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 cGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Centigray).ToString());
+            Assert.Equal("1 dGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Decigray).ToString());
             Assert.Equal("1 fGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray).ToString());
             Assert.Equal("1 GGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray).ToString());
             Assert.Equal("1 Gy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gray).ToString());
@@ -1102,6 +1132,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Centigray).ToString(swedishCulture));
+            Assert.Equal("1 dGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Decigray).ToString(swedishCulture));
             Assert.Equal("1 fGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray).ToString(swedishCulture));
             Assert.Equal("1 GGy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray).ToString(swedishCulture));
             Assert.Equal("1 Gy", new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gray).ToString(swedishCulture));
