@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitConverter.Wpf", "UnitConverter.Wpf\UnitConverter.Wpf\UnitConverter.Wpf.csproj", "{D04EE35D-496A-4C83-A369-09B9B2BEAEEC}"
 EndProject
@@ -9,12 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmSample.Wpf", "MvvmSampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitConverter.Console", "UnitConverter.Console\UnitConverter.Console.csproj", "{B3141011-CEF2-46DE-B3DD-7FECD0D6108C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Files", "_Files", "{D3B39B9C-CE85-4929-A268-1AEBD945127C}"
-	ProjectSection(SolutionItems) = preProject
-		build.bat = build.bat
-		Directory.Packages.props = Directory.Packages.props
-		msbuild.cmd = msbuild.cmd
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNetSetup.Configuration", "UnitsNetSetup.Configuration\UnitsNetSetup.Configuration.csproj", "{22425924-4277-4528-8ACD-01F2EA677507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +67,22 @@ Global
 		{B3141011-CEF2-46DE-B3DD-7FECD0D6108C}.Release|x64.Build.0 = Release|Any CPU
 		{B3141011-CEF2-46DE-B3DD-7FECD0D6108C}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3141011-CEF2-46DE-B3DD-7FECD0D6108C}.Release|x86.Build.0 = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|ARM.Build.0 = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|x64.Build.0 = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Debug|x86.Build.0 = Debug|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|ARM.ActiveCfg = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|ARM.Build.0 = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|x64.ActiveCfg = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|x64.Build.0 = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|x86.ActiveCfg = Release|Any CPU
+		{22425924-4277-4528-8ACD-01F2EA677507}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

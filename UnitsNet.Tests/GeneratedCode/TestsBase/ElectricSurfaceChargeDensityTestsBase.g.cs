@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -104,7 +105,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricSurfaceChargeDensity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -117,15 +118,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricSurfaceChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricSurfaceChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
-            QuantityInfo<ElectricSurfaceChargeDensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricSurfaceChargeDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
+            Assert.Equal(ElectricSurfaceChargeDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricSurfaceChargeDensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricSurfaceChargeDensityUnit>)quantity).QuantityInfo);
+        }
 
-            var units = Enum.GetValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void ElectricSurfaceChargeDensityInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricSurfaceChargeDensityUnit[] expectedUnits = [ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter];
+
+            ElectricSurfaceChargeDensity.ElectricSurfaceChargeDensityInfo quantityInfo = ElectricSurfaceChargeDensity.ElectricSurfaceChargeDensityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
+            Assert.Equal(ElectricSurfaceChargeDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -141,15 +160,15 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
+            Assert.Equal(1, quantity00.CoulombsPerSquareCentimeter);
             Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, quantity00.Unit);
 
             var quantity01 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
-            AssertEx.EqualTolerance(1, quantity01.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
+            Assert.Equal(1, quantity01.CoulombsPerSquareInch);
             Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, quantity01.Unit);
 
             var quantity02 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity02.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
+            Assert.Equal(1, quantity02.CoulombsPerSquareMeter);
             Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity02.Unit);
 
         }
@@ -287,53 +306,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/in²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricSurfaceChargeDensity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricSurfaceChargeDensity.TryParse(quantityString, out ElectricSurfaceChargeDensity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -427,6 +421,29 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "C/cm²")]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "C/in²")]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "C/m²")]
+        public void GetAbbreviationForCulture(string culture, ElectricSurfaceChargeDensityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricSurfaceChargeDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricSurfaceChargeDensity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricSurfaceChargeDensity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricSurfaceChargeDensityUnit unit)
         {
@@ -456,6 +473,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricSurfaceChargeDensity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -479,34 +497,36 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricSurfaceChargeDensityUnit> quantityToConvert = quantity;
                 IQuantity<ElectricSurfaceChargeDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricSurfaceChargeDensity coulombpersquaremeter = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
-            AssertEx.EqualTolerance(1, ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(coulombpersquaremeter.CoulombsPerSquareCentimeter).CoulombsPerSquareMeter, CoulombsPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(coulombpersquaremeter.CoulombsPerSquareInch).CoulombsPerSquareMeter, CoulombsPerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(coulombpersquaremeter.CoulombsPerSquareMeter).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
+            ElectricSurfaceChargeDensity coulombpersquaremeter = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(3);
+            Assert.Equal(3, ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(coulombpersquaremeter.CoulombsPerSquareCentimeter).CoulombsPerSquareMeter);
+            Assert.Equal(3, ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(coulombpersquaremeter.CoulombsPerSquareInch).CoulombsPerSquareMeter);
+            Assert.Equal(3, ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(coulombpersquaremeter.CoulombsPerSquareMeter).CoulombsPerSquareMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricSurfaceChargeDensity v = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
-            AssertEx.EqualTolerance(-1, -v.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(3)-v).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(10)/5).CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(10)/ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(5), CoulombsPerSquareMeterTolerance);
+            Assert.Equal(-1, -v.CoulombsPerSquareMeter);
+            Assert.Equal(2, (ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(3) - v).CoulombsPerSquareMeter);
+            Assert.Equal(2, (v + v).CoulombsPerSquareMeter);
+            Assert.Equal(10, (v * 10).CoulombsPerSquareMeter);
+            Assert.Equal(10, (10 * v).CoulombsPerSquareMeter);
+            Assert.Equal(2, (ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(10) / 5).CoulombsPerSquareMeter);
+            Assert.Equal(2, ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(10) / ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(5));
         }
 
         [Fact]
@@ -552,8 +572,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 2, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, false)] // Different value.
-        [InlineData(2, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricSurfaceChargeDensityUnit unitA, double valueB, ElectricSurfaceChargeDensityUnit unitB, bool expectEqual)
         {
             var a = new ElectricSurfaceChargeDensity(valueA, unitA);
@@ -591,23 +609,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
-            Assert.True(v.Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1), CoulombsPerSquareMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricSurfaceChargeDensity.Zero, CoulombsPerSquareMeterTolerance, ComparisonType.Relative));
-            Assert.True(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(100).Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(100).Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricSurfaceChargeDensity coulombpersquaremeter = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
@@ -621,10 +622,36 @@ namespace UnitsNet.Tests
             Assert.False(coulombpersquaremeter.Equals(null));
         }
 
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(firstValue);
+            var otherQuantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(secondValue);
+            ElectricSurfaceChargeDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, ElectricSurfaceChargeDensity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
+            var negativeTolerance = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
+        }
+
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricSurfaceChargeDensityUnit>();
+            var units = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -635,6 +662,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricSurfaceChargeDensity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricSurfaceChargeDensity.Info.Units, ElectricSurfaceChargeDensity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricSurfaceChargeDensity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -703,7 +742,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1.0);
-            Assert.Equal(new {ElectricSurfaceChargeDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricSurfaceChargeDensity), quantity.As(ElectricSurfaceChargeDensity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

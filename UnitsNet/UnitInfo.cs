@@ -34,6 +34,8 @@ public abstract class UnitInfo : IUnitDefinition
         Name = mapping.Name;
         PluralName = mapping.PluralName;
         BaseUnits = mapping.BaseUnits;
+        ConversionFromBase = mapping.ConversionFromBase;
+        ConversionToBase = mapping.ConversionToBase;
     }
 
     /// <inheritdoc />
@@ -52,6 +54,12 @@ public abstract class UnitInfo : IUnitDefinition
 
     /// <inheritdoc />
     public BaseUnits BaseUnits { get; }
+
+    /// <inheritdoc />
+    public ConversionExpression ConversionFromBase { get; }
+
+    /// <inheritdoc />
+    public ConversionExpression ConversionToBase { get; }
 
     #endregion
 
@@ -113,13 +121,13 @@ public abstract class UnitInfo : IUnitDefinition
     /// <remarks>
     ///     This method utilizes the <see cref="QuantityInfo" /> associated with this unit to create the quantity.
     /// </remarks>
-    public IQuantity From(double value)
+    public IQuantity From(QuantityValue value)
     {
         return CreateGenericQuantity(value);
     }
 
     /// <inheritdoc cref="From" />
-    protected internal abstract IQuantity CreateGenericQuantity(double value);
+    protected internal abstract IQuantity CreateGenericQuantity(QuantityValue value);
 
     #endregion
 
@@ -243,16 +251,16 @@ public abstract class UnitInfoBase<TQuantityInfo, TQuantity, TUnit> : UnitInfo<T
     }
 
     /// <summary>
-    ///     Converts a given <see cref="double" /> to an instance of the quantity type associated with this unit.
+    ///     Converts a given <see cref="QuantityValue" /> to an instance of the quantity type associated with this unit.
     /// </summary>
     /// <param name="value">The value to convert.</param>
     /// <returns>An instance of the quantity type associated with this unit.</returns>
-    public new abstract TQuantity From(double value);
+    public new abstract TQuantity From(QuantityValue value);
 
     #region Overrides of UnitInfo
 
     /// <inheritdoc />
-    protected internal sealed override IQuantity CreateGenericQuantity(double value)
+    protected internal sealed override IQuantity CreateGenericQuantity(QuantityValue value)
     {
         return From(value);
     }
@@ -273,7 +281,7 @@ public abstract class UnitInfoBase<TQuantityInfo, TQuantity, TUnit> : UnitInfo<T
 }
 
 /// <inheritdoc cref="UnitInfoBase{TQuantityInfo,TQuantity,TUnit}" />
-public sealed class UnitInfo<TQuantity, TUnit> : UnitInfoBase<QuantityInfo<TQuantity, TUnit>, TQuantity, TUnit>
+public sealed class UnitInfo<TQuantity, TUnit> : UnitInfoBase<QuantityInfo<TQuantity, TUnit>, TQuantity, TUnit> //, IUnitInfo<TQuantity, TUnit>
     where TQuantity : IQuantity<TQuantity, TUnit>
     where TUnit : struct, Enum
 {
@@ -284,7 +292,7 @@ public sealed class UnitInfo<TQuantity, TUnit> : UnitInfoBase<QuantityInfo<TQuan
     }
 
     /// <inheritdoc cref="UnitInfoBase{TQuantityInfo,TQuantity,TUnit}.From" />
-    public override TQuantity From(double value)
+    public override TQuantity From(QuantityValue value)
     {
         return QuantityInfo.From(value, Value);
     }

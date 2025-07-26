@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
     /// </summary>
     public static class NumberToLeakRateExtensions
     {
-        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(QuantityValue)" />
         public static LeakRate MillibarLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromMillibarLitersPerSecond(double.CreateChecked(value));
+            => LeakRate.FromMillibarLitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromMillibarLitersPerSecond(value.ToDouble(null));
+            => LeakRate.FromMillibarLitersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(QuantityValue)" />
         public static LeakRate PascalCubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromPascalCubicMetersPerSecond(double.CreateChecked(value));
+            => LeakRate.FromPascalCubicMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromPascalCubicMetersPerSecond(value.ToDouble(null));
+            => LeakRate.FromPascalCubicMetersPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(QuantityValue)" />
         public static LeakRate TorrLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromTorrLitersPerSecond(double.CreateChecked(value));
+            => LeakRate.FromTorrLitersPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromTorrLitersPerSecond(value.ToDouble(null));
+            => LeakRate.FromTorrLitersPerSecond(value.ToQuantityValue());
 #endif
 
     }

@@ -5,16 +5,30 @@ namespace UnitsNet.Benchmark.Conversions.Relations;
 
 [MemoryDiagnoser]
 [ShortRunJob]
-// [DryJob]
 public class InverseElectricConductivityBenchmarks
 {
-    private static readonly double Value = 123.456;
-    
+    private static readonly QuantityValue Value = 123.456;
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+
     [ParamsAllValues]
     public ElectricConductivityUnit Unit { get; set; }
-    private ElectricConductivity TestQuantity => new(Value, Unit);
-    
-    
+
+    private ElectricConductivity TestQuantity
+    {
+        get => new(Value, Unit);
+    }
+
+    [GlobalSetup]
+    public void Setup()
+    {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+    }
+
     [Benchmark(Baseline = true)]
     public ElectricResistivity Inverse()
     {

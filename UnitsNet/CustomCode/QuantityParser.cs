@@ -17,7 +17,7 @@ namespace UnitsNet;
 ///     The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit" /> for
 ///     <see cref="Length" />.
 /// </typeparam>
-public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
+public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
     where TQuantity : IQuantity
     where TUnitType : struct, Enum;
 
@@ -200,7 +200,7 @@ public class QuantityParser
         where TQuantity : IQuantity
         where TUnitType : struct, Enum
     {
-        var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
+        var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider);
         TUnitType parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
         return fromDelegate(value, parsedUnit);
     }
@@ -211,7 +211,7 @@ public class QuantityParser
     /// <exception cref="UnitsNetException">Error parsing string.</exception>
     private IQuantity ParseWithRegex(string valueString, string unitString, IReadOnlyList<UnitInfo> units, IFormatProvider? formatProvider)
     {
-        var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
+        var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider);
         UnitInfo unitInfo = _unitParser.Parse(unitString, units, formatProvider);
         return unitInfo.From(value);
     }
@@ -227,7 +227,7 @@ public class QuantityParser
     {
         result = default;
 
-        if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
+        if (!QuantityValue.TryParse(valueString, ParseNumberStyles, formatProvider, out QuantityValue value))
         {
             return false;
         }
@@ -250,7 +250,7 @@ public class QuantityParser
     {
         result = null;
 
-        if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
+        if (!QuantityValue.TryParse(valueString, ParseNumberStyles, formatProvider, out QuantityValue value))
         {
             return false;
         }
