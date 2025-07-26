@@ -425,7 +425,6 @@ public sealed class UnitParser
         return false;
     }
 
-
     /// <summary>
     ///     Attempts to retrieve the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given
     ///     quantity.
@@ -450,6 +449,38 @@ public sealed class UnitParser
     public bool TryGetUnitFromAbbreviation(string quantityName, string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unitInfo)
     {
         if (unitAbbreviation != null && Quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo))
+        {
+            return TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out unitInfo);
+        }
+
+        unitInfo = null;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to retrieve the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given
+    ///     quantity.
+    /// </summary>
+    /// <param name="quantityType">The type of the quantity to which the unit belongs.</param>
+    /// <param name="unitAbbreviation">
+    ///     The abbreviation of the unit to retrieve. Can be <c>null</c>, in which case the method will return <c>false</c>.
+    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="unitInfo">
+    ///     When this method returns, contains the <see cref="UnitInfo" /> that matches the specified unit abbreviation
+    ///     within the given quantity, if the operation succeeds; otherwise, <c>null</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the unit abbreviation was successfully resolved to a <see cref="UnitInfo" />; otherwise,
+    ///     <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     This method does not throw exceptions for invalid input or unresolved unit abbreviations. Instead, it returns
+    ///     <c>false</c>.
+    /// </remarks>
+    public bool TryGetUnitFromAbbreviation(Type quantityType, string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        if (unitAbbreviation != null && Quantities.TryGetQuantityInfo(quantityType, out QuantityInfo? quantityInfo))
         {
             return TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out unitInfo);
         }
