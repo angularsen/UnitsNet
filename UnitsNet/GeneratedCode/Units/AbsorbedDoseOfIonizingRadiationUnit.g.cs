@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum AbsorbedDoseOfIonizingRadiationUnit
     {
         Centigray = 6,
+        Decigray = 26,
         Femtogray = 7,
         Gigagray = 8,
 
