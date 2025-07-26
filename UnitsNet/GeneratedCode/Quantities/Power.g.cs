@@ -20,7 +20,6 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 #if NET
 using System.Numerics;
 #endif
