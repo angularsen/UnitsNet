@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             var quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -192,7 +192,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));

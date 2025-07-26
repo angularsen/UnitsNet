@@ -196,7 +196,7 @@ namespace UnitsNet.Tests
             var quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -242,7 +242,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));

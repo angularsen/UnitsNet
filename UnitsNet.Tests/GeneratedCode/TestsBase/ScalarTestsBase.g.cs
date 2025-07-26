@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             var quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -192,7 +192,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));

@@ -377,7 +377,7 @@ namespace UnitsNet.Tests
                 IQuantity<TemperatureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
@@ -385,7 +385,7 @@ namespace UnitsNet.Tests
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
         }
 
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));

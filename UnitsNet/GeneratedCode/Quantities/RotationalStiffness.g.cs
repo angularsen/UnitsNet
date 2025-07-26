@@ -246,7 +246,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
