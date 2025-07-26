@@ -1,12 +1,16 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
+#if !NET7_0_OR_GREATER
 using System.Linq;
+#endif
 
 namespace UnitsNet.InternalHelpers;
 
-internal static class EnumHelpers
+/// <summary>
+///     Helper methods for working with <see cref="Enum"/> types.
+/// </summary>
+internal static class EnumHelper
 {
     /// <summary>Retrieves an array of the values of the constants in a specified enumeration type.</summary>
     /// <typeparam name="TEnum">The type of the enumeration.</typeparam>

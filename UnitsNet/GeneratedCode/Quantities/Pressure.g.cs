@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -76,65 +71,116 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PressureUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Pressure"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PressureInfo: QuantityInfo<Pressure, PressureUnit>
+        {
+            /// <inheritdoc />
+            public PressureInfo(string name, PressureUnit baseUnit, IEnumerable<IUnitDefinition<PressureUnit>> unitMappings, Pressure zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Pressure, PressureUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PressureInfo(string name, PressureUnit baseUnit, IEnumerable<IUnitDefinition<PressureUnit>> unitMappings, Pressure zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Pressure.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Pressure", typeof(Pressure).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PressureInfo"/> class with the default settings for the Pressure quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PressureInfo"/> class with the default settings.</returns>
+            public static PressureInfo CreateDefault()
+            {
+                return new PressureInfo(nameof(Pressure), DefaultBaseUnit, GetDefaultMappings(), new Pressure(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PressureInfo"/> class with the default settings for the Pressure quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PressureInfo"/> class with the default settings.
+            /// </returns>
+            public static PressureInfo CreateDefault(Func<IEnumerable<UnitDefinition<PressureUnit>>, IEnumerable<IUnitDefinition<PressureUnit>>> customizeUnits)
+            {
+                return new PressureInfo(nameof(Pressure), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Pressure(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Pressure"/> is [T^-2][L^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Pressure is Pascal. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PressureUnit DefaultBaseUnit { get; } = PressureUnit.Pascal;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PressureUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PressureUnit}"/> representing the default unit mappings for Pressure.</returns>
+            public static IEnumerable<UnitDefinition<PressureUnit>> GetDefaultMappings()
+            {
+                yield return new (PressureUnit.Atmosphere, "Atmosphere", "Atmospheres", BaseUnits.Undefined);
+                yield return new (PressureUnit.Bar, "Bar", "Bars", BaseUnits.Undefined);
+                yield return new (PressureUnit.Centibar, "Centibar", "Centibars", BaseUnits.Undefined);
+                yield return new (PressureUnit.CentimeterOfWaterColumn, "CentimeterOfWaterColumn", "CentimetersOfWaterColumn", BaseUnits.Undefined);
+                yield return new (PressureUnit.Decapascal, "Decapascal", "Decapascals", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Decibar, "Decibar", "Decibars", BaseUnits.Undefined);
+                yield return new (PressureUnit.DynePerSquareCentimeter, "DynePerSquareCentimeter", "DynesPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.FootOfHead, "FootOfHead", "FeetOfHead", BaseUnits.Undefined);
+                yield return new (PressureUnit.Gigapascal, "Gigapascal", "Gigapascals", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Hectopascal, "Hectopascal", "Hectopascals", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.InchOfMercury, "InchOfMercury", "InchesOfMercury", BaseUnits.Undefined);
+                yield return new (PressureUnit.InchOfWaterColumn, "InchOfWaterColumn", "InchesOfWaterColumn", BaseUnits.Undefined);
+                yield return new (PressureUnit.Kilobar, "Kilobar", "Kilobars", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilogramForcePerSquareCentimeter, "KilogramForcePerSquareCentimeter", "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilogramForcePerSquareMeter, "KilogramForcePerSquareMeter", "KilogramsForcePerSquareMeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilogramForcePerSquareMillimeter, "KilogramForcePerSquareMillimeter", "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonPerSquareCentimeter", "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilonewtonPerSquareMeter, "KilonewtonPerSquareMeter", "KilonewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonPerSquareMillimeter", "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.Kilopascal, "Kilopascal", "Kilopascals", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.KilopoundForcePerSquareFoot, "KilopoundForcePerSquareFoot", "KilopoundsForcePerSquareFoot", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilopoundForcePerSquareInch, "KilopoundForcePerSquareInch", "KilopoundsForcePerSquareInch", BaseUnits.Undefined);
+                yield return new (PressureUnit.KilopoundForcePerSquareMil, "KilopoundForcePerSquareMil", "KilopoundsForcePerSquareMil", BaseUnits.Undefined);
+                yield return new (PressureUnit.Megabar, "Megabar", "Megabars", BaseUnits.Undefined);
+                yield return new (PressureUnit.MeganewtonPerSquareMeter, "MeganewtonPerSquareMeter", "MeganewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Megapascal, "Megapascal", "Megapascals", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.MeterOfHead, "MeterOfHead", "MetersOfHead", BaseUnits.Undefined);
+                yield return new (PressureUnit.MeterOfWaterColumn, "MeterOfWaterColumn", "MetersOfWaterColumn", BaseUnits.Undefined);
+                yield return new (PressureUnit.Microbar, "Microbar", "Microbars", BaseUnits.Undefined);
+                yield return new (PressureUnit.Micropascal, "Micropascal", "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Millibar, "Millibar", "Millibars", BaseUnits.Undefined);
+                yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined);
+                yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined);
+                yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.NewtonPerSquareMeter, "NewtonPerSquareMeter", "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.NewtonPerSquareMillimeter, "NewtonPerSquareMillimeter", "NewtonsPerSquareMillimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.Pascal, "Pascal", "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureUnit.PoundForcePerSquareFoot, "PoundForcePerSquareFoot", "PoundsForcePerSquareFoot", BaseUnits.Undefined);
+                yield return new (PressureUnit.PoundForcePerSquareInch, "PoundForcePerSquareInch", "PoundsForcePerSquareInch", BaseUnits.Undefined);
+                yield return new (PressureUnit.PoundForcePerSquareMil, "PoundForcePerSquareMil", "PoundsForcePerSquareMil", BaseUnits.Undefined);
+                yield return new (PressureUnit.PoundPerInchSecondSquared, "PoundPerInchSecondSquared", "PoundsPerInchSecondSquared", BaseUnits.Undefined);
+                yield return new (PressureUnit.TechnicalAtmosphere, "TechnicalAtmosphere", "TechnicalAtmospheres", BaseUnits.Undefined);
+                yield return new (PressureUnit.TonneForcePerSquareCentimeter, "TonneForcePerSquareCentimeter", "TonnesForcePerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.TonneForcePerSquareMeter, "TonneForcePerSquareMeter", "TonnesForcePerSquareMeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.TonneForcePerSquareMillimeter, "TonneForcePerSquareMillimeter", "TonnesForcePerSquareMillimeter", BaseUnits.Undefined);
+                yield return new (PressureUnit.Torr, "Torr", "Torrs", BaseUnits.Undefined);
+            }
+        }
+
         static Pressure()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-            BaseUnit = PressureUnit.Pascal;
-            Units = EnumHelpers.GetValues<PressureUnit>();
-            Zero = new Pressure(0, BaseUnit);
-            Info = new QuantityInfo<PressureUnit>("Pressure",
-                new UnitInfo<PressureUnit>[]
-                {
-                    new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareMil, "KilopoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareMil, "PoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
-                    new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined, "Pressure"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PressureInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -172,27 +218,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PressureUnit> Info { get; }
+        public static QuantityInfo<Pressure, PressureUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
-        public static PressureUnit BaseUnit { get; }
+        public static PressureUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Pressure quantity.
         /// </summary>
-        public static PressureUnit[] Units { get; }
+        public static IReadOnlyCollection<PressureUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure Zero { get; }
+        public static Pressure Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Pressure AdditiveIdentity => Zero;
@@ -210,7 +256,7 @@ namespace UnitsNet
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PressureUnit> QuantityInfo => Info;
+        public QuantityInfo<Pressure, PressureUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -227,6 +273,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PressureUnit> IQuantity<PressureUnit>.QuantityInfo => Info;
 
         #endregion
 

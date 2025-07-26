@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,19 +62,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly TurbidityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Turbidity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class TurbidityInfo: QuantityInfo<Turbidity, TurbidityUnit>
+        {
+            /// <inheritdoc />
+            public TurbidityInfo(string name, TurbidityUnit baseUnit, IEnumerable<IUnitDefinition<TurbidityUnit>> unitMappings, Turbidity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Turbidity, TurbidityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public TurbidityInfo(string name, TurbidityUnit baseUnit, IEnumerable<IUnitDefinition<TurbidityUnit>> unitMappings, Turbidity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Turbidity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Turbidity", typeof(Turbidity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TurbidityInfo"/> class with the default settings for the Turbidity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="TurbidityInfo"/> class with the default settings.</returns>
+            public static TurbidityInfo CreateDefault()
+            {
+                return new TurbidityInfo(nameof(Turbidity), DefaultBaseUnit, GetDefaultMappings(), new Turbidity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TurbidityInfo"/> class with the default settings for the Turbidity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="TurbidityInfo"/> class with the default settings.
+            /// </returns>
+            public static TurbidityInfo CreateDefault(Func<IEnumerable<UnitDefinition<TurbidityUnit>>, IEnumerable<IUnitDefinition<TurbidityUnit>>> customizeUnits)
+            {
+                return new TurbidityInfo(nameof(Turbidity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Turbidity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Turbidity"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of Turbidity is NTU. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static TurbidityUnit DefaultBaseUnit { get; } = TurbidityUnit.NTU;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="TurbidityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TurbidityUnit}"/> representing the default unit mappings for Turbidity.</returns>
+            public static IEnumerable<UnitDefinition<TurbidityUnit>> GetDefaultMappings()
+            {
+                yield return new (TurbidityUnit.NTU, "NTU", "NTU", BaseUnits.Undefined);
+            }
+        }
+
         static Turbidity()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = TurbidityUnit.NTU;
-            Units = EnumHelpers.GetValues<TurbidityUnit>();
-            Zero = new Turbidity(0, BaseUnit);
-            Info = new QuantityInfo<TurbidityUnit>("Turbidity",
-                new UnitInfo<TurbidityUnit>[]
-                {
-                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined, "Turbidity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = TurbidityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -103,27 +149,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TurbidityUnit> Info { get; }
+        public static QuantityInfo<Turbidity, TurbidityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Turbidity, which is NTU. All conversions go via this value.
         /// </summary>
-        public static TurbidityUnit BaseUnit { get; }
+        public static TurbidityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Turbidity quantity.
         /// </summary>
-        public static TurbidityUnit[] Units { get; }
+        public static IReadOnlyCollection<TurbidityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NTU.
         /// </summary>
-        public static Turbidity Zero { get; }
+        public static Turbidity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Turbidity AdditiveIdentity => Zero;
@@ -141,7 +187,7 @@ namespace UnitsNet
         public TurbidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<TurbidityUnit> QuantityInfo => Info;
+        public QuantityInfo<Turbidity, TurbidityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -158,6 +204,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<TurbidityUnit> IQuantity<TurbidityUnit>.QuantityInfo => Info;
 
         #endregion
 

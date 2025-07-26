@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -64,20 +59,71 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerRatioUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="PowerRatio"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PowerRatioInfo: QuantityInfo<PowerRatio, PowerRatioUnit>
+        {
+            /// <inheritdoc />
+            public PowerRatioInfo(string name, PowerRatioUnit baseUnit, IEnumerable<IUnitDefinition<PowerRatioUnit>> unitMappings, PowerRatio zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<PowerRatio, PowerRatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PowerRatioInfo(string name, PowerRatioUnit baseUnit, IEnumerable<IUnitDefinition<PowerRatioUnit>> unitMappings, PowerRatio zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, PowerRatio.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PowerRatio", typeof(PowerRatio).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerRatioInfo"/> class with the default settings for the PowerRatio quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PowerRatioInfo"/> class with the default settings.</returns>
+            public static PowerRatioInfo CreateDefault()
+            {
+                return new PowerRatioInfo(nameof(PowerRatio), DefaultBaseUnit, GetDefaultMappings(), new PowerRatio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerRatioInfo"/> class with the default settings for the PowerRatio quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PowerRatioInfo"/> class with the default settings.
+            /// </returns>
+            public static PowerRatioInfo CreateDefault(Func<IEnumerable<UnitDefinition<PowerRatioUnit>>, IEnumerable<IUnitDefinition<PowerRatioUnit>>> customizeUnits)
+            {
+                return new PowerRatioInfo(nameof(PowerRatio), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PowerRatio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="PowerRatio"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of PowerRatio is DecibelWatt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PowerRatioUnit DefaultBaseUnit { get; } = PowerRatioUnit.DecibelWatt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PowerRatioUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerRatioUnit}"/> representing the default unit mappings for PowerRatio.</returns>
+            public static IEnumerable<UnitDefinition<PowerRatioUnit>> GetDefaultMappings()
+            {
+                yield return new (PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatt", "DecibelMilliwatts", BaseUnits.Undefined);
+                yield return new (PowerRatioUnit.DecibelWatt, "DecibelWatt", "DecibelWatts", BaseUnits.Undefined);
+            }
+        }
+
         static PowerRatio()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = PowerRatioUnit.DecibelWatt;
-            Units = EnumHelpers.GetValues<PowerRatioUnit>();
-            Zero = new PowerRatio(0, BaseUnit);
-            Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
-                new UnitInfo<PowerRatioUnit>[]
-                {
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined, "PowerRatio"),
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined, "PowerRatio"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PowerRatioInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -101,27 +147,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerRatioUnit> Info { get; }
+        public static QuantityInfo<PowerRatio, PowerRatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit { get; }
+        public static PowerRatioUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
-        public static PowerRatioUnit[] Units { get; }
+        public static IReadOnlyCollection<PowerRatioUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelWatt.
         /// </summary>
-        public static PowerRatio Zero { get; }
+        public static PowerRatio Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static PowerRatio AdditiveIdentity => Zero;
@@ -139,7 +185,7 @@ namespace UnitsNet
         public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PowerRatioUnit> QuantityInfo => Info;
+        public QuantityInfo<PowerRatio, PowerRatioUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -156,6 +202,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PowerRatioUnit> IQuantity<PowerRatioUnit>.QuantityInfo => Info;
 
         #endregion
 

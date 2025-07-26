@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnitsNet.Units;
 
 namespace UnitsNet;
 
@@ -24,7 +25,7 @@ internal static class QuantityInfoExtensions
 
         return quantityInfos.Where(info => info.BaseDimensions.Equals(baseDimensions));
     }
-    
+
     /// <summary>
     ///     Retrieves the default unit for a specified quantity and unit system.
     /// </summary>

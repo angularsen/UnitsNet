@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,57 +62,108 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly BitRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="BitRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class BitRateInfo: QuantityInfo<BitRate, BitRateUnit>
+        {
+            /// <inheritdoc />
+            public BitRateInfo(string name, BitRateUnit baseUnit, IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings, BitRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<BitRate, BitRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public BitRateInfo(string name, BitRateUnit baseUnit, IEnumerable<IUnitDefinition<BitRateUnit>> unitMappings, BitRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, BitRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.BitRate", typeof(BitRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="BitRateInfo"/> class with the default settings for the BitRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="BitRateInfo"/> class with the default settings.</returns>
+            public static BitRateInfo CreateDefault()
+            {
+                return new BitRateInfo(nameof(BitRate), DefaultBaseUnit, GetDefaultMappings(), new BitRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="BitRateInfo"/> class with the default settings for the BitRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="BitRateInfo"/> class with the default settings.
+            /// </returns>
+            public static BitRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<BitRateUnit>>, IEnumerable<IUnitDefinition<BitRateUnit>>> customizeUnits)
+            {
+                return new BitRateInfo(nameof(BitRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new BitRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="BitRate"/> is [T^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of BitRate is BitPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static BitRateUnit DefaultBaseUnit { get; } = BitRateUnit.BitPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="BitRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{BitRateUnit}"/> representing the default unit mappings for BitRate.</returns>
+            public static IEnumerable<UnitDefinition<BitRateUnit>> GetDefaultMappings()
+            {
+                yield return new (BitRateUnit.BitPerSecond, "BitPerSecond", "BitsPerSecond", new BaseUnits(time: DurationUnit.Second));
+                yield return new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExabitPerSecond, "ExabitPerSecond", "ExabitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExabytePerSecond, "ExabytePerSecond", "ExabytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExaoctetPerSecond, "ExaoctetPerSecond", "ExaoctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExbibitPerSecond, "ExbibitPerSecond", "ExbibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExbibytePerSecond, "ExbibytePerSecond", "ExbibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.ExbioctetPerSecond, "ExbioctetPerSecond", "ExbioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.GibibitPerSecond, "GibibitPerSecond", "GibibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.GibibytePerSecond, "GibibytePerSecond", "GibibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.GibioctetPerSecond, "GibioctetPerSecond", "GibioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.GigabitPerSecond, "GigabitPerSecond", "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond));
+                yield return new (BitRateUnit.GigabytePerSecond, "GigabytePerSecond", "GigabytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.GigaoctetPerSecond, "GigaoctetPerSecond", "GigaoctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.KibibitPerSecond, "KibibitPerSecond", "KibibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.KibibytePerSecond, "KibibytePerSecond", "KibibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.KibioctetPerSecond, "KibioctetPerSecond", "KibioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.KilobitPerSecond, "KilobitPerSecond", "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond));
+                yield return new (BitRateUnit.KilobytePerSecond, "KilobytePerSecond", "KilobytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.KilooctetPerSecond, "KilooctetPerSecond", "KilooctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.MebibitPerSecond, "MebibitPerSecond", "MebibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.MebibytePerSecond, "MebibytePerSecond", "MebibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.MebioctetPerSecond, "MebioctetPerSecond", "MebioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.MegabitPerSecond, "MegabitPerSecond", "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond));
+                yield return new (BitRateUnit.MegabytePerSecond, "MegabytePerSecond", "MegabytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.MegaoctetPerSecond, "MegaoctetPerSecond", "MegaoctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.OctetPerSecond, "OctetPerSecond", "OctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PebibitPerSecond, "PebibitPerSecond", "PebibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PebibytePerSecond, "PebibytePerSecond", "PebibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PebioctetPerSecond, "PebioctetPerSecond", "PebioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PetabitPerSecond, "PetabitPerSecond", "PetabitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PetabytePerSecond, "PetabytePerSecond", "PetabytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.PetaoctetPerSecond, "PetaoctetPerSecond", "PetaoctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond));
+                yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static BitRate()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            BaseUnit = BitRateUnit.BitPerSecond;
-            Units = EnumHelpers.GetValues<BitRateUnit>();
-            Zero = new BitRate(0, BaseUnit);
-            Info = new QuantityInfo<BitRateUnit>("BitRate",
-                new UnitInfo<BitRateUnit>[]
-                {
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", new BaseUnits(time: DurationUnit.Second), "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExaoctetPerSecond, "ExaoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbioctetPerSecond, "ExbioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibioctetPerSecond, "GibioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond), "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigaoctetPerSecond, "GigaoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibioctetPerSecond, "KibioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond), "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilooctetPerSecond, "KilooctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebioctetPerSecond, "MebioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond), "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegaoctetPerSecond, "MegaoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.OctetPerSecond, "OctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebioctetPerSecond, "PebioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetaoctetPerSecond, "PetaoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebioctetPerSecond, "TebioctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined, "BitRate"),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TeraoctetPerSecond, "TeraoctetsPerSecond", BaseUnits.Undefined, "BitRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = BitRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -155,27 +201,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BitRateUnit> Info { get; }
+        public static QuantityInfo<BitRate, BitRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit { get; }
+        public static BitRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
-        public static BitRateUnit[] Units { get; }
+        public static IReadOnlyCollection<BitRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero { get; }
+        public static BitRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static BitRate AdditiveIdentity => Zero;
@@ -193,7 +239,7 @@ namespace UnitsNet
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
+        public QuantityInfo<BitRate, BitRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -210,6 +256,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<BitRateUnit> IQuantity<BitRateUnit>.QuantityInfo => Info;
 
         #endregion
 

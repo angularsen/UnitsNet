@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,24 +62,75 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricApparentPowerUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricApparentPower"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricApparentPowerInfo: QuantityInfo<ElectricApparentPower, ElectricApparentPowerUnit>
+        {
+            /// <inheritdoc />
+            public ElectricApparentPowerInfo(string name, ElectricApparentPowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentPowerUnit>> unitMappings, ElectricApparentPower zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricApparentPower, ElectricApparentPowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricApparentPowerInfo(string name, ElectricApparentPowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricApparentPowerUnit>> unitMappings, ElectricApparentPower zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricApparentPower.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricApparentPower", typeof(ElectricApparentPower).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricApparentPowerInfo"/> class with the default settings for the ElectricApparentPower quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricApparentPowerInfo"/> class with the default settings.</returns>
+            public static ElectricApparentPowerInfo CreateDefault()
+            {
+                return new ElectricApparentPowerInfo(nameof(ElectricApparentPower), DefaultBaseUnit, GetDefaultMappings(), new ElectricApparentPower(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricApparentPowerInfo"/> class with the default settings for the ElectricApparentPower quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricApparentPowerInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricApparentPowerInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricApparentPowerUnit>>, IEnumerable<IUnitDefinition<ElectricApparentPowerUnit>>> customizeUnits)
+            {
+                return new ElectricApparentPowerInfo(nameof(ElectricApparentPower), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricApparentPower(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricApparentPower"/> is [T^-3][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricApparentPower is Voltampere. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricApparentPowerUnit DefaultBaseUnit { get; } = ElectricApparentPowerUnit.Voltampere;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricApparentPowerUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricApparentPowerUnit}"/> representing the default unit mappings for ElectricApparentPower.</returns>
+            public static IEnumerable<UnitDefinition<ElectricApparentPowerUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltampere", "Gigavoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
+                yield return new (ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltampere", "Kilovoltamperes", BaseUnits.Undefined);
+                yield return new (ElectricApparentPowerUnit.Megavoltampere, "Megavoltampere", "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ElectricApparentPowerUnit.Microvoltampere, "Microvoltampere", "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (ElectricApparentPowerUnit.Millivoltampere, "Millivoltampere", "Millivoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (ElectricApparentPowerUnit.Voltampere, "Voltampere", "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static ElectricApparentPower()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = ElectricApparentPowerUnit.Voltampere;
-            Units = EnumHelpers.GetValues<ElectricApparentPowerUnit>();
-            Zero = new ElectricApparentPower(0, BaseUnit);
-            Info = new QuantityInfo<ElectricApparentPowerUnit>("ElectricApparentPower",
-                new UnitInfo<ElectricApparentPowerUnit>[]
-                {
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined, "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Megavoltampere, "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Microvoltampere, "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Millivoltampere, "Millivoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "ElectricApparentPower"),
-                    new UnitInfo<ElectricApparentPowerUnit>(ElectricApparentPowerUnit.Voltampere, "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricApparentPower"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricApparentPowerInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -122,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricApparentPowerUnit> Info { get; }
+        public static QuantityInfo<ElectricApparentPower, ElectricApparentPowerUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricApparentPower, which is Voltampere. All conversions go via this value.
         /// </summary>
-        public static ElectricApparentPowerUnit BaseUnit { get; }
+        public static ElectricApparentPowerUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricApparentPower quantity.
         /// </summary>
-        public static ElectricApparentPowerUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricApparentPowerUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Voltampere.
         /// </summary>
-        public static ElectricApparentPower Zero { get; }
+        public static ElectricApparentPower Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricApparentPower AdditiveIdentity => Zero;
@@ -160,7 +206,7 @@ namespace UnitsNet
         public ElectricApparentPowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricApparentPowerUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricApparentPower, ElectricApparentPowerUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -177,6 +223,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricApparentPowerUnit> IQuantity<ElectricApparentPowerUnit>.QuantityInfo => Info;
 
         #endregion
 

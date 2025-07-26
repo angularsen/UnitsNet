@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -72,29 +67,80 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricChargeUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricCharge"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricChargeInfo: QuantityInfo<ElectricCharge, ElectricChargeUnit>
+        {
+            /// <inheritdoc />
+            public ElectricChargeInfo(string name, ElectricChargeUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeUnit>> unitMappings, ElectricCharge zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricCharge, ElectricChargeUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricChargeInfo(string name, ElectricChargeUnit baseUnit, IEnumerable<IUnitDefinition<ElectricChargeUnit>> unitMappings, ElectricCharge zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCharge.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCharge", typeof(ElectricCharge).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricChargeInfo"/> class with the default settings for the ElectricCharge quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricChargeInfo"/> class with the default settings.</returns>
+            public static ElectricChargeInfo CreateDefault()
+            {
+                return new ElectricChargeInfo(nameof(ElectricCharge), DefaultBaseUnit, GetDefaultMappings(), new ElectricCharge(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricChargeInfo"/> class with the default settings for the ElectricCharge quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricChargeInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricChargeInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricChargeUnit>>, IEnumerable<IUnitDefinition<ElectricChargeUnit>>> customizeUnits)
+            {
+                return new ElectricChargeInfo(nameof(ElectricCharge), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCharge(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCharge"/> is [T][I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricCharge is Coulomb. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricChargeUnit DefaultBaseUnit { get; } = ElectricChargeUnit.Coulomb;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricChargeUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricChargeUnit}"/> representing the default unit mappings for ElectricCharge.</returns>
+            public static IEnumerable<UnitDefinition<ElectricChargeUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricChargeUnit.AmpereHour, "AmpereHour", "AmpereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricChargeUnit.Coulomb, "Coulomb", "Coulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricChargeUnit.KiloampereHour, "KiloampereHour", "KiloampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Kiloampere));
+                yield return new (ElectricChargeUnit.Kilocoulomb, "Kilocoulomb", "Kilocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Kiloampere));
+                yield return new (ElectricChargeUnit.MegaampereHour, "MegaampereHour", "MegaampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Megaampere));
+                yield return new (ElectricChargeUnit.Megacoulomb, "Megacoulomb", "Megacoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Megaampere));
+                yield return new (ElectricChargeUnit.Microcoulomb, "Microcoulomb", "Microcoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
+                yield return new (ElectricChargeUnit.MilliampereHour, "MilliampereHour", "MilliampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricChargeUnit.Millicoulomb, "Millicoulomb", "Millicoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricChargeUnit.Nanocoulomb, "Nanocoulomb", "Nanocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere));
+                yield return new (ElectricChargeUnit.Picocoulomb, "Picocoulomb", "Picocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere));
+            }
+        }
+
         static ElectricCharge()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-            BaseUnit = ElectricChargeUnit.Coulomb;
-            Units = EnumHelpers.GetValues<ElectricChargeUnit>();
-            Zero = new ElectricCharge(0, BaseUnit);
-            Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
-                new UnitInfo<ElectricChargeUnit>[]
-                {
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Kiloampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Kiloampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Megaampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Megacoulomb, "Megacoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Megaampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Microcoulomb, "Microcoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Millicoulomb, "Millicoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Nanocoulomb, "Nanocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere), "ElectricCharge"),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Picocoulomb, "Picocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere), "ElectricCharge"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricChargeInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -132,27 +178,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricChargeUnit> Info { get; }
+        public static QuantityInfo<ElectricCharge, ElectricChargeUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeUnit BaseUnit { get; }
+        public static ElectricChargeUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
-        public static ElectricChargeUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricChargeUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Coulomb.
         /// </summary>
-        public static ElectricCharge Zero { get; }
+        public static ElectricCharge Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricCharge AdditiveIdentity => Zero;
@@ -170,7 +216,7 @@ namespace UnitsNet
         public ElectricChargeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricChargeUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricCharge, ElectricChargeUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -187,6 +233,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.QuantityInfo => Info;
 
         #endregion
 

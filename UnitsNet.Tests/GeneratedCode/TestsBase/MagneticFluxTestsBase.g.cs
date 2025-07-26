@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,7 +116,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticFlux", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagneticFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MagneticFluxUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -560,7 +559,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<MagneticFluxUnit>();
+            var units = Enum.GetValues<MagneticFluxUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

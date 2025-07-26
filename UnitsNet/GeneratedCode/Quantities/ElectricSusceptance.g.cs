@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,34 +62,85 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricSusceptanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricSusceptance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricSusceptanceInfo: QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricSusceptanceInfo(string name, ElectricSusceptanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings, ElectricSusceptance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricSusceptance, ElectricSusceptanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricSusceptanceInfo(string name, ElectricSusceptanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>> unitMappings, ElectricSusceptance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricSusceptance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricSusceptance", typeof(ElectricSusceptance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings for the ElectricSusceptance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings.</returns>
+            public static ElectricSusceptanceInfo CreateDefault()
+            {
+                return new ElectricSusceptanceInfo(nameof(ElectricSusceptance), DefaultBaseUnit, GetDefaultMappings(), new ElectricSusceptance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings for the ElectricSusceptance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricSusceptanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricSusceptanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricSusceptanceUnit>>, IEnumerable<IUnitDefinition<ElectricSusceptanceUnit>>> customizeUnits)
+            {
+                return new ElectricSusceptanceInfo(nameof(ElectricSusceptance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricSusceptance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricSusceptance"/> is [T^3][L^-2][M^-1][I^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricSusceptance is Siemens. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricSusceptanceUnit DefaultBaseUnit { get; } = ElectricSusceptanceUnit.Siemens;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricSusceptanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricSusceptanceUnit}"/> representing the default unit mappings for ElectricSusceptance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricSusceptanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricSusceptanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSusceptanceUnit.Kilomho, "Kilomho", "Kilomhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSusceptanceUnit.Megamho, "Megamho", "Megamhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Megasiemens, "Megasiemens", "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSusceptanceUnit.Mho, "Mho", "Mhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Micromho, "Micromho", "Micromhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Microsiemens, "Microsiemens", "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricSusceptanceUnit.Millimho, "Millimho", "Millimhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Millisiemens, "Millisiemens", "Millisiemens", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Nanomho, "Nanomho", "Nanomhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSusceptanceUnit.Siemens, "Siemens", "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricSusceptanceUnit.Teramho, "Teramho", "Teramhos", BaseUnits.Undefined);
+                yield return new (ElectricSusceptanceUnit.Terasiemens, "Terasiemens", "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricSusceptance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            BaseUnit = ElectricSusceptanceUnit.Siemens;
-            Units = EnumHelpers.GetValues<ElectricSusceptanceUnit>();
-            Zero = new ElectricSusceptance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricSusceptanceUnit>("ElectricSusceptance",
-                new UnitInfo<ElectricSusceptanceUnit>[]
-                {
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Micromho, "Micromhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millimho, "Millimhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanomho, "Nanomhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Siemens, "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Teramho, "Teramhos", BaseUnits.Undefined, "ElectricSusceptance"),
-                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricSusceptance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricSusceptanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -132,27 +178,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricSusceptanceUnit> Info { get; }
+        public static QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricSusceptance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricSusceptanceUnit BaseUnit { get; }
+        public static ElectricSusceptanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricSusceptance quantity.
         /// </summary>
-        public static ElectricSusceptanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricSusceptanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricSusceptance Zero { get; }
+        public static ElectricSusceptance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricSusceptance AdditiveIdentity => Zero;
@@ -170,7 +216,7 @@ namespace UnitsNet
         public ElectricSusceptanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricSusceptanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -187,6 +233,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricSusceptanceUnit> IQuantity<ElectricSusceptanceUnit>.QuantityInfo => Info;
 
         #endregion
 

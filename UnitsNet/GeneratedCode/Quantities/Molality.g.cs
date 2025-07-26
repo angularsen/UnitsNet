@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,21 +62,72 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MolalityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Molality"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MolalityInfo: QuantityInfo<Molality, MolalityUnit>
+        {
+            /// <inheritdoc />
+            public MolalityInfo(string name, MolalityUnit baseUnit, IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings, Molality zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Molality, MolalityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MolalityInfo(string name, MolalityUnit baseUnit, IEnumerable<IUnitDefinition<MolalityUnit>> unitMappings, Molality zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Molality.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Molality", typeof(Molality).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolalityInfo"/> class with the default settings for the Molality quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MolalityInfo"/> class with the default settings.</returns>
+            public static MolalityInfo CreateDefault()
+            {
+                return new MolalityInfo(nameof(Molality), DefaultBaseUnit, GetDefaultMappings(), new Molality(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolalityInfo"/> class with the default settings for the Molality quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MolalityInfo"/> class with the default settings.
+            /// </returns>
+            public static MolalityInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolalityUnit>>, IEnumerable<IUnitDefinition<MolalityUnit>>> customizeUnits)
+            {
+                return new MolalityInfo(nameof(Molality), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Molality(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Molality"/> is [M^-1][N].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 0, 0, 0, 1, 0);
+
+            /// <summary>
+            ///     The default base unit of Molality is MolePerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MolalityUnit DefaultBaseUnit { get; } = MolalityUnit.MolePerKilogram;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MolalityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolalityUnit}"/> representing the default unit mappings for Molality.</returns>
+            public static IEnumerable<UnitDefinition<MolalityUnit>> GetDefaultMappings()
+            {
+                yield return new (MolalityUnit.MillimolePerKilogram, "MillimolePerKilogram", "MillimolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Millimole));
+                yield return new (MolalityUnit.MolePerGram, "MolePerGram", "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolalityUnit.MolePerKilogram, "MolePerKilogram", "MolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
+            }
+        }
+
         static Molality()
         {
-            BaseDimensions = new BaseDimensions(0, -1, 0, 0, 0, 1, 0);
-            BaseUnit = MolalityUnit.MolePerKilogram;
-            Units = EnumHelpers.GetValues<MolalityUnit>();
-            Zero = new Molality(0, BaseUnit);
-            Info = new QuantityInfo<MolalityUnit>("Molality",
-                new UnitInfo<MolalityUnit>[]
-                {
-                    new UnitInfo<MolalityUnit>(MolalityUnit.MillimolePerKilogram, "MillimolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Millimole), "Molality"),
-                    new UnitInfo<MolalityUnit>(MolalityUnit.MolePerGram, "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
-                    new UnitInfo<MolalityUnit>(MolalityUnit.MolePerKilogram, "MolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MolalityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -119,27 +165,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolalityUnit> Info { get; }
+        public static QuantityInfo<Molality, MolalityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Molality, which is MolePerKilogram. All conversions go via this value.
         /// </summary>
-        public static MolalityUnit BaseUnit { get; }
+        public static MolalityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Molality quantity.
         /// </summary>
-        public static MolalityUnit[] Units { get; }
+        public static IReadOnlyCollection<MolalityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolePerKilogram.
         /// </summary>
-        public static Molality Zero { get; }
+        public static Molality Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Molality AdditiveIdentity => Zero;
@@ -157,7 +203,7 @@ namespace UnitsNet
         public MolalityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MolalityUnit> QuantityInfo => Info;
+        public QuantityInfo<Molality, MolalityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -174,6 +220,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MolalityUnit> IQuantity<MolalityUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -178,7 +178,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -307,7 +306,7 @@ namespace UnitsNet.Tests
             Assert.Equal({_quantity.Name}.Zero, quantityInfo.Zero);
             Assert.Equal(""{_quantity.Name}"", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<{_unitEnumName}>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }}
 
@@ -673,7 +672,7 @@ namespace UnitsNet.Tests
                     foreach (KeyValuePair<string, List<Unit>> ambiguousPair in abbreviations)
                     {
                         Writer.WL($@"
-        [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}] ");
+        [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}]");
                     }
                 }
                 Writer.WL($@"
@@ -765,7 +764,7 @@ namespace UnitsNet.Tests
                     foreach (KeyValuePair<string, List<Unit>> ambiguousPair in abbreviations)
                     {
                         Writer.WL($@"
-        [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}] ");
+        [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}]");
                     }
                 }
                 Writer.WL($@"
@@ -1012,7 +1011,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {{
-            var units = EnumHelpers.GetValues<{_unitEnumName}>();
+            var units = Enum.GetValues<{_unitEnumName}>();
             foreach (var unit in units)
             {{
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

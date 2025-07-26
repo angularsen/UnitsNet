@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,26 +62,77 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricReactanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricReactance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricReactanceInfo: QuantityInfo<ElectricReactance, ElectricReactanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricReactanceInfo(string name, ElectricReactanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactanceUnit>> unitMappings, ElectricReactance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricReactance, ElectricReactanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricReactanceInfo(string name, ElectricReactanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactanceUnit>> unitMappings, ElectricReactance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricReactance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricReactance", typeof(ElectricReactance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings for the ElectricReactance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings.</returns>
+            public static ElectricReactanceInfo CreateDefault()
+            {
+                return new ElectricReactanceInfo(nameof(ElectricReactance), DefaultBaseUnit, GetDefaultMappings(), new ElectricReactance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings for the ElectricReactance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricReactanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricReactanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricReactanceUnit>>, IEnumerable<IUnitDefinition<ElectricReactanceUnit>>> customizeUnits)
+            {
+                return new ElectricReactanceInfo(nameof(ElectricReactance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricReactance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricReactance"/> is [T^-3][L^2][M][I^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricReactance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricReactanceUnit DefaultBaseUnit { get; } = ElectricReactanceUnit.Ohm;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricReactanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactanceUnit}"/> representing the default unit mappings for ElectricReactance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricReactanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricReactanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined);
+                yield return new (ElectricReactanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricReactanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricReactance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-            BaseUnit = ElectricReactanceUnit.Ohm;
-            Units = EnumHelpers.GetValues<ElectricReactanceUnit>();
-            Zero = new ElectricReactance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricReactanceUnit>("ElectricReactance",
-                new UnitInfo<ElectricReactanceUnit>[]
-                {
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Milliohm, "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricReactance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricReactanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -124,27 +170,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricReactanceUnit> Info { get; }
+        public static QuantityInfo<ElectricReactance, ElectricReactanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricReactance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricReactanceUnit BaseUnit { get; }
+        public static ElectricReactanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricReactance quantity.
         /// </summary>
-        public static ElectricReactanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricReactanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricReactance Zero { get; }
+        public static ElectricReactance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricReactance AdditiveIdentity => Zero;
@@ -162,7 +208,7 @@ namespace UnitsNet
         public ElectricReactanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricReactanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricReactance, ElectricReactanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -179,6 +225,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricReactanceUnit> IQuantity<ElectricReactanceUnit>.QuantityInfo => Info;
 
         #endregion
 

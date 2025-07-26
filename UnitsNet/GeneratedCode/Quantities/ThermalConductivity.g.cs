@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,20 +62,71 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ThermalConductivityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ThermalConductivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ThermalConductivityInfo: QuantityInfo<ThermalConductivity, ThermalConductivityUnit>
+        {
+            /// <inheritdoc />
+            public ThermalConductivityInfo(string name, ThermalConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ThermalConductivityUnit>> unitMappings, ThermalConductivity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ThermalConductivity, ThermalConductivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ThermalConductivityInfo(string name, ThermalConductivityUnit baseUnit, IEnumerable<IUnitDefinition<ThermalConductivityUnit>> unitMappings, ThermalConductivity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ThermalConductivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ThermalConductivity", typeof(ThermalConductivity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalConductivityInfo"/> class with the default settings for the ThermalConductivity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ThermalConductivityInfo"/> class with the default settings.</returns>
+            public static ThermalConductivityInfo CreateDefault()
+            {
+                return new ThermalConductivityInfo(nameof(ThermalConductivity), DefaultBaseUnit, GetDefaultMappings(), new ThermalConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ThermalConductivityInfo"/> class with the default settings for the ThermalConductivity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ThermalConductivityInfo"/> class with the default settings.
+            /// </returns>
+            public static ThermalConductivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<ThermalConductivityUnit>>, IEnumerable<IUnitDefinition<ThermalConductivityUnit>>> customizeUnits)
+            {
+                return new ThermalConductivityInfo(nameof(ThermalConductivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ThermalConductivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ThermalConductivity"/> is [T^-3][L][M][Θ^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ThermalConductivity is WattPerMeterKelvin. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ThermalConductivityUnit DefaultBaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ThermalConductivityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalConductivityUnit}"/> representing the default unit mappings for ThermalConductivity.</returns>
+            public static IEnumerable<UnitDefinition<ThermalConductivityUnit>> GetDefaultMappings()
+            {
+                yield return new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined);
+                yield return new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+            }
+        }
+
         static ThermalConductivity()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
-            BaseUnit = ThermalConductivityUnit.WattPerMeterKelvin;
-            Units = EnumHelpers.GetValues<ThermalConductivityUnit>();
-            Zero = new ThermalConductivity(0, BaseUnit);
-            Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
-                new UnitInfo<ThermalConductivityUnit>[]
-                {
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined, "ThermalConductivity"),
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin), "ThermalConductivity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ThermalConductivityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -118,27 +164,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalConductivityUnit> Info { get; }
+        public static QuantityInfo<ThermalConductivity, ThermalConductivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ThermalConductivity, which is WattPerMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static ThermalConductivityUnit BaseUnit { get; }
+        public static ThermalConductivityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
         /// </summary>
-        public static ThermalConductivityUnit[] Units { get; }
+        public static IReadOnlyCollection<ThermalConductivityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeterKelvin.
         /// </summary>
-        public static ThermalConductivity Zero { get; }
+        public static ThermalConductivity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ThermalConductivity AdditiveIdentity => Zero;
@@ -156,7 +202,7 @@ namespace UnitsNet
         public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
+        public QuantityInfo<ThermalConductivity, ThermalConductivityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -173,6 +219,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.QuantityInfo => Info;
 
         #endregion
 

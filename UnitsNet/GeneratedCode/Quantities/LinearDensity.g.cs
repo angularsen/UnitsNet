@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -72,36 +67,87 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LinearDensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="LinearDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LinearDensityInfo: QuantityInfo<LinearDensity, LinearDensityUnit>
+        {
+            /// <inheritdoc />
+            public LinearDensityInfo(string name, LinearDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearDensityUnit>> unitMappings, LinearDensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<LinearDensity, LinearDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LinearDensityInfo(string name, LinearDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearDensityUnit>> unitMappings, LinearDensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, LinearDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LinearDensity", typeof(LinearDensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LinearDensityInfo"/> class with the default settings for the LinearDensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LinearDensityInfo"/> class with the default settings.</returns>
+            public static LinearDensityInfo CreateDefault()
+            {
+                return new LinearDensityInfo(nameof(LinearDensity), DefaultBaseUnit, GetDefaultMappings(), new LinearDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LinearDensityInfo"/> class with the default settings for the LinearDensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LinearDensityInfo"/> class with the default settings.
+            /// </returns>
+            public static LinearDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LinearDensityUnit>>, IEnumerable<IUnitDefinition<LinearDensityUnit>>> customizeUnits)
+            {
+                return new LinearDensityInfo(nameof(LinearDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LinearDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="LinearDensity"/> is [L^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of LinearDensity is KilogramPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LinearDensityUnit DefaultBaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LinearDensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearDensityUnit}"/> representing the default unit mappings for LinearDensity.</returns>
+            public static IEnumerable<UnitDefinition<LinearDensityUnit>> GetDefaultMappings()
+            {
+                yield return new (LinearDensityUnit.GramPerCentimeter, "GramPerCentimeter", "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram));
+                yield return new (LinearDensityUnit.GramPerFoot, "GramPerFoot", "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram));
+                yield return new (LinearDensityUnit.GramPerMeter, "GramPerMeter", "GramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram));
+                yield return new (LinearDensityUnit.GramPerMillimeter, "GramPerMillimeter", "GramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram));
+                yield return new (LinearDensityUnit.KilogramPerCentimeter, "KilogramPerCentimeter", "KilogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram));
+                yield return new (LinearDensityUnit.KilogramPerFoot, "KilogramPerFoot", "KilogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilogram));
+                yield return new (LinearDensityUnit.KilogramPerMeter, "KilogramPerMeter", "KilogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
+                yield return new (LinearDensityUnit.KilogramPerMillimeter, "KilogramPerMillimeter", "KilogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram));
+                yield return new (LinearDensityUnit.MicrogramPerCentimeter, "MicrogramPerCentimeter", "MicrogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram));
+                yield return new (LinearDensityUnit.MicrogramPerFoot, "MicrogramPerFoot", "MicrogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Microgram));
+                yield return new (LinearDensityUnit.MicrogramPerMeter, "MicrogramPerMeter", "MicrogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram));
+                yield return new (LinearDensityUnit.MicrogramPerMillimeter, "MicrogramPerMillimeter", "MicrogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Microgram));
+                yield return new (LinearDensityUnit.MilligramPerCentimeter, "MilligramPerCentimeter", "MilligramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram));
+                yield return new (LinearDensityUnit.MilligramPerFoot, "MilligramPerFoot", "MilligramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Milligram));
+                yield return new (LinearDensityUnit.MilligramPerMeter, "MilligramPerMeter", "MilligramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram));
+                yield return new (LinearDensityUnit.MilligramPerMillimeter, "MilligramPerMillimeter", "MilligramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Milligram));
+                yield return new (LinearDensityUnit.PoundPerFoot, "PoundPerFoot", "PoundsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (LinearDensityUnit.PoundPerInch, "PoundPerInch", "PoundsPerInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound));
+            }
+        }
+
         static LinearDensity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
-            BaseUnit = LinearDensityUnit.KilogramPerMeter;
-            Units = EnumHelpers.GetValues<LinearDensityUnit>();
-            Zero = new LinearDensity(0, BaseUnit);
-            Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
-                new UnitInfo<LinearDensityUnit>[]
-                {
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerFoot, "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, "KilogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerFoot, "KilogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilogram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, "KilogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMillimeter, "KilogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerCentimeter, "MicrogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerFoot, "MicrogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Microgram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMeter, "MicrogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMillimeter, "MicrogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Microgram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerCentimeter, "MilligramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerFoot, "MilligramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Milligram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, "MilligramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Milligram), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "LinearDensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LinearDensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -139,27 +185,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LinearDensityUnit> Info { get; }
+        public static QuantityInfo<LinearDensity, LinearDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of LinearDensity, which is KilogramPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearDensityUnit BaseUnit { get; }
+        public static LinearDensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the LinearDensity quantity.
         /// </summary>
-        public static LinearDensityUnit[] Units { get; }
+        public static IReadOnlyCollection<LinearDensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
         /// </summary>
-        public static LinearDensity Zero { get; }
+        public static LinearDensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static LinearDensity AdditiveIdentity => Zero;
@@ -177,7 +223,7 @@ namespace UnitsNet
         public LinearDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
+        public QuantityInfo<LinearDensity, LinearDensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -194,6 +240,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LinearDensityUnit> IQuantity<LinearDensityUnit>.QuantityInfo => Info;
 
         #endregion
 

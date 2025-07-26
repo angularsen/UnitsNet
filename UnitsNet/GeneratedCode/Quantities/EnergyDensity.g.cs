@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,30 +62,81 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly EnergyDensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="EnergyDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class EnergyDensityInfo: QuantityInfo<EnergyDensity, EnergyDensityUnit>
+        {
+            /// <inheritdoc />
+            public EnergyDensityInfo(string name, EnergyDensityUnit baseUnit, IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings, EnergyDensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<EnergyDensity, EnergyDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public EnergyDensityInfo(string name, EnergyDensityUnit baseUnit, IEnumerable<IUnitDefinition<EnergyDensityUnit>> unitMappings, EnergyDensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, EnergyDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.EnergyDensity", typeof(EnergyDensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="EnergyDensityInfo"/> class with the default settings for the EnergyDensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="EnergyDensityInfo"/> class with the default settings.</returns>
+            public static EnergyDensityInfo CreateDefault()
+            {
+                return new EnergyDensityInfo(nameof(EnergyDensity), DefaultBaseUnit, GetDefaultMappings(), new EnergyDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="EnergyDensityInfo"/> class with the default settings for the EnergyDensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="EnergyDensityInfo"/> class with the default settings.
+            /// </returns>
+            public static EnergyDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<EnergyDensityUnit>>, IEnumerable<IUnitDefinition<EnergyDensityUnit>>> customizeUnits)
+            {
+                return new EnergyDensityInfo(nameof(EnergyDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new EnergyDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="EnergyDensity"/> is [T^-2][L^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of EnergyDensity is JoulePerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static EnergyDensityUnit DefaultBaseUnit { get; } = EnergyDensityUnit.JoulePerCubicMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="EnergyDensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyDensityUnit}"/> representing the default unit mappings for EnergyDensity.</returns>
+            public static IEnumerable<UnitDefinition<EnergyDensityUnit>> GetDefaultMappings()
+            {
+                yield return new (EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulePerCubicMeter", "GigajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHourPerCubicMeter", "GigawattHoursPerCubicMeter", BaseUnits.Undefined);
+                yield return new (EnergyDensityUnit.JoulePerCubicMeter, "JoulePerCubicMeter", "JoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.KilojoulePerCubicMeter, "KilojoulePerCubicMeter", "KilojoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.KilowattHourPerCubicMeter, "KilowattHourPerCubicMeter", "KilowattHoursPerCubicMeter", BaseUnits.Undefined);
+                yield return new (EnergyDensityUnit.MegajoulePerCubicMeter, "MegajoulePerCubicMeter", "MegajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.MegawattHourPerCubicMeter, "MegawattHourPerCubicMeter", "MegawattHoursPerCubicMeter", BaseUnits.Undefined);
+                yield return new (EnergyDensityUnit.PetajoulePerCubicMeter, "PetajoulePerCubicMeter", "PetajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Femtometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.PetawattHourPerCubicMeter, "PetawattHourPerCubicMeter", "PetawattHoursPerCubicMeter", BaseUnits.Undefined);
+                yield return new (EnergyDensityUnit.TerajoulePerCubicMeter, "TerajoulePerCubicMeter", "TerajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (EnergyDensityUnit.TerawattHourPerCubicMeter, "TerawattHourPerCubicMeter", "TerawattHoursPerCubicMeter", BaseUnits.Undefined);
+                yield return new (EnergyDensityUnit.WattHourPerCubicMeter, "WattHourPerCubicMeter", "WattHoursPerCubicMeter", BaseUnits.Undefined);
+            }
+        }
+
         static EnergyDensity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-            BaseUnit = EnergyDensityUnit.JoulePerCubicMeter;
-            Units = EnumHelpers.GetValues<EnergyDensityUnit>();
-            Zero = new EnergyDensity(0, BaseUnit);
-            Info = new QuantityInfo<EnergyDensityUnit>("EnergyDensity",
-                new UnitInfo<EnergyDensityUnit>[]
-                {
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.JoulePerCubicMeter, "JoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilojoulePerCubicMeter, "KilojoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilowattHourPerCubicMeter, "KilowattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegajoulePerCubicMeter, "MegajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegawattHourPerCubicMeter, "MegawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetajoulePerCubicMeter, "PetajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Femtometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetawattHourPerCubicMeter, "PetawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerajoulePerCubicMeter, "TerajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerawattHourPerCubicMeter, "TerawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.WattHourPerCubicMeter, "WattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = EnergyDensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -128,27 +174,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<EnergyDensityUnit> Info { get; }
+        public static QuantityInfo<EnergyDensity, EnergyDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of EnergyDensity, which is JoulePerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static EnergyDensityUnit BaseUnit { get; }
+        public static EnergyDensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the EnergyDensity quantity.
         /// </summary>
-        public static EnergyDensityUnit[] Units { get; }
+        public static IReadOnlyCollection<EnergyDensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerCubicMeter.
         /// </summary>
-        public static EnergyDensity Zero { get; }
+        public static EnergyDensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static EnergyDensity AdditiveIdentity => Zero;
@@ -166,7 +212,7 @@ namespace UnitsNet
         public EnergyDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<EnergyDensityUnit> QuantityInfo => Info;
+        public QuantityInfo<EnergyDensity, EnergyDensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -183,6 +229,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<EnergyDensityUnit> IQuantity<EnergyDensityUnit>.QuantityInfo => Info;
 
         #endregion
 

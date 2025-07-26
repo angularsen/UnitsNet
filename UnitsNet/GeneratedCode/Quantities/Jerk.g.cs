@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,29 +62,80 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly JerkUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Jerk"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class JerkInfo: QuantityInfo<Jerk, JerkUnit>
+        {
+            /// <inheritdoc />
+            public JerkInfo(string name, JerkUnit baseUnit, IEnumerable<IUnitDefinition<JerkUnit>> unitMappings, Jerk zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Jerk, JerkUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public JerkInfo(string name, JerkUnit baseUnit, IEnumerable<IUnitDefinition<JerkUnit>> unitMappings, Jerk zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Jerk.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Jerk", typeof(Jerk).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="JerkInfo"/> class with the default settings for the Jerk quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="JerkInfo"/> class with the default settings.</returns>
+            public static JerkInfo CreateDefault()
+            {
+                return new JerkInfo(nameof(Jerk), DefaultBaseUnit, GetDefaultMappings(), new Jerk(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="JerkInfo"/> class with the default settings for the Jerk quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="JerkInfo"/> class with the default settings.
+            /// </returns>
+            public static JerkInfo CreateDefault(Func<IEnumerable<UnitDefinition<JerkUnit>>, IEnumerable<IUnitDefinition<JerkUnit>>> customizeUnits)
+            {
+                return new JerkInfo(nameof(Jerk), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Jerk(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Jerk"/> is [T^-3][L].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Jerk is MeterPerSecondCubed. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static JerkUnit DefaultBaseUnit { get; } = JerkUnit.MeterPerSecondCubed;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="JerkUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{JerkUnit}"/> representing the default unit mappings for Jerk.</returns>
+            public static IEnumerable<UnitDefinition<JerkUnit>> GetDefaultMappings()
+            {
+                yield return new (JerkUnit.CentimeterPerSecondCubed, "CentimeterPerSecondCubed", "CentimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second));
+                yield return new (JerkUnit.DecimeterPerSecondCubed, "DecimeterPerSecondCubed", "DecimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
+                yield return new (JerkUnit.FootPerSecondCubed, "FootPerSecondCubed", "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                yield return new (JerkUnit.InchPerSecondCubed, "InchPerSecondCubed", "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second));
+                yield return new (JerkUnit.KilometerPerSecondCubed, "KilometerPerSecondCubed", "KilometersPerSecondCubed", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
+                yield return new (JerkUnit.MeterPerSecondCubed, "MeterPerSecondCubed", "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (JerkUnit.MicrometerPerSecondCubed, "MicrometerPerSecondCubed", "MicrometersPerSecondCubed", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second));
+                yield return new (JerkUnit.MillimeterPerSecondCubed, "MillimeterPerSecondCubed", "MillimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second));
+                yield return new (JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", "MillistandardGravitiesPerSecond", BaseUnits.Undefined);
+                yield return new (JerkUnit.NanometerPerSecondCubed, "NanometerPerSecondCubed", "NanometersPerSecondCubed", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second));
+                yield return new (JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", "StandardGravitiesPerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static Jerk()
         {
-            BaseDimensions = new BaseDimensions(1, 0, -3, 0, 0, 0, 0);
-            BaseUnit = JerkUnit.MeterPerSecondCubed;
-            Units = EnumHelpers.GetValues<JerkUnit>();
-            Zero = new Jerk(0, BaseUnit);
-            Info = new QuantityInfo<JerkUnit>("Jerk",
-                new UnitInfo<JerkUnit>[]
-                {
-                    new UnitInfo<JerkUnit>(JerkUnit.CentimeterPerSecondCubed, "CentimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.DecimeterPerSecondCubed, "DecimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.FootPerSecondCubed, "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.InchPerSecondCubed, "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.KilometerPerSecondCubed, "KilometersPerSecondCubed", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.MeterPerSecondCubed, "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.MicrometerPerSecondCubed, "MicrometersPerSecondCubed", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.MillimeterPerSecondCubed, "MillimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.NanometerPerSecondCubed, "NanometersPerSecondCubed", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second), "Jerk"),
-                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = JerkInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -127,27 +173,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<JerkUnit> Info { get; }
+        public static QuantityInfo<Jerk, JerkUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Jerk, which is MeterPerSecondCubed. All conversions go via this value.
         /// </summary>
-        public static JerkUnit BaseUnit { get; }
+        public static JerkUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Jerk quantity.
         /// </summary>
-        public static JerkUnit[] Units { get; }
+        public static IReadOnlyCollection<JerkUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondCubed.
         /// </summary>
-        public static Jerk Zero { get; }
+        public static Jerk Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Jerk AdditiveIdentity => Zero;
@@ -165,7 +211,7 @@ namespace UnitsNet
         public JerkUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<JerkUnit> QuantityInfo => Info;
+        public QuantityInfo<Jerk, JerkUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -182,6 +228,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<JerkUnit> IQuantity<JerkUnit>.QuantityInfo => Info;
 
         #endregion
 

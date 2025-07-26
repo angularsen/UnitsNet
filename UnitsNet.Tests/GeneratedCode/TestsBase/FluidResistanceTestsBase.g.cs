@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -189,7 +188,7 @@ namespace UnitsNet.Tests
             Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
             Assert.Equal("FluidResistance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1536,7 +1535,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<FluidResistanceUnit>();
+            var units = Enum.GetValues<FluidResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

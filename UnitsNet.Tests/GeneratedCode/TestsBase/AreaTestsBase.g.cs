@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -169,7 +168,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1069,7 +1068,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("zh-CN", "英亩")] // [Acre, Hectare] 
+        [InlineData("zh-CN", "英亩")] // [Acre, Hectare]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Area.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -1215,7 +1214,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("zh-CN", "英亩")] // [Acre, Hectare] 
+        [InlineData("zh-CN", "英亩")] // [Acre, Hectare]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Area.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -1430,7 +1429,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<AreaUnit>();
+            var units = Enum.GetValues<AreaUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

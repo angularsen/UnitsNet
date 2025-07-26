@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -82,45 +77,96 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MassUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Mass"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MassInfo: QuantityInfo<Mass, MassUnit>
+        {
+            /// <inheritdoc />
+            public MassInfo(string name, MassUnit baseUnit, IEnumerable<IUnitDefinition<MassUnit>> unitMappings, Mass zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Mass, MassUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MassInfo(string name, MassUnit baseUnit, IEnumerable<IUnitDefinition<MassUnit>> unitMappings, Mass zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Mass.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Mass", typeof(Mass).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassInfo"/> class with the default settings for the Mass quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MassInfo"/> class with the default settings.</returns>
+            public static MassInfo CreateDefault()
+            {
+                return new MassInfo(nameof(Mass), DefaultBaseUnit, GetDefaultMappings(), new Mass(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassInfo"/> class with the default settings for the Mass quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MassInfo"/> class with the default settings.
+            /// </returns>
+            public static MassInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassUnit>>, IEnumerable<IUnitDefinition<MassUnit>>> customizeUnits)
+            {
+                return new MassInfo(nameof(Mass), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Mass(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Mass"/> is [M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Mass is Kilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MassUnit DefaultBaseUnit { get; } = MassUnit.Kilogram;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MassUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassUnit}"/> representing the default unit mappings for Mass.</returns>
+            public static IEnumerable<UnitDefinition<MassUnit>> GetDefaultMappings()
+            {
+                yield return new (MassUnit.Centigram, "Centigram", "Centigrams", new BaseUnits(mass: MassUnit.Centigram));
+                yield return new (MassUnit.Decagram, "Decagram", "Decagrams", new BaseUnits(mass: MassUnit.Decagram));
+                yield return new (MassUnit.Decigram, "Decigram", "Decigrams", new BaseUnits(mass: MassUnit.Decigram));
+                yield return new (MassUnit.EarthMass, "EarthMass", "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass));
+                yield return new (MassUnit.Femtogram, "Femtogram", "Femtograms", new BaseUnits(mass: MassUnit.Femtogram));
+                yield return new (MassUnit.Grain, "Grain", "Grains", new BaseUnits(mass: MassUnit.Grain));
+                yield return new (MassUnit.Gram, "Gram", "Grams", new BaseUnits(mass: MassUnit.Gram));
+                yield return new (MassUnit.Hectogram, "Hectogram", "Hectograms", new BaseUnits(mass: MassUnit.Hectogram));
+                yield return new (MassUnit.Kilogram, "Kilogram", "Kilograms", new BaseUnits(mass: MassUnit.Kilogram));
+                yield return new (MassUnit.Kilopound, "Kilopound", "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound));
+                yield return new (MassUnit.Kilotonne, "Kilotonne", "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne));
+                yield return new (MassUnit.LongHundredweight, "LongHundredweight", "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight));
+                yield return new (MassUnit.LongTon, "LongTon", "LongTons", new BaseUnits(mass: MassUnit.LongTon));
+                yield return new (MassUnit.Megapound, "Megapound", "Megapounds", new BaseUnits(mass: MassUnit.Megapound));
+                yield return new (MassUnit.Megatonne, "Megatonne", "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne));
+                yield return new (MassUnit.Microgram, "Microgram", "Micrograms", new BaseUnits(mass: MassUnit.Microgram));
+                yield return new (MassUnit.Milligram, "Milligram", "Milligrams", new BaseUnits(mass: MassUnit.Milligram));
+                yield return new (MassUnit.Nanogram, "Nanogram", "Nanograms", new BaseUnits(mass: MassUnit.Nanogram));
+                yield return new (MassUnit.Ounce, "Ounce", "Ounces", new BaseUnits(mass: MassUnit.Ounce));
+                yield return new (MassUnit.Picogram, "Picogram", "Picograms", new BaseUnits(mass: MassUnit.Picogram));
+                yield return new (MassUnit.Pound, "Pound", "Pounds", new BaseUnits(mass: MassUnit.Pound));
+                yield return new (MassUnit.ShortHundredweight, "ShortHundredweight", "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight));
+                yield return new (MassUnit.ShortTon, "ShortTon", "ShortTons", new BaseUnits(mass: MassUnit.ShortTon));
+                yield return new (MassUnit.Slug, "Slug", "Slugs", new BaseUnits(mass: MassUnit.Slug));
+                yield return new (MassUnit.SolarMass, "SolarMass", "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass));
+                yield return new (MassUnit.Stone, "Stone", "Stone", new BaseUnits(mass: MassUnit.Stone));
+                yield return new (MassUnit.Tonne, "Tonne", "Tonnes", new BaseUnits(mass: MassUnit.Tonne));
+            }
+        }
+
         static Mass()
         {
-            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-            BaseUnit = MassUnit.Kilogram;
-            Units = EnumHelpers.GetValues<MassUnit>();
-            Zero = new Mass(0, BaseUnit);
-            Info = new QuantityInfo<MassUnit>("Mass",
-                new UnitInfo<MassUnit>[]
-                {
-                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", new BaseUnits(mass: MassUnit.Centigram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", new BaseUnits(mass: MassUnit.Decagram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", new BaseUnits(mass: MassUnit.Decigram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Femtogram, "Femtograms", new BaseUnits(mass: MassUnit.Femtogram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", new BaseUnits(mass: MassUnit.Hectogram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", new BaseUnits(mass: MassUnit.Kilogram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", new BaseUnits(mass: MassUnit.Megapound), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", new BaseUnits(mass: MassUnit.Microgram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", new BaseUnits(mass: MassUnit.Milligram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", new BaseUnits(mass: MassUnit.Nanogram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Picogram, "Picograms", new BaseUnits(mass: MassUnit.Picogram), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Slug, "Slugs", new BaseUnits(mass: MassUnit.Slug), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone), "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne), "Mass"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MassInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -158,27 +204,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassUnit> Info { get; }
+        public static QuantityInfo<Mass, MassUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
         /// </summary>
-        public static MassUnit BaseUnit { get; }
+        public static MassUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
-        public static MassUnit[] Units { get; }
+        public static IReadOnlyCollection<MassUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass Zero { get; }
+        public static Mass Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Mass AdditiveIdentity => Zero;
@@ -196,7 +242,7 @@ namespace UnitsNet
         public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MassUnit> QuantityInfo => Info;
+        public QuantityInfo<Mass, MassUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -213,6 +259,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MassUnit> IQuantity<MassUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,19 +62,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PermittivityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Permittivity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PermittivityInfo: QuantityInfo<Permittivity, PermittivityUnit>
+        {
+            /// <inheritdoc />
+            public PermittivityInfo(string name, PermittivityUnit baseUnit, IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings, Permittivity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Permittivity, PermittivityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PermittivityInfo(string name, PermittivityUnit baseUnit, IEnumerable<IUnitDefinition<PermittivityUnit>> unitMappings, Permittivity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Permittivity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Permittivity", typeof(Permittivity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PermittivityInfo"/> class with the default settings for the Permittivity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PermittivityInfo"/> class with the default settings.</returns>
+            public static PermittivityInfo CreateDefault()
+            {
+                return new PermittivityInfo(nameof(Permittivity), DefaultBaseUnit, GetDefaultMappings(), new Permittivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PermittivityInfo"/> class with the default settings for the Permittivity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PermittivityInfo"/> class with the default settings.
+            /// </returns>
+            public static PermittivityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PermittivityUnit>>, IEnumerable<IUnitDefinition<PermittivityUnit>>> customizeUnits)
+            {
+                return new PermittivityInfo(nameof(Permittivity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Permittivity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Permittivity"/> is [T^4][L^-3][M^-1][I^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Permittivity is FaradPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PermittivityUnit DefaultBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PermittivityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PermittivityUnit}"/> representing the default unit mappings for Permittivity.</returns>
+            public static IEnumerable<UnitDefinition<PermittivityUnit>> GetDefaultMappings()
+            {
+                yield return new (PermittivityUnit.FaradPerMeter, "FaradPerMeter", "FaradsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static Permittivity()
         {
-            BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-            BaseUnit = PermittivityUnit.FaradPerMeter;
-            Units = EnumHelpers.GetValues<PermittivityUnit>();
-            Zero = new Permittivity(0, BaseUnit);
-            Info = new QuantityInfo<PermittivityUnit>("Permittivity",
-                new UnitInfo<PermittivityUnit>[]
-                {
-                    new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "Permittivity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PermittivityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -117,27 +163,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PermittivityUnit> Info { get; }
+        public static QuantityInfo<Permittivity, PermittivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit BaseUnit { get; }
+        public static PermittivityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
-        public static PermittivityUnit[] Units { get; }
+        public static IReadOnlyCollection<PermittivityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero { get; }
+        public static Permittivity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Permittivity AdditiveIdentity => Zero;
@@ -155,7 +201,7 @@ namespace UnitsNet
         public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PermittivityUnit> QuantityInfo => Info;
+        public QuantityInfo<Permittivity, PermittivityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -172,6 +218,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PermittivityUnit> IQuantity<PermittivityUnit>.QuantityInfo => Info;
 
         #endregion
 

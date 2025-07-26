@@ -17,14 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,34 +62,85 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricConductanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricConductance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricConductanceInfo: QuantityInfo<ElectricConductance, ElectricConductanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricConductanceInfo(string name, ElectricConductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings, ElectricConductance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricConductance, ElectricConductanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricConductanceInfo(string name, ElectricConductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricConductanceUnit>> unitMappings, ElectricConductance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricConductance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricConductance", typeof(ElectricConductance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings for the ElectricConductance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings.</returns>
+            public static ElectricConductanceInfo CreateDefault()
+            {
+                return new ElectricConductanceInfo(nameof(ElectricConductance), DefaultBaseUnit, GetDefaultMappings(), new ElectricConductance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings for the ElectricConductance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricConductanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricConductanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricConductanceUnit>>, IEnumerable<IUnitDefinition<ElectricConductanceUnit>>> customizeUnits)
+            {
+                return new ElectricConductanceInfo(nameof(ElectricConductance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricConductance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricConductance"/> is [T^3][L^-2][M^-1][I^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricConductance is Siemens. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricConductanceUnit DefaultBaseUnit { get; } = ElectricConductanceUnit.Siemens;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricConductanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricConductanceUnit}"/> representing the default unit mappings for ElectricConductance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricConductanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricConductanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricConductanceUnit.Kilomho, "Kilomho", "Kilomhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Kilosiemens, "Kilosiemens", "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricConductanceUnit.Megamho, "Megamho", "Megamhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Megasiemens, "Megasiemens", "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricConductanceUnit.Mho, "Mho", "Mhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Micromho, "Micromho", "Micromhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Microsiemens, "Microsiemens", "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricConductanceUnit.Millimho, "Millimho", "Millimhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Millisiemens, "Millisiemens", "Millisiemens", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Nanomho, "Nanomho", "Nanomhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Nanosiemens, "Nanosiemens", "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricConductanceUnit.Siemens, "Siemens", "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricConductanceUnit.Teramho, "Teramho", "Teramhos", BaseUnits.Undefined);
+                yield return new (ElectricConductanceUnit.Terasiemens, "Terasiemens", "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricConductance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            BaseUnit = ElectricConductanceUnit.Siemens;
-            Units = EnumHelpers.GetValues<ElectricConductanceUnit>();
-            Zero = new ElectricConductance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
-                new UnitInfo<ElectricConductanceUnit>[]
-                {
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Gigasiemens, "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Megasiemens, "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Micromho, "Micromhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millimho, "Millimhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Nanomho, "Nanomhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Nanosiemens, "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Teramho, "Teramhos", BaseUnits.Undefined, "ElectricConductance"),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Terasiemens, "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricConductanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -132,27 +178,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricConductanceUnit> Info { get; }
+        public static QuantityInfo<ElectricConductance, ElectricConductanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricConductance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricConductanceUnit BaseUnit { get; }
+        public static ElectricConductanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
         /// </summary>
-        public static ElectricConductanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricConductanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricConductance Zero { get; }
+        public static ElectricConductance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricConductance AdditiveIdentity => Zero;
@@ -170,7 +216,7 @@ namespace UnitsNet
         public ElectricConductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricConductanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricConductance, ElectricConductanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -187,6 +233,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.QuantityInfo => Info;
 
         #endregion
 
