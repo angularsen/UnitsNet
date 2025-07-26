@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1269,7 +1269,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<LinearPowerDensityUnit>();
+            var units = EnumHelper.GetValues<LinearPowerDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

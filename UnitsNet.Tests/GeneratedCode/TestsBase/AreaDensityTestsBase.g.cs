@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaDensity.Zero, quantityInfo.Zero);
             Assert.Equal("AreaDensity", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -646,7 +646,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<AreaDensityUnit>();
+            var units = EnumHelper.GetValues<AreaDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

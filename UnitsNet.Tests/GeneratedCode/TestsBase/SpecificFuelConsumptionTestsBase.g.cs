@@ -129,7 +129,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificFuelConsumption", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -657,7 +657,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<SpecificFuelConsumptionUnit>();
+            var units = EnumHelper.GetValues<SpecificFuelConsumptionUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -35,7 +35,7 @@ namespace UnitsNet.Wrappers
         ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
         ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
         /// </summary>
-        public static PressureReference[] References { get; } = EnumHelpers.GetValues<PressureReference>();
+        public static PressureReference[] References { get; } = EnumHelper.GetValues<PressureReference>();
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured

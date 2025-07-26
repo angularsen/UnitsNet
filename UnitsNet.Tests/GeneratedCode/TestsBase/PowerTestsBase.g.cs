@@ -221,7 +221,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.Zero, quantityInfo.Zero);
             Assert.Equal("Power", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1420,7 +1420,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<PowerUnit>();
+            var units = EnumHelper.GetValues<PowerUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

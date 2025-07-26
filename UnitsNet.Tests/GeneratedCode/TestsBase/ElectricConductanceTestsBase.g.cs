@@ -177,7 +177,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricConductance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricConductance", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1017,7 +1017,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<ElectricConductanceUnit>();
+            var units = EnumHelper.GetValues<ElectricConductanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

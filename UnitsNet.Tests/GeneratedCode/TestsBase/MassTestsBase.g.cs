@@ -221,7 +221,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1737,7 +1737,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight] 
+        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Mass.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -1991,7 +1991,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight] 
+        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Mass.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -2219,7 +2219,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<MassUnit>();
+            var units = EnumHelper.GetValues<MassUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

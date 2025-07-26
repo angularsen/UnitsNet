@@ -193,7 +193,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1121,7 +1121,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<ElectricPotentialChangeRateUnit>();
+            var units = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

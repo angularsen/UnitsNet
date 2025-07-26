@@ -161,7 +161,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlux", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -913,7 +913,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<MassFluxUnit>();
+            var units = EnumHelper.GetValues<MassFluxUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

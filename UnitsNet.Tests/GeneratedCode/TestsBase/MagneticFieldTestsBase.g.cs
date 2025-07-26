@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticField", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -721,7 +721,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<MagneticFieldUnit>();
+            var units = EnumHelper.GetValues<MagneticFieldUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

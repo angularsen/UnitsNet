@@ -121,7 +121,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<ThermalResistanceUnit>();
+            var units = EnumHelper.GetValues<ThermalResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

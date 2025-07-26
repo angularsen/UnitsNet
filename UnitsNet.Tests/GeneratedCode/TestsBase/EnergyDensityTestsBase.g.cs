@@ -161,7 +161,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyDensity.Zero, quantityInfo.Zero);
             Assert.Equal("EnergyDensity", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -913,7 +913,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<EnergyDensityUnit>();
+            var units = EnumHelper.GetValues<EnergyDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

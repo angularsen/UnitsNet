@@ -281,7 +281,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2134,10 +2134,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "pica")] // [DtpPica, PrinterPica] 
-        [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint] 
-        [InlineData("ru-RU", "мил")] // [Mil, NauticalMile] 
-        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile] 
+        [InlineData("en-US", "pica")] // [DtpPica, PrinterPica]
+        [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint]
+        [InlineData("ru-RU", "мил")] // [Mil, NauticalMile]
+        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Length.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -2449,10 +2449,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "pica")] // [DtpPica, PrinterPica] 
-        [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint] 
-        [InlineData("ru-RU", "мил")] // [Mil, NauticalMile] 
-        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile] 
+        [InlineData("en-US", "pica")] // [DtpPica, PrinterPica]
+        [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint]
+        [InlineData("ru-RU", "мил")] // [Mil, NauticalMile]
+        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Length.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -2695,7 +2695,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<LengthUnit>();
+            var units = EnumHelper.GetValues<LengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

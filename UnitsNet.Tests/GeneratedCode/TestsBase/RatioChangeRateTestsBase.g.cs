@@ -121,7 +121,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("RatioChangeRate", quantityInfo.Name);
 
-            var units = EnumHelpers.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelpers.GetValues<RatioChangeRateUnit>();
+            var units = EnumHelper.GetValues<RatioChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
