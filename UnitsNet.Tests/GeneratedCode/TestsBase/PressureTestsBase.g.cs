@@ -301,7 +301,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2849,7 +2849,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<PressureUnit>();
+            var units = Enum.GetValues<PressureUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

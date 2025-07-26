@@ -221,7 +221,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2219,7 +2219,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<MassUnit>();
+            var units = Enum.GetValues<MassUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

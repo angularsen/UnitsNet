@@ -129,7 +129,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
             Assert.Equal("Illuminance", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -645,7 +645,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<IlluminanceUnit>();
+            var units = Enum.GetValues<IlluminanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

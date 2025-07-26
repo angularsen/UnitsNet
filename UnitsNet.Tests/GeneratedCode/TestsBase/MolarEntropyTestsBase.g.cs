@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEntropy", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<MolarEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MolarEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -625,7 +625,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<MolarEntropyUnit>();
+            var units = Enum.GetValues<MolarEntropyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

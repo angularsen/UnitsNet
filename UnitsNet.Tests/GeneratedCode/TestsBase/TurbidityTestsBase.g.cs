@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -500,7 +500,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<TurbidityUnit>();
+            var units = Enum.GetValues<TurbidityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

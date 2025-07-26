@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Torque.Zero, quantityInfo.Zero);
             Assert.Equal("Torque", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1380,7 +1380,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<TorqueUnit>();
+            var units = Enum.GetValues<TorqueUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

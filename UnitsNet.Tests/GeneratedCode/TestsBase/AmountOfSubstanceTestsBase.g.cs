@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
             Assert.Equal("AmountOfSubstance", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1061,7 +1061,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<AmountOfSubstanceUnit>();
+            var units = Enum.GetValues<AmountOfSubstanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

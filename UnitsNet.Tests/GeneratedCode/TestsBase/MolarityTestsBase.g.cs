@@ -157,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Molarity.Zero, quantityInfo.Zero);
             Assert.Equal("Molarity", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1049,7 +1049,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<MolarityUnit>();
+            var units = Enum.GetValues<MolarityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

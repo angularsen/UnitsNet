@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -500,7 +500,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<VitaminAUnit>();
+            var units = Enum.GetValues<VitaminAUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

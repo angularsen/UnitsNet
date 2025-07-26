@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1073,7 +1073,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<TemperatureChangeRateUnit>();
+            var units = Enum.GetValues<TemperatureChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

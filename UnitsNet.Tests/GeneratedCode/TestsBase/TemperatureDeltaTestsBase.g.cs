@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureDelta", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -817,7 +817,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<TemperatureDeltaUnit>();
+            var units = Enum.GetValues<TemperatureDeltaUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

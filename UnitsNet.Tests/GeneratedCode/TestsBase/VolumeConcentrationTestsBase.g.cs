@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1130,7 +1130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<VolumeConcentrationUnit>();
+            var units = Enum.GetValues<VolumeConcentrationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

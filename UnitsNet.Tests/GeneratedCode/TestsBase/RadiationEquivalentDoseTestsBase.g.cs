@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationEquivalentDose.Zero, quantityInfo.Zero);
             Assert.Equal("RadiationEquivalentDose", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -789,7 +789,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<RadiationEquivalentDoseUnit>();
+            var units = Enum.GetValues<RadiationEquivalentDoseUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -245,7 +245,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
 
-            var units = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1796,7 +1796,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = EnumHelper.GetValues<MassFlowUnit>();
+            var units = Enum.GetValues<MassFlowUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
