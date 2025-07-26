@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,22 +63,73 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly TemperatureGradientUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="TemperatureGradient"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class TemperatureGradientInfo: QuantityInfo<TemperatureGradient, TemperatureGradientUnit>
+        {
+            /// <inheritdoc />
+            public TemperatureGradientInfo(string name, TemperatureGradientUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureGradientUnit>> unitMappings, TemperatureGradient zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<TemperatureGradient, TemperatureGradientUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public TemperatureGradientInfo(string name, TemperatureGradientUnit baseUnit, IEnumerable<IUnitDefinition<TemperatureGradientUnit>> unitMappings, TemperatureGradient zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, TemperatureGradient.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.TemperatureGradient", typeof(TemperatureGradient).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureGradientInfo"/> class with the default settings for the TemperatureGradient quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="TemperatureGradientInfo"/> class with the default settings.</returns>
+            public static TemperatureGradientInfo CreateDefault()
+            {
+                return new TemperatureGradientInfo(nameof(TemperatureGradient), DefaultBaseUnit, GetDefaultMappings(), new TemperatureGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TemperatureGradientInfo"/> class with the default settings for the TemperatureGradient quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="TemperatureGradientInfo"/> class with the default settings.
+            /// </returns>
+            public static TemperatureGradientInfo CreateDefault(Func<IEnumerable<UnitDefinition<TemperatureGradientUnit>>, IEnumerable<IUnitDefinition<TemperatureGradientUnit>>> customizeUnits)
+            {
+                return new TemperatureGradientInfo(nameof(TemperatureGradient), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new TemperatureGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="TemperatureGradient"/> is [L^-1][Θ].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of TemperatureGradient is KelvinPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static TemperatureGradientUnit DefaultBaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="TemperatureGradientUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureGradientUnit}"/> representing the default unit mappings for TemperatureGradient.</returns>
+            public static IEnumerable<UnitDefinition<TemperatureGradientUnit>> GetDefaultMappings()
+            {
+                yield return new (TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreeCelsiusPerKilometer", "DegreesCelsiusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreeCelsiusPerMeter", "DegreesCelsiusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreeFahrenheitPerFoot", "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit));
+                yield return new (TemperatureGradientUnit.KelvinPerMeter, "KelvinPerMeter", "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
+            }
+        }
+
         static TemperatureGradient()
         {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-            BaseUnit = TemperatureGradientUnit.KelvinPerMeter;
-            Units = EnumHelpers.GetValues<TemperatureGradientUnit>();
-            Zero = new TemperatureGradient(0, BaseUnit);
-            Info = new QuantityInfo<TemperatureGradientUnit>("TemperatureGradient",
-                new UnitInfo<TemperatureGradientUnit>[]
-                {
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelsiusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius), "TemperatureGradient"),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelsiusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius), "TemperatureGradient"),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureGradient"),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin), "TemperatureGradient"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = TemperatureGradientInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -120,27 +167,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureGradientUnit> Info { get; }
+        public static QuantityInfo<TemperatureGradient, TemperatureGradientUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of TemperatureGradient, which is KelvinPerMeter. All conversions go via this value.
         /// </summary>
-        public static TemperatureGradientUnit BaseUnit { get; }
+        public static TemperatureGradientUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the TemperatureGradient quantity.
         /// </summary>
-        public static TemperatureGradientUnit[] Units { get; }
+        public static IReadOnlyCollection<TemperatureGradientUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KelvinPerMeter.
         /// </summary>
-        public static TemperatureGradient Zero { get; }
+        public static TemperatureGradient Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static TemperatureGradient AdditiveIdentity => Zero;
@@ -158,7 +205,7 @@ namespace UnitsNet
         public TemperatureGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<TemperatureGradientUnit> QuantityInfo => Info;
+        public QuantityInfo<TemperatureGradient, TemperatureGradientUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -175,6 +222,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -34,14 +34,11 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -123,6 +120,7 @@ namespace UnitsNet
         [DataMember(Name = ""Unit"", Order = 2)]
         private readonly {_unitEnumName}? _unit;
 ");
+            GenerateQuantityInfo();
             GenerateStaticConstructor();
             GenerateInstanceConstructors();
             GenerateStaticProperties();
@@ -143,35 +141,85 @@ namespace UnitsNet
             return Writer.ToString();
         }
 
-        private void GenerateStaticConstructor()
+        private void GenerateQuantityInfo()
         {
+            var quantityInfoClassName = $"{_quantity.Name}Info";
             BaseDimensions baseDimensions = _quantity.BaseDimensions;
-            Writer.WL($@"
-        static {_quantity.Name}()
-        {{");
-            Writer.WL(_isDimensionless ? $@"
-            BaseDimensions = BaseDimensions.Dimensionless;" : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});");
+            var createDimensionsExpression = _isDimensionless
+                ? "BaseDimensions.Dimensionless"
+                : $"new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J})";
 
             Writer.WL($@"
-            BaseUnit = {_unitEnumName}.{_quantity.BaseUnit};
-            Units = EnumHelpers.GetValues<{_unitEnumName}>();
-            Zero = new {_quantity.Name}(0, BaseUnit);
-            Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
-                new UnitInfo<{_unitEnumName}>[]
-                {{");
+        /// <summary>
+        ///     Provides detailed information about the <see cref=""{_quantity.Name}""/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class {quantityInfoClassName}: QuantityInfo<{_quantity.Name}, {_unitEnumName}>
+        {{");
+            Writer.WL($@"
+            /// <inheritdoc />
+            public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<{_quantity.Name}, {_unitEnumName}> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {{
+            }}
+
+            /// <inheritdoc />
+            public {quantityInfoClassName}(string name, {_unitEnumName} baseUnit, IEnumerable<IUnitDefinition<{_unitEnumName}>> unitMappings, {_quantity.Name} zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, {_quantity.Name}.From, new ResourceManager(""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"", typeof({_quantity.Name}).Assembly))
+            {{
+            }}
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings for the {_quantity.Name} quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings.</returns>
+            public static {quantityInfoClassName} CreateDefault()
+            {{
+                return new {quantityInfoClassName}(nameof({_quantity.Name}), DefaultBaseUnit, GetDefaultMappings(), new {_quantity.Name}(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }}
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings for the {_quantity.Name} quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name=""customizeUnits"">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref=""{quantityInfoClassName}""/> class with the default settings.
+            /// </returns>
+            public static {quantityInfoClassName} CreateDefault(Func<IEnumerable<UnitDefinition<{_unitEnumName}>>, IEnumerable<IUnitDefinition<{_unitEnumName}>>> customizeUnits)
+            {{
+                return new {quantityInfoClassName}(nameof({_quantity.Name}), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new {_quantity.Name}(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }}
+
+            /// <summary>
+            ///     The <see cref=""BaseDimensions"" /> for <see cref=""{_quantity.Name}""/> is {_quantity.BaseDimensions}.
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions {{ get; }} = {createDimensionsExpression};
+
+            /// <summary>
+            ///     The default base unit of {_quantity.Name} is {_baseUnit.SingularName}. All conversions, as defined in the <see cref=""GetDefaultMappings""/>, go via this value.
+            /// </summary>
+            public static {_unitEnumName} DefaultBaseUnit {{ get; }} = {_unitEnumName}.{_baseUnit.SingularName};
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref=""{_unitEnumName}""/>.
+            /// </summary>
+            /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
+            public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
+            {{");
 
             foreach (Unit unit in _quantity.Units)
             {
                 BaseUnits? baseUnits = unit.BaseUnits;
+                string baseUnitsFormat;
                 if (baseUnits == null)
                 {
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined, ""{_quantity.Name}""),");
+                    baseUnitsFormat = "BaseUnits.Undefined";
                 }
                 else
                 {
-                    var baseUnitsCtorArgs = string.Join(", ",
+                    baseUnitsFormat = $"new BaseUnits({string.Join(", ",
                         new[]
                         {
                             baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
@@ -181,17 +229,26 @@ namespace UnitsNet
                             baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
                             baseUnits.N != null ? $"amount: AmountOfSubstanceUnit.{baseUnits.N}" : null,
                             baseUnits.J != null ? $"luminousIntensity: LuminousIntensityUnit.{baseUnits.J}" : null
-                        }.Where(str => str != null));
-
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs}), ""{_quantity.Name}""),");
+                        }.Where(str => str != null))})";
                 }
+
+                Writer.WL($@"
+                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat});");
             }
 
             Writer.WL($@"
-                }},
-                BaseUnit, Zero, BaseDimensions);
+            }}
+        }}
+");
+        }
 
+        private void GenerateStaticConstructor()
+        {
+            Writer.WL($@"
+        static {_quantity.Name}()
+        {{");
+            Writer.WL($@"
+            Info = {_quantity.Name}Info.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
@@ -245,27 +302,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions {{ get; }}
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
-        public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
+        public static QuantityInfo<{_quantity.Name}, {_unitEnumName}> Info {{ get; }}
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions {{ get; }}
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
         /// </summary>
-        public static {_unitEnumName} BaseUnit {{ get; }}
+        public static {_unitEnumName} BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
         /// </summary>
-        public static {_unitEnumName}[] Units {{ get; }}
+        public static IReadOnlyCollection<{_unitEnumName}> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }}
+        public static {_quantity.Name} Zero => Info.Zero;
 ");
 
             if (_quantity.GenerateArithmetic)
@@ -295,7 +352,7 @@ namespace UnitsNet
         public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
+        public QuantityInfo<{_quantity.Name}, {_unitEnumName}> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -312,6 +369,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<{_unitEnumName}> IQuantity<{_unitEnumName}>.QuantityInfo => Info;
 
         #endregion
 

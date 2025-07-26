@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,25 +63,76 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricCurrentGradientUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricCurrentGradient"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricCurrentGradientInfo: QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit>
+        {
+            /// <inheritdoc />
+            public ElectricCurrentGradientInfo(string name, ElectricCurrentGradientUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>> unitMappings, ElectricCurrentGradient zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricCurrentGradient, ElectricCurrentGradientUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricCurrentGradientInfo(string name, ElectricCurrentGradientUnit baseUnit, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>> unitMappings, ElectricCurrentGradient zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricCurrentGradient.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricCurrentGradient", typeof(ElectricCurrentGradient).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings for the ElectricCurrentGradient quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings.</returns>
+            public static ElectricCurrentGradientInfo CreateDefault()
+            {
+                return new ElectricCurrentGradientInfo(nameof(ElectricCurrentGradient), DefaultBaseUnit, GetDefaultMappings(), new ElectricCurrentGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings for the ElectricCurrentGradient quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricCurrentGradientInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricCurrentGradientInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricCurrentGradientUnit>>, IEnumerable<IUnitDefinition<ElectricCurrentGradientUnit>>> customizeUnits)
+            {
+                return new ElectricCurrentGradientInfo(nameof(ElectricCurrentGradient), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricCurrentGradient(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCurrentGradient"/> is [T^-1][I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricCurrentGradient is AmperePerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricCurrentGradientUnit DefaultBaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricCurrentGradientUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCurrentGradientUnit}"/> representing the default unit mappings for ElectricCurrentGradient.</returns>
+            public static IEnumerable<UnitDefinition<ElectricCurrentGradientUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperePerMicrosecond", "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperePerMillisecond", "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentGradientUnit.AmperePerMinute, "AmperePerMinute", "AmperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperePerNanosecond", "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentGradientUnit.AmperePerSecond, "AmperePerSecond", "AmperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricCurrentGradientUnit.MilliamperePerMinute, "MilliamperePerMinute", "MilliamperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Milliampere));
+                yield return new (ElectricCurrentGradientUnit.MilliamperePerSecond, "MilliamperePerSecond", "MilliamperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+            }
+        }
+
         static ElectricCurrentGradient()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
-            BaseUnit = ElectricCurrentGradientUnit.AmperePerSecond;
-            Units = EnumHelpers.GetValues<ElectricCurrentGradientUnit>();
-            Zero = new ElectricCurrentGradient(0, BaseUnit);
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
-                new UnitInfo<ElectricCurrentGradientUnit>[]
-                {
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMinute, "AmperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerMinute, "MilliamperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Milliampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerSecond, "MilliamperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "ElectricCurrentGradient"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricCurrentGradientInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -123,27 +170,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCurrentGradientUnit> Info { get; }
+        public static QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit { get; }
+        public static ElectricCurrentGradientUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
         /// </summary>
-        public static ElectricCurrentGradientUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricCurrentGradientUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSecond.
         /// </summary>
-        public static ElectricCurrentGradient Zero { get; }
+        public static ElectricCurrentGradient Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricCurrentGradient AdditiveIdentity => Zero;
@@ -161,7 +208,7 @@ namespace UnitsNet
         public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -178,6 +225,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.QuantityInfo => Info;
 
         #endregion
 

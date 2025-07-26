@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -64,22 +60,73 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AmplitudeRatioUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="AmplitudeRatio"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AmplitudeRatioInfo: QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit>
+        {
+            /// <inheritdoc />
+            public AmplitudeRatioInfo(string name, AmplitudeRatioUnit baseUnit, IEnumerable<IUnitDefinition<AmplitudeRatioUnit>> unitMappings, AmplitudeRatio zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<AmplitudeRatio, AmplitudeRatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AmplitudeRatioInfo(string name, AmplitudeRatioUnit baseUnit, IEnumerable<IUnitDefinition<AmplitudeRatioUnit>> unitMappings, AmplitudeRatio zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, AmplitudeRatio.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AmplitudeRatio", typeof(AmplitudeRatio).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AmplitudeRatioInfo"/> class with the default settings for the AmplitudeRatio quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AmplitudeRatioInfo"/> class with the default settings.</returns>
+            public static AmplitudeRatioInfo CreateDefault()
+            {
+                return new AmplitudeRatioInfo(nameof(AmplitudeRatio), DefaultBaseUnit, GetDefaultMappings(), new AmplitudeRatio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AmplitudeRatioInfo"/> class with the default settings for the AmplitudeRatio quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AmplitudeRatioInfo"/> class with the default settings.
+            /// </returns>
+            public static AmplitudeRatioInfo CreateDefault(Func<IEnumerable<UnitDefinition<AmplitudeRatioUnit>>, IEnumerable<IUnitDefinition<AmplitudeRatioUnit>>> customizeUnits)
+            {
+                return new AmplitudeRatioInfo(nameof(AmplitudeRatio), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AmplitudeRatio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="AmplitudeRatio"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of AmplitudeRatio is DecibelVolt. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AmplitudeRatioUnit DefaultBaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AmplitudeRatioUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AmplitudeRatioUnit}"/> representing the default unit mappings for AmplitudeRatio.</returns>
+            public static IEnumerable<UnitDefinition<AmplitudeRatioUnit>> GetDefaultMappings()
+            {
+                yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined);
+                yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined);
+                yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined);
+                yield return new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined);
+            }
+        }
+
         static AmplitudeRatio()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = AmplitudeRatioUnit.DecibelVolt;
-            Units = EnumHelpers.GetValues<AmplitudeRatioUnit>();
-            Zero = new AmplitudeRatio(0, BaseUnit);
-            Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
-                new UnitInfo<AmplitudeRatioUnit>[]
-                {
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined, "AmplitudeRatio"),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined, "AmplitudeRatio"),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined, "AmplitudeRatio"),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined, "AmplitudeRatio"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AmplitudeRatioInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -103,27 +150,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AmplitudeRatioUnit> Info { get; }
+        public static QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit BaseUnit { get; }
+        public static AmplitudeRatioUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
         /// </summary>
-        public static AmplitudeRatioUnit[] Units { get; }
+        public static IReadOnlyCollection<AmplitudeRatioUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelVolt.
         /// </summary>
-        public static AmplitudeRatio Zero { get; }
+        public static AmplitudeRatio Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static AmplitudeRatio AdditiveIdentity => Zero;
@@ -141,7 +188,7 @@ namespace UnitsNet
         public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AmplitudeRatioUnit> QuantityInfo => Info;
+        public QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -158,6 +205,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -69,31 +65,82 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MolarMassUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MolarMass"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MolarMassInfo: QuantityInfo<MolarMass, MolarMassUnit>
+        {
+            /// <inheritdoc />
+            public MolarMassInfo(string name, MolarMassUnit baseUnit, IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings, MolarMass zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MolarMass, MolarMassUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MolarMassInfo(string name, MolarMassUnit baseUnit, IEnumerable<IUnitDefinition<MolarMassUnit>> unitMappings, MolarMass zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MolarMass.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MolarMass", typeof(MolarMass).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolarMassInfo"/> class with the default settings for the MolarMass quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MolarMassInfo"/> class with the default settings.</returns>
+            public static MolarMassInfo CreateDefault()
+            {
+                return new MolarMassInfo(nameof(MolarMass), DefaultBaseUnit, GetDefaultMappings(), new MolarMass(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolarMassInfo"/> class with the default settings for the MolarMass quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MolarMassInfo"/> class with the default settings.
+            /// </returns>
+            public static MolarMassInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarMassUnit>>, IEnumerable<IUnitDefinition<MolarMassUnit>>> customizeUnits)
+            {
+                return new MolarMassInfo(nameof(MolarMass), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MolarMass(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MolarMass"/> is [M][N^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
+
+            /// <summary>
+            ///     The default base unit of MolarMass is KilogramPerMole. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MolarMassUnit DefaultBaseUnit { get; } = MolarMassUnit.KilogramPerMole;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MolarMassUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarMassUnit}"/> representing the default unit mappings for MolarMass.</returns>
+            public static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
+            {
+                yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (MolarMassUnit.KilogramPerMole, "KilogramPerMole", "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole));
+            }
+        }
+
         static MolarMass()
         {
-            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-            BaseUnit = MolarMassUnit.KilogramPerMole;
-            Units = EnumHelpers.GetValues<MolarMassUnit>();
-            Zero = new MolarMass(0, BaseUnit);
-            Info = new QuantityInfo<MolarMassUnit>("MolarMass",
-                new UnitInfo<MolarMassUnit>[]
-                {
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MolarMassInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -131,27 +178,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarMassUnit> Info { get; }
+        public static QuantityInfo<MolarMass, MolarMassUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MolarMass, which is KilogramPerMole. All conversions go via this value.
         /// </summary>
-        public static MolarMassUnit BaseUnit { get; }
+        public static MolarMassUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MolarMass quantity.
         /// </summary>
-        public static MolarMassUnit[] Units { get; }
+        public static IReadOnlyCollection<MolarMassUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMole.
         /// </summary>
-        public static MolarMass Zero { get; }
+        public static MolarMass Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MolarMass AdditiveIdentity => Zero;
@@ -169,7 +216,7 @@ namespace UnitsNet
         public MolarMassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MolarMassUnit> QuantityInfo => Info;
+        public QuantityInfo<MolarMass, MolarMassUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -186,6 +233,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MolarMassUnit> IQuantity<MolarMassUnit>.QuantityInfo => Info;
 
         #endregion
 

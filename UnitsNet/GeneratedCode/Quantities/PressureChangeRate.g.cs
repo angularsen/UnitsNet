@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,36 +63,87 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PressureChangeRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="PressureChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PressureChangeRateInfo: QuantityInfo<PressureChangeRate, PressureChangeRateUnit>
+        {
+            /// <inheritdoc />
+            public PressureChangeRateInfo(string name, PressureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings, PressureChangeRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<PressureChangeRate, PressureChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PressureChangeRateInfo(string name, PressureChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<PressureChangeRateUnit>> unitMappings, PressureChangeRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, PressureChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PressureChangeRate", typeof(PressureChangeRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings for the PressureChangeRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings.</returns>
+            public static PressureChangeRateInfo CreateDefault()
+            {
+                return new PressureChangeRateInfo(nameof(PressureChangeRate), DefaultBaseUnit, GetDefaultMappings(), new PressureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings for the PressureChangeRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PressureChangeRateInfo"/> class with the default settings.
+            /// </returns>
+            public static PressureChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<PressureChangeRateUnit>>, IEnumerable<IUnitDefinition<PressureChangeRateUnit>>> customizeUnits)
+            {
+                return new PressureChangeRateInfo(nameof(PressureChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PressureChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="PressureChangeRate"/> is [T^-3][L^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of PressureChangeRate is PascalPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PressureChangeRateUnit DefaultBaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PressureChangeRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PressureChangeRateUnit}"/> representing the default unit mappings for PressureChangeRate.</returns>
+            public static IEnumerable<UnitDefinition<PressureChangeRateUnit>> GetDefaultMappings()
+            {
+                yield return new (PressureChangeRateUnit.AtmospherePerSecond, "AtmospherePerSecond", "AtmospheresPerSecond", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.BarPerMinute, "BarPerMinute", "BarsPerMinute", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.BarPerSecond, "BarPerSecond", "BarsPerSecond", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.KilopascalPerMinute, "KilopascalPerMinute", "KilopascalsPerMinute", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.KilopascalPerSecond, "KilopascalPerSecond", "KilopascalsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundForcePerSquareInchPerMinute", "KilopoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundForcePerSquareInchPerSecond", "KilopoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Second));
+                yield return new (PressureChangeRateUnit.MegapascalPerMinute, "MegapascalPerMinute", "MegapascalsPerMinute", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.MegapascalPerSecond, "MegapascalPerSecond", "MegapascalsPerSecond", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundForcePerSquareInchPerMinute", "MegapoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundForcePerSquareInchPerSecond", "MegapoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Second));
+                yield return new (PressureChangeRateUnit.MillibarPerMinute, "MillibarPerMinute", "MillibarsPerMinute", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.MillibarPerSecond, "MillibarPerSecond", "MillibarsPerSecond", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimeterOfMercuryPerSecond", "MillimetersOfMercuryPerSecond", BaseUnits.Undefined);
+                yield return new (PressureChangeRateUnit.PascalPerMinute, "PascalPerMinute", "PascalsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.PascalPerSecond, "PascalPerSecond", "PascalsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundForcePerSquareInchPerMinute", "PoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Minute));
+                yield return new (PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundForcePerSquareInchPerSecond", "PoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Second));
+            }
+        }
+
         static PressureChangeRate()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-            BaseUnit = PressureChangeRateUnit.PascalPerSecond;
-            Units = EnumHelpers.GetValues<PressureChangeRateUnit>();
-            Zero = new PressureChangeRate(0, BaseUnit);
-            Info = new QuantityInfo<PressureChangeRateUnit>("PressureChangeRate",
-                new UnitInfo<PressureChangeRateUnit>[]
-                {
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerMinute, "BarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerSecond, "BarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound, time: DurationUnit.Second), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerMinute, "MegapascalsPerMinute", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Megapound, time: DurationUnit.Second), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerMinute, "MillibarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerSecond, "MillibarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Minute), "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Second), "PressureChangeRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PressureChangeRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -134,27 +181,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PressureChangeRateUnit> Info { get; }
+        public static QuantityInfo<PressureChangeRate, PressureChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of PressureChangeRate, which is PascalPerSecond. All conversions go via this value.
         /// </summary>
-        public static PressureChangeRateUnit BaseUnit { get; }
+        public static PressureChangeRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the PressureChangeRate quantity.
         /// </summary>
-        public static PressureChangeRateUnit[] Units { get; }
+        public static IReadOnlyCollection<PressureChangeRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit PascalPerSecond.
         /// </summary>
-        public static PressureChangeRate Zero { get; }
+        public static PressureChangeRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static PressureChangeRate AdditiveIdentity => Zero;
@@ -172,7 +219,7 @@ namespace UnitsNet
         public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PressureChangeRateUnit> QuantityInfo => Info;
+        public QuantityInfo<PressureChangeRate, PressureChangeRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -189,6 +236,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.QuantityInfo => Info;
 
         #endregion
 

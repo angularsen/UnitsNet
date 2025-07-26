@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,38 +63,89 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly DoseAreaProductUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="DoseAreaProduct"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class DoseAreaProductInfo: QuantityInfo<DoseAreaProduct, DoseAreaProductUnit>
+        {
+            /// <inheritdoc />
+            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<DoseAreaProduct, DoseAreaProductUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public DoseAreaProductInfo(string name, DoseAreaProductUnit baseUnit, IEnumerable<IUnitDefinition<DoseAreaProductUnit>> unitMappings, DoseAreaProduct zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, DoseAreaProduct.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.DoseAreaProduct", typeof(DoseAreaProduct).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.</returns>
+            public static DoseAreaProductInfo CreateDefault()
+            {
+                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, GetDefaultMappings(), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings for the DoseAreaProduct quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="DoseAreaProductInfo"/> class with the default settings.
+            /// </returns>
+            public static DoseAreaProductInfo CreateDefault(Func<IEnumerable<UnitDefinition<DoseAreaProductUnit>>, IEnumerable<IUnitDefinition<DoseAreaProductUnit>>> customizeUnits)
+            {
+                return new DoseAreaProductInfo(nameof(DoseAreaProduct), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new DoseAreaProduct(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="DoseAreaProduct"/> is [T^-2][L^4].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of DoseAreaProduct is GraySquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static DoseAreaProductUnit DefaultBaseUnit { get; } = DoseAreaProductUnit.GraySquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="DoseAreaProductUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DoseAreaProductUnit}"/> representing the default unit mappings for DoseAreaProduct.</returns>
+            public static IEnumerable<UnitDefinition<DoseAreaProductUnit>> GetDefaultMappings()
+            {
+                yield return new (DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeter", "CentigraySquareCentimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeter", "CentigraySquareDecimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeter", "CentigraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeter", "CentigraySquareMillimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeter", "DecigraySquareCentimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeter", "DecigraySquareDecimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeter", "DecigraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeter", "DecigraySquareMillimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeter", "GraySquareCentimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeter", "GraySquareDecimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.GraySquareMeter, "GraySquareMeter", "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeter", "GraySquareMillimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeter", "MicrograySquareCentimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeter", "MicrograySquareDecimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeter", "MicrograySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeter", "MicrograySquareMillimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeter", "MilligraySquareCentimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeter", "MilligraySquareDecimeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeter", "MilligraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeter", "MilligraySquareMillimeters", BaseUnits.Undefined);
+            }
+        }
+
         static DoseAreaProduct()
         {
-            BaseDimensions = new BaseDimensions(4, 0, -2, 0, 0, 0, 0);
-            BaseUnit = DoseAreaProductUnit.GraySquareMeter;
-            Units = EnumHelpers.GetValues<DoseAreaProductUnit>();
-            Zero = new DoseAreaProduct(0, BaseUnit);
-            Info = new QuantityInfo<DoseAreaProductUnit>("DoseAreaProduct",
-                new UnitInfo<DoseAreaProductUnit>[]
-                {
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareMeter, "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                    new UnitInfo<DoseAreaProductUnit>(DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeters", BaseUnits.Undefined, "DoseAreaProduct"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = DoseAreaProductInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -136,27 +183,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DoseAreaProductUnit> Info { get; }
+        public static QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of DoseAreaProduct, which is GraySquareMeter. All conversions go via this value.
         /// </summary>
-        public static DoseAreaProductUnit BaseUnit { get; }
+        public static DoseAreaProductUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the DoseAreaProduct quantity.
         /// </summary>
-        public static DoseAreaProductUnit[] Units { get; }
+        public static IReadOnlyCollection<DoseAreaProductUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GraySquareMeter.
         /// </summary>
-        public static DoseAreaProduct Zero { get; }
+        public static DoseAreaProduct Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static DoseAreaProduct AdditiveIdentity => Zero;
@@ -174,7 +221,7 @@ namespace UnitsNet
         public DoseAreaProductUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<DoseAreaProductUnit> QuantityInfo => Info;
+        public QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -191,6 +238,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<DoseAreaProductUnit> IQuantity<DoseAreaProductUnit>.QuantityInfo => Info;
 
         #endregion
 

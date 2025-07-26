@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -71,32 +67,83 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AccelerationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Acceleration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AccelerationInfo: QuantityInfo<Acceleration, AccelerationUnit>
+        {
+            /// <inheritdoc />
+            public AccelerationInfo(string name, AccelerationUnit baseUnit, IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings, Acceleration zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Acceleration, AccelerationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AccelerationInfo(string name, AccelerationUnit baseUnit, IEnumerable<IUnitDefinition<AccelerationUnit>> unitMappings, Acceleration zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Acceleration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Acceleration", typeof(Acceleration).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AccelerationInfo"/> class with the default settings for the Acceleration quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AccelerationInfo"/> class with the default settings.</returns>
+            public static AccelerationInfo CreateDefault()
+            {
+                return new AccelerationInfo(nameof(Acceleration), DefaultBaseUnit, GetDefaultMappings(), new Acceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AccelerationInfo"/> class with the default settings for the Acceleration quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AccelerationInfo"/> class with the default settings.
+            /// </returns>
+            public static AccelerationInfo CreateDefault(Func<IEnumerable<UnitDefinition<AccelerationUnit>>, IEnumerable<IUnitDefinition<AccelerationUnit>>> customizeUnits)
+            {
+                return new AccelerationInfo(nameof(Acceleration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Acceleration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Acceleration"/> is [T^-2][L].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Acceleration is MeterPerSecondSquared. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AccelerationUnit DefaultBaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AccelerationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AccelerationUnit}"/> representing the default unit mappings for Acceleration.</returns>
+            public static IEnumerable<UnitDefinition<AccelerationUnit>> GetDefaultMappings()
+            {
+                yield return new (AccelerationUnit.CentimeterPerSecondSquared, "CentimeterPerSecondSquared", "CentimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.DecimeterPerSecondSquared, "DecimeterPerSecondSquared", "DecimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.FootPerSecondSquared, "FootPerSecondSquared", "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.InchPerSecondSquared, "InchPerSecondSquared", "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.KilometerPerSecondSquared, "KilometerPerSecondSquared", "KilometersPerSecondSquared", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.KnotPerHour, "KnotPerHour", "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour));
+                yield return new (AccelerationUnit.KnotPerMinute, "KnotPerMinute", "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute));
+                yield return new (AccelerationUnit.KnotPerSecond, "KnotPerSecond", "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.MeterPerSecondSquared, "MeterPerSecondSquared", "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.MicrometerPerSecondSquared, "MicrometerPerSecondSquared", "MicrometersPerSecondSquared", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.MillimeterPerSecondSquared, "MillimeterPerSecondSquared", "MillimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.MillistandardGravity, "MillistandardGravity", "MillistandardGravity", BaseUnits.Undefined);
+                yield return new (AccelerationUnit.NanometerPerSecondSquared, "NanometerPerSecondSquared", "NanometersPerSecondSquared", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second));
+                yield return new (AccelerationUnit.StandardGravity, "StandardGravity", "StandardGravity", BaseUnits.Undefined);
+            }
+        }
+
         static Acceleration()
         {
-            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-            BaseUnit = AccelerationUnit.MeterPerSecondSquared;
-            Units = EnumHelpers.GetValues<AccelerationUnit>();
-            Zero = new Acceleration(0, BaseUnit);
-            Info = new QuantityInfo<AccelerationUnit>("Acceleration",
-                new UnitInfo<AccelerationUnit>[]
-                {
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined, "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second), "Acceleration"),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", BaseUnits.Undefined, "Acceleration"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AccelerationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -134,27 +181,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AccelerationUnit> Info { get; }
+        public static QuantityInfo<Acceleration, AccelerationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit { get; }
+        public static AccelerationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
-        public static AccelerationUnit[] Units { get; }
+        public static IReadOnlyCollection<AccelerationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero { get; }
+        public static Acceleration Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Acceleration AdditiveIdentity => Zero;
@@ -172,7 +219,7 @@ namespace UnitsNet
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
+        public QuantityInfo<Acceleration, AccelerationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -189,6 +236,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AccelerationUnit> IQuantity<AccelerationUnit>.QuantityInfo => Info;
 
         #endregion
 

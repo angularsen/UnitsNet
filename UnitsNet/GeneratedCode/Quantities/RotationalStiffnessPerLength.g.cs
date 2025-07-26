@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,23 +63,74 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly RotationalStiffnessPerLengthUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="RotationalStiffnessPerLength"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class RotationalStiffnessPerLengthInfo: QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>
+        {
+            /// <inheritdoc />
+            public RotationalStiffnessPerLengthInfo(string name, RotationalStiffnessPerLengthUnit baseUnit, IEnumerable<IUnitDefinition<RotationalStiffnessPerLengthUnit>> unitMappings, RotationalStiffnessPerLength zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public RotationalStiffnessPerLengthInfo(string name, RotationalStiffnessPerLengthUnit baseUnit, IEnumerable<IUnitDefinition<RotationalStiffnessPerLengthUnit>> unitMappings, RotationalStiffnessPerLength zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, RotationalStiffnessPerLength.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RotationalStiffnessPerLength", typeof(RotationalStiffnessPerLength).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RotationalStiffnessPerLengthInfo"/> class with the default settings for the RotationalStiffnessPerLength quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="RotationalStiffnessPerLengthInfo"/> class with the default settings.</returns>
+            public static RotationalStiffnessPerLengthInfo CreateDefault()
+            {
+                return new RotationalStiffnessPerLengthInfo(nameof(RotationalStiffnessPerLength), DefaultBaseUnit, GetDefaultMappings(), new RotationalStiffnessPerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RotationalStiffnessPerLengthInfo"/> class with the default settings for the RotationalStiffnessPerLength quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="RotationalStiffnessPerLengthInfo"/> class with the default settings.
+            /// </returns>
+            public static RotationalStiffnessPerLengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<RotationalStiffnessPerLengthUnit>>, IEnumerable<IUnitDefinition<RotationalStiffnessPerLengthUnit>>> customizeUnits)
+            {
+                return new RotationalStiffnessPerLengthInfo(nameof(RotationalStiffnessPerLength), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RotationalStiffnessPerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="RotationalStiffnessPerLength"/> is [T^-2][L][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of RotationalStiffnessPerLength is NewtonMeterPerRadianPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static RotationalStiffnessPerLengthUnit DefaultBaseUnit { get; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="RotationalStiffnessPerLengthUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalStiffnessPerLengthUnit}"/> representing the default unit mappings for RotationalStiffnessPerLength.</returns>
+            public static IEnumerable<UnitDefinition<RotationalStiffnessPerLengthUnit>> GetDefaultMappings()
+            {
+                yield return new (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMeterPerRadianPerMeter", "KilonewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFootPerDegreesPerFoot", "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined);
+                yield return new (RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMeterPerRadianPerMeter", "MeganewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMeterPerRadianPerMeter", "NewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFootPerDegreesPerFoot", "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined);
+            }
+        }
+
         static RotationalStiffnessPerLength()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-            BaseUnit = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
-            Units = EnumHelpers.GetValues<RotationalStiffnessPerLengthUnit>();
-            Zero = new RotationalStiffnessPerLength(0, BaseUnit);
-            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>("RotationalStiffnessPerLength",
-                new UnitInfo<RotationalStiffnessPerLengthUnit>[]
-                {
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffnessPerLength"),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined, "RotationalStiffnessPerLength"),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffnessPerLength"),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "RotationalStiffnessPerLength"),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined, "RotationalStiffnessPerLength"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = RotationalStiffnessPerLengthInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalStiffnessPerLengthUnit> Info { get; }
+        public static QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of RotationalStiffnessPerLength, which is NewtonMeterPerRadianPerMeter. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit BaseUnit { get; }
+        public static RotationalStiffnessPerLengthUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit[] Units { get; }
+        public static IReadOnlyCollection<RotationalStiffnessPerLengthUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadianPerMeter.
         /// </summary>
-        public static RotationalStiffnessPerLength Zero { get; }
+        public static RotationalStiffnessPerLength Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static RotationalStiffnessPerLength AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public RotationalStiffnessPerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RotationalStiffnessPerLengthUnit> QuantityInfo => Info;
+        public QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,6 +223,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.QuantityInfo => Info;
 
         #endregion
 

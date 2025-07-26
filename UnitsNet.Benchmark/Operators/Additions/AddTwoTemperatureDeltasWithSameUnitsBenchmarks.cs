@@ -29,8 +29,8 @@ public class AddTwoTemperatureDeltasWithSameUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _operands = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(LeftValue, TemperatureDelta.Units, NbOperations)
-            .Zip(_random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(RightValue, TemperatureDelta.Units, NbOperations),
+        _operands = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(LeftValue, TemperatureDelta.Units.ToArray(), NbOperations)
+            .Zip(_random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(RightValue, TemperatureDelta.Units.ToArray(), NbOperations),
                 (left, right) => (left, right))
             .ToArray();
     }

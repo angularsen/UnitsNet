@@ -48,6 +48,7 @@ namespace UnitsNet.Tests
         protected abstract double MinutesInOneSecond { get; }
         protected abstract double Months30InOneSecond { get; }
         protected abstract double NanosecondsInOneSecond { get; }
+        protected abstract double PicosecondsInOneSecond { get; }
         protected abstract double SecondsInOneSecond { get; }
         protected abstract double SolsInOneSecond { get; }
         protected abstract double WeeksInOneSecond { get; }
@@ -62,6 +63,7 @@ namespace UnitsNet.Tests
         protected virtual double MinutesTolerance { get { return 1e-5; } }
         protected virtual double Months30Tolerance { get { return 1e-5; } }
         protected virtual double NanosecondsTolerance { get { return 1e-5; } }
+        protected virtual double PicosecondsTolerance { get { return 1e-5; } }
         protected virtual double SecondsTolerance { get { return 1e-5; } }
         protected virtual double SolsTolerance { get { return 1e-5; } }
         protected virtual double WeeksTolerance { get { return 1e-5; } }
@@ -80,6 +82,7 @@ namespace UnitsNet.Tests
                 DurationUnit.Minute => (MinutesInOneSecond, MinutesTolerance),
                 DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
                 DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
+                DurationUnit.Picosecond => (PicosecondsInOneSecond, PicosecondsTolerance),
                 DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
                 DurationUnit.Sol => (SolsInOneSecond, SolsTolerance),
                 DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
@@ -98,6 +101,7 @@ namespace UnitsNet.Tests
             new object[] { DurationUnit.Minute },
             new object[] { DurationUnit.Month30 },
             new object[] { DurationUnit.Nanosecond },
+            new object[] { DurationUnit.Picosecond },
             new object[] { DurationUnit.Second },
             new object[] { DurationUnit.Sol },
             new object[] { DurationUnit.Week },
@@ -177,6 +181,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MinutesInOneSecond, second.Minutes, MinutesTolerance);
             AssertEx.EqualTolerance(Months30InOneSecond, second.Months30, Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(PicosecondsInOneSecond, second.Picoseconds, PicosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(SolsInOneSecond, second.Sols, SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
@@ -218,21 +223,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity07.Nanoseconds, NanosecondsTolerance);
             Assert.Equal(DurationUnit.Nanosecond, quantity07.Unit);
 
-            var quantity08 = Duration.From(1, DurationUnit.Second);
-            AssertEx.EqualTolerance(1, quantity08.Seconds, SecondsTolerance);
-            Assert.Equal(DurationUnit.Second, quantity08.Unit);
+            var quantity08 = Duration.From(1, DurationUnit.Picosecond);
+            AssertEx.EqualTolerance(1, quantity08.Picoseconds, PicosecondsTolerance);
+            Assert.Equal(DurationUnit.Picosecond, quantity08.Unit);
 
-            var quantity09 = Duration.From(1, DurationUnit.Sol);
-            AssertEx.EqualTolerance(1, quantity09.Sols, SolsTolerance);
-            Assert.Equal(DurationUnit.Sol, quantity09.Unit);
+            var quantity09 = Duration.From(1, DurationUnit.Second);
+            AssertEx.EqualTolerance(1, quantity09.Seconds, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, quantity09.Unit);
 
-            var quantity10 = Duration.From(1, DurationUnit.Week);
-            AssertEx.EqualTolerance(1, quantity10.Weeks, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, quantity10.Unit);
+            var quantity10 = Duration.From(1, DurationUnit.Sol);
+            AssertEx.EqualTolerance(1, quantity10.Sols, SolsTolerance);
+            Assert.Equal(DurationUnit.Sol, quantity10.Unit);
 
-            var quantity11 = Duration.From(1, DurationUnit.Year365);
-            AssertEx.EqualTolerance(1, quantity11.Years365, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, quantity11.Unit);
+            var quantity11 = Duration.From(1, DurationUnit.Week);
+            AssertEx.EqualTolerance(1, quantity11.Weeks, WeeksTolerance);
+            Assert.Equal(DurationUnit.Week, quantity11.Unit);
+
+            var quantity12 = Duration.From(1, DurationUnit.Year365);
+            AssertEx.EqualTolerance(1, quantity12.Years365, Years365Tolerance);
+            Assert.Equal(DurationUnit.Year365, quantity12.Unit);
 
         }
 
@@ -266,6 +275,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
             AssertEx.EqualTolerance(Months30InOneSecond, second.As(DurationUnit.Month30), Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
+            AssertEx.EqualTolerance(PicosecondsInOneSecond, second.As(DurationUnit.Picosecond), PicosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
             AssertEx.EqualTolerance(SolsInOneSecond, second.As(DurationUnit.Sol), SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
@@ -698,6 +708,55 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Duration.Parse("1 ps", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 psec", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 psecs", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 psecond", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 pseconds", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 псек", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Duration.Parse("1 пс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Duration.Parse("1 s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
@@ -1084,6 +1143,48 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Duration.TryParse("1 ps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 psec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 psecs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 psecond", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 pseconds", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 псек", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Duration.TryParse("1 пс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoseconds, PicosecondsTolerance);
+                Assert.Equal(DurationUnit.Picosecond, parsed.Unit);
+            }
+
+            {
                 Assert.True(Duration.TryParse("1 s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
@@ -1215,6 +1316,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -1269,6 +1375,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -1323,6 +1434,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -1347,6 +1463,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -1392,6 +1510,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -1416,6 +1539,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -1460,6 +1585,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -1514,6 +1644,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -1568,6 +1703,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -1592,6 +1732,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -1637,6 +1779,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -1661,6 +1808,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -1744,6 +1893,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMonths30(second.Months30).Seconds, Months30Tolerance);
             AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromPicoseconds(second.Picoseconds).Seconds, PicosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromSols(second.Sols).Seconds, SolsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
@@ -1903,6 +2053,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
+            Assert.Equal("1 ps", new Duration(1, DurationUnit.Picosecond).ToString());
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
             Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
@@ -1923,6 +2074,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(swedishCulture));
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
+            Assert.Equal("1 ps", new Duration(1, DurationUnit.Picosecond).ToString(swedishCulture));
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
             Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(swedishCulture));
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));

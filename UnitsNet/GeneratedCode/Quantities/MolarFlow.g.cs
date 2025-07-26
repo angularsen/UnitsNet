@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -70,27 +66,78 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MolarFlowUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MolarFlow"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MolarFlowInfo: QuantityInfo<MolarFlow, MolarFlowUnit>
+        {
+            /// <inheritdoc />
+            public MolarFlowInfo(string name, MolarFlowUnit baseUnit, IEnumerable<IUnitDefinition<MolarFlowUnit>> unitMappings, MolarFlow zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MolarFlow, MolarFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MolarFlowInfo(string name, MolarFlowUnit baseUnit, IEnumerable<IUnitDefinition<MolarFlowUnit>> unitMappings, MolarFlow zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MolarFlow.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MolarFlow", typeof(MolarFlow).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolarFlowInfo"/> class with the default settings for the MolarFlow quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MolarFlowInfo"/> class with the default settings.</returns>
+            public static MolarFlowInfo CreateDefault()
+            {
+                return new MolarFlowInfo(nameof(MolarFlow), DefaultBaseUnit, GetDefaultMappings(), new MolarFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MolarFlowInfo"/> class with the default settings for the MolarFlow quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MolarFlowInfo"/> class with the default settings.
+            /// </returns>
+            public static MolarFlowInfo CreateDefault(Func<IEnumerable<UnitDefinition<MolarFlowUnit>>, IEnumerable<IUnitDefinition<MolarFlowUnit>>> customizeUnits)
+            {
+                return new MolarFlowInfo(nameof(MolarFlow), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MolarFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MolarFlow"/> is [T^-1][N].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 1, 0);
+
+            /// <summary>
+            ///     The default base unit of MolarFlow is MolePerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MolarFlowUnit DefaultBaseUnit { get; } = MolarFlowUnit.MolePerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MolarFlowUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarFlowUnit}"/> representing the default unit mappings for MolarFlow.</returns>
+            public static IEnumerable<UnitDefinition<MolarFlowUnit>> GetDefaultMappings()
+            {
+                yield return new (MolarFlowUnit.KilomolePerHour, "KilomolePerHour", "KilomolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (MolarFlowUnit.KilomolePerMinute, "KilomolePerMinute", "KilomolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (MolarFlowUnit.KilomolePerSecond, "KilomolePerSecond", "KilomolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (MolarFlowUnit.MolePerHour, "MolePerHour", "MolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarFlowUnit.MolePerMinute, "MolePerMinute", "MolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarFlowUnit.MolePerSecond, "MolePerSecond", "MolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarFlowUnit.PoundMolePerHour, "PoundMolePerHour", "PoundMolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.PoundMole));
+                yield return new (MolarFlowUnit.PoundMolePerMinute, "PoundMolePerMinute", "PoundMolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.PoundMole));
+                yield return new (MolarFlowUnit.PoundMolePerSecond, "PoundMolePerSecond", "PoundMolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.PoundMole));
+            }
+        }
+
         static MolarFlow()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 1, 0);
-            BaseUnit = MolarFlowUnit.MolePerSecond;
-            Units = EnumHelpers.GetValues<MolarFlowUnit>();
-            Zero = new MolarFlow(0, BaseUnit);
-            Info = new QuantityInfo<MolarFlowUnit>("MolarFlow",
-                new UnitInfo<MolarFlowUnit>[]
-                {
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.KilomolePerHour, "KilomolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Kilomole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.KilomolePerMinute, "KilomolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Kilomole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.KilomolePerSecond, "KilomolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Kilomole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.MolePerHour, "MolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Mole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.MolePerMinute, "MolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Mole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.MolePerSecond, "MolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.PoundMolePerHour, "PoundMolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.PoundMole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.PoundMolePerMinute, "PoundMolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.PoundMole), "MolarFlow"),
-                    new UnitInfo<MolarFlowUnit>(MolarFlowUnit.PoundMolePerSecond, "PoundMolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.PoundMole), "MolarFlow"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MolarFlowInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -128,27 +175,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarFlowUnit> Info { get; }
+        public static QuantityInfo<MolarFlow, MolarFlowUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MolarFlow, which is MolePerSecond. All conversions go via this value.
         /// </summary>
-        public static MolarFlowUnit BaseUnit { get; }
+        public static MolarFlowUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MolarFlow quantity.
         /// </summary>
-        public static MolarFlowUnit[] Units { get; }
+        public static IReadOnlyCollection<MolarFlowUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolePerSecond.
         /// </summary>
-        public static MolarFlow Zero { get; }
+        public static MolarFlow Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MolarFlow AdditiveIdentity => Zero;
@@ -166,7 +213,7 @@ namespace UnitsNet
         public MolarFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MolarFlowUnit> QuantityInfo => Info;
+        public QuantityInfo<MolarFlow, MolarFlowUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -183,6 +230,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MolarFlowUnit> IQuantity<MolarFlowUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,19 +63,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricFieldUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricField"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricFieldInfo: QuantityInfo<ElectricField, ElectricFieldUnit>
+        {
+            /// <inheritdoc />
+            public ElectricFieldInfo(string name, ElectricFieldUnit baseUnit, IEnumerable<IUnitDefinition<ElectricFieldUnit>> unitMappings, ElectricField zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricField, ElectricFieldUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricFieldInfo(string name, ElectricFieldUnit baseUnit, IEnumerable<IUnitDefinition<ElectricFieldUnit>> unitMappings, ElectricField zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricField.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricField", typeof(ElectricField).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricFieldInfo"/> class with the default settings for the ElectricField quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricFieldInfo"/> class with the default settings.</returns>
+            public static ElectricFieldInfo CreateDefault()
+            {
+                return new ElectricFieldInfo(nameof(ElectricField), DefaultBaseUnit, GetDefaultMappings(), new ElectricField(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricFieldInfo"/> class with the default settings for the ElectricField quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricFieldInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricFieldInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricFieldUnit>>, IEnumerable<IUnitDefinition<ElectricFieldUnit>>> customizeUnits)
+            {
+                return new ElectricFieldInfo(nameof(ElectricField), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricField(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricField"/> is [T^-3][L][M][I^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricField is VoltPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricFieldUnit DefaultBaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricFieldUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricFieldUnit}"/> representing the default unit mappings for ElectricField.</returns>
+            public static IEnumerable<UnitDefinition<ElectricFieldUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricFieldUnit.VoltPerMeter, "VoltPerMeter", "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricField()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
-            BaseUnit = ElectricFieldUnit.VoltPerMeter;
-            Units = EnumHelpers.GetValues<ElectricFieldUnit>();
-            Zero = new ElectricField(0, BaseUnit);
-            Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
-                new UnitInfo<ElectricFieldUnit>[]
-                {
-                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricField"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricFieldInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -117,27 +164,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricFieldUnit> Info { get; }
+        public static QuantityInfo<ElectricField, ElectricFieldUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricFieldUnit BaseUnit { get; }
+        public static ElectricFieldUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>
-        public static ElectricFieldUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricFieldUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerMeter.
         /// </summary>
-        public static ElectricField Zero { get; }
+        public static ElectricField Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricField AdditiveIdentity => Zero;
@@ -155,7 +202,7 @@ namespace UnitsNet
         public ElectricFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricFieldUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricField, ElectricFieldUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -172,6 +219,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.QuantityInfo => Info;
 
         #endregion
 

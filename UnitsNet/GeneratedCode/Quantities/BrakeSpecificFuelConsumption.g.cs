@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -68,21 +64,72 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly BrakeSpecificFuelConsumptionUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="BrakeSpecificFuelConsumption"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class BrakeSpecificFuelConsumptionInfo: QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>
+        {
+            /// <inheritdoc />
+            public BrakeSpecificFuelConsumptionInfo(string name, BrakeSpecificFuelConsumptionUnit baseUnit, IEnumerable<IUnitDefinition<BrakeSpecificFuelConsumptionUnit>> unitMappings, BrakeSpecificFuelConsumption zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public BrakeSpecificFuelConsumptionInfo(string name, BrakeSpecificFuelConsumptionUnit baseUnit, IEnumerable<IUnitDefinition<BrakeSpecificFuelConsumptionUnit>> unitMappings, BrakeSpecificFuelConsumption zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, BrakeSpecificFuelConsumption.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.BrakeSpecificFuelConsumption", typeof(BrakeSpecificFuelConsumption).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="BrakeSpecificFuelConsumptionInfo"/> class with the default settings for the BrakeSpecificFuelConsumption quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="BrakeSpecificFuelConsumptionInfo"/> class with the default settings.</returns>
+            public static BrakeSpecificFuelConsumptionInfo CreateDefault()
+            {
+                return new BrakeSpecificFuelConsumptionInfo(nameof(BrakeSpecificFuelConsumption), DefaultBaseUnit, GetDefaultMappings(), new BrakeSpecificFuelConsumption(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="BrakeSpecificFuelConsumptionInfo"/> class with the default settings for the BrakeSpecificFuelConsumption quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="BrakeSpecificFuelConsumptionInfo"/> class with the default settings.
+            /// </returns>
+            public static BrakeSpecificFuelConsumptionInfo CreateDefault(Func<IEnumerable<UnitDefinition<BrakeSpecificFuelConsumptionUnit>>, IEnumerable<IUnitDefinition<BrakeSpecificFuelConsumptionUnit>>> customizeUnits)
+            {
+                return new BrakeSpecificFuelConsumptionInfo(nameof(BrakeSpecificFuelConsumption), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new BrakeSpecificFuelConsumption(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="BrakeSpecificFuelConsumption"/> is [T^2][L^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of BrakeSpecificFuelConsumption is KilogramPerJoule. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static BrakeSpecificFuelConsumptionUnit DefaultBaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="BrakeSpecificFuelConsumptionUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{BrakeSpecificFuelConsumptionUnit}"/> representing the default unit mappings for BrakeSpecificFuelConsumption.</returns>
+            public static IEnumerable<UnitDefinition<BrakeSpecificFuelConsumptionUnit>> GetDefaultMappings()
+            {
+                yield return new (BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramPerKiloWattHour", "GramsPerKiloWattHour", BaseUnits.Undefined);
+                yield return new (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramPerJoule", "KilogramsPerJoule", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundPerMechanicalHorsepowerHour", "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined);
+            }
+        }
+
         static BrakeSpecificFuelConsumption()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-            BaseUnit = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
-            Units = EnumHelpers.GetValues<BrakeSpecificFuelConsumptionUnit>();
-            Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
-                new UnitInfo<BrakeSpecificFuelConsumptionUnit>[]
-                {
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramsPerKiloWattHour", BaseUnits.Undefined, "BrakeSpecificFuelConsumption"),
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "BrakeSpecificFuelConsumption"),
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined, "BrakeSpecificFuelConsumption"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = BrakeSpecificFuelConsumptionInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -120,27 +167,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BrakeSpecificFuelConsumptionUnit> Info { get; }
+        public static QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of BrakeSpecificFuelConsumption, which is KilogramPerJoule. All conversions go via this value.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; }
+        public static BrakeSpecificFuelConsumptionUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit[] Units { get; }
+        public static IReadOnlyCollection<BrakeSpecificFuelConsumptionUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerJoule.
         /// </summary>
-        public static BrakeSpecificFuelConsumption Zero { get; }
+        public static BrakeSpecificFuelConsumption Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static BrakeSpecificFuelConsumption AdditiveIdentity => Zero;
@@ -158,7 +205,7 @@ namespace UnitsNet
         public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
+        public QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -175,6 +222,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.QuantityInfo => Info;
 
         #endregion
 

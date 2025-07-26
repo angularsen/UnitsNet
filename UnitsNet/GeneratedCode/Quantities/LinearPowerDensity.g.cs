@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,43 +63,94 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LinearPowerDensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="LinearPowerDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LinearPowerDensityInfo: QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit>
+        {
+            /// <inheritdoc />
+            public LinearPowerDensityInfo(string name, LinearPowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings, LinearPowerDensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<LinearPowerDensity, LinearPowerDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LinearPowerDensityInfo(string name, LinearPowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>> unitMappings, LinearPowerDensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, LinearPowerDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LinearPowerDensity", typeof(LinearPowerDensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings for the LinearPowerDensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings.</returns>
+            public static LinearPowerDensityInfo CreateDefault()
+            {
+                return new LinearPowerDensityInfo(nameof(LinearPowerDensity), DefaultBaseUnit, GetDefaultMappings(), new LinearPowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings for the LinearPowerDensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LinearPowerDensityInfo"/> class with the default settings.
+            /// </returns>
+            public static LinearPowerDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LinearPowerDensityUnit>>, IEnumerable<IUnitDefinition<LinearPowerDensityUnit>>> customizeUnits)
+            {
+                return new LinearPowerDensityInfo(nameof(LinearPowerDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LinearPowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="LinearPowerDensity"/> is [T^-3][L][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of LinearPowerDensity is WattPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LinearPowerDensityUnit DefaultBaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LinearPowerDensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearPowerDensityUnit}"/> representing the default unit mappings for LinearPowerDensity.</returns>
+            public static IEnumerable<UnitDefinition<LinearPowerDensityUnit>> GetDefaultMappings()
+            {
+                yield return new (LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattPerCentimeter", "GigawattsPerCentimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.GigawattPerFoot, "GigawattPerFoot", "GigawattsPerFoot", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.GigawattPerInch, "GigawattPerInch", "GigawattsPerInch", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.GigawattPerMeter, "GigawattPerMeter", "GigawattsPerMeter", new BaseUnits(length: LengthUnit.Gigameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattPerMillimeter", "GigawattsPerMillimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattPerCentimeter", "KilowattsPerCentimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.KilowattPerFoot, "KilowattPerFoot", "KilowattsPerFoot", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.KilowattPerInch, "KilowattPerInch", "KilowattsPerInch", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.KilowattPerMeter, "KilowattPerMeter", "KilowattsPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattPerMillimeter", "KilowattsPerMillimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattPerCentimeter", "MegawattsPerCentimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MegawattPerFoot, "MegawattPerFoot", "MegawattsPerFoot", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MegawattPerInch, "MegawattPerInch", "MegawattsPerInch", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MegawattPerMeter, "MegawattPerMeter", "MegawattsPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattPerMillimeter", "MegawattsPerMillimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattPerCentimeter", "MilliwattsPerCentimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattPerFoot", "MilliwattsPerFoot", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MilliwattPerInch, "MilliwattPerInch", "MilliwattsPerInch", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattPerMeter", "MilliwattsPerMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattPerMillimeter", "MilliwattsPerMillimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.WattPerCentimeter, "WattPerCentimeter", "WattsPerCentimeter", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.WattPerFoot, "WattPerFoot", "WattsPerFoot", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.WattPerInch, "WattPerInch", "WattsPerInch", BaseUnits.Undefined);
+                yield return new (LinearPowerDensityUnit.WattPerMeter, "WattPerMeter", "WattsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (LinearPowerDensityUnit.WattPerMillimeter, "WattPerMillimeter", "WattsPerMillimeter", BaseUnits.Undefined);
+            }
+        }
+
         static LinearPowerDensity()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-            BaseUnit = LinearPowerDensityUnit.WattPerMeter;
-            Units = EnumHelpers.GetValues<LinearPowerDensityUnit>();
-            Zero = new LinearPowerDensity(0, BaseUnit);
-            Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
-                new UnitInfo<LinearPowerDensityUnit>[]
-                {
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerInch, "GigawattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMeter, "GigawattsPerMeter", new BaseUnits(length: LengthUnit.Gigameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerFoot, "KilowattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerInch, "KilowattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMeter, "KilowattsPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerFoot, "MegawattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerInch, "MegawattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMeter, "MegawattsPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerInch, "MilliwattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattsPerMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerCentimeter, "WattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerFoot, "WattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "LinearPowerDensity"),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LinearPowerDensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -141,27 +188,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LinearPowerDensityUnit> Info { get; }
+        public static QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of LinearPowerDensity, which is WattPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearPowerDensityUnit BaseUnit { get; }
+        public static LinearPowerDensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the LinearPowerDensity quantity.
         /// </summary>
-        public static LinearPowerDensityUnit[] Units { get; }
+        public static IReadOnlyCollection<LinearPowerDensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeter.
         /// </summary>
-        public static LinearPowerDensity Zero { get; }
+        public static LinearPowerDensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static LinearPowerDensity AdditiveIdentity => Zero;
@@ -179,7 +226,7 @@ namespace UnitsNet
         public LinearPowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LinearPowerDensityUnit> QuantityInfo => Info;
+        public QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -196,6 +243,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.QuantityInfo => Info;
 
         #endregion
 

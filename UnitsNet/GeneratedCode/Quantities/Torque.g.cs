@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -73,43 +69,94 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly TorqueUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Torque"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class TorqueInfo: QuantityInfo<Torque, TorqueUnit>
+        {
+            /// <inheritdoc />
+            public TorqueInfo(string name, TorqueUnit baseUnit, IEnumerable<IUnitDefinition<TorqueUnit>> unitMappings, Torque zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Torque, TorqueUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public TorqueInfo(string name, TorqueUnit baseUnit, IEnumerable<IUnitDefinition<TorqueUnit>> unitMappings, Torque zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Torque.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Torque", typeof(Torque).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TorqueInfo"/> class with the default settings for the Torque quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="TorqueInfo"/> class with the default settings.</returns>
+            public static TorqueInfo CreateDefault()
+            {
+                return new TorqueInfo(nameof(Torque), DefaultBaseUnit, GetDefaultMappings(), new Torque(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="TorqueInfo"/> class with the default settings for the Torque quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="TorqueInfo"/> class with the default settings.
+            /// </returns>
+            public static TorqueInfo CreateDefault(Func<IEnumerable<UnitDefinition<TorqueUnit>>, IEnumerable<IUnitDefinition<TorqueUnit>>> customizeUnits)
+            {
+                return new TorqueInfo(nameof(Torque), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Torque(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Torque"/> is [T^-2][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Torque is NewtonMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static TorqueUnit DefaultBaseUnit { get; } = TorqueUnit.NewtonMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="TorqueUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TorqueUnit}"/> representing the default unit mappings for Torque.</returns>
+            public static IEnumerable<UnitDefinition<TorqueUnit>> GetDefaultMappings()
+            {
+                yield return new (TorqueUnit.GramForceCentimeter, "GramForceCentimeter", "GramForceCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.GramForceMeter, "GramForceMeter", "GramForceMeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.GramForceMillimeter, "GramForceMillimeter", "GramForceMillimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeter", "KilogramForceCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilogramForceMeter, "KilogramForceMeter", "KilogramForceMeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeter", "KilogramForceMillimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeter", "KilonewtonCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilonewtonMeter, "KilonewtonMeter", "KilonewtonMeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeter", "KilonewtonMillimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilopoundForceFoot, "KilopoundForceFoot", "KilopoundForceFeet", BaseUnits.Undefined);
+                yield return new (TorqueUnit.KilopoundForceInch, "KilopoundForceInch", "KilopoundForceInches", BaseUnits.Undefined);
+                yield return new (TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeter", "MeganewtonCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.MeganewtonMeter, "MeganewtonMeter", "MeganewtonMeters", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeter", "MeganewtonMillimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.MegapoundForceFoot, "MegapoundForceFoot", "MegapoundForceFeet", BaseUnits.Undefined);
+                yield return new (TorqueUnit.MegapoundForceInch, "MegapoundForceInch", "MegapoundForceInches", BaseUnits.Undefined);
+                yield return new (TorqueUnit.NewtonCentimeter, "NewtonCentimeter", "NewtonCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.NewtonMeter, "NewtonMeter", "NewtonMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (TorqueUnit.NewtonMillimeter, "NewtonMillimeter", "NewtonMillimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.PoundalFoot, "PoundalFoot", "PoundalFeet", BaseUnits.Undefined);
+                yield return new (TorqueUnit.PoundForceFoot, "PoundForceFoot", "PoundForceFeet", BaseUnits.Undefined);
+                yield return new (TorqueUnit.PoundForceInch, "PoundForceInch", "PoundForceInches", BaseUnits.Undefined);
+                yield return new (TorqueUnit.TonneForceCentimeter, "TonneForceCentimeter", "TonneForceCentimeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.TonneForceMeter, "TonneForceMeter", "TonneForceMeters", BaseUnits.Undefined);
+                yield return new (TorqueUnit.TonneForceMillimeter, "TonneForceMillimeter", "TonneForceMillimeters", BaseUnits.Undefined);
+            }
+        }
+
         static Torque()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            BaseUnit = TorqueUnit.NewtonMeter;
-            Units = EnumHelpers.GetValues<TorqueUnit>();
-            Zero = new Torque(0, BaseUnit);
-            Info = new QuantityInfo<TorqueUnit>("Torque",
-                new UnitInfo<TorqueUnit>[]
-                {
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, "KilonewtonMeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, "KilopoundForceFeet", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, "KilopoundForceInches", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, "MeganewtonMeters", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, "NewtonMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, "PoundForceInches", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined, "Torque"),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined, "Torque"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = TorqueInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -147,27 +194,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TorqueUnit> Info { get; }
+        public static QuantityInfo<Torque, TorqueUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Torque, which is NewtonMeter. All conversions go via this value.
         /// </summary>
-        public static TorqueUnit BaseUnit { get; }
+        public static TorqueUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Torque quantity.
         /// </summary>
-        public static TorqueUnit[] Units { get; }
+        public static IReadOnlyCollection<TorqueUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeter.
         /// </summary>
-        public static Torque Zero { get; }
+        public static Torque Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Torque AdditiveIdentity => Zero;
@@ -185,7 +232,7 @@ namespace UnitsNet
         public TorqueUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<TorqueUnit> QuantityInfo => Info;
+        public QuantityInfo<Torque, TorqueUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -202,6 +249,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<TorqueUnit> IQuantity<TorqueUnit>.QuantityInfo => Info;
 
         #endregion
 

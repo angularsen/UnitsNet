@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -68,24 +64,75 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AreaMomentOfInertiaUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="AreaMomentOfInertia"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AreaMomentOfInertiaInfo: QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit>
+        {
+            /// <inheritdoc />
+            public AreaMomentOfInertiaInfo(string name, AreaMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<AreaMomentOfInertiaUnit>> unitMappings, AreaMomentOfInertia zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<AreaMomentOfInertia, AreaMomentOfInertiaUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AreaMomentOfInertiaInfo(string name, AreaMomentOfInertiaUnit baseUnit, IEnumerable<IUnitDefinition<AreaMomentOfInertiaUnit>> unitMappings, AreaMomentOfInertia zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, AreaMomentOfInertia.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AreaMomentOfInertia", typeof(AreaMomentOfInertia).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AreaMomentOfInertiaInfo"/> class with the default settings for the AreaMomentOfInertia quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AreaMomentOfInertiaInfo"/> class with the default settings.</returns>
+            public static AreaMomentOfInertiaInfo CreateDefault()
+            {
+                return new AreaMomentOfInertiaInfo(nameof(AreaMomentOfInertia), DefaultBaseUnit, GetDefaultMappings(), new AreaMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AreaMomentOfInertiaInfo"/> class with the default settings for the AreaMomentOfInertia quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AreaMomentOfInertiaInfo"/> class with the default settings.
+            /// </returns>
+            public static AreaMomentOfInertiaInfo CreateDefault(Func<IEnumerable<UnitDefinition<AreaMomentOfInertiaUnit>>, IEnumerable<IUnitDefinition<AreaMomentOfInertiaUnit>>> customizeUnits)
+            {
+                return new AreaMomentOfInertiaInfo(nameof(AreaMomentOfInertia), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AreaMomentOfInertia(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="AreaMomentOfInertia"/> is [L^4].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of AreaMomentOfInertia is MeterToTheFourth. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AreaMomentOfInertiaUnit DefaultBaseUnit { get; } = AreaMomentOfInertiaUnit.MeterToTheFourth;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AreaMomentOfInertiaUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaMomentOfInertiaUnit}"/> representing the default unit mappings for AreaMomentOfInertia.</returns>
+            public static IEnumerable<UnitDefinition<AreaMomentOfInertiaUnit>> GetDefaultMappings()
+            {
+                yield return new (AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimeterToTheFourth", "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimeterToTheFourth", "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter));
+                yield return new (AreaMomentOfInertiaUnit.FootToTheFourth, "FootToTheFourth", "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot));
+                yield return new (AreaMomentOfInertiaUnit.InchToTheFourth, "InchToTheFourth", "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch));
+                yield return new (AreaMomentOfInertiaUnit.MeterToTheFourth, "MeterToTheFourth", "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter));
+                yield return new (AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimeterToTheFourth", "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter));
+            }
+        }
+
         static AreaMomentOfInertia()
         {
-            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
-            BaseUnit = AreaMomentOfInertiaUnit.MeterToTheFourth;
-            Units = EnumHelpers.GetValues<AreaMomentOfInertiaUnit>();
-            Zero = new AreaMomentOfInertia(0, BaseUnit);
-            Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
-                new UnitInfo<AreaMomentOfInertiaUnit>[]
-                {
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter), "AreaMomentOfInertia"),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter), "AreaMomentOfInertia"),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot), "AreaMomentOfInertia"),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch), "AreaMomentOfInertia"),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter), "AreaMomentOfInertia"),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter), "AreaMomentOfInertia"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AreaMomentOfInertiaInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -123,27 +170,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
+        public static QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of AreaMomentOfInertia, which is MeterToTheFourth. All conversions go via this value.
         /// </summary>
-        public static AreaMomentOfInertiaUnit BaseUnit { get; }
+        public static AreaMomentOfInertiaUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>
-        public static AreaMomentOfInertiaUnit[] Units { get; }
+        public static IReadOnlyCollection<AreaMomentOfInertiaUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheFourth.
         /// </summary>
-        public static AreaMomentOfInertia Zero { get; }
+        public static AreaMomentOfInertia Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static AreaMomentOfInertia AdditiveIdentity => Zero;
@@ -161,7 +208,7 @@ namespace UnitsNet
         public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
+        public QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -178,6 +225,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.QuantityInfo => Info;
 
         #endregion
 

@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -64,20 +60,71 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly RatioChangeRateUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="RatioChangeRate"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class RatioChangeRateInfo: QuantityInfo<RatioChangeRate, RatioChangeRateUnit>
+        {
+            /// <inheritdoc />
+            public RatioChangeRateInfo(string name, RatioChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings, RatioChangeRate zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<RatioChangeRate, RatioChangeRateUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public RatioChangeRateInfo(string name, RatioChangeRateUnit baseUnit, IEnumerable<IUnitDefinition<RatioChangeRateUnit>> unitMappings, RatioChangeRate zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, RatioChangeRate.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RatioChangeRate", typeof(RatioChangeRate).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings for the RatioChangeRate quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings.</returns>
+            public static RatioChangeRateInfo CreateDefault()
+            {
+                return new RatioChangeRateInfo(nameof(RatioChangeRate), DefaultBaseUnit, GetDefaultMappings(), new RatioChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings for the RatioChangeRate quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="RatioChangeRateInfo"/> class with the default settings.
+            /// </returns>
+            public static RatioChangeRateInfo CreateDefault(Func<IEnumerable<UnitDefinition<RatioChangeRateUnit>>, IEnumerable<IUnitDefinition<RatioChangeRateUnit>>> customizeUnits)
+            {
+                return new RatioChangeRateInfo(nameof(RatioChangeRate), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RatioChangeRate(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="RatioChangeRate"/> is [T^-1].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of RatioChangeRate is DecimalFractionPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static RatioChangeRateUnit DefaultBaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="RatioChangeRateUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RatioChangeRateUnit}"/> representing the default unit mappings for RatioChangeRate.</returns>
+            public static IEnumerable<UnitDefinition<RatioChangeRateUnit>> GetDefaultMappings()
+            {
+                yield return new (RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionPerSecond", "DecimalFractionsPerSecond", new BaseUnits(time: DurationUnit.Second));
+                yield return new (RatioChangeRateUnit.PercentPerSecond, "PercentPerSecond", "PercentsPerSecond", BaseUnits.Undefined);
+            }
+        }
+
         static RatioChangeRate()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            BaseUnit = RatioChangeRateUnit.DecimalFractionPerSecond;
-            Units = EnumHelpers.GetValues<RatioChangeRateUnit>();
-            Zero = new RatioChangeRate(0, BaseUnit);
-            Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
-                new UnitInfo<RatioChangeRateUnit>[]
-                {
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", new BaseUnits(time: DurationUnit.Second), "RatioChangeRate"),
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined, "RatioChangeRate"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = RatioChangeRateInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -115,27 +162,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioChangeRateUnit> Info { get; }
+        public static QuantityInfo<RatioChangeRate, RatioChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; }
+        public static RatioChangeRateUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the RatioChangeRate quantity.
         /// </summary>
-        public static RatioChangeRateUnit[] Units { get; }
+        public static IReadOnlyCollection<RatioChangeRateUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
-        public static RatioChangeRate Zero { get; }
+        public static RatioChangeRate Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static RatioChangeRate AdditiveIdentity => Zero;
@@ -153,7 +200,7 @@ namespace UnitsNet
         public RatioChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RatioChangeRateUnit> QuantityInfo => Info;
+        public QuantityInfo<RatioChangeRate, RatioChangeRateUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -170,6 +217,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.QuantityInfo => Info;
 
         #endregion
 

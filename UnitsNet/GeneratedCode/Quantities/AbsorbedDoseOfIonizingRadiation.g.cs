@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,34 +63,85 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AbsorbedDoseOfIonizingRadiationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="AbsorbedDoseOfIonizingRadiation"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AbsorbedDoseOfIonizingRadiationInfo: QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>
+        {
+            /// <inheritdoc />
+            public AbsorbedDoseOfIonizingRadiationInfo(string name, AbsorbedDoseOfIonizingRadiationUnit baseUnit, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings, AbsorbedDoseOfIonizingRadiation zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AbsorbedDoseOfIonizingRadiationInfo(string name, AbsorbedDoseOfIonizingRadiationUnit baseUnit, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> unitMappings, AbsorbedDoseOfIonizingRadiation zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, AbsorbedDoseOfIonizingRadiation.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.AbsorbedDoseOfIonizingRadiation", typeof(AbsorbedDoseOfIonizingRadiation).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings for the AbsorbedDoseOfIonizingRadiation quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings.</returns>
+            public static AbsorbedDoseOfIonizingRadiationInfo CreateDefault()
+            {
+                return new AbsorbedDoseOfIonizingRadiationInfo(nameof(AbsorbedDoseOfIonizingRadiation), DefaultBaseUnit, GetDefaultMappings(), new AbsorbedDoseOfIonizingRadiation(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings for the AbsorbedDoseOfIonizingRadiation quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AbsorbedDoseOfIonizingRadiationInfo"/> class with the default settings.
+            /// </returns>
+            public static AbsorbedDoseOfIonizingRadiationInfo CreateDefault(Func<IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>, IEnumerable<IUnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>>> customizeUnits)
+            {
+                return new AbsorbedDoseOfIonizingRadiationInfo(nameof(AbsorbedDoseOfIonizingRadiation), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new AbsorbedDoseOfIonizingRadiation(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="AbsorbedDoseOfIonizingRadiation"/> is [T^-2][L^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of AbsorbedDoseOfIonizingRadiation is Gray. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AbsorbedDoseOfIonizingRadiationUnit DefaultBaseUnit { get; } = AbsorbedDoseOfIonizingRadiationUnit.Gray;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AbsorbedDoseOfIonizingRadiationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AbsorbedDoseOfIonizingRadiationUnit}"/> representing the default unit mappings for AbsorbedDoseOfIonizingRadiation.</returns>
+            public static IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> GetDefaultMappings()
+            {
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigray", "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second));
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtogray", "Femtograys", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagray", "Gigagrays", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Gray, "Gray", "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilogray", "Kilograys", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorad", "Kilorads", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagray", "Megagrays", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarad", "Megarads", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Microgray", "Micrograys", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second));
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligray", "Milligrays", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirad", "Millirads", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanogray", "Nanograys", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagray", "Petagrays", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picogray", "Picograys", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second));
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rad", "Rads", BaseUnits.Undefined);
+                yield return new (AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragray", "Teragrays", new BaseUnits(length: LengthUnit.Megameter, time: DurationUnit.Second));
+            }
+        }
+
         static AbsorbedDoseOfIonizingRadiation()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-            BaseUnit = AbsorbedDoseOfIonizingRadiationUnit.Gray;
-            Units = EnumHelpers.GetValues<AbsorbedDoseOfIonizingRadiationUnit>();
-            Zero = new AbsorbedDoseOfIonizingRadiation(0, BaseUnit);
-            Info = new QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit>("AbsorbedDoseOfIonizingRadiation",
-                new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
-                {
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", new BaseUnits(length: LengthUnit.Megameter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AbsorbedDoseOfIonizingRadiationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -132,27 +179,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit> Info { get; }
+        public static QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of AbsorbedDoseOfIonizingRadiation, which is Gray. All conversions go via this value.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiationUnit BaseUnit { get; }
+        public static AbsorbedDoseOfIonizingRadiationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the AbsorbedDoseOfIonizingRadiation quantity.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiationUnit[] Units { get; }
+        public static IReadOnlyCollection<AbsorbedDoseOfIonizingRadiationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Gray.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation Zero { get; }
+        public static AbsorbedDoseOfIonizingRadiation Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static AbsorbedDoseOfIonizingRadiation AdditiveIdentity => Zero;
@@ -170,7 +217,7 @@ namespace UnitsNet
         public AbsorbedDoseOfIonizingRadiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit> QuantityInfo => Info;
+        public QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -187,6 +234,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.QuantityInfo => Info;
 
         #endregion
 

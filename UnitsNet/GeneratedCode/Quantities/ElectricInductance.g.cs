@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,23 +63,74 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricInductanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricInductance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricInductanceInfo: QuantityInfo<ElectricInductance, ElectricInductanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricInductanceInfo(string name, ElectricInductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricInductanceUnit>> unitMappings, ElectricInductance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricInductance, ElectricInductanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricInductanceInfo(string name, ElectricInductanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricInductanceUnit>> unitMappings, ElectricInductance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricInductance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricInductance", typeof(ElectricInductance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricInductanceInfo"/> class with the default settings for the ElectricInductance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricInductanceInfo"/> class with the default settings.</returns>
+            public static ElectricInductanceInfo CreateDefault()
+            {
+                return new ElectricInductanceInfo(nameof(ElectricInductance), DefaultBaseUnit, GetDefaultMappings(), new ElectricInductance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricInductanceInfo"/> class with the default settings for the ElectricInductance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricInductanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricInductanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricInductanceUnit>>, IEnumerable<IUnitDefinition<ElectricInductanceUnit>>> customizeUnits)
+            {
+                return new ElectricInductanceInfo(nameof(ElectricInductance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricInductance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricInductance"/> is [T^-2][L^2][M][I^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricInductance is Henry. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricInductanceUnit DefaultBaseUnit { get; } = ElectricInductanceUnit.Henry;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricInductanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricInductanceUnit}"/> representing the default unit mappings for ElectricInductance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricInductanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricInductanceUnit.Henry, "Henry", "Henries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricInductanceUnit.Microhenry, "Microhenry", "Microhenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricInductanceUnit.Millihenry, "Millihenry", "Millihenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricInductanceUnit.Nanohenry, "Nanohenry", "Nanohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricInductanceUnit.Picohenry, "Picohenry", "Picohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricInductance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
-            BaseUnit = ElectricInductanceUnit.Henry;
-            Units = EnumHelpers.GetValues<ElectricInductanceUnit>();
-            Zero = new ElectricInductance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
-                new UnitInfo<ElectricInductanceUnit>[]
-                {
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, "Henries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricInductance"),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricInductance"),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricInductance"),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricInductance"),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Picohenry, "Picohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricInductance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricInductanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricInductanceUnit> Info { get; }
+        public static QuantityInfo<ElectricInductance, ElectricInductanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricInductance, which is Henry. All conversions go via this value.
         /// </summary>
-        public static ElectricInductanceUnit BaseUnit { get; }
+        public static ElectricInductanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>
-        public static ElectricInductanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricInductanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Henry.
         /// </summary>
-        public static ElectricInductance Zero { get; }
+        public static ElectricInductance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricInductance AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricInductanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricInductance, ElectricInductanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,6 +223,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.QuantityInfo => Info;
 
         #endregion
 

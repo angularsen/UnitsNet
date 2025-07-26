@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>6.0.0-pre014</Version>
+    <Version>6.0.0-pre015</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -20,7 +20,10 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <!-- Removes any semantic version suffix after the version number and appends ".0", for example "6.0.0-pre014 => "6.0.0.0" -->
+    <VersionNoSuffix>$([System.Text.RegularExpressions.Regex]::Match($(Version), '^[0-9.]+')).0</VersionNoSuffix>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>    <!-- Fixed to major version, for strong naming -->
+    <FileVersion>$(VersionNoSuffix)</FileVersion> <!-- Match the NuGet version number, except any suffix in the semantic version. -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
@@ -56,5 +59,13 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="UnitsNet.Units" />
   </ItemGroup>
 </Project>

@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -84,60 +80,111 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LengthUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Length"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LengthInfo: QuantityInfo<Length, LengthUnit>
+        {
+            /// <inheritdoc />
+            public LengthInfo(string name, LengthUnit baseUnit, IEnumerable<IUnitDefinition<LengthUnit>> unitMappings, Length zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Length, LengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LengthInfo(string name, LengthUnit baseUnit, IEnumerable<IUnitDefinition<LengthUnit>> unitMappings, Length zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Length.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Length", typeof(Length).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LengthInfo"/> class with the default settings for the Length quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LengthInfo"/> class with the default settings.</returns>
+            public static LengthInfo CreateDefault()
+            {
+                return new LengthInfo(nameof(Length), DefaultBaseUnit, GetDefaultMappings(), new Length(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LengthInfo"/> class with the default settings for the Length quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LengthInfo"/> class with the default settings.
+            /// </returns>
+            public static LengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<LengthUnit>>, IEnumerable<IUnitDefinition<LengthUnit>>> customizeUnits)
+            {
+                return new LengthInfo(nameof(Length), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Length(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Length"/> is [L].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Length is Meter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LengthUnit DefaultBaseUnit { get; } = LengthUnit.Meter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LengthUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LengthUnit}"/> representing the default unit mappings for Length.</returns>
+            public static IEnumerable<UnitDefinition<LengthUnit>> GetDefaultMappings()
+            {
+                yield return new (LengthUnit.Angstrom, "Angstrom", "Angstroms", new BaseUnits(length: LengthUnit.Angstrom));
+                yield return new (LengthUnit.AstronomicalUnit, "AstronomicalUnit", "AstronomicalUnits", new BaseUnits(length: LengthUnit.AstronomicalUnit));
+                yield return new (LengthUnit.Centimeter, "Centimeter", "Centimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (LengthUnit.Chain, "Chain", "Chains", new BaseUnits(length: LengthUnit.Chain));
+                yield return new (LengthUnit.DataMile, "DataMile", "DataMiles", new BaseUnits(length: LengthUnit.DataMile));
+                yield return new (LengthUnit.Decameter, "Decameter", "Decameters", new BaseUnits(length: LengthUnit.Decameter));
+                yield return new (LengthUnit.Decimeter, "Decimeter", "Decimeters", new BaseUnits(length: LengthUnit.Decimeter));
+                yield return new (LengthUnit.DtpPica, "DtpPica", "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica));
+                yield return new (LengthUnit.DtpPoint, "DtpPoint", "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint));
+                yield return new (LengthUnit.Fathom, "Fathom", "Fathoms", new BaseUnits(length: LengthUnit.Fathom));
+                yield return new (LengthUnit.Femtometer, "Femtometer", "Femtometers", new BaseUnits(length: LengthUnit.Femtometer));
+                yield return new (LengthUnit.Foot, "Foot", "Feet", new BaseUnits(length: LengthUnit.Foot));
+                yield return new (LengthUnit.Gigameter, "Gigameter", "Gigameters", new BaseUnits(length: LengthUnit.Gigameter));
+                yield return new (LengthUnit.Hand, "Hand", "Hands", new BaseUnits(length: LengthUnit.Hand));
+                yield return new (LengthUnit.Hectometer, "Hectometer", "Hectometers", new BaseUnits(length: LengthUnit.Hectometer));
+                yield return new (LengthUnit.Inch, "Inch", "Inches", new BaseUnits(length: LengthUnit.Inch));
+                yield return new (LengthUnit.Kilofoot, "Kilofoot", "Kilofeet", new BaseUnits(length: LengthUnit.Kilofoot));
+                yield return new (LengthUnit.KilolightYear, "KilolightYear", "KilolightYears", new BaseUnits(length: LengthUnit.KilolightYear));
+                yield return new (LengthUnit.Kilometer, "Kilometer", "Kilometers", new BaseUnits(length: LengthUnit.Kilometer));
+                yield return new (LengthUnit.Kiloparsec, "Kiloparsec", "Kiloparsecs", new BaseUnits(length: LengthUnit.Kiloparsec));
+                yield return new (LengthUnit.Kiloyard, "Kiloyard", "Kiloyards", new BaseUnits(length: LengthUnit.Kiloyard));
+                yield return new (LengthUnit.LightYear, "LightYear", "LightYears", new BaseUnits(length: LengthUnit.LightYear));
+                yield return new (LengthUnit.MegalightYear, "MegalightYear", "MegalightYears", new BaseUnits(length: LengthUnit.MegalightYear));
+                yield return new (LengthUnit.Megameter, "Megameter", "Megameters", new BaseUnits(length: LengthUnit.Megameter));
+                yield return new (LengthUnit.Megaparsec, "Megaparsec", "Megaparsecs", new BaseUnits(length: LengthUnit.Megaparsec));
+                yield return new (LengthUnit.Meter, "Meter", "Meters", new BaseUnits(length: LengthUnit.Meter));
+                yield return new (LengthUnit.Microinch, "Microinch", "Microinches", new BaseUnits(length: LengthUnit.Microinch));
+                yield return new (LengthUnit.Micrometer, "Micrometer", "Micrometers", new BaseUnits(length: LengthUnit.Micrometer));
+                yield return new (LengthUnit.Mil, "Mil", "Mils", new BaseUnits(length: LengthUnit.Mil));
+                yield return new (LengthUnit.Mile, "Mile", "Miles", new BaseUnits(length: LengthUnit.Mile));
+                yield return new (LengthUnit.Millimeter, "Millimeter", "Millimeters", new BaseUnits(length: LengthUnit.Millimeter));
+                yield return new (LengthUnit.Nanometer, "Nanometer", "Nanometers", new BaseUnits(length: LengthUnit.Nanometer));
+                yield return new (LengthUnit.NauticalMile, "NauticalMile", "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile));
+                yield return new (LengthUnit.Parsec, "Parsec", "Parsecs", new BaseUnits(length: LengthUnit.Parsec));
+                yield return new (LengthUnit.Picometer, "Picometer", "Picometers", new BaseUnits(length: LengthUnit.Picometer));
+                yield return new (LengthUnit.PrinterPica, "PrinterPica", "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica));
+                yield return new (LengthUnit.PrinterPoint, "PrinterPoint", "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint));
+                yield return new (LengthUnit.Shackle, "Shackle", "Shackles", new BaseUnits(length: LengthUnit.Shackle));
+                yield return new (LengthUnit.SolarRadius, "SolarRadius", "SolarRadiuses", new BaseUnits(length: LengthUnit.SolarRadius));
+                yield return new (LengthUnit.Twip, "Twip", "Twips", new BaseUnits(length: LengthUnit.Twip));
+                yield return new (LengthUnit.UsSurveyFoot, "UsSurveyFoot", "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
+                yield return new (LengthUnit.Yard, "Yard", "Yards", new BaseUnits(length: LengthUnit.Yard));
+            }
+        }
+
         static Length()
         {
-            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-            BaseUnit = LengthUnit.Meter;
-            Units = EnumHelpers.GetValues<LengthUnit>();
-            Zero = new Length(0, BaseUnit);
-            Info = new QuantityInfo<LengthUnit>("Length",
-                new UnitInfo<LengthUnit>[]
-                {
-                    new UnitInfo<LengthUnit>(LengthUnit.Angstrom, "Angstroms", new BaseUnits(length: LengthUnit.Angstrom), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", new BaseUnits(length: LengthUnit.AstronomicalUnit), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", new BaseUnits(length: LengthUnit.Centimeter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.DataMile, "DataMiles", new BaseUnits(length: LengthUnit.DataMile), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decameter, "Decameters", new BaseUnits(length: LengthUnit.Decameter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", new BaseUnits(length: LengthUnit.Decimeter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, "Fathoms", new BaseUnits(length: LengthUnit.Fathom), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Femtometer, "Femtometers", new BaseUnits(length: LengthUnit.Femtometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", new BaseUnits(length: LengthUnit.Foot), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Gigameter, "Gigameters", new BaseUnits(length: LengthUnit.Gigameter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", new BaseUnits(length: LengthUnit.Hectometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilofoot, "Kilofeet", new BaseUnits(length: LengthUnit.Kilofoot), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", new BaseUnits(length: LengthUnit.KilolightYear), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", new BaseUnits(length: LengthUnit.Kilometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", new BaseUnits(length: LengthUnit.Kiloparsec), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kiloyard, "Kiloyards", new BaseUnits(length: LengthUnit.Kiloyard), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", new BaseUnits(length: LengthUnit.LightYear), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", new BaseUnits(length: LengthUnit.MegalightYear), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Megameter, "Megameters", new BaseUnits(length: LengthUnit.Megameter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, "Megaparsecs", new BaseUnits(length: LengthUnit.Megaparsec), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(length: LengthUnit.Meter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, "Microinches", new BaseUnits(length: LengthUnit.Microinch), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, "Micrometers", new BaseUnits(length: LengthUnit.Micrometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mil, "Mils", new BaseUnits(length: LengthUnit.Mil), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mile, "Miles", new BaseUnits(length: LengthUnit.Mile), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, "Millimeters", new BaseUnits(length: LengthUnit.Millimeter), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, "Nanometers", new BaseUnits(length: LengthUnit.Nanometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Parsec, "Parsecs", new BaseUnits(length: LengthUnit.Parsec), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Picometer, "Picometers", new BaseUnits(length: LengthUnit.Picometer), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, "Shackles", new BaseUnits(length: LengthUnit.Shackle), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, "SolarRadiuses", new BaseUnits(length: LengthUnit.SolarRadius), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot), "Length"),
-                    new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard), "Length"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LengthInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -175,27 +222,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LengthUnit> Info { get; }
+        public static QuantityInfo<Length, LengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; }
+        public static LengthUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
-        public static LengthUnit[] Units { get; }
+        public static IReadOnlyCollection<LengthUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
         /// </summary>
-        public static Length Zero { get; }
+        public static Length Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Length AdditiveIdentity => Zero;
@@ -213,7 +260,7 @@ namespace UnitsNet
         public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LengthUnit> QuantityInfo => Info;
+        public QuantityInfo<Length, LengthUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -230,6 +277,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LengthUnit> IQuantity<LengthUnit>.QuantityInfo => Info;
 
         #endregion
 

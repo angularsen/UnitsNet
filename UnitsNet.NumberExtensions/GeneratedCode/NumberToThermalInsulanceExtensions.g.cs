@@ -98,5 +98,16 @@ namespace UnitsNet.NumberExtensions.NumberToThermalInsulance
             => ThermalInsulance.FromSquareMeterKelvinsPerWatt(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double)" />
+        public static ThermalInsulance SquareMillimeterKelvinsPerWatt<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double.CreateChecked(value));
+#else
+            , IConvertible
+            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(value.ToDouble(null));
+#endif
+
     }
 }

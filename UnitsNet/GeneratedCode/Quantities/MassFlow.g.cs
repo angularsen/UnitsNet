@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -76,51 +72,102 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly MassFlowUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="MassFlow"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class MassFlowInfo: QuantityInfo<MassFlow, MassFlowUnit>
+        {
+            /// <inheritdoc />
+            public MassFlowInfo(string name, MassFlowUnit baseUnit, IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings, MassFlow zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<MassFlow, MassFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public MassFlowInfo(string name, MassFlowUnit baseUnit, IEnumerable<IUnitDefinition<MassFlowUnit>> unitMappings, MassFlow zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, MassFlow.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.MassFlow", typeof(MassFlow).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFlowInfo"/> class with the default settings for the MassFlow quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="MassFlowInfo"/> class with the default settings.</returns>
+            public static MassFlowInfo CreateDefault()
+            {
+                return new MassFlowInfo(nameof(MassFlow), DefaultBaseUnit, GetDefaultMappings(), new MassFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="MassFlowInfo"/> class with the default settings for the MassFlow quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="MassFlowInfo"/> class with the default settings.
+            /// </returns>
+            public static MassFlowInfo CreateDefault(Func<IEnumerable<UnitDefinition<MassFlowUnit>>, IEnumerable<IUnitDefinition<MassFlowUnit>>> customizeUnits)
+            {
+                return new MassFlowInfo(nameof(MassFlow), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new MassFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="MassFlow"/> is [T^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of MassFlow is GramPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static MassFlowUnit DefaultBaseUnit { get; } = MassFlowUnit.GramPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="MassFlowUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFlowUnit}"/> representing the default unit mappings for MassFlow.</returns>
+            public static IEnumerable<UnitDefinition<MassFlowUnit>> GetDefaultMappings()
+            {
+                yield return new (MassFlowUnit.CentigramPerDay, "CentigramPerDay", "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.CentigramPerSecond, "CentigramPerSecond", "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.DecagramPerDay, "DecagramPerDay", "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.DecagramPerSecond, "DecagramPerSecond", "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.DecigramPerDay, "DecigramPerDay", "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.DecigramPerSecond, "DecigramPerSecond", "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.GramPerDay, "GramPerDay", "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.GramPerHour, "GramPerHour", "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.GramPerSecond, "GramPerSecond", "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.HectogramPerDay, "HectogramPerDay", "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.HectogramPerSecond, "HectogramPerSecond", "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.KilogramPerDay, "KilogramPerDay", "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.KilogramPerHour, "KilogramPerHour", "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.KilogramPerMinute, "KilogramPerMinute", "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (MassFlowUnit.KilogramPerSecond, "KilogramPerSecond", "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.MegagramPerDay, "MegagramPerDay", "MegagramsPerDay", BaseUnits.Undefined);
+                yield return new (MassFlowUnit.MegapoundPerDay, "MegapoundPerDay", "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.MegapoundPerHour, "MegapoundPerHour", "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.MegapoundPerMinute, "MegapoundPerMinute", "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute));
+                yield return new (MassFlowUnit.MegapoundPerSecond, "MegapoundPerSecond", "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.MicrogramPerDay, "MicrogramPerDay", "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.MicrogramPerSecond, "MicrogramPerSecond", "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.MilligramPerDay, "MilligramPerDay", "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.MilligramPerSecond, "MilligramPerSecond", "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.NanogramPerDay, "NanogramPerDay", "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.NanogramPerSecond, "NanogramPerSecond", "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.PoundPerDay, "PoundPerDay", "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.PoundPerHour, "PoundPerHour", "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.PoundPerMinute, "PoundPerMinute", "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute));
+                yield return new (MassFlowUnit.PoundPerSecond, "PoundPerSecond", "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second));
+                yield return new (MassFlowUnit.ShortTonPerHour, "ShortTonPerHour", "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.TonnePerDay, "TonnePerDay", "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day));
+                yield return new (MassFlowUnit.TonnePerHour, "TonnePerHour", "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour));
+            }
+        }
+
         static MassFlow()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-            BaseUnit = MassFlowUnit.GramPerSecond;
-            Units = EnumHelpers.GetValues<MassFlowUnit>();
-            Zero = new MassFlow(0, BaseUnit);
-            Info = new QuantityInfo<MassFlowUnit>("MassFlow",
-                new UnitInfo<MassFlowUnit>[]
-                {
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined, "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day), "MassFlow"),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour), "MassFlow"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = MassFlowInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -158,27 +205,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFlowUnit> Info { get; }
+        public static QuantityInfo<MassFlow, MassFlowUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit { get; }
+        public static MassFlowUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
         /// </summary>
-        public static MassFlowUnit[] Units { get; }
+        public static IReadOnlyCollection<MassFlowUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero { get; }
+        public static MassFlow Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static MassFlow AdditiveIdentity => Zero;
@@ -196,7 +243,7 @@ namespace UnitsNet
         public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MassFlowUnit> QuantityInfo => Info;
+        public QuantityInfo<MassFlow, MassFlowUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -213,6 +260,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<MassFlowUnit> IQuantity<MassFlowUnit>.QuantityInfo => Info;
 
         #endregion
 

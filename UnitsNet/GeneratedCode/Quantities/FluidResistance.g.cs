@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,37 +63,88 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly FluidResistanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="FluidResistance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class FluidResistanceInfo: QuantityInfo<FluidResistance, FluidResistanceUnit>
+        {
+            /// <inheritdoc />
+            public FluidResistanceInfo(string name, FluidResistanceUnit baseUnit, IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings, FluidResistance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<FluidResistance, FluidResistanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public FluidResistanceInfo(string name, FluidResistanceUnit baseUnit, IEnumerable<IUnitDefinition<FluidResistanceUnit>> unitMappings, FluidResistance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, FluidResistance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.FluidResistance", typeof(FluidResistance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FluidResistanceInfo"/> class with the default settings for the FluidResistance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="FluidResistanceInfo"/> class with the default settings.</returns>
+            public static FluidResistanceInfo CreateDefault()
+            {
+                return new FluidResistanceInfo(nameof(FluidResistance), DefaultBaseUnit, GetDefaultMappings(), new FluidResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FluidResistanceInfo"/> class with the default settings for the FluidResistance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="FluidResistanceInfo"/> class with the default settings.
+            /// </returns>
+            public static FluidResistanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<FluidResistanceUnit>>, IEnumerable<IUnitDefinition<FluidResistanceUnit>>> customizeUnits)
+            {
+                return new FluidResistanceInfo(nameof(FluidResistance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new FluidResistance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="FluidResistance"/> is [T^-1][L^-4][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-4, 1, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of FluidResistance is PascalSecondPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static FluidResistanceUnit DefaultBaseUnit { get; } = FluidResistanceUnit.PascalSecondPerCubicMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="FluidResistanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FluidResistanceUnit}"/> representing the default unit mappings for FluidResistance.</returns>
+            public static IEnumerable<UnitDefinition<FluidResistanceUnit>> GetDefaultMappings()
+            {
+                yield return new (FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondPerCentimeterToTheFifth", "DyneSecondsPerCentimeterToTheFifth", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondPerCubicMeter", "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond));
+                yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "MillimeterMercuryMinutePerCubicCentimeter", "MillimeterMercuryMinutesPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "MillimeterMercuryMinutePerCubicMeter", "MillimeterMercuryMinutesPerCubicMeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "MillimeterMercuryMinutePerLiter", "MillimeterMercuryMinutesPerLiter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, "MillimeterMercuryMinutePerMilliliter", "MillimeterMercuryMinutesPerMilliliter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, "MillimeterMercurySecondPerCubicCentimeter", "MillimeterMercurySecondsPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, "MillimeterMercurySecondPerCubicMeter", "MillimeterMercurySecondsPerCubicMeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercurySecondPerLiter, "MillimeterMercurySecondPerLiter", "MillimeterMercurySecondsPerLiter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, "MillimeterMercurySecondPerMilliliter", "MillimeterMercurySecondsPerMilliliter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.PascalMinutePerCubicCentimeter, "PascalMinutePerCubicCentimeter", "PascalMinutesPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.PascalMinutePerCubicMeter, "PascalMinutePerCubicMeter", "PascalMinutesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (FluidResistanceUnit.PascalMinutePerLiter, "PascalMinutePerLiter", "PascalMinutesPerLiter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute));
+                yield return new (FluidResistanceUnit.PascalMinutePerMilliliter, "PascalMinutePerMilliliter", "PascalMinutesPerMilliliter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.PascalSecondPerCubicCentimeter, "PascalSecondPerCubicCentimeter", "PascalSecondsPerCubicCentimeter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.PascalSecondPerCubicMeter, "PascalSecondPerCubicMeter", "PascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (FluidResistanceUnit.PascalSecondPerLiter, "PascalSecondPerLiter", "PascalSecondsPerLiter", BaseUnits.Undefined);
+                yield return new (FluidResistanceUnit.PascalSecondPerMilliliter, "PascalSecondPerMilliliter", "PascalSecondsPerMilliliter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (FluidResistanceUnit.WoodUnit, "WoodUnit", "WoodUnits", BaseUnits.Undefined);
+            }
+        }
+
         static FluidResistance()
         {
-            BaseDimensions = new BaseDimensions(-4, 1, -1, 0, 0, 0, 0);
-            BaseUnit = FluidResistanceUnit.PascalSecondPerCubicMeter;
-            Units = EnumHelpers.GetValues<FluidResistanceUnit>();
-            Zero = new FluidResistance(0, BaseUnit);
-            Info = new QuantityInfo<FluidResistanceUnit>("FluidResistance",
-                new UnitInfo<FluidResistanceUnit>[]
-                {
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondsPerCentimeterToTheFifth", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "MillimeterMercuryMinutesPerCubicCentimeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "MillimeterMercuryMinutesPerCubicMeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "MillimeterMercuryMinutesPerLiter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, "MillimeterMercuryMinutesPerMilliliter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, "MillimeterMercurySecondsPerCubicCentimeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, "MillimeterMercurySecondsPerCubicMeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercurySecondPerLiter, "MillimeterMercurySecondsPerLiter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, "MillimeterMercurySecondsPerMilliliter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalMinutePerCubicCentimeter, "PascalMinutesPerCubicCentimeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalMinutePerCubicMeter, "PascalMinutesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalMinutePerLiter, "PascalMinutesPerLiter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalMinutePerMilliliter, "PascalMinutesPerMilliliter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalSecondPerCubicCentimeter, "PascalSecondsPerCubicCentimeter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalSecondPerCubicMeter, "PascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalSecondPerLiter, "PascalSecondsPerLiter", BaseUnits.Undefined, "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.PascalSecondPerMilliliter, "PascalSecondsPerMilliliter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "FluidResistance"),
-                    new UnitInfo<FluidResistanceUnit>(FluidResistanceUnit.WoodUnit, "WoodUnits", BaseUnits.Undefined, "FluidResistance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = FluidResistanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -135,27 +182,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FluidResistanceUnit> Info { get; }
+        public static QuantityInfo<FluidResistance, FluidResistanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of FluidResistance, which is PascalSecondPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static FluidResistanceUnit BaseUnit { get; }
+        public static FluidResistanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the FluidResistance quantity.
         /// </summary>
-        public static FluidResistanceUnit[] Units { get; }
+        public static IReadOnlyCollection<FluidResistanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit PascalSecondPerCubicMeter.
         /// </summary>
-        public static FluidResistance Zero { get; }
+        public static FluidResistance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static FluidResistance AdditiveIdentity => Zero;
@@ -173,7 +220,7 @@ namespace UnitsNet
         public FluidResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<FluidResistanceUnit> QuantityInfo => Info;
+        public QuantityInfo<FluidResistance, FluidResistanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -190,6 +237,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<FluidResistanceUnit> IQuantity<FluidResistanceUnit>.QuantityInfo => Info;
 
         #endregion
 

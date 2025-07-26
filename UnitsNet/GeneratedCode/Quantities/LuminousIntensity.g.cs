@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -71,19 +67,70 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LuminousIntensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="LuminousIntensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LuminousIntensityInfo: QuantityInfo<LuminousIntensity, LuminousIntensityUnit>
+        {
+            /// <inheritdoc />
+            public LuminousIntensityInfo(string name, LuminousIntensityUnit baseUnit, IEnumerable<IUnitDefinition<LuminousIntensityUnit>> unitMappings, LuminousIntensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<LuminousIntensity, LuminousIntensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LuminousIntensityInfo(string name, LuminousIntensityUnit baseUnit, IEnumerable<IUnitDefinition<LuminousIntensityUnit>> unitMappings, LuminousIntensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, LuminousIntensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.LuminousIntensity", typeof(LuminousIntensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminousIntensityInfo"/> class with the default settings for the LuminousIntensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LuminousIntensityInfo"/> class with the default settings.</returns>
+            public static LuminousIntensityInfo CreateDefault()
+            {
+                return new LuminousIntensityInfo(nameof(LuminousIntensity), DefaultBaseUnit, GetDefaultMappings(), new LuminousIntensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminousIntensityInfo"/> class with the default settings for the LuminousIntensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LuminousIntensityInfo"/> class with the default settings.
+            /// </returns>
+            public static LuminousIntensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminousIntensityUnit>>, IEnumerable<IUnitDefinition<LuminousIntensityUnit>>> customizeUnits)
+            {
+                return new LuminousIntensityInfo(nameof(LuminousIntensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new LuminousIntensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="LuminousIntensity"/> is [J].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+
+            /// <summary>
+            ///     The default base unit of LuminousIntensity is Candela. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LuminousIntensityUnit DefaultBaseUnit { get; } = LuminousIntensityUnit.Candela;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LuminousIntensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminousIntensityUnit}"/> representing the default unit mappings for LuminousIntensity.</returns>
+            public static IEnumerable<UnitDefinition<LuminousIntensityUnit>> GetDefaultMappings()
+            {
+                yield return new (LuminousIntensityUnit.Candela, "Candela", "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela));
+            }
+        }
+
         static LuminousIntensity()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            BaseUnit = LuminousIntensityUnit.Candela;
-            Units = EnumHelpers.GetValues<LuminousIntensityUnit>();
-            Zero = new LuminousIntensity(0, BaseUnit);
-            Info = new QuantityInfo<LuminousIntensityUnit>("LuminousIntensity",
-                new UnitInfo<LuminousIntensityUnit>[]
-                {
-                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela), "LuminousIntensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LuminousIntensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminousIntensityUnit> Info { get; }
+        public static QuantityInfo<LuminousIntensity, LuminousIntensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit { get; }
+        public static LuminousIntensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>
-        public static LuminousIntensityUnit[] Units { get; }
+        public static IReadOnlyCollection<LuminousIntensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Candela.
         /// </summary>
-        public static LuminousIntensity Zero { get; }
+        public static LuminousIntensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static LuminousIntensity AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LuminousIntensityUnit> QuantityInfo => Info;
+        public QuantityInfo<LuminousIntensity, LuminousIntensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,6 +223,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.QuantityInfo => Info;
 
         #endregion
 

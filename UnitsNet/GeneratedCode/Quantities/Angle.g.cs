@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -69,33 +65,84 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AngleUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Angle"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AngleInfo: QuantityInfo<Angle, AngleUnit>
+        {
+            /// <inheritdoc />
+            public AngleInfo(string name, AngleUnit baseUnit, IEnumerable<IUnitDefinition<AngleUnit>> unitMappings, Angle zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Angle, AngleUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AngleInfo(string name, AngleUnit baseUnit, IEnumerable<IUnitDefinition<AngleUnit>> unitMappings, Angle zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Angle.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Angle", typeof(Angle).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AngleInfo"/> class with the default settings for the Angle quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AngleInfo"/> class with the default settings.</returns>
+            public static AngleInfo CreateDefault()
+            {
+                return new AngleInfo(nameof(Angle), DefaultBaseUnit, GetDefaultMappings(), new Angle(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AngleInfo"/> class with the default settings for the Angle quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AngleInfo"/> class with the default settings.
+            /// </returns>
+            public static AngleInfo CreateDefault(Func<IEnumerable<UnitDefinition<AngleUnit>>, IEnumerable<IUnitDefinition<AngleUnit>>> customizeUnits)
+            {
+                return new AngleInfo(nameof(Angle), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Angle(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Angle"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of Angle is Radian. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AngleUnit DefaultBaseUnit { get; } = AngleUnit.Radian;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AngleUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AngleUnit}"/> representing the default unit mappings for Angle.</returns>
+            public static IEnumerable<UnitDefinition<AngleUnit>> GetDefaultMappings()
+            {
+                yield return new (AngleUnit.Arcminute, "Arcminute", "Arcminutes", BaseUnits.Undefined);
+                yield return new (AngleUnit.Arcsecond, "Arcsecond", "Arcseconds", BaseUnits.Undefined);
+                yield return new (AngleUnit.Centiradian, "Centiradian", "Centiradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Deciradian, "Deciradian", "Deciradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Degree, "Degree", "Degrees", BaseUnits.Undefined);
+                yield return new (AngleUnit.Gradian, "Gradian", "Gradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Microdegree, "Microdegree", "Microdegrees", BaseUnits.Undefined);
+                yield return new (AngleUnit.Microradian, "Microradian", "Microradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Millidegree, "Millidegree", "Millidegrees", BaseUnits.Undefined);
+                yield return new (AngleUnit.Milliradian, "Milliradian", "Milliradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Nanodegree, "Nanodegree", "Nanodegrees", BaseUnits.Undefined);
+                yield return new (AngleUnit.Nanoradian, "Nanoradian", "Nanoradians", BaseUnits.Undefined);
+                yield return new (AngleUnit.NatoMil, "NatoMil", "NatoMils", BaseUnits.Undefined);
+                yield return new (AngleUnit.Radian, "Radian", "Radians", BaseUnits.Undefined);
+                yield return new (AngleUnit.Revolution, "Revolution", "Revolutions", BaseUnits.Undefined);
+            }
+        }
+
         static Angle()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = AngleUnit.Radian;
-            Units = EnumHelpers.GetValues<AngleUnit>();
-            Zero = new Angle(0, BaseUnit);
-            Info = new QuantityInfo<AngleUnit>("Angle",
-                new UnitInfo<AngleUnit>[]
-                {
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined, "Angle"),
-                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined, "Angle"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AngleInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -119,27 +166,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AngleUnit> Info { get; }
+        public static QuantityInfo<Angle, AngleUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Angle, which is Radian. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit { get; }
+        public static AngleUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
         /// </summary>
-        public static AngleUnit[] Units { get; }
+        public static IReadOnlyCollection<AngleUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Radian.
         /// </summary>
-        public static Angle Zero { get; }
+        public static Angle Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Angle AdditiveIdentity => Zero;
@@ -157,7 +204,7 @@ namespace UnitsNet
         public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AngleUnit> QuantityInfo => Info;
+        public QuantityInfo<Angle, AngleUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -174,6 +221,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AngleUnit> IQuantity<AngleUnit>.QuantityInfo => Info;
 
         #endregion
 

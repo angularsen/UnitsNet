@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -70,28 +66,79 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly LuminanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Luminance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class LuminanceInfo: QuantityInfo<Luminance, LuminanceUnit>
+        {
+            /// <inheritdoc />
+            public LuminanceInfo(string name, LuminanceUnit baseUnit, IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings, Luminance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Luminance, LuminanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public LuminanceInfo(string name, LuminanceUnit baseUnit, IEnumerable<IUnitDefinition<LuminanceUnit>> unitMappings, Luminance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Luminance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Luminance", typeof(Luminance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminanceInfo"/> class with the default settings for the Luminance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="LuminanceInfo"/> class with the default settings.</returns>
+            public static LuminanceInfo CreateDefault()
+            {
+                return new LuminanceInfo(nameof(Luminance), DefaultBaseUnit, GetDefaultMappings(), new Luminance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="LuminanceInfo"/> class with the default settings for the Luminance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="LuminanceInfo"/> class with the default settings.
+            /// </returns>
+            public static LuminanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<LuminanceUnit>>, IEnumerable<IUnitDefinition<LuminanceUnit>>> customizeUnits)
+            {
+                return new LuminanceInfo(nameof(Luminance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Luminance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Luminance"/> is [L^-2][J].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+
+            /// <summary>
+            ///     The default base unit of Luminance is CandelaPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static LuminanceUnit DefaultBaseUnit { get; } = LuminanceUnit.CandelaPerSquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="LuminanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminanceUnit}"/> representing the default unit mappings for Luminance.</returns>
+            public static IEnumerable<UnitDefinition<LuminanceUnit>> GetDefaultMappings()
+            {
+                yield return new (LuminanceUnit.CandelaPerSquareFoot, "CandelaPerSquareFoot", "CandelasPerSquareFoot", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.CandelaPerSquareInch, "CandelaPerSquareInch", "CandelasPerSquareInch", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.CandelaPerSquareMeter, "CandelaPerSquareMeter", "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela));
+                yield return new (LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelaPerSquareMeter", "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela));
+                yield return new (LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelaPerSquareMeter", "DecicandelasPerSquareMeter", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelaPerSquareMeter", "KilocandelasPerSquareMeter", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelaPerSquareMeter", "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela));
+                yield return new (LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelaPerSquareMeter", "MillicandelasPerSquareMeter", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelaPerSquareMeter", "NanocandelasPerSquareMeter", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.Nit, "Nit", "Nits", BaseUnits.Undefined);
+            }
+        }
+
         static Luminance()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-            BaseUnit = LuminanceUnit.CandelaPerSquareMeter;
-            Units = EnumHelpers.GetValues<LuminanceUnit>();
-            Zero = new Luminance(0, BaseUnit);
-            Info = new QuantityInfo<LuminanceUnit>("Luminance",
-                new UnitInfo<LuminanceUnit>[]
-                {
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareFoot, "CandelasPerSquareFoot", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareInch, "CandelasPerSquareInch", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareMeter, "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela), "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelasPerSquareMeter", BaseUnits.Undefined, "Luminance"),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.Nit, "Nits", BaseUnits.Undefined, "Luminance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = LuminanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -129,27 +176,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminanceUnit> Info { get; }
+        public static QuantityInfo<Luminance, LuminanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Luminance, which is CandelaPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static LuminanceUnit BaseUnit { get; }
+        public static LuminanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Luminance quantity.
         /// </summary>
-        public static LuminanceUnit[] Units { get; }
+        public static IReadOnlyCollection<LuminanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CandelaPerSquareMeter.
         /// </summary>
-        public static Luminance Zero { get; }
+        public static Luminance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Luminance AdditiveIdentity => Zero;
@@ -167,7 +214,7 @@ namespace UnitsNet
         public LuminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LuminanceUnit> QuantityInfo => Info;
+        public QuantityInfo<Luminance, LuminanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -184,6 +231,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<LuminanceUnit> IQuantity<LuminanceUnit>.QuantityInfo => Info;
 
         #endregion
 

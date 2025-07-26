@@ -17,14 +17,10 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -64,26 +60,77 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly RadiationExposureUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="RadiationExposure"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class RadiationExposureInfo: QuantityInfo<RadiationExposure, RadiationExposureUnit>
+        {
+            /// <inheritdoc />
+            public RadiationExposureInfo(string name, RadiationExposureUnit baseUnit, IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings, RadiationExposure zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<RadiationExposure, RadiationExposureUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public RadiationExposureInfo(string name, RadiationExposureUnit baseUnit, IEnumerable<IUnitDefinition<RadiationExposureUnit>> unitMappings, RadiationExposure zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, RadiationExposure.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.RadiationExposure", typeof(RadiationExposure).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RadiationExposureInfo"/> class with the default settings for the RadiationExposure quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="RadiationExposureInfo"/> class with the default settings.</returns>
+            public static RadiationExposureInfo CreateDefault()
+            {
+                return new RadiationExposureInfo(nameof(RadiationExposure), DefaultBaseUnit, GetDefaultMappings(), new RadiationExposure(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RadiationExposureInfo"/> class with the default settings for the RadiationExposure quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="RadiationExposureInfo"/> class with the default settings.
+            /// </returns>
+            public static RadiationExposureInfo CreateDefault(Func<IEnumerable<UnitDefinition<RadiationExposureUnit>>, IEnumerable<IUnitDefinition<RadiationExposureUnit>>> customizeUnits)
+            {
+                return new RadiationExposureInfo(nameof(RadiationExposure), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new RadiationExposure(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="RadiationExposure"/> is [T][M^-1][I].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 1, 1, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of RadiationExposure is CoulombPerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static RadiationExposureUnit DefaultBaseUnit { get; } = RadiationExposureUnit.CoulombPerKilogram;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="RadiationExposureUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadiationExposureUnit}"/> representing the default unit mappings for RadiationExposure.</returns>
+            public static IEnumerable<UnitDefinition<RadiationExposureUnit>> GetDefaultMappings()
+            {
+                yield return new (RadiationExposureUnit.CoulombPerKilogram, "CoulombPerKilogram", "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombPerKilogram", "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
+                yield return new (RadiationExposureUnit.Microroentgen, "Microroentgen", "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
+                yield return new (RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombPerKilogram", "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (RadiationExposureUnit.Milliroentgen, "Milliroentgen", "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
+                yield return new (RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombPerKilogram", "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere));
+                yield return new (RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombPerKilogram", "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere));
+                yield return new (RadiationExposureUnit.Roentgen, "Roentgen", "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static RadiationExposure()
         {
-            BaseDimensions = new BaseDimensions(0, -1, 1, 1, 0, 0, 0);
-            BaseUnit = RadiationExposureUnit.CoulombPerKilogram;
-            Units = EnumHelpers.GetValues<RadiationExposureUnit>();
-            Zero = new RadiationExposure(0, BaseUnit);
-            Info = new QuantityInfo<RadiationExposureUnit>("RadiationExposure",
-                new UnitInfo<RadiationExposureUnit>[]
-                {
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.CoulombPerKilogram, "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Microroentgen, "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Milliroentgen, "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere), "RadiationExposure"),
-                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Roentgen, "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = RadiationExposureInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RadiationExposureUnit> Info { get; }
+        public static QuantityInfo<RadiationExposure, RadiationExposureUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of RadiationExposure, which is CoulombPerKilogram. All conversions go via this value.
         /// </summary>
-        public static RadiationExposureUnit BaseUnit { get; }
+        public static RadiationExposureUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the RadiationExposure quantity.
         /// </summary>
-        public static RadiationExposureUnit[] Units { get; }
+        public static IReadOnlyCollection<RadiationExposureUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerKilogram.
         /// </summary>
-        public static RadiationExposure Zero { get; }
+        public static RadiationExposure Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static RadiationExposure AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public RadiationExposureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RadiationExposureUnit> QuantityInfo => Info;
+        public QuantityInfo<RadiationExposure, RadiationExposureUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,6 +223,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<RadiationExposureUnit> IQuantity<RadiationExposureUnit>.QuantityInfo => Info;
 
         #endregion
 
