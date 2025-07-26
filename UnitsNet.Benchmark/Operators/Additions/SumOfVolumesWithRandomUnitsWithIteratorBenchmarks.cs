@@ -24,7 +24,7 @@ public class SumOfVolumesWithRandomUnitsWithIteratorBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
-        _quantities = _random.GetRandomQuantities<Volume, VolumeUnit>(Value, Volume.Units, NbOperations).ToArray();
+        _quantities = _random.GetRandomQuantities<Volume, VolumeUnit>(Value, Volume.Units.ToArray(), NbOperations).ToArray();
         Quantity.From(Value, Volume.BaseUnit); // TODO we need a better way to "disable" the lazy loading of the _quantitiesByUnitType (QuantityInfoLookup)
         Console.Out.WriteLine("Quantities prepared: starting unit = {0}", _quantities[0].Unit);
     }

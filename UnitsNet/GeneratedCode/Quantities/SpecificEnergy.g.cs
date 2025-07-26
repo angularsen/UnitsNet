@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -74,48 +70,99 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificEnergyUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="SpecificEnergy"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class SpecificEnergyInfo: QuantityInfo<SpecificEnergy, SpecificEnergyUnit>
+        {
+            /// <inheritdoc />
+            public SpecificEnergyInfo(string name, SpecificEnergyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings, SpecificEnergy zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<SpecificEnergy, SpecificEnergyUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public SpecificEnergyInfo(string name, SpecificEnergyUnit baseUnit, IEnumerable<IUnitDefinition<SpecificEnergyUnit>> unitMappings, SpecificEnergy zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, SpecificEnergy.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.SpecificEnergy", typeof(SpecificEnergy).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings for the SpecificEnergy quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings.</returns>
+            public static SpecificEnergyInfo CreateDefault()
+            {
+                return new SpecificEnergyInfo(nameof(SpecificEnergy), DefaultBaseUnit, GetDefaultMappings(), new SpecificEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings for the SpecificEnergy quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="SpecificEnergyInfo"/> class with the default settings.
+            /// </returns>
+            public static SpecificEnergyInfo CreateDefault(Func<IEnumerable<UnitDefinition<SpecificEnergyUnit>>, IEnumerable<IUnitDefinition<SpecificEnergyUnit>>> customizeUnits)
+            {
+                return new SpecificEnergyInfo(nameof(SpecificEnergy), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new SpecificEnergy(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="SpecificEnergy"/> is [T^-2][L^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of SpecificEnergy is JoulePerKilogram. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static SpecificEnergyUnit DefaultBaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="SpecificEnergyUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificEnergyUnit}"/> representing the default unit mappings for SpecificEnergy.</returns>
+            public static IEnumerable<UnitDefinition<SpecificEnergyUnit>> GetDefaultMappings()
+            {
+                yield return new (SpecificEnergyUnit.BtuPerPound, "BtuPerPound", "BtuPerPound", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.CaloriePerGram, "CaloriePerGram", "CaloriesPerGram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDayPerKilogram", "GigawattDaysPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDayPerShortTon", "GigawattDaysPerShortTon", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDayPerTonne", "GigawattDaysPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHourPerKilogram", "GigawattHoursPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.GigawattHourPerPound, "GigawattHourPerPound", "GigawattHoursPerPound", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.JoulePerKilogram, "JoulePerKilogram", "JoulesPerKilogram", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriePerGram", "KilocaloriesPerGram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulePerKilogram", "KilojoulesPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDayPerKilogram", "KilowattDaysPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDayPerShortTon", "KilowattDaysPerShortTon", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDayPerTonne", "KilowattDaysPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHourPerKilogram", "KilowattHoursPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.KilowattHourPerPound, "KilowattHourPerPound", "KilowattHoursPerPound", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulePerKilogram", "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
+                yield return new (SpecificEnergyUnit.MegaJoulePerTonne, "MegaJoulePerTonne", "MegaJoulesPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDayPerKilogram", "MegawattDaysPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDayPerShortTon", "MegawattDaysPerShortTon", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDayPerTonne", "MegawattDaysPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHourPerKilogram", "MegawattHoursPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegawattHourPerPound, "MegawattHourPerPound", "MegawattHoursPerPound", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDayPerKilogram", "TerawattDaysPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDayPerShortTon", "TerawattDaysPerShortTon", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDayPerTonne", "TerawattDaysPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.WattDayPerKilogram, "WattDayPerKilogram", "WattDaysPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.WattDayPerShortTon, "WattDayPerShortTon", "WattDaysPerShortTon", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.WattDayPerTonne, "WattDayPerTonne", "WattDaysPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.WattHourPerKilogram, "WattHourPerKilogram", "WattHoursPerKilogram", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.WattHourPerPound, "WattHourPerPound", "WattHoursPerPound", BaseUnits.Undefined);
+            }
+        }
+
         static SpecificEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-            BaseUnit = SpecificEnergyUnit.JoulePerKilogram;
-            Units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().ToArray();
-            Zero = new SpecificEnergy(0, BaseUnit);
-            Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
-                new UnitInfo<SpecificEnergyUnit>[]
-                {
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, "BtuPerPound", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, "CaloriesPerGram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDaysPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDaysPerShortTon", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDaysPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHoursPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattHourPerPound, "GigawattHoursPerPound", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.JoulePerKilogram, "JoulesPerKilogram", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriesPerGram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulesPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDaysPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDaysPerShortTon", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDaysPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHoursPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerPound, "KilowattHoursPerPound", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second), "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegaJoulePerTonne, "MegaJoulesPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDaysPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDaysPerShortTon", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDaysPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHoursPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerPound, "MegawattHoursPerPound", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDaysPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDaysPerShortTon", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDaysPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerKilogram, "WattDaysPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, "WattDaysPerShortTon", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined, "SpecificEnergy"),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerPound, "WattHoursPerPound", BaseUnits.Undefined, "SpecificEnergy"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = SpecificEnergyInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -153,27 +200,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificEnergyUnit> Info { get; }
+        public static QuantityInfo<SpecificEnergy, SpecificEnergyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificEnergyUnit BaseUnit { get; }
+        public static SpecificEnergyUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the SpecificEnergy quantity.
         /// </summary>
-        public static SpecificEnergyUnit[] Units { get; }
+        public static IReadOnlyCollection<SpecificEnergyUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy Zero { get; }
+        public static SpecificEnergy Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static SpecificEnergy AdditiveIdentity => Zero;
@@ -191,7 +238,7 @@ namespace UnitsNet
         public SpecificEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<SpecificEnergyUnit> QuantityInfo => Info;
+        public QuantityInfo<SpecificEnergy, SpecificEnergyUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -208,6 +255,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.QuantityInfo => Info;
 
         #endregion
 

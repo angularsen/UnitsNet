@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -69,22 +65,73 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly IlluminanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Illuminance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class IlluminanceInfo: QuantityInfo<Illuminance, IlluminanceUnit>
+        {
+            /// <inheritdoc />
+            public IlluminanceInfo(string name, IlluminanceUnit baseUnit, IEnumerable<IUnitDefinition<IlluminanceUnit>> unitMappings, Illuminance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Illuminance, IlluminanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public IlluminanceInfo(string name, IlluminanceUnit baseUnit, IEnumerable<IUnitDefinition<IlluminanceUnit>> unitMappings, Illuminance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Illuminance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Illuminance", typeof(Illuminance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="IlluminanceInfo"/> class with the default settings for the Illuminance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="IlluminanceInfo"/> class with the default settings.</returns>
+            public static IlluminanceInfo CreateDefault()
+            {
+                return new IlluminanceInfo(nameof(Illuminance), DefaultBaseUnit, GetDefaultMappings(), new Illuminance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="IlluminanceInfo"/> class with the default settings for the Illuminance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="IlluminanceInfo"/> class with the default settings.
+            /// </returns>
+            public static IlluminanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<IlluminanceUnit>>, IEnumerable<IUnitDefinition<IlluminanceUnit>>> customizeUnits)
+            {
+                return new IlluminanceInfo(nameof(Illuminance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Illuminance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Illuminance"/> is [L^-2][J].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+
+            /// <summary>
+            ///     The default base unit of Illuminance is Lux. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static IlluminanceUnit DefaultBaseUnit { get; } = IlluminanceUnit.Lux;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="IlluminanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IlluminanceUnit}"/> representing the default unit mappings for Illuminance.</returns>
+            public static IEnumerable<UnitDefinition<IlluminanceUnit>> GetDefaultMappings()
+            {
+                yield return new (IlluminanceUnit.Kilolux, "Kilolux", "Kilolux", BaseUnits.Undefined);
+                yield return new (IlluminanceUnit.Lux, "Lux", "Lux", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela));
+                yield return new (IlluminanceUnit.Megalux, "Megalux", "Megalux", new BaseUnits(length: LengthUnit.Millimeter, luminousIntensity: LuminousIntensityUnit.Candela));
+                yield return new (IlluminanceUnit.Millilux, "Millilux", "Millilux", BaseUnits.Undefined);
+            }
+        }
+
         static Illuminance()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-            BaseUnit = IlluminanceUnit.Lux;
-            Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().ToArray();
-            Zero = new Illuminance(0, BaseUnit);
-            Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
-                new UnitInfo<IlluminanceUnit>[]
-                {
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined, "Illuminance"),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela), "Illuminance"),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", new BaseUnits(length: LengthUnit.Millimeter, luminousIntensity: LuminousIntensityUnit.Candela), "Illuminance"),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined, "Illuminance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = IlluminanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -122,27 +169,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<IlluminanceUnit> Info { get; }
+        public static QuantityInfo<Illuminance, IlluminanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit BaseUnit { get; }
+        public static IlluminanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
-        public static IlluminanceUnit[] Units { get; }
+        public static IReadOnlyCollection<IlluminanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero { get; }
+        public static Illuminance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Illuminance AdditiveIdentity => Zero;
@@ -160,7 +207,7 @@ namespace UnitsNet
         public IlluminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<IlluminanceUnit> QuantityInfo => Info;
+        public QuantityInfo<Illuminance, IlluminanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -177,6 +224,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<IlluminanceUnit> IQuantity<IlluminanceUnit>.QuantityInfo => Info;
 
         #endregion
 

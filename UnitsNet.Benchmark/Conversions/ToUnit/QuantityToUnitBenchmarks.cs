@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using UnitsNet.Units;
@@ -25,13 +26,13 @@ public class QuantityToUnitBenchmarks
     [GlobalSetup(Target = nameof(MassToUnit))]
     public void PrepareMassConversionsToTest()
     {
-        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units, NbConversions);
+        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbConversions);
     }
 
     [GlobalSetup(Target = nameof(VolumeFlowToUnit))]
     public void PrepareVolumeFlowConversionsToTest()
     {
-        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units, NbConversions);
+        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units.ToArray(), NbConversions);
     }
 
     [Benchmark(Baseline = true)]

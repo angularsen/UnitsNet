@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,62 +59,113 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerDensityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="PowerDensity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class PowerDensityInfo: QuantityInfo<PowerDensity, PowerDensityUnit>
+        {
+            /// <inheritdoc />
+            public PowerDensityInfo(string name, PowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<PowerDensityUnit>> unitMappings, PowerDensity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<PowerDensity, PowerDensityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public PowerDensityInfo(string name, PowerDensityUnit baseUnit, IEnumerable<IUnitDefinition<PowerDensityUnit>> unitMappings, PowerDensity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, PowerDensity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.PowerDensity", typeof(PowerDensity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerDensityInfo"/> class with the default settings for the PowerDensity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="PowerDensityInfo"/> class with the default settings.</returns>
+            public static PowerDensityInfo CreateDefault()
+            {
+                return new PowerDensityInfo(nameof(PowerDensity), DefaultBaseUnit, GetDefaultMappings(), new PowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="PowerDensityInfo"/> class with the default settings for the PowerDensity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="PowerDensityInfo"/> class with the default settings.
+            /// </returns>
+            public static PowerDensityInfo CreateDefault(Func<IEnumerable<UnitDefinition<PowerDensityUnit>>, IEnumerable<IUnitDefinition<PowerDensityUnit>>> customizeUnits)
+            {
+                return new PowerDensityInfo(nameof(PowerDensity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new PowerDensity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="PowerDensity"/> is [T^-3][L^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of PowerDensity is WattPerCubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static PowerDensityUnit DefaultBaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="PowerDensityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerDensityUnit}"/> representing the default unit mappings for PowerDensity.</returns>
+            public static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
+            {
+                yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DecawattPerCubicInch, "DecawattPerCubicInch", "DecawattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DecawattPerCubicMeter, "DecawattPerCubicMeter", "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.DecawattPerLiter, "DecawattPerLiter", "DecawattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattPerCubicFoot", "DeciwattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DeciwattPerCubicInch, "DeciwattPerCubicInch", "DeciwattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattPerCubicMeter", "DeciwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.DeciwattPerLiter, "DeciwattPerLiter", "DeciwattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.GigawattPerCubicFoot, "GigawattPerCubicFoot", "GigawattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.GigawattPerCubicInch, "GigawattPerCubicInch", "GigawattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.GigawattPerCubicMeter, "GigawattPerCubicMeter", "GigawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.GigawattPerLiter, "GigawattPerLiter", "GigawattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.KilowattPerCubicFoot, "KilowattPerCubicFoot", "KilowattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.KilowattPerCubicInch, "KilowattPerCubicInch", "KilowattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.KilowattPerCubicMeter, "KilowattPerCubicMeter", "KilowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.KilowattPerLiter, "KilowattPerLiter", "KilowattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MegawattPerCubicFoot, "MegawattPerCubicFoot", "MegawattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MegawattPerCubicInch, "MegawattPerCubicInch", "MegawattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MegawattPerCubicMeter, "MegawattPerCubicMeter", "MegawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.MegawattPerLiter, "MegawattPerLiter", "MegawattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattPerCubicFoot", "MicrowattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MicrowattPerCubicInch, "MicrowattPerCubicInch", "MicrowattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattPerCubicMeter", "MicrowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.MicrowattPerLiter, "MicrowattPerLiter", "MicrowattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattPerCubicFoot", "MilliwattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MilliwattPerCubicInch, "MilliwattPerCubicInch", "MilliwattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattPerCubicMeter", "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.MilliwattPerLiter, "MilliwattPerLiter", "MilliwattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.NanowattPerCubicFoot, "NanowattPerCubicFoot", "NanowattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.NanowattPerCubicInch, "NanowattPerCubicInch", "NanowattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.NanowattPerCubicMeter, "NanowattPerCubicMeter", "NanowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.NanowattPerLiter, "NanowattPerLiter", "NanowattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.PicowattPerCubicFoot, "PicowattPerCubicFoot", "PicowattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.PicowattPerCubicInch, "PicowattPerCubicInch", "PicowattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.PicowattPerCubicMeter, "PicowattPerCubicMeter", "PicowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.PicowattPerLiter, "PicowattPerLiter", "PicowattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.TerawattPerCubicFoot, "TerawattPerCubicFoot", "TerawattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.TerawattPerCubicInch, "TerawattPerCubicInch", "TerawattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.TerawattPerCubicMeter, "TerawattPerCubicMeter", "TerawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.TerawattPerLiter, "TerawattPerLiter", "TerawattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.WattPerCubicFoot, "WattPerCubicFoot", "WattsPerCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.WattPerCubicInch, "WattPerCubicInch", "WattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.WattPerCubicMeter, "WattPerCubicMeter", "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (PowerDensityUnit.WattPerLiter, "WattPerLiter", "WattsPerLiter", BaseUnits.Undefined);
+            }
+        }
+
         static PowerDensity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-            BaseUnit = PowerDensityUnit.WattPerCubicMeter;
-            Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().ToArray();
-            Zero = new PowerDensity(0, BaseUnit);
-            Info = new QuantityInfo<PowerDensityUnit>("PowerDensity",
-                new UnitInfo<PowerDensityUnit>[]
-                {
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, "DecawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, "DecawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, "DecawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, "DeciwattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, "DeciwattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, "GigawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, "GigawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, "GigawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, "GigawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, "KilowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, "KilowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, "KilowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, "KilowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, "MegawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, "MegawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, "MegawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, "MegawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, "MicrowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, "MicrowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, "MilliwattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, "MilliwattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, "NanowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, "NanowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, "NanowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, "NanowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, "PicowattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, "PicowattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, "PicowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, "PicowattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, "TerawattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, "TerawattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, "TerawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, "TerawattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, "WattsPerCubicFoot", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined, "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PowerDensity"),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined, "PowerDensity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = PowerDensityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -156,27 +203,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerDensityUnit> Info { get; }
+        public static QuantityInfo<PowerDensity, PowerDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static PowerDensityUnit BaseUnit { get; }
+        public static PowerDensityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the PowerDensity quantity.
         /// </summary>
-        public static PowerDensityUnit[] Units { get; }
+        public static IReadOnlyCollection<PowerDensityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerCubicMeter.
         /// </summary>
-        public static PowerDensity Zero { get; }
+        public static PowerDensity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static PowerDensity AdditiveIdentity => Zero;
@@ -194,7 +241,7 @@ namespace UnitsNet
         public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
+        public QuantityInfo<PowerDensity, PowerDensityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -211,6 +258,9 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<PowerDensityUnit> IQuantity<PowerDensityUnit>.QuantityInfo => Info;
 
         #endregion
 

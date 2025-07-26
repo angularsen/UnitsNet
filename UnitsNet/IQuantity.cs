@@ -1,12 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
-using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -99,7 +94,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
-        
+
         /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.
         /// </summary>
@@ -149,6 +144,24 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
+
+#if NET
+
+        #region Implementation of IQuantity
+
+        QuantityInfo IQuantity.QuantityInfo
+        {
+            get => QuantityInfo;
+        }
+
+        Enum IQuantity.Unit
+        {
+            get => Unit;
+        }
+
+        #endregion
+
+#endif
     }
 
     /// <summary>
@@ -156,7 +169,7 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-    public interface IQuantity<in TSelf, TUnitType> : IQuantity<TUnitType>
+    public interface IQuantity<TSelf, TUnitType> : IQuantity<TUnitType>
         where TSelf : IQuantity<TSelf, TUnitType>
         where TUnitType : struct, Enum
     {
@@ -181,5 +194,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified tolerance.</returns>
         bool Equals(TSelf? other, TSelf tolerance);
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        new QuantityInfo<TSelf, TUnitType> QuantityInfo { get; }
+
+#if NET7_0_OR_GREATER
+        /// <summary>
+        ///     Creates an instance of the quantity from a specified value and unit.
+        /// </summary>
+        /// <param name="value">The numerical value of the quantity.</param>
+        /// <param name="unit">The unit of the quantity.</param>
+        /// <returns>An instance of the quantity with the specified value and unit.</returns>
+        static abstract TSelf From(double value, TUnitType unit);
+
+#endif
     }
 }
