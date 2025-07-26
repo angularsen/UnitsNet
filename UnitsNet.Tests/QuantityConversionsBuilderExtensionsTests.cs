@@ -164,7 +164,7 @@ public class QuantityConversionsBuilderExtensionsTests
             var conversionKey = new QuantityConversionKey(fromUnit.UnitKey, toQuantityInfo.UnitType);
             if (fromUnit.BaseUnits != BaseUnits.Undefined)
             {
-                Assert.All(toQuantityInfo.UnitInfos.GetUnitInfosFor(fromUnit.BaseUnits), targetUnit =>
+                Assert.All(UnitInfo.GetUnitsWithBase(toQuantityInfo.UnitInfos, fromUnit.BaseUnits), targetUnit =>
                 {
                     QuantityValue valueToConvert = 123.45m;
                     QuantityValue expectedValue = toQuantityInfo.ConvertFrom(valueToConvert, fromUnit).As(targetUnit.Value);

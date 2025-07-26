@@ -232,7 +232,8 @@
     "Second": 9,
     "Week": 10,
     "Year365": 11,
-    "Sol": 15
+    "Sol": 15,
+    "Picosecond": 12
   },
   "DynamicViscosity": {
     "Centipoise": 1,
@@ -1485,12 +1486,8 @@
     "WattPerMeterKelvin": 2
   },
   "ThermalResistance": {
-    "HourSquareFeetDegreeFahrenheitPerBtu": 1,
-    "SquareCentimeterHourDegreeCelsiusPerKilocalorie": 2,
-    "SquareCentimeterKelvinPerWatt": 3,
-    "SquareMeterDegreeCelsiusPerWatt": 4,
-    "SquareMeterKelvinPerKilowatt": 5,
-    "SquareMeterKelvinPerWatt": 6
+    "DegreeCelsiusPerWatt": 10,
+    "KelvinPerWatt": 11
   },
   "Torque": {
     "GramForceCentimeter": 1,

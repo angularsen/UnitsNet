@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
         protected abstract double MinutesInOneSecond { get; }
         protected abstract double Months30InOneSecond { get; }
         protected abstract double NanosecondsInOneSecond { get; }
+        protected abstract double PicosecondsInOneSecond { get; }
         protected abstract double SecondsInOneSecond { get; }
         protected abstract double SolsInOneSecond { get; }
         protected abstract double WeeksInOneSecond { get; }
@@ -61,6 +62,7 @@ namespace UnitsNet.Tests
         protected virtual double MinutesTolerance { get { return 1e-5; } }
         protected virtual double Months30Tolerance { get { return 1e-5; } }
         protected virtual double NanosecondsTolerance { get { return 1e-5; } }
+        protected virtual double PicosecondsTolerance { get { return 1e-5; } }
         protected virtual double SecondsTolerance { get { return 1e-5; } }
         protected virtual double SolsTolerance { get { return 1e-5; } }
         protected virtual double WeeksTolerance { get { return 1e-5; } }
@@ -79,6 +81,7 @@ namespace UnitsNet.Tests
                 DurationUnit.Minute => (MinutesInOneSecond, MinutesTolerance),
                 DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
                 DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
+                DurationUnit.Picosecond => (PicosecondsInOneSecond, PicosecondsTolerance),
                 DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
                 DurationUnit.Sol => (SolsInOneSecond, SolsTolerance),
                 DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
@@ -97,6 +100,7 @@ namespace UnitsNet.Tests
             new object[] { DurationUnit.Minute },
             new object[] { DurationUnit.Month30 },
             new object[] { DurationUnit.Nanosecond },
+            new object[] { DurationUnit.Picosecond },
             new object[] { DurationUnit.Second },
             new object[] { DurationUnit.Sol },
             new object[] { DurationUnit.Week },
@@ -194,6 +198,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MinutesInOneSecond, second.Minutes, MinutesTolerance);
             AssertEx.EqualTolerance(Months30InOneSecond, second.Months30, Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(PicosecondsInOneSecond, second.Picoseconds, PicosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(SolsInOneSecond, second.Sols, SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
@@ -235,21 +240,25 @@ namespace UnitsNet.Tests
             Assert.Equal(1, quantity07.Nanoseconds);
             Assert.Equal(DurationUnit.Nanosecond, quantity07.Unit);
 
-            var quantity08 = Duration.From(1, DurationUnit.Second);
-            Assert.Equal(1, quantity08.Seconds);
-            Assert.Equal(DurationUnit.Second, quantity08.Unit);
+            var quantity08 = Duration.From(1, DurationUnit.Picosecond);
+            Assert.Equal(1, quantity08.Picoseconds);
+            Assert.Equal(DurationUnit.Picosecond, quantity08.Unit);
 
-            var quantity09 = Duration.From(1, DurationUnit.Sol);
-            Assert.Equal(1, quantity09.Sols);
-            Assert.Equal(DurationUnit.Sol, quantity09.Unit);
+            var quantity09 = Duration.From(1, DurationUnit.Second);
+            Assert.Equal(1, quantity09.Seconds);
+            Assert.Equal(DurationUnit.Second, quantity09.Unit);
 
-            var quantity10 = Duration.From(1, DurationUnit.Week);
-            Assert.Equal(1, quantity10.Weeks);
-            Assert.Equal(DurationUnit.Week, quantity10.Unit);
+            var quantity10 = Duration.From(1, DurationUnit.Sol);
+            Assert.Equal(1, quantity10.Sols);
+            Assert.Equal(DurationUnit.Sol, quantity10.Unit);
 
-            var quantity11 = Duration.From(1, DurationUnit.Year365);
-            Assert.Equal(1, quantity11.Years365);
-            Assert.Equal(DurationUnit.Year365, quantity11.Unit);
+            var quantity11 = Duration.From(1, DurationUnit.Week);
+            Assert.Equal(1, quantity11.Weeks);
+            Assert.Equal(DurationUnit.Week, quantity11.Unit);
+
+            var quantity12 = Duration.From(1, DurationUnit.Year365);
+            Assert.Equal(1, quantity12.Years365);
+            Assert.Equal(DurationUnit.Year365, quantity12.Unit);
 
         }
 
@@ -283,6 +292,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
             AssertEx.EqualTolerance(Months30InOneSecond, second.As(DurationUnit.Month30), Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
+            AssertEx.EqualTolerance(PicosecondsInOneSecond, second.As(DurationUnit.Picosecond), PicosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
             AssertEx.EqualTolerance(SolsInOneSecond, second.As(DurationUnit.Sol), SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
@@ -429,6 +439,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nsecs", DurationUnit.Nanosecond, 4.2)]
         [InlineData("en-US", "4.2 nsecond", DurationUnit.Nanosecond, 4.2)]
         [InlineData("en-US", "4.2 nseconds", DurationUnit.Nanosecond, 4.2)]
+        [InlineData("en-US", "4.2 ps", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psec", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psecs", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psecond", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 pseconds", DurationUnit.Picosecond, 4.2)]
         [InlineData("en-US", "4.2 s", DurationUnit.Second, 4.2)]
         [InlineData("en-US", "4.2 sec", DurationUnit.Second, 4.2)]
         [InlineData("en-US", "4.2 secs", DurationUnit.Second, 4.2)]
@@ -453,6 +468,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 месяц", DurationUnit.Month30, 4.2)]
         [InlineData("ru-RU", "4,2 нсек", DurationUnit.Nanosecond, 4.2)]
         [InlineData("ru-RU", "4,2 нс", DurationUnit.Nanosecond, 4.2)]
+        [InlineData("ru-RU", "4,2 псек", DurationUnit.Picosecond, 4.2)]
+        [InlineData("ru-RU", "4,2 пс", DurationUnit.Picosecond, 4.2)]
         [InlineData("ru-RU", "4,2 сек", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
@@ -499,6 +516,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nsecs", DurationUnit.Nanosecond, 4.2)]
         [InlineData("en-US", "4.2 nsecond", DurationUnit.Nanosecond, 4.2)]
         [InlineData("en-US", "4.2 nseconds", DurationUnit.Nanosecond, 4.2)]
+        [InlineData("en-US", "4.2 ps", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psec", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psecs", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 psecond", DurationUnit.Picosecond, 4.2)]
+        [InlineData("en-US", "4.2 pseconds", DurationUnit.Picosecond, 4.2)]
         [InlineData("en-US", "4.2 s", DurationUnit.Second, 4.2)]
         [InlineData("en-US", "4.2 sec", DurationUnit.Second, 4.2)]
         [InlineData("en-US", "4.2 secs", DurationUnit.Second, 4.2)]
@@ -523,6 +545,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 месяц", DurationUnit.Month30, 4.2)]
         [InlineData("ru-RU", "4,2 нсек", DurationUnit.Nanosecond, 4.2)]
         [InlineData("ru-RU", "4,2 нс", DurationUnit.Nanosecond, 4.2)]
+        [InlineData("ru-RU", "4,2 псек", DurationUnit.Picosecond, 4.2)]
+        [InlineData("ru-RU", "4,2 пс", DurationUnit.Picosecond, 4.2)]
         [InlineData("ru-RU", "4,2 сек", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
@@ -569,6 +593,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -623,6 +652,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -677,6 +711,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -701,6 +740,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -746,6 +787,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -770,6 +816,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -814,6 +862,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -868,6 +921,11 @@ namespace UnitsNet.Tests
         [InlineData("nsecs", DurationUnit.Nanosecond)]
         [InlineData("nsecond", DurationUnit.Nanosecond)]
         [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("ps", DurationUnit.Picosecond)]
+        [InlineData("psec", DurationUnit.Picosecond)]
+        [InlineData("psecs", DurationUnit.Picosecond)]
+        [InlineData("psecond", DurationUnit.Picosecond)]
+        [InlineData("pseconds", DurationUnit.Picosecond)]
         [InlineData("s", DurationUnit.Second)]
         [InlineData("sec", DurationUnit.Second)]
         [InlineData("secs", DurationUnit.Second)]
@@ -922,6 +980,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -946,6 +1009,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -991,6 +1056,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
         [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "ps", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psec", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecs", DurationUnit.Picosecond)]
+        [InlineData("en-US", "psecond", DurationUnit.Picosecond)]
+        [InlineData("en-US", "pseconds", DurationUnit.Picosecond)]
         [InlineData("en-US", "s", DurationUnit.Second)]
         [InlineData("en-US", "sec", DurationUnit.Second)]
         [InlineData("en-US", "secs", DurationUnit.Second)]
@@ -1015,6 +1085,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
         [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
         [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "псек", DurationUnit.Picosecond)]
+        [InlineData("ru-RU", "пс", DurationUnit.Picosecond)]
         [InlineData("ru-RU", "сек", DurationUnit.Second)]
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
@@ -1034,6 +1106,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", DurationUnit.Minute, "m")]
         [InlineData("en-US", DurationUnit.Month30, "mo")]
         [InlineData("en-US", DurationUnit.Nanosecond, "ns")]
+        [InlineData("en-US", DurationUnit.Picosecond, "ps")]
         [InlineData("en-US", DurationUnit.Second, "s")]
         [InlineData("en-US", DurationUnit.Sol, "sol")]
         [InlineData("en-US", DurationUnit.Week, "wk")]
@@ -1045,6 +1118,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", DurationUnit.Minute, "мин")]
         [InlineData("ru-RU", DurationUnit.Month30, "месяц")]
         [InlineData("ru-RU", DurationUnit.Nanosecond, "нсек")]
+        [InlineData("ru-RU", DurationUnit.Picosecond, "псек")]
         [InlineData("ru-RU", DurationUnit.Second, "сек")]
         [InlineData("ru-RU", DurationUnit.Week, "нед")]
         [InlineData("ru-RU", DurationUnit.Year365, "год")]
@@ -1143,6 +1217,7 @@ namespace UnitsNet.Tests
             Assert.Equal(3, Duration.FromMinutes(second.Minutes).Seconds);
             Assert.Equal(3, Duration.FromMonths30(second.Months30).Seconds);
             Assert.Equal(3, Duration.FromNanoseconds(second.Nanoseconds).Seconds);
+            Assert.Equal(3, Duration.FromPicoseconds(second.Picoseconds).Seconds);
             Assert.Equal(3, Duration.FromSeconds(second.Seconds).Seconds);
             Assert.Equal(3, Duration.FromSols(second.Sols).Seconds);
             Assert.Equal(3, Duration.FromWeeks(second.Weeks).Seconds);
@@ -1321,6 +1396,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
+            Assert.Equal("1 ps", new Duration(1, DurationUnit.Picosecond).ToString());
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
             Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
@@ -1341,6 +1417,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(swedishCulture));
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
+            Assert.Equal("1 ps", new Duration(1, DurationUnit.Picosecond).ToString(swedishCulture));
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
             Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(swedishCulture));
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));

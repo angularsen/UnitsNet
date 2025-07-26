@@ -156,6 +156,9 @@ namespace UnitsNet
                 yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond),
                      1000000000             
                 );
+                yield return new (DurationUnit.Picosecond, "Picosecond", "Picoseconds", new BaseUnits(time: DurationUnit.Picosecond),
+                     1000000000000             
+                );
                 yield return new (DurationUnit.Second, "Second", "Seconds", new BaseUnits(time: DurationUnit.Second));
                 yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol),
                      new QuantityValue(250, 22193811)             
@@ -314,6 +317,11 @@ namespace UnitsNet
         public QuantityValue Nanoseconds => this.As(DurationUnit.Nanosecond);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
+        /// </summary>
+        public QuantityValue Picoseconds => this.As(DurationUnit.Picosecond);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public QuantityValue Seconds => this.As(DurationUnit.Second);
@@ -424,6 +432,14 @@ namespace UnitsNet
         public static Duration FromNanoseconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Picosecond"/>.
+        /// </summary>
+        public static Duration FromPicoseconds(QuantityValue value)
+        {
+            return new Duration(value, DurationUnit.Picosecond);
         }
 
         /// <summary>

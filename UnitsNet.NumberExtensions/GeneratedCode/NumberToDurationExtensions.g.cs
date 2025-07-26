@@ -120,6 +120,17 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             => Duration.FromNanoseconds(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Duration.FromPicoseconds(QuantityValue)" />
+        public static Duration Picoseconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Duration.FromPicoseconds(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Duration.FromPicoseconds(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Duration.FromSeconds(QuantityValue)" />
         public static Duration Seconds<T>(this T value)
             where T : notnull

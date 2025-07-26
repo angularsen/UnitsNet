@@ -191,13 +191,13 @@ namespace UnitsNet
                 yield return new (RadioactivityUnit.Rutherford, "Rutherford", "Rutherfords", new BaseUnits(time: DurationUnit.Second),
                      new QuantityValue(1, 1000000)             
                 );
-                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", BaseUnits.Undefined,
+                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", new BaseUnits(time: DurationUnit.Picosecond),
                      new QuantityValue(1, 1000000000000)             
                 );
-                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", BaseUnits.Undefined,
+                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", new BaseUnits(time: DurationUnit.Picosecond),
                      new QuantityValue(1, new BigInteger(37) * QuantityValue.PowerOfTen(21))             
                 );
-                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", BaseUnits.Undefined,
+                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", new BaseUnits(time: DurationUnit.Picosecond),
                      new QuantityValue(1, 1000000000000000000)             
                 );
             }

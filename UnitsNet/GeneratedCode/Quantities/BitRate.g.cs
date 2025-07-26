@@ -224,7 +224,7 @@ namespace UnitsNet
                 yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined,
                      new QuantityValue(1, 8796093022208)             
                 );
-                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", BaseUnits.Undefined,
+                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond),
                      new QuantityValue(1, 1000000000000)             
                 );
                 yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined,

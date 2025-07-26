@@ -149,7 +149,7 @@ namespace UnitsNet
                 yield return new (FrequencyUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", BaseUnits.Undefined,
                      new QuantityValue(3141592653589793, 500000000000000)             
                 );
-                yield return new (FrequencyUnit.Terahertz, "Terahertz", "Terahertz", BaseUnits.Undefined,
+                yield return new (FrequencyUnit.Terahertz, "Terahertz", "Terahertz", new BaseUnits(time: DurationUnit.Picosecond),
                      new QuantityValue(1, 1000000000000)             
                 );
             }
