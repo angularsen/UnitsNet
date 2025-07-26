@@ -167,7 +167,7 @@ namespace UnitsNet
             var createDimensionsExpression = _isDimensionless
                 ? "BaseDimensions.Dimensionless"
                 : $"new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J})";
-            
+
             Writer.WL($@"
         /// <summary>
         ///     Provides detailed information about the <see cref=""{_quantity.Name}""/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
@@ -227,7 +227,7 @@ namespace UnitsNet
             /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
             public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
             {{");
-            
+
             foreach (Unit unit in _quantity.Units)
             {
                 BaseUnits? baseUnits = unit.BaseUnits;
@@ -402,7 +402,7 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 

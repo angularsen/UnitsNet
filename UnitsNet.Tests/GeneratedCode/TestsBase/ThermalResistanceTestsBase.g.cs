@@ -245,7 +245,7 @@ namespace UnitsNet.Tests
                 IQuantity<ThermalResistanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
@@ -253,7 +253,7 @@ namespace UnitsNet.Tests
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
         }
 
@@ -261,7 +261,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new ThermalResistance(value: 1, unit: ThermalResistance.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -628,7 +628,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>();
+            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

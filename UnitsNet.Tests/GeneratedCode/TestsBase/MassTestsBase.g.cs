@@ -495,7 +495,7 @@ namespace UnitsNet.Tests
                 IQuantity<MassUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
@@ -503,7 +503,7 @@ namespace UnitsNet.Tests
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);            
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
         }
 
@@ -511,7 +511,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -971,7 +971,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight] 
+        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Mass.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -1225,7 +1225,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight] 
+        [InlineData("en-US", "cwt")] // [LongHundredweight, ShortHundredweight]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Mass.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -1549,7 +1549,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>();
+            var units = EnumUtils.GetEnumValues<MassUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

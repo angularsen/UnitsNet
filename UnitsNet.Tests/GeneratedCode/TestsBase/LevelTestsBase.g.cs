@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             var quantity = new Level(value: 1, unit: LevelUnit.Decibel);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -220,7 +220,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Level(value: 1, unit: Level.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -574,7 +574,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>();
+            var units = EnumUtils.GetEnumValues<LevelUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             var quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -210,7 +210,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -546,7 +546,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>();
+            var units = EnumUtils.GetEnumValues<SolidAngleUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
