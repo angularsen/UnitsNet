@@ -158,7 +158,6 @@ public class QuantityInfoLookup
     {
         if (!TryGetUnitInfo(unitKey, out UnitInfo? unitInfo))
         {
-            // throw new UnitNotFoundException($"Unit not found in the list of {_unitsByKey.Value.Count} units:  unitKey.UnitType.GetHashCode = {unitKey.UnitType.GetHashCode()}, unitKey.Value={unitKey.UnitValue}, unitKey.UnitType.FullName = {unitKey.UnitType.FullName}");
             throw new UnitNotFoundException($"No unit information found for the specified enum value: {unitKey}.");
         }
 
