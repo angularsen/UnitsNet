@@ -308,7 +308,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2164,7 +2164,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>();
+            var units = Enum.GetValues<MassConcentrationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

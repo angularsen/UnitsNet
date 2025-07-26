@@ -148,7 +148,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacity.Zero, quantityInfo.Zero);
             Assert.Equal("VolumetricHeatCapacity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -816,7 +816,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>();
+            var units = Enum.GetValues<VolumetricHeatCapacityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

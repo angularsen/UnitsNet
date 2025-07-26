@@ -136,7 +136,7 @@ namespace UnitsNet.Tests
             Assert.Equal(CoefficientOfThermalExpansion.Zero, quantityInfo.Zero);
             Assert.Equal("CoefficientOfThermalExpansion", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -720,7 +720,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>();
+            var units = Enum.GetValues<CoefficientOfThermalExpansionUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

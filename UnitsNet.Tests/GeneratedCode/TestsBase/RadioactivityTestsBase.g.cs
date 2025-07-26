@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Radioactivity.Zero, quantityInfo.Zero);
             Assert.Equal("Radioactivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RadioactivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1853,7 +1853,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(RadioactivityUnit)).Cast<RadioactivityUnit>();
+            var units = Enum.GetValues<RadioactivityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

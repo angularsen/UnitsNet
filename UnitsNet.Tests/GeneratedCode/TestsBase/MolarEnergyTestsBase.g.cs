@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -624,7 +624,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>();
+            var units = Enum.GetValues<MolarEnergyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

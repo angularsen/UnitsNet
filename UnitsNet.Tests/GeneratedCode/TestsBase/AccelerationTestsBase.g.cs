@@ -168,7 +168,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
             Assert.Equal("Acceleration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1214,7 +1214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>();
+            var units = Enum.GetValues<AccelerationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

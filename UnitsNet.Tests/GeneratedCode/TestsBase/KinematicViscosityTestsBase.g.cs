@@ -148,7 +148,7 @@ namespace UnitsNet.Tests
             Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -952,7 +952,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>();
+            var units = Enum.GetValues<KinematicViscosityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

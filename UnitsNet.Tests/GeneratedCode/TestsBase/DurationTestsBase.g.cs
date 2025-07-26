@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2027,7 +2027,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>();
+            var units = Enum.GetValues<DurationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1072,7 +1072,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
+            var units = Enum.GetValues<SpecificWeightUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

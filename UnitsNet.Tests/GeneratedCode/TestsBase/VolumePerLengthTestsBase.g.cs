@@ -148,7 +148,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("VolumePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -816,7 +816,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>();
+            var units = Enum.GetValues<VolumePerLengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

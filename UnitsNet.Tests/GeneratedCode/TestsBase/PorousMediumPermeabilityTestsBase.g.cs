@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
             Assert.Equal("PorousMediumPermeability", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -688,7 +688,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(PorousMediumPermeabilityUnit)).Cast<PorousMediumPermeabilityUnit>();
+            var units = Enum.GetValues<PorousMediumPermeabilityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

@@ -136,7 +136,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -720,7 +720,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>();
+            var units = Enum.GetValues<AreaMomentOfInertiaUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

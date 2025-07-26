@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalSpeed", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1274,7 +1274,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>();
+            var units = Enum.GetValues<RotationalSpeedUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

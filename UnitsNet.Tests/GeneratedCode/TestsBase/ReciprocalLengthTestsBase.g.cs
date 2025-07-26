@@ -152,7 +152,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLength.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1058,7 +1058,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>();
+            var units = Enum.GetValues<ReciprocalLengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

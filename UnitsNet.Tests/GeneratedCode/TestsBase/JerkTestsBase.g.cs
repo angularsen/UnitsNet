@@ -156,7 +156,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Jerk.Zero, quantityInfo.Zero);
             Assert.Equal("Jerk", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1067,7 +1067,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(JerkUnit)).Cast<JerkUnit>();
+            var units = Enum.GetValues<JerkUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

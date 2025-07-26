@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Impulse.Zero, quantityInfo.Zero);
             Assert.Equal("Impulse", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ImpulseUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<ImpulseUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -932,7 +932,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(ImpulseUnit)).Cast<ImpulseUnit>();
+            var units = Enum.GetValues<ImpulseUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
