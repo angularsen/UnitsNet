@@ -143,7 +143,8 @@ namespace UnitsNet
 #if NET
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)]
 #endif
-            TAttribute>(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
+            TAttribute
+        >(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
         {
             if (context?.PropertyDescriptor is null) return null;
 

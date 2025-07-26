@@ -3,6 +3,7 @@
 
 using System;
 using UnitsNet.CustomCode.Units;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet.Wrappers
@@ -34,7 +35,7 @@ namespace UnitsNet.Wrappers
         ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
         ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
         /// </summary>
-        public static PressureReference[] References { get; } = [PressureReference.Absolute, PressureReference.Gauge, PressureReference.Vacuum];
+        public static PressureReference[] References { get; } = EnumHelper.GetValues<PressureReference>();
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured
