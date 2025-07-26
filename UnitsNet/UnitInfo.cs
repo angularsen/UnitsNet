@@ -14,33 +14,8 @@ namespace UnitsNet;
 /// <remarks>
 ///     Typically you obtain this by looking it up via <see cref="QuantityInfo.UnitInfos" />.
 /// </remarks>
-public abstract class UnitInfo : IUnitDefinition//, IUnitInfo
+public abstract class UnitInfo : IUnitDefinition
 {
-    // /// <summary>
-    // ///     Initializes a new instance of the <see cref="UnitInfo" /> class with the specified unit details.
-    // /// </summary>
-    // /// <param name="name">The singular name of the unit. Cannot be <c>null</c>.</param>
-    // /// <param name="pluralName">The plural name of the unit. Cannot be <c>null</c>.</param>
-    // /// <param name="baseUnits">The base units associated with this unit. Cannot be <c>null</c>.</param>
-    // /// <param name="conversionFromBase">
-    // ///     The conversion expression to convert a value from the base unit to this unit.
-    // /// </param>
-    // /// <param name="conversionToBase">
-    // ///     The conversion expression to convert a value from this unit to the base unit.
-    // /// </param>
-    // /// <exception cref="ArgumentNullException">
-    // ///     Thrown when <paramref name="name" />, <paramref name="pluralName" />, or <paramref name="baseUnits" /> is
-    // ///     <c>null</c>.
-    // /// </exception>
-    // protected UnitInfo(string name, string pluralName, BaseUnits baseUnits, ConversionExpression conversionFromBase, ConversionExpression conversionToBase)
-    // {
-    //     Name = name ?? throw new ArgumentNullException(nameof(name));
-    //     PluralName = pluralName ?? throw new ArgumentNullException(nameof(pluralName));
-    //     BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
-    //     ConversionFromBase = conversionFromBase;
-    //     ConversionToBase = conversionToBase;
-    // }
-
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitInfo" /> class using the specified unit definition.
     /// </summary>
@@ -221,25 +196,6 @@ public abstract class UnitInfo : IUnitDefinition//, IUnitInfo
 public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit> //, IUnitInfo<TUnit>, IUnitDefinition<TUnit>
     where TUnit : struct, Enum
 {
-    // /// <summary>
-    // ///     Initializes a new instance of the <see cref="UnitInfo{TUnit}" /> class.
-    // /// </summary>
-    // /// <param name="unit">The unit enumeration value represented by this instance.</param>
-    // /// <param name="name">The singular name of the unit.</param>
-    // /// <param name="pluralName">The plural name of the unit.</param>
-    // /// <param name="baseUnits">The base units associated with this unit.</param>
-    // /// <param name="conversionFromBase">
-    // ///     The conversion expression to convert a value from the base unit to this unit.
-    // /// </param>
-    // /// <param name="conversionToBase">
-    // ///     The conversion expression to convert a value from this unit to the base unit.
-    // /// </param>
-    // protected UnitInfo(TUnit unit, string name, string pluralName, BaseUnits baseUnits, ConversionExpression conversionFromBase, ConversionExpression conversionToBase)
-    //     : base(name, pluralName, baseUnits, conversionFromBase, conversionToBase)
-    // {
-    //     Value = unit;
-    // }
-
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitInfo{TUnit}" /> class using the specified unit definition.
     /// </summary>
@@ -254,30 +210,9 @@ public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit> //, IUn
         Value = mapping.Value;
     }
 
-
-    #region Implementation of IUnitInfo<TUnit>
-
     /// <inheritdoc  />
     [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
     public new TUnit Value { get; }
-
-    // /// <inheritdoc cref="UnitInfo.QuantityInfo" />
-    // [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    // public new QuantityInfo<TUnit> QuantityInfo
-    // {
-    //     get => GetQuantityInfo();
-    // }
-    //
-    // /// <inheritdoc cref="QuantityInfo" />
-    // protected internal abstract QuantityInfo<TUnit> GetQuantityInfo();
-    
-    // /// <inheritdoc cref="UnitInfo.From" />
-    // public new IQuantity<TUnit> From(QuantityValue value)
-    // {
-    //     return QuantityInfo.From(value, Value);
-    // }
-
-    #endregion
 }
 
 /// <summary>
@@ -292,40 +227,6 @@ public abstract class UnitInfoBase<TQuantityInfo, TQuantity, TUnit> : UnitInfo<T
     where TQuantity : IQuantity<TQuantity, TUnit>
     where TUnit : struct, Enum
 {
-    // /// <summary>
-    // ///     Initializes a new instance of the <see cref="UnitInfoBase{TQuantityInfo,TQuantity,TUnit}" /> class.
-    // /// </summary>
-    // /// <param name="quantityInfo">The quantity information associated with this unit.</param>
-    // /// <param name="unit">The unit of measurement.</param>
-    // /// <param name="singularName">The singular name of the unit.</param>
-    // /// <param name="pluralName">The plural name of the unit.</param>
-    // /// <param name="baseUnits">The base units associated with this unit.</param>
-    // /// <param name="conversionFromBase">The conversion expression from the base unit to this unit.</param>
-    // /// <param name="conversionToBase">The conversion expression from this unit to the base unit.</param>
-    // protected UnitInfoBase(TQuantityInfo quantityInfo, TUnit unit, string singularName, string pluralName, BaseUnits baseUnits,
-    //     ConversionExpression conversionFromBase,
-    //     ConversionExpression conversionToBase)
-    //     : base(unit, singularName, pluralName, baseUnits, conversionFromBase, conversionToBase)
-    // {
-    //     QuantityInfo = quantityInfo;
-    // }
-
-    // /// <summary>
-    // ///     Initializes a new instance of the <see cref="UnitInfoBase{TQuantityInfo,TQuantity,TUnit}" /> class.
-    // /// </summary>
-    // /// <param name="quantityInfo">The quantity information associated with this unit.</param>
-    // /// <param name="unit"></param>
-    // /// <param name="pluralName">The plural name of the unit.</param>
-    // /// <param name="baseUnits">The base units associated with this unit.</param>
-    // /// <param name="conversionFromBase">The conversion expression from the base unit to this unit.</param>
-    // /// <param name="conversionToBase">The conversion expression from this unit to the base unit.</param>
-    // protected UnitInfoBase(TQuantityInfo quantityInfo, TUnit unit, string pluralName, BaseUnits baseUnits,
-    //     ConversionExpression conversionFromBase,
-    //     ConversionExpression conversionToBase)
-    //     : this(quantityInfo, unit, unit.ToString(), pluralName, baseUnits, conversionFromBase, conversionToBase)
-    // {
-    // }
-
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitInfoBase{TQuantityInfo, TQuantity, TUnit}" /> class
     ///     using the specified quantity information and unit mapping configuration.
@@ -358,12 +259,6 @@ public abstract class UnitInfoBase<TQuantityInfo, TQuantity, TUnit> : UnitInfo<T
 
     #region Overrides of UnitInfo
 
-    // /// <inheritdoc />
-    // protected internal sealed override QuantityInfo<TUnit> GetQuantityInfo()
-    // {
-    //     return QuantityInfo;
-    // }
-
     /// <inheritdoc />
     protected internal sealed override IQuantity CreateGenericQuantity(QuantityValue value)
     {
@@ -390,22 +285,6 @@ public sealed class UnitInfo<TQuantity, TUnit> : UnitInfoBase<QuantityInfo<TQuan
     where TQuantity : IQuantity<TQuantity, TUnit>
     where TUnit : struct, Enum
 {
-    // /// <inheritdoc />
-    // public UnitInfo(QuantityInfo<TQuantity, TUnit> quantityInfo, TUnit value, string pluralName, BaseUnits baseUnits,
-    //     ConversionExpression conversionFromBase,
-    //     ConversionExpression conversionToBase)
-    //     : base(quantityInfo, value, pluralName, baseUnits, conversionFromBase, conversionToBase)
-    // {
-    // }
-    //
-    // /// <inheritdoc />
-    // public UnitInfo(QuantityInfo<TQuantity, TUnit> quantityInfo, TUnit value, string singularName, string pluralName, BaseUnits baseUnits,
-    //     ConversionExpression conversionFromBase,
-    //     ConversionExpression conversionToBase)
-    //     : base(quantityInfo, value, singularName, pluralName, baseUnits, conversionFromBase, conversionToBase)
-    // {
-    // }
-
     /// <inheritdoc />
     internal UnitInfo(QuantityInfo<TQuantity, TUnit> quantityInfo, IUnitDefinition<TUnit> unitDefinition)
         : base(quantityInfo, unitDefinition)
