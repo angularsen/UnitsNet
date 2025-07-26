@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromCentigrays(2), 2.Centigrays());
 
         [Fact]
+        public void NumberToDecigraysTest() =>
+            Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromDecigrays(2), 2.Decigrays());
+
+        [Fact]
         public void NumberToFemtograysTest() =>
             Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromFemtograys(2), 2.Femtograys());
 

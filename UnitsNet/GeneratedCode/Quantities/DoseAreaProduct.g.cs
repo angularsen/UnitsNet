@@ -122,22 +122,27 @@ namespace UnitsNet
                 yield return new (DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeter", "CentigraySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeter", "CentigraySquareDecimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeter", "CentigraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.CentigraySquareMicrometer, "CentigraySquareMicrometer", "CentigraySquareMicrometers", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeter", "CentigraySquareMillimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeter", "DecigraySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeter", "DecigraySquareDecimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeter", "DecigraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.DecigraySquareMicrometer, "DecigraySquareMicrometer", "DecigraySquareMicrometers", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeter", "DecigraySquareMillimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeter", "GraySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeter", "GraySquareDecimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.GraySquareMeter, "GraySquareMeter", "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (DoseAreaProductUnit.GraySquareMicrometer, "GraySquareMicrometer", "GraySquareMicrometers", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeter", "GraySquareMillimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeter", "MicrograySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeter", "MicrograySquareDecimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeter", "MicrograySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MicrograySquareMicrometer, "MicrograySquareMicrometer", "MicrograySquareMicrometers", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeter", "MicrograySquareMillimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeter", "MilligraySquareCentimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeter", "MilligraySquareDecimeters", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeter", "MilligraySquareMeters", BaseUnits.Undefined);
+                yield return new (DoseAreaProductUnit.MilligraySquareMicrometer, "MilligraySquareMicrometer", "MilligraySquareMicrometers", BaseUnits.Undefined);
                 yield return new (DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeter", "MilligraySquareMillimeters", BaseUnits.Undefined);
             }
         }
@@ -263,6 +268,11 @@ namespace UnitsNet
         public double CentigraySquareMeters => As(DoseAreaProductUnit.CentigraySquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMicrometer"/>
+        /// </summary>
+        public double CentigraySquareMicrometers => As(DoseAreaProductUnit.CentigraySquareMicrometer);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>
         /// </summary>
         public double CentigraySquareMillimeters => As(DoseAreaProductUnit.CentigraySquareMillimeter);
@@ -281,6 +291,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>
         /// </summary>
         public double DecigraySquareMeters => As(DoseAreaProductUnit.DecigraySquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMicrometer"/>
+        /// </summary>
+        public double DecigraySquareMicrometers => As(DoseAreaProductUnit.DecigraySquareMicrometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>
@@ -303,6 +318,11 @@ namespace UnitsNet
         public double GraySquareMeters => As(DoseAreaProductUnit.GraySquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMicrometer"/>
+        /// </summary>
+        public double GraySquareMicrometers => As(DoseAreaProductUnit.GraySquareMicrometer);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>
         /// </summary>
         public double GraySquareMillimeters => As(DoseAreaProductUnit.GraySquareMillimeter);
@@ -321,6 +341,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>
         /// </summary>
         public double MicrograySquareMeters => As(DoseAreaProductUnit.MicrograySquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMicrometer"/>
+        /// </summary>
+        public double MicrograySquareMicrometers => As(DoseAreaProductUnit.MicrograySquareMicrometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>
@@ -343,6 +368,11 @@ namespace UnitsNet
         public double MilligraySquareMeters => As(DoseAreaProductUnit.MilligraySquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMicrometer"/>
+        /// </summary>
+        public double MilligraySquareMicrometers => As(DoseAreaProductUnit.MilligraySquareMicrometer);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>
         /// </summary>
         public double MilligraySquareMillimeters => As(DoseAreaProductUnit.MilligraySquareMillimeter);
@@ -361,21 +391,26 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.CentigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.DecigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareMicrometer, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MicrograySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareMeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.MilligraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
@@ -385,21 +420,26 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareCentimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareDecimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMicrometer, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareMicrometer));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.CentigraySquareMillimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareCentimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareDecimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMicrometer, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareMicrometer));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.DecigraySquareMillimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareCentimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareDecimeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMicrometer, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMicrometer));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.GraySquareMillimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareCentimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareDecimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMicrometer, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareMicrometer));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MicrograySquareMillimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareCentimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareCentimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareDecimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareDecimeter));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareMeter));
+            unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMicrometer, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareMicrometer));
             unitConverter.SetConversionFunction<DoseAreaProduct>(DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMillimeter, quantity => quantity.ToUnit(DoseAreaProductUnit.MilligraySquareMillimeter));
         }
 
@@ -453,6 +493,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMicrometer"/>.
+        /// </summary>
+        public static DoseAreaProduct FromCentigraySquareMicrometers(double value)
+        {
+            return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMicrometer);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>.
         /// </summary>
         public static DoseAreaProduct FromCentigraySquareMillimeters(double value)
@@ -482,6 +530,14 @@ namespace UnitsNet
         public static DoseAreaProduct FromDecigraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMicrometer"/>.
+        /// </summary>
+        public static DoseAreaProduct FromDecigraySquareMicrometers(double value)
+        {
+            return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMicrometer);
         }
 
         /// <summary>
@@ -517,6 +573,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMicrometer"/>.
+        /// </summary>
+        public static DoseAreaProduct FromGraySquareMicrometers(double value)
+        {
+            return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMicrometer);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>.
         /// </summary>
         public static DoseAreaProduct FromGraySquareMillimeters(double value)
@@ -549,6 +613,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMicrometer"/>.
+        /// </summary>
+        public static DoseAreaProduct FromMicrograySquareMicrometers(double value)
+        {
+            return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMicrometer);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>.
         /// </summary>
         public static DoseAreaProduct FromMicrograySquareMillimeters(double value)
@@ -578,6 +650,14 @@ namespace UnitsNet
         public static DoseAreaProduct FromMilligraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMicrometer"/>.
+        /// </summary>
+        public static DoseAreaProduct FromMilligraySquareMicrometers(double value)
+        {
+            return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMicrometer);
         }
 
         /// <summary>
@@ -1057,42 +1137,52 @@ namespace UnitsNet
                 (DoseAreaProductUnit.CentigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.CentigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.CentigraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
+                (DoseAreaProductUnit.CentigraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000000000) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.CentigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-2d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.DecigraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.DecigraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.DecigraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
+                (DoseAreaProductUnit.DecigraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000000000) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.DecigraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-1d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.GraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 10000, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.GraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 100, DoseAreaProductUnit.GraySquareMeter),
+                (DoseAreaProductUnit.GraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 1000000000000, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.GraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct(_value / 1000000, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MicrograySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MicrograySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MicrograySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
+                (DoseAreaProductUnit.MicrograySquareMicrometer, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000000000) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MicrograySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-6d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MilligraySquareCentimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 10000) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MilligraySquareDecimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 100) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MilligraySquareMeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
+                (DoseAreaProductUnit.MilligraySquareMicrometer, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000000000) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
                 (DoseAreaProductUnit.MilligraySquareMillimeter, DoseAreaProductUnit.GraySquareMeter) => new DoseAreaProduct((_value / 1000000) * 1e-3d, DoseAreaProductUnit.GraySquareMeter),
 
                 // BaseUnit -> DoseAreaProductUnit
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-2d, DoseAreaProductUnit.CentigraySquareCentimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-2d, DoseAreaProductUnit.CentigraySquareDecimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMeter) => new DoseAreaProduct((_value) / 1e-2d, DoseAreaProductUnit.CentigraySquareMeter),
+                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMicrometer) => new DoseAreaProduct((_value * 1000000000000) / 1e-2d, DoseAreaProductUnit.CentigraySquareMicrometer),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.CentigraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-2d, DoseAreaProductUnit.CentigraySquareMillimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-1d, DoseAreaProductUnit.DecigraySquareCentimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-1d, DoseAreaProductUnit.DecigraySquareDecimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMeter) => new DoseAreaProduct((_value) / 1e-1d, DoseAreaProductUnit.DecigraySquareMeter),
+                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMicrometer) => new DoseAreaProduct((_value * 1000000000000) / 1e-1d, DoseAreaProductUnit.DecigraySquareMicrometer),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.DecigraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-1d, DoseAreaProductUnit.DecigraySquareMillimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareCentimeter) => new DoseAreaProduct(_value * 10000, DoseAreaProductUnit.GraySquareCentimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareDecimeter) => new DoseAreaProduct(_value * 100, DoseAreaProductUnit.GraySquareDecimeter),
+                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMicrometer) => new DoseAreaProduct(_value * 1000000000000, DoseAreaProductUnit.GraySquareMicrometer),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.GraySquareMillimeter) => new DoseAreaProduct(_value * 1000000, DoseAreaProductUnit.GraySquareMillimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-6d, DoseAreaProductUnit.MicrograySquareCentimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-6d, DoseAreaProductUnit.MicrograySquareDecimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMeter) => new DoseAreaProduct((_value) / 1e-6d, DoseAreaProductUnit.MicrograySquareMeter),
+                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMicrometer) => new DoseAreaProduct((_value * 1000000000000) / 1e-6d, DoseAreaProductUnit.MicrograySquareMicrometer),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MicrograySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-6d, DoseAreaProductUnit.MicrograySquareMillimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareCentimeter) => new DoseAreaProduct((_value * 10000) / 1e-3d, DoseAreaProductUnit.MilligraySquareCentimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareDecimeter) => new DoseAreaProduct((_value * 100) / 1e-3d, DoseAreaProductUnit.MilligraySquareDecimeter),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMeter) => new DoseAreaProduct((_value) / 1e-3d, DoseAreaProductUnit.MilligraySquareMeter),
+                (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMicrometer) => new DoseAreaProduct((_value * 1000000000000) / 1e-3d, DoseAreaProductUnit.MilligraySquareMicrometer),
                 (DoseAreaProductUnit.GraySquareMeter, DoseAreaProductUnit.MilligraySquareMillimeter) => new DoseAreaProduct((_value * 1000000) / 1e-3d, DoseAreaProductUnit.MilligraySquareMillimeter),
 
                 _ => null
