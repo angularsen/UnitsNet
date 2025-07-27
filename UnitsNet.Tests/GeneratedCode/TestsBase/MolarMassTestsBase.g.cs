@@ -1115,23 +1115,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = MolarMass.FromKilogramsPerMole(1);
-            Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1), KilogramsPerMoleTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(MolarMass.Zero, KilogramsPerMoleTolerance, ComparisonType.Relative));
-            Assert.True(MolarMass.FromKilogramsPerMole(100).Equals(MolarMass.FromKilogramsPerMole(120), 0.3, ComparisonType.Relative));
-            Assert.False(MolarMass.FromKilogramsPerMole(100).Equals(MolarMass.FromKilogramsPerMole(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = MolarMass.FromKilogramsPerMole(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(MolarMass.FromKilogramsPerMole(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             MolarMass kilogrampermole = MolarMass.FromKilogramsPerMole(1);
@@ -1143,6 +1126,32 @@ namespace UnitsNet.Tests
         {
             MolarMass kilogrampermole = MolarMass.FromKilogramsPerMole(1);
             Assert.False(kilogrampermole.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = MolarMass.FromKilogramsPerMole(firstValue);
+            var otherQuantity = MolarMass.FromKilogramsPerMole(secondValue);
+            MolarMass maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, MolarMass.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = MolarMass.FromKilogramsPerMole(1);
+            var negativeTolerance = MolarMass.FromKilogramsPerMole(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

@@ -63,47 +63,8 @@ namespace UnitsNet
             Writer.WL(@$"
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct {_quantity.Name} :
-        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}>,");
-
-            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
-            {
-                Writer.WL(@$"
-#if NET7_0_OR_GREATER");
-                foreach (var relation in _quantity.Relations)
-                {
-                    if (relation.LeftQuantity == _quantity)
-                    {
-                        switch (relation.Operator)
-                        {
-                            case "*":
-                                Writer.W(@"
-        IMultiplyOperators");
-                                break;
-                            case "/":
-                                Writer.W(@"
-        IDivisionOperators");
-                                break;
-                            default:
-                                continue;
-                        }
-                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>,");
-                    }
-                }
-
-                Writer.WL(@$"
-#endif");
-            }
-
-            Writer.WL(@$"
-#if NET7_0_OR_GREATER
-        IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
-        IParsable<{_quantity.Name}>,
-#endif
-        IComparable,
-        IComparable<{_quantity.Name}>,
-        IEquatable<{_quantity.Name}>,
-        IFormattable");
+    public readonly partial struct {_quantity.Name} :");
+            GenerateInterfaceExtensions();
 
             Writer.WL($@"
     {{
@@ -139,7 +100,65 @@ namespace UnitsNet
 }}");
             return Writer.ToString();
         }
+        
+        private void GenerateInterfaceExtensions()
+        {
+            // generate the base interface (either IVectorQuantity, IAffineQuantity or ILogarithmicQuantity)
+            if (_quantity.Logarithmic)
+            {
+                Writer.WL(@$"
+        ILogarithmicQuantity<{_quantity.Name}, {_unitEnumName}>,");
+            }
+            else if (!string.IsNullOrEmpty(_quantity.AffineOffsetType))
+            {
+                Writer.WL(@$"
+        IAffineQuantity<{_quantity.Name}, {_unitEnumName}, {_quantity.AffineOffsetType}>,");
+            }
+            else // the default quantity type implements the IVectorQuantity interface
+            {
+                Writer.WL(@$"
+        IArithmeticQuantity<{_quantity.Name}, {_unitEnumName}>,");
+            }
 
+            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
+            {
+                Writer.WL(@$"
+#if NET7_0_OR_GREATER");
+                foreach (var relation in _quantity.Relations)
+                {
+                    if (relation.LeftQuantity == _quantity)
+                    {
+                        switch (relation.Operator)
+                        {
+                            case "*":
+                                Writer.W(@"
+        IMultiplyOperators");
+                                break;
+                            case "/":
+                                Writer.W(@"
+        IDivisionOperators");
+                                break;
+                            default:
+                                continue;
+                        }
+                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>,");
+                    }
+                }
+
+                Writer.WL(@$"
+#endif");
+            }
+            Writer.WL(@$"
+#if NET7_0_OR_GREATER
+        IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
+        IParsable<{_quantity.Name}>,
+#endif
+        IComparable,
+        IComparable<{_quantity.Name}>,
+        IEquatable<{_quantity.Name}>,
+        IFormattable");
+        }
+        
         private void GenerateQuantityInfo()
         {
             var quantityInfoClassName = $"{_quantity.Name}Info";
@@ -323,12 +342,12 @@ namespace UnitsNet
         /// </summary>
         public static {_quantity.Name} Zero => Info.Zero;
 ");
-
-            if (_quantity.GenerateArithmetic)
+            
+            if (_quantity.Logarithmic)
             {
                 Writer.WL($@"
-        /// <inheritdoc cref=""Zero""/>
-        public static {_quantity.Name} AdditiveIdentity => Zero;
+        /// <inheritdoc />
+        public static double LogarithmicScalingFactor {{get;}} = {10 * _quantity.LogarithmicScalingFactor};
 ");
             }
 
@@ -372,6 +391,21 @@ namespace UnitsNet
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo<{_unitEnumName}> IQuantity<{_unitEnumName}>.QuantityInfo => Info;
 
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<{_quantity.Name}> IQuantityInstance<{_quantity.Name}>.QuantityInfo => Info;
+#endif
+");
+            if (_quantity.Logarithmic)
+            {
+                Writer.WL($@"
+#if NETSTANDARD2_0
+        double ILogarithmicQuantity<{_quantity.Name}>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+#endif
+");
+            }
+
+            Writer.WL($@"
         #endregion
 
         #endregion
@@ -658,7 +692,7 @@ namespace UnitsNet
 
         private void GenerateArithmeticOperators()
         {
-            if (!_quantity.GenerateArithmetic) return;
+            if (_quantity.IsAffine) return;
 
             // Logarithmic units required different arithmetic
             if (_quantity.Logarithmic)
@@ -919,6 +953,15 @@ namespace UnitsNet
 
         #pragma warning restore CS0809
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current {_quantity.Name}.</returns>
+        public override int GetHashCode()
+        {{
+            return new {{ Info.Name, Value, Unit }}.GetHashCode();
+        }}
+
         /// <summary>Compares the current <see cref=""{_quantity.Name}""/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name=""obj"">An object to compare with this instance.</param>
         /// <exception cref=""T:System.ArgumentException"">
@@ -955,88 +998,6 @@ namespace UnitsNet
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }}
 
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another {_quantity.Name} within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name=""other""/> as a percentage of this quantity's value. <paramref name=""other""/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name=""other""/> as a fixed number in this quantity's unit. <paramref name=""other""/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name=""other"">The other quantity to compare to.</param>
-        /// <param name=""tolerance"">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name=""comparisonType"">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete(""Use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
-        public bool Equals({_quantity.Name} other, double tolerance, ComparisonType comparisonType)
-        {{
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), ""Tolerance must be greater than or equal to 0."");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }}
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {{
-            return other is {_quantity.Name} otherTyped
-                   && (tolerance is {_quantity.Name} toleranceTyped
-                       ? true
-                       : throw new ArgumentException($""Tolerance quantity ({{tolerance.QuantityInfo.Name}}) did not match the other quantities of type '{_quantity.Name}'."", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }}
-
-        /// <inheritdoc />
-        public bool Equals({_quantity.Name} other, {_quantity.Name} tolerance)
-        {{
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }}
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current {_quantity.Name}.</returns>
-        public override int GetHashCode()
-        {{
-            return new {{ Info.Name, Value, Unit }}.GetHashCode();
-        }}
-
         #endregion
 ");
         }
@@ -1056,6 +1017,15 @@ namespace UnitsNet
                 return Value;
 
             return ToUnit(unit).Value;
+        }}
+");
+
+            Writer.WL( $@"
+
+        /// <inheritdoc cref=""IQuantity.As(UnitKey)""/>
+        public double As(UnitKey unitKey)
+        {{
+            return As(unitKey.ToUnit<{_unitEnumName}>());
         }}
 ");
 
@@ -1220,27 +1190,6 @@ namespace UnitsNet
         public override string ToString()
         {{
             return ToString(null, null);
-        }}
-
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {{
-            return ToString(null, provider);
-        }}
-
-        /// <inheritdoc cref=""QuantityFormatter.Format{{TQuantity}}(TQuantity, string?, IFormatProvider?)""/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref=""CultureInfo.CurrentCulture"" />.
-        /// </summary>
-        /// <param name=""format"">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {{
-            return ToString(format, null);
         }}
 
         /// <inheritdoc cref=""QuantityFormatter.Format{{TQuantity}}(TQuantity, string?, IFormatProvider?)""/>

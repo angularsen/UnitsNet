@@ -919,23 +919,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricResistivity.FromOhmMeters(1);
-            Assert.True(v.Equals(ElectricResistivity.FromOhmMeters(1), OhmMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricResistivity.Zero, OhmMetersTolerance, ComparisonType.Relative));
-            Assert.True(ElectricResistivity.FromOhmMeters(100).Equals(ElectricResistivity.FromOhmMeters(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricResistivity.FromOhmMeters(100).Equals(ElectricResistivity.FromOhmMeters(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricResistivity.FromOhmMeters(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricResistivity.FromOhmMeters(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricResistivity ohmmeter = ElectricResistivity.FromOhmMeters(1);
@@ -947,6 +930,32 @@ namespace UnitsNet.Tests
         {
             ElectricResistivity ohmmeter = ElectricResistivity.FromOhmMeters(1);
             Assert.False(ohmmeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(firstValue);
+            var otherQuantity = ElectricResistivity.FromOhmMeters(secondValue);
+            ElectricResistivity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ElectricResistivity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1);
+            var negativeTolerance = ElectricResistivity.FromOhmMeters(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

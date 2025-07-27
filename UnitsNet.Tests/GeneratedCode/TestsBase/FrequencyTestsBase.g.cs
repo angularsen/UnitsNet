@@ -1008,23 +1008,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Frequency.FromHertz(1);
-            Assert.True(v.Equals(Frequency.FromHertz(1), HertzTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Frequency.Zero, HertzTolerance, ComparisonType.Relative));
-            Assert.True(Frequency.FromHertz(100).Equals(Frequency.FromHertz(120), 0.3, ComparisonType.Relative));
-            Assert.False(Frequency.FromHertz(100).Equals(Frequency.FromHertz(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Frequency.FromHertz(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Frequency.FromHertz(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Frequency hertz = Frequency.FromHertz(1);
@@ -1036,6 +1019,32 @@ namespace UnitsNet.Tests
         {
             Frequency hertz = Frequency.FromHertz(1);
             Assert.False(hertz.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Frequency.FromHertz(firstValue);
+            var otherQuantity = Frequency.FromHertz(secondValue);
+            Frequency maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Frequency.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Frequency.FromHertz(1);
+            var negativeTolerance = Frequency.FromHertz(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

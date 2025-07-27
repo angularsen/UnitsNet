@@ -1994,23 +1994,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Duration.FromSeconds(1);
-            Assert.True(v.Equals(Duration.FromSeconds(1), SecondsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Duration.Zero, SecondsTolerance, ComparisonType.Relative));
-            Assert.True(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), 0.3, ComparisonType.Relative));
-            Assert.False(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Duration.FromSeconds(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Duration.FromSeconds(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Duration second = Duration.FromSeconds(1);
@@ -2022,6 +2005,32 @@ namespace UnitsNet.Tests
         {
             Duration second = Duration.FromSeconds(1);
             Assert.False(second.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Duration.FromSeconds(firstValue);
+            var otherQuantity = Duration.FromSeconds(secondValue);
+            Duration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Duration.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Duration.FromSeconds(1);
+            var negativeTolerance = Duration.FromSeconds(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

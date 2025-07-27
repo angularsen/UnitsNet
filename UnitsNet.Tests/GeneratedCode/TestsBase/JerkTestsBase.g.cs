@@ -1034,23 +1034,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Jerk.FromMetersPerSecondCubed(1);
-            Assert.True(v.Equals(Jerk.FromMetersPerSecondCubed(1), MetersPerSecondCubedTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Jerk.Zero, MetersPerSecondCubedTolerance, ComparisonType.Relative));
-            Assert.True(Jerk.FromMetersPerSecondCubed(100).Equals(Jerk.FromMetersPerSecondCubed(120), 0.3, ComparisonType.Relative));
-            Assert.False(Jerk.FromMetersPerSecondCubed(100).Equals(Jerk.FromMetersPerSecondCubed(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Jerk.FromMetersPerSecondCubed(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Jerk.FromMetersPerSecondCubed(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Jerk meterpersecondcubed = Jerk.FromMetersPerSecondCubed(1);
@@ -1062,6 +1045,32 @@ namespace UnitsNet.Tests
         {
             Jerk meterpersecondcubed = Jerk.FromMetersPerSecondCubed(1);
             Assert.False(meterpersecondcubed.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Jerk.FromMetersPerSecondCubed(firstValue);
+            var otherQuantity = Jerk.FromMetersPerSecondCubed(secondValue);
+            Jerk maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Jerk.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Jerk.FromMetersPerSecondCubed(1);
+            var negativeTolerance = Jerk.FromMetersPerSecondCubed(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

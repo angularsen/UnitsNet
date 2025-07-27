@@ -2185,23 +2185,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Mass.FromKilograms(1);
-            Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
-            Assert.True(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), 0.3, ComparisonType.Relative));
-            Assert.False(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Mass.FromKilograms(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Mass.FromKilograms(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Mass kilogram = Mass.FromKilograms(1);
@@ -2213,6 +2196,32 @@ namespace UnitsNet.Tests
         {
             Mass kilogram = Mass.FromKilograms(1);
             Assert.False(kilogram.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Mass.FromKilograms(firstValue);
+            var otherQuantity = Mass.FromKilograms(secondValue);
+            Mass maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Mass.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Mass.FromKilograms(1);
+            var negativeTolerance = Mass.FromKilograms(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

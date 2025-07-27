@@ -2120,23 +2120,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Energy.FromJoules(1);
-            Assert.True(v.Equals(Energy.FromJoules(1), JoulesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Energy.Zero, JoulesTolerance, ComparisonType.Relative));
-            Assert.True(Energy.FromJoules(100).Equals(Energy.FromJoules(120), 0.3, ComparisonType.Relative));
-            Assert.False(Energy.FromJoules(100).Equals(Energy.FromJoules(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Energy.FromJoules(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Energy.FromJoules(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Energy joule = Energy.FromJoules(1);
@@ -2148,6 +2131,32 @@ namespace UnitsNet.Tests
         {
             Energy joule = Energy.FromJoules(1);
             Assert.False(joule.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Energy.FromJoules(firstValue);
+            var otherQuantity = Energy.FromJoules(secondValue);
+            Energy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Energy.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Energy.FromJoules(1);
+            var negativeTolerance = Energy.FromJoules(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]

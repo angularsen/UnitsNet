@@ -719,23 +719,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Entropy.FromJoulesPerKelvin(1);
-            Assert.True(v.Equals(Entropy.FromJoulesPerKelvin(1), JoulesPerKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Entropy.Zero, JoulesPerKelvinTolerance, ComparisonType.Relative));
-            Assert.True(Entropy.FromJoulesPerKelvin(100).Equals(Entropy.FromJoulesPerKelvin(120), 0.3, ComparisonType.Relative));
-            Assert.False(Entropy.FromJoulesPerKelvin(100).Equals(Entropy.FromJoulesPerKelvin(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Entropy.FromJoulesPerKelvin(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Entropy.FromJoulesPerKelvin(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
@@ -747,6 +730,32 @@ namespace UnitsNet.Tests
         {
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
             Assert.False(jouleperkelvin.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        {
+            var quantity = Entropy.FromJoulesPerKelvin(firstValue);
+            var otherQuantity = Entropy.FromJoulesPerKelvin(secondValue);
+            Entropy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Entropy.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Entropy.FromJoulesPerKelvin(1);
+            var negativeTolerance = Entropy.FromJoulesPerKelvin(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
