@@ -605,6 +605,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ElectricConductivity.FromSiemensPerMeter(10)/ElectricConductivity.FromSiemensPerMeter(5), SiemensPerMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(ElectricResistivity.FromOhmMeters(5), 10 / ElectricConductivity.FromSiemensPerMeter(2));
+            Assert.Equal(20, ElectricConductivity.FromSiemensPerMeter(10) * ElectricResistivity.FromOhmMeters(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            ElectricConductivity v = ElectricConductivity.FromSiemensPerMeter(10);
+
+            ElectricResistivity inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(ElectricResistivityUnit.OhmMeter, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

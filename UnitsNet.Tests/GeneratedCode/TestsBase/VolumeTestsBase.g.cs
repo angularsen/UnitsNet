@@ -3036,6 +3036,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Volume.FromCubicMeters(10)/Volume.FromCubicMeters(5), CubicMetersTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(AmountOfSubstance.FromMoles(20), Volume.FromCubicMeters(10) * Molarity.FromMolesPerCubicMeter(2));
+            Assert.Equal(Area.FromSquareMeters(20), Volume.FromCubicMeters(10) * ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Area.FromSquareMeters(5), Volume.FromCubicMeters(10) / Length.FromMeters(2));
+            Assert.Equal(AreaMomentOfInertia.FromMetersToTheFourth(20), Volume.FromCubicMeters(10) * Length.FromMeters(2));
+            Assert.Equal(Duration.FromSeconds(5), Volume.FromCubicMeters(10) / VolumeFlow.FromCubicMetersPerSecond(2));
+            Assert.Equal(Energy.FromJoules(20), Volume.FromCubicMeters(10) * EnergyDensity.FromJoulesPerCubicMeter(2));
+            Assert.Equal(Length.FromMeters(20), Volume.FromCubicMeters(10) * ReciprocalArea.FromInverseSquareMeters(2));
+            Assert.Equal(Length.FromMeters(5), Volume.FromCubicMeters(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Mass.FromKilograms(20), Volume.FromCubicMeters(10) * Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Mass.FromKilograms(20), Volume.FromCubicMeters(10) * MassConcentration.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Mass.FromKilograms(5), Volume.FromCubicMeters(10) / SpecificVolume.FromCubicMetersPerKilogram(2));
+            Assert.Equal(SpecificVolume.FromCubicMetersPerKilogram(5), Volume.FromCubicMeters(10) / Mass.FromKilograms(2));
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(5), Volume.FromCubicMeters(10) / Duration.FromSeconds(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

@@ -957,6 +957,16 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, SpecificWeight.FromNewtonsPerCubicMeter(10)/SpecificWeight.FromNewtonsPerCubicMeter(5), NewtonsPerCubicMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(5), SpecificWeight.FromNewtonsPerCubicMeter(10) / Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), SpecificWeight.FromNewtonsPerCubicMeter(10) / Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), SpecificWeight.FromNewtonsPerCubicMeter(10) * Area.FromSquareMeters(2));
+            Assert.Equal(Pressure.FromPascals(20), SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

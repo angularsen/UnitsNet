@@ -797,6 +797,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, MassFlux.FromKilogramsPerSecondPerSquareMeter(10)/MassFlux.FromKilogramsPerSecondPerSquareMeter(5), KilogramsPerSecondPerSquareMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), MassFlux.FromKilogramsPerSecondPerSquareMeter(10) / Speed.FromMetersPerSecond(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(20), MassFlux.FromKilogramsPerSecondPerSquareMeter(10) * Area.FromSquareMeters(2));
+            Assert.Equal(Speed.FromMetersPerSecond(5), MassFlux.FromKilogramsPerSecondPerSquareMeter(10) / Density.FromKilogramsPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

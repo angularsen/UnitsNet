@@ -701,6 +701,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, TemperatureDelta.FromKelvins(10)/TemperatureDelta.FromKelvins(5), KelvinsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Duration.FromSeconds(5), TemperatureDelta.FromDegreesCelsius(10) / TemperatureChangeRate.FromDegreesCelsiusPerSecond(2));
+            Assert.Equal(Energy.FromJoules(20), TemperatureDelta.FromKelvins(10) * Entropy.FromJoulesPerKelvin(2));
+            Assert.Equal(Length.FromKilometers(5), TemperatureDelta.FromDegreesCelsius(10) / TemperatureGradient.FromDegreesCelsiusPerKilometer(2));
+            Assert.Equal(Ratio.FromDecimalFractions(20), TemperatureDelta.FromKelvins(10) * CoefficientOfThermalExpansion.FromPerKelvin(2));
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(20), TemperatureDelta.FromKelvins(10) * SpecificEntropy.FromJoulesPerKilogramKelvin(2));
+            Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(5), TemperatureDelta.FromDegreesCelsius(10) / Duration.FromSeconds(2));
+            Assert.Equal(TemperatureGradient.FromDegreesCelsiusPerKilometer(5), TemperatureDelta.FromDegreesCelsius(10) / Length.FromKilometers(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

@@ -1010,6 +1010,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, HeatFlux.FromWattsPerSquareMeter(10)/HeatFlux.FromWattsPerSquareMeter(5), WattsPerSquareMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Power.FromWatts(20), HeatFlux.FromWattsPerSquareMeter(10) * Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

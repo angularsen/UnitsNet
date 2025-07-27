@@ -2103,6 +2103,28 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), KilogramsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(AmountOfSubstance.FromMoles(5), Mass.FromKilograms(10) / MolarMass.FromKilogramsPerMole(2));
+            Assert.Equal(Area.FromSquareMeters(5), Mass.FromKilograms(10) / AreaDensity.FromKilogramsPerSquareMeter(2));
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(5), Mass.FromKilograms(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), Mass.FromKilograms(10) / Volume.FromCubicMeters(2));
+            Assert.Equal(Duration.FromSeconds(5), Mass.FromKilograms(10) / MassFlow.FromKilogramsPerSecond(2));
+            Assert.Equal(Energy.FromJoules(20), Mass.FromKilograms(10) * SpecificEnergy.FromJoulesPerKilogram(2));
+            Assert.Equal(Entropy.FromJoulesPerKelvin(20), Mass.FromKilograms(10) * SpecificEntropy.FromJoulesPerKilogramKelvin(2));
+            Assert.Equal(Force.FromNewtons(20), Mass.FromKilograms(10) * Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(Length.FromMeters(5), Mass.FromKilograms(10) / LinearDensity.FromKilogramsPerMeter(2));
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(5), Mass.FromKilograms(10) / Length.FromMeters(2));
+            Assert.Equal(Mass.FromKilograms(20), Mass.FromKilograms(10) * MassFraction.FromDecimalFractions(2));
+            Assert.Equal(Mass.FromKilograms(5), Mass.FromKilograms(10) / MassFraction.FromDecimalFractions(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(5), Mass.FromKilograms(10) / Duration.FromSeconds(2));
+            Assert.Equal(MolarMass.FromKilogramsPerMole(5), Mass.FromKilograms(10) / AmountOfSubstance.FromMoles(2));
+            Assert.Equal(Volume.FromCubicMeters(20), Mass.FromKilograms(10) * SpecificVolume.FromCubicMetersPerKilogram(2));
+            Assert.Equal(Volume.FromCubicMeters(5), Mass.FromKilograms(10) / Density.FromKilogramsPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

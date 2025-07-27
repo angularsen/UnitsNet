@@ -509,6 +509,26 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, SpecificVolume.FromCubicMetersPerKilogram(10)/SpecificVolume.FromCubicMetersPerKilogram(5), CubicMetersPerKilogramTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), 10 / SpecificVolume.FromCubicMetersPerKilogram(2));
+            Assert.Equal(Volume.FromCubicMeters(20), SpecificVolume.FromCubicMetersPerKilogram(10) * Mass.FromKilograms(2));
+            Assert.Equal(20, SpecificVolume.FromCubicMetersPerKilogram(10) * Density.FromKilogramsPerCubicMeter(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            SpecificVolume v = SpecificVolume.FromCubicMetersPerKilogram(10);
+
+            Density inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(DensityUnit.KilogramPerCubicMeter, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

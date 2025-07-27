@@ -530,6 +530,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, AreaDensity.FromKilogramsPerSquareMeter(10)/AreaDensity.FromKilogramsPerSquareMeter(5), KilogramsPerSquareMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Mass.FromKilograms(20), AreaDensity.FromKilogramsPerSquareMeter(10) * Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

@@ -529,6 +529,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Illuminance.FromLux(10)/Illuminance.FromLux(5), LuxTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(LuminousFlux.FromLumens(20), Illuminance.FromLux(10) * Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

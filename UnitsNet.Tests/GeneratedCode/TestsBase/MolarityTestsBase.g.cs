@@ -933,6 +933,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Molarity.FromMolesPerCubicMeter(10)/Molarity.FromMolesPerCubicMeter(5), MolesPerCubicMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(AmountOfSubstance.FromMoles(20), Molarity.FromMolesPerCubicMeter(10) * Volume.FromCubicMeters(2));
+            Assert.Equal(MassConcentration.FromKilogramsPerCubicMeter(20), Molarity.FromMolesPerCubicMeter(10) * MolarMass.FromKilogramsPerMole(2));
+            Assert.Equal(MolarFlow.FromMolesPerSecond(20), Molarity.FromMolesPerCubicMeter(10) * VolumeFlow.FromCubicMetersPerSecond(2));
+            Assert.Equal(Molarity.FromMolesPerCubicMeter(20), Molarity.FromMolesPerCubicMeter(10) * VolumeConcentration.FromDecimalFractions(2));
+            Assert.Equal(Molarity.FromMolesPerCubicMeter(5), Molarity.FromMolesPerCubicMeter(10) / VolumeConcentration.FromDecimalFractions(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

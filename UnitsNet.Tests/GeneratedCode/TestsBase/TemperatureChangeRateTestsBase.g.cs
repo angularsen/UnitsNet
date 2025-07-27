@@ -957,6 +957,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, TemperatureChangeRate.FromDegreesCelsiusPerSecond(10)/TemperatureChangeRate.FromDegreesCelsiusPerSecond(5), DegreesCelsiusPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(TemperatureDelta.FromDegreesCelsius(20), TemperatureChangeRate.FromDegreesCelsiusPerSecond(10) * Duration.FromSeconds(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

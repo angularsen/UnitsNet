@@ -926,6 +926,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Frequency.FromHertz(10)/Frequency.FromHertz(5), HertzTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Power.FromWatts(20), Frequency.FromPerSecond(10) * Energy.FromJoules(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

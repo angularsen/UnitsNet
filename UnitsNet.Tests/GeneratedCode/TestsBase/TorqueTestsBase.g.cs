@@ -1264,6 +1264,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Torque.FromNewtonMeters(10)/Torque.FromNewtonMeters(5), NewtonMetersTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Angle.FromRadians(5), Torque.FromNewtonMeters(10) / RotationalStiffness.FromNewtonMetersPerRadian(2));
+            Assert.Equal(Area.FromSquareMeters(5), Torque.FromNewtonMeters(10) / ForcePerLength.FromNewtonsPerMeter(2));
+            Assert.Equal(Force.FromNewtons(5), Torque.FromNewtonMeters(10) / Length.FromMeters(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(5), Torque.FromNewtonMeters(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Length.FromMeters(5), Torque.FromNewtonMeters(10) / Force.FromNewtons(2));
+            Assert.Equal(Power.FromWatts(20), Torque.FromNewtonMeters(10) * RotationalSpeed.FromRadiansPerSecond(2));
+            Assert.Equal(RotationalStiffness.FromNewtonMetersPerRadian(5), Torque.FromNewtonMeters(10) / Angle.FromRadians(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {
