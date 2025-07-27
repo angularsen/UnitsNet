@@ -58,7 +58,7 @@ namespace UnitsNet
         /// <param name="factor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
-        [Obsolete("Affine quantities, such as the Temperate, cannot be multiplied directly: consider using the TemperatureDelta type instead.")]
+        [Obsolete("Affine quantities, such as Temperature, cannot be multiplied directly: consider using the TemperatureDelta type instead.")]
         public Temperature Multiply(double factor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) * factor;
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// <param name="divisor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
-        [Obsolete("Affine quantities, such as the Temperate, cannot be divided directly: consider using the TemperatureDelta type instead.")]
+        [Obsolete("Affine quantities, such as Temperature, cannot be divided directly: consider using the TemperatureDelta type instead.")]
         public Temperature Divide(double divisor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) / divisor;
@@ -84,7 +84,7 @@ namespace UnitsNet
         }
         
         /// <inheritdoc cref="LinearQuantityExtensions.Equals{TQuantity,TOther,TTolerance}"/> />
-        [Obsolete("Affine quantities, such as the Temperate, should use an offset-based tolerance: consider using the TemperatureDelta type instead.")]
+        [Obsolete("Affine quantities, such as Temperature, should use an offset-based tolerance: consider using the TemperatureDelta type instead.")]
         public bool Equals(Temperature other, Temperature tolerance)
         {
             if (tolerance.Value < 0)
