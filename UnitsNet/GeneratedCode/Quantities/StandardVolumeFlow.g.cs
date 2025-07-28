@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,27 +59,78 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly StandardVolumeFlowUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="StandardVolumeFlow"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class StandardVolumeFlowInfo: QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit>
+        {
+            /// <inheritdoc />
+            public StandardVolumeFlowInfo(string name, StandardVolumeFlowUnit baseUnit, IEnumerable<IUnitDefinition<StandardVolumeFlowUnit>> unitMappings, StandardVolumeFlow zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<StandardVolumeFlow, StandardVolumeFlowUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public StandardVolumeFlowInfo(string name, StandardVolumeFlowUnit baseUnit, IEnumerable<IUnitDefinition<StandardVolumeFlowUnit>> unitMappings, StandardVolumeFlow zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, StandardVolumeFlow.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.StandardVolumeFlow", typeof(StandardVolumeFlow).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="StandardVolumeFlowInfo"/> class with the default settings for the StandardVolumeFlow quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="StandardVolumeFlowInfo"/> class with the default settings.</returns>
+            public static StandardVolumeFlowInfo CreateDefault()
+            {
+                return new StandardVolumeFlowInfo(nameof(StandardVolumeFlow), DefaultBaseUnit, GetDefaultMappings(), new StandardVolumeFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="StandardVolumeFlowInfo"/> class with the default settings for the StandardVolumeFlow quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="StandardVolumeFlowInfo"/> class with the default settings.
+            /// </returns>
+            public static StandardVolumeFlowInfo CreateDefault(Func<IEnumerable<UnitDefinition<StandardVolumeFlowUnit>>, IEnumerable<IUnitDefinition<StandardVolumeFlowUnit>>> customizeUnits)
+            {
+                return new StandardVolumeFlowInfo(nameof(StandardVolumeFlow), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new StandardVolumeFlow(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="StandardVolumeFlow"/> is [T^-1][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of StandardVolumeFlow is StandardCubicMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static StandardVolumeFlowUnit DefaultBaseUnit { get; } = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="StandardVolumeFlowUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{StandardVolumeFlowUnit}"/> representing the default unit mappings for StandardVolumeFlow.</returns>
+            public static IEnumerable<UnitDefinition<StandardVolumeFlowUnit>> GetDefaultMappings()
+            {
+                yield return new (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimeterPerMinute", "StandardCubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute));
+                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFootPerHour", "StandardCubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour));
+                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFootPerMinute", "StandardCubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
+                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFootPerSecond", "StandardCubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMeterPerDay", "StandardCubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day));
+                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMeterPerHour", "StandardCubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour));
+                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMeterPerMinute", "StandardCubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute));
+                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMeterPerSecond", "StandardCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLiterPerMinute", "StandardLitersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute));
+            }
+        }
+
         static StandardVolumeFlow()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-            BaseUnit = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
-            Units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().ToArray();
-            Zero = new StandardVolumeFlow(0, BaseUnit);
-            Info = new QuantityInfo<StandardVolumeFlowUnit>("StandardVolumeFlow",
-                new UnitInfo<StandardVolumeFlowUnit>[]
-                {
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "StandardVolumeFlow"),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute), "StandardVolumeFlow"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = StandardVolumeFlowInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -121,27 +168,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<StandardVolumeFlowUnit> Info { get; }
+        public static QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of StandardVolumeFlow, which is StandardCubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static StandardVolumeFlowUnit BaseUnit { get; }
+        public static StandardVolumeFlowUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the StandardVolumeFlow quantity.
         /// </summary>
-        public static StandardVolumeFlowUnit[] Units { get; }
+        public static IReadOnlyCollection<StandardVolumeFlowUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit StandardCubicMeterPerSecond.
         /// </summary>
-        public static StandardVolumeFlow Zero { get; }
+        public static StandardVolumeFlow Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static StandardVolumeFlow AdditiveIdentity => Zero;
@@ -159,7 +206,7 @@ namespace UnitsNet
         public StandardVolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<StandardVolumeFlowUnit> QuantityInfo => Info;
+        public QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -170,12 +217,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<StandardVolumeFlowUnit> IQuantity<StandardVolumeFlowUnit>.QuantityInfo => Info;
 
         #endregion
 

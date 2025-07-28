@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -78,72 +74,123 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly VolumeUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Volume"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class VolumeInfo: QuantityInfo<Volume, VolumeUnit>
+        {
+            /// <inheritdoc />
+            public VolumeInfo(string name, VolumeUnit baseUnit, IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings, Volume zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Volume, VolumeUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public VolumeInfo(string name, VolumeUnit baseUnit, IEnumerable<IUnitDefinition<VolumeUnit>> unitMappings, Volume zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Volume.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Volume", typeof(Volume).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VolumeInfo"/> class with the default settings for the Volume quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="VolumeInfo"/> class with the default settings.</returns>
+            public static VolumeInfo CreateDefault()
+            {
+                return new VolumeInfo(nameof(Volume), DefaultBaseUnit, GetDefaultMappings(), new Volume(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VolumeInfo"/> class with the default settings for the Volume quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="VolumeInfo"/> class with the default settings.
+            /// </returns>
+            public static VolumeInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumeUnit>>, IEnumerable<IUnitDefinition<VolumeUnit>>> customizeUnits)
+            {
+                return new VolumeInfo(nameof(Volume), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Volume(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Volume"/> is [L^3].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Volume is CubicMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static VolumeUnit DefaultBaseUnit { get; } = VolumeUnit.CubicMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="VolumeUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeUnit}"/> representing the default unit mappings for Volume.</returns>
+            public static IEnumerable<UnitDefinition<VolumeUnit>> GetDefaultMappings()
+            {
+                yield return new (VolumeUnit.AcreFoot, "AcreFoot", "AcreFeet", BaseUnits.Undefined);
+                yield return new (VolumeUnit.AuTablespoon, "AuTablespoon", "AuTablespoons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.BoardFoot, "BoardFoot", "BoardFeet", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Centiliter, "Centiliter", "Centiliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.CubicCentimeter, "CubicCentimeter", "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (VolumeUnit.CubicDecimeter, "CubicDecimeter", "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter));
+                yield return new (VolumeUnit.CubicFoot, "CubicFoot", "CubicFeet", new BaseUnits(length: LengthUnit.Foot));
+                yield return new (VolumeUnit.CubicHectometer, "CubicHectometer", "CubicHectometers", new BaseUnits(length: LengthUnit.Hectometer));
+                yield return new (VolumeUnit.CubicInch, "CubicInch", "CubicInches", new BaseUnits(length: LengthUnit.Inch));
+                yield return new (VolumeUnit.CubicKilometer, "CubicKilometer", "CubicKilometers", new BaseUnits(length: LengthUnit.Kilometer));
+                yield return new (VolumeUnit.CubicMeter, "CubicMeter", "CubicMeters", new BaseUnits(length: LengthUnit.Meter));
+                yield return new (VolumeUnit.CubicMicrometer, "CubicMicrometer", "CubicMicrometers", new BaseUnits(length: LengthUnit.Micrometer));
+                yield return new (VolumeUnit.CubicMile, "CubicMile", "CubicMiles", new BaseUnits(length: LengthUnit.Mile));
+                yield return new (VolumeUnit.CubicMillimeter, "CubicMillimeter", "CubicMillimeters", new BaseUnits(length: LengthUnit.Millimeter));
+                yield return new (VolumeUnit.CubicYard, "CubicYard", "CubicYards", new BaseUnits(length: LengthUnit.Yard));
+                yield return new (VolumeUnit.Decaliter, "Decaliter", "Decaliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.DecausGallon, "DecausGallon", "DecausGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Deciliter, "Deciliter", "Deciliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.DeciusGallon, "DeciusGallon", "DeciusGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.HectocubicFoot, "HectocubicFoot", "HectocubicFeet", BaseUnits.Undefined);
+                yield return new (VolumeUnit.HectocubicMeter, "HectocubicMeter", "HectocubicMeters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Hectoliter, "Hectoliter", "Hectoliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.HectousGallon, "HectousGallon", "HectousGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrel", "ImperialBeerBarrels", BaseUnits.Undefined);
+                yield return new (VolumeUnit.ImperialGallon, "ImperialGallon", "ImperialGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.ImperialOunce, "ImperialOunce", "ImperialOunces", BaseUnits.Undefined);
+                yield return new (VolumeUnit.ImperialPint, "ImperialPint", "ImperialPints", BaseUnits.Undefined);
+                yield return new (VolumeUnit.ImperialQuart, "ImperialQuart", "ImperialQuarts", BaseUnits.Undefined);
+                yield return new (VolumeUnit.KilocubicFoot, "KilocubicFoot", "KilocubicFeet", BaseUnits.Undefined);
+                yield return new (VolumeUnit.KilocubicMeter, "KilocubicMeter", "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter));
+                yield return new (VolumeUnit.KiloimperialGallon, "KiloimperialGallon", "KiloimperialGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Kiloliter, "Kiloliter", "Kiloliters", new BaseUnits(length: LengthUnit.Meter));
+                yield return new (VolumeUnit.KilousGallon, "KilousGallon", "KilousGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Liter, "Liter", "Liters", new BaseUnits(length: LengthUnit.Decimeter));
+                yield return new (VolumeUnit.MegacubicFoot, "MegacubicFoot", "MegacubicFeet", BaseUnits.Undefined);
+                yield return new (VolumeUnit.MegaimperialGallon, "MegaimperialGallon", "MegaimperialGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Megaliter, "Megaliter", "Megaliters", new BaseUnits(length: LengthUnit.Decameter));
+                yield return new (VolumeUnit.MegausGallon, "MegausGallon", "MegausGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.MetricCup, "MetricCup", "MetricCups", BaseUnits.Undefined);
+                yield return new (VolumeUnit.MetricTeaspoon, "MetricTeaspoon", "MetricTeaspoons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.Microliter, "Microliter", "Microliters", new BaseUnits(length: LengthUnit.Millimeter));
+                yield return new (VolumeUnit.Milliliter, "Milliliter", "Milliliters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (VolumeUnit.Nanoliter, "Nanoliter", "Nanoliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.OilBarrel, "OilBarrel", "OilBarrels", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UkTablespoon, "UkTablespoon", "UkTablespoons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsBeerBarrel, "UsBeerBarrel", "UsBeerBarrels", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsCustomaryCup, "UsCustomaryCup", "UsCustomaryCups", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsGallon, "UsGallon", "UsGallons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsLegalCup, "UsLegalCup", "UsLegalCups", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsOunce, "UsOunce", "UsOunces", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsPint, "UsPint", "UsPints", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsQuart, "UsQuart", "UsQuarts", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsTablespoon, "UsTablespoon", "UsTablespoons", BaseUnits.Undefined);
+                yield return new (VolumeUnit.UsTeaspoon, "UsTeaspoon", "UsTeaspoons", BaseUnits.Undefined);
+            }
+        }
+
         static Volume()
         {
-            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
-            BaseUnit = VolumeUnit.CubicMeter;
-            Units = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().ToArray();
-            Zero = new Volume(0, BaseUnit);
-            Info = new QuantityInfo<VolumeUnit>("Volume",
-                new UnitInfo<VolumeUnit>[]
-                {
-                    new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, "AcreFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, "AuTablespoons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.BoardFoot, "BoardFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, "Centiliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicFoot, "CubicFeet", new BaseUnits(length: LengthUnit.Foot), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicHectometer, "CubicHectometers", new BaseUnits(length: LengthUnit.Hectometer), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, "CubicInches", new BaseUnits(length: LengthUnit.Inch), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, "CubicKilometers", new BaseUnits(length: LengthUnit.Kilometer), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, "CubicMeters", new BaseUnits(length: LengthUnit.Meter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, "CubicMicrometers", new BaseUnits(length: LengthUnit.Micrometer), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, "CubicMiles", new BaseUnits(length: LengthUnit.Mile), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, "CubicMillimeters", new BaseUnits(length: LengthUnit.Millimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, "CubicYards", new BaseUnits(length: LengthUnit.Yard), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Decaliter, "Decaliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.DecausGallon, "DecausGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Deciliter, "Deciliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.DeciusGallon, "DeciusGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicFoot, "HectocubicFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicMeter, "HectocubicMeters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Hectoliter, "Hectoliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.HectousGallon, "HectousGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrels", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, "ImperialGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, "ImperialOunces", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, "ImperialPints", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialQuart, "ImperialQuarts", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, "KilocubicFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, "KiloimperialGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Kiloliter, "Kiloliters", new BaseUnits(length: LengthUnit.Meter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.KilousGallon, "KilousGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Liter, "Liters", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.MegacubicFoot, "MegacubicFeet", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.MegaimperialGallon, "MegaimperialGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Megaliter, "Megaliters", new BaseUnits(length: LengthUnit.Decameter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.MegausGallon, "MegausGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.MetricCup, "MetricCups", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.MetricTeaspoon, "MetricTeaspoons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, "Microliters", new BaseUnits(length: LengthUnit.Millimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, "Milliliters", new BaseUnits(length: LengthUnit.Centimeter), "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.Nanoliter, "Nanoliters", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.OilBarrel, "OilBarrels", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UkTablespoon, "UkTablespoons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsBeerBarrel, "UsBeerBarrels", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsCustomaryCup, "UsCustomaryCups", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsGallon, "UsGallons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsLegalCup, "UsLegalCups", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsOunce, "UsOunces", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsPint, "UsPints", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsQuart, "UsQuarts", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, "UsTablespoons", BaseUnits.Undefined, "Volume"),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined, "Volume"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = VolumeInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -181,27 +228,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumeUnit> Info { get; }
+        public static QuantityInfo<Volume, VolumeUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
         /// </summary>
-        public static VolumeUnit BaseUnit { get; }
+        public static VolumeUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Volume quantity.
         /// </summary>
-        public static VolumeUnit[] Units { get; }
+        public static IReadOnlyCollection<VolumeUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume Zero { get; }
+        public static Volume Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Volume AdditiveIdentity => Zero;
@@ -219,7 +266,7 @@ namespace UnitsNet
         public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<VolumeUnit> QuantityInfo => Info;
+        public QuantityInfo<Volume, VolumeUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -230,12 +277,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<VolumeUnit> IQuantity<VolumeUnit>.QuantityInfo => Info;
 
         #endregion
 

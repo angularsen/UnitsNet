@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -81,32 +77,83 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly AreaUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Area"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class AreaInfo: QuantityInfo<Area, AreaUnit>
+        {
+            /// <inheritdoc />
+            public AreaInfo(string name, AreaUnit baseUnit, IEnumerable<IUnitDefinition<AreaUnit>> unitMappings, Area zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Area, AreaUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public AreaInfo(string name, AreaUnit baseUnit, IEnumerable<IUnitDefinition<AreaUnit>> unitMappings, Area zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Area.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Area", typeof(Area).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AreaInfo"/> class with the default settings for the Area quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="AreaInfo"/> class with the default settings.</returns>
+            public static AreaInfo CreateDefault()
+            {
+                return new AreaInfo(nameof(Area), DefaultBaseUnit, GetDefaultMappings(), new Area(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="AreaInfo"/> class with the default settings for the Area quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="AreaInfo"/> class with the default settings.
+            /// </returns>
+            public static AreaInfo CreateDefault(Func<IEnumerable<UnitDefinition<AreaUnit>>, IEnumerable<IUnitDefinition<AreaUnit>>> customizeUnits)
+            {
+                return new AreaInfo(nameof(Area), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Area(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Area"/> is [L^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Area is SquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static AreaUnit DefaultBaseUnit { get; } = AreaUnit.SquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="AreaUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaUnit}"/> representing the default unit mappings for Area.</returns>
+            public static IEnumerable<UnitDefinition<AreaUnit>> GetDefaultMappings()
+            {
+                yield return new (AreaUnit.Acre, "Acre", "Acres", BaseUnits.Undefined);
+                yield return new (AreaUnit.Hectare, "Hectare", "Hectares", BaseUnits.Undefined);
+                yield return new (AreaUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (AreaUnit.SquareDecimeter, "SquareDecimeter", "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter));
+                yield return new (AreaUnit.SquareFoot, "SquareFoot", "SquareFeet", new BaseUnits(length: LengthUnit.Foot));
+                yield return new (AreaUnit.SquareInch, "SquareInch", "SquareInches", new BaseUnits(length: LengthUnit.Inch));
+                yield return new (AreaUnit.SquareKilometer, "SquareKilometer", "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer));
+                yield return new (AreaUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
+                yield return new (AreaUnit.SquareMicrometer, "SquareMicrometer", "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer));
+                yield return new (AreaUnit.SquareMile, "SquareMile", "SquareMiles", new BaseUnits(length: LengthUnit.Mile));
+                yield return new (AreaUnit.SquareMillimeter, "SquareMillimeter", "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter));
+                yield return new (AreaUnit.SquareNauticalMile, "SquareNauticalMile", "SquareNauticalMiles", BaseUnits.Undefined);
+                yield return new (AreaUnit.SquareYard, "SquareYard", "SquareYards", new BaseUnits(length: LengthUnit.Yard));
+                yield return new (AreaUnit.UsSurveySquareFoot, "UsSurveySquareFoot", "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
+            }
+        }
+
         static Area()
         {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            BaseUnit = AreaUnit.SquareMeter;
-            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().ToArray();
-            Zero = new Area(0, BaseUnit);
-            Info = new QuantityInfo<AreaUnit>("Area",
-                new UnitInfo<AreaUnit>[]
-                {
-                    new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined, "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined, "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined, "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard), "Area"),
-                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot), "Area"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = AreaInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -144,27 +191,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaUnit> Info { get; }
+        public static QuantityInfo<Area, AreaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit { get; }
+        public static AreaUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Area quantity.
         /// </summary>
-        public static AreaUnit[] Units { get; }
+        public static IReadOnlyCollection<AreaUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static Area Zero { get; }
+        public static Area Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Area AdditiveIdentity => Zero;
@@ -182,7 +229,7 @@ namespace UnitsNet
         public AreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<AreaUnit> QuantityInfo => Info;
+        public QuantityInfo<Area, AreaUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -193,12 +240,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<AreaUnit> IQuantity<AreaUnit>.QuantityInfo => Info;
 
         #endregion
 

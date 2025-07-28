@@ -232,7 +232,8 @@
     "Second": 9,
     "Week": 10,
     "Year365": 11,
-    "Sol": 15
+    "Sol": 15,
+    "Picosecond": 12
   },
   "DynamicViscosity": {
     "Centipoise": 1,
@@ -1485,12 +1486,8 @@
     "WattPerMeterKelvin": 2
   },
   "ThermalResistance": {
-    "HourSquareFeetDegreeFahrenheitPerBtu": 1,
-    "SquareCentimeterHourDegreeCelsiusPerKilocalorie": 2,
-    "SquareCentimeterKelvinPerWatt": 3,
-    "SquareMeterDegreeCelsiusPerWatt": 4,
-    "SquareMeterKelvinPerKilowatt": 5,
-    "SquareMeterKelvinPerWatt": 6
+    "DegreeCelsiusPerWatt": 10,
+    "KelvinPerWatt": 11
   },
   "Torque": {
     "GramForceCentimeter": 1,
@@ -1816,7 +1813,8 @@
     "Petagray": 19,
     "Picogray": 11,
     "Rad": 17,
-    "Teragray": 14
+    "Teragray": 14,
+    "Decigray": 26
   },
   "Molality": {
     "MolePerGram": 4,
@@ -1906,7 +1904,12 @@
     "MilligraySquareCentimeter": 14,
     "MilligraySquareDecimeter": 17,
     "MilligraySquareMeter": 11,
-    "MilligraySquareMillimeter": 12
+    "MilligraySquareMillimeter": 12,
+    "CentigraySquareMicrometer": 21,
+    "DecigraySquareMicrometer": 25,
+    "GraySquareMicrometer": 26,
+    "MicrograySquareMicrometer": 29,
+    "MilligraySquareMicrometer": 30
   },
   "ElectricApparentEnergy": {
     "KilovoltampereHour": 7,

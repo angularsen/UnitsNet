@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -70,38 +66,89 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly VolumeConcentrationUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="VolumeConcentration"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class VolumeConcentrationInfo: QuantityInfo<VolumeConcentration, VolumeConcentrationUnit>
+        {
+            /// <inheritdoc />
+            public VolumeConcentrationInfo(string name, VolumeConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<VolumeConcentrationUnit>> unitMappings, VolumeConcentration zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<VolumeConcentration, VolumeConcentrationUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public VolumeConcentrationInfo(string name, VolumeConcentrationUnit baseUnit, IEnumerable<IUnitDefinition<VolumeConcentrationUnit>> unitMappings, VolumeConcentration zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, VolumeConcentration.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.VolumeConcentration", typeof(VolumeConcentration).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VolumeConcentrationInfo"/> class with the default settings for the VolumeConcentration quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="VolumeConcentrationInfo"/> class with the default settings.</returns>
+            public static VolumeConcentrationInfo CreateDefault()
+            {
+                return new VolumeConcentrationInfo(nameof(VolumeConcentration), DefaultBaseUnit, GetDefaultMappings(), new VolumeConcentration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="VolumeConcentrationInfo"/> class with the default settings for the VolumeConcentration quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="VolumeConcentrationInfo"/> class with the default settings.
+            /// </returns>
+            public static VolumeConcentrationInfo CreateDefault(Func<IEnumerable<UnitDefinition<VolumeConcentrationUnit>>, IEnumerable<IUnitDefinition<VolumeConcentrationUnit>>> customizeUnits)
+            {
+                return new VolumeConcentrationInfo(nameof(VolumeConcentration), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new VolumeConcentration(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="VolumeConcentration"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of VolumeConcentration is DecimalFraction. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static VolumeConcentrationUnit DefaultBaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="VolumeConcentrationUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeConcentrationUnit}"/> representing the default unit mappings for VolumeConcentration.</returns>
+            public static IEnumerable<UnitDefinition<VolumeConcentrationUnit>> GetDefaultMappings()
+            {
+                yield return new (VolumeConcentrationUnit.CentiliterPerLiter, "CentiliterPerLiter", "CentilitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.CentiliterPerMilliliter, "CentiliterPerMilliliter", "CentilitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.DeciliterPerLiter, "DeciliterPerLiter", "DecilitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.DeciliterPerMilliliter, "DeciliterPerMilliliter", "DecilitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.DecimalFraction, "DecimalFraction", "DecimalFractions", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.LiterPerLiter, "LiterPerLiter", "LitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.LiterPerMilliliter, "LiterPerMilliliter", "LitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.MicroliterPerLiter, "MicroliterPerLiter", "MicrolitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.MicroliterPerMilliliter, "MicroliterPerMilliliter", "MicrolitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.MilliliterPerLiter, "MilliliterPerLiter", "MillilitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.MilliliterPerMilliliter, "MilliliterPerMilliliter", "MillilitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.NanoliterPerLiter, "NanoliterPerLiter", "NanolitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.NanoliterPerMilliliter, "NanoliterPerMilliliter", "NanolitersPerMilliliter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PartPerBillion, "PartPerBillion", "PartsPerBillion", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PartPerMillion, "PartPerMillion", "PartsPerMillion", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PartPerThousand, "PartPerThousand", "PartsPerThousand", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PartPerTrillion, "PartPerTrillion", "PartsPerTrillion", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.Percent, "Percent", "Percent", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PicoliterPerLiter, "PicoliterPerLiter", "PicolitersPerLiter", BaseUnits.Undefined);
+                yield return new (VolumeConcentrationUnit.PicoliterPerMilliliter, "PicoliterPerMilliliter", "PicolitersPerMilliliter", BaseUnits.Undefined);
+            }
+        }
+
         static VolumeConcentration()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = VolumeConcentrationUnit.DecimalFraction;
-            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().ToArray();
-            Zero = new VolumeConcentration(0, BaseUnit);
-            Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
-                new UnitInfo<VolumeConcentrationUnit>[]
-                {
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentiliterPerLiter, "CentilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentiliterPerMilliliter, "CentilitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DeciliterPerLiter, "DecilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DeciliterPerMilliliter, "DecilitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LiterPerLiter, "LitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LiterPerMilliliter, "LitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicroliterPerLiter, "MicrolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicroliterPerMilliliter, "MicrolitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MilliliterPerLiter, "MillilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MilliliterPerMilliliter, "MillilitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanoliterPerLiter, "NanolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanoliterPerMilliliter, "NanolitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicoliterPerLiter, "PicolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicoliterPerMilliliter, "PicolitersPerMilliliter", BaseUnits.Undefined, "VolumeConcentration"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = VolumeConcentrationInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -125,27 +172,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumeConcentrationUnit> Info { get; }
+        public static QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static VolumeConcentrationUnit BaseUnit { get; }
+        public static VolumeConcentrationUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
-        public static VolumeConcentrationUnit[] Units { get; }
+        public static IReadOnlyCollection<VolumeConcentrationUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static VolumeConcentration Zero { get; }
+        public static VolumeConcentration Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static VolumeConcentration AdditiveIdentity => Zero;
@@ -163,7 +210,7 @@ namespace UnitsNet
         public VolumeConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<VolumeConcentrationUnit> QuantityInfo => Info;
+        public QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -174,12 +221,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.QuantityInfo => Info;
 
         #endregion
 

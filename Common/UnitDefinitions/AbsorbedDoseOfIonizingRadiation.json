@@ -19,7 +19,7 @@
       "FromBaseToUnitFunc": "{x}",
       "XmlDocSummary": "The gray is the unit of ionizing radiation dose in the SI, defined as the absorption of one joule of radiation energy per kilogram of matter.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gray_(unit)",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
           "Culture": "en-US",

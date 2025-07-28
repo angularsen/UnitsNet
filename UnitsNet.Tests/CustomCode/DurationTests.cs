@@ -32,11 +32,16 @@ namespace UnitsNet.Tests
         protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
 
         protected override double SolsInOneSecond => 1.126440159375963e-5;
-        
+
+        protected override double PicosecondsInOneSecond => 1e+12;
+
         [Fact]
         public void AllBaseQuantityUnitsAreBaseUnits()
         {
-            Assert.All(Duration.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(time: unitInfo.Value), unitInfo.BaseUnits));
+            Assert.All(
+                Duration.Info.UnitInfos,
+                unitInfo => Assert.Equal(new BaseUnits(time: unitInfo.Value), unitInfo.BaseUnits)
+            );
         }
 
         [Fact]
@@ -73,7 +78,10 @@ namespace UnitsNet.Tests
         [InlineData(100, Units.DurationUnit.Nanosecond)]
         [InlineData(1, Units.DurationUnit.Microsecond)]
         [InlineData(1.234, Units.DurationUnit.Millisecond)]
-        public static void ToTimeSpanShouldNotRoundToMillisecond(double value, Units.DurationUnit unit)
+        public static void ToTimeSpanShouldNotRoundToMillisecond(
+            double value,
+            Units.DurationUnit unit
+        )
         {
             Duration duration = Duration.From(value, unit);
             TimeSpan timeSpan = duration.ToTimeSpan();
@@ -196,11 +204,22 @@ namespace UnitsNet.Tests
         [InlineData("1 сек", 1, "ru-RU")]
         [InlineData("1000 мс", 1, "ru-RU")]
         [InlineData("1000 мсек", 1, "ru-RU")]
-        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string? culture = null)
+        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(
+            string textValue,
+            double expectedSeconds,
+            string? culture = null
+        )
         {
-            var cultureInfo = culture == null ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo(culture);
+            var cultureInfo =
+                culture == null
+                    ? CultureInfo.InvariantCulture
+                    : CultureInfo.GetCultureInfo(culture);
 
-            AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(
+                expectedSeconds,
+                Duration.Parse(textValue, cultureInfo).Seconds,
+                SecondsTolerance
+            );
         }
 
         [Fact]

@@ -20,11 +20,15 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <!-- Removes any semantic version suffix after the version number and appends ".0", for example "6.0.0-pre014 => "6.0.0.0" -->
+    <VersionNoSuffix>$([System.Text.RegularExpressions.Regex]::Match($(Version), '^[0-9.]+')).0</VersionNoSuffix>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>    <!-- Fixed to major version, for strong naming -->
+    <FileVersion>$(VersionNoSuffix)</FileVersion> <!-- Match the NuGet version number, except any suffix in the semantic version. -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
   </PropertyGroup>
 
   <!-- Strong name signing -->

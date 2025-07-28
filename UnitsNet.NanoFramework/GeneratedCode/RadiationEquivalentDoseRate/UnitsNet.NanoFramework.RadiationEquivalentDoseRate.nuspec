@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.RadiationEquivalentDoseRate</id>
-    <version>6.0.0-pre014</version>
+    <version>6.0.0-pre016</version>
     <title>Units.NET RadiationEquivalentDoseRate - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>

@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         Minute = 6,
         Month30 = 7,
         Nanosecond = 8,
+        Picosecond = 12,
         Second = 9,
         Sol = 15,
         Week = 10,

@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -72,27 +68,78 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly KinematicViscosityUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="KinematicViscosity"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class KinematicViscosityInfo: QuantityInfo<KinematicViscosity, KinematicViscosityUnit>
+        {
+            /// <inheritdoc />
+            public KinematicViscosityInfo(string name, KinematicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings, KinematicViscosity zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<KinematicViscosity, KinematicViscosityUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public KinematicViscosityInfo(string name, KinematicViscosityUnit baseUnit, IEnumerable<IUnitDefinition<KinematicViscosityUnit>> unitMappings, KinematicViscosity zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, KinematicViscosity.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.KinematicViscosity", typeof(KinematicViscosity).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings for the KinematicViscosity quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings.</returns>
+            public static KinematicViscosityInfo CreateDefault()
+            {
+                return new KinematicViscosityInfo(nameof(KinematicViscosity), DefaultBaseUnit, GetDefaultMappings(), new KinematicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings for the KinematicViscosity quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="KinematicViscosityInfo"/> class with the default settings.
+            /// </returns>
+            public static KinematicViscosityInfo CreateDefault(Func<IEnumerable<UnitDefinition<KinematicViscosityUnit>>, IEnumerable<IUnitDefinition<KinematicViscosityUnit>>> customizeUnits)
+            {
+                return new KinematicViscosityInfo(nameof(KinematicViscosity), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new KinematicViscosity(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="KinematicViscosity"/> is [T^-1][L^2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of KinematicViscosity is SquareMeterPerSecond. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static KinematicViscosityUnit DefaultBaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="KinematicViscosityUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{KinematicViscosityUnit}"/> representing the default unit mappings for KinematicViscosity.</returns>
+            public static IEnumerable<UnitDefinition<KinematicViscosityUnit>> GetDefaultMappings()
+            {
+                yield return new (KinematicViscosityUnit.Centistokes, "Centistokes", "Centistokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.Decistokes, "Decistokes", "Decistokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.Kilostokes, "Kilostokes", "Kilostokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.Microstokes, "Microstokes", "Microstokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.Millistokes, "Millistokes", "Millistokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.Nanostokes, "Nanostokes", "Nanostokes", BaseUnits.Undefined);
+                yield return new (KinematicViscosityUnit.SquareFootPerSecond, "SquareFootPerSecond", "SquareFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                yield return new (KinematicViscosityUnit.SquareMeterPerSecond, "SquareMeterPerSecond", "SquareMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (KinematicViscosityUnit.Stokes, "Stokes", "Stokes", BaseUnits.Undefined);
+            }
+        }
+
         static KinematicViscosity()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
-            BaseUnit = KinematicViscosityUnit.SquareMeterPerSecond;
-            Units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().ToArray();
-            Zero = new KinematicViscosity(0, BaseUnit);
-            Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
-                new UnitInfo<KinematicViscosityUnit>[]
-                {
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, "Kilostokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, "Microstokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, "Millistokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, "Nanostokes", BaseUnits.Undefined, "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "KinematicViscosity"),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined, "KinematicViscosity"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = KinematicViscosityInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -130,27 +177,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<KinematicViscosityUnit> Info { get; }
+        public static QuantityInfo<KinematicViscosity, KinematicViscosityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of KinematicViscosity, which is SquareMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static KinematicViscosityUnit BaseUnit { get; }
+        public static KinematicViscosityUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the KinematicViscosity quantity.
         /// </summary>
-        public static KinematicViscosityUnit[] Units { get; }
+        public static IReadOnlyCollection<KinematicViscosityUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterPerSecond.
         /// </summary>
-        public static KinematicViscosity Zero { get; }
+        public static KinematicViscosity Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static KinematicViscosity AdditiveIdentity => Zero;
@@ -168,7 +215,7 @@ namespace UnitsNet
         public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<KinematicViscosityUnit> QuantityInfo => Info;
+        public QuantityInfo<KinematicViscosity, KinematicViscosityUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -179,12 +226,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.QuantityInfo => Info;
 
         #endregion
 

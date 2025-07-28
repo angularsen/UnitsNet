@@ -1,10 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -153,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromUnitAbbreviation_ReturnsQuantity()
         {
-            IQuantity q = Quantity.FromUnitAbbreviation(5, "cm");
+            IQuantity q = Quantity.FromUnitAbbreviation(CultureInfo.InvariantCulture, 5, "cm");
             Assert.Equal(5, q.Value);
             Assert.Equal(LengthUnit.Centimeter, q.Unit);
         }
@@ -161,16 +158,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryFromUnitAbbreviation_ReturnsQuantity()
         {
-            Assert.True(Quantity.TryFromUnitAbbreviation(5, "cm", out IQuantity? q));
-            Assert.Equal(LengthUnit.Centimeter, q!.Unit);
+            Assert.True(Quantity.TryFromUnitAbbreviation(5, "cm", out IQuantity? quantity));
+            Assert.Equal(LengthUnit.Centimeter, quantity!.Unit);
         }
 
         [Fact]
         public void FromUnitAbbreviation_MatchingCulture_ReturnsQuantity()
         {
-            IQuantity q = Quantity.FromUnitAbbreviation(Russian, 5, "см");
-            Assert.Equal(5, q.Value);
-            Assert.Equal(LengthUnit.Centimeter, q.Unit);
+            IQuantity quantity = Quantity.FromUnitAbbreviation(Russian, 5, "см");
+            Assert.Equal(5, quantity.Value);
+            Assert.Equal(LengthUnit.Centimeter, quantity.Unit);
         }
 
         [Fact]

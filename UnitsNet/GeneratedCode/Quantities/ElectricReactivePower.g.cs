@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,22 +62,73 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricReactivePowerUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricReactivePower"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricReactivePowerInfo: QuantityInfo<ElectricReactivePower, ElectricReactivePowerUnit>
+        {
+            /// <inheritdoc />
+            public ElectricReactivePowerInfo(string name, ElectricReactivePowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactivePowerUnit>> unitMappings, ElectricReactivePower zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricReactivePower, ElectricReactivePowerUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricReactivePowerInfo(string name, ElectricReactivePowerUnit baseUnit, IEnumerable<IUnitDefinition<ElectricReactivePowerUnit>> unitMappings, ElectricReactivePower zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricReactivePower.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricReactivePower", typeof(ElectricReactivePower).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricReactivePowerInfo"/> class with the default settings for the ElectricReactivePower quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricReactivePowerInfo"/> class with the default settings.</returns>
+            public static ElectricReactivePowerInfo CreateDefault()
+            {
+                return new ElectricReactivePowerInfo(nameof(ElectricReactivePower), DefaultBaseUnit, GetDefaultMappings(), new ElectricReactivePower(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricReactivePowerInfo"/> class with the default settings for the ElectricReactivePower quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricReactivePowerInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricReactivePowerInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricReactivePowerUnit>>, IEnumerable<IUnitDefinition<ElectricReactivePowerUnit>>> customizeUnits)
+            {
+                return new ElectricReactivePowerInfo(nameof(ElectricReactivePower), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricReactivePower(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricReactivePower"/> is [T^-3][L^2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricReactivePower is VoltampereReactive. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricReactivePowerUnit DefaultBaseUnit { get; } = ElectricReactivePowerUnit.VoltampereReactive;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricReactivePowerUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactivePowerUnit}"/> representing the default unit mappings for ElectricReactivePower.</returns>
+            public static IEnumerable<UnitDefinition<ElectricReactivePowerUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltampereReactive", "GigavoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
+                yield return new (ElectricReactivePowerUnit.KilovoltampereReactive, "KilovoltampereReactive", "KilovoltamperesReactive", BaseUnits.Undefined);
+                yield return new (ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltampereReactive", "MegavoltamperesReactive", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ElectricReactivePowerUnit.VoltampereReactive, "VoltampereReactive", "VoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static ElectricReactivePower()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = ElectricReactivePowerUnit.VoltampereReactive;
-            Units = Enum.GetValues(typeof(ElectricReactivePowerUnit)).Cast<ElectricReactivePowerUnit>().ToArray();
-            Zero = new ElectricReactivePower(0, BaseUnit);
-            Info = new QuantityInfo<ElectricReactivePowerUnit>("ElectricReactivePower",
-                new UnitInfo<ElectricReactivePowerUnit>[]
-                {
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined, "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
-                    new UnitInfo<ElectricReactivePowerUnit>(ElectricReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "ElectricReactivePower"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricReactivePowerInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -119,27 +166,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricReactivePowerUnit> Info { get; }
+        public static QuantityInfo<ElectricReactivePower, ElectricReactivePowerUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricReactivePower, which is VoltampereReactive. All conversions go via this value.
         /// </summary>
-        public static ElectricReactivePowerUnit BaseUnit { get; }
+        public static ElectricReactivePowerUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricReactivePower quantity.
         /// </summary>
-        public static ElectricReactivePowerUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricReactivePowerUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ElectricReactivePower Zero { get; }
+        public static ElectricReactivePower Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricReactivePower AdditiveIdentity => Zero;
@@ -157,7 +204,7 @@ namespace UnitsNet
         public ElectricReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricReactivePowerUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricReactivePower, ElectricReactivePowerUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -168,12 +215,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricReactivePowerUnit> IQuantity<ElectricReactivePowerUnit>.QuantityInfo => Info;
 
         #endregion
 

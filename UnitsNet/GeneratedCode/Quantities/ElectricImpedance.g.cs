@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -67,26 +63,77 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricImpedanceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ElectricImpedance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ElectricImpedanceInfo: QuantityInfo<ElectricImpedance, ElectricImpedanceUnit>
+        {
+            /// <inheritdoc />
+            public ElectricImpedanceInfo(string name, ElectricImpedanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>> unitMappings, ElectricImpedance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ElectricImpedance, ElectricImpedanceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ElectricImpedanceInfo(string name, ElectricImpedanceUnit baseUnit, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>> unitMappings, ElectricImpedance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ElectricImpedance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ElectricImpedance", typeof(ElectricImpedance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings for the ElectricImpedance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings.</returns>
+            public static ElectricImpedanceInfo CreateDefault()
+            {
+                return new ElectricImpedanceInfo(nameof(ElectricImpedance), DefaultBaseUnit, GetDefaultMappings(), new ElectricImpedance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings for the ElectricImpedance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ElectricImpedanceInfo"/> class with the default settings.
+            /// </returns>
+            public static ElectricImpedanceInfo CreateDefault(Func<IEnumerable<UnitDefinition<ElectricImpedanceUnit>>, IEnumerable<IUnitDefinition<ElectricImpedanceUnit>>> customizeUnits)
+            {
+                return new ElectricImpedanceInfo(nameof(ElectricImpedance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ElectricImpedance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricImpedance"/> is [T^-3][L^2][M][I^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ElectricImpedance is Ohm. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ElectricImpedanceUnit DefaultBaseUnit { get; } = ElectricImpedanceUnit.Ohm;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ElectricImpedanceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricImpedanceUnit}"/> representing the default unit mappings for ElectricImpedance.</returns>
+            public static IEnumerable<UnitDefinition<ElectricImpedanceUnit>> GetDefaultMappings()
+            {
+                yield return new (ElectricImpedanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined);
+                yield return new (ElectricImpedanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (ElectricImpedanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+        }
+
         static ElectricImpedance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-            BaseUnit = ElectricImpedanceUnit.Ohm;
-            Units = Enum.GetValues(typeof(ElectricImpedanceUnit)).Cast<ElectricImpedanceUnit>().ToArray();
-            Zero = new ElectricImpedance(0, BaseUnit);
-            Info = new QuantityInfo<ElectricImpedanceUnit>("ElectricImpedance",
-                new UnitInfo<ElectricImpedanceUnit>[]
-                {
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Gigaohm, "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Megaohm, "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Microohm, "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Milliohm, "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Nanoohm, "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Ohm, "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                    new UnitInfo<ElectricImpedanceUnit>(ElectricImpedanceUnit.Teraohm, "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricImpedance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ElectricImpedanceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -124,27 +171,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricImpedanceUnit> Info { get; }
+        public static QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ElectricImpedance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricImpedanceUnit BaseUnit { get; }
+        public static ElectricImpedanceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ElectricImpedance quantity.
         /// </summary>
-        public static ElectricImpedanceUnit[] Units { get; }
+        public static IReadOnlyCollection<ElectricImpedanceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricImpedance Zero { get; }
+        public static ElectricImpedance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ElectricImpedance AdditiveIdentity => Zero;
@@ -162,7 +209,7 @@ namespace UnitsNet
         public ElectricImpedanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ElectricImpedanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -173,12 +220,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ElectricImpedanceUnit> IQuantity<ElectricImpedanceUnit>.QuantityInfo => Info;
 
         #endregion
 

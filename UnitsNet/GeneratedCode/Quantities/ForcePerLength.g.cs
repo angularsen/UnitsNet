@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -74,56 +70,107 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly ForcePerLengthUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="ForcePerLength"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class ForcePerLengthInfo: QuantityInfo<ForcePerLength, ForcePerLengthUnit>
+        {
+            /// <inheritdoc />
+            public ForcePerLengthInfo(string name, ForcePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings, ForcePerLength zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<ForcePerLength, ForcePerLengthUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public ForcePerLengthInfo(string name, ForcePerLengthUnit baseUnit, IEnumerable<IUnitDefinition<ForcePerLengthUnit>> unitMappings, ForcePerLength zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, ForcePerLength.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.ForcePerLength", typeof(ForcePerLength).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings for the ForcePerLength quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings.</returns>
+            public static ForcePerLengthInfo CreateDefault()
+            {
+                return new ForcePerLengthInfo(nameof(ForcePerLength), DefaultBaseUnit, GetDefaultMappings(), new ForcePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings for the ForcePerLength quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="ForcePerLengthInfo"/> class with the default settings.
+            /// </returns>
+            public static ForcePerLengthInfo CreateDefault(Func<IEnumerable<UnitDefinition<ForcePerLengthUnit>>, IEnumerable<IUnitDefinition<ForcePerLengthUnit>>> customizeUnits)
+            {
+                return new ForcePerLengthInfo(nameof(ForcePerLength), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new ForcePerLength(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="ForcePerLength"/> is [T^-2][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of ForcePerLength is NewtonPerMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static ForcePerLengthUnit DefaultBaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="ForcePerLengthUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForcePerLengthUnit}"/> representing the default unit mappings for ForcePerLength.</returns>
+            public static IEnumerable<UnitDefinition<ForcePerLengthUnit>> GetDefaultMappings()
+            {
+                yield return new (ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonPerCentimeter", "CentinewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonPerMeter", "CentinewtonsPerMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.CentinewtonPerMillimeter, "CentinewtonPerMillimeter", "CentinewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.DecanewtonPerCentimeter, "DecanewtonPerCentimeter", "DecanewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.DecanewtonPerMeter, "DecanewtonPerMeter", "DecanewtonsPerMeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.DecanewtonPerMillimeter, "DecanewtonPerMillimeter", "DecanewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.DecinewtonPerCentimeter, "DecinewtonPerCentimeter", "DecinewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.DecinewtonPerMeter, "DecinewtonPerMeter", "DecinewtonsPerMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.DecinewtonPerMillimeter, "DecinewtonPerMillimeter", "DecinewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilogramForcePerCentimeter, "KilogramForcePerCentimeter", "KilogramsForcePerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilogramForcePerMeter, "KilogramForcePerMeter", "KilogramsForcePerMeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilogramForcePerMillimeter, "KilogramForcePerMillimeter", "KilogramsForcePerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilonewtonPerCentimeter, "KilonewtonPerCentimeter", "KilonewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilonewtonPerMeter, "KilonewtonPerMeter", "KilonewtonsPerMeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilonewtonPerMillimeter, "KilonewtonPerMillimeter", "KilonewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilopoundForcePerFoot, "KilopoundForcePerFoot", "KilopoundsForcePerFoot", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.KilopoundForcePerInch, "KilopoundForcePerInch", "KilopoundsForcePerInch", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MeganewtonPerCentimeter, "MeganewtonPerCentimeter", "MeganewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MeganewtonPerMeter, "MeganewtonPerMeter", "MeganewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
+                yield return new (ForcePerLengthUnit.MeganewtonPerMillimeter, "MeganewtonPerMillimeter", "MeganewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MicronewtonPerCentimeter, "MicronewtonPerCentimeter", "MicronewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonPerMeter", "MicronewtonsPerMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonPerMillimeter", "MicronewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonPerCentimeter", "MillinewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonPerMeter", "MillinewtonsPerMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonPerMillimeter", "MillinewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonPerCentimeter", "NanonewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonPerMeter", "NanonewtonsPerMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.NanonewtonPerMillimeter, "NanonewtonPerMillimeter", "NanonewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.NewtonPerCentimeter, "NewtonPerCentimeter", "NewtonsPerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.NewtonPerMeter, "NewtonPerMeter", "NewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (ForcePerLengthUnit.NewtonPerMillimeter, "NewtonPerMillimeter", "NewtonsPerMillimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.PoundForcePerFoot, "PoundForcePerFoot", "PoundsForcePerFoot", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.PoundForcePerInch, "PoundForcePerInch", "PoundsForcePerInch", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.PoundForcePerYard, "PoundForcePerYard", "PoundsForcePerYard", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.TonneForcePerCentimeter, "TonneForcePerCentimeter", "TonnesForcePerCentimeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.TonneForcePerMeter, "TonneForcePerMeter", "TonnesForcePerMeter", BaseUnits.Undefined);
+                yield return new (ForcePerLengthUnit.TonneForcePerMillimeter, "TonneForcePerMillimeter", "TonnesForcePerMillimeter", BaseUnits.Undefined);
+            }
+        }
+
         static ForcePerLength()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            BaseUnit = ForcePerLengthUnit.NewtonPerMeter;
-            Units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
-            Zero = new ForcePerLength(0, BaseUnit);
-            Info = new QuantityInfo<ForcePerLengthUnit>("ForcePerLength",
-                new UnitInfo<ForcePerLengthUnit>[]
-                {
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonsPerMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMillimeter, "CentinewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerCentimeter, "DecanewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMeter, "DecanewtonsPerMeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMillimeter, "DecanewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerCentimeter, "DecinewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMeter, "DecinewtonsPerMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMillimeter, "DecinewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerCentimeter, "KilogramsForcePerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMeter, "KilogramsForcePerMeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMillimeter, "KilogramsForcePerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerCentimeter, "KilonewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMeter, "KilonewtonsPerMeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMillimeter, "KilonewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerFoot, "KilopoundsForcePerFoot", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerInch, "KilopoundsForcePerInch", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerCentimeter, "MeganewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMeter, "MeganewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Millisecond), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMillimeter, "MeganewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerCentimeter, "MicronewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonsPerMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonsPerMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonsPerMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMillimeter, "NanonewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerCentimeter, "NewtonsPerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, "NewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMillimeter, "NewtonsPerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerFoot, "PoundsForcePerFoot", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerInch, "PoundsForcePerInch", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerYard, "PoundsForcePerYard", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerCentimeter, "TonnesForcePerCentimeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined, "ForcePerLength"),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined, "ForcePerLength"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = ForcePerLengthInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -161,27 +208,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForcePerLengthUnit> Info { get; }
+        public static QuantityInfo<ForcePerLength, ForcePerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of ForcePerLength, which is NewtonPerMeter. All conversions go via this value.
         /// </summary>
-        public static ForcePerLengthUnit BaseUnit { get; }
+        public static ForcePerLengthUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the ForcePerLength quantity.
         /// </summary>
-        public static ForcePerLengthUnit[] Units { get; }
+        public static IReadOnlyCollection<ForcePerLengthUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerMeter.
         /// </summary>
-        public static ForcePerLength Zero { get; }
+        public static ForcePerLength Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static ForcePerLength AdditiveIdentity => Zero;
@@ -199,7 +246,7 @@ namespace UnitsNet
         public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ForcePerLengthUnit> QuantityInfo => Info;
+        public QuantityInfo<ForcePerLength, ForcePerLengthUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -210,12 +257,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.QuantityInfo => Info;
 
         #endregion
 

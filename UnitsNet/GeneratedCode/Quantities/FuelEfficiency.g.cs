@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -66,22 +62,73 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly FuelEfficiencyUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="FuelEfficiency"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class FuelEfficiencyInfo: QuantityInfo<FuelEfficiency, FuelEfficiencyUnit>
+        {
+            /// <inheritdoc />
+            public FuelEfficiencyInfo(string name, FuelEfficiencyUnit baseUnit, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>> unitMappings, FuelEfficiency zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<FuelEfficiency, FuelEfficiencyUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public FuelEfficiencyInfo(string name, FuelEfficiencyUnit baseUnit, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>> unitMappings, FuelEfficiency zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, FuelEfficiency.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.FuelEfficiency", typeof(FuelEfficiency).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings for the FuelEfficiency quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings.</returns>
+            public static FuelEfficiencyInfo CreateDefault()
+            {
+                return new FuelEfficiencyInfo(nameof(FuelEfficiency), DefaultBaseUnit, GetDefaultMappings(), new FuelEfficiency(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings for the FuelEfficiency quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="FuelEfficiencyInfo"/> class with the default settings.
+            /// </returns>
+            public static FuelEfficiencyInfo CreateDefault(Func<IEnumerable<UnitDefinition<FuelEfficiencyUnit>>, IEnumerable<IUnitDefinition<FuelEfficiencyUnit>>> customizeUnits)
+            {
+                return new FuelEfficiencyInfo(nameof(FuelEfficiency), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new FuelEfficiency(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="FuelEfficiency"/> is [L^-2].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of FuelEfficiency is KilometerPerLiter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static FuelEfficiencyUnit DefaultBaseUnit { get; } = FuelEfficiencyUnit.KilometerPerLiter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="FuelEfficiencyUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FuelEfficiencyUnit}"/> representing the default unit mappings for FuelEfficiency.</returns>
+            public static IEnumerable<UnitDefinition<FuelEfficiencyUnit>> GetDefaultMappings()
+            {
+                yield return new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined);
+                yield return new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined);
+                yield return new (FuelEfficiencyUnit.MilePerUkGallon, "MilePerUkGallon", "MilesPerUkGallon", BaseUnits.Undefined);
+                yield return new (FuelEfficiencyUnit.MilePerUsGallon, "MilePerUsGallon", "MilesPerUsGallon", BaseUnits.Undefined);
+            }
+        }
+
         static FuelEfficiency()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
-            BaseUnit = FuelEfficiencyUnit.KilometerPerLiter;
-            Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().ToArray();
-            Zero = new FuelEfficiency(0, BaseUnit);
-            Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
-                new UnitInfo<FuelEfficiencyUnit>[]
-                {
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiter", BaseUnits.Undefined, "FuelEfficiency"),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined, "FuelEfficiency"),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined, "FuelEfficiency"),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined, "FuelEfficiency"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = FuelEfficiencyInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -119,27 +166,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FuelEfficiencyUnit> Info { get; }
+        public static QuantityInfo<FuelEfficiency, FuelEfficiencyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of FuelEfficiency, which is KilometerPerLiter. All conversions go via this value.
         /// </summary>
-        public static FuelEfficiencyUnit BaseUnit { get; }
+        public static FuelEfficiencyUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the FuelEfficiency quantity.
         /// </summary>
-        public static FuelEfficiencyUnit[] Units { get; }
+        public static IReadOnlyCollection<FuelEfficiencyUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilometerPerLiter.
         /// </summary>
-        public static FuelEfficiency Zero { get; }
+        public static FuelEfficiency Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static FuelEfficiency AdditiveIdentity => Zero;
@@ -157,7 +204,7 @@ namespace UnitsNet
         public FuelEfficiencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<FuelEfficiencyUnit> QuantityInfo => Info;
+        public QuantityInfo<FuelEfficiency, FuelEfficiencyUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -168,12 +215,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.QuantityInfo => Info;
 
         #endregion
 

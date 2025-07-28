@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,24 +59,75 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly RatioUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Ratio"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class RatioInfo: QuantityInfo<Ratio, RatioUnit>
+        {
+            /// <inheritdoc />
+            public RatioInfo(string name, RatioUnit baseUnit, IEnumerable<IUnitDefinition<RatioUnit>> unitMappings, Ratio zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Ratio, RatioUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public RatioInfo(string name, RatioUnit baseUnit, IEnumerable<IUnitDefinition<RatioUnit>> unitMappings, Ratio zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Ratio.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Ratio", typeof(Ratio).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RatioInfo"/> class with the default settings for the Ratio quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="RatioInfo"/> class with the default settings.</returns>
+            public static RatioInfo CreateDefault()
+            {
+                return new RatioInfo(nameof(Ratio), DefaultBaseUnit, GetDefaultMappings(), new Ratio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="RatioInfo"/> class with the default settings for the Ratio quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="RatioInfo"/> class with the default settings.
+            /// </returns>
+            public static RatioInfo CreateDefault(Func<IEnumerable<UnitDefinition<RatioUnit>>, IEnumerable<IUnitDefinition<RatioUnit>>> customizeUnits)
+            {
+                return new RatioInfo(nameof(Ratio), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Ratio(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Ratio"/> is .
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = BaseDimensions.Dimensionless;
+
+            /// <summary>
+            ///     The default base unit of Ratio is DecimalFraction. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static RatioUnit DefaultBaseUnit { get; } = RatioUnit.DecimalFraction;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="RatioUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RatioUnit}"/> representing the default unit mappings for Ratio.</returns>
+            public static IEnumerable<UnitDefinition<RatioUnit>> GetDefaultMappings()
+            {
+                yield return new (RatioUnit.DecimalFraction, "DecimalFraction", "DecimalFractions", BaseUnits.Undefined);
+                yield return new (RatioUnit.PartPerBillion, "PartPerBillion", "PartsPerBillion", BaseUnits.Undefined);
+                yield return new (RatioUnit.PartPerMillion, "PartPerMillion", "PartsPerMillion", BaseUnits.Undefined);
+                yield return new (RatioUnit.PartPerThousand, "PartPerThousand", "PartsPerThousand", BaseUnits.Undefined);
+                yield return new (RatioUnit.PartPerTrillion, "PartPerTrillion", "PartsPerTrillion", BaseUnits.Undefined);
+                yield return new (RatioUnit.Percent, "Percent", "Percent", BaseUnits.Undefined);
+            }
+        }
+
         static Ratio()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
-            BaseUnit = RatioUnit.DecimalFraction;
-            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().ToArray();
-            Zero = new Ratio(0, BaseUnit);
-            Info = new QuantityInfo<RatioUnit>("Ratio",
-                new UnitInfo<RatioUnit>[]
-                {
-                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "Ratio"),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "Ratio"),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "Ratio"),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "Ratio"),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "Ratio"),
-                    new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined, "Ratio"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = RatioInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -104,27 +151,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioUnit> Info { get; }
+        public static QuantityInfo<Ratio, RatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit { get; }
+        public static RatioUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
-        public static RatioUnit[] Units { get; }
+        public static IReadOnlyCollection<RatioUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero { get; }
+        public static Ratio Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Ratio AdditiveIdentity => Zero;
@@ -142,7 +189,7 @@ namespace UnitsNet
         public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RatioUnit> QuantityInfo => Info;
+        public QuantityInfo<Ratio, RatioUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -153,12 +200,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<RatioUnit> IQuantity<RatioUnit>.QuantityInfo => Info;
 
         #endregion
 

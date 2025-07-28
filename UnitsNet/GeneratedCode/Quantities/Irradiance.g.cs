@@ -17,13 +17,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
 #if NET
 using System.Numerics;
 #endif
@@ -63,32 +59,83 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 2)]
         private readonly IrradianceUnit? _unit;
 
+        /// <summary>
+        ///     Provides detailed information about the <see cref="Irradiance"/> quantity, including its name, base unit, unit mappings, base dimensions, and conversion functions.
+        /// </summary>
+        public sealed class IrradianceInfo: QuantityInfo<Irradiance, IrradianceUnit>
+        {
+            /// <inheritdoc />
+            public IrradianceInfo(string name, IrradianceUnit baseUnit, IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings, Irradiance zero, BaseDimensions baseDimensions,
+                QuantityFromDelegate<Irradiance, IrradianceUnit> fromDelegate, ResourceManager? unitAbbreviations)
+                : base(name, baseUnit, unitMappings, zero, baseDimensions, fromDelegate, unitAbbreviations)
+            {
+            }
+
+            /// <inheritdoc />
+            public IrradianceInfo(string name, IrradianceUnit baseUnit, IEnumerable<IUnitDefinition<IrradianceUnit>> unitMappings, Irradiance zero, BaseDimensions baseDimensions)
+                : this(name, baseUnit, unitMappings, zero, baseDimensions, Irradiance.From, new ResourceManager("UnitsNet.GeneratedCode.Resources.Irradiance", typeof(Irradiance).Assembly))
+            {
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="IrradianceInfo"/> class with the default settings for the Irradiance quantity.
+            /// </summary>
+            /// <returns>A new instance of the <see cref="IrradianceInfo"/> class with the default settings.</returns>
+            public static IrradianceInfo CreateDefault()
+            {
+                return new IrradianceInfo(nameof(Irradiance), DefaultBaseUnit, GetDefaultMappings(), new Irradiance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     Creates a new instance of the <see cref="IrradianceInfo"/> class with the default settings for the Irradiance quantity and a callback for customizing the default unit mappings.
+            /// </summary>
+            /// <param name="customizeUnits">
+            ///     A callback function for customizing the default unit mappings.
+            /// </param>
+            /// <returns>
+            ///     A new instance of the <see cref="IrradianceInfo"/> class with the default settings.
+            /// </returns>
+            public static IrradianceInfo CreateDefault(Func<IEnumerable<UnitDefinition<IrradianceUnit>>, IEnumerable<IUnitDefinition<IrradianceUnit>>> customizeUnits)
+            {
+                return new IrradianceInfo(nameof(Irradiance), DefaultBaseUnit, customizeUnits(GetDefaultMappings()), new Irradiance(0, DefaultBaseUnit), DefaultBaseDimensions);
+            }
+
+            /// <summary>
+            ///     The <see cref="BaseDimensions" /> for <see cref="Irradiance"/> is [T^-3][M].
+            /// </summary>
+            public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+
+            /// <summary>
+            ///     The default base unit of Irradiance is WattPerSquareMeter. All conversions, as defined in the <see cref="GetDefaultMappings"/>, go via this value.
+            /// </summary>
+            public static IrradianceUnit DefaultBaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+
+            /// <summary>
+            ///     Retrieves the default mappings for <see cref="IrradianceUnit"/>.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IrradianceUnit}"/> representing the default unit mappings for Irradiance.</returns>
+            public static IEnumerable<UnitDefinition<IrradianceUnit>> GetDefaultMappings()
+            {
+                yield return new (IrradianceUnit.KilowattPerSquareCentimeter, "KilowattPerSquareCentimeter", "KilowattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.MegawattPerSquareCentimeter, "MegawattPerSquareCentimeter", "MegawattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.MegawattPerSquareMeter, "MegawattPerSquareMeter", "MegawattsPerSquareMeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattPerSquareCentimeter", "MicrowattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.MicrowattPerSquareMeter, "MicrowattPerSquareMeter", "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattPerSquareCentimeter", "MilliwattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.MilliwattPerSquareMeter, "MilliwattPerSquareMeter", "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (IrradianceUnit.NanowattPerSquareCentimeter, "NanowattPerSquareCentimeter", "NanowattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.NanowattPerSquareMeter, "NanowattPerSquareMeter", "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (IrradianceUnit.PicowattPerSquareCentimeter, "PicowattPerSquareCentimeter", "PicowattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.PicowattPerSquareMeter, "PicowattPerSquareMeter", "PicowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (IrradianceUnit.WattPerSquareCentimeter, "WattPerSquareCentimeter", "WattsPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradianceUnit.WattPerSquareMeter, "WattPerSquareMeter", "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+        }
+
         static Irradiance()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            BaseUnit = IrradianceUnit.WattPerSquareMeter;
-            Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().ToArray();
-            Zero = new Irradiance(0, BaseUnit);
-            Info = new QuantityInfo<IrradianceUnit>("Irradiance",
-                new UnitInfo<IrradianceUnit>[]
-                {
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second), "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second), "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second), "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second), "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "Irradiance"),
-                },
-                BaseUnit, Zero, BaseDimensions);
-
+            Info = IrradianceInfo.CreateDefault();
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
@@ -126,27 +173,27 @@ namespace UnitsNet
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<IrradianceUnit> Info { get; }
+        public static QuantityInfo<Irradiance, IrradianceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions => Info.BaseDimensions;
 
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradianceUnit BaseUnit { get; }
+        public static IrradianceUnit BaseUnit => Info.BaseUnitInfo.Value;
 
         /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
-        public static IrradianceUnit[] Units { get; }
+        public static IReadOnlyCollection<IrradianceUnit> Units => Info.Units;
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static Irradiance Zero { get; }
+        public static Irradiance Zero => Info.Zero;
 
         /// <inheritdoc cref="Zero"/>
         public static Irradiance AdditiveIdentity => Zero;
@@ -164,7 +211,7 @@ namespace UnitsNet
         public IrradianceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<IrradianceUnit> QuantityInfo => Info;
+        public QuantityInfo<Irradiance, IrradianceUnit> QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -175,12 +222,15 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IQuantity.Unit => Unit;
-        
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        QuantityInfo<IrradianceUnit> IQuantity<IrradianceUnit>.QuantityInfo => Info;
 
         #endregion
 

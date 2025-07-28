@@ -95,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
+            var units = Enum.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             var quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
 
             var convertedValue = quantity.As(UnitSystem.SI);
-            
+
             Assert.Equal(quantity.Value, convertedValue);
         }
 
@@ -192,7 +192,7 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
@@ -499,7 +499,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>();
+            var units = Enum.GetValues<ScalarUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

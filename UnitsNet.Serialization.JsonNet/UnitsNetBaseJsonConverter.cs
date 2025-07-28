@@ -3,7 +3,7 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,13 +15,17 @@ namespace UnitsNet.Serialization.JsonNet
     /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
+#if NET
+    [RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
+#endif
     public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From(double,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// Instead of calling <see cref="Quantity.From(double,UnitKey)"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>

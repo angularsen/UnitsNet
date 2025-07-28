@@ -1,13 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet;
@@ -36,7 +32,7 @@ public sealed class UnitParser
         : this(new UnitAbbreviationsCache(quantitiesLookup))
     {
     }
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="UnitParser" /> class using the specified unit abbreviations cache.
     /// </summary>
@@ -93,7 +89,9 @@ public sealed class UnitParser
     /// <param name="unitAbbreviation"></param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <typeparam name="TUnitType"></typeparam>
-    /// <returns></returns>
+    /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
         where TUnitType : struct, Enum
     {
@@ -114,6 +112,9 @@ public sealed class UnitParser
     /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
     /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
     /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="unitAbbreviation"/> or the <paramref name="unitType"/> is null.</exception>
+    /// <exception cref="ArgumentException">The <paramref name="unitType"/> is not a valid enumeration type.</exception>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
     /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
     public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
@@ -122,6 +123,63 @@ public sealed class UnitParser
 
         QuantityInfo quantityInfo = Quantities.GetQuantityByUnitType(unitType);
         return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider).Value;
+    }
+
+    /// <summary>
+    ///     Retrieves the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given quantity.
+    /// </summary>
+    /// <param name="quantityName">The name of the quantity to which the unit belongs.</param>
+    /// <param name="unitAbbreviation">The abbreviation of the unit to retrieve.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <returns>
+    ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="quantityName"/> or the <paramref name="unitAbbreviation"/> is null.</exception>
+    /// <exception cref="ArgumentException">
+    ///     Thrown if the specified <paramref name="quantityName" /> does not correspond to a known quantity.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if the <paramref name="unitAbbreviation" /> cannot be resolved to a valid unit for the specified quantity.
+    /// </exception>
+    /// <remarks>
+    ///     When a specific <paramref name="formatProvider"/> is provided, both localized and non-localized units would be compared.
+    ///     <para>Both the <paramref name="quantityName" /> and the <paramref name="unitAbbreviation" /> comparisons are case-insensitive.</para>
+    /// </remarks>
+    public UnitInfo GetUnitFromAbbreviation(string quantityName, string unitAbbreviation, IFormatProvider? formatProvider)
+    {
+        if (quantityName == null) throw new ArgumentNullException(nameof(quantityName));
+        if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
+
+        QuantityInfo quantityInfo = Quantities.GetQuantityByName(quantityName);
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider);
+    }
+
+    /// <summary>
+    ///     Retrieves the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given quantity.
+    /// </summary>
+    /// <param name="quantityType">The type of the quantity to which the unit belongs.</param>
+    /// <param name="unitAbbreviation">The abbreviation of the unit to retrieve.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <returns>
+    ///     The <see cref="UnitInfo" /> that matches the specified unit abbreviation within the given quantity.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">The <paramref name="quantityType"/> or the <paramref name="unitAbbreviation"/> is null.</exception>
+    /// <exception cref="ArgumentException">
+    ///     Thrown if the specified <paramref name="quantityType" /> does not correspond to a known quantity.
+    /// </exception>
+    /// <exception cref="QuantityNotFoundException">No quantity found matching the unit type.</exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+    /// <remarks>
+    ///     When a specific <paramref name="formatProvider" /> is provided, both localized and non-localized units would be compared.
+    ///     <para>The <paramref name="unitAbbreviation" /> comparisons are case-insensitive.</para>
+    /// </remarks>
+    public UnitInfo GetUnitFromAbbreviation(Type quantityType, string unitAbbreviation, IFormatProvider? formatProvider)
+    {
+        if (quantityType == null) throw new ArgumentNullException(nameof(quantityType));
+        if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
+
+        QuantityInfo quantityInfo = Quantities.GetQuantityInfo(quantityType);
+        return Parse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider);
     }
 
     /// <summary>
@@ -311,6 +369,70 @@ public sealed class UnitParser
         }
 
         unit = default;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to retrieve the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given
+    ///     quantity.
+    /// </summary>
+    /// <param name="quantityName">The name of the quantity to which the unit belongs.</param>
+    /// <param name="unitAbbreviation">
+    ///     The abbreviation of the unit to retrieve. Can be <c>null</c>, in which case the method will return <c>false</c>.
+    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="unitInfo">
+    ///     When this method returns, contains the <see cref="UnitInfo" /> that matches the specified unit abbreviation
+    ///     within the given quantity, if the operation succeeds; otherwise, <c>null</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the unit abbreviation was successfully resolved to a <see cref="UnitInfo" />; otherwise,
+    ///     <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     This method does not throw exceptions for invalid input or unresolved unit abbreviations. Instead, it returns
+    ///     <c>false</c>.
+    /// </remarks>
+    public bool TryGetUnitFromAbbreviation(string quantityName, string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        if (unitAbbreviation != null && Quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo))
+        {
+            return TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out unitInfo);
+        }
+
+        unitInfo = null;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to retrieve the <see cref="UnitInfo" /> corresponding to the specified unit abbreviation within a given
+    ///     quantity.
+    /// </summary>
+    /// <param name="quantityType">The type of the quantity to which the unit belongs.</param>
+    /// <param name="unitAbbreviation">
+    ///     The abbreviation of the unit to retrieve. Can be <c>null</c>, in which case the method will return <c>false</c>.
+    /// </param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="unitInfo">
+    ///     When this method returns, contains the <see cref="UnitInfo" /> that matches the specified unit abbreviation
+    ///     within the given quantity, if the operation succeeds; otherwise, <c>null</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the unit abbreviation was successfully resolved to a <see cref="UnitInfo" />; otherwise,
+    ///     <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     This method does not throw exceptions for invalid input or unresolved unit abbreviations. Instead, it returns
+    ///     <c>false</c>.
+    /// </remarks>
+    public bool TryGetUnitFromAbbreviation(Type quantityType, string? unitAbbreviation, IFormatProvider? formatProvider, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        if (unitAbbreviation != null && Quantities.TryGetQuantityInfo(quantityType, out QuantityInfo? quantityInfo))
+        {
+            return TryParse(unitAbbreviation, quantityInfo.UnitInfos, formatProvider, out unitInfo);
+        }
+
+        unitInfo = null;
         return false;
     }
     
@@ -585,5 +707,26 @@ public sealed class UnitParser
         }
 
         return unitAbbreviationsPairs;
+    }
+    
+    /// <summary>
+    ///     Dynamically construct a quantity from a numeric value and a unit abbreviation.
+    /// </summary>
+    /// <remarks>
+    ///     This method is currently not optimized for performance and will enumerate all units and their unit abbreviations
+    ///     each time.<br />
+    ///     Unit abbreviation matching in the <see cref="Parse" /> overload is case-insensitive.<br />
+    ///     <br />
+    ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br />
+    /// </remarks>
+    /// <param name="value">Numeric value.</param>
+    /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram" />.</param>
+    /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <returns>An <see cref="IQuantity" /> object.</returns>
+    /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
+    /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
+    internal IQuantity FromUnitAbbreviation(double value, string unitAbbreviation, IFormatProvider? formatProvider)
+    {
+        return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
     }
 }
