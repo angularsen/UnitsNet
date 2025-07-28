@@ -59,8 +59,8 @@
 	{
       "SingularName": "AtmCubicCentimeterPerSecond",
       "PluralName": "AtmCubicCentimetersPerSecond",
-	  "FromUnitToBaseFunc": "{x} / 9.8692",
-	  "FromBaseToUnitFunc": "{x} * 9.8692",
+	  "FromUnitToBaseFunc": "{x} / (1e6 / 101325)",
+	  "FromBaseToUnitFunc": "{x} * (1e6 / 101325)",
       "Localization": [
         {
           "Culture": "en-US",

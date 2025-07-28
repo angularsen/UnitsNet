@@ -165,7 +165,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        LeakRateUnit.AtmCubicCentimeterPerSecond => _value / 9.8692,
+                        LeakRateUnit.AtmCubicCentimeterPerSecond => _value / (1e6 / 101325),
                         LeakRateUnit.MillibarLiterPerSecond => _value / 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => _value,
                         LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
@@ -182,7 +182,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        LeakRateUnit.AtmCubicCentimeterPerSecond => baseUnitValue * 9.8692,
+                        LeakRateUnit.AtmCubicCentimeterPerSecond => baseUnitValue * (1e6 / 101325),
                         LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
                         LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
