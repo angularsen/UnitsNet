@@ -1,8 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace UnitsNet;
@@ -112,7 +110,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -183,7 +181,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -251,7 +249,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -324,7 +322,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -345,7 +343,7 @@ public static class LogarithmicQuantityExtensions
             sumInLinearSpace += enumerator.Current!.GetValue(unitKey).ToLinearSpace(logarithmicScalingFactor);
             nbQuantities++;
         }
-        
+
         var avgInLinearSpace = sumInLinearSpace / nbQuantities;
         return firstQuantity.QuantityInfo.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), unit);
     }
@@ -376,13 +374,15 @@ public static class LogarithmicQuantityExtensions
         return source.Select(selector).ArithmeticMean(targetUnit, significantDigits);
     }
 
-
     /// <summary>
     ///     Computes the geometric mean of a sequence of logarithmic quantities, such as PowerRatio and AmplitudeRatio.
     /// </summary>
     /// <typeparam name="TQuantity">The type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to average.</param>
-    /// <param name="accuracy">The accuracy for the square root calculation, expressed as number of significant digits. Default is 15.</param>
+    /// <param name="accuracy">
+    ///     The accuracy for the square root calculation, expressed as number of significant digits. Default
+    ///     is 15.
+    /// </param>
     /// <returns>The geometric mean of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
@@ -396,7 +396,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -413,7 +413,6 @@ public static class LogarithmicQuantityExtensions
             nbQuantities++;
         }
 
-        // var geometricMean = QuantityValue.Pow(sumInLogSpace, new QuantityValue(1, nbQuantities), significantDigits);
         var geometricMean = QuantityValue.RootN(sumInLogSpace, nbQuantities, accuracy);
 #if NET
         return TQuantity.Create(geometricMean, resultUnit);
@@ -421,7 +420,6 @@ public static class LogarithmicQuantityExtensions
         return firstQuantity.QuantityInfo.Create(geometricMean, resultUnit);
 #endif
     }
-
 
     /// <summary>
     ///     Computes the geometric mean of a sequence of quantities by applying a specified selector function to each element
@@ -469,7 +467,7 @@ public static class LogarithmicQuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -486,7 +484,6 @@ public static class LogarithmicQuantityExtensions
             nbQuantities++;
         }
 
-        // var geometricMean = QuantityValue.Pow(sumInLogSpace, new QuantityValue(1, nbQuantities), significantDigits);
         var geometricMean = QuantityValue.RootN(sumInLogSpace, nbQuantities, accuracy);
         return firstQuantity.QuantityInfo.From(geometricMean, unitKey.ToUnit<TUnit>());
     }

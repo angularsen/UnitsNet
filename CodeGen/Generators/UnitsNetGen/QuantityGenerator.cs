@@ -365,7 +365,7 @@ namespace UnitsNet
         /// </summary>
         public static {_quantity.Name} Zero => Info.Zero;
 ");
-            
+
             if (_quantity.Logarithmic)
             {
                 Writer.WL($@"
@@ -374,7 +374,7 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL($@"
+            Writer.WL(@"
         #endregion
 ");
         }
@@ -426,7 +426,7 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL($@"
+            Writer.WL(@"
         #endregion
 
         #endregion
@@ -671,7 +671,12 @@ namespace UnitsNet
 
         private void GenerateArithmeticOperators()
         {
-            if (_quantity.IsAffine) return;
+            if (_quantity.IsAffine)
+            {
+                // the generation of arithmetic operators with affine quantities, such as Temperature + TemperatureDelta, is currently not supported
+                // TODO see about handling this case using the UnitRelations
+                return;
+            }
 
             // Logarithmic units required different arithmetic
             if (_quantity.Logarithmic)
@@ -1060,65 +1065,6 @@ namespace UnitsNet
         {{
             return _value.CompareTo(other.As(this.Unit));
         }}
-");
-            // TODO see about removing this
-#if EXTENDED_EQUALS_INTERFACE
-            
-            if (_quantity.IsAffine)
-            {
-                Writer.WL($@"
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {{
-            #if NET
-            return this.Equals<{_quantity.Name}, {_quantity.AffineOffsetType}>(other, tolerance);
-            #else
-            return AffineQuantityExtensions.Equals(this, other, tolerance);
-            #endif
-        }}
-
-        /// <inheritdoc />
-        public bool Equals({_quantity.Name} other, {_quantity.AffineOffsetType} tolerance)
-        {{
-            return this.EqualsAbsolute(other, tolerance);
-        }}
-");
-            }
-            else if (_quantity.Logarithmic)
-            {
-                Writer.WL($@"
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {{
-            return LogarithmicQuantityExtensions.Equals(this, other, tolerance);
-        }}
-
-        /// <inheritdoc />
-        public bool Equals({_quantity.Name} other, {_quantity.Name} tolerance)
-        {{
-            return this.EqualsAbsolute(other, tolerance);
-        }}
-");
-            }
-            else
-            {
-                Writer.WL($@"
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {{
-            return VectorQuantityExtensions.Equals(this, other, tolerance);
-        }}
-
-        /// <inheritdoc />
-        public bool Equals({_quantity.Name} other, {_quantity.Name} tolerance)
-        {{
-            return this.EqualsAbsolute(other, tolerance);
-        }}
-");
-                
-            }
-#endif
-            Writer.WL($@"
 
         #endregion
 ");

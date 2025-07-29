@@ -247,12 +247,12 @@ namespace UnitsNet
                 return quantity.ToString(culture);
             }
 
-            if (displayAsUnit.UnitType is { } targetUnit)
+            if (displayAsUnit.UnitType == null)
             {
-                quantity = UnitConverter.Default.ConvertTo(quantity, targetUnit);
+                return quantity.ToString(displayAsUnit.Format, culture);
             }
 
-            return quantity.ToString(displayAsUnit.Format, culture);
+            return UnitConverter.Default.ConvertTo(quantity, displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
         }
     }
 }

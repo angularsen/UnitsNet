@@ -1587,7 +1587,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = Energy.FromJoules(firstValue);
             var otherQuantity = Energy.FromJoules(secondValue);

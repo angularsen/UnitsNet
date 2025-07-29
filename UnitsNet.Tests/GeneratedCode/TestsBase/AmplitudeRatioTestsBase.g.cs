@@ -592,7 +592,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_Logarithmic_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(firstValue);
             var otherQuantity = AmplitudeRatio.FromDecibelVolts(secondValue);
@@ -608,7 +608,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
+        public void Equals_Logarithmic_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
         {
             // note: unlike with vector quantities- a small tolerance maybe positive in one unit and negative in another
             var quantity = AmplitudeRatio.FromDecibelVolts(1);

@@ -1,10 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using UnitsNet.Units;
-using Xunit;
-
 namespace UnitsNet.Tests;
 
 public class LinearQuantityExtensionsTest
@@ -85,6 +81,26 @@ public class LinearQuantityExtensionsTest
         var result = quantity.Equals(null, tolerance);
 
         Assert.False(result);
+    }
+
+    [Fact]
+    public void Equals_TQuantity_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    {
+        var quantity = Length.FromMeters(1);
+        var invalidQuantity = new Length(1, (LengthUnit)(-1));
+        Assert.Throws<UnitNotFoundException>(() => invalidQuantity.Equals(quantity, quantity));
+        Assert.Throws<UnitNotFoundException>(() => quantity.Equals(invalidQuantity, quantity));
+        Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
+    }
+
+    [Fact]
+    public void Equals_IQuantity_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    {
+        var quantity = Length.FromMeters(1);
+        var invalidQuantity = new Length(1, (LengthUnit)(-1));
+        Assert.Throws<UnitNotFoundException>(() => invalidQuantity.Equals((IQuantity)quantity, quantity));
+        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)invalidQuantity, quantity));
+        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)quantity, invalidQuantity));
     }
 
     [Fact]
