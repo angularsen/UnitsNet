@@ -162,6 +162,7 @@ namespace UnitsNet
                 yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined);
                 yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined);
                 yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Millitorr, "Millitorr", "Millitorrs", BaseUnits.Undefined);
                 yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined);
                 yield return new (PressureUnit.NewtonPerSquareMeter, "NewtonPerSquareMeter", "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (PressureUnit.NewtonPerSquareMillimeter, "NewtonPerSquareMillimeter", "NewtonsPerSquareMillimeter", BaseUnits.Undefined);
@@ -454,6 +455,11 @@ namespace UnitsNet
         public double Millipascals => As(PressureUnit.Millipascal);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millitorr"/>
+        /// </summary>
+        public double Millitorrs => As(PressureUnit.Millitorr);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
         /// </summary>
         public double NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
@@ -563,6 +569,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfMercury, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millipascal, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millitorr, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareCentimeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareMeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
@@ -614,6 +621,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfMercury, quantity => quantity.ToUnit(PressureUnit.MillimeterOfMercury));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn, quantity => quantity.ToUnit(PressureUnit.MillimeterOfWaterColumn));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millipascal, quantity => quantity.ToUnit(PressureUnit.Millipascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millitorr, quantity => quantity.ToUnit(PressureUnit.Millitorr));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareCentimeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareCentimeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareMeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareMillimeter));
@@ -923,6 +931,14 @@ namespace UnitsNet
         public static Pressure FromMillipascals(double value)
         {
             return new Pressure(value, PressureUnit.Millipascal);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millitorr"/>.
+        /// </summary>
+        public static Pressure FromMillitorrs(double value)
+        {
+            return new Pressure(value, PressureUnit.Millitorr);
         }
 
         /// <summary>
@@ -1593,6 +1609,7 @@ namespace UnitsNet
                 (PressureUnit.MillimeterOfMercury, PressureUnit.Pascal) => new Pressure(_value * 133.322387415, PressureUnit.Pascal),
                 (PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal) => new Pressure((_value * 9.80665e3) * 1e-3d, PressureUnit.Pascal),
                 (PressureUnit.Millipascal, PressureUnit.Pascal) => new Pressure((_value) * 1e-3d, PressureUnit.Pascal),
+                (PressureUnit.Millitorr, PressureUnit.Pascal) => new Pressure((_value * 101325 / 760) * 1e-3d, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareCentimeter, PressureUnit.Pascal) => new Pressure(_value * 1e4, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareMeter, PressureUnit.Pascal) => new Pressure(_value, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal) => new Pressure(_value * 1e6, PressureUnit.Pascal),
@@ -1641,6 +1658,7 @@ namespace UnitsNet
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfMercury) => new Pressure(_value / 133.322387415, PressureUnit.MillimeterOfMercury),
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn) => new Pressure((_value / 9.80665e3) / 1e-3d, PressureUnit.MillimeterOfWaterColumn),
                 (PressureUnit.Pascal, PressureUnit.Millipascal) => new Pressure((_value) / 1e-3d, PressureUnit.Millipascal),
+                (PressureUnit.Pascal, PressureUnit.Millitorr) => new Pressure((_value * 760 / 101325) / 1e-3d, PressureUnit.Millitorr),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareCentimeter) => new Pressure(_value / 1e4, PressureUnit.NewtonPerSquareCentimeter),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMeter) => new Pressure(_value, PressureUnit.NewtonPerSquareMeter),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter) => new Pressure(_value / 1e6, PressureUnit.NewtonPerSquareMillimeter),
