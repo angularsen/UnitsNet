@@ -119,6 +119,7 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
             public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
+                yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined);
                 yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined);
                 yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined);
@@ -231,6 +232,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
+        /// </summary>
+        public double AtmCubicCentimetersPerSecond => As(LeakRateUnit.AtmCubicCentimeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
         public double MillibarLitersPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
@@ -256,6 +262,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: LeakRateUnit -> BaseUnit
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.AtmCubicCentimeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
 
@@ -263,6 +270,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> LeakRateUnit
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.AtmCubicCentimeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.AtmCubicCentimeterPerSecond));
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.MillibarLiterPerSecond));
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.TorrLiterPerSecond));
         }
@@ -291,6 +299,14 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>.
+        /// </summary>
+        public static LeakRate FromAtmCubicCentimetersPerSecond(double value)
+        {
+            return new LeakRate(value, LeakRateUnit.AtmCubicCentimeterPerSecond);
+        }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
@@ -782,10 +798,12 @@ namespace UnitsNet
             LeakRate? convertedOrNull = (Unit, unit) switch
             {
                 // LeakRateUnit -> BaseUnit
+                (LeakRateUnit.AtmCubicCentimeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / (1e6 / 101325), LeakRateUnit.PascalCubicMeterPerSecond),
                 (LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 10, LeakRateUnit.PascalCubicMeterPerSecond),
                 (LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 7.5, LeakRateUnit.PascalCubicMeterPerSecond),
 
                 // BaseUnit -> LeakRateUnit
+                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.AtmCubicCentimeterPerSecond) => new LeakRate(_value * (1e6 / 101325), LeakRateUnit.AtmCubicCentimeterPerSecond),
                 (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond) => new LeakRate(_value * 10, LeakRateUnit.MillibarLiterPerSecond),
                 (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond) => new LeakRate(_value * 7.5, LeakRateUnit.TorrLiterPerSecond),
 

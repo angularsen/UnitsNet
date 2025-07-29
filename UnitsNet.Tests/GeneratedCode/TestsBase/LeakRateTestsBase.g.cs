@@ -39,11 +39,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LeakRateTestsBase : QuantityTestsBase
     {
+        protected abstract double AtmCubicCentimetersPerSecondInOnePascalCubicMeterPerSecond { get; }
         protected abstract double MillibarLitersPerSecondInOnePascalCubicMeterPerSecond { get; }
         protected abstract double PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond { get; }
         protected abstract double TorrLitersPerSecondInOnePascalCubicMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double AtmCubicCentimetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MillibarLitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PascalCubicMetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TorrLitersPerSecondTolerance { get { return 1e-5; } }
@@ -53,6 +55,7 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
+                LeakRateUnit.AtmCubicCentimeterPerSecond => (AtmCubicCentimetersPerSecondInOnePascalCubicMeterPerSecond, AtmCubicCentimetersPerSecondTolerance),
                 LeakRateUnit.MillibarLiterPerSecond => (MillibarLitersPerSecondInOnePascalCubicMeterPerSecond, MillibarLitersPerSecondTolerance),
                 LeakRateUnit.PascalCubicMeterPerSecond => (PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond, PascalCubicMetersPerSecondTolerance),
                 LeakRateUnit.TorrLiterPerSecond => (TorrLitersPerSecondInOnePascalCubicMeterPerSecond, TorrLitersPerSecondTolerance),
@@ -62,6 +65,7 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
+            new object[] { LeakRateUnit.AtmCubicCentimeterPerSecond },
             new object[] { LeakRateUnit.MillibarLiterPerSecond },
             new object[] { LeakRateUnit.PascalCubicMeterPerSecond },
             new object[] { LeakRateUnit.TorrLiterPerSecond },
@@ -132,6 +136,7 @@ namespace UnitsNet.Tests
         public void PascalCubicMeterPerSecondToLeakRateUnits()
         {
             LeakRate pascalcubicmeterpersecond = LeakRate.FromPascalCubicMetersPerSecond(1);
+            AssertEx.EqualTolerance(AtmCubicCentimetersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.AtmCubicCentimetersPerSecond, AtmCubicCentimetersPerSecondTolerance);
             AssertEx.EqualTolerance(MillibarLitersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.MillibarLitersPerSecond, MillibarLitersPerSecondTolerance);
             AssertEx.EqualTolerance(PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.PascalCubicMetersPerSecond, PascalCubicMetersPerSecondTolerance);
             AssertEx.EqualTolerance(TorrLitersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.TorrLitersPerSecond, TorrLitersPerSecondTolerance);
@@ -140,17 +145,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LeakRate.From(1, LeakRateUnit.MillibarLiterPerSecond);
-            AssertEx.EqualTolerance(1, quantity00.MillibarLitersPerSecond, MillibarLitersPerSecondTolerance);
-            Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, quantity00.Unit);
+            var quantity00 = LeakRate.From(1, LeakRateUnit.AtmCubicCentimeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity00.AtmCubicCentimetersPerSecond, AtmCubicCentimetersPerSecondTolerance);
+            Assert.Equal(LeakRateUnit.AtmCubicCentimeterPerSecond, quantity00.Unit);
 
-            var quantity01 = LeakRate.From(1, LeakRateUnit.PascalCubicMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.PascalCubicMetersPerSecond, PascalCubicMetersPerSecondTolerance);
-            Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, quantity01.Unit);
+            var quantity01 = LeakRate.From(1, LeakRateUnit.MillibarLiterPerSecond);
+            AssertEx.EqualTolerance(1, quantity01.MillibarLitersPerSecond, MillibarLitersPerSecondTolerance);
+            Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, quantity01.Unit);
 
-            var quantity02 = LeakRate.From(1, LeakRateUnit.TorrLiterPerSecond);
-            AssertEx.EqualTolerance(1, quantity02.TorrLitersPerSecond, TorrLitersPerSecondTolerance);
-            Assert.Equal(LeakRateUnit.TorrLiterPerSecond, quantity02.Unit);
+            var quantity02 = LeakRate.From(1, LeakRateUnit.PascalCubicMeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity02.PascalCubicMetersPerSecond, PascalCubicMetersPerSecondTolerance);
+            Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, quantity02.Unit);
+
+            var quantity03 = LeakRate.From(1, LeakRateUnit.TorrLiterPerSecond);
+            AssertEx.EqualTolerance(1, quantity03.TorrLitersPerSecond, TorrLitersPerSecondTolerance);
+            Assert.Equal(LeakRateUnit.TorrLiterPerSecond, quantity03.Unit);
 
         }
 
@@ -176,6 +185,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var pascalcubicmeterpersecond = LeakRate.FromPascalCubicMetersPerSecond(1);
+            AssertEx.EqualTolerance(AtmCubicCentimetersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.As(LeakRateUnit.AtmCubicCentimeterPerSecond), AtmCubicCentimetersPerSecondTolerance);
             AssertEx.EqualTolerance(MillibarLitersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.As(LeakRateUnit.MillibarLiterPerSecond), MillibarLitersPerSecondTolerance);
             AssertEx.EqualTolerance(PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.As(LeakRateUnit.PascalCubicMeterPerSecond), PascalCubicMetersPerSecondTolerance);
             AssertEx.EqualTolerance(TorrLitersPerSecondInOnePascalCubicMeterPerSecond, pascalcubicmeterpersecond.As(LeakRateUnit.TorrLiterPerSecond), TorrLitersPerSecondTolerance);
@@ -292,6 +302,13 @@ namespace UnitsNet.Tests
         {
             try
             {
+                var parsed = LeakRate.Parse("1 atm·cm³/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AtmCubicCentimetersPerSecond, AtmCubicCentimetersPerSecondTolerance);
+                Assert.Equal(LeakRateUnit.AtmCubicCentimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = LeakRate.Parse("1 mbar·l/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillibarLitersPerSecond, MillibarLitersPerSecondTolerance);
                 Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsed.Unit);
@@ -317,6 +334,12 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
+                Assert.True(LeakRate.TryParse("1 atm·cm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AtmCubicCentimetersPerSecond, AtmCubicCentimetersPerSecondTolerance);
+                Assert.Equal(LeakRateUnit.AtmCubicCentimeterPerSecond, parsed.Unit);
+            }
+
+            {
                 Assert.True(LeakRate.TryParse("1 mbar·l/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillibarLitersPerSecond, MillibarLitersPerSecondTolerance);
                 Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsed.Unit);
@@ -337,6 +360,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -349,6 +373,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -361,6 +386,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -372,6 +398,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -382,6 +409,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -394,6 +422,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -406,6 +435,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -417,6 +447,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "atm·cm³/s", LeakRateUnit.AtmCubicCentimeterPerSecond)]
         [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
         [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
         [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
@@ -491,6 +522,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             LeakRate pascalcubicmeterpersecond = LeakRate.FromPascalCubicMetersPerSecond(1);
+            AssertEx.EqualTolerance(1, LeakRate.FromAtmCubicCentimetersPerSecond(pascalcubicmeterpersecond.AtmCubicCentimetersPerSecond).PascalCubicMetersPerSecond, AtmCubicCentimetersPerSecondTolerance);
             AssertEx.EqualTolerance(1, LeakRate.FromMillibarLitersPerSecond(pascalcubicmeterpersecond.MillibarLitersPerSecond).PascalCubicMetersPerSecond, MillibarLitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, LeakRate.FromPascalCubicMetersPerSecond(pascalcubicmeterpersecond.PascalCubicMetersPerSecond).PascalCubicMetersPerSecond, PascalCubicMetersPerSecondTolerance);
             AssertEx.EqualTolerance(1, LeakRate.FromTorrLitersPerSecond(pascalcubicmeterpersecond.TorrLitersPerSecond).PascalCubicMetersPerSecond, TorrLitersPerSecondTolerance);
@@ -552,8 +584,8 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.PascalCubicMeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 2, LeakRateUnit.PascalCubicMeterPerSecond, false)] // Different value.
-        [InlineData(2, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.MillibarLiterPerSecond, false)] // Different value and unit.
-        [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.MillibarLiterPerSecond, false)] // Different unit.
+        [InlineData(2, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.AtmCubicCentimeterPerSecond, false)] // Different value and unit.
+        [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.AtmCubicCentimeterPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LeakRateUnit unitA, double valueB, LeakRateUnit unitB, bool expectEqual)
         {
             var a = new LeakRate(valueA, unitA);
@@ -641,6 +673,7 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
+            Assert.Equal("1 atm·cm³/s", new LeakRate(1, LeakRateUnit.AtmCubicCentimeterPerSecond).ToString());
             Assert.Equal("1 mbar·l/s", new LeakRate(1, LeakRateUnit.MillibarLiterPerSecond).ToString());
             Assert.Equal("1 Pa·m³/s", new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 Torr·l/s", new LeakRate(1, LeakRateUnit.TorrLiterPerSecond).ToString());
@@ -652,6 +685,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 atm·cm³/s", new LeakRate(1, LeakRateUnit.AtmCubicCentimeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 mbar·l/s", new LeakRate(1, LeakRateUnit.MillibarLiterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Pa·m³/s", new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Torr·l/s", new LeakRate(1, LeakRateUnit.TorrLiterPerSecond).ToString(swedishCulture));
