@@ -1113,7 +1113,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = VolumeConcentration.FromDecimalFractions(firstValue);
             var otherQuantity = VolumeConcentration.FromDecimalFractions(secondValue);
@@ -1251,7 +1251,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            Assert.Equal(new {VolumeConcentration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

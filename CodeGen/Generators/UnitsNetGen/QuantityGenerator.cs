@@ -342,7 +342,7 @@ namespace UnitsNet
         /// </summary>
         public static {_quantity.Name} Zero => Info.Zero;
 ");
-            
+
             if (_quantity.Logarithmic)
             {
                 Writer.WL($@"
@@ -351,7 +351,7 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL($@"
+            Writer.WL(@"
         #endregion
 ");
         }
@@ -405,7 +405,7 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL($@"
+            Writer.WL(@"
         #endregion
 
         #endregion
@@ -692,7 +692,12 @@ namespace UnitsNet
 
         private void GenerateArithmeticOperators()
         {
-            if (_quantity.IsAffine) return;
+            if (_quantity.IsAffine)
+            {
+                // the generation of arithmetic operators with affine quantities, such as Temperature + TemperatureDelta, is currently not supported
+                // TODO see about handling this case using the UnitRelations
+                return;
+            }
 
             // Logarithmic units required different arithmetic
             if (_quantity.Logarithmic)
@@ -959,7 +964,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current {_quantity.Name}.</returns>
         public override int GetHashCode()
         {{
-            return new {{ Info.Name, Value, Unit }}.GetHashCode();
+            return Comparison.GetHashCode(Unit, Value);
         }}
 
         /// <summary>Compares the current <see cref=""{_quantity.Name}""/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>

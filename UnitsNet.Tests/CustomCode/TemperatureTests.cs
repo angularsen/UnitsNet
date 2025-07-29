@@ -31,52 +31,6 @@ public class TemperatureTests : TemperatureTestsBase
         Assert.All(Temperature.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(temperature: unitInfo.Value), unitInfo.BaseUnits));
     }
 
-    public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =
-    [
-        [(10d, TemperatureUnit.DegreeCelsius), 1d, (10d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeCelsius), 5d, (2d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeCelsius), -10d, (-1d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), 1d, (10d, TemperatureUnit.DegreeFahrenheit)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), 5d, (2d, TemperatureUnit.DegreeFahrenheit)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), -10d, (-1d, TemperatureUnit.DegreeFahrenheit)]
-    ];
-
-    [Theory]
-    [MemberData(nameof(DividedByTemperatureDeltaEqualsTemperatureData))]
-    public void DividedByTemperatureDeltaEqualsTemperature((double Value, TemperatureUnit Unit) temperature, double divisor,
-        (double Value, TemperatureUnit Unit) expected)
-    {
-        var temp = new Temperature(temperature.Value, temperature.Unit);
-        var expectedTemperature = new Temperature(expected.Value, expected.Unit);
-        
-        Temperature result = temp.Divide(divisor, temperature.Unit);
-        
-        Assert.True(expectedTemperature.Equals(result, Temperature.FromKelvins(KelvinsTolerance)));
-    }
-
-    public static IEnumerable<object[]> MultiplyByTemperatureDeltaEqualsTemperatureData { get; } =
-    [
-        [(10d, TemperatureUnit.DegreeCelsius), 0d, (0d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeCelsius), 5d, (50d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeCelsius), -5d, (-50d, TemperatureUnit.DegreeCelsius)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), 0d, (0d, TemperatureUnit.DegreeFahrenheit)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), 5d, (50d, TemperatureUnit.DegreeFahrenheit)],
-        [(10d, TemperatureUnit.DegreeFahrenheit), -5d, (-50d, TemperatureUnit.DegreeFahrenheit)]
-    ];
-
-    [Theory]
-    [MemberData(nameof(MultiplyByTemperatureDeltaEqualsTemperatureData))]
-    public void MultiplyByTemperatureDeltaEqualsTemperature((double Value, TemperatureUnit Unit) temperature, double factor,
-        (double Value, TemperatureUnit Unit) expected)
-    {
-        var temp = new Temperature(temperature.Value, temperature.Unit);
-        var expectedTemperature = new Temperature(expected.Value, expected.Unit);
-        
-        Temperature result = temp.Multiply(factor, temperature.Unit);
-        
-        Assert.True(expectedTemperature.Equals(result, Temperature.FromKelvins(KelvinsTolerance)));
-    }
-
     public static IEnumerable<object[]> TemperatureDeltaPlusTemperatureEqualsTemperatureData { get; } =
     [
         [-10d, TemperatureUnit.DegreeCelsius, 0d, TemperatureDeltaUnit.DegreeCelsius, -10d, TemperatureUnit.DegreeCelsius],
@@ -95,10 +49,10 @@ public class TemperatureTests : TemperatureTestsBase
         var temperature = new Temperature(temperatureValue, temperatureUnit);
         var temperatureDelta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-            
+
         Temperature result = temperature + temperatureDelta;
-            
-        Assert.True(expectedTemperature.Equals(result, Temperature.FromKelvins(KelvinsTolerance)));
+
+        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
     }
 
     public static IEnumerable<object[]> TemperatureMinusTemperatureDeltaEqualsTemperatureData { get; } =
@@ -119,10 +73,10 @@ public class TemperatureTests : TemperatureTestsBase
         var temp = new Temperature(temperatureValue, temperatureUnit);
         var delta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-            
+
         Temperature result = temp - delta;
-            
-        Assert.True(expectedTemperature.Equals(result, Temperature.FromKelvins(KelvinsTolerance)));
+
+        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
     }
 
     public static IEnumerable<object[]> TemperaturePlusTemperatureDeltaEqualsTemperatureData { get; } =
@@ -143,9 +97,9 @@ public class TemperatureTests : TemperatureTestsBase
         var temp = new Temperature(temperatureValue, temperatureUnit);
         var delta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-            
+
         Temperature result = temp + delta;
-            
-        Assert.True(expectedTemperature.Equals(result, Temperature.FromKelvins(KelvinsTolerance)));
+
+        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
     }
 }

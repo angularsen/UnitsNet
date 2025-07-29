@@ -11,12 +11,12 @@ namespace UnitsNet;
 /// </summary>
 public static class LogarithmicQuantityExtensions
 {
-    private static double ToLinearSpace(this double logValue, double scalingFactor)
+    internal static double ToLinearSpace(this double logValue, double scalingFactor)
     {
         return Math.Pow(10, logValue / scalingFactor);
     }
 
-    private static double ToLogSpace(this double value, double scalingFactor)
+    internal static double ToLogSpace(this double value, double scalingFactor)
     {
         return scalingFactor * Math.Log10(value);
     }

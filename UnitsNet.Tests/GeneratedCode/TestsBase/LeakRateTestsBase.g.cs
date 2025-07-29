@@ -608,7 +608,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = LeakRate.FromPascalCubicMetersPerSecond(firstValue);
             var otherQuantity = LeakRate.FromPascalCubicMetersPerSecond(secondValue);
@@ -712,7 +712,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LeakRate.FromPascalCubicMetersPerSecond(1.0);
-            Assert.Equal(new {LeakRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

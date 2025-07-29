@@ -1,8 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using UnitsNet.Units;
-
 namespace UnitsNet
 {
     public partial struct Temperature
@@ -45,55 +43,6 @@ namespace UnitsNet
         public static TemperatureDelta operator -(Temperature left, Temperature right)
         {
             return new TemperatureDelta(left.Kelvins - right.Kelvins, TemperatureDeltaUnit.Kelvin);
-        }
-
-        /// <summary>
-        ///     Multiply temperature with a <paramref name="factor" /> in a given <paramref name="unit" />.
-        /// </summary>
-        /// <remarks>
-        ///     Due to different temperature units having different zero points, we cannot simply
-        ///     multiply or divide a temperature by a factor. We must first convert to the desired unit, then perform the
-        ///     calculation.
-        /// </remarks>
-        /// <param name="factor">Factor to multiply by.</param>
-        /// <param name="unit">Unit to perform multiplication in.</param>
-        /// <returns>The resulting <see cref="Temperature" />.</returns>
-        [Obsolete("Affine quantities, such as the Temperate, cannot be multiplied directly: consider using the TemperatureDelta type instead.")]
-        public Temperature Multiply(double factor, TemperatureUnit unit)
-        {
-            double resultInUnit = As(unit) * factor;
-            return From(resultInUnit, unit);
-        }
-
-        /// <summary>
-        ///     Divide temperature by a <paramref name="divisor" /> in a given <paramref name="unit" />.
-        /// </summary>
-        /// <remarks>
-        ///     Due to different temperature units having different zero points, we cannot simply
-        ///     multiply or divide a temperature by a factor. We must first convert to the desired unit, then perform the
-        ///     calculation.
-        /// </remarks>
-        /// <param name="divisor">Factor to multiply by.</param>
-        /// <param name="unit">Unit to perform multiplication in.</param>
-        /// <returns>The resulting <see cref="Temperature" />.</returns>
-        [Obsolete("Affine quantities, such as the Temperate, cannot be divided directly: consider using the TemperatureDelta type instead.")]
-        public Temperature Divide(double divisor, TemperatureUnit unit)
-        {
-            double resultInUnit = As(unit) / divisor;
-            return From(resultInUnit, unit);
-        }
-        
-        /// <inheritdoc cref="LinearQuantityExtensions.Equals{TQuantity,TOther,TTolerance}"/> />
-        [Obsolete("Affine quantities, such as the Temperate, should use an offset-based tolerance: consider using the TemperatureDelta type instead.")]
-        public bool Equals(Temperature other, Temperature tolerance)
-        {
-            if (tolerance.Value < 0)
-            {
-                throw ExceptionHelper.CreateArgumentOutOfRangeExceptionForNegativeTolerance(nameof(tolerance));
-            }
-
-            var unitKey = UnitKey.ForUnit(tolerance.Unit);
-            return Comparison.EqualsAbsolute(this.GetValue(unitKey), other.GetValue(unitKey), tolerance.Value);
         }
     }
 }

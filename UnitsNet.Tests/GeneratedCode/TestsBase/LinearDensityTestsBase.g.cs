@@ -1088,7 +1088,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(firstValue);
             var otherQuantity = LinearDensity.FromKilogramsPerMeter(secondValue);
@@ -1222,7 +1222,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal(new {LinearDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

@@ -35,18 +35,7 @@ public static class AffineQuantityExtensions
         where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
         where TOffset : IQuantityInstance<TOffset>, IAdditiveIdentity<TOffset, TOffset>
     {
-        if (other is not TQuantity otherInstance)
-        {
-            return false;
-        }
-
-        // // TODO see about this (I think the exception should take precedence to the null check, but the QuantityTests disagree)
-        // if (tolerance is not TOffset toleranceQuantity)
-        // {
-        //     throw ExceptionHelper.CreateArgumentException<TQuantity>(tolerance, nameof(tolerance));
-        // }
-
-        return quantity.EqualsAbsolute(otherInstance, tolerance);
+        return other is TQuantity otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
     }
 
     /// <summary>
@@ -103,18 +92,7 @@ public static class AffineQuantityExtensions
     /// </exception>
     public static bool Equals(this Temperature quantity, IQuantity? other, TemperatureDelta tolerance)
     {
-        if (other is not Temperature otherInstance)
-        {
-            return false;
-        }
-
-        // TODO see about this (I think the exception should take precedence to the null check, but the QuantityTests disagree)
-        // if (tolerance is not TemperatureDelta toleranceQuantity)
-        // {
-        //     throw ExceptionHelper.CreateArgumentException<TemperatureDelta>(tolerance, nameof(tolerance));
-        // }
-
-        return quantity.EqualsAbsolute(otherInstance, tolerance);
+        return other is Temperature otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
     }
 
     /// <summary>

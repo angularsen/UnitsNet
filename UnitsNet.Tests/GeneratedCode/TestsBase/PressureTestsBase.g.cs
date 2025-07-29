@@ -2832,7 +2832,7 @@ namespace UnitsNet.Tests
         [InlineData(1, 2)]
         [InlineData(100, 110)]
         [InlineData(100, 90)]
-        public void Equals_WithTolerance_IsImplemented(double firstValue, double secondValue)
+        public void Equals_WithTolerance(double firstValue, double secondValue)
         {
             var quantity = Pressure.FromPascals(firstValue);
             var otherQuantity = Pressure.FromPascals(secondValue);
@@ -3024,7 +3024,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(new {Pressure.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

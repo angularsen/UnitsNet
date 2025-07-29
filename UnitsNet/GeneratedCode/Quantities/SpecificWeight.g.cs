@@ -850,7 +850,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificWeight.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Comparison.GetHashCode(Unit, Value);
         }
 
         /// <summary>Compares the current <see cref="SpecificWeight"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
