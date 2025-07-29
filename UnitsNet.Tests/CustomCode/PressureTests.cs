@@ -67,6 +67,8 @@ namespace UnitsNet.Tests
 
         protected override double TorrsInOnePascal => 7.5006 * 1E-3;
 
+        protected override double MillitorrsInOnePascal => 7.5006;
+
         protected override double CentibarsInOnePascal => 1e-3;
 
         protected override double DecapascalsInOnePascal => 1e-1;
