@@ -32,6 +32,17 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
     /// </summary>
     public static class NumberToLeakRateExtensions
     {
+        /// <inheritdoc cref="LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue)" />
+        public static LeakRate AtmCubicCentimetersPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => LeakRate.FromAtmCubicCentimetersPerSecond(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(QuantityValue)" />
         public static LeakRate MillibarLitersPerSecond<T>(this T value)
             where T : notnull

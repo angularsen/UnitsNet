@@ -25,8 +25,8 @@
   
 
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
-    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.60.0" /> -->
-    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre016" />
+    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.75.0" /> -->
+    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre018" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">

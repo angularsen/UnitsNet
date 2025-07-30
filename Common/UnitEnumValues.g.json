@@ -1794,7 +1794,8 @@
     "MillibarLiterPerSecond": 7,
     "PascalQubicMeterPerSecond": 1,
     "TorrLiterPerSecond": 4,
-    "PascalCubicMeterPerSecond": 2
+    "PascalCubicMeterPerSecond": 2,
+    "AtmCubicCentimeterPerSecond": 10
   },
   "AbsorbedDoseOfIonizingRadiation": {
     "Centigray": 6,

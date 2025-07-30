@@ -118,6 +118,9 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
             public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
+                yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(40000, 4053)             
+                );
                 yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined,
                      10             
                 );
@@ -233,6 +236,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
+        /// </summary>
+        public QuantityValue AtmCubicCentimetersPerSecond => this.As(LeakRateUnit.AtmCubicCentimeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
         public QuantityValue MillibarLitersPerSecond => this.As(LeakRateUnit.MillibarLiterPerSecond);
@@ -275,6 +283,14 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>.
+        /// </summary>
+        public static LeakRate FromAtmCubicCentimetersPerSecond(QuantityValue value)
+        {
+            return new LeakRate(value, LeakRateUnit.AtmCubicCentimeterPerSecond);
+        }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
