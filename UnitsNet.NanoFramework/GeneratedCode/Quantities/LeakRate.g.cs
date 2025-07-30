@@ -82,6 +82,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
+        /// </summary>
+        public double AtmCubicCentimetersPerSecond => As(LeakRateUnit.AtmCubicCentimeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
         public double MillibarLitersPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
@@ -99,6 +104,11 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>.
+        /// </summary>
+        public static LeakRate FromAtmCubicCentimetersPerSecond(double atmcubiccentimeterspersecond) => new LeakRate(atmcubiccentimeterspersecond, LeakRateUnit.AtmCubicCentimeterPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
@@ -155,6 +165,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        LeakRateUnit.AtmCubicCentimeterPerSecond => _value / (1e6 / 101325),
                         LeakRateUnit.MillibarLiterPerSecond => _value / 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => _value,
                         LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
@@ -171,6 +182,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        LeakRateUnit.AtmCubicCentimeterPerSecond => baseUnitValue * (1e6 / 101325),
                         LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
                         LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
