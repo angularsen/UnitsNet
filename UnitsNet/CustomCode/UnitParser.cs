@@ -61,7 +61,7 @@ public sealed class UnitParser
     ///     This property provides access to the <see cref="QuantityInfoLookup" /> that contains
     ///     information about all quantities and their associated units.
     /// </remarks>
-    internal QuantityInfoLookup Quantities
+    public QuantityInfoLookup Quantities
     {
         get => Abbreviations.Quantities;
     }
@@ -80,6 +80,59 @@ public sealed class UnitParser
     public static UnitParser CreateDefault()
     {
         return new UnitParser(UnitAbbreviationsCache.CreateDefault());
+    }
+
+    /// <summary>
+    ///     Creates an instance of <see cref="UnitParser" /> with the default quantities.
+    /// </summary>
+    /// <param name="configureQuantities">An action to configure the default quantities.</param>
+    /// <returns>An instance of <see cref="UnitParser" /> configured with the default quantities.</returns>
+    public static UnitParser CreateDefault(Action<QuantitiesSelector> configureQuantities)
+    {
+        return new UnitParser(UnitAbbreviationsCache.CreateDefault(configureQuantities));
+    }
+
+    /// <summary>
+    ///     Creates an instance of <see cref="UnitParser" /> with the default quantities.
+    /// </summary>
+    /// <param name="configureQuantities">An action to configure the default quantities.</param>
+    /// <param name="configureAbbreviations">
+    ///     An action to configure the unit abbreviations.
+    /// </param>
+    /// <returns>An instance of <see cref="UnitParser" /> configured with the default quantities.</returns>
+    public static UnitParser CreateDefault(Action<QuantitiesSelector> configureQuantities, Action<UnitAbbreviationsCache> configureAbbreviations)
+    {
+        var unitAbbreviationsCache = UnitAbbreviationsCache.CreateDefault(configureQuantities);
+        configureAbbreviations(unitAbbreviationsCache);
+        return new UnitParser(unitAbbreviationsCache);
+    }
+
+    /// <summary>
+    ///     Creates an instance of the <see cref="UnitParser" /> class.
+    /// </summary>
+    /// <param name="defaultQuantities">A collection of default quantities to be used by the <see cref="UnitParser" />.</param>
+    /// <param name="configureQuantities">An action to configure the quantities using a <see cref="QuantitiesSelector" />.</param>
+    /// <returns>A new instance of the <see cref="UnitParser" /> class.</returns>
+    public static UnitParser Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
+    {
+        return new UnitParser(UnitAbbreviationsCache.Create(defaultQuantities, configureQuantities));
+    }
+
+    /// <summary>
+    ///     Creates an instance of the <see cref="UnitParser" /> class.
+    /// </summary>
+    /// <param name="defaultQuantities">A collection of default quantities to be used by the <see cref="UnitParser" />.</param>
+    /// <param name="configureQuantities">An action to configure the quantities using a <see cref="QuantitiesSelector" />.</param>
+    /// <param name="configureAbbreviations">
+    ///     An action to configure the unit abbreviations.
+    /// </param>
+    /// <returns>A new instance of the <see cref="UnitParser" /> class.</returns>
+    public static UnitParser Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities,
+        Action<UnitAbbreviationsCache> configureAbbreviations)
+    {
+        var unitAbbreviationsCache = UnitAbbreviationsCache.Create(defaultQuantities, configureQuantities);
+        configureAbbreviations(unitAbbreviationsCache);
+        return new UnitParser(unitAbbreviationsCache);
     }
 
     /// <summary>
@@ -725,7 +778,7 @@ public sealed class UnitParser
     /// <returns>An <see cref="IQuantity" /> object.</returns>
     /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
     /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-    internal IQuantity FromUnitAbbreviation(double value, string unitAbbreviation, IFormatProvider? formatProvider)
+    internal IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation, IFormatProvider? formatProvider)
     {
         return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
     }

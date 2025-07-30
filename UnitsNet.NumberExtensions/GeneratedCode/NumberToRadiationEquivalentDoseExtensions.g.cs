@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
     /// </summary>
     public static class NumberToRadiationEquivalentDoseExtensions
     {
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(QuantityValue)" />
         public static RadiationEquivalentDose Microsieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromMicrosieverts(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromMicrosieverts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromMicrosieverts(value.ToDouble(null));
+            => RadiationEquivalentDose.FromMicrosieverts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue)" />
         public static RadiationEquivalentDose MilliroentgensEquivalentMan<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToDouble(null));
+            => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(QuantityValue)" />
         public static RadiationEquivalentDose Millisieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromMillisieverts(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromMillisieverts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromMillisieverts(value.ToDouble(null));
+            => RadiationEquivalentDose.FromMillisieverts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(QuantityValue)" />
         public static RadiationEquivalentDose Nanosieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromNanosieverts(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromNanosieverts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromNanosieverts(value.ToDouble(null));
+            => RadiationEquivalentDose.FromNanosieverts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue)" />
         public static RadiationEquivalentDose RoentgensEquivalentMan<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromRoentgensEquivalentMan(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToDouble(null));
+            => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(QuantityValue)" />
         public static RadiationEquivalentDose Sieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDose.FromSieverts(double.CreateChecked(value));
+            => RadiationEquivalentDose.FromSieverts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDose.FromSieverts(value.ToDouble(null));
+            => RadiationEquivalentDose.FromSieverts(value.ToQuantityValue());
 #endif
 
     }

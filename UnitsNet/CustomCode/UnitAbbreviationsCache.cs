@@ -40,7 +40,7 @@ namespace UnitsNet
         ///     information about quantities and their associated units. It is used internally to map units
         ///     to their abbreviations and vice versa.
         /// </remarks>
-        internal QuantityInfoLookup Quantities { get; }
+        public QuantityInfoLookup Quantities { get; }
 
         /// <summary>
         /// Culture name to abbreviations. To add a custom default abbreviation, add to the beginning of the list.
@@ -83,6 +83,30 @@ namespace UnitsNet
         public static UnitAbbreviationsCache CreateDefault()
         {
             return new UnitAbbreviationsCache();
+        }
+
+        /// <summary>
+        ///     Creates an instance of <see cref="UnitAbbreviationsCache" /> that maps to the default quantities, with an option to
+        ///     customize the selection.
+        /// </summary>
+        /// <param name="configureQuantities">An action to configure the <see cref="QuantitiesSelector" />.</param>
+        /// <returns>An instance of <see cref="UnitAbbreviationsCache" /> mapped to the default quantities.</returns>
+        public static UnitAbbreviationsCache CreateDefault(Action<QuantitiesSelector> configureQuantities)
+        {
+            return Create(Quantity.DefaultProvider.Quantities, configureQuantities);
+        }
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="UnitAbbreviationsCache" /> class with a specified selection of default
+        ///     quantities
+        ///     and an action to configure the quantities selector.
+        /// </summary>
+        /// <param name="defaultQuantities">The collection of default quantities to be used.</param>
+        /// <param name="configureQuantities">An action to configure the quantities selector.</param>
+        /// <returns>A new instance of the <see cref="UnitAbbreviationsCache" /> class.</returns>
+        public static UnitAbbreviationsCache Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
+        {
+            return new UnitAbbreviationsCache(QuantityInfoLookup.Create(defaultQuantities, configureQuantities));
         }
 
         #region MapUnitToAbbreviation overloads
