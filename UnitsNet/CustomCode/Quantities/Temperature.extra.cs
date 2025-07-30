@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -58,6 +59,7 @@ namespace UnitsNet
         /// <param name="factor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
+        [Obsolete("Affine quantities, such as Temperature, cannot be multiplied directly: consider using the TemperatureDelta type instead.")]
         public Temperature Multiply(double factor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) * factor;
@@ -75,6 +77,7 @@ namespace UnitsNet
         /// <param name="divisor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
+        [Obsolete("Affine quantities, such as Temperature, cannot be divided directly: consider using the TemperatureDelta type instead.")]
         public Temperature Divide(double divisor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) / divisor;
