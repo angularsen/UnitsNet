@@ -348,6 +348,20 @@
       ]
     },
     {
+      "SingularName": "MetricTablespoon",
+      "PluralName": "MetricTablespoons",
+      "XmlDocSummary": "An international metric tablespoon is exactly equal to 15 mL.[6] It is the equivalence of 1⁠, 1/2 metric dessert spoons or metric teaspoons",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Tablespoon#International_metric",
+      "FromUnitToBaseFunc": "{x} * 1.5e-5",
+      "FromBaseToUnitFunc": "{x} / 1.5e-5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tablespoon", "tbsp", "tbsp.", "T", "T.", "Tsp", "Tsp." ]
+        }
+      ]
+    },
+    {
       "SingularName": "UkTablespoon",
       "PluralName": "UkTablespoons",
       "XmlDocSummary": "In nutrition labeling in the U.S. and the U.K., a tablespoon is defined as 15 ml (0.51 US fl oz). In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).",
@@ -413,7 +427,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cup (U.S. customary)"]
+          "Abbreviations": [ "cup (U.S. customary)" ]
         }
       ]
     },
@@ -427,7 +441,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cup (U.S.)"]
+          "Abbreviations": [ "cup (U.S.)" ]
         }
       ]
     },
