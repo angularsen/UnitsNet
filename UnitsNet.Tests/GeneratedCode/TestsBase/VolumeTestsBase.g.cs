@@ -1400,28 +1400,14 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Volume.Parse("1 T", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Volume.Parse("1 tblsp", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsed = Volume.Parse("1 T.", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
-                Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Volume.Parse("1 Tsp", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
-                Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Volume.Parse("1 Tsp.", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Volume.Parse("1 tblsp.", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2072,6 +2058,30 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 tblsp", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 tblsp.", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTablespoons, MetricTablespoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTablespoon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 tsp", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 ts", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
@@ -2084,7 +2094,19 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 t.", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 ts.", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
+                Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 tsp.", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MetricTeaspoons, MetricTeaspoonsTolerance);
                 Assert.Equal(VolumeUnit.MetricTeaspoon, parsed.Unit);
             }
@@ -2251,10 +2273,8 @@ namespace UnitsNet.Tests
         [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("T", VolumeUnit.MetricTablespoon)]
-        [InlineData("T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2332,10 +2352,8 @@ namespace UnitsNet.Tests
         [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("T", VolumeUnit.MetricTablespoon)]
-        [InlineData("T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2413,10 +2431,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2529,10 +2545,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2654,10 +2668,8 @@ namespace UnitsNet.Tests
         [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("T", VolumeUnit.MetricTablespoon)]
-        [InlineData("T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2735,10 +2747,8 @@ namespace UnitsNet.Tests
         [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("T", VolumeUnit.MetricTablespoon)]
-        [InlineData("T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -2816,10 +2826,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -2932,10 +2940,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "T.", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp", VolumeUnit.MetricTablespoon)]
-        [InlineData("en-US", "Tsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
