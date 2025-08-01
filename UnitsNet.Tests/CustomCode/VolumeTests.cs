@@ -78,6 +78,8 @@ namespace UnitsNet.Tests
 
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 
+        protected override double MetricTablespoonsInOneCubicMeter => 66666.6666667;
+
         protected override double UsBeerBarrelsInOneCubicMeter => 8.5216790723083;
 
         protected override double UsGallonsInOneCubicMeter => 264.17217;
