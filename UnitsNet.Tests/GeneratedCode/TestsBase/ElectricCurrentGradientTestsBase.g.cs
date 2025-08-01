@@ -637,6 +637,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ElectricCurrentGradient.FromAmperesPerSecond(10)/ElectricCurrentGradient.FromAmperesPerSecond(5), AmperesPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(ElectricCurrent.FromAmperes(20), ElectricCurrentGradient.FromAmperesPerSecond(10) * Duration.FromSeconds(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

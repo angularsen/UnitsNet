@@ -8,6 +8,13 @@ namespace CodeGen.JsonTypes
     internal record QuantityRelation : IComparable<QuantityRelation>
     {
         public bool NoInferredDivision = false;
+
+        /// <summary>Whether this is a relation between two quantities that are the inverse of each other, such as <c>double = Length.Meter * ReciprocalLength.InverseMeter -- Inverse</c>.</summary>
+        public bool IsInverse = false;
+
+        /// <summary>Whether this relation is derived from another relation, such as obtaining division from a multiplication definition. Can be used to treat the original definitions differently.</summary>
+        public bool IsDerived = false;
+
         public string Operator = null!;
 
         public Quantity LeftQuantity = null!;

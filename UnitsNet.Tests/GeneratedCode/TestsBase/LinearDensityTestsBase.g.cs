@@ -989,6 +989,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, LinearDensity.FromKilogramsPerMeter(10)/LinearDensity.FromKilogramsPerMeter(5), KilogramsPerMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(5), LinearDensity.FromKilogramsPerMeter(10) / Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), LinearDensity.FromKilogramsPerMeter(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Mass.FromKilograms(20), LinearDensity.FromKilogramsPerMeter(10) * Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

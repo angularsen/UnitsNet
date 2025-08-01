@@ -796,6 +796,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, DynamicViscosity.FromNewtonSecondsPerMeterSquared(10)/DynamicViscosity.FromNewtonSecondsPerMeterSquared(5), NewtonSecondsPerMeterSquaredTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / KinematicViscosity.FromSquareMetersPerSecond(2));
+            Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(5), DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / Density.FromKilogramsPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

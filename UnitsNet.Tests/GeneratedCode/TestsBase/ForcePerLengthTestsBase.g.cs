@@ -1779,6 +1779,21 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ForcePerLength.FromNewtonsPerMeter(10)/ForcePerLength.FromNewtonsPerMeter(5), NewtonsPerMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(5), ForcePerLength.FromNewtonsPerMeter(10) / SpecificWeight.FromNewtonsPerCubicMeter(2));
+            Assert.Equal(Force.FromNewtons(20), ForcePerLength.FromNewtonsPerMeter(10) * Length.FromMeters(2));
+            Assert.Equal(Force.FromNewtons(5), ForcePerLength.FromNewtonsPerMeter(10) / ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Length.FromMeters(5), ForcePerLength.FromNewtonsPerMeter(10) / Pressure.FromNewtonsPerSquareMeter(2));
+            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(20), ForcePerLength.FromNewtonsPerMeter(10) * ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(5), ForcePerLength.FromNewtonsPerMeter(10) / Length.FromMeters(2));
+            Assert.Equal(ReciprocalLength.FromInverseMeters(5), ForcePerLength.FromNewtonsPerMeter(10) / Force.FromNewtons(2));
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(5), ForcePerLength.FromNewtonsPerMeter(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Torque.FromNewtonMeters(20), ForcePerLength.FromNewtonsPerMeter(10) * Area.FromSquareMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

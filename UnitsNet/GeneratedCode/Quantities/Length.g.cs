@@ -57,6 +57,7 @@ namespace UnitsNet
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
         IDivisionOperators<Length, ReciprocalArea, Volume>,
+        IMultiplyOperators<Length, ReciprocalLength, double>,
 #endif
 #if NET7_0_OR_GREATER
         IComparisonOperators<Length, Length, bool>,
@@ -1241,6 +1242,12 @@ namespace UnitsNet
             return ReciprocalLength.FromInverseMeters(length.Meters / area.SquareMeters);
         }
 
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="double"/> / <see cref="Length"/>.</summary>
+        public static ReciprocalLength operator /(double value, Length length)
+        {
+            return ReciprocalLength.FromInverseMeters(value / length.Meters);
+        }
+
         /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Length"/> * <see cref="RotationalStiffnessPerLength"/>.</summary>
         public static RotationalStiffness operator *(Length length, RotationalStiffnessPerLength rotationalStiffnessPerLength)
         {
@@ -1275,6 +1282,12 @@ namespace UnitsNet
         public static Volume operator /(Length length, ReciprocalArea reciprocalArea)
         {
             return Volume.FromCubicMeters(length.Meters / reciprocalArea.InverseSquareMeters);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="Length"/> * <see cref="ReciprocalLength"/>.</summary>
+        public static double operator *(Length length, ReciprocalLength reciprocalLength)
+        {
+            return length.Meters * reciprocalLength.InverseMeters;
         }
 
         #endregion

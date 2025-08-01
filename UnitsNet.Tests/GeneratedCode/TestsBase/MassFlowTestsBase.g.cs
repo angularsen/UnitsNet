@@ -1680,6 +1680,22 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, MassFlow.FromGramsPerSecond(10)/MassFlow.FromGramsPerSecond(5), GramsPerSecondTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(5), MassFlow.FromKilogramsPerSecond(10) / MassFlux.FromKilogramsPerSecondPerSquareMeter(2));
+            Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(5), MassFlow.FromKilogramsPerSecond(10) / Power.FromWatts(2));
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(5), MassFlow.FromKilogramsPerSecond(10) / VolumeFlow.FromCubicMetersPerSecond(2));
+            Assert.Equal(Mass.FromKilograms(20), MassFlow.FromKilogramsPerSecond(10) * Duration.FromSeconds(2));
+            Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(5), MassFlow.FromKilogramsPerSecond(10) / Area.FromSquareMeters(2));
+            Assert.Equal(MolarFlow.FromKilomolesPerSecond(5), MassFlow.FromKilogramsPerSecond(10) / MolarMass.FromKilogramsPerKilomole(2));
+            Assert.Equal(MolarMass.FromKilogramsPerKilomole(5), MassFlow.FromKilogramsPerSecond(10) / MolarFlow.FromKilomolesPerSecond(2));
+            Assert.Equal(Power.FromWatts(20), MassFlow.FromKilogramsPerSecond(10) * SpecificEnergy.FromJoulesPerKilogram(2));
+            Assert.Equal(Power.FromWatts(5), MassFlow.FromKilogramsPerSecond(10) / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2));
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(5), MassFlow.FromKilogramsPerSecond(10) / Density.FromKilogramsPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

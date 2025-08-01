@@ -1304,6 +1304,26 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Power.FromWatts(10)/Power.FromWatts(5), WattsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Area.FromSquareMeters(5), Power.FromWatts(10) / HeatFlux.FromWattsPerSquareMeter(2));
+            Assert.Equal(ElectricCurrent.FromAmperes(5), Power.FromWatts(10) / ElectricPotential.FromVolts(2));
+            Assert.Equal(ElectricPotential.FromVolts(5), Power.FromWatts(10) / ElectricCurrent.FromAmperes(2));
+            Assert.Equal(Energy.FromJoules(20), Power.FromWatts(10) * Duration.FromSeconds(2));
+            Assert.Equal(Energy.FromJoules(5), Power.FromWatts(10) / Frequency.FromPerSecond(2));
+            Assert.Equal(Force.FromNewtons(5), Power.FromWatts(10) / Speed.FromMetersPerSecond(2));
+            Assert.Equal(Frequency.FromPerSecond(5), Power.FromWatts(10) / Energy.FromJoules(2));
+            Assert.Equal(HeatFlux.FromWattsPerSquareMeter(5), Power.FromWatts(10) / Area.FromSquareMeters(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(20), Power.FromWatts(10) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(5), Power.FromWatts(10) / SpecificEnergy.FromJoulesPerKilogram(2));
+            Assert.Equal(RotationalSpeed.FromRadiansPerSecond(5), Power.FromWatts(10) / Torque.FromNewtonMeters(2));
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(5), Power.FromWatts(10) / MassFlow.FromKilogramsPerSecond(2));
+            Assert.Equal(Speed.FromMetersPerSecond(5), Power.FromWatts(10) / Force.FromNewtons(2));
+            Assert.Equal(Torque.FromNewtonMeters(5), Power.FromWatts(10) / RotationalSpeed.FromRadiansPerSecond(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {
