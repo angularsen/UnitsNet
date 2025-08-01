@@ -675,23 +675,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricApparentPower.FromVoltamperes(1);
-            Assert.True(v.Equals(ElectricApparentPower.FromVoltamperes(1), VoltamperesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricApparentPower.Zero, VoltamperesTolerance, ComparisonType.Relative));
-            Assert.True(ElectricApparentPower.FromVoltamperes(100).Equals(ElectricApparentPower.FromVoltamperes(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricApparentPower.FromVoltamperes(100).Equals(ElectricApparentPower.FromVoltamperes(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricApparentPower.FromVoltamperes(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricApparentPower.FromVoltamperes(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(1);
@@ -703,6 +686,32 @@ namespace UnitsNet.Tests
         {
             ElectricApparentPower voltampere = ElectricApparentPower.FromVoltamperes(1);
             Assert.False(voltampere.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ElectricApparentPower.FromVoltamperes(firstValue);
+            var otherQuantity = ElectricApparentPower.FromVoltamperes(secondValue);
+            ElectricApparentPower maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ElectricApparentPower.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricApparentPower.FromVoltamperes(1);
+            var negativeTolerance = ElectricApparentPower.FromVoltamperes(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -793,7 +802,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(new {ElectricApparentPower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

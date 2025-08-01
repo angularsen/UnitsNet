@@ -2922,23 +2922,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = RotationalStiffness.FromNewtonMetersPerRadian(1);
-            Assert.True(v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), NewtonMetersPerRadianTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(RotationalStiffness.Zero, NewtonMetersPerRadianTolerance, ComparisonType.Relative));
-            Assert.True(RotationalStiffness.FromNewtonMetersPerRadian(100).Equals(RotationalStiffness.FromNewtonMetersPerRadian(120), 0.3, ComparisonType.Relative));
-            Assert.False(RotationalStiffness.FromNewtonMetersPerRadian(100).Equals(RotationalStiffness.FromNewtonMetersPerRadian(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = RotationalStiffness.FromNewtonMetersPerRadian(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             RotationalStiffness newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
@@ -2950,6 +2933,32 @@ namespace UnitsNet.Tests
         {
             RotationalStiffness newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
             Assert.False(newtonmeterperradian.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(firstValue);
+            var otherQuantity = RotationalStiffness.FromNewtonMetersPerRadian(secondValue);
+            RotationalStiffness maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, RotationalStiffness.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1);
+            var negativeTolerance = RotationalStiffness.FromNewtonMetersPerRadian(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -3094,7 +3103,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal(new {RotationalStiffness.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

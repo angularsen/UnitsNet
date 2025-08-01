@@ -10,8 +10,8 @@ using UnitsNet.Units;
 namespace UnitsNet.Benchmark.Operators.Additions;
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+// [SimpleJob(RuntimeMoniker.Net48)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
 {
     private static readonly double Value = 1.23;
@@ -29,7 +29,13 @@ public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
     }
 
     [Benchmark(Baseline = true)]
-    public TemperatureDelta SumOfDeltas()
+    public TemperatureDelta SumOfTemperatureDeltas()
+    {
+        return _quantities.Sum();
+    }
+
+    [Benchmark(Baseline = false)]
+    public TemperatureDelta GenericSumOfTemperatureDeltas()
     {
 #if NET
         return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
@@ -45,7 +51,7 @@ public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
     }
 
     [Benchmark(Baseline = false)]
-    public TemperatureDelta SumOfVolumesInBaseUnit()
+    public TemperatureDelta SumOfTemperatureDeltasInBaseUnit()
     {
         return _quantities.Sum(TemperatureDelta.BaseUnit);
     }

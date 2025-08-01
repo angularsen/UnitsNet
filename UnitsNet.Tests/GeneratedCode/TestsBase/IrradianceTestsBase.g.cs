@@ -919,23 +919,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Irradiance.FromWattsPerSquareMeter(1);
-            Assert.True(v.Equals(Irradiance.FromWattsPerSquareMeter(1), WattsPerSquareMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Irradiance.Zero, WattsPerSquareMeterTolerance, ComparisonType.Relative));
-            Assert.True(Irradiance.FromWattsPerSquareMeter(100).Equals(Irradiance.FromWattsPerSquareMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(Irradiance.FromWattsPerSquareMeter(100).Equals(Irradiance.FromWattsPerSquareMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Irradiance.FromWattsPerSquareMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Irradiance.FromWattsPerSquareMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
@@ -947,6 +930,32 @@ namespace UnitsNet.Tests
         {
             Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.False(wattpersquaremeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Irradiance.FromWattsPerSquareMeter(firstValue);
+            var otherQuantity = Irradiance.FromWattsPerSquareMeter(secondValue);
+            Irradiance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Irradiance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Irradiance.FromWattsPerSquareMeter(1);
+            var negativeTolerance = Irradiance.FromWattsPerSquareMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1053,7 +1062,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
-            Assert.Equal(new {Irradiance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

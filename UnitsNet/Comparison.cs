@@ -121,5 +121,22 @@ namespace UnitsNet
 
             return Math.Abs(value1 - value2) <= tolerance;
         }
+
+        internal static int GetHashCode<TUnit>(TUnit unit, double value)
+            where TUnit : struct, Enum
+        {
+#if NET7_0_OR_GREATER
+            return HashCode.Combine(typeof(TUnit), unit, value);
+#else
+            unchecked
+            {
+                var hash = 17;
+                hash = hash * 23 + typeof(TUnit).GetHashCode();
+                hash = hash * 23 + unit.GetHashCode();
+                hash = hash * 23 + value.GetHashCode();
+                return hash;
+            }
+#endif
+        }
     }
 }

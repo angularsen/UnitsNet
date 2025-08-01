@@ -1071,23 +1071,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = LinearDensity.FromKilogramsPerMeter(1);
-            Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(LinearDensity.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
-            Assert.True(LinearDensity.FromKilogramsPerMeter(100).Equals(LinearDensity.FromKilogramsPerMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(LinearDensity.FromKilogramsPerMeter(100).Equals(LinearDensity.FromKilogramsPerMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = LinearDensity.FromKilogramsPerMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LinearDensity.FromKilogramsPerMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
@@ -1099,6 +1082,32 @@ namespace UnitsNet.Tests
         {
             LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
             Assert.False(kilogrampermeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = LinearDensity.FromKilogramsPerMeter(firstValue);
+            var otherQuantity = LinearDensity.FromKilogramsPerMeter(secondValue);
+            LinearDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, LinearDensity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = LinearDensity.FromKilogramsPerMeter(1);
+            var negativeTolerance = LinearDensity.FromKilogramsPerMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1213,7 +1222,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal(new {LinearDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

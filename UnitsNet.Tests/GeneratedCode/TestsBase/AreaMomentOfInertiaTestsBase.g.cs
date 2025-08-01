@@ -687,23 +687,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(AreaMomentOfInertia.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
-            Assert.True(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), 0.3, ComparisonType.Relative));
-            Assert.False(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
@@ -715,6 +698,32 @@ namespace UnitsNet.Tests
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
             Assert.False(metertothefourth.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(firstValue);
+            var otherQuantity = AreaMomentOfInertia.FromMetersToTheFourth(secondValue);
+            AreaMomentOfInertia maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, AreaMomentOfInertia.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            var negativeTolerance = AreaMomentOfInertia.FromMetersToTheFourth(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -805,7 +814,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(new {AreaMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]
