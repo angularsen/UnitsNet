@@ -94,6 +94,7 @@ namespace UnitsNet.Units
         MillimeterOfMercury = 32,
         MillimeterOfWaterColumn = 33,
         Millipascal = 34,
+        Millitorr = 52,
         NewtonPerSquareCentimeter = 35,
         NewtonPerSquareMeter = 36,
         NewtonPerSquareMillimeter = 37,

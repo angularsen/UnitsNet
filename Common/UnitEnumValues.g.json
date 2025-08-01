@@ -1183,7 +1183,8 @@
     "TonneForcePerSquareMillimeter": 46,
     "Torr": 47,
     "MeterOfWaterColumn": 57,
-    "CentimeterOfWaterColumn": 48
+    "CentimeterOfWaterColumn": 48,
+    "Millitorr": 52
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,
