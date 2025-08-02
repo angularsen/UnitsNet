@@ -36,7 +36,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
 
-  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.slnx" $fileLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if (-not $IncludeNanoFramework)
