@@ -161,6 +161,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMillipascals(2), 2.Millipascals());
 
         [Fact]
+        public void NumberToMillitorrsTest() =>
+            Assert.Equal(Pressure.FromMillitorrs(2), 2.Millitorrs());
+
+        [Fact]
         public void NumberToNewtonsPerSquareCentimeterTest() =>
             Assert.Equal(Pressure.FromNewtonsPerSquareCentimeter(2), 2.NewtonsPerSquareCentimeter());
 
