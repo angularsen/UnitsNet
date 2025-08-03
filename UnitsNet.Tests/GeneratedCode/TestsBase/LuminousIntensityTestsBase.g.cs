@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -96,7 +97,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new LuminousIntensity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -109,15 +110,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousIntensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LuminousIntensity(1, LuminousIntensityUnit.Candela);
 
-            QuantityInfo<LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<LuminousIntensity, LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
             Assert.Equal("LuminousIntensity", quantityInfo.Name);
+            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
+            Assert.Equal(LuminousIntensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(LuminousIntensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LuminousIntensityUnit>)quantity).QuantityInfo);
+        }
 
-            var units = Enum.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void LuminousIntensityInfo_CreateWithCustomUnitInfos()
+        {
+            LuminousIntensityUnit[] expectedUnits = [LuminousIntensityUnit.Candela];
+
+            LuminousIntensity.LuminousIntensityInfo quantityInfo = LuminousIntensity.LuminousIntensityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("LuminousIntensity", quantityInfo.Name);
+            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
+            Assert.Equal(LuminousIntensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -130,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LuminousIntensity.From(1, LuminousIntensityUnit.Candela);
-            AssertEx.EqualTolerance(1, quantity00.Candela, CandelaTolerance);
-            Assert.Equal(LuminousIntensityUnit.Candela, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminousIntensityUnit>(), unit =>
+            {
+                var quantity = LuminousIntensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -267,27 +288,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cd", LuminousIntensityUnit.Candela, 4.2)]
+        public void Parse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = LuminousIntensity.Parse("1 cd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Candela, CandelaTolerance);
-                Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = LuminousIntensity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cd", LuminousIntensityUnit.Candela, 4.2)]
+        public void TryParse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(LuminousIntensity.TryParse("1 cd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Candela, CandelaTolerance);
-                Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(LuminousIntensity.TryParse(quantityString, out LuminousIntensity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -365,6 +383,27 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", LuminousIntensityUnit.Candela, "cd")]
+        public void GetAbbreviationForCulture(string culture, LuminousIntensityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(LuminousIntensity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LuminousIntensityUnit unit)
         {
@@ -394,6 +433,7 @@ namespace UnitsNet.Tests
                 var quantity = LuminousIntensity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -417,32 +457,34 @@ namespace UnitsNet.Tests
                 IQuantity<LuminousIntensityUnit> quantityToConvert = quantity;
                 IQuantity<LuminousIntensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
-            AssertEx.EqualTolerance(1, LuminousIntensity.FromCandela(candela.Candela).Candela, CandelaTolerance);
+            LuminousIntensity candela = LuminousIntensity.FromCandela(3);
+            Assert.Equal(3, LuminousIntensity.FromCandela(candela.Candela).Candela);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             LuminousIntensity v = LuminousIntensity.FromCandela(1);
-            AssertEx.EqualTolerance(-1, -v.Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(3)-v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(10)/5).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, LuminousIntensity.FromCandela(10)/LuminousIntensity.FromCandela(5), CandelaTolerance);
+            Assert.Equal(-1, -v.Candela);
+            Assert.Equal(2, (LuminousIntensity.FromCandela(3) - v).Candela);
+            Assert.Equal(2, (v + v).Candela);
+            Assert.Equal(10, (v * 10).Candela);
+            Assert.Equal(10, (10 * v).Candela);
+            Assert.Equal(2, (LuminousIntensity.FromCandela(10) / 5).Candela);
+            Assert.Equal(2, LuminousIntensity.FromCandela(10) / LuminousIntensity.FromCandela(5));
         }
 
         [Fact]
@@ -488,7 +530,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, true)]  // Same value and unit.
         [InlineData(1, LuminousIntensityUnit.Candela, 2, LuminousIntensityUnit.Candela, false)] // Different value.
-        [InlineData(2, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminousIntensityUnit unitA, double valueB, LuminousIntensityUnit unitB, bool expectEqual)
         {
             var a = new LuminousIntensity(valueA, unitA);
@@ -526,23 +567,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = LuminousIntensity.FromCandela(1);
-            Assert.True(v.Equals(LuminousIntensity.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(LuminousIntensity.Zero, CandelaTolerance, ComparisonType.Relative));
-            Assert.True(LuminousIntensity.FromCandela(100).Equals(LuminousIntensity.FromCandela(120), 0.3, ComparisonType.Relative));
-            Assert.False(LuminousIntensity.FromCandela(100).Equals(LuminousIntensity.FromCandela(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = LuminousIntensity.FromCandela(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LuminousIntensity.FromCandela(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             LuminousIntensity candela = LuminousIntensity.FromCandela(1);
@@ -556,10 +580,36 @@ namespace UnitsNet.Tests
             Assert.False(candela.Equals(null));
         }
 
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = LuminousIntensity.FromCandela(firstValue);
+            var otherQuantity = LuminousIntensity.FromCandela(secondValue);
+            LuminousIntensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, LuminousIntensity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = LuminousIntensity.FromCandela(1);
+            var negativeTolerance = LuminousIntensity.FromCandela(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
+        }
+
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<LuminousIntensityUnit>();
+            var units = EnumHelper.GetValues<LuminousIntensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -570,6 +620,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(LuminousIntensity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(LuminousIntensity.Info.Units, LuminousIntensity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, LuminousIntensity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -634,7 +696,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LuminousIntensity.FromCandela(1.0);
-            Assert.Equal(new {LuminousIntensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(LuminousIntensity), quantity.As(LuminousIntensity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

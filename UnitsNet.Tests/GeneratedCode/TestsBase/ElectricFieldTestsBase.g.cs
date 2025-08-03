@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -96,7 +97,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricField(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -109,15 +110,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricField(1, ElectricFieldUnit.VoltPerMeter);
 
-            QuantityInfo<ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricField, ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricField", quantityInfo.Name);
+            Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricField.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricField.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricFieldUnit>)quantity).QuantityInfo);
+        }
 
-            var units = Enum.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+        [Fact]
+        public void ElectricFieldInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricFieldUnit[] expectedUnits = [ElectricFieldUnit.VoltPerMeter];
+
+            ElectricField.ElectricFieldInfo quantityInfo = ElectricField.ElectricFieldInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricField", quantityInfo.Name);
+            Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricField.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
         }
 
         [Fact]
@@ -130,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricField.From(1, ElectricFieldUnit.VoltPerMeter);
-            AssertEx.EqualTolerance(1, quantity00.VoltsPerMeter, VoltsPerMeterTolerance);
-            Assert.Equal(ElectricFieldUnit.VoltPerMeter, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricFieldUnit>(), unit =>
+            {
+                var quantity = ElectricField.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -267,27 +288,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricFieldUnit expectedUnit, decimal expectedValue)
         {
-            try
-            {
-                var parsed = ElectricField.Parse("1 V/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
-                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricField.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricFieldUnit expectedUnit, decimal expectedValue)
         {
-            {
-                Assert.True(ElectricField.TryParse("1 V/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
-                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricField.TryParse(quantityString, out ElectricField parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -365,6 +383,27 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ElectricFieldUnit.VoltPerMeter, "V/m")]
+        public void GetAbbreviationForCulture(string culture, ElectricFieldUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricField.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricField.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricFieldUnit unit)
         {
@@ -394,6 +433,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricField.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -417,32 +457,34 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricFieldUnit> quantityToConvert = quantity;
                 IQuantity<ElectricFieldUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
-            AssertEx.EqualTolerance(1, ElectricField.FromVoltsPerMeter(voltpermeter.VoltsPerMeter).VoltsPerMeter, VoltsPerMeterTolerance);
+            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(3);
+            Assert.Equal(3, ElectricField.FromVoltsPerMeter(voltpermeter.VoltsPerMeter).VoltsPerMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricField v = ElectricField.FromVoltsPerMeter(1);
-            AssertEx.EqualTolerance(-1, -v.VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricField.FromVoltsPerMeter(3)-v).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricField.FromVoltsPerMeter(10)/5).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, ElectricField.FromVoltsPerMeter(10)/ElectricField.FromVoltsPerMeter(5), VoltsPerMeterTolerance);
+            Assert.Equal(-1, -v.VoltsPerMeter);
+            Assert.Equal(2, (ElectricField.FromVoltsPerMeter(3) - v).VoltsPerMeter);
+            Assert.Equal(2, (v + v).VoltsPerMeter);
+            Assert.Equal(10, (v * 10).VoltsPerMeter);
+            Assert.Equal(10, (10 * v).VoltsPerMeter);
+            Assert.Equal(2, (ElectricField.FromVoltsPerMeter(10) / 5).VoltsPerMeter);
+            Assert.Equal(2, ElectricField.FromVoltsPerMeter(10) / ElectricField.FromVoltsPerMeter(5));
         }
 
         [Fact]
@@ -488,7 +530,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricFieldUnit.VoltPerMeter, 1, ElectricFieldUnit.VoltPerMeter, true)]  // Same value and unit.
         [InlineData(1, ElectricFieldUnit.VoltPerMeter, 2, ElectricFieldUnit.VoltPerMeter, false)] // Different value.
-        [InlineData(2, ElectricFieldUnit.VoltPerMeter, 1, ElectricFieldUnit.VoltPerMeter, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricFieldUnit unitA, double valueB, ElectricFieldUnit unitB, bool expectEqual)
         {
             var a = new ElectricField(valueA, unitA);
@@ -526,23 +567,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricField.FromVoltsPerMeter(1);
-            Assert.True(v.Equals(ElectricField.FromVoltsPerMeter(1), VoltsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricField.Zero, VoltsPerMeterTolerance, ComparisonType.Relative));
-            Assert.True(ElectricField.FromVoltsPerMeter(100).Equals(ElectricField.FromVoltsPerMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricField.FromVoltsPerMeter(100).Equals(ElectricField.FromVoltsPerMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricField.FromVoltsPerMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricField.FromVoltsPerMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
@@ -556,10 +580,36 @@ namespace UnitsNet.Tests
             Assert.False(voltpermeter.Equals(null));
         }
 
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ElectricField.FromVoltsPerMeter(firstValue);
+            var otherQuantity = ElectricField.FromVoltsPerMeter(secondValue);
+            ElectricField maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
+            Assert.True(quantity.Equals(quantity, ElectricField.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricField.FromVoltsPerMeter(1);
+            var negativeTolerance = ElectricField.FromVoltsPerMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
+        }
+
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricFieldUnit>();
+            var units = EnumHelper.GetValues<ElectricFieldUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -570,6 +620,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricField.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricField.Info.Units, ElectricField.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricField.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -634,7 +696,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricField.FromVoltsPerMeter(1.0);
-            Assert.Equal(new {ElectricField.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricField), quantity.As(ElectricField.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

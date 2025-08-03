@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToElectricChargeDensity
     /// </summary>
     public static class NumberToElectricChargeDensityExtensions
     {
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)" />
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(QuantityValue)" />
         public static ElectricChargeDensity CoulombsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.CreateChecked(value));
+            => ElectricChargeDensity.FromCoulombsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricChargeDensity.FromCoulombsPerCubicMeter(value.ToDouble(null));
+            => ElectricChargeDensity.FromCoulombsPerCubicMeter(value.ToQuantityValue());
 #endif
 
     }

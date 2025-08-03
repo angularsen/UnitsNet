@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.CustomCode.Units;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using UnitsNet.Wrappers;
 using Xunit;
@@ -169,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferencePressureReferences_ReturnsTheExpectedEnumValues()
         {
-            IEnumerable<PressureReference> expectedValues = Enum.GetValues<PressureReference>();
+            IEnumerable<PressureReference> expectedValues = EnumHelper.GetValues<PressureReference>();
 
             PressureReference[] actualValues = ReferencePressure.References;
 
@@ -285,16 +286,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureFromElevation_ConvertsWithRounding()
         {
-            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot));
-            Assert.Equal(1, pressureFromElevation.Pascals, PascalsTolerance);
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631m, LengthUnit.Foot), 13);
+            Assert.Equal(1, pressureFromElevation.Pascals);
         }
 
         [Fact]
         public void ElevationFromPressure_ConvertsWithRounding()
         {
-            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation();
+            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation(15);
             Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
-            Assert.Equal(129149.976945763, elevationFromPressure.Value, 9);
+            Assert.Equal(129149.976945763m, elevationFromPressure.Value);
         }
     }
 }

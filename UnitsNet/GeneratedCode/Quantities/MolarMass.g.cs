@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,7 +33,8 @@ namespace UnitsNet
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct MolarMass :
         IArithmeticQuantity<MolarMass, MolarMassUnit>,
 #if NET7_0_OR_GREATER
@@ -55,13 +54,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly MolarMassUnit? _unit;
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="MolarMass"/> is [M][N^-1].
+            ///     The <see cref="BaseDimensions" /> for <see cref="MolarMass"/> is MN^-1.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
@@ -121,27 +120,49 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarMassUnit}"/> representing the default unit mappings for MolarMass.</returns>
             public static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
             {
-                yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole));
+                yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole),
+                     100000             
+                );
+                yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole),
+                     100             
+                );
+                yield return new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole),
+                     10000             
+                );
+                yield return new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole),
+                     1000             
+                );
+                yield return new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole),
+                     10             
+                );
+                yield return new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole),
+                     1000             
+                );
                 yield return new (MolarMassUnit.KilogramPerMole, "KilogramPerMole", "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole),
+                     new QuantityValue(100000, 45359237)             
+                );
+                yield return new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole),
+                     new QuantityValue(100, 45359237)             
+                );
+                yield return new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole),
+                     1000000000             
+                );
+                yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole),
+                     1000000             
+                );
+                yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole),
+                     1000000000000             
+                );
+                yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole),
+                     new QuantityValue(100000000, 45359237)             
+                );
             }
         }
 
         static MolarMass()
         {
-            Info = MolarMassInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(MolarMassInfo.CreateDefault);
         }
 
         /// <summary>
@@ -149,7 +170,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MolarMass(double value, MolarMassUnit unit)
+        public MolarMass(QuantityValue value, MolarMassUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -163,7 +184,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MolarMass(double value, UnitSystem unitSystem)
+        public MolarMass(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -174,7 +195,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MolarMass" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarMass, MolarMassUnit> Info { get; }
@@ -199,17 +221,12 @@ namespace UnitsNet
         /// </summary>
         public static MolarMass Zero => Info.Zero;
 
-        /// <inheritdoc cref="Zero"/>
-        public static MolarMass AdditiveIdentity => Zero;
-
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public MolarMassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -236,6 +253,11 @@ namespace UnitsNet
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo<MolarMassUnit> IQuantity<MolarMassUnit>.QuantityInfo => Info;
 
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<MolarMass> IQuantityOfType<MolarMass>.QuantityInfo => Info;
+#endif
+
         #endregion
 
         #endregion
@@ -243,111 +265,73 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.CentigramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.CentigramPerMole"/>
         /// </summary>
-        public double CentigramsPerMole => As(MolarMassUnit.CentigramPerMole);
+        public QuantityValue CentigramsPerMole => this.As(MolarMassUnit.CentigramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecagramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.DecagramPerMole"/>
         /// </summary>
-        public double DecagramsPerMole => As(MolarMassUnit.DecagramPerMole);
+        public QuantityValue DecagramsPerMole => this.As(MolarMassUnit.DecagramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecigramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.DecigramPerMole"/>
         /// </summary>
-        public double DecigramsPerMole => As(MolarMassUnit.DecigramPerMole);
+        public QuantityValue DecigramsPerMole => this.As(MolarMassUnit.DecigramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.GramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.GramPerMole"/>
         /// </summary>
-        public double GramsPerMole => As(MolarMassUnit.GramPerMole);
+        public QuantityValue GramsPerMole => this.As(MolarMassUnit.GramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.HectogramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.HectogramPerMole"/>
         /// </summary>
-        public double HectogramsPerMole => As(MolarMassUnit.HectogramPerMole);
+        public QuantityValue HectogramsPerMole => this.As(MolarMassUnit.HectogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerKilomole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerKilomole"/>
         /// </summary>
-        public double KilogramsPerKilomole => As(MolarMassUnit.KilogramPerKilomole);
+        public QuantityValue KilogramsPerKilomole => this.As(MolarMassUnit.KilogramPerKilomole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerMole"/>
         /// </summary>
-        public double KilogramsPerMole => As(MolarMassUnit.KilogramPerMole);
+        public QuantityValue KilogramsPerMole => this.As(MolarMassUnit.KilogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilopoundPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.KilopoundPerMole"/>
         /// </summary>
-        public double KilopoundsPerMole => As(MolarMassUnit.KilopoundPerMole);
+        public QuantityValue KilopoundsPerMole => this.As(MolarMassUnit.KilopoundPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MegapoundPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.MegapoundPerMole"/>
         /// </summary>
-        public double MegapoundsPerMole => As(MolarMassUnit.MegapoundPerMole);
+        public QuantityValue MegapoundsPerMole => this.As(MolarMassUnit.MegapoundPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MicrogramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.MicrogramPerMole"/>
         /// </summary>
-        public double MicrogramsPerMole => As(MolarMassUnit.MicrogramPerMole);
+        public QuantityValue MicrogramsPerMole => this.As(MolarMassUnit.MicrogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MilligramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.MilligramPerMole"/>
         /// </summary>
-        public double MilligramsPerMole => As(MolarMassUnit.MilligramPerMole);
+        public QuantityValue MilligramsPerMole => this.As(MolarMassUnit.MilligramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.NanogramPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.NanogramPerMole"/>
         /// </summary>
-        public double NanogramsPerMole => As(MolarMassUnit.NanogramPerMole);
+        public QuantityValue NanogramsPerMole => this.As(MolarMassUnit.NanogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerMole"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerMole"/>
         /// </summary>
-        public double PoundsPerMole => As(MolarMassUnit.PoundPerMole);
+        public QuantityValue PoundsPerMole => this.As(MolarMassUnit.PoundPerMole);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: MolarMassUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.CentigramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.DecagramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.DecigramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.GramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.HectogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerKilomole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilopoundPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.MegapoundPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.MicrogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> MolarMassUnit
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole, quantity => quantity.ToUnit(MolarMassUnit.CentigramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.DecagramPerMole, quantity => quantity.ToUnit(MolarMassUnit.DecagramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.DecigramPerMole, quantity => quantity.ToUnit(MolarMassUnit.DecigramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.GramPerMole, quantity => quantity.ToUnit(MolarMassUnit.GramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.HectogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.HectogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerKilomole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerKilomole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilopoundPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilopoundPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MegapoundPerMole, quantity => quantity.ToUnit(MolarMassUnit.MegapoundPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MicrogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.MicrogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole, quantity => quantity.ToUnit(MolarMassUnit.MilligramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.NanogramPerMole));
-            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole, quantity => quantity.ToUnit(MolarMassUnit.PoundPerMole));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -377,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.CentigramPerMole"/>.
         /// </summary>
-        public static MolarMass FromCentigramsPerMole(double value)
+        public static MolarMass FromCentigramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.CentigramPerMole);
         }
@@ -385,7 +369,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
-        public static MolarMass FromDecagramsPerMole(double value)
+        public static MolarMass FromDecagramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.DecagramPerMole);
         }
@@ -393,7 +377,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
-        public static MolarMass FromDecigramsPerMole(double value)
+        public static MolarMass FromDecigramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.DecigramPerMole);
         }
@@ -401,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
-        public static MolarMass FromGramsPerMole(double value)
+        public static MolarMass FromGramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.GramPerMole);
         }
@@ -409,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
-        public static MolarMass FromHectogramsPerMole(double value)
+        public static MolarMass FromHectogramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.HectogramPerMole);
         }
@@ -417,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerKilomole"/>.
         /// </summary>
-        public static MolarMass FromKilogramsPerKilomole(double value)
+        public static MolarMass FromKilogramsPerKilomole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.KilogramPerKilomole);
         }
@@ -425,7 +409,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
-        public static MolarMass FromKilogramsPerMole(double value)
+        public static MolarMass FromKilogramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.KilogramPerMole);
         }
@@ -433,7 +417,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
-        public static MolarMass FromKilopoundsPerMole(double value)
+        public static MolarMass FromKilopoundsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.KilopoundPerMole);
         }
@@ -441,7 +425,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
-        public static MolarMass FromMegapoundsPerMole(double value)
+        public static MolarMass FromMegapoundsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.MegapoundPerMole);
         }
@@ -449,7 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
-        public static MolarMass FromMicrogramsPerMole(double value)
+        public static MolarMass FromMicrogramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.MicrogramPerMole);
         }
@@ -457,7 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
-        public static MolarMass FromMilligramsPerMole(double value)
+        public static MolarMass FromMilligramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.MilligramPerMole);
         }
@@ -465,7 +449,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
-        public static MolarMass FromNanogramsPerMole(double value)
+        public static MolarMass FromNanogramsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.NanogramPerMole);
         }
@@ -473,7 +457,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>
-        public static MolarMass FromPoundsPerMole(double value)
+        public static MolarMass FromPoundsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.PoundPerMole);
         }
@@ -484,7 +468,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarMass unit value.</returns>
-        public static MolarMass From(double value, MolarMassUnit fromUnit)
+        public static MolarMass From(QuantityValue value, MolarMassUnit fromUnit)
         {
             return new MolarMass(value, fromUnit);
         }
@@ -545,10 +529,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MolarMass Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<MolarMass, MolarMassUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<MolarMass, MolarMassUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -576,11 +557,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMass result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<MolarMass, MolarMassUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<MolarMass, MolarMassUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -601,7 +578,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -612,7 +589,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarMassUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.MolarMassUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out MolarMassUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -627,7 +604,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarMassUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -646,35 +623,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarMass"/> from adding two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new MolarMass(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from subtracting two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new MolarMass(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
-        public static MolarMass operator *(double left, MolarMass right)
+        public static MolarMass operator *(QuantityValue left, MolarMass right)
         {
             return new MolarMass(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
-        public static MolarMass operator *(MolarMass left, double right)
+        public static MolarMass operator *(MolarMass left, QuantityValue right)
         {
             return new MolarMass(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from dividing <see cref="MolarMass"/> by value.</summary>
-        public static MolarMass operator /(MolarMass left, double right)
+        public static MolarMass operator /(MolarMass left, QuantityValue right)
         {
             return new MolarMass(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MolarMass"/> by <see cref="MolarMass"/>.</summary>
-        public static double operator /(MolarMass left, MolarMass right)
+        public static QuantityValue operator /(MolarMass left, MolarMass right)
         {
             return left.KilogramsPerMole / right.KilogramsPerMole;
         }
@@ -708,88 +685,82 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarMass left, MolarMass right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarMass left, MolarMass right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarMass left, MolarMass right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarMass left, MolarMass right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MolarMass other, MolarMass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities.</summary>
         public static bool operator ==(MolarMass left, MolarMass right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="MolarMass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MolarMass other, MolarMass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="MolarMass"/> quantities.</summary>
         public static bool operator !=(MolarMass left, MolarMass right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MolarMass other, MolarMass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is MolarMass otherQuantity))
+            if (obj is not MolarMass otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MolarMass other, MolarMass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarMass"/> quantities.</summary>
         public bool Equals(MolarMass other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
 
-        #pragma warning restore CS0809
-
-        /// <summary>Compares the current <see cref="MolarMass"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current MolarMass.</returns>
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(typeof(MolarMass), this.As(BaseUnit));
+        }
+        
+        /// <inheritdoc  cref="CompareTo(MolarMass)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is MolarMass otherQuantity)) throw new ArgumentException("Expected type MolarMass.", nameof(obj));
+            if (obj is not MolarMass otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<MolarMass>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="MolarMass"/> with another <see cref="MolarMass"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="MolarMass"/> with another <see cref="MolarMass"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -801,246 +772,24 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(MolarMass other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another MolarMass within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(MolarMass other, MolarMass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(MolarMass other, double tolerance, ComparisonType comparisonType)
-        {
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {
-            return other is MolarMass otherTyped
-                   && (tolerance is MolarMass toleranceTyped
-                       ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'MolarMass'.", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(MolarMass other, MolarMass tolerance)
-        {
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current MolarMass.</returns>
-        public override int GetHashCode()
-        {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return _value.CompareTo(other.As(this.Unit));
         }
 
         #endregion
 
-        #region Conversion Methods
+        #region Conversion Methods (explicit implementations for netstandard2.0)
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarMassUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
+#if NETSTANDARD2_0
+        QuantityValue IQuantity.As(Enum unit) => UnitConverter.Default.ConvertValue(Value, UnitKey.ForUnit(Unit), unit);
 
-            return ToUnit(unit).Value;
-        }
+        IQuantity IQuantity.ToUnit(Enum unit) => UnitConverter.Default.ConvertTo(this, unit);
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A MolarMass with the specified unit.</returns>
-        public MolarMass ToUnit(MolarMassUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
+        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => this.ToUnit(unit);
 
-        /// <summary>
-        ///     Converts this <see cref="MolarMass"/> to another <see cref="MolarMass"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A MolarMass with the specified unit.</returns>
-        public MolarMass ToUnit(MolarMassUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(MolarMass), Unit, typeof(MolarMass), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (MolarMass)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="MolarMass"/> to another <see cref="MolarMass"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="MolarMass"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(MolarMassUnit unit, [NotNullWhen(true)] out MolarMass? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            MolarMass? convertedOrNull = (Unit, unit) switch
-            {
-                // MolarMassUnit -> BaseUnit
-                (MolarMassUnit.CentigramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-2d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.DecagramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e1d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.DecigramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-1d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.GramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value / 1e3, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.HectogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e2d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.KilogramPerKilomole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value / 1e3, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.KilopoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value * 0.45359237) * 1e3d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.MegapoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value * 0.45359237) * 1e6d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.MicrogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-6d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-3d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-9d, MolarMassUnit.KilogramPerMole),
-                (MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value * 0.45359237, MolarMassUnit.KilogramPerMole),
-
-                // BaseUnit -> MolarMassUnit
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole) => new MolarMass((_value * 1e3) / 1e-2d, MolarMassUnit.CentigramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.DecagramPerMole) => new MolarMass((_value * 1e3) / 1e1d, MolarMassUnit.DecagramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.DecigramPerMole) => new MolarMass((_value * 1e3) / 1e-1d, MolarMassUnit.DecigramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.GramPerMole) => new MolarMass(_value * 1e3, MolarMassUnit.GramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.HectogramPerMole) => new MolarMass((_value * 1e3) / 1e2d, MolarMassUnit.HectogramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerKilomole) => new MolarMass(_value * 1e3, MolarMassUnit.KilogramPerKilomole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilopoundPerMole) => new MolarMass((_value / 0.45359237) / 1e3d, MolarMassUnit.KilopoundPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MegapoundPerMole) => new MolarMass((_value / 0.45359237) / 1e6d, MolarMassUnit.MegapoundPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MicrogramPerMole) => new MolarMass((_value * 1e3) / 1e-6d, MolarMassUnit.MicrogramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole) => new MolarMass((_value * 1e3) / 1e-3d, MolarMassUnit.MilligramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole) => new MolarMass((_value * 1e3) / 1e-9d, MolarMassUnit.NanogramPerMole),
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole) => new MolarMass(_value / 0.45359237, MolarMassUnit.PoundPerMole),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarMass ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not MolarMassUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is MolarMassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        #endregion
+        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
+#endif
 
         #endregion
 
@@ -1055,28 +804,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, null);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

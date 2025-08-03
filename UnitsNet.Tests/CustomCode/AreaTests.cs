@@ -73,9 +73,9 @@ namespace UnitsNet.Tests
         {
             Length diameter = Length.FromMeters(diameterMeters);
 
-            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
+            QuantityValue actual = Area.FromCircleDiameter(diameter).SquareMeters;
 
-            Assert.Equal(expected, actual);
+            AssertEx.EqualTolerance(expected, actual, SquareMetersTolerance);
         }
 
         [Theory]
@@ -87,9 +87,9 @@ namespace UnitsNet.Tests
         {
             Length radius = Length.FromMeters(radiusMeters);
 
-            double actual = Area.FromCircleRadius(radius).SquareMeters;
+            QuantityValue actual = Area.FromCircleRadius(radius).SquareMeters;
 
-            Assert.Equal(expected, actual);
+            AssertEx.EqualTolerance(expected, actual, SquareMetersTolerance);
         }
 
         [Fact]

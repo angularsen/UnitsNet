@@ -34,8 +34,8 @@ public partial class Quantity
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> Quantities { get; } =
-        [
+        internal static IReadOnlyList<QuantityInfo> Quantities => new QuantityInfo[]
+        {
             AbsorbedDoseOfIonizingRadiation.Info,
             Acceleration.Info,
             AmountOfSubstance.Info,
@@ -164,138 +164,17 @@ public partial class Quantity
             VolumePerLength.Info,
             VolumetricHeatCapacity.Info,
             WarpingMomentOfInertia.Info,
-        ];
+        };
 
-        internal static void RegisterUnitConversions(UnitConverter unitConverter)
+        /// <summary>
+        ///     All implicit quantity conversions that exist by default.
+        /// </summary>
+        internal static readonly IReadOnlyList<QuantityConversionMapping> Conversions = new QuantityConversionMapping[]
         {
-            AbsorbedDoseOfIonizingRadiation.RegisterDefaultConversions(unitConverter);
-            Acceleration.RegisterDefaultConversions(unitConverter);
-            AmountOfSubstance.RegisterDefaultConversions(unitConverter);
-            AmplitudeRatio.RegisterDefaultConversions(unitConverter);
-            Angle.RegisterDefaultConversions(unitConverter);
-            Area.RegisterDefaultConversions(unitConverter);
-            AreaDensity.RegisterDefaultConversions(unitConverter);
-            AreaMomentOfInertia.RegisterDefaultConversions(unitConverter);
-            BitRate.RegisterDefaultConversions(unitConverter);
-            BrakeSpecificFuelConsumption.RegisterDefaultConversions(unitConverter);
-            CoefficientOfThermalExpansion.RegisterDefaultConversions(unitConverter);
-            Compressibility.RegisterDefaultConversions(unitConverter);
-            Density.RegisterDefaultConversions(unitConverter);
-            DoseAreaProduct.RegisterDefaultConversions(unitConverter);
-            Duration.RegisterDefaultConversions(unitConverter);
-            DynamicViscosity.RegisterDefaultConversions(unitConverter);
-            ElectricAdmittance.RegisterDefaultConversions(unitConverter);
-            ElectricApparentEnergy.RegisterDefaultConversions(unitConverter);
-            ElectricApparentPower.RegisterDefaultConversions(unitConverter);
-            ElectricCapacitance.RegisterDefaultConversions(unitConverter);
-            ElectricCharge.RegisterDefaultConversions(unitConverter);
-            ElectricChargeDensity.RegisterDefaultConversions(unitConverter);
-            ElectricConductance.RegisterDefaultConversions(unitConverter);
-            ElectricConductivity.RegisterDefaultConversions(unitConverter);
-            ElectricCurrent.RegisterDefaultConversions(unitConverter);
-            ElectricCurrentDensity.RegisterDefaultConversions(unitConverter);
-            ElectricCurrentGradient.RegisterDefaultConversions(unitConverter);
-            ElectricField.RegisterDefaultConversions(unitConverter);
-            ElectricImpedance.RegisterDefaultConversions(unitConverter);
-            ElectricInductance.RegisterDefaultConversions(unitConverter);
-            ElectricPotential.RegisterDefaultConversions(unitConverter);
-            ElectricPotentialChangeRate.RegisterDefaultConversions(unitConverter);
-            ElectricReactance.RegisterDefaultConversions(unitConverter);
-            ElectricReactiveEnergy.RegisterDefaultConversions(unitConverter);
-            ElectricReactivePower.RegisterDefaultConversions(unitConverter);
-            ElectricResistance.RegisterDefaultConversions(unitConverter);
-            ElectricResistivity.RegisterDefaultConversions(unitConverter);
-            ElectricSurfaceChargeDensity.RegisterDefaultConversions(unitConverter);
-            ElectricSusceptance.RegisterDefaultConversions(unitConverter);
-            Energy.RegisterDefaultConversions(unitConverter);
-            EnergyDensity.RegisterDefaultConversions(unitConverter);
-            Entropy.RegisterDefaultConversions(unitConverter);
-            FluidResistance.RegisterDefaultConversions(unitConverter);
-            Force.RegisterDefaultConversions(unitConverter);
-            ForceChangeRate.RegisterDefaultConversions(unitConverter);
-            ForcePerLength.RegisterDefaultConversions(unitConverter);
-            Frequency.RegisterDefaultConversions(unitConverter);
-            FuelEfficiency.RegisterDefaultConversions(unitConverter);
-            HeatFlux.RegisterDefaultConversions(unitConverter);
-            HeatTransferCoefficient.RegisterDefaultConversions(unitConverter);
-            Illuminance.RegisterDefaultConversions(unitConverter);
-            Impulse.RegisterDefaultConversions(unitConverter);
-            Information.RegisterDefaultConversions(unitConverter);
-            Irradiance.RegisterDefaultConversions(unitConverter);
-            Irradiation.RegisterDefaultConversions(unitConverter);
-            Jerk.RegisterDefaultConversions(unitConverter);
-            KinematicViscosity.RegisterDefaultConversions(unitConverter);
-            LeakRate.RegisterDefaultConversions(unitConverter);
-            Length.RegisterDefaultConversions(unitConverter);
-            Level.RegisterDefaultConversions(unitConverter);
-            LinearDensity.RegisterDefaultConversions(unitConverter);
-            LinearPowerDensity.RegisterDefaultConversions(unitConverter);
-            Luminance.RegisterDefaultConversions(unitConverter);
-            Luminosity.RegisterDefaultConversions(unitConverter);
-            LuminousFlux.RegisterDefaultConversions(unitConverter);
-            LuminousIntensity.RegisterDefaultConversions(unitConverter);
-            MagneticField.RegisterDefaultConversions(unitConverter);
-            MagneticFlux.RegisterDefaultConversions(unitConverter);
-            Magnetization.RegisterDefaultConversions(unitConverter);
-            Mass.RegisterDefaultConversions(unitConverter);
-            MassConcentration.RegisterDefaultConversions(unitConverter);
-            MassFlow.RegisterDefaultConversions(unitConverter);
-            MassFlux.RegisterDefaultConversions(unitConverter);
-            MassFraction.RegisterDefaultConversions(unitConverter);
-            MassMomentOfInertia.RegisterDefaultConversions(unitConverter);
-            Molality.RegisterDefaultConversions(unitConverter);
-            MolarEnergy.RegisterDefaultConversions(unitConverter);
-            MolarEntropy.RegisterDefaultConversions(unitConverter);
-            MolarFlow.RegisterDefaultConversions(unitConverter);
-            Molarity.RegisterDefaultConversions(unitConverter);
-            MolarMass.RegisterDefaultConversions(unitConverter);
-            Permeability.RegisterDefaultConversions(unitConverter);
-            Permittivity.RegisterDefaultConversions(unitConverter);
-            PorousMediumPermeability.RegisterDefaultConversions(unitConverter);
-            Power.RegisterDefaultConversions(unitConverter);
-            PowerDensity.RegisterDefaultConversions(unitConverter);
-            PowerRatio.RegisterDefaultConversions(unitConverter);
-            Pressure.RegisterDefaultConversions(unitConverter);
-            PressureChangeRate.RegisterDefaultConversions(unitConverter);
-            RadiationEquivalentDose.RegisterDefaultConversions(unitConverter);
-            RadiationEquivalentDoseRate.RegisterDefaultConversions(unitConverter);
-            RadiationExposure.RegisterDefaultConversions(unitConverter);
-            Radioactivity.RegisterDefaultConversions(unitConverter);
-            Ratio.RegisterDefaultConversions(unitConverter);
-            RatioChangeRate.RegisterDefaultConversions(unitConverter);
-            ReciprocalArea.RegisterDefaultConversions(unitConverter);
-            ReciprocalLength.RegisterDefaultConversions(unitConverter);
-            RelativeHumidity.RegisterDefaultConversions(unitConverter);
-            RotationalAcceleration.RegisterDefaultConversions(unitConverter);
-            RotationalSpeed.RegisterDefaultConversions(unitConverter);
-            RotationalStiffness.RegisterDefaultConversions(unitConverter);
-            RotationalStiffnessPerLength.RegisterDefaultConversions(unitConverter);
-            Scalar.RegisterDefaultConversions(unitConverter);
-            SolidAngle.RegisterDefaultConversions(unitConverter);
-            SpecificEnergy.RegisterDefaultConversions(unitConverter);
-            SpecificEntropy.RegisterDefaultConversions(unitConverter);
-            SpecificFuelConsumption.RegisterDefaultConversions(unitConverter);
-            SpecificVolume.RegisterDefaultConversions(unitConverter);
-            SpecificWeight.RegisterDefaultConversions(unitConverter);
-            Speed.RegisterDefaultConversions(unitConverter);
-            StandardVolumeFlow.RegisterDefaultConversions(unitConverter);
-            Temperature.RegisterDefaultConversions(unitConverter);
-            TemperatureChangeRate.RegisterDefaultConversions(unitConverter);
-            TemperatureDelta.RegisterDefaultConversions(unitConverter);
-            TemperatureGradient.RegisterDefaultConversions(unitConverter);
-            ThermalConductivity.RegisterDefaultConversions(unitConverter);
-            ThermalInsulance.RegisterDefaultConversions(unitConverter);
-            ThermalResistance.RegisterDefaultConversions(unitConverter);
-            Torque.RegisterDefaultConversions(unitConverter);
-            Turbidity.RegisterDefaultConversions(unitConverter);
-            VitaminA.RegisterDefaultConversions(unitConverter);
-            Volume.RegisterDefaultConversions(unitConverter);
-            VolumeConcentration.RegisterDefaultConversions(unitConverter);
-            VolumeFlow.RegisterDefaultConversions(unitConverter);
-            VolumeFlowPerArea.RegisterDefaultConversions(unitConverter);
-            VolumePerLength.RegisterDefaultConversions(unitConverter);
-            VolumetricHeatCapacity.RegisterDefaultConversions(unitConverter);
-            WarpingMomentOfInertia.RegisterDefaultConversions(unitConverter);
-        }
+            new (typeof(Area), typeof(ReciprocalArea)),
+            new (typeof(Density), typeof(SpecificVolume)),
+            new (typeof(ElectricConductivity), typeof(ElectricResistivity)),
+            new (typeof(Length), typeof(ReciprocalLength)),
+        };
     }
 }

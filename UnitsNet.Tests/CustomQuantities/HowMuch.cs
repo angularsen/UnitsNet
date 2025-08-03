@@ -9,40 +9,38 @@ namespace UnitsNet.Tests.CustomQuantities
     /// </summary>
     public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
     {
-        public HowMuch(double value, HowMuchUnit unit)
+        public HowMuch(QuantityValue value, HowMuchUnit unit)
         {
             Unit = unit;
             Value = value;
         }
-
-        public static HowMuch From(double value, HowMuchUnit unit)
+        
+        public static HowMuch From(QuantityValue value, HowMuchUnit unit)
         {
             return new HowMuch(value, unit);
         }
 
-        public double As(HowMuchUnit unit)
-        {
-            throw new NotImplementedException();
-        }
-
         public HowMuchUnit Unit { get; }
 
-        public double Value { get; }
+        public QuantityValue Value { get; }
+
 
         #region IQuantity
-        
+
         public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
             nameof(HowMuch),
             HowMuchUnit.Some,
             new UnitDefinition<HowMuchUnit>[]
             {
                 new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
-                new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne)),
-                new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined)
+                new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne), new QuantityValue(1, 10)),
+                new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
             },
             new HowMuch(0, HowMuchUnit.Some),
             new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
             From);
+
+        public BaseDimensions Dimensions => Info.BaseDimensions;
 
         QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
         {
@@ -59,56 +57,62 @@ namespace UnitsNet.Tests.CustomQuantities
             get => Info;
         }
 
-        public BaseDimensions Dimensions => Info.BaseDimensions;
-
-
         UnitKey IQuantity.UnitKey
         {
             get => UnitKey.ForUnit(Unit);
         }
 
-        public double As(Enum unit) => Convert.ToDouble(unit);
-
-        public double As(UnitSystem unitSystem) => throw new NotImplementedException();
-
-        public IQuantity ToUnit(Enum unit)
+        public override string ToString()
         {
-            if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
-            throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
+            return $"{Value} {Unit}";
         }
 
-        public IQuantity<HowMuchUnit> ToUnit(HowMuchUnit unit)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
-            throw new NotImplementedException();
+            return $"HowMuch ({format}, {formatProvider})";
+        }
+
+#if !NET
+        //  all the following methods have a default interface implementation for net8.0 and above
+        IQuantityInstanceInfo<HowMuch> IQuantityOfType<HowMuch>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        Enum IQuantity.Unit
+        {
+            get => Unit;
         }
         
+        // all of these are now marked as obsolete
+
+        QuantityValue IQuantity.As(Enum unit)
+        {
+            return UnitConverter.Default.ConvertValue(this, unit);
+        }
+
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            return UnitConverter.Default.ConvertTo(this, unit);
+        }
+
         IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
         {
-            throw new NotImplementedException();
+            return this.ToUnit(unitSystem);
         }
 
-        public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
-
-        public override string ToString() => $"{Value} {Unit}";
-        public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
-        public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
-
-        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
-
-        public bool Equals(HowMuch other, HowMuch tolerance)
+        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(HowMuchUnit unit)
         {
-            throw new NotImplementedException();
+            return this.ToUnit(unit);
         }
-        
-#if !NET
 
-        QuantityInfo IQuantity.QuantityInfo
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem)
         {
-            get { return Info; }
+            return this.ToUnit(unitSystem);
         }
 
-        Enum IQuantity.Unit => Unit;
 #endif
+
         #endregion
     }
 }

@@ -19,6 +19,12 @@ public class SumOfTemperatureDeltasWithSameUnitsBenchmarks
 
     [Params(10, 1000)]
     public int NbOperations { get; set; }
+    
+    [Params(true)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [Params(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.DegreeFahrenheit)]
     public TemperatureDeltaUnit Unit { get; set; }
@@ -26,11 +32,19 @@ public class SumOfTemperatureDeltasWithSameUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+
         _quantities = Enumerable.Range(0, NbOperations).Select(_ => TemperatureDelta.From(Value, Unit)).ToArray();
     }
 
     [Benchmark(Baseline = true)]
     public TemperatureDelta SumOfDeltas()
+    {
+        return _quantities.Sum();
+    }
+
+    [Benchmark(Baseline = false)]
+    public TemperatureDelta GenericSumOfDeltas()
     {
 #if NET
         return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);

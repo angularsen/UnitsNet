@@ -12,7 +12,7 @@ namespace UnitsNet.Benchmark.Conversions.ToString;
 [SimpleJob(RuntimeMoniker.Net90)]
 public class ToStringWithDefaultPrecisionBenchmarks
 {
-    private static readonly double Value = 123.456;
+    private static readonly QuantityValue Value = 123.456m;
     private readonly Random _random = new(42);
 
     private Mass[] _masses = [];

@@ -50,8 +50,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         public void UnitsNetIComparableJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
-
-            Assert.Equal($"Value cannot be null. (Parameter '{paramName}')", exception.Message);
+            
+            Assert.Equal(paramName, exception.ParamName);
         }
 
         [Fact]
