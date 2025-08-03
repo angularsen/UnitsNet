@@ -30,59 +30,25 @@ public static class LogarithmicQuantityExtensions
 #endif
     }
 
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
-    public static bool Equals<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther? other, TTolerance tolerance)
+    /// <inheritdoc cref="IQuantity.As(UnitKey)" />
+    public static bool Equals<TQuantity, TOther>(this TQuantity quantity, TOther? other, TQuantity tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
-        where TOther : IQuantityOfType<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : ILogarithmicQuantity<TOther>
     {
-        return other is not null && quantity.EqualsAbsolute(other, tolerance);
+        return other is not null && EqualsNotNull(quantity, other, tolerance);
     }
 
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
-    public static bool Equals<TQuantity, TTolerance>(this TQuantity quantity, IQuantity? other, TTolerance tolerance)
+    /// <inheritdoc cref="IQuantity.As(UnitKey)" />
+    public static bool Equals<TQuantity, TOther>(this TQuantity quantity, TOther? other, TQuantity tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : struct, ILogarithmicQuantity<TOther>
     {
-        return other is TQuantity otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
+        return other is not null && EqualsNotNull(quantity, other.Value, tolerance);
     }
 
-    /// <summary>
-    ///     <para> Compares the logarithmic equality of the current quantity to another quantity, given a specified tolerance. </para>
-    ///     <example>
-    ///         In this example, the two power ratios will be considered equal if the value of `b` is within 0.5 decibels of
-    ///         `a`.
-    ///         <code>
-    ///     var a = PowerRatio.FromDecibelMilliwatts(30);   // Reference power of 1 mW
-    ///     var b = PowerRatio.FromDecibelMilliwatts(29.8); // Slightly less than `a`
-    ///     var tolerance = PowerRatio.FromDecibelMilliwatts(0.5);  // 0.5 dBm tolerance
-    ///     a.Equals(b, tolerance); // true, as 30 dBm equals 29.8 dBm +/- 0.5 dBm
-    ///     </code>
-    ///     </example>
-    /// </summary>
-    /// <typeparam name="TQuantity">The type of the quantity being compared.</typeparam>
-    /// <typeparam name="TOther">The type of the other quantity being compared.</typeparam>
-    /// <typeparam name="TTolerance">The type of the tolerance value.</typeparam>
-    /// <param name="quantity">The logarithmic quantity to compare.</param>
-    /// <param name="other">The other quantity to compare to.</param>
-    /// <param name="tolerance">The tolerance value for the maximum allowed difference.</param>
-    /// <returns>
-    ///     True if the absolute difference between the two quantities, when converted to linear space, is not greater
-    ///     than the specified tolerance.
-    /// </returns>
-    /// <exception cref="UnitNotFoundException">Thrown when no unit information is found for one of the specified enum value.</exception>
-    /// <remarks>
-    ///     This method converts the quantities and the tolerance to linear space before performing the comparison, an
-    ///     operation which doesn't produce an exact value.
-    ///     <para>
-    ///         It is generally advised against specifying "zero" tolerance, preferring the use of the default equality
-    ///         comparer, which is significantly more performant.
-    ///     </para>
-    /// </remarks>
-    private static bool EqualsAbsolute<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther other, TTolerance tolerance)
+    private static bool EqualsNotNull<TQuantity, TOther>(TQuantity quantity, TOther other, TQuantity tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
-        where TOther : IQuantityOfType<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : ILogarithmicQuantity<TOther>
     {
         UnitKey quantityUnit = quantity.UnitKey;
 #if NET

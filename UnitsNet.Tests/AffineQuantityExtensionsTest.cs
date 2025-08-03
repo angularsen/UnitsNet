@@ -1,8 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace UnitsNet.Tests;
 
+[SuppressMessage("ReSharper", "InvokeAsExtensionMethod")]
 public class AffineQuantityExtensionsTest
 {
     [Theory]
@@ -45,43 +48,13 @@ public class AffineQuantityExtensionsTest
     }
 
     [Fact]
-    public void Equals_Temperature_TemperatureDelta_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
+    public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
     {
         var temperature1 = Temperature.FromDegreesCelsius(25.0);
         var temperature2 = Temperature.FromDegreesCelsius(25.0);
         var negativeTolerance = TemperatureDelta.FromDegreesCelsius(-0.1);
 
         Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.Equals(temperature2, negativeTolerance));
-    }
-
-    [Theory]
-    [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    // [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance (but fails due to rounding)
-    [InlineData(25.0, 25.1, 0.10001, true)] // Within tolerance
-    [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
-    [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
-    [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
-    public void Equals_Temperature_IQuantity(double value1, double value2, double toleranceValue, bool expected)
-    {
-        var temperature1 = Temperature.FromDegreesCelsius(value1);
-        IQuantity temperature2 = Temperature.FromDegreesCelsius(value2);
-        var tolerance = TemperatureDelta.FromDegreesCelsius(toleranceValue);
-
-        var result = temperature1.Equals(temperature2, tolerance);
-
-        Assert.Equal(expected, result);
-    }
-
-    [Fact]
-    public void Equals_Temperature_IQuantity_WithDifferentType_ReturnsFalse()
-    {
-        var temperature1 = Temperature.FromDegreesCelsius(25.0);
-        IQuantity length = Length.From(1, LengthUnit.Meter);
-        var tolerance = TemperatureDelta.FromDegreesCelsius(1);
-
-        var result = temperature1.Equals(length, tolerance);
-
-        Assert.False(result);
     }
 
     [Fact]
@@ -90,20 +63,9 @@ public class AffineQuantityExtensionsTest
         var quantity = Temperature.FromDegreesCelsius(25.0);
         var tolerance = TemperatureDelta.FromDegreesCelsius(25.0);
 
-        var result = quantity.Equals(null, tolerance);
+        var result = AffineQuantityExtensions.Equals(quantity, (Temperature?)null, tolerance);
 
         Assert.False(result);
-    }
-
-    [Fact]
-    public void Equals_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
-    {
-        var temperature1 = Temperature.FromDegreesCelsius(25.0);
-        var temperature2 = Temperature.FromDegreesCelsius(25.0);
-        var negativeTolerance = TemperatureDelta.FromDegreesCelsius(-0.1);
-
-        Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.Equals(temperature2, negativeTolerance));
-        Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.Equals((IQuantity)temperature2, negativeTolerance));
     }
 
     [Theory]
@@ -114,7 +76,7 @@ public class AffineQuantityExtensionsTest
         Temperature[] temperatures = Array.ConvertAll(values, value => Temperature.FromDegreesCelsius(value));
 
         Temperature result = temperatures.Average();
-        
+
         Assert.Equal(expectedAverage, result.Value);
         Assert.Equal(TemperatureUnit.DegreeCelsius, result.Unit);
     }
@@ -147,7 +109,7 @@ public class AffineQuantityExtensionsTest
     public void Average_Temperature_ThrowsInvalidOperationException_ForEmptyCollection()
     {
         Temperature[] temperatures = [];
-        
+
         Assert.Throws<InvalidOperationException>(() => temperatures.Average());
     }
 
@@ -163,7 +125,7 @@ public class AffineQuantityExtensionsTest
         Assert.Equal(expectedAverage, result.Value);
         Assert.Equal(unit, result.Unit);
     }
-    
+
     [Fact]
     public void Average_TemperaturesWithDifferentUnits_WithTargetUnit()
     {

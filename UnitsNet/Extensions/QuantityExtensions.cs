@@ -10,14 +10,30 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="quantity"></param>
+    /// <param name="other"></param>
+    /// <param name="tolerance"></param>
+    /// <returns></returns>
+    public static bool Equals(this IQuantity quantity, IQuantity? other, IQuantity tolerance)
+    {
+        ArgumentNullException.ThrowIfNull(quantity);
+        ArgumentNullException.ThrowIfNull(tolerance);
+        if (other is null) return false;
+
+        UnitKey quantityUnit = quantity.UnitKey;
+        return Comparison.EqualsAbsolute(quantity.Value, other.GetValue(quantityUnit), tolerance.GetValue(quantityUnit));
+    }
+
     /// <inheritdoc cref="IQuantity.As(UnitKey)" />
     /// <remarks>This should be using UnitConverter.Default.ConvertValue(quantity, toUnit) </remarks>
-    internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
-        where TQuantity : IQuantity
+    internal static double GetValue(this IQuantity quantity, UnitKey toUnit)
     {
         return quantity.As(toUnit);
     }
-    
+
     /// <summary>
     ///     Returns the string representation of the specified quantity using the provided format provider.
     /// </summary>
@@ -71,7 +87,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -117,7 +133,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {

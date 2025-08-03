@@ -1,8 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace UnitsNet.Tests;
 
+[SuppressMessage("ReSharper", "InvokeAsExtensionMethod")]
 public class LinearQuantityExtensionsTest
 {
     [Theory]
@@ -44,35 +47,17 @@ public class LinearQuantityExtensionsTest
         });
     }
 
-    [Theory]
-    [InlineData(2.0, 2.0, 0.1, true)]
-    // [InlineData(2.0, 2.1, 0.1, true)]  // should be equal but fails due to rounding
-    [InlineData(2.0, 2.1, 0.10001, true)] 
-    [InlineData(2.0, 2.2, 0.1, false)]
-    [InlineData(2.0, 2.0, 0.0, true)]
-    [InlineData(2.0, 2.1, 0.0, false)]
-    public void Equals_IQuantityWithTolerance_ReturnsExpectedResult(double value1, double value2, double tolerance, bool expected)
-    {
-        var quantity1 = Length.FromMeters(value1);
-        IQuantity quantity2 = Length.FromMeters(value2);
-        var toleranceQuantity = Length.FromMeters(tolerance);
-
-        var result = quantity1.Equals(quantity2, toleranceQuantity);
-
-        Assert.Equal(expected, result);
-    }
-
     [Fact]
     public void Equals_WithNullOther_ReturnsFalse()
     {
         var quantity = Length.FromMeters(2.0);
         var tolerance = Length.FromMeters(0.1);
 
-        var result = quantity.Equals(null, tolerance);
+        var result = LinearQuantityExtensions.Equals(quantity, (Length?)null, tolerance);
 
         Assert.False(result);
     }
-    
+
     [Fact(Skip = "Currently throws a NotImplementedException")]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
@@ -83,16 +68,6 @@ public class LinearQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
 
-    [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
-    {
-        var quantity = Length.FromMeters(1);
-        var invalidQuantity = new Length(1, (LengthUnit)(-1));
-        Assert.Throws<UnitNotFoundException>(() => invalidQuantity.Equals((IQuantity)quantity, quantity));
-        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)invalidQuantity, quantity));
-        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)quantity, invalidQuantity));
-    }
-
     [Fact]
     public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
     {
@@ -101,7 +76,6 @@ public class LinearQuantityExtensionsTest
         var tolerance = Length.FromMeters(-0.1);
 
         Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(other, tolerance));
-        Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals((IQuantity)other, tolerance));
     }
 
     [Fact]

@@ -11,21 +11,20 @@ namespace UnitsNet;
 /// </summary>
 public static class LinearQuantityExtensions
 {
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
-    public static bool Equals<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther? other, TTolerance tolerance)
+    /// <inheritdoc cref="EqualsNotNull{TQuantity,TOther}"/>
+    public static bool Equals<TQuantity, TOther>(this TQuantity quantity, TOther? other, TQuantity tolerance)
         where TQuantity : ILinearQuantity<TQuantity>
-        where TOther : IQuantityOfType<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : struct, ILinearQuantity<TOther>
     {
-        return other != null && quantity.EqualsAbsolute(other, tolerance);
+        return other is not null && EqualsNotNull(quantity, other.Value, tolerance);
     }
 
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
-    public static bool Equals<TQuantity, TTolerance>(this TQuantity quantity, IQuantity? other, TTolerance tolerance)
+    /// <inheritdoc cref="EqualsNotNull{TQuantity,TOther}"/>
+    public static bool Equals<TQuantity, TOther>(this TQuantity quantity, TOther? other, TQuantity tolerance)
         where TQuantity : ILinearQuantity<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : ILinearQuantity<TOther>
     {
-        return other is TQuantity otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
+        return other is not null && EqualsNotNull(quantity, other, tolerance);
     }
 
     /// <summary>
@@ -45,7 +44,6 @@ public static class LinearQuantityExtensions
     /// </summary>
     /// <typeparam name="TQuantity">The type of the quantity being compared.</typeparam>
     /// <typeparam name="TOther">The type of the other quantity being compared.</typeparam>
-    /// <typeparam name="TTolerance">The type of the tolerance quantity.</typeparam>
     /// <param name="quantity">The quantity to compare.</param>
     /// <param name="other">The other quantity to compare to.</param>
     /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero.</param>
@@ -56,10 +54,9 @@ public static class LinearQuantityExtensions
     ///     It is generally advised against specifying "zero" tolerance, preferring the use of the default equality
     ///     comparer, which is significantly more performant.
     /// </remarks>
-    private static bool EqualsAbsolute<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther other, TTolerance tolerance)
+    private static bool EqualsNotNull<TQuantity, TOther>(TQuantity quantity, TOther other, TQuantity tolerance)
         where TQuantity : ILinearQuantity<TQuantity>
-        where TOther : IQuantityOfType<TQuantity>
-        where TTolerance : IQuantityOfType<TQuantity>
+        where TOther : ILinearQuantity<TOther>
     {
         UnitKey quantityUnit = quantity.UnitKey;
         return Comparison.EqualsAbsolute(quantity.Value, other.GetValue(quantityUnit), tolerance.GetValue(quantityUnit));
@@ -88,7 +85,7 @@ public static class LinearQuantityExtensions
             {
                 return default!;
             }
-            
+
             return (TQuantity)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)).Zero;
 #endif
         }
@@ -107,7 +104,7 @@ public static class LinearQuantityExtensions
         return firstQuantity.QuantityInfo.Create(sumOfValues, resultUnit);
 #endif
     }
-    
+
     /// <summary>
     ///     Computes the sum of a sequence of quantities by applying a specified selector function to each element of the
     ///     sequence.
