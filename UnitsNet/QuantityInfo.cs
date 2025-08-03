@@ -31,12 +31,6 @@ public abstract class QuantityInfo : IQuantityInfo
         UnitAbbreviations = unitAbbreviations;
     }
 
-    /// <inheritdoc />
-    public string Name { get; }
-
-    /// <inheritdoc />
-    public Type QuantityType { get; }
-
     /// <inheritdoc cref="QuantityType" />
     [Obsolete("Replaced by the QuantityType property.")]
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -44,6 +38,12 @@ public abstract class QuantityInfo : IQuantityInfo
     {
         get => QuantityType;
     }
+
+    /// <inheritdoc />
+    public string Name { get; }
+
+    /// <inheritdoc />
+    public Type QuantityType { get; }
 
     /// <inheritdoc />
     public abstract Type UnitType { get; }
@@ -61,9 +61,6 @@ public abstract class QuantityInfo : IQuantityInfo
         get => GetGenericZero();
     }
 
-    /// <inheritdoc cref="Zero" />
-    protected internal abstract IQuantity GetGenericZero();
-
     /// <inheritdoc />
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public UnitInfo BaseUnitInfo
@@ -71,18 +68,12 @@ public abstract class QuantityInfo : IQuantityInfo
         get => GetGenericBaseUnitInfo();
     }
 
-    /// <inheritdoc cref="BaseUnitInfo" />
-    protected internal abstract UnitInfo GetGenericBaseUnitInfo();
-
     /// <inheritdoc />
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public IReadOnlyList<UnitInfo> UnitInfos
     {
         get => GetGenericUnitInfos();
     }
-
-    /// <inheritdoc cref="UnitInfos" />
-    protected internal abstract IReadOnlyList<UnitInfo> GetGenericUnitInfos();
 
     /// <inheritdoc />
     public abstract UnitInfo this[UnitKey unit] { get; }
@@ -98,6 +89,15 @@ public abstract class QuantityInfo : IQuantityInfo
     {
         return UnitInfo.GetUnitsWithBase(UnitInfos, baseUnits);
     }
+
+    /// <inheritdoc cref="Zero" />
+    protected internal abstract IQuantity GetGenericZero();
+
+    /// <inheritdoc cref="BaseUnitInfo" />
+    protected internal abstract UnitInfo GetGenericBaseUnitInfo();
+
+    /// <inheritdoc cref="UnitInfos" />
+    protected internal abstract IReadOnlyList<UnitInfo> GetGenericUnitInfos();
 
     /// <summary>
     ///     Creates an instance of <see cref="IQuantity" /> from the specified value and unit.
@@ -352,20 +352,21 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
 }
 
 /// <inheritdoc cref="QuantityInfoBase{TQuantity,TUnit,TUnitMapping}" />
-public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit, UnitInfo<TQuantity, TUnit>>//, IQuantityInfo<TQuantity, TUnit>
+public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit, UnitInfo<TQuantity, TUnit>>
     where TQuantity : IQuantity<TQuantity, TUnit>
     where TUnit : struct, Enum
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly Dictionary<TUnit, UnitInfo<TQuantity, TUnit>> _unitMappings;
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly UnitInfo<TQuantity, TUnit>[] _unitInfos;
 
-    #if NET
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private readonly Dictionary<TUnit, UnitInfo<TQuantity, TUnit>> _unitMappings;
+    
+#if NET
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity name.
+    ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity
+    ///     name.
     /// </summary>
     /// <param name="unitMappings">A collection of unit mapping configurations.</param>
     /// <param name="baseUnit">The base unit of the quantity.</param>
@@ -377,7 +378,8 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <exception cref="UnitNotFoundException">
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
-    public QuantityInfo(TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations = null)
+    public QuantityInfo(TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
+        ResourceManager? unitAbbreviations = null)
         : this(typeof(TQuantity).Name, baseUnit, unitMappings, baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
@@ -396,15 +398,17 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// <exception cref="UnitNotFoundException">
     ///     Thrown when no unit mapping configuration is found for the specified <paramref name="baseUnit" />.
     /// </exception>
-    public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions, ResourceManager? unitAbbreviations = null)
+    public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
+        ResourceManager? unitAbbreviations = null)
         : this(name, baseUnit, unitMappings, TQuantity.From(QuantityValue.Zero, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
 
-    #endif
-
+#endif
+    
     /// <summary>
-    ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity name.
+    ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity
+    ///     name.
     /// </summary>
     /// <param name="unitMappings">A collection of unit mapping configurations.</param>
     /// <param name="baseUnit">The base unit of the quantity.</param>
