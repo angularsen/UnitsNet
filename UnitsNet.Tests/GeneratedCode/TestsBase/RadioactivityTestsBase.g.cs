@@ -289,122 +289,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Radioactivity.From(1, RadioactivityUnit.Becquerel);
-            Assert.Equal(1, quantity00.Becquerels);
-            Assert.Equal(RadioactivityUnit.Becquerel, quantity00.Unit);
-
-            var quantity01 = Radioactivity.From(1, RadioactivityUnit.Curie);
-            Assert.Equal(1, quantity01.Curies);
-            Assert.Equal(RadioactivityUnit.Curie, quantity01.Unit);
-
-            var quantity02 = Radioactivity.From(1, RadioactivityUnit.Exabecquerel);
-            Assert.Equal(1, quantity02.Exabecquerels);
-            Assert.Equal(RadioactivityUnit.Exabecquerel, quantity02.Unit);
-
-            var quantity03 = Radioactivity.From(1, RadioactivityUnit.Gigabecquerel);
-            Assert.Equal(1, quantity03.Gigabecquerels);
-            Assert.Equal(RadioactivityUnit.Gigabecquerel, quantity03.Unit);
-
-            var quantity04 = Radioactivity.From(1, RadioactivityUnit.Gigacurie);
-            Assert.Equal(1, quantity04.Gigacuries);
-            Assert.Equal(RadioactivityUnit.Gigacurie, quantity04.Unit);
-
-            var quantity05 = Radioactivity.From(1, RadioactivityUnit.Gigarutherford);
-            Assert.Equal(1, quantity05.Gigarutherfords);
-            Assert.Equal(RadioactivityUnit.Gigarutherford, quantity05.Unit);
-
-            var quantity06 = Radioactivity.From(1, RadioactivityUnit.Kilobecquerel);
-            Assert.Equal(1, quantity06.Kilobecquerels);
-            Assert.Equal(RadioactivityUnit.Kilobecquerel, quantity06.Unit);
-
-            var quantity07 = Radioactivity.From(1, RadioactivityUnit.Kilocurie);
-            Assert.Equal(1, quantity07.Kilocuries);
-            Assert.Equal(RadioactivityUnit.Kilocurie, quantity07.Unit);
-
-            var quantity08 = Radioactivity.From(1, RadioactivityUnit.Kilorutherford);
-            Assert.Equal(1, quantity08.Kilorutherfords);
-            Assert.Equal(RadioactivityUnit.Kilorutherford, quantity08.Unit);
-
-            var quantity09 = Radioactivity.From(1, RadioactivityUnit.Megabecquerel);
-            Assert.Equal(1, quantity09.Megabecquerels);
-            Assert.Equal(RadioactivityUnit.Megabecquerel, quantity09.Unit);
-
-            var quantity10 = Radioactivity.From(1, RadioactivityUnit.Megacurie);
-            Assert.Equal(1, quantity10.Megacuries);
-            Assert.Equal(RadioactivityUnit.Megacurie, quantity10.Unit);
-
-            var quantity11 = Radioactivity.From(1, RadioactivityUnit.Megarutherford);
-            Assert.Equal(1, quantity11.Megarutherfords);
-            Assert.Equal(RadioactivityUnit.Megarutherford, quantity11.Unit);
-
-            var quantity12 = Radioactivity.From(1, RadioactivityUnit.Microbecquerel);
-            Assert.Equal(1, quantity12.Microbecquerels);
-            Assert.Equal(RadioactivityUnit.Microbecquerel, quantity12.Unit);
-
-            var quantity13 = Radioactivity.From(1, RadioactivityUnit.Microcurie);
-            Assert.Equal(1, quantity13.Microcuries);
-            Assert.Equal(RadioactivityUnit.Microcurie, quantity13.Unit);
-
-            var quantity14 = Radioactivity.From(1, RadioactivityUnit.Microrutherford);
-            Assert.Equal(1, quantity14.Microrutherfords);
-            Assert.Equal(RadioactivityUnit.Microrutherford, quantity14.Unit);
-
-            var quantity15 = Radioactivity.From(1, RadioactivityUnit.Millibecquerel);
-            Assert.Equal(1, quantity15.Millibecquerels);
-            Assert.Equal(RadioactivityUnit.Millibecquerel, quantity15.Unit);
-
-            var quantity16 = Radioactivity.From(1, RadioactivityUnit.Millicurie);
-            Assert.Equal(1, quantity16.Millicuries);
-            Assert.Equal(RadioactivityUnit.Millicurie, quantity16.Unit);
-
-            var quantity17 = Radioactivity.From(1, RadioactivityUnit.Millirutherford);
-            Assert.Equal(1, quantity17.Millirutherfords);
-            Assert.Equal(RadioactivityUnit.Millirutherford, quantity17.Unit);
-
-            var quantity18 = Radioactivity.From(1, RadioactivityUnit.Nanobecquerel);
-            Assert.Equal(1, quantity18.Nanobecquerels);
-            Assert.Equal(RadioactivityUnit.Nanobecquerel, quantity18.Unit);
-
-            var quantity19 = Radioactivity.From(1, RadioactivityUnit.Nanocurie);
-            Assert.Equal(1, quantity19.Nanocuries);
-            Assert.Equal(RadioactivityUnit.Nanocurie, quantity19.Unit);
-
-            var quantity20 = Radioactivity.From(1, RadioactivityUnit.Nanorutherford);
-            Assert.Equal(1, quantity20.Nanorutherfords);
-            Assert.Equal(RadioactivityUnit.Nanorutherford, quantity20.Unit);
-
-            var quantity21 = Radioactivity.From(1, RadioactivityUnit.Petabecquerel);
-            Assert.Equal(1, quantity21.Petabecquerels);
-            Assert.Equal(RadioactivityUnit.Petabecquerel, quantity21.Unit);
-
-            var quantity22 = Radioactivity.From(1, RadioactivityUnit.Picobecquerel);
-            Assert.Equal(1, quantity22.Picobecquerels);
-            Assert.Equal(RadioactivityUnit.Picobecquerel, quantity22.Unit);
-
-            var quantity23 = Radioactivity.From(1, RadioactivityUnit.Picocurie);
-            Assert.Equal(1, quantity23.Picocuries);
-            Assert.Equal(RadioactivityUnit.Picocurie, quantity23.Unit);
-
-            var quantity24 = Radioactivity.From(1, RadioactivityUnit.Picorutherford);
-            Assert.Equal(1, quantity24.Picorutherfords);
-            Assert.Equal(RadioactivityUnit.Picorutherford, quantity24.Unit);
-
-            var quantity25 = Radioactivity.From(1, RadioactivityUnit.Rutherford);
-            Assert.Equal(1, quantity25.Rutherfords);
-            Assert.Equal(RadioactivityUnit.Rutherford, quantity25.Unit);
-
-            var quantity26 = Radioactivity.From(1, RadioactivityUnit.Terabecquerel);
-            Assert.Equal(1, quantity26.Terabecquerels);
-            Assert.Equal(RadioactivityUnit.Terabecquerel, quantity26.Unit);
-
-            var quantity27 = Radioactivity.From(1, RadioactivityUnit.Teracurie);
-            Assert.Equal(1, quantity27.Teracuries);
-            Assert.Equal(RadioactivityUnit.Teracurie, quantity27.Unit);
-
-            var quantity28 = Radioactivity.From(1, RadioactivityUnit.Terarutherford);
-            Assert.Equal(1, quantity28.Terarutherfords);
-            Assert.Equal(RadioactivityUnit.Terarutherford, quantity28.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadioactivityUnit>(), unit =>
+            {
+                var quantity = Radioactivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

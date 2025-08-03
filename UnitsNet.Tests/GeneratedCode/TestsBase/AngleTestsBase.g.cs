@@ -198,66 +198,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Angle.From(1, AngleUnit.Arcminute);
-            Assert.Equal(1, quantity00.Arcminutes);
-            Assert.Equal(AngleUnit.Arcminute, quantity00.Unit);
-
-            var quantity01 = Angle.From(1, AngleUnit.Arcsecond);
-            Assert.Equal(1, quantity01.Arcseconds);
-            Assert.Equal(AngleUnit.Arcsecond, quantity01.Unit);
-
-            var quantity02 = Angle.From(1, AngleUnit.Centiradian);
-            Assert.Equal(1, quantity02.Centiradians);
-            Assert.Equal(AngleUnit.Centiradian, quantity02.Unit);
-
-            var quantity03 = Angle.From(1, AngleUnit.Deciradian);
-            Assert.Equal(1, quantity03.Deciradians);
-            Assert.Equal(AngleUnit.Deciradian, quantity03.Unit);
-
-            var quantity04 = Angle.From(1, AngleUnit.Degree);
-            Assert.Equal(1, quantity04.Degrees);
-            Assert.Equal(AngleUnit.Degree, quantity04.Unit);
-
-            var quantity05 = Angle.From(1, AngleUnit.Gradian);
-            Assert.Equal(1, quantity05.Gradians);
-            Assert.Equal(AngleUnit.Gradian, quantity05.Unit);
-
-            var quantity06 = Angle.From(1, AngleUnit.Microdegree);
-            Assert.Equal(1, quantity06.Microdegrees);
-            Assert.Equal(AngleUnit.Microdegree, quantity06.Unit);
-
-            var quantity07 = Angle.From(1, AngleUnit.Microradian);
-            Assert.Equal(1, quantity07.Microradians);
-            Assert.Equal(AngleUnit.Microradian, quantity07.Unit);
-
-            var quantity08 = Angle.From(1, AngleUnit.Millidegree);
-            Assert.Equal(1, quantity08.Millidegrees);
-            Assert.Equal(AngleUnit.Millidegree, quantity08.Unit);
-
-            var quantity09 = Angle.From(1, AngleUnit.Milliradian);
-            Assert.Equal(1, quantity09.Milliradians);
-            Assert.Equal(AngleUnit.Milliradian, quantity09.Unit);
-
-            var quantity10 = Angle.From(1, AngleUnit.Nanodegree);
-            Assert.Equal(1, quantity10.Nanodegrees);
-            Assert.Equal(AngleUnit.Nanodegree, quantity10.Unit);
-
-            var quantity11 = Angle.From(1, AngleUnit.Nanoradian);
-            Assert.Equal(1, quantity11.Nanoradians);
-            Assert.Equal(AngleUnit.Nanoradian, quantity11.Unit);
-
-            var quantity12 = Angle.From(1, AngleUnit.NatoMil);
-            Assert.Equal(1, quantity12.NatoMils);
-            Assert.Equal(AngleUnit.NatoMil, quantity12.Unit);
-
-            var quantity13 = Angle.From(1, AngleUnit.Radian);
-            Assert.Equal(1, quantity13.Radians);
-            Assert.Equal(AngleUnit.Radian, quantity13.Unit);
-
-            var quantity14 = Angle.From(1, AngleUnit.Revolution);
-            Assert.Equal(1, quantity14.Revolutions);
-            Assert.Equal(AngleUnit.Revolution, quantity14.Unit);
-
+            Assert.All(EnumHelper.GetValues<AngleUnit>(), unit =>
+            {
+                var quantity = Angle.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

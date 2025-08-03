@@ -128,10 +128,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VitaminA.From(1, VitaminAUnit.InternationalUnit);
-            Assert.Equal(1, quantity00.InternationalUnits);
-            Assert.Equal(VitaminAUnit.InternationalUnit, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<VitaminAUnit>(), unit =>
+            {
+                var quantity = VitaminA.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

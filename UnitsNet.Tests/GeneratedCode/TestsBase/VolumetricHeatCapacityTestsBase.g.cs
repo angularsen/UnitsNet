@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
-            Assert.Equal(1, quantity00.BtusPerCubicFootDegreeFahrenheit);
-            Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, quantity00.Unit);
-
-            var quantity01 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
-            Assert.Equal(1, quantity01.CaloriesPerCubicCentimeterDegreeCelsius);
-            Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, quantity01.Unit);
-
-            var quantity02 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
-            Assert.Equal(1, quantity02.JoulesPerCubicMeterDegreeCelsius);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, quantity02.Unit);
-
-            var quantity03 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
-            Assert.Equal(1, quantity03.JoulesPerCubicMeterKelvin);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity03.Unit);
-
-            var quantity04 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
-            Assert.Equal(1, quantity04.KilocaloriesPerCubicCentimeterDegreeCelsius);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, quantity04.Unit);
-
-            var quantity05 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
-            Assert.Equal(1, quantity05.KilojoulesPerCubicMeterDegreeCelsius);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, quantity05.Unit);
-
-            var quantity06 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
-            Assert.Equal(1, quantity06.KilojoulesPerCubicMeterKelvin);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, quantity06.Unit);
-
-            var quantity07 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
-            Assert.Equal(1, quantity07.MegajoulesPerCubicMeterDegreeCelsius);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, quantity07.Unit);
-
-            var quantity08 = VolumetricHeatCapacity.From(1, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
-            Assert.Equal(1, quantity08.MegajoulesPerCubicMeterKelvin);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumetricHeatCapacityUnit>(), unit =>
+            {
+                var quantity = VolumetricHeatCapacity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

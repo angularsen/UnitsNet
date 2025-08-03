@@ -223,86 +223,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumeConcentration.From(1, VolumeConcentrationUnit.CentiliterPerLiter);
-            Assert.Equal(1, quantity00.CentilitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.CentiliterPerLiter, quantity00.Unit);
-
-            var quantity01 = VolumeConcentration.From(1, VolumeConcentrationUnit.CentiliterPerMilliliter);
-            Assert.Equal(1, quantity01.CentilitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.CentiliterPerMilliliter, quantity01.Unit);
-
-            var quantity02 = VolumeConcentration.From(1, VolumeConcentrationUnit.DeciliterPerLiter);
-            Assert.Equal(1, quantity02.DecilitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.DeciliterPerLiter, quantity02.Unit);
-
-            var quantity03 = VolumeConcentration.From(1, VolumeConcentrationUnit.DeciliterPerMilliliter);
-            Assert.Equal(1, quantity03.DecilitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.DeciliterPerMilliliter, quantity03.Unit);
-
-            var quantity04 = VolumeConcentration.From(1, VolumeConcentrationUnit.DecimalFraction);
-            Assert.Equal(1, quantity04.DecimalFractions);
-            Assert.Equal(VolumeConcentrationUnit.DecimalFraction, quantity04.Unit);
-
-            var quantity05 = VolumeConcentration.From(1, VolumeConcentrationUnit.LiterPerLiter);
-            Assert.Equal(1, quantity05.LitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.LiterPerLiter, quantity05.Unit);
-
-            var quantity06 = VolumeConcentration.From(1, VolumeConcentrationUnit.LiterPerMilliliter);
-            Assert.Equal(1, quantity06.LitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.LiterPerMilliliter, quantity06.Unit);
-
-            var quantity07 = VolumeConcentration.From(1, VolumeConcentrationUnit.MicroliterPerLiter);
-            Assert.Equal(1, quantity07.MicrolitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.MicroliterPerLiter, quantity07.Unit);
-
-            var quantity08 = VolumeConcentration.From(1, VolumeConcentrationUnit.MicroliterPerMilliliter);
-            Assert.Equal(1, quantity08.MicrolitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.MicroliterPerMilliliter, quantity08.Unit);
-
-            var quantity09 = VolumeConcentration.From(1, VolumeConcentrationUnit.MilliliterPerLiter);
-            Assert.Equal(1, quantity09.MillilitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.MilliliterPerLiter, quantity09.Unit);
-
-            var quantity10 = VolumeConcentration.From(1, VolumeConcentrationUnit.MilliliterPerMilliliter);
-            Assert.Equal(1, quantity10.MillilitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.MilliliterPerMilliliter, quantity10.Unit);
-
-            var quantity11 = VolumeConcentration.From(1, VolumeConcentrationUnit.NanoliterPerLiter);
-            Assert.Equal(1, quantity11.NanolitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.NanoliterPerLiter, quantity11.Unit);
-
-            var quantity12 = VolumeConcentration.From(1, VolumeConcentrationUnit.NanoliterPerMilliliter);
-            Assert.Equal(1, quantity12.NanolitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.NanoliterPerMilliliter, quantity12.Unit);
-
-            var quantity13 = VolumeConcentration.From(1, VolumeConcentrationUnit.PartPerBillion);
-            Assert.Equal(1, quantity13.PartsPerBillion);
-            Assert.Equal(VolumeConcentrationUnit.PartPerBillion, quantity13.Unit);
-
-            var quantity14 = VolumeConcentration.From(1, VolumeConcentrationUnit.PartPerMillion);
-            Assert.Equal(1, quantity14.PartsPerMillion);
-            Assert.Equal(VolumeConcentrationUnit.PartPerMillion, quantity14.Unit);
-
-            var quantity15 = VolumeConcentration.From(1, VolumeConcentrationUnit.PartPerThousand);
-            Assert.Equal(1, quantity15.PartsPerThousand);
-            Assert.Equal(VolumeConcentrationUnit.PartPerThousand, quantity15.Unit);
-
-            var quantity16 = VolumeConcentration.From(1, VolumeConcentrationUnit.PartPerTrillion);
-            Assert.Equal(1, quantity16.PartsPerTrillion);
-            Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, quantity16.Unit);
-
-            var quantity17 = VolumeConcentration.From(1, VolumeConcentrationUnit.Percent);
-            Assert.Equal(1, quantity17.Percent);
-            Assert.Equal(VolumeConcentrationUnit.Percent, quantity17.Unit);
-
-            var quantity18 = VolumeConcentration.From(1, VolumeConcentrationUnit.PicoliterPerLiter);
-            Assert.Equal(1, quantity18.PicolitersPerLiter);
-            Assert.Equal(VolumeConcentrationUnit.PicoliterPerLiter, quantity18.Unit);
-
-            var quantity19 = VolumeConcentration.From(1, VolumeConcentrationUnit.PicoliterPerMilliliter);
-            Assert.Equal(1, quantity19.PicolitersPerMilliliter);
-            Assert.Equal(VolumeConcentrationUnit.PicoliterPerMilliliter, quantity19.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumeConcentrationUnit>(), unit =>
+            {
+                var quantity = VolumeConcentration.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

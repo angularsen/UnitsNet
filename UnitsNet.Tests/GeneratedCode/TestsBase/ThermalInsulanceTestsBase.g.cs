@@ -179,34 +179,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ThermalInsulance.From(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
-            Assert.Equal(1, quantity00.HourSquareFeetDegreesFahrenheitPerBtu);
-            Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity00.Unit);
-
-            var quantity01 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
-            Assert.Equal(1, quantity01.SquareCentimeterHourDegreesCelsiusPerKilocalorie);
-            Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity01.Unit);
-
-            var quantity02 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
-            Assert.Equal(1, quantity02.SquareCentimeterKelvinsPerWatt);
-            Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, quantity02.Unit);
-
-            var quantity03 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
-            Assert.Equal(1, quantity03.SquareMeterDegreesCelsiusPerWatt);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity03.Unit);
-
-            var quantity04 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
-            Assert.Equal(1, quantity04.SquareMeterKelvinsPerKilowatt);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity04.Unit);
-
-            var quantity05 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
-            Assert.Equal(1, quantity05.SquareMeterKelvinsPerWatt);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, quantity05.Unit);
-
-            var quantity06 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
-            Assert.Equal(1, quantity06.SquareMillimeterKelvinsPerWatt);
-            Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ThermalInsulanceUnit>(), unit =>
+            {
+                var quantity = ThermalInsulance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -279,114 +279,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Mass.From(1, MassUnit.Centigram);
-            Assert.Equal(1, quantity00.Centigrams);
-            Assert.Equal(MassUnit.Centigram, quantity00.Unit);
-
-            var quantity01 = Mass.From(1, MassUnit.Decagram);
-            Assert.Equal(1, quantity01.Decagrams);
-            Assert.Equal(MassUnit.Decagram, quantity01.Unit);
-
-            var quantity02 = Mass.From(1, MassUnit.Decigram);
-            Assert.Equal(1, quantity02.Decigrams);
-            Assert.Equal(MassUnit.Decigram, quantity02.Unit);
-
-            var quantity03 = Mass.From(1, MassUnit.EarthMass);
-            Assert.Equal(1, quantity03.EarthMasses);
-            Assert.Equal(MassUnit.EarthMass, quantity03.Unit);
-
-            var quantity04 = Mass.From(1, MassUnit.Femtogram);
-            Assert.Equal(1, quantity04.Femtograms);
-            Assert.Equal(MassUnit.Femtogram, quantity04.Unit);
-
-            var quantity05 = Mass.From(1, MassUnit.Grain);
-            Assert.Equal(1, quantity05.Grains);
-            Assert.Equal(MassUnit.Grain, quantity05.Unit);
-
-            var quantity06 = Mass.From(1, MassUnit.Gram);
-            Assert.Equal(1, quantity06.Grams);
-            Assert.Equal(MassUnit.Gram, quantity06.Unit);
-
-            var quantity07 = Mass.From(1, MassUnit.Hectogram);
-            Assert.Equal(1, quantity07.Hectograms);
-            Assert.Equal(MassUnit.Hectogram, quantity07.Unit);
-
-            var quantity08 = Mass.From(1, MassUnit.Kilogram);
-            Assert.Equal(1, quantity08.Kilograms);
-            Assert.Equal(MassUnit.Kilogram, quantity08.Unit);
-
-            var quantity09 = Mass.From(1, MassUnit.Kilopound);
-            Assert.Equal(1, quantity09.Kilopounds);
-            Assert.Equal(MassUnit.Kilopound, quantity09.Unit);
-
-            var quantity10 = Mass.From(1, MassUnit.Kilotonne);
-            Assert.Equal(1, quantity10.Kilotonnes);
-            Assert.Equal(MassUnit.Kilotonne, quantity10.Unit);
-
-            var quantity11 = Mass.From(1, MassUnit.LongHundredweight);
-            Assert.Equal(1, quantity11.LongHundredweight);
-            Assert.Equal(MassUnit.LongHundredweight, quantity11.Unit);
-
-            var quantity12 = Mass.From(1, MassUnit.LongTon);
-            Assert.Equal(1, quantity12.LongTons);
-            Assert.Equal(MassUnit.LongTon, quantity12.Unit);
-
-            var quantity13 = Mass.From(1, MassUnit.Megapound);
-            Assert.Equal(1, quantity13.Megapounds);
-            Assert.Equal(MassUnit.Megapound, quantity13.Unit);
-
-            var quantity14 = Mass.From(1, MassUnit.Megatonne);
-            Assert.Equal(1, quantity14.Megatonnes);
-            Assert.Equal(MassUnit.Megatonne, quantity14.Unit);
-
-            var quantity15 = Mass.From(1, MassUnit.Microgram);
-            Assert.Equal(1, quantity15.Micrograms);
-            Assert.Equal(MassUnit.Microgram, quantity15.Unit);
-
-            var quantity16 = Mass.From(1, MassUnit.Milligram);
-            Assert.Equal(1, quantity16.Milligrams);
-            Assert.Equal(MassUnit.Milligram, quantity16.Unit);
-
-            var quantity17 = Mass.From(1, MassUnit.Nanogram);
-            Assert.Equal(1, quantity17.Nanograms);
-            Assert.Equal(MassUnit.Nanogram, quantity17.Unit);
-
-            var quantity18 = Mass.From(1, MassUnit.Ounce);
-            Assert.Equal(1, quantity18.Ounces);
-            Assert.Equal(MassUnit.Ounce, quantity18.Unit);
-
-            var quantity19 = Mass.From(1, MassUnit.Picogram);
-            Assert.Equal(1, quantity19.Picograms);
-            Assert.Equal(MassUnit.Picogram, quantity19.Unit);
-
-            var quantity20 = Mass.From(1, MassUnit.Pound);
-            Assert.Equal(1, quantity20.Pounds);
-            Assert.Equal(MassUnit.Pound, quantity20.Unit);
-
-            var quantity21 = Mass.From(1, MassUnit.ShortHundredweight);
-            Assert.Equal(1, quantity21.ShortHundredweight);
-            Assert.Equal(MassUnit.ShortHundredweight, quantity21.Unit);
-
-            var quantity22 = Mass.From(1, MassUnit.ShortTon);
-            Assert.Equal(1, quantity22.ShortTons);
-            Assert.Equal(MassUnit.ShortTon, quantity22.Unit);
-
-            var quantity23 = Mass.From(1, MassUnit.Slug);
-            Assert.Equal(1, quantity23.Slugs);
-            Assert.Equal(MassUnit.Slug, quantity23.Unit);
-
-            var quantity24 = Mass.From(1, MassUnit.SolarMass);
-            Assert.Equal(1, quantity24.SolarMasses);
-            Assert.Equal(MassUnit.SolarMass, quantity24.Unit);
-
-            var quantity25 = Mass.From(1, MassUnit.Stone);
-            Assert.Equal(1, quantity25.Stone);
-            Assert.Equal(MassUnit.Stone, quantity25.Unit);
-
-            var quantity26 = Mass.From(1, MassUnit.Tonne);
-            Assert.Equal(1, quantity26.Tonnes);
-            Assert.Equal(MassUnit.Tonne, quantity26.Unit);
-
+            Assert.All(EnumHelper.GetValues<MassUnit>(), unit =>
+            {
+                var quantity = Mass.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

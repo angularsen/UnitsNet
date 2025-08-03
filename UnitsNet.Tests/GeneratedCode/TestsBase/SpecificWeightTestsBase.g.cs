@@ -229,74 +229,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
-            Assert.Equal(1, quantity00.KilogramsForcePerCubicCentimeter);
-            Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, quantity00.Unit);
-
-            var quantity01 = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMeter);
-            Assert.Equal(1, quantity01.KilogramsForcePerCubicMeter);
-            Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, quantity01.Unit);
-
-            var quantity02 = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
-            Assert.Equal(1, quantity02.KilogramsForcePerCubicMillimeter);
-            Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, quantity02.Unit);
-
-            var quantity03 = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
-            Assert.Equal(1, quantity03.KilonewtonsPerCubicCentimeter);
-            Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, quantity03.Unit);
-
-            var quantity04 = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMeter);
-            Assert.Equal(1, quantity04.KilonewtonsPerCubicMeter);
-            Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, quantity04.Unit);
-
-            var quantity05 = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
-            Assert.Equal(1, quantity05.KilonewtonsPerCubicMillimeter);
-            Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, quantity05.Unit);
-
-            var quantity06 = SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicFoot);
-            Assert.Equal(1, quantity06.KilopoundsForcePerCubicFoot);
-            Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, quantity06.Unit);
-
-            var quantity07 = SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicInch);
-            Assert.Equal(1, quantity07.KilopoundsForcePerCubicInch);
-            Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, quantity07.Unit);
-
-            var quantity08 = SpecificWeight.From(1, SpecificWeightUnit.MeganewtonPerCubicMeter);
-            Assert.Equal(1, quantity08.MeganewtonsPerCubicMeter);
-            Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, quantity08.Unit);
-
-            var quantity09 = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicCentimeter);
-            Assert.Equal(1, quantity09.NewtonsPerCubicCentimeter);
-            Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, quantity09.Unit);
-
-            var quantity10 = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMeter);
-            Assert.Equal(1, quantity10.NewtonsPerCubicMeter);
-            Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, quantity10.Unit);
-
-            var quantity11 = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMillimeter);
-            Assert.Equal(1, quantity11.NewtonsPerCubicMillimeter);
-            Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, quantity11.Unit);
-
-            var quantity12 = SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicFoot);
-            Assert.Equal(1, quantity12.PoundsForcePerCubicFoot);
-            Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, quantity12.Unit);
-
-            var quantity13 = SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicInch);
-            Assert.Equal(1, quantity13.PoundsForcePerCubicInch);
-            Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, quantity13.Unit);
-
-            var quantity14 = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicCentimeter);
-            Assert.Equal(1, quantity14.TonnesForcePerCubicCentimeter);
-            Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, quantity14.Unit);
-
-            var quantity15 = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMeter);
-            Assert.Equal(1, quantity15.TonnesForcePerCubicMeter);
-            Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, quantity15.Unit);
-
-            var quantity16 = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMillimeter);
-            Assert.Equal(1, quantity16.TonnesForcePerCubicMillimeter);
-            Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, quantity16.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificWeightUnit>(), unit =>
+            {
+                var quantity = SpecificWeight.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

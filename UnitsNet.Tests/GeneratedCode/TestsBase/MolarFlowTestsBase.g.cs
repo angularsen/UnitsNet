@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarFlow.From(1, MolarFlowUnit.KilomolePerHour);
-            Assert.Equal(1, quantity00.KilomolesPerHour);
-            Assert.Equal(MolarFlowUnit.KilomolePerHour, quantity00.Unit);
-
-            var quantity01 = MolarFlow.From(1, MolarFlowUnit.KilomolePerMinute);
-            Assert.Equal(1, quantity01.KilomolesPerMinute);
-            Assert.Equal(MolarFlowUnit.KilomolePerMinute, quantity01.Unit);
-
-            var quantity02 = MolarFlow.From(1, MolarFlowUnit.KilomolePerSecond);
-            Assert.Equal(1, quantity02.KilomolesPerSecond);
-            Assert.Equal(MolarFlowUnit.KilomolePerSecond, quantity02.Unit);
-
-            var quantity03 = MolarFlow.From(1, MolarFlowUnit.MolePerHour);
-            Assert.Equal(1, quantity03.MolesPerHour);
-            Assert.Equal(MolarFlowUnit.MolePerHour, quantity03.Unit);
-
-            var quantity04 = MolarFlow.From(1, MolarFlowUnit.MolePerMinute);
-            Assert.Equal(1, quantity04.MolesPerMinute);
-            Assert.Equal(MolarFlowUnit.MolePerMinute, quantity04.Unit);
-
-            var quantity05 = MolarFlow.From(1, MolarFlowUnit.MolePerSecond);
-            Assert.Equal(1, quantity05.MolesPerSecond);
-            Assert.Equal(MolarFlowUnit.MolePerSecond, quantity05.Unit);
-
-            var quantity06 = MolarFlow.From(1, MolarFlowUnit.PoundMolePerHour);
-            Assert.Equal(1, quantity06.PoundMolesPerHour);
-            Assert.Equal(MolarFlowUnit.PoundMolePerHour, quantity06.Unit);
-
-            var quantity07 = MolarFlow.From(1, MolarFlowUnit.PoundMolePerMinute);
-            Assert.Equal(1, quantity07.PoundMolesPerMinute);
-            Assert.Equal(MolarFlowUnit.PoundMolePerMinute, quantity07.Unit);
-
-            var quantity08 = MolarFlow.From(1, MolarFlowUnit.PoundMolePerSecond);
-            Assert.Equal(1, quantity08.PoundMolesPerSecond);
-            Assert.Equal(MolarFlowUnit.PoundMolePerSecond, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarFlowUnit>(), unit =>
+            {
+                var quantity = MolarFlow.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

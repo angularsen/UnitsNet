@@ -194,46 +194,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = DynamicViscosity.From(1, DynamicViscosityUnit.Centipoise);
-            Assert.Equal(1, quantity00.Centipoise);
-            Assert.Equal(DynamicViscosityUnit.Centipoise, quantity00.Unit);
-
-            var quantity01 = DynamicViscosity.From(1, DynamicViscosityUnit.MicropascalSecond);
-            Assert.Equal(1, quantity01.MicropascalSeconds);
-            Assert.Equal(DynamicViscosityUnit.MicropascalSecond, quantity01.Unit);
-
-            var quantity02 = DynamicViscosity.From(1, DynamicViscosityUnit.MillipascalSecond);
-            Assert.Equal(1, quantity02.MillipascalSeconds);
-            Assert.Equal(DynamicViscosityUnit.MillipascalSecond, quantity02.Unit);
-
-            var quantity03 = DynamicViscosity.From(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
-            Assert.Equal(1, quantity03.NewtonSecondsPerMeterSquared);
-            Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity03.Unit);
-
-            var quantity04 = DynamicViscosity.From(1, DynamicViscosityUnit.PascalSecond);
-            Assert.Equal(1, quantity04.PascalSeconds);
-            Assert.Equal(DynamicViscosityUnit.PascalSecond, quantity04.Unit);
-
-            var quantity05 = DynamicViscosity.From(1, DynamicViscosityUnit.Poise);
-            Assert.Equal(1, quantity05.Poise);
-            Assert.Equal(DynamicViscosityUnit.Poise, quantity05.Unit);
-
-            var quantity06 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
-            Assert.Equal(1, quantity06.PoundsForceSecondPerSquareFoot);
-            Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, quantity06.Unit);
-
-            var quantity07 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
-            Assert.Equal(1, quantity07.PoundsForceSecondPerSquareInch);
-            Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, quantity07.Unit);
-
-            var quantity08 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundPerFootSecond);
-            Assert.Equal(1, quantity08.PoundsPerFootSecond);
-            Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, quantity08.Unit);
-
-            var quantity09 = DynamicViscosity.From(1, DynamicViscosityUnit.Reyn);
-            Assert.Equal(1, quantity09.Reyns);
-            Assert.Equal(DynamicViscosityUnit.Reyn, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<DynamicViscosityUnit>(), unit =>
+            {
+                var quantity = DynamicViscosity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

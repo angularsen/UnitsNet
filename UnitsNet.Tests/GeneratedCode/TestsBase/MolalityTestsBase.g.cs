@@ -159,18 +159,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Molality.From(1, MolalityUnit.MillimolePerKilogram);
-            Assert.Equal(1, quantity00.MillimolesPerKilogram);
-            Assert.Equal(MolalityUnit.MillimolePerKilogram, quantity00.Unit);
-
-            var quantity01 = Molality.From(1, MolalityUnit.MolePerGram);
-            Assert.Equal(1, quantity01.MolesPerGram);
-            Assert.Equal(MolalityUnit.MolePerGram, quantity01.Unit);
-
-            var quantity02 = Molality.From(1, MolalityUnit.MolePerKilogram);
-            Assert.Equal(1, quantity02.MolesPerKilogram);
-            Assert.Equal(MolalityUnit.MolePerKilogram, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolalityUnit>(), unit =>
+            {
+                var quantity = Molality.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

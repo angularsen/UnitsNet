@@ -194,46 +194,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseCentimeter);
-            Assert.Equal(1, quantity00.InverseCentimeters);
-            Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, quantity00.Unit);
-
-            var quantity01 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseFoot);
-            Assert.Equal(1, quantity01.InverseFeet);
-            Assert.Equal(ReciprocalLengthUnit.InverseFoot, quantity01.Unit);
-
-            var quantity02 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseInch);
-            Assert.Equal(1, quantity02.InverseInches);
-            Assert.Equal(ReciprocalLengthUnit.InverseInch, quantity02.Unit);
-
-            var quantity03 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMeter);
-            Assert.Equal(1, quantity03.InverseMeters);
-            Assert.Equal(ReciprocalLengthUnit.InverseMeter, quantity03.Unit);
-
-            var quantity04 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMicroinch);
-            Assert.Equal(1, quantity04.InverseMicroinches);
-            Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, quantity04.Unit);
-
-            var quantity05 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMil);
-            Assert.Equal(1, quantity05.InverseMils);
-            Assert.Equal(ReciprocalLengthUnit.InverseMil, quantity05.Unit);
-
-            var quantity06 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMile);
-            Assert.Equal(1, quantity06.InverseMiles);
-            Assert.Equal(ReciprocalLengthUnit.InverseMile, quantity06.Unit);
-
-            var quantity07 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMillimeter);
-            Assert.Equal(1, quantity07.InverseMillimeters);
-            Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, quantity07.Unit);
-
-            var quantity08 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseUsSurveyFoot);
-            Assert.Equal(1, quantity08.InverseUsSurveyFeet);
-            Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, quantity08.Unit);
-
-            var quantity09 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseYard);
-            Assert.Equal(1, quantity09.InverseYards);
-            Assert.Equal(ReciprocalLengthUnit.InverseYard, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<ReciprocalLengthUnit>(), unit =>
+            {
+                var quantity = ReciprocalLength.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

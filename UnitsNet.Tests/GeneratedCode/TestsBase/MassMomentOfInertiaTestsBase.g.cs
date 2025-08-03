@@ -284,118 +284,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.GramSquareCentimeter);
-            Assert.Equal(1, quantity00.GramSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.GramSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.GramSquareDecimeter);
-            Assert.Equal(1, quantity01.GramSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.GramSquareDecimeter, quantity01.Unit);
-
-            var quantity02 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.GramSquareMeter);
-            Assert.Equal(1, quantity02.GramSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.GramSquareMeter, quantity02.Unit);
-
-            var quantity03 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.GramSquareMillimeter);
-            Assert.Equal(1, quantity03.GramSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.GramSquareMillimeter, quantity03.Unit);
-
-            var quantity04 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareCentimeter);
-            Assert.Equal(1, quantity04.KilogramSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareCentimeter, quantity04.Unit);
-
-            var quantity05 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter);
-            Assert.Equal(1, quantity05.KilogramSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareDecimeter, quantity05.Unit);
-
-            var quantity06 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareMeter);
-            Assert.Equal(1, quantity06.KilogramSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareMeter, quantity06.Unit);
-
-            var quantity07 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter);
-            Assert.Equal(1, quantity07.KilogramSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareMillimeter, quantity07.Unit);
-
-            var quantity08 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter);
-            Assert.Equal(1, quantity08.KilotonneSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, quantity08.Unit);
-
-            var quantity09 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter);
-            Assert.Equal(1, quantity09.KilotonneSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, quantity09.Unit);
-
-            var quantity10 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareMeter);
-            Assert.Equal(1, quantity10.KilotonneSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilotonneSquareMeter, quantity10.Unit);
-
-            var quantity11 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareMillimeter);
-            Assert.Equal(1, quantity11.KilotonneSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.KilotonneSquareMillimeter, quantity11.Unit);
-
-            var quantity12 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter);
-            Assert.Equal(1, quantity12.MegatonneSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, quantity12.Unit);
-
-            var quantity13 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter);
-            Assert.Equal(1, quantity13.MegatonneSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, quantity13.Unit);
-
-            var quantity14 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareMeter);
-            Assert.Equal(1, quantity14.MegatonneSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MegatonneSquareMeter, quantity14.Unit);
-
-            var quantity15 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareMillimeter);
-            Assert.Equal(1, quantity15.MegatonneSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MegatonneSquareMillimeter, quantity15.Unit);
-
-            var quantity16 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter);
-            Assert.Equal(1, quantity16.MilligramSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MilligramSquareCentimeter, quantity16.Unit);
-
-            var quantity17 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter);
-            Assert.Equal(1, quantity17.MilligramSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MilligramSquareDecimeter, quantity17.Unit);
-
-            var quantity18 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareMeter);
-            Assert.Equal(1, quantity18.MilligramSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MilligramSquareMeter, quantity18.Unit);
-
-            var quantity19 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter);
-            Assert.Equal(1, quantity19.MilligramSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.MilligramSquareMillimeter, quantity19.Unit);
-
-            var quantity20 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.PoundSquareFoot);
-            Assert.Equal(1, quantity20.PoundSquareFeet);
-            Assert.Equal(MassMomentOfInertiaUnit.PoundSquareFoot, quantity20.Unit);
-
-            var quantity21 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.PoundSquareInch);
-            Assert.Equal(1, quantity21.PoundSquareInches);
-            Assert.Equal(MassMomentOfInertiaUnit.PoundSquareInch, quantity21.Unit);
-
-            var quantity22 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.SlugSquareFoot);
-            Assert.Equal(1, quantity22.SlugSquareFeet);
-            Assert.Equal(MassMomentOfInertiaUnit.SlugSquareFoot, quantity22.Unit);
-
-            var quantity23 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.SlugSquareInch);
-            Assert.Equal(1, quantity23.SlugSquareInches);
-            Assert.Equal(MassMomentOfInertiaUnit.SlugSquareInch, quantity23.Unit);
-
-            var quantity24 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareCentimeter);
-            Assert.Equal(1, quantity24.TonneSquareCentimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.TonneSquareCentimeter, quantity24.Unit);
-
-            var quantity25 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareDecimeter);
-            Assert.Equal(1, quantity25.TonneSquareDecimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.TonneSquareDecimeter, quantity25.Unit);
-
-            var quantity26 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMeter);
-            Assert.Equal(1, quantity26.TonneSquareMeters);
-            Assert.Equal(MassMomentOfInertiaUnit.TonneSquareMeter, quantity26.Unit);
-
-            var quantity27 = MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMillimeter);
-            Assert.Equal(1, quantity27.TonneSquareMillimeters);
-            Assert.Equal(MassMomentOfInertiaUnit.TonneSquareMillimeter, quantity27.Unit);
-
+            Assert.All(EnumHelper.GetValues<MassMomentOfInertiaUnit>(), unit =>
+            {
+                var quantity = MassMomentOfInertia.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

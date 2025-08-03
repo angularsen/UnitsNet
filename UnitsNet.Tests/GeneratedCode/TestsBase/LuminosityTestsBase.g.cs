@@ -214,62 +214,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Luminosity.From(1, LuminosityUnit.Decawatt);
-            Assert.Equal(1, quantity00.Decawatts);
-            Assert.Equal(LuminosityUnit.Decawatt, quantity00.Unit);
-
-            var quantity01 = Luminosity.From(1, LuminosityUnit.Deciwatt);
-            Assert.Equal(1, quantity01.Deciwatts);
-            Assert.Equal(LuminosityUnit.Deciwatt, quantity01.Unit);
-
-            var quantity02 = Luminosity.From(1, LuminosityUnit.Femtowatt);
-            Assert.Equal(1, quantity02.Femtowatts);
-            Assert.Equal(LuminosityUnit.Femtowatt, quantity02.Unit);
-
-            var quantity03 = Luminosity.From(1, LuminosityUnit.Gigawatt);
-            Assert.Equal(1, quantity03.Gigawatts);
-            Assert.Equal(LuminosityUnit.Gigawatt, quantity03.Unit);
-
-            var quantity04 = Luminosity.From(1, LuminosityUnit.Kilowatt);
-            Assert.Equal(1, quantity04.Kilowatts);
-            Assert.Equal(LuminosityUnit.Kilowatt, quantity04.Unit);
-
-            var quantity05 = Luminosity.From(1, LuminosityUnit.Megawatt);
-            Assert.Equal(1, quantity05.Megawatts);
-            Assert.Equal(LuminosityUnit.Megawatt, quantity05.Unit);
-
-            var quantity06 = Luminosity.From(1, LuminosityUnit.Microwatt);
-            Assert.Equal(1, quantity06.Microwatts);
-            Assert.Equal(LuminosityUnit.Microwatt, quantity06.Unit);
-
-            var quantity07 = Luminosity.From(1, LuminosityUnit.Milliwatt);
-            Assert.Equal(1, quantity07.Milliwatts);
-            Assert.Equal(LuminosityUnit.Milliwatt, quantity07.Unit);
-
-            var quantity08 = Luminosity.From(1, LuminosityUnit.Nanowatt);
-            Assert.Equal(1, quantity08.Nanowatts);
-            Assert.Equal(LuminosityUnit.Nanowatt, quantity08.Unit);
-
-            var quantity09 = Luminosity.From(1, LuminosityUnit.Petawatt);
-            Assert.Equal(1, quantity09.Petawatts);
-            Assert.Equal(LuminosityUnit.Petawatt, quantity09.Unit);
-
-            var quantity10 = Luminosity.From(1, LuminosityUnit.Picowatt);
-            Assert.Equal(1, quantity10.Picowatts);
-            Assert.Equal(LuminosityUnit.Picowatt, quantity10.Unit);
-
-            var quantity11 = Luminosity.From(1, LuminosityUnit.SolarLuminosity);
-            Assert.Equal(1, quantity11.SolarLuminosities);
-            Assert.Equal(LuminosityUnit.SolarLuminosity, quantity11.Unit);
-
-            var quantity12 = Luminosity.From(1, LuminosityUnit.Terawatt);
-            Assert.Equal(1, quantity12.Terawatts);
-            Assert.Equal(LuminosityUnit.Terawatt, quantity12.Unit);
-
-            var quantity13 = Luminosity.From(1, LuminosityUnit.Watt);
-            Assert.Equal(1, quantity13.Watts);
-            Assert.Equal(LuminosityUnit.Watt, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminosityUnit>(), unit =>
+            {
+                var quantity = Luminosity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

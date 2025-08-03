@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = KinematicViscosity.From(1, KinematicViscosityUnit.Centistokes);
-            Assert.Equal(1, quantity00.Centistokes);
-            Assert.Equal(KinematicViscosityUnit.Centistokes, quantity00.Unit);
-
-            var quantity01 = KinematicViscosity.From(1, KinematicViscosityUnit.Decistokes);
-            Assert.Equal(1, quantity01.Decistokes);
-            Assert.Equal(KinematicViscosityUnit.Decistokes, quantity01.Unit);
-
-            var quantity02 = KinematicViscosity.From(1, KinematicViscosityUnit.Kilostokes);
-            Assert.Equal(1, quantity02.Kilostokes);
-            Assert.Equal(KinematicViscosityUnit.Kilostokes, quantity02.Unit);
-
-            var quantity03 = KinematicViscosity.From(1, KinematicViscosityUnit.Microstokes);
-            Assert.Equal(1, quantity03.Microstokes);
-            Assert.Equal(KinematicViscosityUnit.Microstokes, quantity03.Unit);
-
-            var quantity04 = KinematicViscosity.From(1, KinematicViscosityUnit.Millistokes);
-            Assert.Equal(1, quantity04.Millistokes);
-            Assert.Equal(KinematicViscosityUnit.Millistokes, quantity04.Unit);
-
-            var quantity05 = KinematicViscosity.From(1, KinematicViscosityUnit.Nanostokes);
-            Assert.Equal(1, quantity05.Nanostokes);
-            Assert.Equal(KinematicViscosityUnit.Nanostokes, quantity05.Unit);
-
-            var quantity06 = KinematicViscosity.From(1, KinematicViscosityUnit.SquareFootPerSecond);
-            Assert.Equal(1, quantity06.SquareFeetPerSecond);
-            Assert.Equal(KinematicViscosityUnit.SquareFootPerSecond, quantity06.Unit);
-
-            var quantity07 = KinematicViscosity.From(1, KinematicViscosityUnit.SquareMeterPerSecond);
-            Assert.Equal(1, quantity07.SquareMetersPerSecond);
-            Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, quantity07.Unit);
-
-            var quantity08 = KinematicViscosity.From(1, KinematicViscosityUnit.Stokes);
-            Assert.Equal(1, quantity08.Stokes);
-            Assert.Equal(KinematicViscosityUnit.Stokes, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<KinematicViscosityUnit>(), unit =>
+            {
+                var quantity = KinematicViscosity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

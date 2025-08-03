@@ -224,70 +224,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Gigamho);
-            Assert.Equal(1, quantity00.Gigamhos);
-            Assert.Equal(ElectricConductanceUnit.Gigamho, quantity00.Unit);
-
-            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Gigasiemens);
-            Assert.Equal(1, quantity01.Gigasiemens);
-            Assert.Equal(ElectricConductanceUnit.Gigasiemens, quantity01.Unit);
-
-            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Kilomho);
-            Assert.Equal(1, quantity02.Kilomhos);
-            Assert.Equal(ElectricConductanceUnit.Kilomho, quantity02.Unit);
-
-            var quantity03 = ElectricConductance.From(1, ElectricConductanceUnit.Kilosiemens);
-            Assert.Equal(1, quantity03.Kilosiemens);
-            Assert.Equal(ElectricConductanceUnit.Kilosiemens, quantity03.Unit);
-
-            var quantity04 = ElectricConductance.From(1, ElectricConductanceUnit.Megamho);
-            Assert.Equal(1, quantity04.Megamhos);
-            Assert.Equal(ElectricConductanceUnit.Megamho, quantity04.Unit);
-
-            var quantity05 = ElectricConductance.From(1, ElectricConductanceUnit.Megasiemens);
-            Assert.Equal(1, quantity05.Megasiemens);
-            Assert.Equal(ElectricConductanceUnit.Megasiemens, quantity05.Unit);
-
-            var quantity06 = ElectricConductance.From(1, ElectricConductanceUnit.Mho);
-            Assert.Equal(1, quantity06.Mhos);
-            Assert.Equal(ElectricConductanceUnit.Mho, quantity06.Unit);
-
-            var quantity07 = ElectricConductance.From(1, ElectricConductanceUnit.Micromho);
-            Assert.Equal(1, quantity07.Micromhos);
-            Assert.Equal(ElectricConductanceUnit.Micromho, quantity07.Unit);
-
-            var quantity08 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
-            Assert.Equal(1, quantity08.Microsiemens);
-            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity08.Unit);
-
-            var quantity09 = ElectricConductance.From(1, ElectricConductanceUnit.Millimho);
-            Assert.Equal(1, quantity09.Millimhos);
-            Assert.Equal(ElectricConductanceUnit.Millimho, quantity09.Unit);
-
-            var quantity10 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
-            Assert.Equal(1, quantity10.Millisiemens);
-            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity10.Unit);
-
-            var quantity11 = ElectricConductance.From(1, ElectricConductanceUnit.Nanomho);
-            Assert.Equal(1, quantity11.Nanomhos);
-            Assert.Equal(ElectricConductanceUnit.Nanomho, quantity11.Unit);
-
-            var quantity12 = ElectricConductance.From(1, ElectricConductanceUnit.Nanosiemens);
-            Assert.Equal(1, quantity12.Nanosiemens);
-            Assert.Equal(ElectricConductanceUnit.Nanosiemens, quantity12.Unit);
-
-            var quantity13 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
-            Assert.Equal(1, quantity13.Siemens);
-            Assert.Equal(ElectricConductanceUnit.Siemens, quantity13.Unit);
-
-            var quantity14 = ElectricConductance.From(1, ElectricConductanceUnit.Teramho);
-            Assert.Equal(1, quantity14.Teramhos);
-            Assert.Equal(ElectricConductanceUnit.Teramho, quantity14.Unit);
-
-            var quantity15 = ElectricConductance.From(1, ElectricConductanceUnit.Terasiemens);
-            Assert.Equal(1, quantity15.Terasiemens);
-            Assert.Equal(ElectricConductanceUnit.Terasiemens, quantity15.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricConductanceUnit>(), unit =>
+            {
+                var quantity = ElectricConductance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

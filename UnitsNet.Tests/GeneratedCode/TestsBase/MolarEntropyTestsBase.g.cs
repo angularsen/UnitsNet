@@ -159,18 +159,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarEntropy.From(1, MolarEntropyUnit.JoulePerMoleKelvin);
-            Assert.Equal(1, quantity00.JoulesPerMoleKelvin);
-            Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, quantity00.Unit);
-
-            var quantity01 = MolarEntropy.From(1, MolarEntropyUnit.KilojoulePerMoleKelvin);
-            Assert.Equal(1, quantity01.KilojoulesPerMoleKelvin);
-            Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, quantity01.Unit);
-
-            var quantity02 = MolarEntropy.From(1, MolarEntropyUnit.MegajoulePerMoleKelvin);
-            Assert.Equal(1, quantity02.MegajoulesPerMoleKelvin);
-            Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarEntropyUnit>(), unit =>
+            {
+                var quantity = MolarEntropy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

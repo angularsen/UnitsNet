@@ -204,54 +204,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = EnergyDensity.From(1, EnergyDensityUnit.GigajoulePerCubicMeter);
-            Assert.Equal(1, quantity00.GigajoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.GigajoulePerCubicMeter, quantity00.Unit);
-
-            var quantity01 = EnergyDensity.From(1, EnergyDensityUnit.GigawattHourPerCubicMeter);
-            Assert.Equal(1, quantity01.GigawattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.GigawattHourPerCubicMeter, quantity01.Unit);
-
-            var quantity02 = EnergyDensity.From(1, EnergyDensityUnit.JoulePerCubicMeter);
-            Assert.Equal(1, quantity02.JoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, quantity02.Unit);
-
-            var quantity03 = EnergyDensity.From(1, EnergyDensityUnit.KilojoulePerCubicMeter);
-            Assert.Equal(1, quantity03.KilojoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.KilojoulePerCubicMeter, quantity03.Unit);
-
-            var quantity04 = EnergyDensity.From(1, EnergyDensityUnit.KilowattHourPerCubicMeter);
-            Assert.Equal(1, quantity04.KilowattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.KilowattHourPerCubicMeter, quantity04.Unit);
-
-            var quantity05 = EnergyDensity.From(1, EnergyDensityUnit.MegajoulePerCubicMeter);
-            Assert.Equal(1, quantity05.MegajoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.MegajoulePerCubicMeter, quantity05.Unit);
-
-            var quantity06 = EnergyDensity.From(1, EnergyDensityUnit.MegawattHourPerCubicMeter);
-            Assert.Equal(1, quantity06.MegawattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.MegawattHourPerCubicMeter, quantity06.Unit);
-
-            var quantity07 = EnergyDensity.From(1, EnergyDensityUnit.PetajoulePerCubicMeter);
-            Assert.Equal(1, quantity07.PetajoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.PetajoulePerCubicMeter, quantity07.Unit);
-
-            var quantity08 = EnergyDensity.From(1, EnergyDensityUnit.PetawattHourPerCubicMeter);
-            Assert.Equal(1, quantity08.PetawattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.PetawattHourPerCubicMeter, quantity08.Unit);
-
-            var quantity09 = EnergyDensity.From(1, EnergyDensityUnit.TerajoulePerCubicMeter);
-            Assert.Equal(1, quantity09.TerajoulesPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.TerajoulePerCubicMeter, quantity09.Unit);
-
-            var quantity10 = EnergyDensity.From(1, EnergyDensityUnit.TerawattHourPerCubicMeter);
-            Assert.Equal(1, quantity10.TerawattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.TerawattHourPerCubicMeter, quantity10.Unit);
-
-            var quantity11 = EnergyDensity.From(1, EnergyDensityUnit.WattHourPerCubicMeter);
-            Assert.Equal(1, quantity11.WattHoursPerCubicMeter);
-            Assert.Equal(EnergyDensityUnit.WattHourPerCubicMeter, quantity11.Unit);
-
+            Assert.All(EnumHelper.GetValues<EnergyDensityUnit>(), unit =>
+            {
+                var quantity = EnergyDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

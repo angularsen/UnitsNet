@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MagneticField.From(1, MagneticFieldUnit.Gauss);
-            Assert.Equal(1, quantity00.Gausses);
-            Assert.Equal(MagneticFieldUnit.Gauss, quantity00.Unit);
-
-            var quantity01 = MagneticField.From(1, MagneticFieldUnit.Microtesla);
-            Assert.Equal(1, quantity01.Microteslas);
-            Assert.Equal(MagneticFieldUnit.Microtesla, quantity01.Unit);
-
-            var quantity02 = MagneticField.From(1, MagneticFieldUnit.Milligauss);
-            Assert.Equal(1, quantity02.Milligausses);
-            Assert.Equal(MagneticFieldUnit.Milligauss, quantity02.Unit);
-
-            var quantity03 = MagneticField.From(1, MagneticFieldUnit.Millitesla);
-            Assert.Equal(1, quantity03.Milliteslas);
-            Assert.Equal(MagneticFieldUnit.Millitesla, quantity03.Unit);
-
-            var quantity04 = MagneticField.From(1, MagneticFieldUnit.Nanotesla);
-            Assert.Equal(1, quantity04.Nanoteslas);
-            Assert.Equal(MagneticFieldUnit.Nanotesla, quantity04.Unit);
-
-            var quantity05 = MagneticField.From(1, MagneticFieldUnit.Tesla);
-            Assert.Equal(1, quantity05.Teslas);
-            Assert.Equal(MagneticFieldUnit.Tesla, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<MagneticFieldUnit>(), unit =>
+            {
+                var quantity = MagneticField.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

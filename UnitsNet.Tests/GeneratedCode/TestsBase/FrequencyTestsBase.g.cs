@@ -204,54 +204,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Frequency.From(1, FrequencyUnit.BeatPerMinute);
-            Assert.Equal(1, quantity00.BeatsPerMinute);
-            Assert.Equal(FrequencyUnit.BeatPerMinute, quantity00.Unit);
-
-            var quantity01 = Frequency.From(1, FrequencyUnit.CyclePerHour);
-            Assert.Equal(1, quantity01.CyclesPerHour);
-            Assert.Equal(FrequencyUnit.CyclePerHour, quantity01.Unit);
-
-            var quantity02 = Frequency.From(1, FrequencyUnit.CyclePerMinute);
-            Assert.Equal(1, quantity02.CyclesPerMinute);
-            Assert.Equal(FrequencyUnit.CyclePerMinute, quantity02.Unit);
-
-            var quantity03 = Frequency.From(1, FrequencyUnit.Gigahertz);
-            Assert.Equal(1, quantity03.Gigahertz);
-            Assert.Equal(FrequencyUnit.Gigahertz, quantity03.Unit);
-
-            var quantity04 = Frequency.From(1, FrequencyUnit.Hertz);
-            Assert.Equal(1, quantity04.Hertz);
-            Assert.Equal(FrequencyUnit.Hertz, quantity04.Unit);
-
-            var quantity05 = Frequency.From(1, FrequencyUnit.Kilohertz);
-            Assert.Equal(1, quantity05.Kilohertz);
-            Assert.Equal(FrequencyUnit.Kilohertz, quantity05.Unit);
-
-            var quantity06 = Frequency.From(1, FrequencyUnit.Megahertz);
-            Assert.Equal(1, quantity06.Megahertz);
-            Assert.Equal(FrequencyUnit.Megahertz, quantity06.Unit);
-
-            var quantity07 = Frequency.From(1, FrequencyUnit.Microhertz);
-            Assert.Equal(1, quantity07.Microhertz);
-            Assert.Equal(FrequencyUnit.Microhertz, quantity07.Unit);
-
-            var quantity08 = Frequency.From(1, FrequencyUnit.Millihertz);
-            Assert.Equal(1, quantity08.Millihertz);
-            Assert.Equal(FrequencyUnit.Millihertz, quantity08.Unit);
-
-            var quantity09 = Frequency.From(1, FrequencyUnit.PerSecond);
-            Assert.Equal(1, quantity09.PerSecond);
-            Assert.Equal(FrequencyUnit.PerSecond, quantity09.Unit);
-
-            var quantity10 = Frequency.From(1, FrequencyUnit.RadianPerSecond);
-            Assert.Equal(1, quantity10.RadiansPerSecond);
-            Assert.Equal(FrequencyUnit.RadianPerSecond, quantity10.Unit);
-
-            var quantity11 = Frequency.From(1, FrequencyUnit.Terahertz);
-            Assert.Equal(1, quantity11.Terahertz);
-            Assert.Equal(FrequencyUnit.Terahertz, quantity11.Unit);
-
+            Assert.All(EnumHelper.GetValues<FrequencyUnit>(), unit =>
+            {
+                var quantity = Frequency.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

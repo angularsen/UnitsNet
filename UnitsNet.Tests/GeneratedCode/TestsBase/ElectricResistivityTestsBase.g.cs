@@ -214,62 +214,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmCentimeter);
-            Assert.Equal(1, quantity00.KiloohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.KiloohmCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmMeter);
-            Assert.Equal(1, quantity01.KiloohmMeters);
-            Assert.Equal(ElectricResistivityUnit.KiloohmMeter, quantity01.Unit);
-
-            var quantity02 = ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmCentimeter);
-            Assert.Equal(1, quantity02.MegaohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.MegaohmCentimeter, quantity02.Unit);
-
-            var quantity03 = ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmMeter);
-            Assert.Equal(1, quantity03.MegaohmMeters);
-            Assert.Equal(ElectricResistivityUnit.MegaohmMeter, quantity03.Unit);
-
-            var quantity04 = ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmCentimeter);
-            Assert.Equal(1, quantity04.MicroohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.MicroohmCentimeter, quantity04.Unit);
-
-            var quantity05 = ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmMeter);
-            Assert.Equal(1, quantity05.MicroohmMeters);
-            Assert.Equal(ElectricResistivityUnit.MicroohmMeter, quantity05.Unit);
-
-            var quantity06 = ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmCentimeter);
-            Assert.Equal(1, quantity06.MilliohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.MilliohmCentimeter, quantity06.Unit);
-
-            var quantity07 = ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmMeter);
-            Assert.Equal(1, quantity07.MilliohmMeters);
-            Assert.Equal(ElectricResistivityUnit.MilliohmMeter, quantity07.Unit);
-
-            var quantity08 = ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmCentimeter);
-            Assert.Equal(1, quantity08.NanoohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.NanoohmCentimeter, quantity08.Unit);
-
-            var quantity09 = ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmMeter);
-            Assert.Equal(1, quantity09.NanoohmMeters);
-            Assert.Equal(ElectricResistivityUnit.NanoohmMeter, quantity09.Unit);
-
-            var quantity10 = ElectricResistivity.From(1, ElectricResistivityUnit.OhmCentimeter);
-            Assert.Equal(1, quantity10.OhmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.OhmCentimeter, quantity10.Unit);
-
-            var quantity11 = ElectricResistivity.From(1, ElectricResistivityUnit.OhmMeter);
-            Assert.Equal(1, quantity11.OhmMeters);
-            Assert.Equal(ElectricResistivityUnit.OhmMeter, quantity11.Unit);
-
-            var quantity12 = ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmCentimeter);
-            Assert.Equal(1, quantity12.PicoohmsCentimeter);
-            Assert.Equal(ElectricResistivityUnit.PicoohmCentimeter, quantity12.Unit);
-
-            var quantity13 = ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmMeter);
-            Assert.Equal(1, quantity13.PicoohmMeters);
-            Assert.Equal(ElectricResistivityUnit.PicoohmMeter, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricResistivityUnit>(), unit =>
+            {
+                var quantity = ElectricResistivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

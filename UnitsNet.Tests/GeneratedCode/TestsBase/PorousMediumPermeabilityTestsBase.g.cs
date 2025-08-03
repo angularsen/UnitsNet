@@ -169,26 +169,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Darcy);
-            Assert.Equal(1, quantity00.Darcys);
-            Assert.Equal(PorousMediumPermeabilityUnit.Darcy, quantity00.Unit);
-
-            var quantity01 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Microdarcy);
-            Assert.Equal(1, quantity01.Microdarcys);
-            Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, quantity01.Unit);
-
-            var quantity02 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Millidarcy);
-            Assert.Equal(1, quantity02.Millidarcys);
-            Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, quantity02.Unit);
-
-            var quantity03 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareCentimeter);
-            Assert.Equal(1, quantity03.SquareCentimeters);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, quantity03.Unit);
-
-            var quantity04 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareMeter);
-            Assert.Equal(1, quantity04.SquareMeters);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<PorousMediumPermeabilityUnit>(), unit =>
+            {
+                var quantity = PorousMediumPermeability.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

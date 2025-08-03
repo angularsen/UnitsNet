@@ -366,19 +366,13 @@ namespace UnitsNet.Tests
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
-        {{");
-            var i = 0;
-            foreach (var unit in _quantity.Units)
-            {
-                var quantityVariable = $"quantity{i++:D2}";
-                Writer.WL($@"
-            var {quantityVariable} = {_quantity.Name}.From(1, {GetUnitFullName(unit)});
-            Assert.Equal(1, {quantityVariable}.{unit.PluralName});
-            Assert.Equal({GetUnitFullName(unit)}, {quantityVariable}.Unit);
-");
-
-            }
-            Writer.WL($@"
+        {{
+            Assert.All(EnumHelper.GetValues<{_unitEnumName}>(), unit =>
+            {{
+                var quantity = {_quantity.Name}.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            }});
         }}
 
         [Fact]

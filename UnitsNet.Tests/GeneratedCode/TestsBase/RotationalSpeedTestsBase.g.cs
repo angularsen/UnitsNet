@@ -209,58 +209,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond);
-            Assert.Equal(1, quantity00.CentiradiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, quantity00.Unit);
-
-            var quantity01 = RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond);
-            Assert.Equal(1, quantity01.DeciradiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, quantity01.Unit);
-
-            var quantity02 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute);
-            Assert.Equal(1, quantity02.DegreesPerMinute);
-            Assert.Equal(RotationalSpeedUnit.DegreePerMinute, quantity02.Unit);
-
-            var quantity03 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond);
-            Assert.Equal(1, quantity03.DegreesPerSecond);
-            Assert.Equal(RotationalSpeedUnit.DegreePerSecond, quantity03.Unit);
-
-            var quantity04 = RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond);
-            Assert.Equal(1, quantity04.MicrodegreesPerSecond);
-            Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, quantity04.Unit);
-
-            var quantity05 = RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond);
-            Assert.Equal(1, quantity05.MicroradiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, quantity05.Unit);
-
-            var quantity06 = RotationalSpeed.From(1, RotationalSpeedUnit.MillidegreePerSecond);
-            Assert.Equal(1, quantity06.MillidegreesPerSecond);
-            Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, quantity06.Unit);
-
-            var quantity07 = RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond);
-            Assert.Equal(1, quantity07.MilliradiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, quantity07.Unit);
-
-            var quantity08 = RotationalSpeed.From(1, RotationalSpeedUnit.NanodegreePerSecond);
-            Assert.Equal(1, quantity08.NanodegreesPerSecond);
-            Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, quantity08.Unit);
-
-            var quantity09 = RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond);
-            Assert.Equal(1, quantity09.NanoradiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, quantity09.Unit);
-
-            var quantity10 = RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond);
-            Assert.Equal(1, quantity10.RadiansPerSecond);
-            Assert.Equal(RotationalSpeedUnit.RadianPerSecond, quantity10.Unit);
-
-            var quantity11 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute);
-            Assert.Equal(1, quantity11.RevolutionsPerMinute);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, quantity11.Unit);
-
-            var quantity12 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond);
-            Assert.Equal(1, quantity12.RevolutionsPerSecond);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<RotationalSpeedUnit>(), unit =>
+            {
+                var quantity = RotationalSpeed.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

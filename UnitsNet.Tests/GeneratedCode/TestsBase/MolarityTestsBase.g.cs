@@ -199,50 +199,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Molarity.From(1, MolarityUnit.CentimolePerLiter);
-            Assert.Equal(1, quantity00.CentimolesPerLiter);
-            Assert.Equal(MolarityUnit.CentimolePerLiter, quantity00.Unit);
-
-            var quantity01 = Molarity.From(1, MolarityUnit.DecimolePerLiter);
-            Assert.Equal(1, quantity01.DecimolesPerLiter);
-            Assert.Equal(MolarityUnit.DecimolePerLiter, quantity01.Unit);
-
-            var quantity02 = Molarity.From(1, MolarityUnit.FemtomolePerLiter);
-            Assert.Equal(1, quantity02.FemtomolesPerLiter);
-            Assert.Equal(MolarityUnit.FemtomolePerLiter, quantity02.Unit);
-
-            var quantity03 = Molarity.From(1, MolarityUnit.KilomolePerCubicMeter);
-            Assert.Equal(1, quantity03.KilomolesPerCubicMeter);
-            Assert.Equal(MolarityUnit.KilomolePerCubicMeter, quantity03.Unit);
-
-            var quantity04 = Molarity.From(1, MolarityUnit.MicromolePerLiter);
-            Assert.Equal(1, quantity04.MicromolesPerLiter);
-            Assert.Equal(MolarityUnit.MicromolePerLiter, quantity04.Unit);
-
-            var quantity05 = Molarity.From(1, MolarityUnit.MillimolePerLiter);
-            Assert.Equal(1, quantity05.MillimolesPerLiter);
-            Assert.Equal(MolarityUnit.MillimolePerLiter, quantity05.Unit);
-
-            var quantity06 = Molarity.From(1, MolarityUnit.MolePerCubicMeter);
-            Assert.Equal(1, quantity06.MolesPerCubicMeter);
-            Assert.Equal(MolarityUnit.MolePerCubicMeter, quantity06.Unit);
-
-            var quantity07 = Molarity.From(1, MolarityUnit.MolePerLiter);
-            Assert.Equal(1, quantity07.MolesPerLiter);
-            Assert.Equal(MolarityUnit.MolePerLiter, quantity07.Unit);
-
-            var quantity08 = Molarity.From(1, MolarityUnit.NanomolePerLiter);
-            Assert.Equal(1, quantity08.NanomolesPerLiter);
-            Assert.Equal(MolarityUnit.NanomolePerLiter, quantity08.Unit);
-
-            var quantity09 = Molarity.From(1, MolarityUnit.PicomolePerLiter);
-            Assert.Equal(1, quantity09.PicomolesPerLiter);
-            Assert.Equal(MolarityUnit.PicomolePerLiter, quantity09.Unit);
-
-            var quantity10 = Molarity.From(1, MolarityUnit.PoundMolePerCubicFoot);
-            Assert.Equal(1, quantity10.PoundMolesPerCubicFoot);
-            Assert.Equal(MolarityUnit.PoundMolePerCubicFoot, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarityUnit>(), unit =>
+            {
+                var quantity = Molarity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

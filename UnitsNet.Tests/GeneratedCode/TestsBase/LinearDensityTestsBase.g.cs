@@ -234,78 +234,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LinearDensity.From(1, LinearDensityUnit.GramPerCentimeter);
-            Assert.Equal(1, quantity00.GramsPerCentimeter);
-            Assert.Equal(LinearDensityUnit.GramPerCentimeter, quantity00.Unit);
-
-            var quantity01 = LinearDensity.From(1, LinearDensityUnit.GramPerFoot);
-            Assert.Equal(1, quantity01.GramsPerFoot);
-            Assert.Equal(LinearDensityUnit.GramPerFoot, quantity01.Unit);
-
-            var quantity02 = LinearDensity.From(1, LinearDensityUnit.GramPerMeter);
-            Assert.Equal(1, quantity02.GramsPerMeter);
-            Assert.Equal(LinearDensityUnit.GramPerMeter, quantity02.Unit);
-
-            var quantity03 = LinearDensity.From(1, LinearDensityUnit.GramPerMillimeter);
-            Assert.Equal(1, quantity03.GramsPerMillimeter);
-            Assert.Equal(LinearDensityUnit.GramPerMillimeter, quantity03.Unit);
-
-            var quantity04 = LinearDensity.From(1, LinearDensityUnit.KilogramPerCentimeter);
-            Assert.Equal(1, quantity04.KilogramsPerCentimeter);
-            Assert.Equal(LinearDensityUnit.KilogramPerCentimeter, quantity04.Unit);
-
-            var quantity05 = LinearDensity.From(1, LinearDensityUnit.KilogramPerFoot);
-            Assert.Equal(1, quantity05.KilogramsPerFoot);
-            Assert.Equal(LinearDensityUnit.KilogramPerFoot, quantity05.Unit);
-
-            var quantity06 = LinearDensity.From(1, LinearDensityUnit.KilogramPerMeter);
-            Assert.Equal(1, quantity06.KilogramsPerMeter);
-            Assert.Equal(LinearDensityUnit.KilogramPerMeter, quantity06.Unit);
-
-            var quantity07 = LinearDensity.From(1, LinearDensityUnit.KilogramPerMillimeter);
-            Assert.Equal(1, quantity07.KilogramsPerMillimeter);
-            Assert.Equal(LinearDensityUnit.KilogramPerMillimeter, quantity07.Unit);
-
-            var quantity08 = LinearDensity.From(1, LinearDensityUnit.MicrogramPerCentimeter);
-            Assert.Equal(1, quantity08.MicrogramsPerCentimeter);
-            Assert.Equal(LinearDensityUnit.MicrogramPerCentimeter, quantity08.Unit);
-
-            var quantity09 = LinearDensity.From(1, LinearDensityUnit.MicrogramPerFoot);
-            Assert.Equal(1, quantity09.MicrogramsPerFoot);
-            Assert.Equal(LinearDensityUnit.MicrogramPerFoot, quantity09.Unit);
-
-            var quantity10 = LinearDensity.From(1, LinearDensityUnit.MicrogramPerMeter);
-            Assert.Equal(1, quantity10.MicrogramsPerMeter);
-            Assert.Equal(LinearDensityUnit.MicrogramPerMeter, quantity10.Unit);
-
-            var quantity11 = LinearDensity.From(1, LinearDensityUnit.MicrogramPerMillimeter);
-            Assert.Equal(1, quantity11.MicrogramsPerMillimeter);
-            Assert.Equal(LinearDensityUnit.MicrogramPerMillimeter, quantity11.Unit);
-
-            var quantity12 = LinearDensity.From(1, LinearDensityUnit.MilligramPerCentimeter);
-            Assert.Equal(1, quantity12.MilligramsPerCentimeter);
-            Assert.Equal(LinearDensityUnit.MilligramPerCentimeter, quantity12.Unit);
-
-            var quantity13 = LinearDensity.From(1, LinearDensityUnit.MilligramPerFoot);
-            Assert.Equal(1, quantity13.MilligramsPerFoot);
-            Assert.Equal(LinearDensityUnit.MilligramPerFoot, quantity13.Unit);
-
-            var quantity14 = LinearDensity.From(1, LinearDensityUnit.MilligramPerMeter);
-            Assert.Equal(1, quantity14.MilligramsPerMeter);
-            Assert.Equal(LinearDensityUnit.MilligramPerMeter, quantity14.Unit);
-
-            var quantity15 = LinearDensity.From(1, LinearDensityUnit.MilligramPerMillimeter);
-            Assert.Equal(1, quantity15.MilligramsPerMillimeter);
-            Assert.Equal(LinearDensityUnit.MilligramPerMillimeter, quantity15.Unit);
-
-            var quantity16 = LinearDensity.From(1, LinearDensityUnit.PoundPerFoot);
-            Assert.Equal(1, quantity16.PoundsPerFoot);
-            Assert.Equal(LinearDensityUnit.PoundPerFoot, quantity16.Unit);
-
-            var quantity17 = LinearDensity.From(1, LinearDensityUnit.PoundPerInch);
-            Assert.Equal(1, quantity17.PoundsPerInch);
-            Assert.Equal(LinearDensityUnit.PoundPerInch, quantity17.Unit);
-
+            Assert.All(EnumHelper.GetValues<LinearDensityUnit>(), unit =>
+            {
+                var quantity = LinearDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -219,66 +219,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Force.From(1, ForceUnit.Decanewton);
-            Assert.Equal(1, quantity00.Decanewtons);
-            Assert.Equal(ForceUnit.Decanewton, quantity00.Unit);
-
-            var quantity01 = Force.From(1, ForceUnit.Dyn);
-            Assert.Equal(1, quantity01.Dyne);
-            Assert.Equal(ForceUnit.Dyn, quantity01.Unit);
-
-            var quantity02 = Force.From(1, ForceUnit.KilogramForce);
-            Assert.Equal(1, quantity02.KilogramsForce);
-            Assert.Equal(ForceUnit.KilogramForce, quantity02.Unit);
-
-            var quantity03 = Force.From(1, ForceUnit.Kilonewton);
-            Assert.Equal(1, quantity03.Kilonewtons);
-            Assert.Equal(ForceUnit.Kilonewton, quantity03.Unit);
-
-            var quantity04 = Force.From(1, ForceUnit.KiloPond);
-            Assert.Equal(1, quantity04.KiloPonds);
-            Assert.Equal(ForceUnit.KiloPond, quantity04.Unit);
-
-            var quantity05 = Force.From(1, ForceUnit.KilopoundForce);
-            Assert.Equal(1, quantity05.KilopoundsForce);
-            Assert.Equal(ForceUnit.KilopoundForce, quantity05.Unit);
-
-            var quantity06 = Force.From(1, ForceUnit.Meganewton);
-            Assert.Equal(1, quantity06.Meganewtons);
-            Assert.Equal(ForceUnit.Meganewton, quantity06.Unit);
-
-            var quantity07 = Force.From(1, ForceUnit.Micronewton);
-            Assert.Equal(1, quantity07.Micronewtons);
-            Assert.Equal(ForceUnit.Micronewton, quantity07.Unit);
-
-            var quantity08 = Force.From(1, ForceUnit.Millinewton);
-            Assert.Equal(1, quantity08.Millinewtons);
-            Assert.Equal(ForceUnit.Millinewton, quantity08.Unit);
-
-            var quantity09 = Force.From(1, ForceUnit.Newton);
-            Assert.Equal(1, quantity09.Newtons);
-            Assert.Equal(ForceUnit.Newton, quantity09.Unit);
-
-            var quantity10 = Force.From(1, ForceUnit.OunceForce);
-            Assert.Equal(1, quantity10.OunceForce);
-            Assert.Equal(ForceUnit.OunceForce, quantity10.Unit);
-
-            var quantity11 = Force.From(1, ForceUnit.Poundal);
-            Assert.Equal(1, quantity11.Poundals);
-            Assert.Equal(ForceUnit.Poundal, quantity11.Unit);
-
-            var quantity12 = Force.From(1, ForceUnit.PoundForce);
-            Assert.Equal(1, quantity12.PoundsForce);
-            Assert.Equal(ForceUnit.PoundForce, quantity12.Unit);
-
-            var quantity13 = Force.From(1, ForceUnit.ShortTonForce);
-            Assert.Equal(1, quantity13.ShortTonsForce);
-            Assert.Equal(ForceUnit.ShortTonForce, quantity13.Unit);
-
-            var quantity14 = Force.From(1, ForceUnit.TonneForce);
-            Assert.Equal(1, quantity14.TonnesForce);
-            Assert.Equal(ForceUnit.TonneForce, quantity14.Unit);
-
+            Assert.All(EnumHelper.GetValues<ForceUnit>(), unit =>
+            {
+                var quantity = Force.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

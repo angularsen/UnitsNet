@@ -194,46 +194,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Temperature.From(1, TemperatureUnit.DegreeCelsius);
-            Assert.Equal(1, quantity00.DegreesCelsius);
-            Assert.Equal(TemperatureUnit.DegreeCelsius, quantity00.Unit);
-
-            var quantity01 = Temperature.From(1, TemperatureUnit.DegreeDelisle);
-            Assert.Equal(1, quantity01.DegreesDelisle);
-            Assert.Equal(TemperatureUnit.DegreeDelisle, quantity01.Unit);
-
-            var quantity02 = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
-            Assert.Equal(1, quantity02.DegreesFahrenheit);
-            Assert.Equal(TemperatureUnit.DegreeFahrenheit, quantity02.Unit);
-
-            var quantity03 = Temperature.From(1, TemperatureUnit.DegreeNewton);
-            Assert.Equal(1, quantity03.DegreesNewton);
-            Assert.Equal(TemperatureUnit.DegreeNewton, quantity03.Unit);
-
-            var quantity04 = Temperature.From(1, TemperatureUnit.DegreeRankine);
-            Assert.Equal(1, quantity04.DegreesRankine);
-            Assert.Equal(TemperatureUnit.DegreeRankine, quantity04.Unit);
-
-            var quantity05 = Temperature.From(1, TemperatureUnit.DegreeReaumur);
-            Assert.Equal(1, quantity05.DegreesReaumur);
-            Assert.Equal(TemperatureUnit.DegreeReaumur, quantity05.Unit);
-
-            var quantity06 = Temperature.From(1, TemperatureUnit.DegreeRoemer);
-            Assert.Equal(1, quantity06.DegreesRoemer);
-            Assert.Equal(TemperatureUnit.DegreeRoemer, quantity06.Unit);
-
-            var quantity07 = Temperature.From(1, TemperatureUnit.Kelvin);
-            Assert.Equal(1, quantity07.Kelvins);
-            Assert.Equal(TemperatureUnit.Kelvin, quantity07.Unit);
-
-            var quantity08 = Temperature.From(1, TemperatureUnit.MillidegreeCelsius);
-            Assert.Equal(1, quantity08.MillidegreesCelsius);
-            Assert.Equal(TemperatureUnit.MillidegreeCelsius, quantity08.Unit);
-
-            var quantity09 = Temperature.From(1, TemperatureUnit.SolarTemperature);
-            Assert.Equal(1, quantity09.SolarTemperatures);
-            Assert.Equal(TemperatureUnit.SolarTemperature, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureUnit>(), unit =>
+            {
+                var quantity = Temperature.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -209,58 +209,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarMass.From(1, MolarMassUnit.CentigramPerMole);
-            Assert.Equal(1, quantity00.CentigramsPerMole);
-            Assert.Equal(MolarMassUnit.CentigramPerMole, quantity00.Unit);
-
-            var quantity01 = MolarMass.From(1, MolarMassUnit.DecagramPerMole);
-            Assert.Equal(1, quantity01.DecagramsPerMole);
-            Assert.Equal(MolarMassUnit.DecagramPerMole, quantity01.Unit);
-
-            var quantity02 = MolarMass.From(1, MolarMassUnit.DecigramPerMole);
-            Assert.Equal(1, quantity02.DecigramsPerMole);
-            Assert.Equal(MolarMassUnit.DecigramPerMole, quantity02.Unit);
-
-            var quantity03 = MolarMass.From(1, MolarMassUnit.GramPerMole);
-            Assert.Equal(1, quantity03.GramsPerMole);
-            Assert.Equal(MolarMassUnit.GramPerMole, quantity03.Unit);
-
-            var quantity04 = MolarMass.From(1, MolarMassUnit.HectogramPerMole);
-            Assert.Equal(1, quantity04.HectogramsPerMole);
-            Assert.Equal(MolarMassUnit.HectogramPerMole, quantity04.Unit);
-
-            var quantity05 = MolarMass.From(1, MolarMassUnit.KilogramPerKilomole);
-            Assert.Equal(1, quantity05.KilogramsPerKilomole);
-            Assert.Equal(MolarMassUnit.KilogramPerKilomole, quantity05.Unit);
-
-            var quantity06 = MolarMass.From(1, MolarMassUnit.KilogramPerMole);
-            Assert.Equal(1, quantity06.KilogramsPerMole);
-            Assert.Equal(MolarMassUnit.KilogramPerMole, quantity06.Unit);
-
-            var quantity07 = MolarMass.From(1, MolarMassUnit.KilopoundPerMole);
-            Assert.Equal(1, quantity07.KilopoundsPerMole);
-            Assert.Equal(MolarMassUnit.KilopoundPerMole, quantity07.Unit);
-
-            var quantity08 = MolarMass.From(1, MolarMassUnit.MegapoundPerMole);
-            Assert.Equal(1, quantity08.MegapoundsPerMole);
-            Assert.Equal(MolarMassUnit.MegapoundPerMole, quantity08.Unit);
-
-            var quantity09 = MolarMass.From(1, MolarMassUnit.MicrogramPerMole);
-            Assert.Equal(1, quantity09.MicrogramsPerMole);
-            Assert.Equal(MolarMassUnit.MicrogramPerMole, quantity09.Unit);
-
-            var quantity10 = MolarMass.From(1, MolarMassUnit.MilligramPerMole);
-            Assert.Equal(1, quantity10.MilligramsPerMole);
-            Assert.Equal(MolarMassUnit.MilligramPerMole, quantity10.Unit);
-
-            var quantity11 = MolarMass.From(1, MolarMassUnit.NanogramPerMole);
-            Assert.Equal(1, quantity11.NanogramsPerMole);
-            Assert.Equal(MolarMassUnit.NanogramPerMole, quantity11.Unit);
-
-            var quantity12 = MolarMass.From(1, MolarMassUnit.PoundPerMole);
-            Assert.Equal(1, quantity12.PoundsPerMole);
-            Assert.Equal(MolarMassUnit.PoundPerMole, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarMassUnit>(), unit =>
+            {
+                var quantity = MolarMass.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

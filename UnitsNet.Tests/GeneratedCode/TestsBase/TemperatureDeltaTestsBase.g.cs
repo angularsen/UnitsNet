@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeCelsius);
-            Assert.Equal(1, quantity00.DegreesCelsius);
-            Assert.Equal(TemperatureDeltaUnit.DegreeCelsius, quantity00.Unit);
-
-            var quantity01 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeDelisle);
-            Assert.Equal(1, quantity01.DegreesDelisle);
-            Assert.Equal(TemperatureDeltaUnit.DegreeDelisle, quantity01.Unit);
-
-            var quantity02 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeFahrenheit);
-            Assert.Equal(1, quantity02.DegreesFahrenheit);
-            Assert.Equal(TemperatureDeltaUnit.DegreeFahrenheit, quantity02.Unit);
-
-            var quantity03 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeNewton);
-            Assert.Equal(1, quantity03.DegreesNewton);
-            Assert.Equal(TemperatureDeltaUnit.DegreeNewton, quantity03.Unit);
-
-            var quantity04 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRankine);
-            Assert.Equal(1, quantity04.DegreesRankine);
-            Assert.Equal(TemperatureDeltaUnit.DegreeRankine, quantity04.Unit);
-
-            var quantity05 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeReaumur);
-            Assert.Equal(1, quantity05.DegreesReaumur);
-            Assert.Equal(TemperatureDeltaUnit.DegreeReaumur, quantity05.Unit);
-
-            var quantity06 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRoemer);
-            Assert.Equal(1, quantity06.DegreesRoemer);
-            Assert.Equal(TemperatureDeltaUnit.DegreeRoemer, quantity06.Unit);
-
-            var quantity07 = TemperatureDelta.From(1, TemperatureDeltaUnit.Kelvin);
-            Assert.Equal(1, quantity07.Kelvins);
-            Assert.Equal(TemperatureDeltaUnit.Kelvin, quantity07.Unit);
-
-            var quantity08 = TemperatureDelta.From(1, TemperatureDeltaUnit.MillidegreeCelsius);
-            Assert.Equal(1, quantity08.MillidegreesCelsius);
-            Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureDeltaUnit>(), unit =>
+            {
+                var quantity = TemperatureDelta.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

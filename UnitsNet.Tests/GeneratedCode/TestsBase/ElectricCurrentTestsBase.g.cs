@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCurrent.From(1, ElectricCurrentUnit.Ampere);
-            Assert.Equal(1, quantity00.Amperes);
-            Assert.Equal(ElectricCurrentUnit.Ampere, quantity00.Unit);
-
-            var quantity01 = ElectricCurrent.From(1, ElectricCurrentUnit.Centiampere);
-            Assert.Equal(1, quantity01.Centiamperes);
-            Assert.Equal(ElectricCurrentUnit.Centiampere, quantity01.Unit);
-
-            var quantity02 = ElectricCurrent.From(1, ElectricCurrentUnit.Femtoampere);
-            Assert.Equal(1, quantity02.Femtoamperes);
-            Assert.Equal(ElectricCurrentUnit.Femtoampere, quantity02.Unit);
-
-            var quantity03 = ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere);
-            Assert.Equal(1, quantity03.Kiloamperes);
-            Assert.Equal(ElectricCurrentUnit.Kiloampere, quantity03.Unit);
-
-            var quantity04 = ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere);
-            Assert.Equal(1, quantity04.Megaamperes);
-            Assert.Equal(ElectricCurrentUnit.Megaampere, quantity04.Unit);
-
-            var quantity05 = ElectricCurrent.From(1, ElectricCurrentUnit.Microampere);
-            Assert.Equal(1, quantity05.Microamperes);
-            Assert.Equal(ElectricCurrentUnit.Microampere, quantity05.Unit);
-
-            var quantity06 = ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere);
-            Assert.Equal(1, quantity06.Milliamperes);
-            Assert.Equal(ElectricCurrentUnit.Milliampere, quantity06.Unit);
-
-            var quantity07 = ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere);
-            Assert.Equal(1, quantity07.Nanoamperes);
-            Assert.Equal(ElectricCurrentUnit.Nanoampere, quantity07.Unit);
-
-            var quantity08 = ElectricCurrent.From(1, ElectricCurrentUnit.Picoampere);
-            Assert.Equal(1, quantity08.Picoamperes);
-            Assert.Equal(ElectricCurrentUnit.Picoampere, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCurrentUnit>(), unit =>
+            {
+                var quantity = ElectricCurrent.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumePerLength.From(1, VolumePerLengthUnit.CubicMeterPerMeter);
-            Assert.Equal(1, quantity00.CubicMetersPerMeter);
-            Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, quantity00.Unit);
-
-            var quantity01 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerFoot);
-            Assert.Equal(1, quantity01.CubicYardsPerFoot);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, quantity01.Unit);
-
-            var quantity02 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
-            Assert.Equal(1, quantity02.CubicYardsPerUsSurveyFoot);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, quantity02.Unit);
-
-            var quantity03 = VolumePerLength.From(1, VolumePerLengthUnit.ImperialGallonPerMile);
-            Assert.Equal(1, quantity03.ImperialGallonsPerMile);
-            Assert.Equal(VolumePerLengthUnit.ImperialGallonPerMile, quantity03.Unit);
-
-            var quantity04 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerKilometer);
-            Assert.Equal(1, quantity04.LitersPerKilometer);
-            Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, quantity04.Unit);
-
-            var quantity05 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMeter);
-            Assert.Equal(1, quantity05.LitersPerMeter);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMeter, quantity05.Unit);
-
-            var quantity06 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMillimeter);
-            Assert.Equal(1, quantity06.LitersPerMillimeter);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, quantity06.Unit);
-
-            var quantity07 = VolumePerLength.From(1, VolumePerLengthUnit.OilBarrelPerFoot);
-            Assert.Equal(1, quantity07.OilBarrelsPerFoot);
-            Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, quantity07.Unit);
-
-            var quantity08 = VolumePerLength.From(1, VolumePerLengthUnit.UsGallonPerMile);
-            Assert.Equal(1, quantity08.UsGallonsPerMile);
-            Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumePerLengthUnit>(), unit =>
+            {
+                var quantity = VolumePerLength.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

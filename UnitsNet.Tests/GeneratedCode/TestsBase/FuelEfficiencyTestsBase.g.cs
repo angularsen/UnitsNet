@@ -164,22 +164,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = FuelEfficiency.From(1, FuelEfficiencyUnit.KilometerPerLiter);
-            Assert.Equal(1, quantity00.KilometersPerLiter);
-            Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, quantity00.Unit);
-
-            var quantity01 = FuelEfficiency.From(1, FuelEfficiencyUnit.LiterPer100Kilometers);
-            Assert.Equal(1, quantity01.LitersPer100Kilometers);
-            Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, quantity01.Unit);
-
-            var quantity02 = FuelEfficiency.From(1, FuelEfficiencyUnit.MilePerUkGallon);
-            Assert.Equal(1, quantity02.MilesPerUkGallon);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, quantity02.Unit);
-
-            var quantity03 = FuelEfficiency.From(1, FuelEfficiencyUnit.MilePerUsGallon);
-            Assert.Equal(1, quantity03.MilesPerUsGallon);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<FuelEfficiencyUnit>(), unit =>
+            {
+                var quantity = FuelEfficiency.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

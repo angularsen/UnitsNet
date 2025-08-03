@@ -194,46 +194,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Luminance.From(1, LuminanceUnit.CandelaPerSquareFoot);
-            Assert.Equal(1, quantity00.CandelasPerSquareFoot);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareFoot, quantity00.Unit);
-
-            var quantity01 = Luminance.From(1, LuminanceUnit.CandelaPerSquareInch);
-            Assert.Equal(1, quantity01.CandelasPerSquareInch);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareInch, quantity01.Unit);
-
-            var quantity02 = Luminance.From(1, LuminanceUnit.CandelaPerSquareMeter);
-            Assert.Equal(1, quantity02.CandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareMeter, quantity02.Unit);
-
-            var quantity03 = Luminance.From(1, LuminanceUnit.CenticandelaPerSquareMeter);
-            Assert.Equal(1, quantity03.CenticandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.CenticandelaPerSquareMeter, quantity03.Unit);
-
-            var quantity04 = Luminance.From(1, LuminanceUnit.DecicandelaPerSquareMeter);
-            Assert.Equal(1, quantity04.DecicandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.DecicandelaPerSquareMeter, quantity04.Unit);
-
-            var quantity05 = Luminance.From(1, LuminanceUnit.KilocandelaPerSquareMeter);
-            Assert.Equal(1, quantity05.KilocandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.KilocandelaPerSquareMeter, quantity05.Unit);
-
-            var quantity06 = Luminance.From(1, LuminanceUnit.MicrocandelaPerSquareMeter);
-            Assert.Equal(1, quantity06.MicrocandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.MicrocandelaPerSquareMeter, quantity06.Unit);
-
-            var quantity07 = Luminance.From(1, LuminanceUnit.MillicandelaPerSquareMeter);
-            Assert.Equal(1, quantity07.MillicandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.MillicandelaPerSquareMeter, quantity07.Unit);
-
-            var quantity08 = Luminance.From(1, LuminanceUnit.NanocandelaPerSquareMeter);
-            Assert.Equal(1, quantity08.NanocandelasPerSquareMeter);
-            Assert.Equal(LuminanceUnit.NanocandelaPerSquareMeter, quantity08.Unit);
-
-            var quantity09 = Luminance.From(1, LuminanceUnit.Nit);
-            Assert.Equal(1, quantity09.Nits);
-            Assert.Equal(LuminanceUnit.Nit, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminanceUnit>(), unit =>
+            {
+                var quantity = Luminance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

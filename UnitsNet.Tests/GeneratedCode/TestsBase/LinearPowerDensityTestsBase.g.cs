@@ -269,106 +269,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerCentimeter);
-            Assert.Equal(1, quantity00.GigawattsPerCentimeter);
-            Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, quantity00.Unit);
-
-            var quantity01 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerFoot);
-            Assert.Equal(1, quantity01.GigawattsPerFoot);
-            Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, quantity01.Unit);
-
-            var quantity02 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerInch);
-            Assert.Equal(1, quantity02.GigawattsPerInch);
-            Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, quantity02.Unit);
-
-            var quantity03 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerMeter);
-            Assert.Equal(1, quantity03.GigawattsPerMeter);
-            Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, quantity03.Unit);
-
-            var quantity04 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerMillimeter);
-            Assert.Equal(1, quantity04.GigawattsPerMillimeter);
-            Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, quantity04.Unit);
-
-            var quantity05 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerCentimeter);
-            Assert.Equal(1, quantity05.KilowattsPerCentimeter);
-            Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, quantity05.Unit);
-
-            var quantity06 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerFoot);
-            Assert.Equal(1, quantity06.KilowattsPerFoot);
-            Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, quantity06.Unit);
-
-            var quantity07 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerInch);
-            Assert.Equal(1, quantity07.KilowattsPerInch);
-            Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, quantity07.Unit);
-
-            var quantity08 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerMeter);
-            Assert.Equal(1, quantity08.KilowattsPerMeter);
-            Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, quantity08.Unit);
-
-            var quantity09 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerMillimeter);
-            Assert.Equal(1, quantity09.KilowattsPerMillimeter);
-            Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, quantity09.Unit);
-
-            var quantity10 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerCentimeter);
-            Assert.Equal(1, quantity10.MegawattsPerCentimeter);
-            Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, quantity10.Unit);
-
-            var quantity11 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerFoot);
-            Assert.Equal(1, quantity11.MegawattsPerFoot);
-            Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, quantity11.Unit);
-
-            var quantity12 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerInch);
-            Assert.Equal(1, quantity12.MegawattsPerInch);
-            Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, quantity12.Unit);
-
-            var quantity13 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerMeter);
-            Assert.Equal(1, quantity13.MegawattsPerMeter);
-            Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, quantity13.Unit);
-
-            var quantity14 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerMillimeter);
-            Assert.Equal(1, quantity14.MegawattsPerMillimeter);
-            Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, quantity14.Unit);
-
-            var quantity15 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerCentimeter);
-            Assert.Equal(1, quantity15.MilliwattsPerCentimeter);
-            Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, quantity15.Unit);
-
-            var quantity16 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerFoot);
-            Assert.Equal(1, quantity16.MilliwattsPerFoot);
-            Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, quantity16.Unit);
-
-            var quantity17 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerInch);
-            Assert.Equal(1, quantity17.MilliwattsPerInch);
-            Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, quantity17.Unit);
-
-            var quantity18 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerMeter);
-            Assert.Equal(1, quantity18.MilliwattsPerMeter);
-            Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, quantity18.Unit);
-
-            var quantity19 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerMillimeter);
-            Assert.Equal(1, quantity19.MilliwattsPerMillimeter);
-            Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, quantity19.Unit);
-
-            var quantity20 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerCentimeter);
-            Assert.Equal(1, quantity20.WattsPerCentimeter);
-            Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, quantity20.Unit);
-
-            var quantity21 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerFoot);
-            Assert.Equal(1, quantity21.WattsPerFoot);
-            Assert.Equal(LinearPowerDensityUnit.WattPerFoot, quantity21.Unit);
-
-            var quantity22 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerInch);
-            Assert.Equal(1, quantity22.WattsPerInch);
-            Assert.Equal(LinearPowerDensityUnit.WattPerInch, quantity22.Unit);
-
-            var quantity23 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerMeter);
-            Assert.Equal(1, quantity23.WattsPerMeter);
-            Assert.Equal(LinearPowerDensityUnit.WattPerMeter, quantity23.Unit);
-
-            var quantity24 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerMillimeter);
-            Assert.Equal(1, quantity24.WattsPerMillimeter);
-            Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, quantity24.Unit);
-
+            Assert.All(EnumHelper.GetValues<LinearPowerDensityUnit>(), unit =>
+            {
+                var quantity = LinearPowerDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

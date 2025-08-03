@@ -133,14 +133,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt);
-            Assert.Equal(1, quantity00.DecibelMilliwatts);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, quantity00.Unit);
-
-            var quantity01 = PowerRatio.From(1, PowerRatioUnit.DecibelWatt);
-            Assert.Equal(1, quantity01.DecibelWatts);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerRatioUnit>(), unit =>
+            {
+                var quantity = PowerRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

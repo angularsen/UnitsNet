@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
-            Assert.Equal(1, quantity00.PerDegreeCelsius);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, quantity00.Unit);
-
-            var quantity01 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
-            Assert.Equal(1, quantity01.PerDegreeFahrenheit);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, quantity01.Unit);
-
-            var quantity02 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerKelvin);
-            Assert.Equal(1, quantity02.PerKelvin);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, quantity02.Unit);
-
-            var quantity03 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
-            Assert.Equal(1, quantity03.PpmPerDegreeCelsius);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, quantity03.Unit);
-
-            var quantity04 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
-            Assert.Equal(1, quantity04.PpmPerDegreeFahrenheit);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, quantity04.Unit);
-
-            var quantity05 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
-            Assert.Equal(1, quantity05.PpmPerKelvin);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>(), unit =>
+            {
+                var quantity = CoefficientOfThermalExpansion.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -149,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MagneticFlux.From(1, MagneticFluxUnit.Weber);
-            Assert.Equal(1, quantity00.Webers);
-            Assert.Equal(MagneticFluxUnit.Weber, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<MagneticFluxUnit>(), unit =>
+            {
+                var quantity = MagneticFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

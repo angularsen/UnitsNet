@@ -179,34 +179,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Entropy.From(1, EntropyUnit.CaloriePerKelvin);
-            Assert.Equal(1, quantity00.CaloriesPerKelvin);
-            Assert.Equal(EntropyUnit.CaloriePerKelvin, quantity00.Unit);
-
-            var quantity01 = Entropy.From(1, EntropyUnit.JoulePerDegreeCelsius);
-            Assert.Equal(1, quantity01.JoulesPerDegreeCelsius);
-            Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, quantity01.Unit);
-
-            var quantity02 = Entropy.From(1, EntropyUnit.JoulePerKelvin);
-            Assert.Equal(1, quantity02.JoulesPerKelvin);
-            Assert.Equal(EntropyUnit.JoulePerKelvin, quantity02.Unit);
-
-            var quantity03 = Entropy.From(1, EntropyUnit.KilocaloriePerKelvin);
-            Assert.Equal(1, quantity03.KilocaloriesPerKelvin);
-            Assert.Equal(EntropyUnit.KilocaloriePerKelvin, quantity03.Unit);
-
-            var quantity04 = Entropy.From(1, EntropyUnit.KilojoulePerDegreeCelsius);
-            Assert.Equal(1, quantity04.KilojoulesPerDegreeCelsius);
-            Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, quantity04.Unit);
-
-            var quantity05 = Entropy.From(1, EntropyUnit.KilojoulePerKelvin);
-            Assert.Equal(1, quantity05.KilojoulesPerKelvin);
-            Assert.Equal(EntropyUnit.KilojoulePerKelvin, quantity05.Unit);
-
-            var quantity06 = Entropy.From(1, EntropyUnit.MegajoulePerKelvin);
-            Assert.Equal(1, quantity06.MegajoulesPerKelvin);
-            Assert.Equal(EntropyUnit.MegajoulePerKelvin, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<EntropyUnit>(), unit =>
+            {
+                var quantity = Entropy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

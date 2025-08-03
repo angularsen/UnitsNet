@@ -184,38 +184,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RadiationExposure.From(1, RadiationExposureUnit.CoulombPerKilogram);
-            Assert.Equal(1, quantity00.CoulombsPerKilogram);
-            Assert.Equal(RadiationExposureUnit.CoulombPerKilogram, quantity00.Unit);
-
-            var quantity01 = RadiationExposure.From(1, RadiationExposureUnit.MicrocoulombPerKilogram);
-            Assert.Equal(1, quantity01.MicrocoulombsPerKilogram);
-            Assert.Equal(RadiationExposureUnit.MicrocoulombPerKilogram, quantity01.Unit);
-
-            var quantity02 = RadiationExposure.From(1, RadiationExposureUnit.Microroentgen);
-            Assert.Equal(1, quantity02.Microroentgens);
-            Assert.Equal(RadiationExposureUnit.Microroentgen, quantity02.Unit);
-
-            var quantity03 = RadiationExposure.From(1, RadiationExposureUnit.MillicoulombPerKilogram);
-            Assert.Equal(1, quantity03.MillicoulombsPerKilogram);
-            Assert.Equal(RadiationExposureUnit.MillicoulombPerKilogram, quantity03.Unit);
-
-            var quantity04 = RadiationExposure.From(1, RadiationExposureUnit.Milliroentgen);
-            Assert.Equal(1, quantity04.Milliroentgens);
-            Assert.Equal(RadiationExposureUnit.Milliroentgen, quantity04.Unit);
-
-            var quantity05 = RadiationExposure.From(1, RadiationExposureUnit.NanocoulombPerKilogram);
-            Assert.Equal(1, quantity05.NanocoulombsPerKilogram);
-            Assert.Equal(RadiationExposureUnit.NanocoulombPerKilogram, quantity05.Unit);
-
-            var quantity06 = RadiationExposure.From(1, RadiationExposureUnit.PicocoulombPerKilogram);
-            Assert.Equal(1, quantity06.PicocoulombsPerKilogram);
-            Assert.Equal(RadiationExposureUnit.PicocoulombPerKilogram, quantity06.Unit);
-
-            var quantity07 = RadiationExposure.From(1, RadiationExposureUnit.Roentgen);
-            Assert.Equal(1, quantity07.Roentgens);
-            Assert.Equal(RadiationExposureUnit.Roentgen, quantity07.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadiationExposureUnit>(), unit =>
+            {
+                var quantity = RadiationExposure.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

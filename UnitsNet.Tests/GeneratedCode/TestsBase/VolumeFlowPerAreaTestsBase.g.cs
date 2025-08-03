@@ -154,14 +154,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumeFlowPerArea.From(1, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
-            Assert.Equal(1, quantity00.CubicFeetPerMinutePerSquareFoot);
-            Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity00.Unit);
-
-            var quantity01 = VolumeFlowPerArea.From(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
-            Assert.Equal(1, quantity01.CubicMetersPerSecondPerSquareMeter);
-            Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumeFlowPerAreaUnit>(), unit =>
+            {
+                var quantity = VolumeFlowPerArea.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

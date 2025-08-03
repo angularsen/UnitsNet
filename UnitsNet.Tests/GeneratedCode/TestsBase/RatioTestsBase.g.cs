@@ -153,30 +153,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Ratio.From(1, RatioUnit.DecimalFraction);
-            Assert.Equal(1, quantity00.DecimalFractions);
-            Assert.Equal(RatioUnit.DecimalFraction, quantity00.Unit);
-
-            var quantity01 = Ratio.From(1, RatioUnit.PartPerBillion);
-            Assert.Equal(1, quantity01.PartsPerBillion);
-            Assert.Equal(RatioUnit.PartPerBillion, quantity01.Unit);
-
-            var quantity02 = Ratio.From(1, RatioUnit.PartPerMillion);
-            Assert.Equal(1, quantity02.PartsPerMillion);
-            Assert.Equal(RatioUnit.PartPerMillion, quantity02.Unit);
-
-            var quantity03 = Ratio.From(1, RatioUnit.PartPerThousand);
-            Assert.Equal(1, quantity03.PartsPerThousand);
-            Assert.Equal(RatioUnit.PartPerThousand, quantity03.Unit);
-
-            var quantity04 = Ratio.From(1, RatioUnit.PartPerTrillion);
-            Assert.Equal(1, quantity04.PartsPerTrillion);
-            Assert.Equal(RatioUnit.PartPerTrillion, quantity04.Unit);
-
-            var quantity05 = Ratio.From(1, RatioUnit.Percent);
-            Assert.Equal(1, quantity05.Percent);
-            Assert.Equal(RatioUnit.Percent, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<RatioUnit>(), unit =>
+            {
+                var quantity = Ratio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -128,10 +128,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RelativeHumidity.From(1, RelativeHumidityUnit.Percent);
-            Assert.Equal(1, quantity00.Percent);
-            Assert.Equal(RelativeHumidityUnit.Percent, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<RelativeHumidityUnit>(), unit =>
+            {
+                var quantity = RelativeHumidity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

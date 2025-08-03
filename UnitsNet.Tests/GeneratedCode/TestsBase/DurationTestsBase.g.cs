@@ -209,58 +209,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Duration.From(1, DurationUnit.Day);
-            Assert.Equal(1, quantity00.Days);
-            Assert.Equal(DurationUnit.Day, quantity00.Unit);
-
-            var quantity01 = Duration.From(1, DurationUnit.Hour);
-            Assert.Equal(1, quantity01.Hours);
-            Assert.Equal(DurationUnit.Hour, quantity01.Unit);
-
-            var quantity02 = Duration.From(1, DurationUnit.JulianYear);
-            Assert.Equal(1, quantity02.JulianYears);
-            Assert.Equal(DurationUnit.JulianYear, quantity02.Unit);
-
-            var quantity03 = Duration.From(1, DurationUnit.Microsecond);
-            Assert.Equal(1, quantity03.Microseconds);
-            Assert.Equal(DurationUnit.Microsecond, quantity03.Unit);
-
-            var quantity04 = Duration.From(1, DurationUnit.Millisecond);
-            Assert.Equal(1, quantity04.Milliseconds);
-            Assert.Equal(DurationUnit.Millisecond, quantity04.Unit);
-
-            var quantity05 = Duration.From(1, DurationUnit.Minute);
-            Assert.Equal(1, quantity05.Minutes);
-            Assert.Equal(DurationUnit.Minute, quantity05.Unit);
-
-            var quantity06 = Duration.From(1, DurationUnit.Month30);
-            Assert.Equal(1, quantity06.Months30);
-            Assert.Equal(DurationUnit.Month30, quantity06.Unit);
-
-            var quantity07 = Duration.From(1, DurationUnit.Nanosecond);
-            Assert.Equal(1, quantity07.Nanoseconds);
-            Assert.Equal(DurationUnit.Nanosecond, quantity07.Unit);
-
-            var quantity08 = Duration.From(1, DurationUnit.Picosecond);
-            Assert.Equal(1, quantity08.Picoseconds);
-            Assert.Equal(DurationUnit.Picosecond, quantity08.Unit);
-
-            var quantity09 = Duration.From(1, DurationUnit.Second);
-            Assert.Equal(1, quantity09.Seconds);
-            Assert.Equal(DurationUnit.Second, quantity09.Unit);
-
-            var quantity10 = Duration.From(1, DurationUnit.Sol);
-            Assert.Equal(1, quantity10.Sols);
-            Assert.Equal(DurationUnit.Sol, quantity10.Unit);
-
-            var quantity11 = Duration.From(1, DurationUnit.Week);
-            Assert.Equal(1, quantity11.Weeks);
-            Assert.Equal(DurationUnit.Week, quantity11.Unit);
-
-            var quantity12 = Duration.From(1, DurationUnit.Year365);
-            Assert.Equal(1, quantity12.Years365);
-            Assert.Equal(DurationUnit.Year365, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<DurationUnit>(), unit =>
+            {
+                var quantity = Duration.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

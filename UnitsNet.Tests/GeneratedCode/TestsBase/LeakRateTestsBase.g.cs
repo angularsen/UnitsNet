@@ -164,22 +164,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LeakRate.From(1, LeakRateUnit.AtmCubicCentimeterPerSecond);
-            Assert.Equal(1, quantity00.AtmCubicCentimetersPerSecond);
-            Assert.Equal(LeakRateUnit.AtmCubicCentimeterPerSecond, quantity00.Unit);
-
-            var quantity01 = LeakRate.From(1, LeakRateUnit.MillibarLiterPerSecond);
-            Assert.Equal(1, quantity01.MillibarLitersPerSecond);
-            Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, quantity01.Unit);
-
-            var quantity02 = LeakRate.From(1, LeakRateUnit.PascalCubicMeterPerSecond);
-            Assert.Equal(1, quantity02.PascalCubicMetersPerSecond);
-            Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, quantity02.Unit);
-
-            var quantity03 = LeakRate.From(1, LeakRateUnit.TorrLiterPerSecond);
-            Assert.Equal(1, quantity03.TorrLitersPerSecond);
-            Assert.Equal(LeakRateUnit.TorrLiterPerSecond, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<LeakRateUnit>(), unit =>
+            {
+                var quantity = LeakRate.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

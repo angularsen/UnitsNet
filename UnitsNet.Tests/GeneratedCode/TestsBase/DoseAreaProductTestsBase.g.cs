@@ -269,106 +269,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareCentimeter);
-            Assert.Equal(1, quantity00.CentigraySquareCentimeters);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, quantity00.Unit);
-
-            var quantity01 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareDecimeter);
-            Assert.Equal(1, quantity01.CentigraySquareDecimeters);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, quantity01.Unit);
-
-            var quantity02 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMeter);
-            Assert.Equal(1, quantity02.CentigraySquareMeters);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, quantity02.Unit);
-
-            var quantity03 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMicrometer);
-            Assert.Equal(1, quantity03.CentigraySquareMicrometers);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMicrometer, quantity03.Unit);
-
-            var quantity04 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMillimeter);
-            Assert.Equal(1, quantity04.CentigraySquareMillimeters);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, quantity04.Unit);
-
-            var quantity05 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareCentimeter);
-            Assert.Equal(1, quantity05.DecigraySquareCentimeters);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, quantity05.Unit);
-
-            var quantity06 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareDecimeter);
-            Assert.Equal(1, quantity06.DecigraySquareDecimeters);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, quantity06.Unit);
-
-            var quantity07 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMeter);
-            Assert.Equal(1, quantity07.DecigraySquareMeters);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, quantity07.Unit);
-
-            var quantity08 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMicrometer);
-            Assert.Equal(1, quantity08.DecigraySquareMicrometers);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMicrometer, quantity08.Unit);
-
-            var quantity09 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMillimeter);
-            Assert.Equal(1, quantity09.DecigraySquareMillimeters);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, quantity09.Unit);
-
-            var quantity10 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareCentimeter);
-            Assert.Equal(1, quantity10.GraySquareCentimeters);
-            Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, quantity10.Unit);
-
-            var quantity11 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareDecimeter);
-            Assert.Equal(1, quantity11.GraySquareDecimeters);
-            Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, quantity11.Unit);
-
-            var quantity12 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMeter);
-            Assert.Equal(1, quantity12.GraySquareMeters);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMeter, quantity12.Unit);
-
-            var quantity13 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMicrometer);
-            Assert.Equal(1, quantity13.GraySquareMicrometers);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMicrometer, quantity13.Unit);
-
-            var quantity14 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMillimeter);
-            Assert.Equal(1, quantity14.GraySquareMillimeters);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, quantity14.Unit);
-
-            var quantity15 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareCentimeter);
-            Assert.Equal(1, quantity15.MicrograySquareCentimeters);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, quantity15.Unit);
-
-            var quantity16 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareDecimeter);
-            Assert.Equal(1, quantity16.MicrograySquareDecimeters);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, quantity16.Unit);
-
-            var quantity17 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMeter);
-            Assert.Equal(1, quantity17.MicrograySquareMeters);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, quantity17.Unit);
-
-            var quantity18 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMicrometer);
-            Assert.Equal(1, quantity18.MicrograySquareMicrometers);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMicrometer, quantity18.Unit);
-
-            var quantity19 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMillimeter);
-            Assert.Equal(1, quantity19.MicrograySquareMillimeters);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, quantity19.Unit);
-
-            var quantity20 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareCentimeter);
-            Assert.Equal(1, quantity20.MilligraySquareCentimeters);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, quantity20.Unit);
-
-            var quantity21 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareDecimeter);
-            Assert.Equal(1, quantity21.MilligraySquareDecimeters);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, quantity21.Unit);
-
-            var quantity22 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMeter);
-            Assert.Equal(1, quantity22.MilligraySquareMeters);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, quantity22.Unit);
-
-            var quantity23 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMicrometer);
-            Assert.Equal(1, quantity23.MilligraySquareMicrometers);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMicrometer, quantity23.Unit);
-
-            var quantity24 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMillimeter);
-            Assert.Equal(1, quantity24.MilligraySquareMillimeters);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, quantity24.Unit);
-
+            Assert.All(EnumHelper.GetValues<DoseAreaProductUnit>(), unit =>
+            {
+                var quantity = DoseAreaProduct.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

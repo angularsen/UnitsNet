@@ -209,58 +209,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Impulse.From(1, ImpulseUnit.CentinewtonSecond);
-            Assert.Equal(1, quantity00.CentinewtonSeconds);
-            Assert.Equal(ImpulseUnit.CentinewtonSecond, quantity00.Unit);
-
-            var quantity01 = Impulse.From(1, ImpulseUnit.DecanewtonSecond);
-            Assert.Equal(1, quantity01.DecanewtonSeconds);
-            Assert.Equal(ImpulseUnit.DecanewtonSecond, quantity01.Unit);
-
-            var quantity02 = Impulse.From(1, ImpulseUnit.DecinewtonSecond);
-            Assert.Equal(1, quantity02.DecinewtonSeconds);
-            Assert.Equal(ImpulseUnit.DecinewtonSecond, quantity02.Unit);
-
-            var quantity03 = Impulse.From(1, ImpulseUnit.KilogramMeterPerSecond);
-            Assert.Equal(1, quantity03.KilogramMetersPerSecond);
-            Assert.Equal(ImpulseUnit.KilogramMeterPerSecond, quantity03.Unit);
-
-            var quantity04 = Impulse.From(1, ImpulseUnit.KilonewtonSecond);
-            Assert.Equal(1, quantity04.KilonewtonSeconds);
-            Assert.Equal(ImpulseUnit.KilonewtonSecond, quantity04.Unit);
-
-            var quantity05 = Impulse.From(1, ImpulseUnit.MeganewtonSecond);
-            Assert.Equal(1, quantity05.MeganewtonSeconds);
-            Assert.Equal(ImpulseUnit.MeganewtonSecond, quantity05.Unit);
-
-            var quantity06 = Impulse.From(1, ImpulseUnit.MicronewtonSecond);
-            Assert.Equal(1, quantity06.MicronewtonSeconds);
-            Assert.Equal(ImpulseUnit.MicronewtonSecond, quantity06.Unit);
-
-            var quantity07 = Impulse.From(1, ImpulseUnit.MillinewtonSecond);
-            Assert.Equal(1, quantity07.MillinewtonSeconds);
-            Assert.Equal(ImpulseUnit.MillinewtonSecond, quantity07.Unit);
-
-            var quantity08 = Impulse.From(1, ImpulseUnit.NanonewtonSecond);
-            Assert.Equal(1, quantity08.NanonewtonSeconds);
-            Assert.Equal(ImpulseUnit.NanonewtonSecond, quantity08.Unit);
-
-            var quantity09 = Impulse.From(1, ImpulseUnit.NewtonSecond);
-            Assert.Equal(1, quantity09.NewtonSeconds);
-            Assert.Equal(ImpulseUnit.NewtonSecond, quantity09.Unit);
-
-            var quantity10 = Impulse.From(1, ImpulseUnit.PoundFootPerSecond);
-            Assert.Equal(1, quantity10.PoundFeetPerSecond);
-            Assert.Equal(ImpulseUnit.PoundFootPerSecond, quantity10.Unit);
-
-            var quantity11 = Impulse.From(1, ImpulseUnit.PoundForceSecond);
-            Assert.Equal(1, quantity11.PoundForceSeconds);
-            Assert.Equal(ImpulseUnit.PoundForceSecond, quantity11.Unit);
-
-            var quantity12 = Impulse.From(1, ImpulseUnit.SlugFootPerSecond);
-            Assert.Equal(1, quantity12.SlugFeetPerSecond);
-            Assert.Equal(ImpulseUnit.SlugFootPerSecond, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<ImpulseUnit>(), unit =>
+            {
+                var quantity = Impulse.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

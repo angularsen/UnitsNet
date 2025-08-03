@@ -179,34 +179,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Farad);
-            Assert.Equal(1, quantity00.Farads);
-            Assert.Equal(ElectricCapacitanceUnit.Farad, quantity00.Unit);
-
-            var quantity01 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Kilofarad);
-            Assert.Equal(1, quantity01.Kilofarads);
-            Assert.Equal(ElectricCapacitanceUnit.Kilofarad, quantity01.Unit);
-
-            var quantity02 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Megafarad);
-            Assert.Equal(1, quantity02.Megafarads);
-            Assert.Equal(ElectricCapacitanceUnit.Megafarad, quantity02.Unit);
-
-            var quantity03 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Microfarad);
-            Assert.Equal(1, quantity03.Microfarads);
-            Assert.Equal(ElectricCapacitanceUnit.Microfarad, quantity03.Unit);
-
-            var quantity04 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Millifarad);
-            Assert.Equal(1, quantity04.Millifarads);
-            Assert.Equal(ElectricCapacitanceUnit.Millifarad, quantity04.Unit);
-
-            var quantity05 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Nanofarad);
-            Assert.Equal(1, quantity05.Nanofarads);
-            Assert.Equal(ElectricCapacitanceUnit.Nanofarad, quantity05.Unit);
-
-            var quantity06 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Picofarad);
-            Assert.Equal(1, quantity06.Picofarads);
-            Assert.Equal(ElectricCapacitanceUnit.Picofarad, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCapacitanceUnit>(), unit =>
+            {
+                var quantity = ElectricCapacitance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

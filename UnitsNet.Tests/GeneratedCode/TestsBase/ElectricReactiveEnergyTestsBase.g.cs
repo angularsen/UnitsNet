@@ -159,18 +159,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricReactiveEnergy.From(1, ElectricReactiveEnergyUnit.KilovoltampereReactiveHour);
-            Assert.Equal(1, quantity00.KilovoltampereReactiveHours);
-            Assert.Equal(ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, quantity00.Unit);
-
-            var quantity01 = ElectricReactiveEnergy.From(1, ElectricReactiveEnergyUnit.MegavoltampereReactiveHour);
-            Assert.Equal(1, quantity01.MegavoltampereReactiveHours);
-            Assert.Equal(ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, quantity01.Unit);
-
-            var quantity02 = ElectricReactiveEnergy.From(1, ElectricReactiveEnergyUnit.VoltampereReactiveHour);
-            Assert.Equal(1, quantity02.VoltampereReactiveHours);
-            Assert.Equal(ElectricReactiveEnergyUnit.VoltampereReactiveHour, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricReactiveEnergyUnit>(), unit =>
+            {
+                var quantity = ElectricReactiveEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

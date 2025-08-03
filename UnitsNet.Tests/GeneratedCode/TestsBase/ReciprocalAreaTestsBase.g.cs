@@ -199,50 +199,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareCentimeter);
-            Assert.Equal(1, quantity00.InverseSquareCentimeters);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareDecimeter);
-            Assert.Equal(1, quantity01.InverseSquareDecimeters);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, quantity01.Unit);
-
-            var quantity02 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareFoot);
-            Assert.Equal(1, quantity02.InverseSquareFeet);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, quantity02.Unit);
-
-            var quantity03 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareInch);
-            Assert.Equal(1, quantity03.InverseSquareInches);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, quantity03.Unit);
-
-            var quantity04 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareKilometer);
-            Assert.Equal(1, quantity04.InverseSquareKilometers);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, quantity04.Unit);
-
-            var quantity05 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMeter);
-            Assert.Equal(1, quantity05.InverseSquareMeters);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, quantity05.Unit);
-
-            var quantity06 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMicrometer);
-            Assert.Equal(1, quantity06.InverseSquareMicrometers);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, quantity06.Unit);
-
-            var quantity07 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMile);
-            Assert.Equal(1, quantity07.InverseSquareMiles);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, quantity07.Unit);
-
-            var quantity08 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMillimeter);
-            Assert.Equal(1, quantity08.InverseSquareMillimeters);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, quantity08.Unit);
-
-            var quantity09 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareYard);
-            Assert.Equal(1, quantity09.InverseSquareYards);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, quantity09.Unit);
-
-            var quantity10 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
-            Assert.Equal(1, quantity10.InverseUsSurveySquareFeet);
-            Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<ReciprocalAreaUnit>(), unit =>
+            {
+                var quantity = ReciprocalArea.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

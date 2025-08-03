@@ -279,114 +279,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Power.From(1, PowerUnit.BoilerHorsepower);
-            Assert.Equal(1, quantity00.BoilerHorsepower);
-            Assert.Equal(PowerUnit.BoilerHorsepower, quantity00.Unit);
-
-            var quantity01 = Power.From(1, PowerUnit.BritishThermalUnitPerHour);
-            Assert.Equal(1, quantity01.BritishThermalUnitsPerHour);
-            Assert.Equal(PowerUnit.BritishThermalUnitPerHour, quantity01.Unit);
-
-            var quantity02 = Power.From(1, PowerUnit.Decawatt);
-            Assert.Equal(1, quantity02.Decawatts);
-            Assert.Equal(PowerUnit.Decawatt, quantity02.Unit);
-
-            var quantity03 = Power.From(1, PowerUnit.Deciwatt);
-            Assert.Equal(1, quantity03.Deciwatts);
-            Assert.Equal(PowerUnit.Deciwatt, quantity03.Unit);
-
-            var quantity04 = Power.From(1, PowerUnit.ElectricalHorsepower);
-            Assert.Equal(1, quantity04.ElectricalHorsepower);
-            Assert.Equal(PowerUnit.ElectricalHorsepower, quantity04.Unit);
-
-            var quantity05 = Power.From(1, PowerUnit.Femtowatt);
-            Assert.Equal(1, quantity05.Femtowatts);
-            Assert.Equal(PowerUnit.Femtowatt, quantity05.Unit);
-
-            var quantity06 = Power.From(1, PowerUnit.GigajoulePerHour);
-            Assert.Equal(1, quantity06.GigajoulesPerHour);
-            Assert.Equal(PowerUnit.GigajoulePerHour, quantity06.Unit);
-
-            var quantity07 = Power.From(1, PowerUnit.Gigawatt);
-            Assert.Equal(1, quantity07.Gigawatts);
-            Assert.Equal(PowerUnit.Gigawatt, quantity07.Unit);
-
-            var quantity08 = Power.From(1, PowerUnit.HydraulicHorsepower);
-            Assert.Equal(1, quantity08.HydraulicHorsepower);
-            Assert.Equal(PowerUnit.HydraulicHorsepower, quantity08.Unit);
-
-            var quantity09 = Power.From(1, PowerUnit.JoulePerHour);
-            Assert.Equal(1, quantity09.JoulesPerHour);
-            Assert.Equal(PowerUnit.JoulePerHour, quantity09.Unit);
-
-            var quantity10 = Power.From(1, PowerUnit.KilobritishThermalUnitPerHour);
-            Assert.Equal(1, quantity10.KilobritishThermalUnitsPerHour);
-            Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, quantity10.Unit);
-
-            var quantity11 = Power.From(1, PowerUnit.KilojoulePerHour);
-            Assert.Equal(1, quantity11.KilojoulesPerHour);
-            Assert.Equal(PowerUnit.KilojoulePerHour, quantity11.Unit);
-
-            var quantity12 = Power.From(1, PowerUnit.Kilowatt);
-            Assert.Equal(1, quantity12.Kilowatts);
-            Assert.Equal(PowerUnit.Kilowatt, quantity12.Unit);
-
-            var quantity13 = Power.From(1, PowerUnit.MechanicalHorsepower);
-            Assert.Equal(1, quantity13.MechanicalHorsepower);
-            Assert.Equal(PowerUnit.MechanicalHorsepower, quantity13.Unit);
-
-            var quantity14 = Power.From(1, PowerUnit.MegabritishThermalUnitPerHour);
-            Assert.Equal(1, quantity14.MegabritishThermalUnitsPerHour);
-            Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, quantity14.Unit);
-
-            var quantity15 = Power.From(1, PowerUnit.MegajoulePerHour);
-            Assert.Equal(1, quantity15.MegajoulesPerHour);
-            Assert.Equal(PowerUnit.MegajoulePerHour, quantity15.Unit);
-
-            var quantity16 = Power.From(1, PowerUnit.Megawatt);
-            Assert.Equal(1, quantity16.Megawatts);
-            Assert.Equal(PowerUnit.Megawatt, quantity16.Unit);
-
-            var quantity17 = Power.From(1, PowerUnit.MetricHorsepower);
-            Assert.Equal(1, quantity17.MetricHorsepower);
-            Assert.Equal(PowerUnit.MetricHorsepower, quantity17.Unit);
-
-            var quantity18 = Power.From(1, PowerUnit.Microwatt);
-            Assert.Equal(1, quantity18.Microwatts);
-            Assert.Equal(PowerUnit.Microwatt, quantity18.Unit);
-
-            var quantity19 = Power.From(1, PowerUnit.MillijoulePerHour);
-            Assert.Equal(1, quantity19.MillijoulesPerHour);
-            Assert.Equal(PowerUnit.MillijoulePerHour, quantity19.Unit);
-
-            var quantity20 = Power.From(1, PowerUnit.Milliwatt);
-            Assert.Equal(1, quantity20.Milliwatts);
-            Assert.Equal(PowerUnit.Milliwatt, quantity20.Unit);
-
-            var quantity21 = Power.From(1, PowerUnit.Nanowatt);
-            Assert.Equal(1, quantity21.Nanowatts);
-            Assert.Equal(PowerUnit.Nanowatt, quantity21.Unit);
-
-            var quantity22 = Power.From(1, PowerUnit.Petawatt);
-            Assert.Equal(1, quantity22.Petawatts);
-            Assert.Equal(PowerUnit.Petawatt, quantity22.Unit);
-
-            var quantity23 = Power.From(1, PowerUnit.Picowatt);
-            Assert.Equal(1, quantity23.Picowatts);
-            Assert.Equal(PowerUnit.Picowatt, quantity23.Unit);
-
-            var quantity24 = Power.From(1, PowerUnit.Terawatt);
-            Assert.Equal(1, quantity24.Terawatts);
-            Assert.Equal(PowerUnit.Terawatt, quantity24.Unit);
-
-            var quantity25 = Power.From(1, PowerUnit.TonOfRefrigeration);
-            Assert.Equal(1, quantity25.TonsOfRefrigeration);
-            Assert.Equal(PowerUnit.TonOfRefrigeration, quantity25.Unit);
-
-            var quantity26 = Power.From(1, PowerUnit.Watt);
-            Assert.Equal(1, quantity26.Watts);
-            Assert.Equal(PowerUnit.Watt, quantity26.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerUnit>(), unit =>
+            {
+                var quantity = Power.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

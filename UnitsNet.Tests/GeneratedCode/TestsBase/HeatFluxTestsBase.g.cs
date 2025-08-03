@@ -234,78 +234,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = HeatFlux.From(1, HeatFluxUnit.BtuPerHourSquareFoot);
-            Assert.Equal(1, quantity00.BtusPerHourSquareFoot);
-            Assert.Equal(HeatFluxUnit.BtuPerHourSquareFoot, quantity00.Unit);
-
-            var quantity01 = HeatFlux.From(1, HeatFluxUnit.BtuPerMinuteSquareFoot);
-            Assert.Equal(1, quantity01.BtusPerMinuteSquareFoot);
-            Assert.Equal(HeatFluxUnit.BtuPerMinuteSquareFoot, quantity01.Unit);
-
-            var quantity02 = HeatFlux.From(1, HeatFluxUnit.BtuPerSecondSquareFoot);
-            Assert.Equal(1, quantity02.BtusPerSecondSquareFoot);
-            Assert.Equal(HeatFluxUnit.BtuPerSecondSquareFoot, quantity02.Unit);
-
-            var quantity03 = HeatFlux.From(1, HeatFluxUnit.BtuPerSecondSquareInch);
-            Assert.Equal(1, quantity03.BtusPerSecondSquareInch);
-            Assert.Equal(HeatFluxUnit.BtuPerSecondSquareInch, quantity03.Unit);
-
-            var quantity04 = HeatFlux.From(1, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
-            Assert.Equal(1, quantity04.CaloriesPerSecondSquareCentimeter);
-            Assert.Equal(HeatFluxUnit.CaloriePerSecondSquareCentimeter, quantity04.Unit);
-
-            var quantity05 = HeatFlux.From(1, HeatFluxUnit.CentiwattPerSquareMeter);
-            Assert.Equal(1, quantity05.CentiwattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.CentiwattPerSquareMeter, quantity05.Unit);
-
-            var quantity06 = HeatFlux.From(1, HeatFluxUnit.DeciwattPerSquareMeter);
-            Assert.Equal(1, quantity06.DeciwattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.DeciwattPerSquareMeter, quantity06.Unit);
-
-            var quantity07 = HeatFlux.From(1, HeatFluxUnit.KilocaloriePerHourSquareMeter);
-            Assert.Equal(1, quantity07.KilocaloriesPerHourSquareMeter);
-            Assert.Equal(HeatFluxUnit.KilocaloriePerHourSquareMeter, quantity07.Unit);
-
-            var quantity08 = HeatFlux.From(1, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
-            Assert.Equal(1, quantity08.KilocaloriesPerSecondSquareCentimeter);
-            Assert.Equal(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, quantity08.Unit);
-
-            var quantity09 = HeatFlux.From(1, HeatFluxUnit.KilowattPerSquareMeter);
-            Assert.Equal(1, quantity09.KilowattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.KilowattPerSquareMeter, quantity09.Unit);
-
-            var quantity10 = HeatFlux.From(1, HeatFluxUnit.MicrowattPerSquareMeter);
-            Assert.Equal(1, quantity10.MicrowattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.MicrowattPerSquareMeter, quantity10.Unit);
-
-            var quantity11 = HeatFlux.From(1, HeatFluxUnit.MilliwattPerSquareMeter);
-            Assert.Equal(1, quantity11.MilliwattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.MilliwattPerSquareMeter, quantity11.Unit);
-
-            var quantity12 = HeatFlux.From(1, HeatFluxUnit.NanowattPerSquareMeter);
-            Assert.Equal(1, quantity12.NanowattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.NanowattPerSquareMeter, quantity12.Unit);
-
-            var quantity13 = HeatFlux.From(1, HeatFluxUnit.PoundForcePerFootSecond);
-            Assert.Equal(1, quantity13.PoundsForcePerFootSecond);
-            Assert.Equal(HeatFluxUnit.PoundForcePerFootSecond, quantity13.Unit);
-
-            var quantity14 = HeatFlux.From(1, HeatFluxUnit.PoundPerSecondCubed);
-            Assert.Equal(1, quantity14.PoundsPerSecondCubed);
-            Assert.Equal(HeatFluxUnit.PoundPerSecondCubed, quantity14.Unit);
-
-            var quantity15 = HeatFlux.From(1, HeatFluxUnit.WattPerSquareFoot);
-            Assert.Equal(1, quantity15.WattsPerSquareFoot);
-            Assert.Equal(HeatFluxUnit.WattPerSquareFoot, quantity15.Unit);
-
-            var quantity16 = HeatFlux.From(1, HeatFluxUnit.WattPerSquareInch);
-            Assert.Equal(1, quantity16.WattsPerSquareInch);
-            Assert.Equal(HeatFluxUnit.WattPerSquareInch, quantity16.Unit);
-
-            var quantity17 = HeatFlux.From(1, HeatFluxUnit.WattPerSquareMeter);
-            Assert.Equal(1, quantity17.WattsPerSquareMeter);
-            Assert.Equal(HeatFluxUnit.WattPerSquareMeter, quantity17.Unit);
-
+            Assert.All(EnumHelper.GetValues<HeatFluxUnit>(), unit =>
+            {
+                var quantity = HeatFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

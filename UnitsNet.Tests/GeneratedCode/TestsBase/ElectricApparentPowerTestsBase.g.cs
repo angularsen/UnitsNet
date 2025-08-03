@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Gigavoltampere);
-            Assert.Equal(1, quantity00.Gigavoltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Gigavoltampere, quantity00.Unit);
-
-            var quantity01 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Kilovoltampere);
-            Assert.Equal(1, quantity01.Kilovoltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Kilovoltampere, quantity01.Unit);
-
-            var quantity02 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Megavoltampere);
-            Assert.Equal(1, quantity02.Megavoltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Megavoltampere, quantity02.Unit);
-
-            var quantity03 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Microvoltampere);
-            Assert.Equal(1, quantity03.Microvoltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Microvoltampere, quantity03.Unit);
-
-            var quantity04 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Millivoltampere);
-            Assert.Equal(1, quantity04.Millivoltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Millivoltampere, quantity04.Unit);
-
-            var quantity05 = ElectricApparentPower.From(1, ElectricApparentPowerUnit.Voltampere);
-            Assert.Equal(1, quantity05.Voltamperes);
-            Assert.Equal(ElectricApparentPowerUnit.Voltampere, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricApparentPowerUnit>(), unit =>
+            {
+                var quantity = ElectricApparentPower.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

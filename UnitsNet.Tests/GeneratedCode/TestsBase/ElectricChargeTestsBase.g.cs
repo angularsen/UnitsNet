@@ -199,50 +199,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCharge.From(1, ElectricChargeUnit.AmpereHour);
-            Assert.Equal(1, quantity00.AmpereHours);
-            Assert.Equal(ElectricChargeUnit.AmpereHour, quantity00.Unit);
-
-            var quantity01 = ElectricCharge.From(1, ElectricChargeUnit.Coulomb);
-            Assert.Equal(1, quantity01.Coulombs);
-            Assert.Equal(ElectricChargeUnit.Coulomb, quantity01.Unit);
-
-            var quantity02 = ElectricCharge.From(1, ElectricChargeUnit.KiloampereHour);
-            Assert.Equal(1, quantity02.KiloampereHours);
-            Assert.Equal(ElectricChargeUnit.KiloampereHour, quantity02.Unit);
-
-            var quantity03 = ElectricCharge.From(1, ElectricChargeUnit.Kilocoulomb);
-            Assert.Equal(1, quantity03.Kilocoulombs);
-            Assert.Equal(ElectricChargeUnit.Kilocoulomb, quantity03.Unit);
-
-            var quantity04 = ElectricCharge.From(1, ElectricChargeUnit.MegaampereHour);
-            Assert.Equal(1, quantity04.MegaampereHours);
-            Assert.Equal(ElectricChargeUnit.MegaampereHour, quantity04.Unit);
-
-            var quantity05 = ElectricCharge.From(1, ElectricChargeUnit.Megacoulomb);
-            Assert.Equal(1, quantity05.Megacoulombs);
-            Assert.Equal(ElectricChargeUnit.Megacoulomb, quantity05.Unit);
-
-            var quantity06 = ElectricCharge.From(1, ElectricChargeUnit.Microcoulomb);
-            Assert.Equal(1, quantity06.Microcoulombs);
-            Assert.Equal(ElectricChargeUnit.Microcoulomb, quantity06.Unit);
-
-            var quantity07 = ElectricCharge.From(1, ElectricChargeUnit.MilliampereHour);
-            Assert.Equal(1, quantity07.MilliampereHours);
-            Assert.Equal(ElectricChargeUnit.MilliampereHour, quantity07.Unit);
-
-            var quantity08 = ElectricCharge.From(1, ElectricChargeUnit.Millicoulomb);
-            Assert.Equal(1, quantity08.Millicoulombs);
-            Assert.Equal(ElectricChargeUnit.Millicoulomb, quantity08.Unit);
-
-            var quantity09 = ElectricCharge.From(1, ElectricChargeUnit.Nanocoulomb);
-            Assert.Equal(1, quantity09.Nanocoulombs);
-            Assert.Equal(ElectricChargeUnit.Nanocoulomb, quantity09.Unit);
-
-            var quantity10 = ElectricCharge.From(1, ElectricChargeUnit.Picocoulomb);
-            Assert.Equal(1, quantity10.Picocoulombs);
-            Assert.Equal(ElectricChargeUnit.Picocoulomb, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricChargeUnit>(), unit =>
+            {
+                var quantity = ElectricCharge.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

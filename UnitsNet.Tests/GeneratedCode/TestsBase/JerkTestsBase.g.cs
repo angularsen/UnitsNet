@@ -199,50 +199,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Jerk.From(1, JerkUnit.CentimeterPerSecondCubed);
-            Assert.Equal(1, quantity00.CentimetersPerSecondCubed);
-            Assert.Equal(JerkUnit.CentimeterPerSecondCubed, quantity00.Unit);
-
-            var quantity01 = Jerk.From(1, JerkUnit.DecimeterPerSecondCubed);
-            Assert.Equal(1, quantity01.DecimetersPerSecondCubed);
-            Assert.Equal(JerkUnit.DecimeterPerSecondCubed, quantity01.Unit);
-
-            var quantity02 = Jerk.From(1, JerkUnit.FootPerSecondCubed);
-            Assert.Equal(1, quantity02.FeetPerSecondCubed);
-            Assert.Equal(JerkUnit.FootPerSecondCubed, quantity02.Unit);
-
-            var quantity03 = Jerk.From(1, JerkUnit.InchPerSecondCubed);
-            Assert.Equal(1, quantity03.InchesPerSecondCubed);
-            Assert.Equal(JerkUnit.InchPerSecondCubed, quantity03.Unit);
-
-            var quantity04 = Jerk.From(1, JerkUnit.KilometerPerSecondCubed);
-            Assert.Equal(1, quantity04.KilometersPerSecondCubed);
-            Assert.Equal(JerkUnit.KilometerPerSecondCubed, quantity04.Unit);
-
-            var quantity05 = Jerk.From(1, JerkUnit.MeterPerSecondCubed);
-            Assert.Equal(1, quantity05.MetersPerSecondCubed);
-            Assert.Equal(JerkUnit.MeterPerSecondCubed, quantity05.Unit);
-
-            var quantity06 = Jerk.From(1, JerkUnit.MicrometerPerSecondCubed);
-            Assert.Equal(1, quantity06.MicrometersPerSecondCubed);
-            Assert.Equal(JerkUnit.MicrometerPerSecondCubed, quantity06.Unit);
-
-            var quantity07 = Jerk.From(1, JerkUnit.MillimeterPerSecondCubed);
-            Assert.Equal(1, quantity07.MillimetersPerSecondCubed);
-            Assert.Equal(JerkUnit.MillimeterPerSecondCubed, quantity07.Unit);
-
-            var quantity08 = Jerk.From(1, JerkUnit.MillistandardGravitiesPerSecond);
-            Assert.Equal(1, quantity08.MillistandardGravitiesPerSecond);
-            Assert.Equal(JerkUnit.MillistandardGravitiesPerSecond, quantity08.Unit);
-
-            var quantity09 = Jerk.From(1, JerkUnit.NanometerPerSecondCubed);
-            Assert.Equal(1, quantity09.NanometersPerSecondCubed);
-            Assert.Equal(JerkUnit.NanometerPerSecondCubed, quantity09.Unit);
-
-            var quantity10 = Jerk.From(1, JerkUnit.StandardGravitiesPerSecond);
-            Assert.Equal(1, quantity10.StandardGravitiesPerSecond);
-            Assert.Equal(JerkUnit.StandardGravitiesPerSecond, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<JerkUnit>(), unit =>
+            {
+                var quantity = Jerk.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

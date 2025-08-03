@@ -164,22 +164,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            Assert.Equal(1, quantity00.DegreesCelsiusPerKilometer);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity00.Unit);
-
-            var quantity01 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            Assert.Equal(1, quantity01.DegreesCelsiusPerMeter);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity01.Unit);
-
-            var quantity02 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
-            Assert.Equal(1, quantity02.DegreesFahrenheitPerFoot);
-            Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity02.Unit);
-
-            var quantity03 = TemperatureGradient.From(1, TemperatureGradientUnit.KelvinPerMeter);
-            Assert.Equal(1, quantity03.KelvinsPerMeter);
-            Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureGradientUnit>(), unit =>
+            {
+                var quantity = TemperatureGradient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

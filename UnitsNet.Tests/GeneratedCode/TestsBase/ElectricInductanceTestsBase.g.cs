@@ -169,26 +169,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricInductance.From(1, ElectricInductanceUnit.Henry);
-            Assert.Equal(1, quantity00.Henries);
-            Assert.Equal(ElectricInductanceUnit.Henry, quantity00.Unit);
-
-            var quantity01 = ElectricInductance.From(1, ElectricInductanceUnit.Microhenry);
-            Assert.Equal(1, quantity01.Microhenries);
-            Assert.Equal(ElectricInductanceUnit.Microhenry, quantity01.Unit);
-
-            var quantity02 = ElectricInductance.From(1, ElectricInductanceUnit.Millihenry);
-            Assert.Equal(1, quantity02.Millihenries);
-            Assert.Equal(ElectricInductanceUnit.Millihenry, quantity02.Unit);
-
-            var quantity03 = ElectricInductance.From(1, ElectricInductanceUnit.Nanohenry);
-            Assert.Equal(1, quantity03.Nanohenries);
-            Assert.Equal(ElectricInductanceUnit.Nanohenry, quantity03.Unit);
-
-            var quantity04 = ElectricInductance.From(1, ElectricInductanceUnit.Picohenry);
-            Assert.Equal(1, quantity04.Picohenries);
-            Assert.Equal(ElectricInductanceUnit.Picohenry, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricInductanceUnit>(), unit =>
+            {
+                var quantity = ElectricInductance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

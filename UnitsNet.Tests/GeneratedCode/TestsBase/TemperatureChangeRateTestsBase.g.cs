@@ -229,74 +229,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity00.CentidegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, quantity00.Unit);
-
-            var quantity01 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity01.DecadegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, quantity01.Unit);
-
-            var quantity02 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity02.DecidegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, quantity02.Unit);
-
-            var quantity03 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerHour);
-            Assert.Equal(1, quantity03.DegreesCelsiusPerHour);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerHour, quantity03.Unit);
-
-            var quantity04 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
-            Assert.Equal(1, quantity04.DegreesCelsiusPerMinute);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, quantity04.Unit);
-
-            var quantity05 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity05.DegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity05.Unit);
-
-            var quantity06 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
-            Assert.Equal(1, quantity06.DegreesFahrenheitPerHour);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerHour, quantity06.Unit);
-
-            var quantity07 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
-            Assert.Equal(1, quantity07.DegreesFahrenheitPerMinute);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute, quantity07.Unit);
-
-            var quantity08 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
-            Assert.Equal(1, quantity08.DegreesFahrenheitPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond, quantity08.Unit);
-
-            var quantity09 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerHour);
-            Assert.Equal(1, quantity09.DegreesKelvinPerHour);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerHour, quantity09.Unit);
-
-            var quantity10 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerMinute);
-            Assert.Equal(1, quantity10.DegreesKelvinPerMinute);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerMinute, quantity10.Unit);
-
-            var quantity11 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeKelvinPerSecond);
-            Assert.Equal(1, quantity11.DegreesKelvinPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeKelvinPerSecond, quantity11.Unit);
-
-            var quantity12 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity12.HectodegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, quantity12.Unit);
-
-            var quantity13 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity13.KilodegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, quantity13.Unit);
-
-            var quantity14 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity14.MicrodegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, quantity14.Unit);
-
-            var quantity15 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity15.MillidegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, quantity15.Unit);
-
-            var quantity16 = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
-            Assert.Equal(1, quantity16.NanodegreesCelsiusPerSecond);
-            Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, quantity16.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureChangeRateUnit>(), unit =>
+            {
+                var quantity = TemperatureChangeRate.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

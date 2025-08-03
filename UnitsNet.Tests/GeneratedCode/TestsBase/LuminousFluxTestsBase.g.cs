@@ -149,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LuminousFlux.From(1, LuminousFluxUnit.Lumen);
-            Assert.Equal(1, quantity00.Lumens);
-            Assert.Equal(LuminousFluxUnit.Lumen, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminousFluxUnit>(), unit =>
+            {
+                var quantity = LuminousFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

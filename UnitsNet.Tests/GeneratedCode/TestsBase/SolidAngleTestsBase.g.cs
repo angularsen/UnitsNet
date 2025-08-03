@@ -128,10 +128,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SolidAngle.From(1, SolidAngleUnit.Steradian);
-            Assert.Equal(1, quantity00.Steradians);
-            Assert.Equal(SolidAngleUnit.Steradian, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<SolidAngleUnit>(), unit =>
+            {
+                var quantity = SolidAngle.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

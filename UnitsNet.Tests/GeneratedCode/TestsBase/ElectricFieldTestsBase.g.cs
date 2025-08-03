@@ -149,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricField.From(1, ElectricFieldUnit.VoltPerMeter);
-            Assert.Equal(1, quantity00.VoltsPerMeter);
-            Assert.Equal(ElectricFieldUnit.VoltPerMeter, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricFieldUnit>(), unit =>
+            {
+                var quantity = ElectricField.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -128,10 +128,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Scalar.From(1, ScalarUnit.Amount);
-            Assert.Equal(1, quantity00.Amount);
-            Assert.Equal(ScalarUnit.Amount, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<ScalarUnit>(), unit =>
+            {
+                var quantity = Scalar.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -164,22 +164,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
-            Assert.Equal(1, quantity00.GramsPerKilonewtonSecond);
-            Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, quantity00.Unit);
-
-            var quantity01 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
-            Assert.Equal(1, quantity01.KilogramsPerKilogramForceHour);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity01.Unit);
-
-            var quantity02 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond);
-            Assert.Equal(1, quantity02.KilogramsPerKilonewtonSecond);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, quantity02.Unit);
-
-            var quantity03 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
-            Assert.Equal(1, quantity03.PoundsMassPerPoundForceHour);
-            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificFuelConsumptionUnit>(), unit =>
+            {
+                var quantity = SpecificFuelConsumption.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -229,74 +229,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Centimole);
-            Assert.Equal(1, quantity00.Centimoles);
-            Assert.Equal(AmountOfSubstanceUnit.Centimole, quantity00.Unit);
-
-            var quantity01 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.CentipoundMole);
-            Assert.Equal(1, quantity01.CentipoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, quantity01.Unit);
-
-            var quantity02 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Decimole);
-            Assert.Equal(1, quantity02.Decimoles);
-            Assert.Equal(AmountOfSubstanceUnit.Decimole, quantity02.Unit);
-
-            var quantity03 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.DecipoundMole);
-            Assert.Equal(1, quantity03.DecipoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, quantity03.Unit);
-
-            var quantity04 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Femtomole);
-            Assert.Equal(1, quantity04.Femtomoles);
-            Assert.Equal(AmountOfSubstanceUnit.Femtomole, quantity04.Unit);
-
-            var quantity05 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Kilomole);
-            Assert.Equal(1, quantity05.Kilomoles);
-            Assert.Equal(AmountOfSubstanceUnit.Kilomole, quantity05.Unit);
-
-            var quantity06 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.KilopoundMole);
-            Assert.Equal(1, quantity06.KilopoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, quantity06.Unit);
-
-            var quantity07 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Megamole);
-            Assert.Equal(1, quantity07.Megamoles);
-            Assert.Equal(AmountOfSubstanceUnit.Megamole, quantity07.Unit);
-
-            var quantity08 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Micromole);
-            Assert.Equal(1, quantity08.Micromoles);
-            Assert.Equal(AmountOfSubstanceUnit.Micromole, quantity08.Unit);
-
-            var quantity09 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.MicropoundMole);
-            Assert.Equal(1, quantity09.MicropoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, quantity09.Unit);
-
-            var quantity10 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Millimole);
-            Assert.Equal(1, quantity10.Millimoles);
-            Assert.Equal(AmountOfSubstanceUnit.Millimole, quantity10.Unit);
-
-            var quantity11 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.MillipoundMole);
-            Assert.Equal(1, quantity11.MillipoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, quantity11.Unit);
-
-            var quantity12 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Mole);
-            Assert.Equal(1, quantity12.Moles);
-            Assert.Equal(AmountOfSubstanceUnit.Mole, quantity12.Unit);
-
-            var quantity13 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Nanomole);
-            Assert.Equal(1, quantity13.Nanomoles);
-            Assert.Equal(AmountOfSubstanceUnit.Nanomole, quantity13.Unit);
-
-            var quantity14 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.NanopoundMole);
-            Assert.Equal(1, quantity14.NanopoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, quantity14.Unit);
-
-            var quantity15 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Picomole);
-            Assert.Equal(1, quantity15.Picomoles);
-            Assert.Equal(AmountOfSubstanceUnit.Picomole, quantity15.Unit);
-
-            var quantity16 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.PoundMole);
-            Assert.Equal(1, quantity16.PoundMoles);
-            Assert.Equal(AmountOfSubstanceUnit.PoundMole, quantity16.Unit);
-
+            Assert.All(EnumHelper.GetValues<AmountOfSubstanceUnit>(), unit =>
+            {
+                var quantity = AmountOfSubstance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Microsievert);
-            Assert.Equal(1, quantity00.Microsieverts);
-            Assert.Equal(RadiationEquivalentDoseUnit.Microsievert, quantity00.Unit);
-
-            var quantity01 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan);
-            Assert.Equal(1, quantity01.MilliroentgensEquivalentMan);
-            Assert.Equal(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, quantity01.Unit);
-
-            var quantity02 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Millisievert);
-            Assert.Equal(1, quantity02.Millisieverts);
-            Assert.Equal(RadiationEquivalentDoseUnit.Millisievert, quantity02.Unit);
-
-            var quantity03 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Nanosievert);
-            Assert.Equal(1, quantity03.Nanosieverts);
-            Assert.Equal(RadiationEquivalentDoseUnit.Nanosievert, quantity03.Unit);
-
-            var quantity04 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan);
-            Assert.Equal(1, quantity04.RoentgensEquivalentMan);
-            Assert.Equal(RadiationEquivalentDoseUnit.RoentgenEquivalentMan, quantity04.Unit);
-
-            var quantity05 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Sievert);
-            Assert.Equal(1, quantity05.Sieverts);
-            Assert.Equal(RadiationEquivalentDoseUnit.Sievert, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadiationEquivalentDoseUnit>(), unit =>
+            {
+                var quantity = RadiationEquivalentDose.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

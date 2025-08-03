@@ -159,18 +159,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound);
-            Assert.Equal(1, quantity00.CubicFeetPerPound);
-            Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, quantity00.Unit);
-
-            var quantity01 = SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerKilogram);
-            Assert.Equal(1, quantity01.CubicMetersPerKilogram);
-            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, quantity01.Unit);
-
-            var quantity02 = SpecificVolume.From(1, SpecificVolumeUnit.MillicubicMeterPerKilogram);
-            Assert.Equal(1, quantity02.MillicubicMetersPerKilogram);
-            Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificVolumeUnit>(), unit =>
+            {
+                var quantity = SpecificVolume.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

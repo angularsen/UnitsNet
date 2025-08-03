@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
-            Assert.Equal(1, quantity00.CentimetersToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, quantity00.Unit);
-
-            var quantity01 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
-            Assert.Equal(1, quantity01.DecimetersToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, quantity01.Unit);
-
-            var quantity02 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.FootToTheSixth);
-            Assert.Equal(1, quantity02.FeetToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, quantity02.Unit);
-
-            var quantity03 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.InchToTheSixth);
-            Assert.Equal(1, quantity03.InchesToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, quantity03.Unit);
-
-            var quantity04 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
-            Assert.Equal(1, quantity04.MetersToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, quantity04.Unit);
-
-            var quantity05 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
-            Assert.Equal(1, quantity05.MillimetersToTheSixth);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<WarpingMomentOfInertiaUnit>(), unit =>
+            {
+                var quantity = WarpingMomentOfInertia.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

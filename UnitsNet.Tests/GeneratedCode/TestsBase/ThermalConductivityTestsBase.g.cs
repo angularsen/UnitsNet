@@ -154,14 +154,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ThermalConductivity.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
-            Assert.Equal(1, quantity00.BtusPerHourFootFahrenheit);
-            Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity00.Unit);
-
-            var quantity01 = ThermalConductivity.From(1, ThermalConductivityUnit.WattPerMeterKelvin);
-            Assert.Equal(1, quantity01.WattsPerMeterKelvin);
-            Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<ThermalConductivityUnit>(), unit =>
+            {
+                var quantity = ThermalConductivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

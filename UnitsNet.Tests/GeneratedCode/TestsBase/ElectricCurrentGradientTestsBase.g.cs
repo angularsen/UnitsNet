@@ -179,34 +179,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMicrosecond);
-            Assert.Equal(1, quantity00.AmperesPerMicrosecond);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity00.Unit);
-
-            var quantity01 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMillisecond);
-            Assert.Equal(1, quantity01.AmperesPerMillisecond);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, quantity01.Unit);
-
-            var quantity02 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMinute);
-            Assert.Equal(1, quantity02.AmperesPerMinute);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMinute, quantity02.Unit);
-
-            var quantity03 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerNanosecond);
-            Assert.Equal(1, quantity03.AmperesPerNanosecond);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, quantity03.Unit);
-
-            var quantity04 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerSecond);
-            Assert.Equal(1, quantity04.AmperesPerSecond);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity04.Unit);
-
-            var quantity05 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.MilliamperePerMinute);
-            Assert.Equal(1, quantity05.MilliamperesPerMinute);
-            Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerMinute, quantity05.Unit);
-
-            var quantity06 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.MilliamperePerSecond);
-            Assert.Equal(1, quantity06.MilliamperesPerSecond);
-            Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerSecond, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCurrentGradientUnit>(), unit =>
+            {
+                var quantity = ElectricCurrentGradient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

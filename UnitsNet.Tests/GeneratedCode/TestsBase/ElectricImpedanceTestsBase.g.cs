@@ -184,38 +184,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricImpedance.From(1, ElectricImpedanceUnit.Gigaohm);
-            Assert.Equal(1, quantity00.Gigaohms);
-            Assert.Equal(ElectricImpedanceUnit.Gigaohm, quantity00.Unit);
-
-            var quantity01 = ElectricImpedance.From(1, ElectricImpedanceUnit.Kiloohm);
-            Assert.Equal(1, quantity01.Kiloohms);
-            Assert.Equal(ElectricImpedanceUnit.Kiloohm, quantity01.Unit);
-
-            var quantity02 = ElectricImpedance.From(1, ElectricImpedanceUnit.Megaohm);
-            Assert.Equal(1, quantity02.Megaohms);
-            Assert.Equal(ElectricImpedanceUnit.Megaohm, quantity02.Unit);
-
-            var quantity03 = ElectricImpedance.From(1, ElectricImpedanceUnit.Microohm);
-            Assert.Equal(1, quantity03.Microohms);
-            Assert.Equal(ElectricImpedanceUnit.Microohm, quantity03.Unit);
-
-            var quantity04 = ElectricImpedance.From(1, ElectricImpedanceUnit.Milliohm);
-            Assert.Equal(1, quantity04.Milliohms);
-            Assert.Equal(ElectricImpedanceUnit.Milliohm, quantity04.Unit);
-
-            var quantity05 = ElectricImpedance.From(1, ElectricImpedanceUnit.Nanoohm);
-            Assert.Equal(1, quantity05.Nanoohms);
-            Assert.Equal(ElectricImpedanceUnit.Nanoohm, quantity05.Unit);
-
-            var quantity06 = ElectricImpedance.From(1, ElectricImpedanceUnit.Ohm);
-            Assert.Equal(1, quantity06.Ohms);
-            Assert.Equal(ElectricImpedanceUnit.Ohm, quantity06.Unit);
-
-            var quantity07 = ElectricImpedance.From(1, ElectricImpedanceUnit.Teraohm);
-            Assert.Equal(1, quantity07.Teraohms);
-            Assert.Equal(ElectricImpedanceUnit.Teraohm, quantity07.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricImpedanceUnit>(), unit =>
+            {
+                var quantity = ElectricImpedance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -204,54 +204,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MassFlux.From(1, MassFluxUnit.GramPerHourPerSquareCentimeter);
-            Assert.Equal(1, quantity00.GramsPerHourPerSquareCentimeter);
-            Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = MassFlux.From(1, MassFluxUnit.GramPerHourPerSquareMeter);
-            Assert.Equal(1, quantity01.GramsPerHourPerSquareMeter);
-            Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, quantity01.Unit);
-
-            var quantity02 = MassFlux.From(1, MassFluxUnit.GramPerHourPerSquareMillimeter);
-            Assert.Equal(1, quantity02.GramsPerHourPerSquareMillimeter);
-            Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, quantity02.Unit);
-
-            var quantity03 = MassFlux.From(1, MassFluxUnit.GramPerSecondPerSquareCentimeter);
-            Assert.Equal(1, quantity03.GramsPerSecondPerSquareCentimeter);
-            Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, quantity03.Unit);
-
-            var quantity04 = MassFlux.From(1, MassFluxUnit.GramPerSecondPerSquareMeter);
-            Assert.Equal(1, quantity04.GramsPerSecondPerSquareMeter);
-            Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, quantity04.Unit);
-
-            var quantity05 = MassFlux.From(1, MassFluxUnit.GramPerSecondPerSquareMillimeter);
-            Assert.Equal(1, quantity05.GramsPerSecondPerSquareMillimeter);
-            Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, quantity05.Unit);
-
-            var quantity06 = MassFlux.From(1, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
-            Assert.Equal(1, quantity06.KilogramsPerHourPerSquareCentimeter);
-            Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, quantity06.Unit);
-
-            var quantity07 = MassFlux.From(1, MassFluxUnit.KilogramPerHourPerSquareMeter);
-            Assert.Equal(1, quantity07.KilogramsPerHourPerSquareMeter);
-            Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, quantity07.Unit);
-
-            var quantity08 = MassFlux.From(1, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
-            Assert.Equal(1, quantity08.KilogramsPerHourPerSquareMillimeter);
-            Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, quantity08.Unit);
-
-            var quantity09 = MassFlux.From(1, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
-            Assert.Equal(1, quantity09.KilogramsPerSecondPerSquareCentimeter);
-            Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, quantity09.Unit);
-
-            var quantity10 = MassFlux.From(1, MassFluxUnit.KilogramPerSecondPerSquareMeter);
-            Assert.Equal(1, quantity10.KilogramsPerSecondPerSquareMeter);
-            Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity10.Unit);
-
-            var quantity11 = MassFlux.From(1, MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
-            Assert.Equal(1, quantity11.KilogramsPerSecondPerSquareMillimeter);
-            Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, quantity11.Unit);
-
+            Assert.All(EnumHelper.GetValues<MassFluxUnit>(), unit =>
+            {
+                var quantity = MassFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

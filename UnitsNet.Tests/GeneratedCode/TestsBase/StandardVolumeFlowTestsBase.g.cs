@@ -189,42 +189,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
-            Assert.Equal(1, quantity00.StandardCubicCentimetersPerMinute);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, quantity00.Unit);
-
-            var quantity01 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerHour);
-            Assert.Equal(1, quantity01.StandardCubicFeetPerHour);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, quantity01.Unit);
-
-            var quantity02 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
-            Assert.Equal(1, quantity02.StandardCubicFeetPerMinute);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, quantity02.Unit);
-
-            var quantity03 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
-            Assert.Equal(1, quantity03.StandardCubicFeetPerSecond);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, quantity03.Unit);
-
-            var quantity04 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
-            Assert.Equal(1, quantity04.StandardCubicMetersPerDay);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, quantity04.Unit);
-
-            var quantity05 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
-            Assert.Equal(1, quantity05.StandardCubicMetersPerHour);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, quantity05.Unit);
-
-            var quantity06 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
-            Assert.Equal(1, quantity06.StandardCubicMetersPerMinute);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, quantity06.Unit);
-
-            var quantity07 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
-            Assert.Equal(1, quantity07.StandardCubicMetersPerSecond);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity07.Unit);
-
-            var quantity08 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardLiterPerMinute);
-            Assert.Equal(1, quantity08.StandardLitersPerMinute);
-            Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<StandardVolumeFlowUnit>(), unit =>
+            {
+                var quantity = StandardVolumeFlow.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

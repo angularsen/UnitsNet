@@ -143,22 +143,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt);
-            Assert.Equal(1, quantity00.DecibelMicrovolts);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, quantity00.Unit);
-
-            var quantity01 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt);
-            Assert.Equal(1, quantity01.DecibelMillivolts);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, quantity01.Unit);
-
-            var quantity02 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded);
-            Assert.Equal(1, quantity02.DecibelsUnloaded);
-            Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, quantity02.Unit);
-
-            var quantity03 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt);
-            Assert.Equal(1, quantity03.DecibelVolts);
-            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<AmplitudeRatioUnit>(), unit =>
+            {
+                var quantity = AmplitudeRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

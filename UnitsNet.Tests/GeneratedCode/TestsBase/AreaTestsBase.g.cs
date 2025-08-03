@@ -214,62 +214,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Area.From(1, AreaUnit.Acre);
-            Assert.Equal(1, quantity00.Acres);
-            Assert.Equal(AreaUnit.Acre, quantity00.Unit);
-
-            var quantity01 = Area.From(1, AreaUnit.Hectare);
-            Assert.Equal(1, quantity01.Hectares);
-            Assert.Equal(AreaUnit.Hectare, quantity01.Unit);
-
-            var quantity02 = Area.From(1, AreaUnit.SquareCentimeter);
-            Assert.Equal(1, quantity02.SquareCentimeters);
-            Assert.Equal(AreaUnit.SquareCentimeter, quantity02.Unit);
-
-            var quantity03 = Area.From(1, AreaUnit.SquareDecimeter);
-            Assert.Equal(1, quantity03.SquareDecimeters);
-            Assert.Equal(AreaUnit.SquareDecimeter, quantity03.Unit);
-
-            var quantity04 = Area.From(1, AreaUnit.SquareFoot);
-            Assert.Equal(1, quantity04.SquareFeet);
-            Assert.Equal(AreaUnit.SquareFoot, quantity04.Unit);
-
-            var quantity05 = Area.From(1, AreaUnit.SquareInch);
-            Assert.Equal(1, quantity05.SquareInches);
-            Assert.Equal(AreaUnit.SquareInch, quantity05.Unit);
-
-            var quantity06 = Area.From(1, AreaUnit.SquareKilometer);
-            Assert.Equal(1, quantity06.SquareKilometers);
-            Assert.Equal(AreaUnit.SquareKilometer, quantity06.Unit);
-
-            var quantity07 = Area.From(1, AreaUnit.SquareMeter);
-            Assert.Equal(1, quantity07.SquareMeters);
-            Assert.Equal(AreaUnit.SquareMeter, quantity07.Unit);
-
-            var quantity08 = Area.From(1, AreaUnit.SquareMicrometer);
-            Assert.Equal(1, quantity08.SquareMicrometers);
-            Assert.Equal(AreaUnit.SquareMicrometer, quantity08.Unit);
-
-            var quantity09 = Area.From(1, AreaUnit.SquareMile);
-            Assert.Equal(1, quantity09.SquareMiles);
-            Assert.Equal(AreaUnit.SquareMile, quantity09.Unit);
-
-            var quantity10 = Area.From(1, AreaUnit.SquareMillimeter);
-            Assert.Equal(1, quantity10.SquareMillimeters);
-            Assert.Equal(AreaUnit.SquareMillimeter, quantity10.Unit);
-
-            var quantity11 = Area.From(1, AreaUnit.SquareNauticalMile);
-            Assert.Equal(1, quantity11.SquareNauticalMiles);
-            Assert.Equal(AreaUnit.SquareNauticalMile, quantity11.Unit);
-
-            var quantity12 = Area.From(1, AreaUnit.SquareYard);
-            Assert.Equal(1, quantity12.SquareYards);
-            Assert.Equal(AreaUnit.SquareYard, quantity12.Unit);
-
-            var quantity13 = Area.From(1, AreaUnit.UsSurveySquareFoot);
-            Assert.Equal(1, quantity13.UsSurveySquareFeet);
-            Assert.Equal(AreaUnit.UsSurveySquareFoot, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<AreaUnit>(), unit =>
+            {
+                var quantity = Area.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

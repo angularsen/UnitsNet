@@ -169,26 +169,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
-            Assert.Equal(1, quantity00.KilonewtonMetersPerRadianPerMeter);
-            Assert.Equal(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, quantity00.Unit);
-
-            var quantity01 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
-            Assert.Equal(1, quantity01.KilopoundForceFeetPerDegreesPerFeet);
-            Assert.Equal(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, quantity01.Unit);
-
-            var quantity02 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
-            Assert.Equal(1, quantity02.MeganewtonMetersPerRadianPerMeter);
-            Assert.Equal(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, quantity02.Unit);
-
-            var quantity03 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
-            Assert.Equal(1, quantity03.NewtonMetersPerRadianPerMeter);
-            Assert.Equal(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity03.Unit);
-
-            var quantity04 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
-            Assert.Equal(1, quantity04.PoundForceFeetPerDegreesPerFeet);
-            Assert.Equal(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>(), unit =>
+            {
+                var quantity = RotationalStiffnessPerLength.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

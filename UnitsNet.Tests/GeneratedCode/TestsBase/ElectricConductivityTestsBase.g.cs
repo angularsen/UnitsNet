@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductivity.From(1, ElectricConductivityUnit.MicrosiemensPerCentimeter);
-            Assert.Equal(1, quantity00.MicrosiemensPerCentimeter);
-            Assert.Equal(ElectricConductivityUnit.MicrosiemensPerCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricConductivity.From(1, ElectricConductivityUnit.MillisiemensPerCentimeter);
-            Assert.Equal(1, quantity01.MillisiemensPerCentimeter);
-            Assert.Equal(ElectricConductivityUnit.MillisiemensPerCentimeter, quantity01.Unit);
-
-            var quantity02 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerCentimeter);
-            Assert.Equal(1, quantity02.SiemensPerCentimeter);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerCentimeter, quantity02.Unit);
-
-            var quantity03 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerFoot);
-            Assert.Equal(1, quantity03.SiemensPerFoot);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, quantity03.Unit);
-
-            var quantity04 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerInch);
-            Assert.Equal(1, quantity04.SiemensPerInch);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerInch, quantity04.Unit);
-
-            var quantity05 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerMeter);
-            Assert.Equal(1, quantity05.SiemensPerMeter);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricConductivityUnit>(), unit =>
+            {
+                var quantity = ElectricConductivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

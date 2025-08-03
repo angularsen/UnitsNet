@@ -159,18 +159,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
-            Assert.Equal(1, quantity00.CoulombsPerSquareCentimeter);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
-            Assert.Equal(1, quantity01.CoulombsPerSquareInch);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, quantity01.Unit);
-
-            var quantity02 = ElectricSurfaceChargeDensity.From(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
-            Assert.Equal(1, quantity02.CoulombsPerSquareMeter);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>(), unit =>
+            {
+                var quantity = ElectricSurfaceChargeDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

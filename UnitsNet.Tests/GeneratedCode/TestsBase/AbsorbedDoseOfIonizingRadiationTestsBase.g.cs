@@ -229,74 +229,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
-            Assert.Equal(1, quantity00.Centigrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Centigray, quantity00.Unit);
-
-            var quantity01 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
-            Assert.Equal(1, quantity01.Decigrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Decigray, quantity01.Unit);
-
-            var quantity02 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
-            Assert.Equal(1, quantity02.Femtograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, quantity02.Unit);
-
-            var quantity03 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
-            Assert.Equal(1, quantity03.Gigagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, quantity03.Unit);
-
-            var quantity04 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Gray);
-            Assert.Equal(1, quantity04.Grays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity04.Unit);
-
-            var quantity05 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
-            Assert.Equal(1, quantity05.Kilograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, quantity05.Unit);
-
-            var quantity06 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
-            Assert.Equal(1, quantity06.Kilorads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, quantity06.Unit);
-
-            var quantity07 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
-            Assert.Equal(1, quantity07.Megagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megagray, quantity07.Unit);
-
-            var quantity08 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
-            Assert.Equal(1, quantity08.Megarads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Megarad, quantity08.Unit);
-
-            var quantity09 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
-            Assert.Equal(1, quantity09.Micrograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Microgray, quantity09.Unit);
-
-            var quantity10 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
-            Assert.Equal(1, quantity10.Milligrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Milligray, quantity10.Unit);
-
-            var quantity11 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
-            Assert.Equal(1, quantity11.Millirads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Millirad, quantity11.Unit);
-
-            var quantity12 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
-            Assert.Equal(1, quantity12.Nanograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, quantity12.Unit);
-
-            var quantity13 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
-            Assert.Equal(1, quantity13.Petagrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Petagray, quantity13.Unit);
-
-            var quantity14 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
-            Assert.Equal(1, quantity14.Picograys);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Picogray, quantity14.Unit);
-
-            var quantity15 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Rad);
-            Assert.Equal(1, quantity15.Rads);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Rad, quantity15.Unit);
-
-            var quantity16 = AbsorbedDoseOfIonizingRadiation.From(1, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
-            Assert.Equal(1, quantity16.Teragrays);
-            Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, quantity16.Unit);
-
+            Assert.All(EnumHelper.GetValues<AbsorbedDoseOfIonizingRadiationUnit>(), unit =>
+            {
+                var quantity = AbsorbedDoseOfIonizingRadiation.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -149,10 +149,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Magnetization.From(1, MagnetizationUnit.AmperePerMeter);
-            Assert.Equal(1, quantity00.AmperesPerMeter);
-            Assert.Equal(MagnetizationUnit.AmperePerMeter, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<MagnetizationUnit>(), unit =>
+            {
+                var quantity = Magnetization.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

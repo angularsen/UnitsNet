@@ -174,30 +174,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
-            Assert.Equal(1, quantity00.CentimetersToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, quantity00.Unit);
-
-            var quantity01 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
-            Assert.Equal(1, quantity01.DecimetersToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, quantity01.Unit);
-
-            var quantity02 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.FootToTheFourth);
-            Assert.Equal(1, quantity02.FeetToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, quantity02.Unit);
-
-            var quantity03 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.InchToTheFourth);
-            Assert.Equal(1, quantity03.InchesToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, quantity03.Unit);
-
-            var quantity04 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
-            Assert.Equal(1, quantity04.MetersToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, quantity04.Unit);
-
-            var quantity05 = AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
-            Assert.Equal(1, quantity05.MillimetersToTheFourth);
-            Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<AreaMomentOfInertiaUnit>(), unit =>
+            {
+                var quantity = AreaMomentOfInertia.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

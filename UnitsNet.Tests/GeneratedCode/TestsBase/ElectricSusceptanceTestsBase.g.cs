@@ -224,70 +224,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Gigamho);
-            Assert.Equal(1, quantity00.Gigamhos);
-            Assert.Equal(ElectricSusceptanceUnit.Gigamho, quantity00.Unit);
-
-            var quantity01 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Gigasiemens);
-            Assert.Equal(1, quantity01.Gigasiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Gigasiemens, quantity01.Unit);
-
-            var quantity02 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Kilomho);
-            Assert.Equal(1, quantity02.Kilomhos);
-            Assert.Equal(ElectricSusceptanceUnit.Kilomho, quantity02.Unit);
-
-            var quantity03 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Kilosiemens);
-            Assert.Equal(1, quantity03.Kilosiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Kilosiemens, quantity03.Unit);
-
-            var quantity04 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Megamho);
-            Assert.Equal(1, quantity04.Megamhos);
-            Assert.Equal(ElectricSusceptanceUnit.Megamho, quantity04.Unit);
-
-            var quantity05 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Megasiemens);
-            Assert.Equal(1, quantity05.Megasiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Megasiemens, quantity05.Unit);
-
-            var quantity06 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Mho);
-            Assert.Equal(1, quantity06.Mhos);
-            Assert.Equal(ElectricSusceptanceUnit.Mho, quantity06.Unit);
-
-            var quantity07 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Micromho);
-            Assert.Equal(1, quantity07.Micromhos);
-            Assert.Equal(ElectricSusceptanceUnit.Micromho, quantity07.Unit);
-
-            var quantity08 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Microsiemens);
-            Assert.Equal(1, quantity08.Microsiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Microsiemens, quantity08.Unit);
-
-            var quantity09 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Millimho);
-            Assert.Equal(1, quantity09.Millimhos);
-            Assert.Equal(ElectricSusceptanceUnit.Millimho, quantity09.Unit);
-
-            var quantity10 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Millisiemens);
-            Assert.Equal(1, quantity10.Millisiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Millisiemens, quantity10.Unit);
-
-            var quantity11 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Nanomho);
-            Assert.Equal(1, quantity11.Nanomhos);
-            Assert.Equal(ElectricSusceptanceUnit.Nanomho, quantity11.Unit);
-
-            var quantity12 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Nanosiemens);
-            Assert.Equal(1, quantity12.Nanosiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Nanosiemens, quantity12.Unit);
-
-            var quantity13 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Siemens);
-            Assert.Equal(1, quantity13.Siemens);
-            Assert.Equal(ElectricSusceptanceUnit.Siemens, quantity13.Unit);
-
-            var quantity14 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Teramho);
-            Assert.Equal(1, quantity14.Teramhos);
-            Assert.Equal(ElectricSusceptanceUnit.Teramho, quantity14.Unit);
-
-            var quantity15 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Terasiemens);
-            Assert.Equal(1, quantity15.Terasiemens);
-            Assert.Equal(ElectricSusceptanceUnit.Terasiemens, quantity15.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricSusceptanceUnit>(), unit =>
+            {
+                var quantity = ElectricSusceptance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

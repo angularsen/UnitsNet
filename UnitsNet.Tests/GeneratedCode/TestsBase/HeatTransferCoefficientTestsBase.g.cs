@@ -169,26 +169,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
-            Assert.Equal(1, quantity00.BtusPerHourSquareFootDegreeFahrenheit);
-            Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, quantity00.Unit);
-
-            var quantity01 = HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
-            Assert.Equal(1, quantity01.CaloriesPerHourSquareMeterDegreeCelsius);
-            Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, quantity01.Unit);
-
-            var quantity02 = HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius);
-            Assert.Equal(1, quantity02.KilocaloriesPerHourSquareMeterDegreeCelsius);
-            Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, quantity02.Unit);
-
-            var quantity03 = HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
-            Assert.Equal(1, quantity03.WattsPerSquareMeterCelsius);
-            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, quantity03.Unit);
-
-            var quantity04 = HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
-            Assert.Equal(1, quantity04.WattsPerSquareMeterKelvin);
-            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<HeatTransferCoefficientUnit>(), unit =>
+            {
+                var quantity = HeatTransferCoefficient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
