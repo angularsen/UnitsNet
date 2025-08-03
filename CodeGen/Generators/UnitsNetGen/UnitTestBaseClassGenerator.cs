@@ -1232,12 +1232,5 @@ namespace UnitsNet.Tests
 }}");
             return Writer.ToString();
         }
-
-        private bool IsAmbiguousAbbreviation(Localization localization, string abbreviation)
-        {
-            return _quantity.Units.Count(u =>
-                u.Localization.SingleOrDefault(l => l.Culture == localization.Culture) is { } otherUnitLocalization &&
-                otherUnitLocalization.Abbreviations.Contains(abbreviation, StringComparer.OrdinalIgnoreCase)) > 1;
-        }
     }
 }
