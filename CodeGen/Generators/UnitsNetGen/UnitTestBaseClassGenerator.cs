@@ -591,8 +591,8 @@ namespace UnitsNet.Tests
         }}
 ");
             }
-            
-            Writer.WL($@"
+
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -603,6 +603,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{4.2m.ToString(culture)} {abbreviation}"", {GetUnitFullName(unit)}, 4.2)]");
                 }
             }
+
             Writer.WL($@"
         public void Parse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
         {{
@@ -616,7 +617,7 @@ namespace UnitsNet.Tests
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
-                Writer.WL($@"
+                Writer.WL(@"
         [Theory]");
                 foreach ((var cultureName, Dictionary<string, List<Unit>>? abbreviations) in _ambiguousAbbreviationsForCulture)
                 {
@@ -626,6 +627,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""1 {ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}] ");
                     }
                 }
+
                 Writer.WL($@"
         public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {{
@@ -633,9 +635,9 @@ namespace UnitsNet.Tests
         }}
 ");
             } // ambiguousAbbreviations
-            
-            
-            Writer.WL($@"
+
+
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -646,6 +648,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{4.2m.ToString(culture)} {abbreviation}"", {GetUnitFullName(unit)}, 4.2)]");
                 }
             }
+
             Writer.WL($@"
         public void TryParse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
         {{
@@ -655,11 +658,11 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedValue, parsed.Value);
         }}
 ");
-            
+
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
-                Writer.WL($@"
+                Writer.WL(@"
         [Theory]");
                 foreach ((var cultureName, Dictionary<string, List<Unit>>? abbreviations) in _ambiguousAbbreviationsForCulture)
                 {
@@ -669,6 +672,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""1 {ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}] ");
                     }
                 }
+
                 Writer.WL($@"
         public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {{
@@ -677,14 +681,15 @@ namespace UnitsNet.Tests
 ");
             } // ambiguousAbbreviations
 
-            
-            Writer.WL($@"
+
+            Writer.WL(@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
             {
                 Writer.WL($@"
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
+
             Writer.WL($@"
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -695,13 +700,14 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
             {
                 Writer.WL($@"
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
+
             Writer.WL($@"
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -712,7 +718,7 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -722,6 +728,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
                 }
             }
+
             Writer.WL($@"
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -731,7 +738,7 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -741,6 +748,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
                 }
             }
+
             Writer.WL($@"
         public void ParseUnit_WithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -752,7 +760,7 @@ namespace UnitsNet.Tests
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
-                Writer.WL($@"
+                Writer.WL(@"
         [Theory]");
                 foreach ((var cultureName, Dictionary<string, List<Unit>>? abbreviations) in _ambiguousAbbreviationsForCulture)
                 {
@@ -762,6 +770,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}]");
                     }
                 }
+
                 Writer.WL($@"
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {{
@@ -770,13 +779,14 @@ namespace UnitsNet.Tests
 ");
             } // ambiguousAbbreviations
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
             {
                 Writer.WL($@"
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
+
             Writer.WL($@"
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -787,13 +797,14 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
             {
                 Writer.WL($@"
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
+
             Writer.WL($@"
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -804,7 +815,7 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -814,6 +825,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
                 }
             }
+
             Writer.WL($@"
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -823,7 +835,7 @@ namespace UnitsNet.Tests
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
             {
@@ -833,6 +845,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
                 }
             }
+
             Writer.WL($@"
         public void TryParseUnit_WithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
@@ -844,7 +857,7 @@ namespace UnitsNet.Tests
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
-                Writer.WL($@"
+                Writer.WL(@"
         [Theory]");
                 foreach ((var cultureName, Dictionary<string, List<Unit>>? abbreviations) in _ambiguousAbbreviationsForCulture)
                 {
@@ -854,6 +867,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", ""{ambiguousPair.Key}"")] // [{string.Join(", ", ambiguousPair.Value.Select(x => x.SingularName))}]");
                     }
                 }
+
                 Writer.WL($@"
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {{
@@ -862,7 +876,7 @@ namespace UnitsNet.Tests
 ");
             } // ambiguousAbbreviations
 
-            Writer.WL($@"
+            Writer.WL(@"
         [Theory]");
             foreach ((var cultureName, Dictionary<Unit, string> abbreviations) in _defaultAbbreviationsForCulture)
             {
@@ -872,6 +886,7 @@ namespace UnitsNet.Tests
         [InlineData(""{cultureName}"", {GetUnitFullName(unit)}, ""{abbreviation}"")]");
                 }
             }
+
             Writer.WL($@"
         public void GetAbbreviationForCulture(string culture, {_unitEnumName} unit, string expectedAbbreviation)
         {{
@@ -1314,13 +1329,6 @@ namespace UnitsNet.Tests
     }}
 }}");
             return Writer.ToString();
-        }
-
-        private bool IsAmbiguousAbbreviation(Localization localization, string abbreviation)
-        {
-            return _quantity.Units.Count(u =>
-                u.Localization.SingleOrDefault(l => l.Culture == localization.Culture) is { } otherUnitLocalization &&
-                otherUnitLocalization.Abbreviations.Contains(abbreviation, StringComparer.OrdinalIgnoreCase)) > 1;
         }
     }
 }

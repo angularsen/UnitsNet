@@ -74,51 +74,6 @@ public static class QuantityExtensions
         return quantity.ToString(format, null);
     }
 
-    // /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
-    // public static TQuantity ToUnit<TQuantity, TUnit>(this TQuantity quantity, UnitSystem unitSystem)
-    //     where TQuantity : IQuantity<TQuantity, TUnit>
-    //     where TUnit : struct, Enum
-    // {
-    //     return UnitConverter.Default.ConvertToUnit(quantity, quantity.QuantityInfo.GetDefaultUnit(unitSystem));
-    // }
-
-    // /// <summary>
-    // /// 
-    // /// </summary>
-    // /// <param name="quantity"></param>
-    // /// <param name="other"></param>
-    // /// <param name="tolerance"></param>
-    // /// <typeparam name="TQuantity"></typeparam>
-    // /// <returns></returns>
-    // [Obsolete(
-    //     "This method was only created in order to facilitate the transition from the old IQuantity interface definition. Consider using the safer, and more performant extensions available on the IVectorQuantity, ILogarithmicQuantity or IAffineQuantity interfaces.")]
-    // public static bool Equals<TQuantity>(this TQuantity quantity, TQuantity? other, TQuantity tolerance) where TQuantity : IQuantity
-    // {
-    //     if (other is null)
-    //     {
-    //         return false;
-    //     }
-    //
-    //     var type = typeof(IVectorQuantity<>);
-    //
-    //     // if (quantity is IVectorQuantity<TQuantity> vectorQuantity && other is IVectorQuantity otherVectorQuantity)
-    //     // {
-    //     //     return VectorQuantityExtensions.Equals(vectorQuantity, otherVectorQuantity, tolerance);
-    //     // }
-    //     //
-    //     // if (quantity is ILogarithmicQuantity logarithmicQuantity && other is ILogarithmicQuantity otherLogarithmicQuantity)
-    //     // {
-    //     //     return LogarithmicQuantityExtensions.Equals(logarithmicQuantity, otherLogarithmicQuantity, tolerance);
-    //     // }
-    //
-    //     // if (quantity is IAffineQuantity affineQuantity && other is IAffineQuantity otherAffineQuantity)
-    //     // {
-    //     //     return AffineQuantityExtensions.Equals(affineQuantity, otherAffineQuantity, tolerance);
-    //     // }
-    //
-    //     throw new InvalidOperationException("Unsupported quantity type.");
-    // }
-
     /// <summary>
     ///     Calculates the arithmetic mean of a sequence of quantities.
     /// </summary>
