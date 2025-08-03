@@ -153,7 +153,7 @@ public class QuantityExtensionsTests
     [InlineData(1, 2)]
     [InlineData(100, 110)]
     [InlineData(100, 90)]
-    public void Equals_IQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
+    public void Equals_Logarithmic_IQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
     {
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
