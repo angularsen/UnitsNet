@@ -23,7 +23,7 @@ public static class QuantityExtensions
         if (tolerance is null) throw new ArgumentNullException(nameof(tolerance), "Tolerance cannot be null. Use a zero quantity instead.");
         if (other is null) return false;
 
-        // TODO Defer to implementations in LinearQuantityExtensions, AffineQuantityExtensions, LogdecimalQuantityExtensions, etc. Several tests in QuantityExtensionsTests break on this default implementation.
+        // TODO Delegate to implementations in LinearQuantityExtensions, AffineQuantityExtensions, LogdecimalQuantityExtensions, etc. Several tests in QuantityExtensionsTests break on this default implementation.
         UnitKey quantityUnit = quantity.UnitKey;
         return Comparison.EqualsAbsolute(quantity.Value, other.GetValue(quantityUnit), tolerance.GetValue(quantityUnit));
     }
