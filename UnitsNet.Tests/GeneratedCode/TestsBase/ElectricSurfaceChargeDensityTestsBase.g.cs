@@ -287,53 +287,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/in²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricSurfaceChargeDensity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
-                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricSurfaceChargeDensity.TryParse(quantityString, out ElectricSurfaceChargeDensity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -424,6 +399,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricSurfaceChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricSurfaceChargeDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "C/cm²")]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "C/in²")]
+        [InlineData("en-US", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "C/m²")]
+        public void GetAbbreviationForCulture(string culture, ElectricSurfaceChargeDensityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricSurfaceChargeDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricSurfaceChargeDensity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricSurfaceChargeDensity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -327,105 +327,36 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 Hrft²°F/Btu", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, 4.2)]
+        [InlineData("en-US", "4.2 cm²Hr°C/kcal", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 cm²K/W", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
+        public void Parse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
-                Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 mm²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ThermalInsulance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Hrft²°F/Btu", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, 4.2)]
+        [InlineData("en-US", "4.2 cm²Hr°C/kcal", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 cm²K/W", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
+        public void TryParse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ThermalInsulance.TryParse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
-                Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 mm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ThermalInsulance.TryParse(quantityString, out ThermalInsulance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -548,6 +479,33 @@ namespace UnitsNet.Tests
         {
             Assert.True(ThermalInsulance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalInsulanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "Hrft²°F/Btu")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "cm²Hr°C/kcal")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "cm²K/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "m²°C/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "m²K/kW")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "m²K/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "mm²K/W")]
+        public void GetAbbreviationForCulture(string culture, ThermalInsulanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ThermalInsulance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ThermalInsulance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ThermalInsulance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

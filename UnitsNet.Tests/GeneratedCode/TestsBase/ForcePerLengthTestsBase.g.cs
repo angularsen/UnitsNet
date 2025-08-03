@@ -637,602 +637,118 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 cN/m", ForcePerLengthUnit.CentinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/m", ForcePerLengthUnit.DecanewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/m", ForcePerLengthUnit.DecinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/m", ForcePerLengthUnit.KilogramForcePerMeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/m", ForcePerLengthUnit.KilonewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 k/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 kipf/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 kip/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 k/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 MN/m", ForcePerLengthUnit.MeganewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/m", ForcePerLengthUnit.MicronewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/m", ForcePerLengthUnit.MillinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/m", ForcePerLengthUnit.NanonewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 N/cm", ForcePerLengthUnit.NewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 N/m", ForcePerLengthUnit.NewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 N/mm", ForcePerLengthUnit.NewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbf/ft", ForcePerLengthUnit.PoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf/in", ForcePerLengthUnit.PoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 lbf/yd", ForcePerLengthUnit.PoundForcePerYard, 4.2)]
+        [InlineData("en-US", "4.2 tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 tf/m", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
+        [InlineData("en-US", "4.2 tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/м", ForcePerLengthUnit.KilogramForcePerMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/см", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/м", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
+        public void Parse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 cN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerCentimeter, CentinewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 cN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerMeter, CentinewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 cN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerMillimeter, CentinewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 daN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerCentimeter, DecanewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 daN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMeter, DecanewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 daN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMillimeter, DecanewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 dN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerCentimeter, DecinewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 dN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 dN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerMillimeter, DecinewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kgf/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCentimeter, KilogramsForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 кгс/см", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCentimeter, KilogramsForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kgf/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 кгс/м", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kgf/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMillimeter, KilogramsForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 кгс/мм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMillimeter, KilogramsForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCentimeter, KilonewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMillimeter, KilonewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kipf/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kip/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 k/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kipf/in", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 kip/in", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 k/in", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 MN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerCentimeter, MeganewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 MN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 MN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerMillimeter, MeganewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MeganewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 µN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerCentimeter, MicronewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 µN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 µN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerMillimeter, MicronewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 mN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillinewtonsPerCentimeter, MillinewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 mN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 mN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillinewtonsPerMillimeter, MillinewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MillinewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 nN/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerCentimeter, NanonewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 nN/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 nN/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerMillimeter, NanonewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 N/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerCentimeter, NewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 N/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerMeter, NewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 N/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerMillimeter, NewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 lbf/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerFoot, PoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 lbf/in", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerInch, PoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 lbf/yd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerYard, PoundsForcePerYardTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 tf/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCentimeter, TonnesForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 тс/см", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCentimeter, TonnesForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 tf/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMeter, TonnesForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 тс/м", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMeter, TonnesForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 tf/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMillimeter, TonnesForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ForcePerLength.Parse("1 тс/мм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMillimeter, TonnesForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ForcePerLength.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cN/cm", ForcePerLengthUnit.CentinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 cN/m", ForcePerLengthUnit.CentinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 cN/mm", ForcePerLengthUnit.CentinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/cm", ForcePerLengthUnit.DecanewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/m", ForcePerLengthUnit.DecanewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 daN/mm", ForcePerLengthUnit.DecanewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/cm", ForcePerLengthUnit.DecinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/m", ForcePerLengthUnit.DecinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 dN/mm", ForcePerLengthUnit.DecinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/cm", ForcePerLengthUnit.KilogramForcePerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/m", ForcePerLengthUnit.KilogramForcePerMeter, 4.2)]
+        [InlineData("en-US", "4.2 kgf/mm", ForcePerLengthUnit.KilogramForcePerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/cm", ForcePerLengthUnit.KilonewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/m", ForcePerLengthUnit.KilonewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 kN/mm", ForcePerLengthUnit.KilonewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kipf/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 kip/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 k/ft", ForcePerLengthUnit.KilopoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 kipf/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 kip/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 k/in", ForcePerLengthUnit.KilopoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 MN/cm", ForcePerLengthUnit.MeganewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 MN/m", ForcePerLengthUnit.MeganewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 MN/mm", ForcePerLengthUnit.MeganewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/cm", ForcePerLengthUnit.MicronewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/m", ForcePerLengthUnit.MicronewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 µN/mm", ForcePerLengthUnit.MicronewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/cm", ForcePerLengthUnit.MillinewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/m", ForcePerLengthUnit.MillinewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 mN/mm", ForcePerLengthUnit.MillinewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/cm", ForcePerLengthUnit.NanonewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/m", ForcePerLengthUnit.NanonewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 nN/mm", ForcePerLengthUnit.NanonewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 N/cm", ForcePerLengthUnit.NewtonPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 N/m", ForcePerLengthUnit.NewtonPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 N/mm", ForcePerLengthUnit.NewtonPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbf/ft", ForcePerLengthUnit.PoundForcePerFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf/in", ForcePerLengthUnit.PoundForcePerInch, 4.2)]
+        [InlineData("en-US", "4.2 lbf/yd", ForcePerLengthUnit.PoundForcePerYard, 4.2)]
+        [InlineData("en-US", "4.2 tf/cm", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 tf/m", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
+        [InlineData("en-US", "4.2 tf/mm", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/см", ForcePerLengthUnit.KilogramForcePerCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/м", ForcePerLengthUnit.KilogramForcePerMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кгс/мм", ForcePerLengthUnit.KilogramForcePerMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/см", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/м", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ForcePerLength.TryParse("1 cN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerCentimeter, CentinewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 cN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerMeter, CentinewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 cN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentinewtonsPerMillimeter, CentinewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 daN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerCentimeter, DecanewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 daN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMeter, DecanewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 daN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMillimeter, DecanewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 dN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerCentimeter, DecinewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 dN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 dN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecinewtonsPerMillimeter, DecinewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kgf/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCentimeter, KilogramsForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 кгс/см", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCentimeter, KilogramsForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kgf/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 кгс/м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kgf/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMillimeter, KilogramsForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 кгс/мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerMillimeter, KilogramsForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilogramForcePerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCentimeter, KilonewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMillimeter, KilonewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kipf/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kip/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 k/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kipf/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 kip/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 k/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerInch, KilopoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.KilopoundForcePerInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 µN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerCentimeter, MicronewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 µN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 µN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicronewtonsPerMillimeter, MicronewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 nN/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerCentimeter, NanonewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 nN/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 nN/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanonewtonsPerMillimeter, NanonewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 N/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerCentimeter, NewtonsPerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 N/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerMeter, NewtonsPerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 N/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NewtonsPerMillimeter, NewtonsPerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 lbf/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerFoot, PoundsForcePerFootTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 lbf/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerInch, PoundsForcePerInchTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 lbf/yd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsForcePerYard, PoundsForcePerYardTolerance);
-                Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 tf/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCentimeter, TonnesForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 тс/см", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCentimeter, TonnesForcePerCentimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 tf/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMeter, TonnesForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 тс/м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMeter, TonnesForcePerMeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 tf/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMillimeter, TonnesForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ForcePerLength.TryParse("1 тс/мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesForcePerMillimeter, TonnesForcePerMillimeterTolerance);
-                Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ForcePerLength.TryParse(quantityString, out ForcePerLength parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1659,6 +1175,70 @@ namespace UnitsNet.Tests
         {
             Assert.True(ForcePerLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ForcePerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ForcePerLengthUnit.CentinewtonPerCentimeter, "cN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.CentinewtonPerMeter, "cN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.CentinewtonPerMillimeter, "cN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.DecanewtonPerCentimeter, "daN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.DecanewtonPerMeter, "daN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.DecanewtonPerMillimeter, "daN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.DecinewtonPerCentimeter, "dN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.DecinewtonPerMeter, "dN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.DecinewtonPerMillimeter, "dN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.KilogramForcePerCentimeter, "kgf/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.KilogramForcePerMeter, "kgf/m")]
+        [InlineData("en-US", ForcePerLengthUnit.KilogramForcePerMillimeter, "kgf/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.KilonewtonPerCentimeter, "kN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.KilonewtonPerMeter, "kN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.KilonewtonPerMillimeter, "kN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.KilopoundForcePerFoot, "kipf/ft")]
+        [InlineData("en-US", ForcePerLengthUnit.KilopoundForcePerInch, "kipf/in")]
+        [InlineData("en-US", ForcePerLengthUnit.MeganewtonPerCentimeter, "MN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.MeganewtonPerMeter, "MN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.MeganewtonPerMillimeter, "MN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.MicronewtonPerCentimeter, "µN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.MicronewtonPerMeter, "µN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.MicronewtonPerMillimeter, "µN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.MillinewtonPerCentimeter, "mN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.MillinewtonPerMeter, "mN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.MillinewtonPerMillimeter, "mN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.NanonewtonPerCentimeter, "nN/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.NanonewtonPerMeter, "nN/m")]
+        [InlineData("en-US", ForcePerLengthUnit.NanonewtonPerMillimeter, "nN/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.NewtonPerCentimeter, "N/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.NewtonPerMeter, "N/m")]
+        [InlineData("en-US", ForcePerLengthUnit.NewtonPerMillimeter, "N/mm")]
+        [InlineData("en-US", ForcePerLengthUnit.PoundForcePerFoot, "lbf/ft")]
+        [InlineData("en-US", ForcePerLengthUnit.PoundForcePerInch, "lbf/in")]
+        [InlineData("en-US", ForcePerLengthUnit.PoundForcePerYard, "lbf/yd")]
+        [InlineData("en-US", ForcePerLengthUnit.TonneForcePerCentimeter, "tf/cm")]
+        [InlineData("en-US", ForcePerLengthUnit.TonneForcePerMeter, "tf/m")]
+        [InlineData("en-US", ForcePerLengthUnit.TonneForcePerMillimeter, "tf/mm")]
+        [InlineData("ru-RU", ForcePerLengthUnit.KilogramForcePerCentimeter, "кгс/см")]
+        [InlineData("ru-RU", ForcePerLengthUnit.KilogramForcePerMeter, "кгс/м")]
+        [InlineData("ru-RU", ForcePerLengthUnit.KilogramForcePerMillimeter, "кгс/мм")]
+        [InlineData("ru-RU", ForcePerLengthUnit.TonneForcePerCentimeter, "тс/см")]
+        [InlineData("ru-RU", ForcePerLengthUnit.TonneForcePerMeter, "тс/м")]
+        [InlineData("ru-RU", ForcePerLengthUnit.TonneForcePerMillimeter, "тс/мм")]
+        public void GetAbbreviationForCulture(string culture, ForcePerLengthUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ForcePerLength.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

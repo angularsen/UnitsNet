@@ -317,92 +317,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 G", MagneticFieldUnit.Gauss, 4.2)]
+        [InlineData("en-US", "4.2 µT", MagneticFieldUnit.Microtesla, 4.2)]
+        [InlineData("en-US", "4.2 mG", MagneticFieldUnit.Milligauss, 4.2)]
+        [InlineData("en-US", "4.2 mT", MagneticFieldUnit.Millitesla, 4.2)]
+        [InlineData("en-US", "4.2 nT", MagneticFieldUnit.Nanotesla, 4.2)]
+        [InlineData("en-US", "4.2 T", MagneticFieldUnit.Tesla, 4.2)]
+        public void Parse(string culture, string quantityString, MagneticFieldUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = MagneticField.Parse("1 G", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gausses, GaussesTolerance);
-                Assert.Equal(MagneticFieldUnit.Gauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MagneticField.Parse("1 µT", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microteslas, MicroteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Microtesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MagneticField.Parse("1 mG", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milligausses, MilligaussesTolerance);
-                Assert.Equal(MagneticFieldUnit.Milligauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MagneticField.Parse("1 mT", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliteslas, MilliteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Millitesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MagneticField.Parse("1 nT", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanoteslas, NanoteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Nanotesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MagneticField.Parse("1 T", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Teslas, TeslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Tesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = MagneticField.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 G", MagneticFieldUnit.Gauss, 4.2)]
+        [InlineData("en-US", "4.2 µT", MagneticFieldUnit.Microtesla, 4.2)]
+        [InlineData("en-US", "4.2 mG", MagneticFieldUnit.Milligauss, 4.2)]
+        [InlineData("en-US", "4.2 mT", MagneticFieldUnit.Millitesla, 4.2)]
+        [InlineData("en-US", "4.2 nT", MagneticFieldUnit.Nanotesla, 4.2)]
+        [InlineData("en-US", "4.2 T", MagneticFieldUnit.Tesla, 4.2)]
+        public void TryParse(string culture, string quantityString, MagneticFieldUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(MagneticField.TryParse("1 G", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gausses, GaussesTolerance);
-                Assert.Equal(MagneticFieldUnit.Gauss, parsed.Unit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParse("1 µT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microteslas, MicroteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Microtesla, parsed.Unit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParse("1 mG", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milligausses, MilligaussesTolerance);
-                Assert.Equal(MagneticFieldUnit.Milligauss, parsed.Unit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParse("1 mT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milliteslas, MilliteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Millitesla, parsed.Unit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParse("1 nT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanoteslas, NanoteslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Nanotesla, parsed.Unit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParse("1 T", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Teslas, TeslasTolerance);
-                Assert.Equal(MagneticFieldUnit.Tesla, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(MagneticField.TryParse(quantityString, out MagneticField parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -517,6 +459,32 @@ namespace UnitsNet.Tests
         {
             Assert.True(MagneticField.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MagneticFieldUnit.Gauss, "G")]
+        [InlineData("en-US", MagneticFieldUnit.Microtesla, "µT")]
+        [InlineData("en-US", MagneticFieldUnit.Milligauss, "mG")]
+        [InlineData("en-US", MagneticFieldUnit.Millitesla, "mT")]
+        [InlineData("en-US", MagneticFieldUnit.Nanotesla, "nT")]
+        [InlineData("en-US", MagneticFieldUnit.Tesla, "T")]
+        public void GetAbbreviationForCulture(string culture, MagneticFieldUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = MagneticField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(MagneticField.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = MagneticField.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

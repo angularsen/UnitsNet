@@ -267,27 +267,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 H/m", PermeabilityUnit.HenryPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, PermeabilityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Permeability.Parse("1 H/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Permeability.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 H/m", PermeabilityUnit.HenryPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, PermeabilityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Permeability.TryParse("1 H/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Permeability.TryParse(quantityString, out Permeability parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -362,6 +359,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(Permeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermeabilityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PermeabilityUnit.HenryPerMeter, "H/m")]
+        public void GetAbbreviationForCulture(string culture, PermeabilityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Permeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Permeability.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Permeability.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

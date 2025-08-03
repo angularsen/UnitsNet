@@ -297,66 +297,30 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, 4.2)]
+        [InlineData("en-US", "4.2 kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, 4.2)]
+        [InlineData("en-US", "4.2 kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, 4.2)]
+        [InlineData("en-US", "4.2 lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, 4.2)]
+        public void Parse(string culture, string quantityString, SpecificFuelConsumptionUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = SpecificFuelConsumption.Parse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerKilonewtonSecond, GramsPerKilonewtonSecondTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = SpecificFuelConsumption.Parse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = SpecificFuelConsumption.Parse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilonewtonSecond, KilogramsPerKilonewtonSecondTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = SpecificFuelConsumption.Parse("1 lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = SpecificFuelConsumption.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 g/(kN·s)", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, 4.2)]
+        [InlineData("en-US", "4.2 kg/(kgf·h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, 4.2)]
+        [InlineData("en-US", "4.2 kg/(kN·s)", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, 4.2)]
+        [InlineData("en-US", "4.2 lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, 4.2)]
+        public void TryParse(string culture, string quantityString, SpecificFuelConsumptionUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(SpecificFuelConsumption.TryParse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerKilonewtonSecond, GramsPerKilonewtonSecondTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilonewtonSecond, KilogramsPerKilonewtonSecondTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(SpecificFuelConsumption.TryParse("1 lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(SpecificFuelConsumption.TryParse(quantityString, out SpecificFuelConsumption parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -455,6 +419,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(SpecificFuelConsumption.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificFuelConsumptionUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, "g/(kN·s)")]
+        [InlineData("en-US", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "kg/(kgf·h)")]
+        [InlineData("en-US", SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, "kg/(kN·s)")]
+        [InlineData("en-US", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "lb/(lbf·h)")]
+        public void GetAbbreviationForCulture(string culture, SpecificFuelConsumptionUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = SpecificFuelConsumption.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(SpecificFuelConsumption.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = SpecificFuelConsumption.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

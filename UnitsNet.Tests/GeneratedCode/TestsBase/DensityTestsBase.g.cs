@@ -817,872 +817,154 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cg/dl", DensityUnit.CentigramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 cg/l", DensityUnit.CentigramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 cg/ml", DensityUnit.CentigramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 dg/dl", DensityUnit.DecigramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 dg/l", DensityUnit.DecigramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 dg/ml", DensityUnit.DecigramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 fg/dl", DensityUnit.FemtogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 fg/l", DensityUnit.FemtogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 fg/ml", DensityUnit.FemtogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 g/cm³", DensityUnit.GramPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 g/ft³", DensityUnit.GramPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 g/in³", DensityUnit.GramPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 g/m³", DensityUnit.GramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 g/mm³", DensityUnit.GramPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 g/dl", DensityUnit.GramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 g/l", DensityUnit.GramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 g/ml", DensityUnit.GramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 kg/cm³", DensityUnit.KilogramPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/m³", DensityUnit.KilogramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/mm³", DensityUnit.KilogramPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/l", DensityUnit.KilogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 kip/ft³", DensityUnit.KilopoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kip/in³", DensityUnit.KilopoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 kip/yd³", DensityUnit.KilopoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 µg/m³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 µg/dl", DensityUnit.MicrogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 µg/l", DensityUnit.MicrogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 µg/ml", DensityUnit.MicrogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 mg/m³", DensityUnit.MilligramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mg/dl", DensityUnit.MilligramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 mg/l", DensityUnit.MilligramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mg/ml", DensityUnit.MilligramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 ng/dl", DensityUnit.NanogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 ng/l", DensityUnit.NanogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 ng/ml", DensityUnit.NanogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 pg/dl", DensityUnit.PicogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 pg/l", DensityUnit.PicogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 pg/ml", DensityUnit.PicogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 lb/cm³", DensityUnit.PoundPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/cm³", DensityUnit.PoundPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/ft³", DensityUnit.PoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbm/ft³", DensityUnit.PoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb/in³", DensityUnit.PoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 lbm/in³", DensityUnit.PoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 lb/m³", DensityUnit.PoundPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/m³", DensityUnit.PoundPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/mm³", DensityUnit.PoundPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/mm³", DensityUnit.PoundPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/yd³", DensityUnit.PoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 lbm/yd³", DensityUnit.PoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 ppg (imp.)", DensityUnit.PoundPerImperialGallon, 4.2)]
+        [InlineData("en-US", "4.2 ppg (U.S.)", DensityUnit.PoundPerUSGallon, 4.2)]
+        [InlineData("en-US", "4.2 slug/cm³", DensityUnit.SlugPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 slug/ft³", DensityUnit.SlugPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 slug/in³", DensityUnit.SlugPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 slug/m³", DensityUnit.SlugPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 slug/mm³", DensityUnit.SlugPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 t/cm³", DensityUnit.TonnePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 t/ft³", DensityUnit.TonnePerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 t/in³", DensityUnit.TonnePerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 t/m³", DensityUnit.TonnePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 t/mm³", DensityUnit.TonnePerCubicMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 г/м³", DensityUnit.GramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кг/м³", DensityUnit.KilogramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкг/м³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мг/м³", DensityUnit.MilligramPerCubicMeter, 4.2)]
+        public void Parse(string culture, string quantityString, DensityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Density.Parse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 cg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 dg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 fg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerDeciliter, FemtogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 fg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerLiter, FemtogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 fg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerMilliliter, FemtogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicFoot, GramsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicInch, GramsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 г/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 g/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.GramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kg/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kg/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 кг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kg/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kip/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kip/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 kip/yd³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicYard, KilopoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 µg/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 мкг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 µg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 mg/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 мг/м³", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 mg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 ng/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 pg/l", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 ppg (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
-                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
-                Assert.Equal(DensityUnit.PoundPerUSGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 slug/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicCentimeter, SlugsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 slug/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 slug/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicInch, SlugsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 slug/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMeter, SlugsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 slug/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMillimeter, SlugsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 t/cm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 t/ft³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicFoot, TonnesPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 t/in³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicInch, TonnesPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 t/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Density.Parse("1 t/mm³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Density.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cg/dl", DensityUnit.CentigramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 cg/l", DensityUnit.CentigramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 cg/ml", DensityUnit.CentigramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 dg/dl", DensityUnit.DecigramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 dg/l", DensityUnit.DecigramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 dg/ml", DensityUnit.DecigramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 fg/dl", DensityUnit.FemtogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 fg/l", DensityUnit.FemtogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 fg/ml", DensityUnit.FemtogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 g/cm³", DensityUnit.GramPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 g/ft³", DensityUnit.GramPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 g/in³", DensityUnit.GramPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 g/m³", DensityUnit.GramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 g/mm³", DensityUnit.GramPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 g/dl", DensityUnit.GramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 g/l", DensityUnit.GramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 g/ml", DensityUnit.GramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 kg/cm³", DensityUnit.KilogramPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/m³", DensityUnit.KilogramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/mm³", DensityUnit.KilogramPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 kg/l", DensityUnit.KilogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 kip/ft³", DensityUnit.KilopoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kip/in³", DensityUnit.KilopoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 kip/yd³", DensityUnit.KilopoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 µg/m³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 µg/dl", DensityUnit.MicrogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 µg/l", DensityUnit.MicrogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 µg/ml", DensityUnit.MicrogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 mg/m³", DensityUnit.MilligramPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 mg/dl", DensityUnit.MilligramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 mg/l", DensityUnit.MilligramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 mg/ml", DensityUnit.MilligramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 ng/dl", DensityUnit.NanogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 ng/l", DensityUnit.NanogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 ng/ml", DensityUnit.NanogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 pg/dl", DensityUnit.PicogramPerDeciliter, 4.2)]
+        [InlineData("en-US", "4.2 pg/l", DensityUnit.PicogramPerLiter, 4.2)]
+        [InlineData("en-US", "4.2 pg/ml", DensityUnit.PicogramPerMilliliter, 4.2)]
+        [InlineData("en-US", "4.2 lb/cm³", DensityUnit.PoundPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/cm³", DensityUnit.PoundPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/ft³", DensityUnit.PoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbm/ft³", DensityUnit.PoundPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb/in³", DensityUnit.PoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 lbm/in³", DensityUnit.PoundPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 lb/m³", DensityUnit.PoundPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/m³", DensityUnit.PoundPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/mm³", DensityUnit.PoundPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lbm/mm³", DensityUnit.PoundPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 lb/yd³", DensityUnit.PoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 lbm/yd³", DensityUnit.PoundPerCubicYard, 4.2)]
+        [InlineData("en-US", "4.2 ppg (imp.)", DensityUnit.PoundPerImperialGallon, 4.2)]
+        [InlineData("en-US", "4.2 ppg (U.S.)", DensityUnit.PoundPerUSGallon, 4.2)]
+        [InlineData("en-US", "4.2 slug/cm³", DensityUnit.SlugPerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 slug/ft³", DensityUnit.SlugPerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 slug/in³", DensityUnit.SlugPerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 slug/m³", DensityUnit.SlugPerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 slug/mm³", DensityUnit.SlugPerCubicMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 t/cm³", DensityUnit.TonnePerCubicCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 t/ft³", DensityUnit.TonnePerCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 t/in³", DensityUnit.TonnePerCubicInch, 4.2)]
+        [InlineData("en-US", "4.2 t/m³", DensityUnit.TonnePerCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 t/mm³", DensityUnit.TonnePerCubicMillimeter, 4.2)]
+        [InlineData("ru-RU", "4,2 г/м³", DensityUnit.GramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 кг/м³", DensityUnit.KilogramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мкг/м³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
+        [InlineData("ru-RU", "4,2 мг/м³", DensityUnit.MilligramPerCubicMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, DensityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Density.TryParse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 cg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 dg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 fg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerDeciliter, FemtogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 fg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerLiter, FemtogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 fg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FemtogramsPerMilliliter, FemtogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.FemtogramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicFoot, GramsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicInch, GramsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 г/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 g/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.GramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kg/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 кг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kg/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.KilogramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kip/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kip/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 kip/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicYard, KilopoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.KilopoundPerCubicYard, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 µg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 мкг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 µg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 mg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 мг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 mg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 ng/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 pg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
-                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lb/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 lbm/yd³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicYard, PoundsPerCubicYardTolerance);
-                Assert.Equal(DensityUnit.PoundPerCubicYard, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 ppg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
-                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
-                Assert.Equal(DensityUnit.PoundPerUSGallon, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 slug/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicCentimeter, SlugsPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 slug/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 slug/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicInch, SlugsPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 slug/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMeter, SlugsPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 slug/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMillimeter, SlugsPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 t/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 t/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicFoot, TonnesPerCubicFootTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 t/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicInch, TonnesPerCubicInchTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 t/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Density.TryParse("1 t/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
-                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Density.TryParse(quantityString, out Density parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -2261,6 +1543,86 @@ namespace UnitsNet.Tests
         {
             Assert.True(Density.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out DensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", DensityUnit.CentigramPerDeciliter, "cg/dl")]
+        [InlineData("en-US", DensityUnit.CentigramPerLiter, "cg/l")]
+        [InlineData("en-US", DensityUnit.CentigramPerMilliliter, "cg/ml")]
+        [InlineData("en-US", DensityUnit.DecigramPerDeciliter, "dg/dl")]
+        [InlineData("en-US", DensityUnit.DecigramPerLiter, "dg/l")]
+        [InlineData("en-US", DensityUnit.DecigramPerMilliliter, "dg/ml")]
+        [InlineData("en-US", DensityUnit.FemtogramPerDeciliter, "fg/dl")]
+        [InlineData("en-US", DensityUnit.FemtogramPerLiter, "fg/l")]
+        [InlineData("en-US", DensityUnit.FemtogramPerMilliliter, "fg/ml")]
+        [InlineData("en-US", DensityUnit.GramPerCubicCentimeter, "g/cm³")]
+        [InlineData("en-US", DensityUnit.GramPerCubicFoot, "g/ft³")]
+        [InlineData("en-US", DensityUnit.GramPerCubicInch, "g/in³")]
+        [InlineData("en-US", DensityUnit.GramPerCubicMeter, "g/m³")]
+        [InlineData("en-US", DensityUnit.GramPerCubicMillimeter, "g/mm³")]
+        [InlineData("en-US", DensityUnit.GramPerDeciliter, "g/dl")]
+        [InlineData("en-US", DensityUnit.GramPerLiter, "g/l")]
+        [InlineData("en-US", DensityUnit.GramPerMilliliter, "g/ml")]
+        [InlineData("en-US", DensityUnit.KilogramPerCubicCentimeter, "kg/cm³")]
+        [InlineData("en-US", DensityUnit.KilogramPerCubicMeter, "kg/m³")]
+        [InlineData("en-US", DensityUnit.KilogramPerCubicMillimeter, "kg/mm³")]
+        [InlineData("en-US", DensityUnit.KilogramPerLiter, "kg/l")]
+        [InlineData("en-US", DensityUnit.KilopoundPerCubicFoot, "kip/ft³")]
+        [InlineData("en-US", DensityUnit.KilopoundPerCubicInch, "kip/in³")]
+        [InlineData("en-US", DensityUnit.KilopoundPerCubicYard, "kip/yd³")]
+        [InlineData("en-US", DensityUnit.MicrogramPerCubicMeter, "µg/m³")]
+        [InlineData("en-US", DensityUnit.MicrogramPerDeciliter, "µg/dl")]
+        [InlineData("en-US", DensityUnit.MicrogramPerLiter, "µg/l")]
+        [InlineData("en-US", DensityUnit.MicrogramPerMilliliter, "µg/ml")]
+        [InlineData("en-US", DensityUnit.MilligramPerCubicMeter, "mg/m³")]
+        [InlineData("en-US", DensityUnit.MilligramPerDeciliter, "mg/dl")]
+        [InlineData("en-US", DensityUnit.MilligramPerLiter, "mg/l")]
+        [InlineData("en-US", DensityUnit.MilligramPerMilliliter, "mg/ml")]
+        [InlineData("en-US", DensityUnit.NanogramPerDeciliter, "ng/dl")]
+        [InlineData("en-US", DensityUnit.NanogramPerLiter, "ng/l")]
+        [InlineData("en-US", DensityUnit.NanogramPerMilliliter, "ng/ml")]
+        [InlineData("en-US", DensityUnit.PicogramPerDeciliter, "pg/dl")]
+        [InlineData("en-US", DensityUnit.PicogramPerLiter, "pg/l")]
+        [InlineData("en-US", DensityUnit.PicogramPerMilliliter, "pg/ml")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicCentimeter, "lb/cm³")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicFoot, "lb/ft³")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicInch, "lb/in³")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicMeter, "lb/m³")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicMillimeter, "lb/mm³")]
+        [InlineData("en-US", DensityUnit.PoundPerCubicYard, "lb/yd³")]
+        [InlineData("en-US", DensityUnit.PoundPerImperialGallon, "ppg (imp.)")]
+        [InlineData("en-US", DensityUnit.PoundPerUSGallon, "ppg (U.S.)")]
+        [InlineData("en-US", DensityUnit.SlugPerCubicCentimeter, "slug/cm³")]
+        [InlineData("en-US", DensityUnit.SlugPerCubicFoot, "slug/ft³")]
+        [InlineData("en-US", DensityUnit.SlugPerCubicInch, "slug/in³")]
+        [InlineData("en-US", DensityUnit.SlugPerCubicMeter, "slug/m³")]
+        [InlineData("en-US", DensityUnit.SlugPerCubicMillimeter, "slug/mm³")]
+        [InlineData("en-US", DensityUnit.TonnePerCubicCentimeter, "t/cm³")]
+        [InlineData("en-US", DensityUnit.TonnePerCubicFoot, "t/ft³")]
+        [InlineData("en-US", DensityUnit.TonnePerCubicInch, "t/in³")]
+        [InlineData("en-US", DensityUnit.TonnePerCubicMeter, "t/m³")]
+        [InlineData("en-US", DensityUnit.TonnePerCubicMillimeter, "t/mm³")]
+        [InlineData("ru-RU", DensityUnit.GramPerCubicMeter, "г/м³")]
+        [InlineData("ru-RU", DensityUnit.KilogramPerCubicMeter, "кг/м³")]
+        [InlineData("ru-RU", DensityUnit.MicrogramPerCubicMeter, "мкг/м³")]
+        [InlineData("ru-RU", DensityUnit.MilligramPerCubicMeter, "мг/м³")]
+        public void GetAbbreviationForCulture(string culture, DensityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Density.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Density.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Density.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

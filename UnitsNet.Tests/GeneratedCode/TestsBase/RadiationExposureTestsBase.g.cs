@@ -337,118 +337,38 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/kg", RadiationExposureUnit.CoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 µR", RadiationExposureUnit.Microroentgen, 4.2)]
+        [InlineData("en-US", "4.2 mC/kg", RadiationExposureUnit.MillicoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mR", RadiationExposureUnit.Milliroentgen, 4.2)]
+        [InlineData("en-US", "4.2 nC/kg", RadiationExposureUnit.NanocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 pC/kg", RadiationExposureUnit.PicocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 R", RadiationExposureUnit.Roentgen, 4.2)]
+        public void Parse(string culture, string quantityString, RadiationExposureUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 C/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerKilogram, CoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.CoulombPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 µC/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrocoulombsPerKilogram, MicrocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.MicrocoulombPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 µR", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microroentgens, MicroroentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Microroentgen, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 mC/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillicoulombsPerKilogram, MillicoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.MillicoulombPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 mR", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliroentgens, MilliroentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Milliroentgen, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 nC/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanocoulombsPerKilogram, NanocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.NanocoulombPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 pC/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicocoulombsPerKilogram, PicocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.PicocoulombPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationExposure.Parse("1 R", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Roentgens, RoentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Roentgen, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = RadiationExposure.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/kg", RadiationExposureUnit.CoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 µR", RadiationExposureUnit.Microroentgen, 4.2)]
+        [InlineData("en-US", "4.2 mC/kg", RadiationExposureUnit.MillicoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mR", RadiationExposureUnit.Milliroentgen, 4.2)]
+        [InlineData("en-US", "4.2 nC/kg", RadiationExposureUnit.NanocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 pC/kg", RadiationExposureUnit.PicocoulombPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 R", RadiationExposureUnit.Roentgen, 4.2)]
+        public void TryParse(string culture, string quantityString, RadiationExposureUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(RadiationExposure.TryParse("1 C/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerKilogram, CoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.CoulombPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 µC/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrocoulombsPerKilogram, MicrocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.MicrocoulombPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 µR", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microroentgens, MicroroentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Microroentgen, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 mC/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillicoulombsPerKilogram, MillicoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.MillicoulombPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 mR", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milliroentgens, MilliroentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Milliroentgen, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 nC/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanocoulombsPerKilogram, NanocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.NanocoulombPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 pC/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicocoulombsPerKilogram, PicocoulombsPerKilogramTolerance);
-                Assert.Equal(RadiationExposureUnit.PicocoulombPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationExposure.TryParse("1 R", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Roentgens, RoentgensTolerance);
-                Assert.Equal(RadiationExposureUnit.Roentgen, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(RadiationExposure.TryParse(quantityString, out RadiationExposure parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -579,6 +499,34 @@ namespace UnitsNet.Tests
         {
             Assert.True(RadiationExposure.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadiationExposureUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RadiationExposureUnit.CoulombPerKilogram, "C/kg")]
+        [InlineData("en-US", RadiationExposureUnit.MicrocoulombPerKilogram, "µC/kg")]
+        [InlineData("en-US", RadiationExposureUnit.Microroentgen, "µR")]
+        [InlineData("en-US", RadiationExposureUnit.MillicoulombPerKilogram, "mC/kg")]
+        [InlineData("en-US", RadiationExposureUnit.Milliroentgen, "mR")]
+        [InlineData("en-US", RadiationExposureUnit.NanocoulombPerKilogram, "nC/kg")]
+        [InlineData("en-US", RadiationExposureUnit.PicocoulombPerKilogram, "pC/kg")]
+        [InlineData("en-US", RadiationExposureUnit.Roentgen, "R")]
+        public void GetAbbreviationForCulture(string culture, RadiationExposureUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = RadiationExposure.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(RadiationExposure.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = RadiationExposure.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

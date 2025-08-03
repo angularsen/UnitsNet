@@ -287,53 +287,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 kvarh", ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, 4.2)]
+        [InlineData("en-US", "4.2 Mvarh", ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, 4.2)]
+        [InlineData("en-US", "4.2 varh", ElectricReactiveEnergyUnit.VoltampereReactiveHour, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricReactiveEnergyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricReactiveEnergy.Parse("1 kvarh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilovoltampereReactiveHours, KilovoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactiveEnergy.Parse("1 Mvarh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegavoltampereReactiveHours, MegavoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactiveEnergy.Parse("1 varh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltampereReactiveHours, VoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.VoltampereReactiveHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricReactiveEnergy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 kvarh", ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, 4.2)]
+        [InlineData("en-US", "4.2 Mvarh", ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, 4.2)]
+        [InlineData("en-US", "4.2 varh", ElectricReactiveEnergyUnit.VoltampereReactiveHour, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricReactiveEnergyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricReactiveEnergy.TryParse("1 kvarh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilovoltampereReactiveHours, KilovoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactiveEnergy.TryParse("1 Mvarh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegavoltampereReactiveHours, MegavoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactiveEnergy.TryParse("1 varh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltampereReactiveHours, VoltampereReactiveHoursTolerance);
-                Assert.Equal(ElectricReactiveEnergyUnit.VoltampereReactiveHour, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricReactiveEnergy.TryParse(quantityString, out ElectricReactiveEnergy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -424,6 +399,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricReactiveEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricReactiveEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, "kvarh")]
+        [InlineData("en-US", ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, "Mvarh")]
+        [InlineData("en-US", ElectricReactiveEnergyUnit.VoltampereReactiveHour, "varh")]
+        public void GetAbbreviationForCulture(string culture, ElectricReactiveEnergyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricReactiveEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricReactiveEnergy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricReactiveEnergy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

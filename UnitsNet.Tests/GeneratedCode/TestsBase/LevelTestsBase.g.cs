@@ -217,40 +217,26 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 dB", LevelUnit.Decibel, 4.2)]
+        [InlineData("en-US", "4.2 Np", LevelUnit.Neper, 4.2)]
+        public void Parse(string culture, string quantityString, LevelUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Level.Parse("1 dB", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
-                Assert.Equal(LevelUnit.Decibel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Level.Parse("1 Np", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
-                Assert.Equal(LevelUnit.Neper, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Level.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 dB", LevelUnit.Decibel, 4.2)]
+        [InlineData("en-US", "4.2 Np", LevelUnit.Neper, 4.2)]
+        public void TryParse(string culture, string quantityString, LevelUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Level.TryParse("1 dB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
-                Assert.Equal(LevelUnit.Decibel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Level.TryParse("1 Np", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
-                Assert.Equal(LevelUnit.Neper, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Level.TryParse(quantityString, out Level parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -333,6 +319,28 @@ namespace UnitsNet.Tests
         {
             Assert.True(Level.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LevelUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", LevelUnit.Decibel, "dB")]
+        [InlineData("en-US", LevelUnit.Neper, "Np")]
+        public void GetAbbreviationForCulture(string culture, LevelUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Level.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Level.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Level.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

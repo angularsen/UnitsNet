@@ -207,27 +207,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 %RH", RelativeHumidityUnit.Percent, 4.2)]
+        public void Parse(string culture, string quantityString, RelativeHumidityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = RelativeHumidity.Parse("1 %RH", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
-                Assert.Equal(RelativeHumidityUnit.Percent, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = RelativeHumidity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 %RH", RelativeHumidityUnit.Percent, 4.2)]
+        public void TryParse(string culture, string quantityString, RelativeHumidityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(RelativeHumidity.TryParse("1 %RH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
-                Assert.Equal(RelativeHumidityUnit.Percent, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(RelativeHumidity.TryParse(quantityString, out RelativeHumidity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +299,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(RelativeHumidity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RelativeHumidityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RelativeHumidityUnit.Percent, "%RH")]
+        public void GetAbbreviationForCulture(string culture, RelativeHumidityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(RelativeHumidity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

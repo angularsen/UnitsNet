@@ -257,92 +257,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", RatioUnit.DecimalFraction, 4.2)]
+        [InlineData("en-US", "4.2 ppb", RatioUnit.PartPerBillion, 4.2)]
+        [InlineData("en-US", "4.2 ppm", RatioUnit.PartPerMillion, 4.2)]
+        [InlineData("en-US", "4.2 ‰", RatioUnit.PartPerThousand, 4.2)]
+        [InlineData("en-US", "4.2 ppt", RatioUnit.PartPerTrillion, 4.2)]
+        [InlineData("en-US", "4.2 %", RatioUnit.Percent, 4.2)]
+        public void Parse(string culture, string quantityString, RatioUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Ratio.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
-                Assert.Equal(RatioUnit.DecimalFraction, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Ratio.Parse("1 ppb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
-                Assert.Equal(RatioUnit.PartPerBillion, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Ratio.Parse("1 ppm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
-                Assert.Equal(RatioUnit.PartPerMillion, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Ratio.Parse("1 ‰", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
-                Assert.Equal(RatioUnit.PartPerThousand, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Ratio.Parse("1 ppt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
-                Assert.Equal(RatioUnit.PartPerTrillion, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Ratio.Parse("1 %", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
-                Assert.Equal(RatioUnit.Percent, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Ratio.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", RatioUnit.DecimalFraction, 4.2)]
+        [InlineData("en-US", "4.2 ppb", RatioUnit.PartPerBillion, 4.2)]
+        [InlineData("en-US", "4.2 ppm", RatioUnit.PartPerMillion, 4.2)]
+        [InlineData("en-US", "4.2 ‰", RatioUnit.PartPerThousand, 4.2)]
+        [InlineData("en-US", "4.2 ppt", RatioUnit.PartPerTrillion, 4.2)]
+        [InlineData("en-US", "4.2 %", RatioUnit.Percent, 4.2)]
+        public void TryParse(string culture, string quantityString, RatioUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Ratio.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
-                Assert.Equal(RatioUnit.DecimalFraction, parsed.Unit);
-            }
-
-            {
-                Assert.True(Ratio.TryParse("1 ppb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
-                Assert.Equal(RatioUnit.PartPerBillion, parsed.Unit);
-            }
-
-            {
-                Assert.True(Ratio.TryParse("1 ppm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
-                Assert.Equal(RatioUnit.PartPerMillion, parsed.Unit);
-            }
-
-            {
-                Assert.True(Ratio.TryParse("1 ‰", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
-                Assert.Equal(RatioUnit.PartPerThousand, parsed.Unit);
-            }
-
-            {
-                Assert.True(Ratio.TryParse("1 ppt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
-                Assert.Equal(RatioUnit.PartPerTrillion, parsed.Unit);
-            }
-
-            {
-                Assert.True(Ratio.TryParse("1 %", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
-                Assert.Equal(RatioUnit.Percent, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Ratio.TryParse(quantityString, out Ratio parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -457,6 +399,32 @@ namespace UnitsNet.Tests
         {
             Assert.True(Ratio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RatioUnit.DecimalFraction, "")]
+        [InlineData("en-US", RatioUnit.PartPerBillion, "ppb")]
+        [InlineData("en-US", RatioUnit.PartPerMillion, "ppm")]
+        [InlineData("en-US", RatioUnit.PartPerThousand, "‰")]
+        [InlineData("en-US", RatioUnit.PartPerTrillion, "ppt")]
+        [InlineData("en-US", RatioUnit.Percent, "%")]
+        public void GetAbbreviationForCulture(string culture, RatioUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Ratio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Ratio.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Ratio.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -547,672 +547,138 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 Bq", RadioactivityUnit.Becquerel, 4.2)]
+        [InlineData("en-US", "4.2 Ci", RadioactivityUnit.Curie, 4.2)]
+        [InlineData("en-US", "4.2 EBq", RadioactivityUnit.Exabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 GBq", RadioactivityUnit.Gigabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 GCi", RadioactivityUnit.Gigacurie, 4.2)]
+        [InlineData("en-US", "4.2 GRd", RadioactivityUnit.Gigarutherford, 4.2)]
+        [InlineData("en-US", "4.2 kBq", RadioactivityUnit.Kilobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 kCi", RadioactivityUnit.Kilocurie, 4.2)]
+        [InlineData("en-US", "4.2 kRd", RadioactivityUnit.Kilorutherford, 4.2)]
+        [InlineData("en-US", "4.2 MBq", RadioactivityUnit.Megabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 MCi", RadioactivityUnit.Megacurie, 4.2)]
+        [InlineData("en-US", "4.2 MRd", RadioactivityUnit.Megarutherford, 4.2)]
+        [InlineData("en-US", "4.2 µBq", RadioactivityUnit.Microbecquerel, 4.2)]
+        [InlineData("en-US", "4.2 µCi", RadioactivityUnit.Microcurie, 4.2)]
+        [InlineData("en-US", "4.2 µRd", RadioactivityUnit.Microrutherford, 4.2)]
+        [InlineData("en-US", "4.2 mBq", RadioactivityUnit.Millibecquerel, 4.2)]
+        [InlineData("en-US", "4.2 mCi", RadioactivityUnit.Millicurie, 4.2)]
+        [InlineData("en-US", "4.2 mRd", RadioactivityUnit.Millirutherford, 4.2)]
+        [InlineData("en-US", "4.2 nBq", RadioactivityUnit.Nanobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 nCi", RadioactivityUnit.Nanocurie, 4.2)]
+        [InlineData("en-US", "4.2 nRd", RadioactivityUnit.Nanorutherford, 4.2)]
+        [InlineData("en-US", "4.2 PBq", RadioactivityUnit.Petabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 pBq", RadioactivityUnit.Picobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 pCi", RadioactivityUnit.Picocurie, 4.2)]
+        [InlineData("en-US", "4.2 pRd", RadioactivityUnit.Picorutherford, 4.2)]
+        [InlineData("en-US", "4.2 Rd", RadioactivityUnit.Rutherford, 4.2)]
+        [InlineData("en-US", "4.2 TBq", RadioactivityUnit.Terabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 TCi", RadioactivityUnit.Teracurie, 4.2)]
+        [InlineData("en-US", "4.2 TRd", RadioactivityUnit.Terarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 Бк", RadioactivityUnit.Becquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 Ки", RadioactivityUnit.Curie, 4.2)]
+        [InlineData("ru-RU", "4,2 ЭБк", RadioactivityUnit.Exabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ГБк", RadioactivityUnit.Gigabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ГКи", RadioactivityUnit.Gigacurie, 4.2)]
+        [InlineData("ru-RU", "4,2 ГРд", RadioactivityUnit.Gigarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 кБк", RadioactivityUnit.Kilobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 кКи", RadioactivityUnit.Kilocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 кРд", RadioactivityUnit.Kilorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 МБк", RadioactivityUnit.Megabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 МКи", RadioactivityUnit.Megacurie, 4.2)]
+        [InlineData("ru-RU", "4,2 МРд", RadioactivityUnit.Megarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 мкБк", RadioactivityUnit.Microbecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 мкКи", RadioactivityUnit.Microcurie, 4.2)]
+        [InlineData("ru-RU", "4,2 мкРд", RadioactivityUnit.Microrutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 мБк", RadioactivityUnit.Millibecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 мКи", RadioactivityUnit.Millicurie, 4.2)]
+        [InlineData("ru-RU", "4,2 мРд", RadioactivityUnit.Millirutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 нБк", RadioactivityUnit.Nanobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 нКи", RadioactivityUnit.Nanocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 нРд", RadioactivityUnit.Nanorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 ПБк", RadioactivityUnit.Petabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 пБк", RadioactivityUnit.Picobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 пКи", RadioactivityUnit.Picocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 пРд", RadioactivityUnit.Picorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 Рд", RadioactivityUnit.Rutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 ТБк", RadioactivityUnit.Terabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ТКи", RadioactivityUnit.Teracurie, 4.2)]
+        [InlineData("ru-RU", "4,2 ТРд", RadioactivityUnit.Terarutherford, 4.2)]
+        public void Parse(string culture, string quantityString, RadioactivityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Bq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Becquerels, BecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Becquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Бк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Becquerels, BecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Becquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Ci", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Curies, CuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Curie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Ки", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Curies, CuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Curie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 EBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Exabecquerels, ExabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Exabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ЭБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Exabecquerels, ExabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Exabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 GBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigabecquerels, GigabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ГБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Gigabecquerels, GigabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 GCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigacuries, GigacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Gigacurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ГКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Gigacuries, GigacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Gigacurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 GRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigarutherfords, GigarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ГРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Gigarutherfords, GigarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 kBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilobecquerels, KilobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 кБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilobecquerels, KilobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 kCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilocuries, KilocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Kilocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 кКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilocuries, KilocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Kilocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 kRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilorutherfords, KilorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 кРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilorutherfords, KilorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 MBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megabecquerels, MegabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Megabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 МБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Megabecquerels, MegabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Megabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 MCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megacuries, MegacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Megacurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 МКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Megacuries, MegacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Megacurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 MRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megarutherfords, MegarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Megarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 МРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Megarutherfords, MegarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Megarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 µBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microbecquerels, MicrobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Microbecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мкБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microbecquerels, MicrobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Microbecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 µCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microcuries, MicrocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Microcurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мкКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microcuries, MicrocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Microcurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 µRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microrutherfords, MicrorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Microrutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мкРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microrutherfords, MicrorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Microrutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 mBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millibecquerels, MillibecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Millibecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Millibecquerels, MillibecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Millibecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 mCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millicuries, MillicuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Millicurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Millicuries, MillicuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Millicurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 mRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millirutherfords, MillirutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Millirutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 мРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Millirutherfords, MillirutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Millirutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 nBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanobecquerels, NanobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 нБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanobecquerels, NanobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 nCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanocuries, NanocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Nanocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 нКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanocuries, NanocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Nanocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 nRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanorutherfords, NanorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 нРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanorutherfords, NanorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 PBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Petabecquerels, PetabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Petabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ПБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Petabecquerels, PetabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Petabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 pBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picobecquerels, PicobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Picobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 пБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Picobecquerels, PicobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Picobecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 pCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picocuries, PicocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Picocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 пКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Picocuries, PicocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Picocurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 pRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picorutherfords, PicorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Picorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 пРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Picorutherfords, PicorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Picorutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Rd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Rutherfords, RutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Rutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 Рд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Rutherfords, RutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Rutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 TBq", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terabecquerels, TerabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Terabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ТБк", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Terabecquerels, TerabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Terabecquerel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 TCi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Teracuries, TeracuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Teracurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ТКи", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Teracuries, TeracuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Teracurie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 TRd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terarutherfords, TerarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Terarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Radioactivity.Parse("1 ТРд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Terarutherfords, TerarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Terarutherford, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Radioactivity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Bq", RadioactivityUnit.Becquerel, 4.2)]
+        [InlineData("en-US", "4.2 Ci", RadioactivityUnit.Curie, 4.2)]
+        [InlineData("en-US", "4.2 EBq", RadioactivityUnit.Exabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 GBq", RadioactivityUnit.Gigabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 GCi", RadioactivityUnit.Gigacurie, 4.2)]
+        [InlineData("en-US", "4.2 GRd", RadioactivityUnit.Gigarutherford, 4.2)]
+        [InlineData("en-US", "4.2 kBq", RadioactivityUnit.Kilobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 kCi", RadioactivityUnit.Kilocurie, 4.2)]
+        [InlineData("en-US", "4.2 kRd", RadioactivityUnit.Kilorutherford, 4.2)]
+        [InlineData("en-US", "4.2 MBq", RadioactivityUnit.Megabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 MCi", RadioactivityUnit.Megacurie, 4.2)]
+        [InlineData("en-US", "4.2 MRd", RadioactivityUnit.Megarutherford, 4.2)]
+        [InlineData("en-US", "4.2 µBq", RadioactivityUnit.Microbecquerel, 4.2)]
+        [InlineData("en-US", "4.2 µCi", RadioactivityUnit.Microcurie, 4.2)]
+        [InlineData("en-US", "4.2 µRd", RadioactivityUnit.Microrutherford, 4.2)]
+        [InlineData("en-US", "4.2 mBq", RadioactivityUnit.Millibecquerel, 4.2)]
+        [InlineData("en-US", "4.2 mCi", RadioactivityUnit.Millicurie, 4.2)]
+        [InlineData("en-US", "4.2 mRd", RadioactivityUnit.Millirutherford, 4.2)]
+        [InlineData("en-US", "4.2 nBq", RadioactivityUnit.Nanobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 nCi", RadioactivityUnit.Nanocurie, 4.2)]
+        [InlineData("en-US", "4.2 nRd", RadioactivityUnit.Nanorutherford, 4.2)]
+        [InlineData("en-US", "4.2 PBq", RadioactivityUnit.Petabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 pBq", RadioactivityUnit.Picobecquerel, 4.2)]
+        [InlineData("en-US", "4.2 pCi", RadioactivityUnit.Picocurie, 4.2)]
+        [InlineData("en-US", "4.2 pRd", RadioactivityUnit.Picorutherford, 4.2)]
+        [InlineData("en-US", "4.2 Rd", RadioactivityUnit.Rutherford, 4.2)]
+        [InlineData("en-US", "4.2 TBq", RadioactivityUnit.Terabecquerel, 4.2)]
+        [InlineData("en-US", "4.2 TCi", RadioactivityUnit.Teracurie, 4.2)]
+        [InlineData("en-US", "4.2 TRd", RadioactivityUnit.Terarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 Бк", RadioactivityUnit.Becquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 Ки", RadioactivityUnit.Curie, 4.2)]
+        [InlineData("ru-RU", "4,2 ЭБк", RadioactivityUnit.Exabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ГБк", RadioactivityUnit.Gigabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ГКи", RadioactivityUnit.Gigacurie, 4.2)]
+        [InlineData("ru-RU", "4,2 ГРд", RadioactivityUnit.Gigarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 кБк", RadioactivityUnit.Kilobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 кКи", RadioactivityUnit.Kilocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 кРд", RadioactivityUnit.Kilorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 МБк", RadioactivityUnit.Megabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 МКи", RadioactivityUnit.Megacurie, 4.2)]
+        [InlineData("ru-RU", "4,2 МРд", RadioactivityUnit.Megarutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 мкБк", RadioactivityUnit.Microbecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 мкКи", RadioactivityUnit.Microcurie, 4.2)]
+        [InlineData("ru-RU", "4,2 мкРд", RadioactivityUnit.Microrutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 мБк", RadioactivityUnit.Millibecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 мКи", RadioactivityUnit.Millicurie, 4.2)]
+        [InlineData("ru-RU", "4,2 мРд", RadioactivityUnit.Millirutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 нБк", RadioactivityUnit.Nanobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 нКи", RadioactivityUnit.Nanocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 нРд", RadioactivityUnit.Nanorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 ПБк", RadioactivityUnit.Petabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 пБк", RadioactivityUnit.Picobecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 пКи", RadioactivityUnit.Picocurie, 4.2)]
+        [InlineData("ru-RU", "4,2 пРд", RadioactivityUnit.Picorutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 Рд", RadioactivityUnit.Rutherford, 4.2)]
+        [InlineData("ru-RU", "4,2 ТБк", RadioactivityUnit.Terabecquerel, 4.2)]
+        [InlineData("ru-RU", "4,2 ТКи", RadioactivityUnit.Teracurie, 4.2)]
+        [InlineData("ru-RU", "4,2 ТРд", RadioactivityUnit.Terarutherford, 4.2)]
+        public void TryParse(string culture, string quantityString, RadioactivityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Radioactivity.TryParse("1 Bq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Becquerels, BecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Becquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 Бк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Becquerels, BecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Becquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 Ci", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Curies, CuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Curie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 Ки", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Curies, CuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Curie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 EBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Exabecquerels, ExabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Exabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ЭБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Exabecquerels, ExabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Exabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 GBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigabecquerels, GigabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ГБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigabecquerels, GigabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 GCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigacuries, GigacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Gigacurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ГКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigacuries, GigacuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Gigacurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 GRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigarutherfords, GigarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigarutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ГРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigarutherfords, GigarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Gigarutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 kBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilobecquerels, KilobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilobecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 кБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilobecquerels, KilobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilobecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 kCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilocuries, KilocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Kilocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 кКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilocuries, KilocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Kilocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 kRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilorutherfords, KilorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 кРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilorutherfords, KilorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Kilorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 µBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microbecquerels, MicrobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Microbecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 мкБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microbecquerels, MicrobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Microbecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 µCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microcuries, MicrocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Microcurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 мкКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microcuries, MicrocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Microcurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 µRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microrutherfords, MicrorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Microrutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 мкРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microrutherfords, MicrorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Microrutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 nBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanobecquerels, NanobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanobecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 нБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanobecquerels, NanobecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanobecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 nCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanocuries, NanocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Nanocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 нКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanocuries, NanocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Nanocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 nRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanorutherfords, NanorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 нРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanorutherfords, NanorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Nanorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 pCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picocuries, PicocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Picocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 пКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picocuries, PicocuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Picocurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 pRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picorutherfords, PicorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Picorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 пРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picorutherfords, PicorutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Picorutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 Rd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Rutherfords, RutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Rutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 Рд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Rutherfords, RutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Rutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 TBq", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terabecquerels, TerabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Terabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ТБк", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terabecquerels, TerabecquerelsTolerance);
-                Assert.Equal(RadioactivityUnit.Terabecquerel, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 TCi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Teracuries, TeracuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Teracurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ТКи", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Teracuries, TeracuriesTolerance);
-                Assert.Equal(RadioactivityUnit.Teracurie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 TRd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terarutherfords, TerarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Terarutherford, parsed.Unit);
-            }
-
-            {
-                Assert.True(Radioactivity.TryParse("1 ТРд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terarutherfords, TerarutherfordsTolerance);
-                Assert.Equal(RadioactivityUnit.Terarutherford, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Radioactivity.TryParse(quantityString, out Radioactivity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1627,6 +1093,84 @@ namespace UnitsNet.Tests
         {
             Assert.True(Radioactivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadioactivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RadioactivityUnit.Becquerel, "Bq")]
+        [InlineData("en-US", RadioactivityUnit.Curie, "Ci")]
+        [InlineData("en-US", RadioactivityUnit.Exabecquerel, "EBq")]
+        [InlineData("en-US", RadioactivityUnit.Gigabecquerel, "GBq")]
+        [InlineData("en-US", RadioactivityUnit.Gigacurie, "GCi")]
+        [InlineData("en-US", RadioactivityUnit.Gigarutherford, "GRd")]
+        [InlineData("en-US", RadioactivityUnit.Kilobecquerel, "kBq")]
+        [InlineData("en-US", RadioactivityUnit.Kilocurie, "kCi")]
+        [InlineData("en-US", RadioactivityUnit.Kilorutherford, "kRd")]
+        [InlineData("en-US", RadioactivityUnit.Megabecquerel, "MBq")]
+        [InlineData("en-US", RadioactivityUnit.Megacurie, "MCi")]
+        [InlineData("en-US", RadioactivityUnit.Megarutherford, "MRd")]
+        [InlineData("en-US", RadioactivityUnit.Microbecquerel, "µBq")]
+        [InlineData("en-US", RadioactivityUnit.Microcurie, "µCi")]
+        [InlineData("en-US", RadioactivityUnit.Microrutherford, "µRd")]
+        [InlineData("en-US", RadioactivityUnit.Millibecquerel, "mBq")]
+        [InlineData("en-US", RadioactivityUnit.Millicurie, "mCi")]
+        [InlineData("en-US", RadioactivityUnit.Millirutherford, "mRd")]
+        [InlineData("en-US", RadioactivityUnit.Nanobecquerel, "nBq")]
+        [InlineData("en-US", RadioactivityUnit.Nanocurie, "nCi")]
+        [InlineData("en-US", RadioactivityUnit.Nanorutherford, "nRd")]
+        [InlineData("en-US", RadioactivityUnit.Petabecquerel, "PBq")]
+        [InlineData("en-US", RadioactivityUnit.Picobecquerel, "pBq")]
+        [InlineData("en-US", RadioactivityUnit.Picocurie, "pCi")]
+        [InlineData("en-US", RadioactivityUnit.Picorutherford, "pRd")]
+        [InlineData("en-US", RadioactivityUnit.Rutherford, "Rd")]
+        [InlineData("en-US", RadioactivityUnit.Terabecquerel, "TBq")]
+        [InlineData("en-US", RadioactivityUnit.Teracurie, "TCi")]
+        [InlineData("en-US", RadioactivityUnit.Terarutherford, "TRd")]
+        [InlineData("ru-RU", RadioactivityUnit.Becquerel, "Бк")]
+        [InlineData("ru-RU", RadioactivityUnit.Curie, "Ки")]
+        [InlineData("ru-RU", RadioactivityUnit.Exabecquerel, "ЭБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Gigabecquerel, "ГБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Gigacurie, "ГКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Gigarutherford, "ГРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Kilobecquerel, "кБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Kilocurie, "кКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Kilorutherford, "кРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Megabecquerel, "МБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Megacurie, "МКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Megarutherford, "МРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Microbecquerel, "мкБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Microcurie, "мкКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Microrutherford, "мкРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Millibecquerel, "мБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Millicurie, "мКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Millirutherford, "мРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Nanobecquerel, "нБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Nanocurie, "нКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Nanorutherford, "нРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Petabecquerel, "ПБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Picobecquerel, "пБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Picocurie, "пКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Picorutherford, "пРд")]
+        [InlineData("ru-RU", RadioactivityUnit.Rutherford, "Рд")]
+        [InlineData("ru-RU", RadioactivityUnit.Terabecquerel, "ТБк")]
+        [InlineData("ru-RU", RadioactivityUnit.Teracurie, "ТКи")]
+        [InlineData("ru-RU", RadioactivityUnit.Terarutherford, "ТРд")]
+        public void GetAbbreviationForCulture(string culture, RadioactivityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Radioactivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Radioactivity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Radioactivity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

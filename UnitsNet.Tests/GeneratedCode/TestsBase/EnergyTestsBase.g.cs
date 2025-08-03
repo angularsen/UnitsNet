@@ -657,795 +657,144 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 BTU", EnergyUnit.BritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 cal", EnergyUnit.Calorie, 4.2)]
+        [InlineData("en-US", "4.2 Dth (E.C.)", EnergyUnit.DecathermEc, 4.2)]
+        [InlineData("en-US", "4.2 Dth (imp.)", EnergyUnit.DecathermImperial, 4.2)]
+        [InlineData("en-US", "4.2 Dth (U.S.)", EnergyUnit.DecathermUs, 4.2)]
+        [InlineData("en-US", "4.2 eV", EnergyUnit.ElectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 erg", EnergyUnit.Erg, 4.2)]
+        [InlineData("en-US", "4.2 ft·lb", EnergyUnit.FootPound, 4.2)]
+        [InlineData("en-US", "4.2 GBTU", EnergyUnit.GigabritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 GeV", EnergyUnit.GigaelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 GJ", EnergyUnit.Gigajoule, 4.2)]
+        [InlineData("en-US", "4.2 GWd", EnergyUnit.GigawattDay, 4.2)]
+        [InlineData("en-US", "4.2 GWh", EnergyUnit.GigawattHour, 4.2)]
+        [InlineData("en-US", "4.2 hp·h", EnergyUnit.HorsepowerHour, 4.2)]
+        [InlineData("en-US", "4.2 J", EnergyUnit.Joule, 4.2)]
+        [InlineData("en-US", "4.2 kBTU", EnergyUnit.KilobritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 kcal", EnergyUnit.Kilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 keV", EnergyUnit.KiloelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 kJ", EnergyUnit.Kilojoule, 4.2)]
+        [InlineData("en-US", "4.2 kWd", EnergyUnit.KilowattDay, 4.2)]
+        [InlineData("en-US", "4.2 kWh", EnergyUnit.KilowattHour, 4.2)]
+        [InlineData("en-US", "4.2 MBTU", EnergyUnit.MegabritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 Mcal", EnergyUnit.Megacalorie, 4.2)]
+        [InlineData("en-US", "4.2 MeV", EnergyUnit.MegaelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 MJ", EnergyUnit.Megajoule, 4.2)]
+        [InlineData("en-US", "4.2 MWd", EnergyUnit.MegawattDay, 4.2)]
+        [InlineData("en-US", "4.2 MWh", EnergyUnit.MegawattHour, 4.2)]
+        [InlineData("en-US", "4.2 µJ", EnergyUnit.Microjoule, 4.2)]
+        [InlineData("en-US", "4.2 mJ", EnergyUnit.Millijoule, 4.2)]
+        [InlineData("en-US", "4.2 nJ", EnergyUnit.Nanojoule, 4.2)]
+        [InlineData("en-US", "4.2 PJ", EnergyUnit.Petajoule, 4.2)]
+        [InlineData("en-US", "4.2 TeV", EnergyUnit.TeraelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 TJ", EnergyUnit.Terajoule, 4.2)]
+        [InlineData("en-US", "4.2 TWd", EnergyUnit.TerawattDay, 4.2)]
+        [InlineData("en-US", "4.2 TWh", EnergyUnit.TerawattHour, 4.2)]
+        [InlineData("en-US", "4.2 th (E.C.)", EnergyUnit.ThermEc, 4.2)]
+        [InlineData("en-US", "4.2 th (imp.)", EnergyUnit.ThermImperial, 4.2)]
+        [InlineData("en-US", "4.2 th (U.S.)", EnergyUnit.ThermUs, 4.2)]
+        [InlineData("en-US", "4.2 Wd", EnergyUnit.WattDay, 4.2)]
+        [InlineData("en-US", "4.2 Wh", EnergyUnit.WattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Европейский декатерм", EnergyUnit.DecathermEc, 4.2)]
+        [InlineData("ru-RU", "4,2 Английский декатерм", EnergyUnit.DecathermImperial, 4.2)]
+        [InlineData("ru-RU", "4,2 Американский декатерм", EnergyUnit.DecathermUs, 4.2)]
+        [InlineData("ru-RU", "4,2 эВ", EnergyUnit.ElectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ГэВ", EnergyUnit.GigaelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ГВт/д", EnergyUnit.GigawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 ГВт/ч", EnergyUnit.GigawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 кэВ", EnergyUnit.KiloelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 кВт/д", EnergyUnit.KilowattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 кВт/ч", EnergyUnit.KilowattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 МэВ", EnergyUnit.MegaelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 МВт/д", EnergyUnit.MegawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 МВт/ч", EnergyUnit.MegawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 ТэВ", EnergyUnit.TeraelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ТВт/д", EnergyUnit.TerawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 ТВт/ч", EnergyUnit.TerawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Европейский терм", EnergyUnit.ThermEc, 4.2)]
+        [InlineData("ru-RU", "4,2 Английский терм", EnergyUnit.ThermImperial, 4.2)]
+        [InlineData("ru-RU", "4,2 Американский терм", EnergyUnit.ThermUs, 4.2)]
+        [InlineData("ru-RU", "4,2 Вт/д", EnergyUnit.WattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 Вт/ч", EnergyUnit.WattHour, 4.2)]
+        public void Parse(string culture, string quantityString, EnergyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Energy.Parse("1 BTU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnits, BritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.BritishThermalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 cal", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Calories, CaloriesTolerance);
-                Assert.Equal(EnergyUnit.Calorie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Dth (E.C.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsEc, DecathermsEcTolerance);
-                Assert.Equal(EnergyUnit.DecathermEc, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Европейский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsEc, DecathermsEcTolerance);
-                Assert.Equal(EnergyUnit.DecathermEc, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Dth (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsImperial, DecathermsImperialTolerance);
-                Assert.Equal(EnergyUnit.DecathermImperial, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Английский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsImperial, DecathermsImperialTolerance);
-                Assert.Equal(EnergyUnit.DecathermImperial, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Dth (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsUs, DecathermsUsTolerance);
-                Assert.Equal(EnergyUnit.DecathermUs, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Американский декатерм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecathermsUs, DecathermsUsTolerance);
-                Assert.Equal(EnergyUnit.DecathermUs, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 eV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ElectronVolts, ElectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.ElectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 эВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.ElectronVolts, ElectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.ElectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 erg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Ergs, ErgsTolerance);
-                Assert.Equal(EnergyUnit.Erg, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ft·lb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FootPounds, FootPoundsTolerance);
-                Assert.Equal(EnergyUnit.FootPound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 GBTU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigabritishThermalUnits, GigabritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.GigabritishThermalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 GeV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigaelectronVolts, GigaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ГэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GigaelectronVolts, GigaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 GJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigajoules, GigajoulesTolerance);
-                Assert.Equal(EnergyUnit.Gigajoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 GWd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigawattDays, GigawattDaysTolerance);
-                Assert.Equal(EnergyUnit.GigawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ГВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GigawattDays, GigawattDaysTolerance);
-                Assert.Equal(EnergyUnit.GigawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 GWh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigawattHours, GigawattHoursTolerance);
-                Assert.Equal(EnergyUnit.GigawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ГВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.GigawattHours, GigawattHoursTolerance);
-                Assert.Equal(EnergyUnit.GigawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 hp·h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.HorsepowerHours, HorsepowerHoursTolerance);
-                Assert.Equal(EnergyUnit.HorsepowerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 J", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Joules, JoulesTolerance);
-                Assert.Equal(EnergyUnit.Joule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 kBTU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.KilobritishThermalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 kcal", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilocalories, KilocaloriesTolerance);
-                Assert.Equal(EnergyUnit.Kilocalorie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 keV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KiloelectronVolts, KiloelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 кэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KiloelectronVolts, KiloelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 kJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilojoules, KilojoulesTolerance);
-                Assert.Equal(EnergyUnit.Kilojoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 kWd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilowattDays, KilowattDaysTolerance);
-                Assert.Equal(EnergyUnit.KilowattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 кВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilowattDays, KilowattDaysTolerance);
-                Assert.Equal(EnergyUnit.KilowattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 kWh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilowattHours, KilowattHoursTolerance);
-                Assert.Equal(EnergyUnit.KilowattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 кВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilowattHours, KilowattHoursTolerance);
-                Assert.Equal(EnergyUnit.KilowattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 MBTU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.MegabritishThermalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Mcal", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megacalories, MegacaloriesTolerance);
-                Assert.Equal(EnergyUnit.Megacalorie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 MeV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegaelectronVolts, MegaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 МэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MegaelectronVolts, MegaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 MJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megajoules, MegajoulesTolerance);
-                Assert.Equal(EnergyUnit.Megajoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 MWd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegawattDays, MegawattDaysTolerance);
-                Assert.Equal(EnergyUnit.MegawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 МВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MegawattDays, MegawattDaysTolerance);
-                Assert.Equal(EnergyUnit.MegawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 MWh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegawattHours, MegawattHoursTolerance);
-                Assert.Equal(EnergyUnit.MegawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 МВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MegawattHours, MegawattHoursTolerance);
-                Assert.Equal(EnergyUnit.MegawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 µJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microjoules, MicrojoulesTolerance);
-                Assert.Equal(EnergyUnit.Microjoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 mJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millijoules, MillijoulesTolerance);
-                Assert.Equal(EnergyUnit.Millijoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 nJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanojoules, NanojoulesTolerance);
-                Assert.Equal(EnergyUnit.Nanojoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 PJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Petajoules, PetajoulesTolerance);
-                Assert.Equal(EnergyUnit.Petajoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 TeV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TeraelectronVolts, TeraelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ТэВ", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TeraelectronVolts, TeraelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 TJ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terajoules, TerajoulesTolerance);
-                Assert.Equal(EnergyUnit.Terajoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 TWd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TerawattDays, TerawattDaysTolerance);
-                Assert.Equal(EnergyUnit.TerawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ТВт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TerawattDays, TerawattDaysTolerance);
-                Assert.Equal(EnergyUnit.TerawattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 TWh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TerawattHours, TerawattHoursTolerance);
-                Assert.Equal(EnergyUnit.TerawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 ТВт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.TerawattHours, TerawattHoursTolerance);
-                Assert.Equal(EnergyUnit.TerawattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 th (E.C.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ThermsEc, ThermsEcTolerance);
-                Assert.Equal(EnergyUnit.ThermEc, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Европейский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.ThermsEc, ThermsEcTolerance);
-                Assert.Equal(EnergyUnit.ThermEc, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 th (imp.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ThermsImperial, ThermsImperialTolerance);
-                Assert.Equal(EnergyUnit.ThermImperial, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Английский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.ThermsImperial, ThermsImperialTolerance);
-                Assert.Equal(EnergyUnit.ThermImperial, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 th (U.S.)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ThermsUs, ThermsUsTolerance);
-                Assert.Equal(EnergyUnit.ThermUs, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Американский терм", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.ThermsUs, ThermsUsTolerance);
-                Assert.Equal(EnergyUnit.ThermUs, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Wd", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.WattDays, WattDaysTolerance);
-                Assert.Equal(EnergyUnit.WattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Вт/д", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.WattDays, WattDaysTolerance);
-                Assert.Equal(EnergyUnit.WattDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Wh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.WattHours, WattHoursTolerance);
-                Assert.Equal(EnergyUnit.WattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Energy.Parse("1 Вт/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.WattHours, WattHoursTolerance);
-                Assert.Equal(EnergyUnit.WattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Energy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 BTU", EnergyUnit.BritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 cal", EnergyUnit.Calorie, 4.2)]
+        [InlineData("en-US", "4.2 Dth (E.C.)", EnergyUnit.DecathermEc, 4.2)]
+        [InlineData("en-US", "4.2 Dth (imp.)", EnergyUnit.DecathermImperial, 4.2)]
+        [InlineData("en-US", "4.2 Dth (U.S.)", EnergyUnit.DecathermUs, 4.2)]
+        [InlineData("en-US", "4.2 eV", EnergyUnit.ElectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 erg", EnergyUnit.Erg, 4.2)]
+        [InlineData("en-US", "4.2 ft·lb", EnergyUnit.FootPound, 4.2)]
+        [InlineData("en-US", "4.2 GBTU", EnergyUnit.GigabritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 GeV", EnergyUnit.GigaelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 GJ", EnergyUnit.Gigajoule, 4.2)]
+        [InlineData("en-US", "4.2 GWd", EnergyUnit.GigawattDay, 4.2)]
+        [InlineData("en-US", "4.2 GWh", EnergyUnit.GigawattHour, 4.2)]
+        [InlineData("en-US", "4.2 hp·h", EnergyUnit.HorsepowerHour, 4.2)]
+        [InlineData("en-US", "4.2 J", EnergyUnit.Joule, 4.2)]
+        [InlineData("en-US", "4.2 kBTU", EnergyUnit.KilobritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 kcal", EnergyUnit.Kilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 keV", EnergyUnit.KiloelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 kJ", EnergyUnit.Kilojoule, 4.2)]
+        [InlineData("en-US", "4.2 kWd", EnergyUnit.KilowattDay, 4.2)]
+        [InlineData("en-US", "4.2 kWh", EnergyUnit.KilowattHour, 4.2)]
+        [InlineData("en-US", "4.2 MBTU", EnergyUnit.MegabritishThermalUnit, 4.2)]
+        [InlineData("en-US", "4.2 Mcal", EnergyUnit.Megacalorie, 4.2)]
+        [InlineData("en-US", "4.2 MeV", EnergyUnit.MegaelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 MJ", EnergyUnit.Megajoule, 4.2)]
+        [InlineData("en-US", "4.2 MWd", EnergyUnit.MegawattDay, 4.2)]
+        [InlineData("en-US", "4.2 MWh", EnergyUnit.MegawattHour, 4.2)]
+        [InlineData("en-US", "4.2 µJ", EnergyUnit.Microjoule, 4.2)]
+        [InlineData("en-US", "4.2 mJ", EnergyUnit.Millijoule, 4.2)]
+        [InlineData("en-US", "4.2 nJ", EnergyUnit.Nanojoule, 4.2)]
+        [InlineData("en-US", "4.2 PJ", EnergyUnit.Petajoule, 4.2)]
+        [InlineData("en-US", "4.2 TeV", EnergyUnit.TeraelectronVolt, 4.2)]
+        [InlineData("en-US", "4.2 TJ", EnergyUnit.Terajoule, 4.2)]
+        [InlineData("en-US", "4.2 TWd", EnergyUnit.TerawattDay, 4.2)]
+        [InlineData("en-US", "4.2 TWh", EnergyUnit.TerawattHour, 4.2)]
+        [InlineData("en-US", "4.2 th (E.C.)", EnergyUnit.ThermEc, 4.2)]
+        [InlineData("en-US", "4.2 th (imp.)", EnergyUnit.ThermImperial, 4.2)]
+        [InlineData("en-US", "4.2 th (U.S.)", EnergyUnit.ThermUs, 4.2)]
+        [InlineData("en-US", "4.2 Wd", EnergyUnit.WattDay, 4.2)]
+        [InlineData("en-US", "4.2 Wh", EnergyUnit.WattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Европейский декатерм", EnergyUnit.DecathermEc, 4.2)]
+        [InlineData("ru-RU", "4,2 Английский декатерм", EnergyUnit.DecathermImperial, 4.2)]
+        [InlineData("ru-RU", "4,2 Американский декатерм", EnergyUnit.DecathermUs, 4.2)]
+        [InlineData("ru-RU", "4,2 эВ", EnergyUnit.ElectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ГэВ", EnergyUnit.GigaelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ГВт/д", EnergyUnit.GigawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 ГВт/ч", EnergyUnit.GigawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 кэВ", EnergyUnit.KiloelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 кВт/д", EnergyUnit.KilowattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 кВт/ч", EnergyUnit.KilowattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 МэВ", EnergyUnit.MegaelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 МВт/д", EnergyUnit.MegawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 МВт/ч", EnergyUnit.MegawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 ТэВ", EnergyUnit.TeraelectronVolt, 4.2)]
+        [InlineData("ru-RU", "4,2 ТВт/д", EnergyUnit.TerawattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 ТВт/ч", EnergyUnit.TerawattHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Европейский терм", EnergyUnit.ThermEc, 4.2)]
+        [InlineData("ru-RU", "4,2 Английский терм", EnergyUnit.ThermImperial, 4.2)]
+        [InlineData("ru-RU", "4,2 Американский терм", EnergyUnit.ThermUs, 4.2)]
+        [InlineData("ru-RU", "4,2 Вт/д", EnergyUnit.WattDay, 4.2)]
+        [InlineData("ru-RU", "4,2 Вт/ч", EnergyUnit.WattHour, 4.2)]
+        public void TryParse(string culture, string quantityString, EnergyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Energy.TryParse("1 BTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnits, BritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.BritishThermalUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 cal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Calories, CaloriesTolerance);
-                Assert.Equal(EnergyUnit.Calorie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Dth (E.C.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsEc, DecathermsEcTolerance);
-                Assert.Equal(EnergyUnit.DecathermEc, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Европейский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsEc, DecathermsEcTolerance);
-                Assert.Equal(EnergyUnit.DecathermEc, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Dth (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsImperial, DecathermsImperialTolerance);
-                Assert.Equal(EnergyUnit.DecathermImperial, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Английский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsImperial, DecathermsImperialTolerance);
-                Assert.Equal(EnergyUnit.DecathermImperial, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Dth (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsUs, DecathermsUsTolerance);
-                Assert.Equal(EnergyUnit.DecathermUs, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Американский декатерм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecathermsUs, DecathermsUsTolerance);
-                Assert.Equal(EnergyUnit.DecathermUs, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 eV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ElectronVolts, ElectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.ElectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 эВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ElectronVolts, ElectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.ElectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 erg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Ergs, ErgsTolerance);
-                Assert.Equal(EnergyUnit.Erg, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ft·lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FootPounds, FootPoundsTolerance);
-                Assert.Equal(EnergyUnit.FootPound, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 GBTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigabritishThermalUnits, GigabritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.GigabritishThermalUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 GeV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigaelectronVolts, GigaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ГэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigaelectronVolts, GigaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.GigaelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 GJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigajoules, GigajoulesTolerance);
-                Assert.Equal(EnergyUnit.Gigajoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 GWd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattDays, GigawattDaysTolerance);
-                Assert.Equal(EnergyUnit.GigawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ГВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattDays, GigawattDaysTolerance);
-                Assert.Equal(EnergyUnit.GigawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 GWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattHours, GigawattHoursTolerance);
-                Assert.Equal(EnergyUnit.GigawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ГВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattHours, GigawattHoursTolerance);
-                Assert.Equal(EnergyUnit.GigawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 hp·h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.HorsepowerHours, HorsepowerHoursTolerance);
-                Assert.Equal(EnergyUnit.HorsepowerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 J", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Joules, JoulesTolerance);
-                Assert.Equal(EnergyUnit.Joule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 kBTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.KilobritishThermalUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 kcal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilocalories, KilocaloriesTolerance);
-                Assert.Equal(EnergyUnit.Kilocalorie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 keV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KiloelectronVolts, KiloelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 кэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KiloelectronVolts, KiloelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.KiloelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 kJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilojoules, KilojoulesTolerance);
-                Assert.Equal(EnergyUnit.Kilojoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 kWd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilowattDays, KilowattDaysTolerance);
-                Assert.Equal(EnergyUnit.KilowattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 кВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilowattDays, KilowattDaysTolerance);
-                Assert.Equal(EnergyUnit.KilowattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 kWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilowattHours, KilowattHoursTolerance);
-                Assert.Equal(EnergyUnit.KilowattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 кВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilowattHours, KilowattHoursTolerance);
-                Assert.Equal(EnergyUnit.KilowattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 MBTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
-                Assert.Equal(EnergyUnit.MegabritishThermalUnit, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Mcal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Megacalories, MegacaloriesTolerance);
-                Assert.Equal(EnergyUnit.Megacalorie, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 MeV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegaelectronVolts, MegaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 МэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegaelectronVolts, MegaelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.MegaelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 MWd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegawattDays, MegawattDaysTolerance);
-                Assert.Equal(EnergyUnit.MegawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 МВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegawattDays, MegawattDaysTolerance);
-                Assert.Equal(EnergyUnit.MegawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 MWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegawattHours, MegawattHoursTolerance);
-                Assert.Equal(EnergyUnit.MegawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 МВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegawattHours, MegawattHoursTolerance);
-                Assert.Equal(EnergyUnit.MegawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 µJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microjoules, MicrojoulesTolerance);
-                Assert.Equal(EnergyUnit.Microjoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 nJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanojoules, NanojoulesTolerance);
-                Assert.Equal(EnergyUnit.Nanojoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 PJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Petajoules, PetajoulesTolerance);
-                Assert.Equal(EnergyUnit.Petajoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 TeV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TeraelectronVolts, TeraelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ТэВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TeraelectronVolts, TeraelectronVoltsTolerance);
-                Assert.Equal(EnergyUnit.TeraelectronVolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 TJ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terajoules, TerajoulesTolerance);
-                Assert.Equal(EnergyUnit.Terajoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 TWd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TerawattDays, TerawattDaysTolerance);
-                Assert.Equal(EnergyUnit.TerawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ТВт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TerawattDays, TerawattDaysTolerance);
-                Assert.Equal(EnergyUnit.TerawattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 TWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TerawattHours, TerawattHoursTolerance);
-                Assert.Equal(EnergyUnit.TerawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 ТВт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TerawattHours, TerawattHoursTolerance);
-                Assert.Equal(EnergyUnit.TerawattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 th (E.C.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsEc, ThermsEcTolerance);
-                Assert.Equal(EnergyUnit.ThermEc, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Европейский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsEc, ThermsEcTolerance);
-                Assert.Equal(EnergyUnit.ThermEc, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 th (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsImperial, ThermsImperialTolerance);
-                Assert.Equal(EnergyUnit.ThermImperial, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Английский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsImperial, ThermsImperialTolerance);
-                Assert.Equal(EnergyUnit.ThermImperial, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 th (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsUs, ThermsUsTolerance);
-                Assert.Equal(EnergyUnit.ThermUs, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Американский терм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ThermsUs, ThermsUsTolerance);
-                Assert.Equal(EnergyUnit.ThermUs, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Wd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WattDays, WattDaysTolerance);
-                Assert.Equal(EnergyUnit.WattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Вт/д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WattDays, WattDaysTolerance);
-                Assert.Equal(EnergyUnit.WattDay, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Wh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WattHours, WattHoursTolerance);
-                Assert.Equal(EnergyUnit.WattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Energy.TryParse("1 Вт/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WattHours, WattHoursTolerance);
-                Assert.Equal(EnergyUnit.WattHour, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Energy.TryParse(quantityString, out Energy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1916,6 +1265,87 @@ namespace UnitsNet.Tests
         {
             Assert.True(Energy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", EnergyUnit.BritishThermalUnit, "BTU")]
+        [InlineData("en-US", EnergyUnit.Calorie, "cal")]
+        [InlineData("en-US", EnergyUnit.DecathermEc, "Dth (E.C.)")]
+        [InlineData("en-US", EnergyUnit.DecathermImperial, "Dth (imp.)")]
+        [InlineData("en-US", EnergyUnit.DecathermUs, "Dth (U.S.)")]
+        [InlineData("en-US", EnergyUnit.ElectronVolt, "eV")]
+        [InlineData("en-US", EnergyUnit.Erg, "erg")]
+        [InlineData("en-US", EnergyUnit.FootPound, "ft·lb")]
+        [InlineData("en-US", EnergyUnit.GigabritishThermalUnit, "GBTU")]
+        [InlineData("en-US", EnergyUnit.GigaelectronVolt, "GeV")]
+        [InlineData("en-US", EnergyUnit.Gigajoule, "GJ")]
+        [InlineData("en-US", EnergyUnit.GigawattDay, "GWd")]
+        [InlineData("en-US", EnergyUnit.GigawattHour, "GWh")]
+        [InlineData("en-US", EnergyUnit.HorsepowerHour, "hp·h")]
+        [InlineData("en-US", EnergyUnit.Joule, "J")]
+        [InlineData("en-US", EnergyUnit.KilobritishThermalUnit, "kBTU")]
+        [InlineData("en-US", EnergyUnit.Kilocalorie, "kcal")]
+        [InlineData("en-US", EnergyUnit.KiloelectronVolt, "keV")]
+        [InlineData("en-US", EnergyUnit.Kilojoule, "kJ")]
+        [InlineData("en-US", EnergyUnit.KilowattDay, "kWd")]
+        [InlineData("en-US", EnergyUnit.KilowattHour, "kWh")]
+        [InlineData("en-US", EnergyUnit.MegabritishThermalUnit, "MBTU")]
+        [InlineData("en-US", EnergyUnit.Megacalorie, "Mcal")]
+        [InlineData("en-US", EnergyUnit.MegaelectronVolt, "MeV")]
+        [InlineData("en-US", EnergyUnit.Megajoule, "MJ")]
+        [InlineData("en-US", EnergyUnit.MegawattDay, "MWd")]
+        [InlineData("en-US", EnergyUnit.MegawattHour, "MWh")]
+        [InlineData("en-US", EnergyUnit.Microjoule, "µJ")]
+        [InlineData("en-US", EnergyUnit.Millijoule, "mJ")]
+        [InlineData("en-US", EnergyUnit.Nanojoule, "nJ")]
+        [InlineData("en-US", EnergyUnit.Petajoule, "PJ")]
+        [InlineData("en-US", EnergyUnit.TeraelectronVolt, "TeV")]
+        [InlineData("en-US", EnergyUnit.Terajoule, "TJ")]
+        [InlineData("en-US", EnergyUnit.TerawattDay, "TWd")]
+        [InlineData("en-US", EnergyUnit.TerawattHour, "TWh")]
+        [InlineData("en-US", EnergyUnit.ThermEc, "th (E.C.)")]
+        [InlineData("en-US", EnergyUnit.ThermImperial, "th (imp.)")]
+        [InlineData("en-US", EnergyUnit.ThermUs, "th (U.S.)")]
+        [InlineData("en-US", EnergyUnit.WattDay, "Wd")]
+        [InlineData("en-US", EnergyUnit.WattHour, "Wh")]
+        [InlineData("ru-RU", EnergyUnit.DecathermEc, "Европейский декатерм")]
+        [InlineData("ru-RU", EnergyUnit.DecathermImperial, "Английский декатерм")]
+        [InlineData("ru-RU", EnergyUnit.DecathermUs, "Американский декатерм")]
+        [InlineData("ru-RU", EnergyUnit.ElectronVolt, "эВ")]
+        [InlineData("ru-RU", EnergyUnit.GigaelectronVolt, "ГэВ")]
+        [InlineData("ru-RU", EnergyUnit.GigawattDay, "ГВт/д")]
+        [InlineData("ru-RU", EnergyUnit.GigawattHour, "ГВт/ч")]
+        [InlineData("ru-RU", EnergyUnit.KiloelectronVolt, "кэВ")]
+        [InlineData("ru-RU", EnergyUnit.KilowattDay, "кВт/д")]
+        [InlineData("ru-RU", EnergyUnit.KilowattHour, "кВт/ч")]
+        [InlineData("ru-RU", EnergyUnit.MegaelectronVolt, "МэВ")]
+        [InlineData("ru-RU", EnergyUnit.MegawattDay, "МВт/д")]
+        [InlineData("ru-RU", EnergyUnit.MegawattHour, "МВт/ч")]
+        [InlineData("ru-RU", EnergyUnit.TeraelectronVolt, "ТэВ")]
+        [InlineData("ru-RU", EnergyUnit.TerawattDay, "ТВт/д")]
+        [InlineData("ru-RU", EnergyUnit.TerawattHour, "ТВт/ч")]
+        [InlineData("ru-RU", EnergyUnit.ThermEc, "Европейский терм")]
+        [InlineData("ru-RU", EnergyUnit.ThermImperial, "Английский терм")]
+        [InlineData("ru-RU", EnergyUnit.ThermUs, "Американский терм")]
+        [InlineData("ru-RU", EnergyUnit.WattDay, "Вт/д")]
+        [InlineData("ru-RU", EnergyUnit.WattHour, "Вт/ч")]
+        public void GetAbbreviationForCulture(string culture, EnergyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Energy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Energy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Energy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

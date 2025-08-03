@@ -277,40 +277,26 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
+        public void Parse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ThermalConductivity.Parse("1 BTU/(h·ft·°F)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
-                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalConductivity.Parse("1 W/(m·K)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ThermalConductivity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
+        public void TryParse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ThermalConductivity.TryParse("1 BTU/(h·ft·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
-                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalConductivity.TryParse("1 W/(m·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ThermalConductivity.TryParse(quantityString, out ThermalConductivity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -393,6 +379,28 @@ namespace UnitsNet.Tests
         {
             Assert.True(ThermalConductivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BTU/(h·ft·°F)")]
+        [InlineData("en-US", ThermalConductivityUnit.WattPerMeterKelvin, "W/(m·K)")]
+        public void GetAbbreviationForCulture(string culture, ThermalConductivityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ThermalConductivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ThermalConductivity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ThermalConductivity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

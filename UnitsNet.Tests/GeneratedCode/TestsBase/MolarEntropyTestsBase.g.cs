@@ -287,53 +287,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin, 4.2)]
+        [InlineData("en-US", "4.2 MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin, 4.2)]
+        public void Parse(string culture, string quantityString, MolarEntropyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = MolarEntropy.Parse("1 J/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMoleKelvin, JoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEntropy.Parse("1 kJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMoleKelvin, KilojoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEntropy.Parse("1 MJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMoleKelvin, MegajoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = MolarEntropy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/(mol·K)", MolarEntropyUnit.JoulePerMoleKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kJ/(mol·K)", MolarEntropyUnit.KilojoulePerMoleKelvin, 4.2)]
+        [InlineData("en-US", "4.2 MJ/(mol·K)", MolarEntropyUnit.MegajoulePerMoleKelvin, 4.2)]
+        public void TryParse(string culture, string quantityString, MolarEntropyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(MolarEntropy.TryParse("1 J/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMoleKelvin, JoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEntropy.TryParse("1 kJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMoleKelvin, KilojoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEntropy.TryParse("1 MJ/(mol·K)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMoleKelvin, MegajoulesPerMoleKelvinTolerance);
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarEntropy.TryParse(quantityString, out MolarEntropy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -424,6 +399,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(MolarEntropy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEntropyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MolarEntropyUnit.JoulePerMoleKelvin, "J/(mol·K)")]
+        [InlineData("en-US", MolarEntropyUnit.KilojoulePerMoleKelvin, "kJ/(mol·K)")]
+        [InlineData("en-US", MolarEntropyUnit.MegajoulePerMoleKelvin, "MJ/(mol·K)")]
+        public void GetAbbreviationForCulture(string culture, MolarEntropyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(MolarEntropy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
