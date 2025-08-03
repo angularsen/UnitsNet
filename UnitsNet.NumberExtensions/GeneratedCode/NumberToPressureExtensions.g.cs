@@ -406,6 +406,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromMillipascals(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Pressure.FromMillitorrs(QuantityValue)" />
+        public static Pressure Millitorrs<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMillitorrs(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMillitorrs(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(QuantityValue)" />
         public static Pressure NewtonsPerSquareCentimeter<T>(this T value)
             where T : notnull

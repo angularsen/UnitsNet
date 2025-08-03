@@ -229,6 +229,9 @@ namespace UnitsNet
                 yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
                      1000             
                 );
+                yield return new (PressureUnit.Millitorr, "Millitorr", "Millitorrs", BaseUnits.Undefined,
+                     new QuantityValue(30400, 4053)             
+                );
                 yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined,
                      new QuantityValue(1, 10000)             
                 );
@@ -542,6 +545,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
         /// </summary>
         public QuantityValue Millipascals => this.As(PressureUnit.Millipascal);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millitorr"/>
+        /// </summary>
+        public QuantityValue Millitorrs => this.As(PressureUnit.Millitorr);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
@@ -907,6 +915,14 @@ namespace UnitsNet
         public static Pressure FromMillipascals(QuantityValue value)
         {
             return new Pressure(value, PressureUnit.Millipascal);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millitorr"/>.
+        /// </summary>
+        public static Pressure FromMillitorrs(QuantityValue value)
+        {
+            return new Pressure(value, PressureUnit.Millitorr);
         }
 
         /// <summary>
