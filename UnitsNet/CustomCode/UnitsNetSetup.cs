@@ -1,11 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnitsNet.Units;
-
 namespace UnitsNet;
 
 /// <summary>
@@ -88,8 +83,5 @@ public sealed class UnitsNetSetup
     /// <summary>
     ///     The quantities and units that are loaded.
     /// </summary>
-    /// <remarks>
-    ///     Access type is <c>internal</c> until this class is matured and ready for external use.
-    /// </remarks>
-    internal QuantityInfoLookup QuantityInfoLookup { get; }
+    public QuantityInfoLookup QuantityInfoLookup { get; }
 }
