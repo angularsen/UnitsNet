@@ -2,15 +2,19 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 #if NET7_0_OR_GREATER
-using System;
-using System.Collections.Generic;
-using System.Numerics;
 
 namespace UnitsNet.GenericMath;
 
 /// <summary>
 ///     Provides generic math operations using the generic math interfaces implemented in .NET7 for UnitsNet.
 /// </summary>
+/// <remarks>
+///     Unless you're using a custom quantity which requires a custom implementation for the <see cref="IAdditionOperators{TSelf,TOther,TResult}" /> interface, you
+///     should consider switching to one of the more performant versions of this extension, found in the
+///     <see cref="LinearQuantityExtensions" />, <see cref="LogarithmicQuantityExtensions" /> and
+///     <see cref="AffineQuantityExtensions" />.
+/// </remarks>
+[Obsolete("Replaced by the LinearQuantityExtensions, LogarithmicQuantityExtensions and AffineQuantityExtensions")]
 public static class GenericMathExtensions
 {
     /// <summary>
