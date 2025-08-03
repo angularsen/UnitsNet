@@ -26,7 +26,7 @@ public static class QuantityExtensions
 
     /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
     internal static TQuantity ConvertToUnit<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
-        where TQuantity : IQuantityInstance<TQuantity>
+        where TQuantity : IQuantityOfType<TQuantity>
     {
         QuantityValue convertedValue = converter.ConvertValue(quantity.Value, quantity.UnitKey, toUnit);
 #if NET
@@ -128,7 +128,7 @@ public static class QuantityExtensions
     /// <exception cref="ArgumentNullException">Thrown when the collection is null.</exception>
     /// <exception cref="InvalidOperationException">Thrown when the collection is empty.</exception>
     internal static TQuantity ArithmeticMean<TQuantity>(this IEnumerable<TQuantity> quantities)
-        where TQuantity : IQuantityInstance<TQuantity>
+        where TQuantity : IQuantityOfType<TQuantity>
     {
         if (quantities is null)
         {

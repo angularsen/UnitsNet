@@ -74,7 +74,7 @@ namespace UnitsNet.Tests.CustomQuantities
 
 #if !NET
         //  all the following methods have a default interface implementation for net8.0 and above
-        IQuantityInstanceInfo<HowMuch> IQuantityInstance<HowMuch>.QuantityInfo
+        IQuantityInstanceInfo<HowMuch> IQuantityOfType<HowMuch>.QuantityInfo
         {
             get => Info;
         }

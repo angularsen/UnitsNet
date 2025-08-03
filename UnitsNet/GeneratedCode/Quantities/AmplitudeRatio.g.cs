@@ -215,7 +215,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<AmplitudeRatio> IQuantityInstance<AmplitudeRatio>.QuantityInfo => Info;
+        IQuantityInstanceInfo<AmplitudeRatio> IQuantityOfType<AmplitudeRatio>.QuantityInfo => Info;
 #endif
 
 #if NETSTANDARD2_0

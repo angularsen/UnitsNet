@@ -241,7 +241,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ElectricResistance> IQuantityInstance<ElectricResistance>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ElectricResistance> IQuantityOfType<ElectricResistance>.QuantityInfo => Info;
 #endif
 
         #endregion

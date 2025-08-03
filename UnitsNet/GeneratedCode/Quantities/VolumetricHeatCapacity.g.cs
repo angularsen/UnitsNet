@@ -241,7 +241,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<VolumetricHeatCapacity> IQuantityInstance<VolumetricHeatCapacity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<VolumetricHeatCapacity> IQuantityOfType<VolumetricHeatCapacity>.QuantityInfo => Info;
 #endif
 
         #endregion

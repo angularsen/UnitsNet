@@ -167,7 +167,7 @@ namespace UnitsNet
         ///     <paramref name="min" /> cannot be greater than <paramref name="max" />.
         /// </exception>
         public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max)
-            where TQuantity : IQuantityInstance<TQuantity>, IComparable<TQuantity>
+            where TQuantity : IQuantityOfType<TQuantity>, IComparable<TQuantity>
         {
             UnitKey targetUnit = value.UnitKey;
             TQuantity minValue = UnitConverter.Default.ConvertToUnit(min, targetUnit);

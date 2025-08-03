@@ -232,7 +232,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<CoefficientOfThermalExpansion> IQuantityInstance<CoefficientOfThermalExpansion>.QuantityInfo => Info;
+        IQuantityInstanceInfo<CoefficientOfThermalExpansion> IQuantityOfType<CoefficientOfThermalExpansion>.QuantityInfo => Info;
 #endif
 
         #endregion

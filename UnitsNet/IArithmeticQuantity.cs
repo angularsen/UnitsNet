@@ -22,7 +22,7 @@ namespace UnitsNet;
 ///     </para>
 /// </remarks>
 /// <typeparam name="TSelf">The type that implements this interface.</typeparam>
-public interface ILinearQuantity<TSelf> : IQuantityInstance<TSelf>
+public interface ILinearQuantity<TSelf> : IQuantityOfType<TSelf>
 #if NET7_0_OR_GREATER
     , IAdditiveIdentity<TSelf, TSelf>
 #endif

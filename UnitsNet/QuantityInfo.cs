@@ -123,7 +123,7 @@ public abstract class QuantityInfo : IQuantityInfo
 ///     <see cref="Length.QuantityInfo" />, or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
 /// </remarks>
 /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
-public abstract class QuantityInfo<TUnit> : QuantityInfo//, IQuantityInfo<TUnit>
+public abstract class QuantityInfo<TUnit> : QuantityInfo
     where TUnit : struct, Enum
 {
     /// <inheritdoc />

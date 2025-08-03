@@ -226,7 +226,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<LeakRate> IQuantityInstance<LeakRate>.QuantityInfo => Info;
+        IQuantityInstanceInfo<LeakRate> IQuantityOfType<LeakRate>.QuantityInfo => Info;
 #endif
 
         #endregion

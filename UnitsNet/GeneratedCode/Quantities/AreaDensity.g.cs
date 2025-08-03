@@ -223,7 +223,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<AreaDensity> IQuantityInstance<AreaDensity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<AreaDensity> IQuantityOfType<AreaDensity>.QuantityInfo => Info;
 #endif
 
         #endregion

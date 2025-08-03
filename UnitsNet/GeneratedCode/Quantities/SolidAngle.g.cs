@@ -203,7 +203,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<SolidAngle> IQuantityInstance<SolidAngle>.QuantityInfo => Info;
+        IQuantityInstanceInfo<SolidAngle> IQuantityOfType<SolidAngle>.QuantityInfo => Info;
 #endif
 
         #endregion

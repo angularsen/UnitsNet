@@ -331,7 +331,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<BitRate> IQuantityInstance<BitRate>.QuantityInfo => Info;
+        IQuantityInstanceInfo<BitRate> IQuantityOfType<BitRate>.QuantityInfo => Info;
 #endif
 
         #endregion

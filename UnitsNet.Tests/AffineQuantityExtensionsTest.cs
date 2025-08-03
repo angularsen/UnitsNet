@@ -85,18 +85,6 @@ public class AffineQuantityExtensionsTest
     [Fact]
     public void Equals_WithNullOther_ReturnsFalse()
     {
-        var quantity = Temperature.FromDegreesCelsius(25);
-        IQuantity? other = null;
-        var tolerance = TemperatureDelta.FromDegreesCelsius(25);
-
-        var result = quantity.Equals(other, tolerance);
-
-        Assert.False(result);
-    }
-
-    [Fact]
-    public void Equals_IQuantity_WithNullOther_ReturnsFalse()
-    {
         var quantity = Temperature.FromDegreesCelsius(25.0);
         var tolerance = TemperatureDelta.FromDegreesCelsius(25.0);
 
@@ -105,31 +93,15 @@ public class AffineQuantityExtensionsTest
         Assert.False(result);
     }
 
-    [Theory]
-    [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
-    [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
-    [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
-    [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
-    public void EqualsAbsolute_Temperature_TemperatureDelta(double value1, double value2, double toleranceValue, bool expected)
-    {
-        var temperature1 = Temperature.FromDegreesCelsius(value1);
-        var temperature2 = Temperature.FromDegreesCelsius(value2);
-        var tolerance = TemperatureDelta.FromDegreesCelsius(toleranceValue);
-
-        var result = temperature1.EqualsAbsolute(temperature2, tolerance);
-
-        Assert.Equal(expected, result);
-    }
-
     [Fact]
-    public void EqualsAbsolute_Temperature_TemperatureDelta_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
+    public void Equals_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
     {
         var temperature1 = Temperature.FromDegreesCelsius(25.0);
         var temperature2 = Temperature.FromDegreesCelsius(25.0);
         var negativeTolerance = TemperatureDelta.FromDegreesCelsius(-0.1);
 
-        Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.EqualsAbsolute(temperature2, negativeTolerance));
+        Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.Equals(temperature2, negativeTolerance));
+        Assert.Throws<ArgumentOutOfRangeException>(() => temperature1.Equals((IQuantity)temperature2, negativeTolerance));
     }
 
     [Theory]

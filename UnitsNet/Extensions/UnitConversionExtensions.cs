@@ -46,7 +46,7 @@ public static class UnitConversionExtensions
 
     /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
     public static TQuantity ToUnit<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
-        where TQuantity : IQuantityInstance<TQuantity>
+        where TQuantity : IQuantityOfType<TQuantity>
     {
 #if NET
         QuantityInfo quantityInfo = quantity.QuantityInfo;

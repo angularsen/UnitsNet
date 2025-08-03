@@ -217,7 +217,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Permittivity> IQuantityInstance<Permittivity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Permittivity> IQuantityOfType<Permittivity>.QuantityInfo => Info;
 #endif
 
         #endregion

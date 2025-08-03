@@ -232,7 +232,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ElectricApparentPower> IQuantityInstance<ElectricApparentPower>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ElectricApparentPower> IQuantityOfType<ElectricApparentPower>.QuantityInfo => Info;
 #endif
 
         #endregion

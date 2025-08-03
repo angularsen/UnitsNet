@@ -200,7 +200,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RelativeHumidity> IQuantityInstance<RelativeHumidity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<RelativeHumidity> IQuantityOfType<RelativeHumidity>.QuantityInfo => Info;
 #endif
 
         #endregion

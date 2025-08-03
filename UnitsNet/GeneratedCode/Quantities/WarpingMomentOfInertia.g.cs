@@ -229,7 +229,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<WarpingMomentOfInertia> IQuantityInstance<WarpingMomentOfInertia>.QuantityInfo => Info;
+        IQuantityInstanceInfo<WarpingMomentOfInertia> IQuantityOfType<WarpingMomentOfInertia>.QuantityInfo => Info;
 #endif
 
         #endregion

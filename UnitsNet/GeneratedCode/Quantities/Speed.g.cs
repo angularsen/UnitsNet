@@ -320,7 +320,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Speed> IQuantityInstance<Speed>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Speed> IQuantityOfType<Speed>.QuantityInfo => Info;
 #endif
 
         #endregion

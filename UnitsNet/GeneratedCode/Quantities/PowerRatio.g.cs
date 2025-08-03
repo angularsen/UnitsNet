@@ -207,7 +207,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<PowerRatio> IQuantityInstance<PowerRatio>.QuantityInfo => Info;
+        IQuantityInstanceInfo<PowerRatio> IQuantityOfType<PowerRatio>.QuantityInfo => Info;
 #endif
 
 #if NETSTANDARD2_0

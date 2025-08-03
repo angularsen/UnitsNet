@@ -267,7 +267,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Duration> IQuantityInstance<Duration>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Duration> IQuantityOfType<Duration>.QuantityInfo => Info;
 #endif
 
         #endregion

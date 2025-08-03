@@ -237,7 +237,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Entropy> IQuantityInstance<Entropy>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Entropy> IQuantityOfType<Entropy>.QuantityInfo => Info;
 #endif
 
         #endregion
