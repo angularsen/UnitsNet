@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -190,58 +191,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarMass.From(1, MolarMassUnit.CentigramPerMole);
-            AssertEx.EqualTolerance(1, quantity00.CentigramsPerMole, CentigramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.CentigramPerMole, quantity00.Unit);
-
-            var quantity01 = MolarMass.From(1, MolarMassUnit.DecagramPerMole);
-            AssertEx.EqualTolerance(1, quantity01.DecagramsPerMole, DecagramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.DecagramPerMole, quantity01.Unit);
-
-            var quantity02 = MolarMass.From(1, MolarMassUnit.DecigramPerMole);
-            AssertEx.EqualTolerance(1, quantity02.DecigramsPerMole, DecigramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.DecigramPerMole, quantity02.Unit);
-
-            var quantity03 = MolarMass.From(1, MolarMassUnit.GramPerMole);
-            AssertEx.EqualTolerance(1, quantity03.GramsPerMole, GramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.GramPerMole, quantity03.Unit);
-
-            var quantity04 = MolarMass.From(1, MolarMassUnit.HectogramPerMole);
-            AssertEx.EqualTolerance(1, quantity04.HectogramsPerMole, HectogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.HectogramPerMole, quantity04.Unit);
-
-            var quantity05 = MolarMass.From(1, MolarMassUnit.KilogramPerKilomole);
-            AssertEx.EqualTolerance(1, quantity05.KilogramsPerKilomole, KilogramsPerKilomoleTolerance);
-            Assert.Equal(MolarMassUnit.KilogramPerKilomole, quantity05.Unit);
-
-            var quantity06 = MolarMass.From(1, MolarMassUnit.KilogramPerMole);
-            AssertEx.EqualTolerance(1, quantity06.KilogramsPerMole, KilogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.KilogramPerMole, quantity06.Unit);
-
-            var quantity07 = MolarMass.From(1, MolarMassUnit.KilopoundPerMole);
-            AssertEx.EqualTolerance(1, quantity07.KilopoundsPerMole, KilopoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.KilopoundPerMole, quantity07.Unit);
-
-            var quantity08 = MolarMass.From(1, MolarMassUnit.MegapoundPerMole);
-            AssertEx.EqualTolerance(1, quantity08.MegapoundsPerMole, MegapoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MegapoundPerMole, quantity08.Unit);
-
-            var quantity09 = MolarMass.From(1, MolarMassUnit.MicrogramPerMole);
-            AssertEx.EqualTolerance(1, quantity09.MicrogramsPerMole, MicrogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MicrogramPerMole, quantity09.Unit);
-
-            var quantity10 = MolarMass.From(1, MolarMassUnit.MilligramPerMole);
-            AssertEx.EqualTolerance(1, quantity10.MilligramsPerMole, MilligramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MilligramPerMole, quantity10.Unit);
-
-            var quantity11 = MolarMass.From(1, MolarMassUnit.NanogramPerMole);
-            AssertEx.EqualTolerance(1, quantity11.NanogramsPerMole, NanogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.NanogramPerMole, quantity11.Unit);
-
-            var quantity12 = MolarMass.From(1, MolarMassUnit.PoundPerMole);
-            AssertEx.EqualTolerance(1, quantity12.PoundsPerMole, PoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.PoundPerMole, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarMassUnit>(), unit =>
+            {
+                var quantity = MolarMass.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

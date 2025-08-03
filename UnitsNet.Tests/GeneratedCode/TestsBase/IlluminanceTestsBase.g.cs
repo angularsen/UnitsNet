@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,22 +146,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Illuminance.From(1, IlluminanceUnit.Kilolux);
-            AssertEx.EqualTolerance(1, quantity00.Kilolux, KiloluxTolerance);
-            Assert.Equal(IlluminanceUnit.Kilolux, quantity00.Unit);
-
-            var quantity01 = Illuminance.From(1, IlluminanceUnit.Lux);
-            AssertEx.EqualTolerance(1, quantity01.Lux, LuxTolerance);
-            Assert.Equal(IlluminanceUnit.Lux, quantity01.Unit);
-
-            var quantity02 = Illuminance.From(1, IlluminanceUnit.Megalux);
-            AssertEx.EqualTolerance(1, quantity02.Megalux, MegaluxTolerance);
-            Assert.Equal(IlluminanceUnit.Megalux, quantity02.Unit);
-
-            var quantity03 = Illuminance.From(1, IlluminanceUnit.Millilux);
-            AssertEx.EqualTolerance(1, quantity03.Millilux, MilliluxTolerance);
-            Assert.Equal(IlluminanceUnit.Millilux, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<IlluminanceUnit>(), unit =>
+            {
+                var quantity = Illuminance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

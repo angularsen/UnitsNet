@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -190,58 +191,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Duration.From(1, DurationUnit.Day);
-            AssertEx.EqualTolerance(1, quantity00.Days, DaysTolerance);
-            Assert.Equal(DurationUnit.Day, quantity00.Unit);
-
-            var quantity01 = Duration.From(1, DurationUnit.Hour);
-            AssertEx.EqualTolerance(1, quantity01.Hours, HoursTolerance);
-            Assert.Equal(DurationUnit.Hour, quantity01.Unit);
-
-            var quantity02 = Duration.From(1, DurationUnit.JulianYear);
-            AssertEx.EqualTolerance(1, quantity02.JulianYears, JulianYearsTolerance);
-            Assert.Equal(DurationUnit.JulianYear, quantity02.Unit);
-
-            var quantity03 = Duration.From(1, DurationUnit.Microsecond);
-            AssertEx.EqualTolerance(1, quantity03.Microseconds, MicrosecondsTolerance);
-            Assert.Equal(DurationUnit.Microsecond, quantity03.Unit);
-
-            var quantity04 = Duration.From(1, DurationUnit.Millisecond);
-            AssertEx.EqualTolerance(1, quantity04.Milliseconds, MillisecondsTolerance);
-            Assert.Equal(DurationUnit.Millisecond, quantity04.Unit);
-
-            var quantity05 = Duration.From(1, DurationUnit.Minute);
-            AssertEx.EqualTolerance(1, quantity05.Minutes, MinutesTolerance);
-            Assert.Equal(DurationUnit.Minute, quantity05.Unit);
-
-            var quantity06 = Duration.From(1, DurationUnit.Month30);
-            AssertEx.EqualTolerance(1, quantity06.Months30, Months30Tolerance);
-            Assert.Equal(DurationUnit.Month30, quantity06.Unit);
-
-            var quantity07 = Duration.From(1, DurationUnit.Nanosecond);
-            AssertEx.EqualTolerance(1, quantity07.Nanoseconds, NanosecondsTolerance);
-            Assert.Equal(DurationUnit.Nanosecond, quantity07.Unit);
-
-            var quantity08 = Duration.From(1, DurationUnit.Picosecond);
-            AssertEx.EqualTolerance(1, quantity08.Picoseconds, PicosecondsTolerance);
-            Assert.Equal(DurationUnit.Picosecond, quantity08.Unit);
-
-            var quantity09 = Duration.From(1, DurationUnit.Second);
-            AssertEx.EqualTolerance(1, quantity09.Seconds, SecondsTolerance);
-            Assert.Equal(DurationUnit.Second, quantity09.Unit);
-
-            var quantity10 = Duration.From(1, DurationUnit.Sol);
-            AssertEx.EqualTolerance(1, quantity10.Sols, SolsTolerance);
-            Assert.Equal(DurationUnit.Sol, quantity10.Unit);
-
-            var quantity11 = Duration.From(1, DurationUnit.Week);
-            AssertEx.EqualTolerance(1, quantity11.Weeks, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, quantity11.Unit);
-
-            var quantity12 = Duration.From(1, DurationUnit.Year365);
-            AssertEx.EqualTolerance(1, quantity12.Years365, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<DurationUnit>(), unit =>
+            {
+                var quantity = Duration.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -275,126 +276,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificEnergy.From(1, SpecificEnergyUnit.BtuPerPound);
-            AssertEx.EqualTolerance(1, quantity00.BtuPerPound, BtuPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.BtuPerPound, quantity00.Unit);
-
-            var quantity01 = SpecificEnergy.From(1, SpecificEnergyUnit.CaloriePerGram);
-            AssertEx.EqualTolerance(1, quantity01.CaloriesPerGram, CaloriesPerGramTolerance);
-            Assert.Equal(SpecificEnergyUnit.CaloriePerGram, quantity01.Unit);
-
-            var quantity02 = SpecificEnergy.From(1, SpecificEnergyUnit.GigawattDayPerKilogram);
-            AssertEx.EqualTolerance(1, quantity02.GigawattDaysPerKilogram, GigawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, quantity02.Unit);
-
-            var quantity03 = SpecificEnergy.From(1, SpecificEnergyUnit.GigawattDayPerShortTon);
-            AssertEx.EqualTolerance(1, quantity03.GigawattDaysPerShortTon, GigawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, quantity03.Unit);
-
-            var quantity04 = SpecificEnergy.From(1, SpecificEnergyUnit.GigawattDayPerTonne);
-            AssertEx.EqualTolerance(1, quantity04.GigawattDaysPerTonne, GigawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, quantity04.Unit);
-
-            var quantity05 = SpecificEnergy.From(1, SpecificEnergyUnit.GigawattHourPerKilogram);
-            AssertEx.EqualTolerance(1, quantity05.GigawattHoursPerKilogram, GigawattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, quantity05.Unit);
-
-            var quantity06 = SpecificEnergy.From(1, SpecificEnergyUnit.GigawattHourPerPound);
-            AssertEx.EqualTolerance(1, quantity06.GigawattHoursPerPound, GigawattHoursPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattHourPerPound, quantity06.Unit);
-
-            var quantity07 = SpecificEnergy.From(1, SpecificEnergyUnit.JoulePerKilogram);
-            AssertEx.EqualTolerance(1, quantity07.JoulesPerKilogram, JoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, quantity07.Unit);
-
-            var quantity08 = SpecificEnergy.From(1, SpecificEnergyUnit.KilocaloriePerGram);
-            AssertEx.EqualTolerance(1, quantity08.KilocaloriesPerGram, KilocaloriesPerGramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, quantity08.Unit);
-
-            var quantity09 = SpecificEnergy.From(1, SpecificEnergyUnit.KilojoulePerKilogram);
-            AssertEx.EqualTolerance(1, quantity09.KilojoulesPerKilogram, KilojoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, quantity09.Unit);
-
-            var quantity10 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattDayPerKilogram);
-            AssertEx.EqualTolerance(1, quantity10.KilowattDaysPerKilogram, KilowattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, quantity10.Unit);
-
-            var quantity11 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattDayPerShortTon);
-            AssertEx.EqualTolerance(1, quantity11.KilowattDaysPerShortTon, KilowattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, quantity11.Unit);
-
-            var quantity12 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattDayPerTonne);
-            AssertEx.EqualTolerance(1, quantity12.KilowattDaysPerTonne, KilowattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, quantity12.Unit);
-
-            var quantity13 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerKilogram);
-            AssertEx.EqualTolerance(1, quantity13.KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, quantity13.Unit);
-
-            var quantity14 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerPound);
-            AssertEx.EqualTolerance(1, quantity14.KilowattHoursPerPound, KilowattHoursPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattHourPerPound, quantity14.Unit);
-
-            var quantity15 = SpecificEnergy.From(1, SpecificEnergyUnit.MegajoulePerKilogram);
-            AssertEx.EqualTolerance(1, quantity15.MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, quantity15.Unit);
-
-            var quantity16 = SpecificEnergy.From(1, SpecificEnergyUnit.MegaJoulePerTonne);
-            AssertEx.EqualTolerance(1, quantity16.MegaJoulesPerTonne, MegaJoulesPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegaJoulePerTonne, quantity16.Unit);
-
-            var quantity17 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattDayPerKilogram);
-            AssertEx.EqualTolerance(1, quantity17.MegawattDaysPerKilogram, MegawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, quantity17.Unit);
-
-            var quantity18 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattDayPerShortTon);
-            AssertEx.EqualTolerance(1, quantity18.MegawattDaysPerShortTon, MegawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, quantity18.Unit);
-
-            var quantity19 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattDayPerTonne);
-            AssertEx.EqualTolerance(1, quantity19.MegawattDaysPerTonne, MegawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, quantity19.Unit);
-
-            var quantity20 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerKilogram);
-            AssertEx.EqualTolerance(1, quantity20.MegawattHoursPerKilogram, MegawattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, quantity20.Unit);
-
-            var quantity21 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerPound);
-            AssertEx.EqualTolerance(1, quantity21.MegawattHoursPerPound, MegawattHoursPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattHourPerPound, quantity21.Unit);
-
-            var quantity22 = SpecificEnergy.From(1, SpecificEnergyUnit.TerawattDayPerKilogram);
-            AssertEx.EqualTolerance(1, quantity22.TerawattDaysPerKilogram, TerawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, quantity22.Unit);
-
-            var quantity23 = SpecificEnergy.From(1, SpecificEnergyUnit.TerawattDayPerShortTon);
-            AssertEx.EqualTolerance(1, quantity23.TerawattDaysPerShortTon, TerawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, quantity23.Unit);
-
-            var quantity24 = SpecificEnergy.From(1, SpecificEnergyUnit.TerawattDayPerTonne);
-            AssertEx.EqualTolerance(1, quantity24.TerawattDaysPerTonne, TerawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, quantity24.Unit);
-
-            var quantity25 = SpecificEnergy.From(1, SpecificEnergyUnit.WattDayPerKilogram);
-            AssertEx.EqualTolerance(1, quantity25.WattDaysPerKilogram, WattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, quantity25.Unit);
-
-            var quantity26 = SpecificEnergy.From(1, SpecificEnergyUnit.WattDayPerShortTon);
-            AssertEx.EqualTolerance(1, quantity26.WattDaysPerShortTon, WattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, quantity26.Unit);
-
-            var quantity27 = SpecificEnergy.From(1, SpecificEnergyUnit.WattDayPerTonne);
-            AssertEx.EqualTolerance(1, quantity27.WattDaysPerTonne, WattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, quantity27.Unit);
-
-            var quantity28 = SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerKilogram);
-            AssertEx.EqualTolerance(1, quantity28.WattHoursPerKilogram, WattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, quantity28.Unit);
-
-            var quantity29 = SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerPound);
-            AssertEx.EqualTolerance(1, quantity29.WattHoursPerPound, WattHoursPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattHourPerPound, quantity29.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificEnergyUnit>(), unit =>
+            {
+                var quantity = SpecificEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

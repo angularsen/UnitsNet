@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -175,46 +176,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
-            AssertEx.EqualTolerance(1, quantity00.MicrosievertsPerHour, MicrosievertsPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, quantity00.Unit);
-
-            var quantity01 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.MicrosievertsPerSecond, MicrosievertsPerSecondTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, quantity01.Unit);
-
-            var quantity02 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
-            AssertEx.EqualTolerance(1, quantity02.MilliroentgensEquivalentManPerHour, MilliroentgensEquivalentManPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, quantity02.Unit);
-
-            var quantity03 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.MillisievertPerHour);
-            AssertEx.EqualTolerance(1, quantity03.MillisievertsPerHour, MillisievertsPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerHour, quantity03.Unit);
-
-            var quantity04 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
-            AssertEx.EqualTolerance(1, quantity04.MillisievertsPerSecond, MillisievertsPerSecondTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, quantity04.Unit);
-
-            var quantity05 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.NanosievertPerHour);
-            AssertEx.EqualTolerance(1, quantity05.NanosievertsPerHour, NanosievertsPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerHour, quantity05.Unit);
-
-            var quantity06 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
-            AssertEx.EqualTolerance(1, quantity06.NanosievertsPerSecond, NanosievertsPerSecondTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, quantity06.Unit);
-
-            var quantity07 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
-            AssertEx.EqualTolerance(1, quantity07.RoentgensEquivalentManPerHour, RoentgensEquivalentManPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, quantity07.Unit);
-
-            var quantity08 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.SievertPerHour);
-            AssertEx.EqualTolerance(1, quantity08.SievertsPerHour, SievertsPerHourTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerHour, quantity08.Unit);
-
-            var quantity09 = RadiationEquivalentDoseRate.From(1, RadiationEquivalentDoseRateUnit.SievertPerSecond);
-            AssertEx.EqualTolerance(1, quantity09.SievertsPerSecond, SievertsPerSecondTolerance);
-            Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerSecond, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadiationEquivalentDoseRateUnit>(), unit =>
+            {
+                var quantity = RadiationEquivalentDoseRate.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

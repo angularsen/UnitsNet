@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -114,14 +115,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Level.From(1, LevelUnit.Decibel);
-            AssertEx.EqualTolerance(1, quantity00.Decibels, DecibelsTolerance);
-            Assert.Equal(LevelUnit.Decibel, quantity00.Unit);
-
-            var quantity01 = Level.From(1, LevelUnit.Neper);
-            AssertEx.EqualTolerance(1, quantity01.Nepers, NepersTolerance);
-            Assert.Equal(LevelUnit.Neper, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<LevelUnit>(), unit =>
+            {
+                var quantity = Level.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

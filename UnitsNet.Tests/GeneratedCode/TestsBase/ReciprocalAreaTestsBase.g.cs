@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -180,50 +181,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.InverseSquareCentimeters, InverseSquareCentimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity01.InverseSquareDecimeters, InverseSquareDecimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, quantity01.Unit);
-
-            var quantity02 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareFoot);
-            AssertEx.EqualTolerance(1, quantity02.InverseSquareFeet, InverseSquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, quantity02.Unit);
-
-            var quantity03 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareInch);
-            AssertEx.EqualTolerance(1, quantity03.InverseSquareInches, InverseSquareInchesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, quantity03.Unit);
-
-            var quantity04 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareKilometer);
-            AssertEx.EqualTolerance(1, quantity04.InverseSquareKilometers, InverseSquareKilometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, quantity04.Unit);
-
-            var quantity05 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMeter);
-            AssertEx.EqualTolerance(1, quantity05.InverseSquareMeters, InverseSquareMetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, quantity05.Unit);
-
-            var quantity06 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity06.InverseSquareMicrometers, InverseSquareMicrometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, quantity06.Unit);
-
-            var quantity07 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMile);
-            AssertEx.EqualTolerance(1, quantity07.InverseSquareMiles, InverseSquareMilesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, quantity07.Unit);
-
-            var quantity08 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity08.InverseSquareMillimeters, InverseSquareMillimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, quantity08.Unit);
-
-            var quantity09 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareYard);
-            AssertEx.EqualTolerance(1, quantity09.InverseSquareYards, InverseSquareYardsTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, quantity09.Unit);
-
-            var quantity10 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
-            AssertEx.EqualTolerance(1, quantity10.InverseUsSurveySquareFeet, InverseUsSurveySquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<ReciprocalAreaUnit>(), unit =>
+            {
+                var quantity = ReciprocalArea.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

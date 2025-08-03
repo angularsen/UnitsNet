@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,10 +110,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RelativeHumidity.From(1, RelativeHumidityUnit.Percent);
-            AssertEx.EqualTolerance(1, quantity00.Percent, PercentTolerance);
-            Assert.Equal(RelativeHumidityUnit.Percent, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<RelativeHumidityUnit>(), unit =>
+            {
+                var quantity = RelativeHumidity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

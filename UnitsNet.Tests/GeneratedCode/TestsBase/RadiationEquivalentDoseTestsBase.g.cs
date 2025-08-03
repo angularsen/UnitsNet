@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -155,30 +156,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Microsievert);
-            AssertEx.EqualTolerance(1, quantity00.Microsieverts, MicrosievertsTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.Microsievert, quantity00.Unit);
-
-            var quantity01 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan);
-            AssertEx.EqualTolerance(1, quantity01.MilliroentgensEquivalentMan, MilliroentgensEquivalentManTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, quantity01.Unit);
-
-            var quantity02 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Millisievert);
-            AssertEx.EqualTolerance(1, quantity02.Millisieverts, MillisievertsTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.Millisievert, quantity02.Unit);
-
-            var quantity03 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Nanosievert);
-            AssertEx.EqualTolerance(1, quantity03.Nanosieverts, NanosievertsTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.Nanosievert, quantity03.Unit);
-
-            var quantity04 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.RoentgenEquivalentMan);
-            AssertEx.EqualTolerance(1, quantity04.RoentgensEquivalentMan, RoentgensEquivalentManTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.RoentgenEquivalentMan, quantity04.Unit);
-
-            var quantity05 = RadiationEquivalentDose.From(1, RadiationEquivalentDoseUnit.Sievert);
-            AssertEx.EqualTolerance(1, quantity05.Sieverts, SievertsTolerance);
-            Assert.Equal(RadiationEquivalentDoseUnit.Sievert, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadiationEquivalentDoseUnit>(), unit =>
+            {
+                var quantity = RadiationEquivalentDose.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

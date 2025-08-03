@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -320,162 +321,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = BitRate.From(1, BitRateUnit.BitPerSecond);
-            AssertEx.EqualTolerance(1, quantity00.BitsPerSecond, BitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.BitPerSecond, quantity00.Unit);
-
-            var quantity01 = BitRate.From(1, BitRateUnit.BytePerSecond);
-            AssertEx.EqualTolerance(1, quantity01.BytesPerSecond, BytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.BytePerSecond, quantity01.Unit);
-
-            var quantity02 = BitRate.From(1, BitRateUnit.ExabitPerSecond);
-            AssertEx.EqualTolerance(1, quantity02.ExabitsPerSecond, ExabitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExabitPerSecond, quantity02.Unit);
-
-            var quantity03 = BitRate.From(1, BitRateUnit.ExabytePerSecond);
-            AssertEx.EqualTolerance(1, quantity03.ExabytesPerSecond, ExabytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExabytePerSecond, quantity03.Unit);
-
-            var quantity04 = BitRate.From(1, BitRateUnit.ExaoctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity04.ExaoctetsPerSecond, ExaoctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExaoctetPerSecond, quantity04.Unit);
-
-            var quantity05 = BitRate.From(1, BitRateUnit.ExbibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.ExbibitsPerSecond, ExbibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExbibitPerSecond, quantity05.Unit);
-
-            var quantity06 = BitRate.From(1, BitRateUnit.ExbibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity06.ExbibytesPerSecond, ExbibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExbibytePerSecond, quantity06.Unit);
-
-            var quantity07 = BitRate.From(1, BitRateUnit.ExbioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.ExbioctetsPerSecond, ExbioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.ExbioctetPerSecond, quantity07.Unit);
-
-            var quantity08 = BitRate.From(1, BitRateUnit.GibibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity08.GibibitsPerSecond, GibibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GibibitPerSecond, quantity08.Unit);
-
-            var quantity09 = BitRate.From(1, BitRateUnit.GibibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity09.GibibytesPerSecond, GibibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GibibytePerSecond, quantity09.Unit);
-
-            var quantity10 = BitRate.From(1, BitRateUnit.GibioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.GibioctetsPerSecond, GibioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GibioctetPerSecond, quantity10.Unit);
-
-            var quantity11 = BitRate.From(1, BitRateUnit.GigabitPerSecond);
-            AssertEx.EqualTolerance(1, quantity11.GigabitsPerSecond, GigabitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GigabitPerSecond, quantity11.Unit);
-
-            var quantity12 = BitRate.From(1, BitRateUnit.GigabytePerSecond);
-            AssertEx.EqualTolerance(1, quantity12.GigabytesPerSecond, GigabytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GigabytePerSecond, quantity12.Unit);
-
-            var quantity13 = BitRate.From(1, BitRateUnit.GigaoctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity13.GigaoctetsPerSecond, GigaoctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.GigaoctetPerSecond, quantity13.Unit);
-
-            var quantity14 = BitRate.From(1, BitRateUnit.KibibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity14.KibibitsPerSecond, KibibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KibibitPerSecond, quantity14.Unit);
-
-            var quantity15 = BitRate.From(1, BitRateUnit.KibibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity15.KibibytesPerSecond, KibibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KibibytePerSecond, quantity15.Unit);
-
-            var quantity16 = BitRate.From(1, BitRateUnit.KibioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity16.KibioctetsPerSecond, KibioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KibioctetPerSecond, quantity16.Unit);
-
-            var quantity17 = BitRate.From(1, BitRateUnit.KilobitPerSecond);
-            AssertEx.EqualTolerance(1, quantity17.KilobitsPerSecond, KilobitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KilobitPerSecond, quantity17.Unit);
-
-            var quantity18 = BitRate.From(1, BitRateUnit.KilobytePerSecond);
-            AssertEx.EqualTolerance(1, quantity18.KilobytesPerSecond, KilobytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KilobytePerSecond, quantity18.Unit);
-
-            var quantity19 = BitRate.From(1, BitRateUnit.KilooctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity19.KilooctetsPerSecond, KilooctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.KilooctetPerSecond, quantity19.Unit);
-
-            var quantity20 = BitRate.From(1, BitRateUnit.MebibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity20.MebibitsPerSecond, MebibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MebibitPerSecond, quantity20.Unit);
-
-            var quantity21 = BitRate.From(1, BitRateUnit.MebibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity21.MebibytesPerSecond, MebibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MebibytePerSecond, quantity21.Unit);
-
-            var quantity22 = BitRate.From(1, BitRateUnit.MebioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity22.MebioctetsPerSecond, MebioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MebioctetPerSecond, quantity22.Unit);
-
-            var quantity23 = BitRate.From(1, BitRateUnit.MegabitPerSecond);
-            AssertEx.EqualTolerance(1, quantity23.MegabitsPerSecond, MegabitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MegabitPerSecond, quantity23.Unit);
-
-            var quantity24 = BitRate.From(1, BitRateUnit.MegabytePerSecond);
-            AssertEx.EqualTolerance(1, quantity24.MegabytesPerSecond, MegabytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MegabytePerSecond, quantity24.Unit);
-
-            var quantity25 = BitRate.From(1, BitRateUnit.MegaoctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity25.MegaoctetsPerSecond, MegaoctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.MegaoctetPerSecond, quantity25.Unit);
-
-            var quantity26 = BitRate.From(1, BitRateUnit.OctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity26.OctetsPerSecond, OctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.OctetPerSecond, quantity26.Unit);
-
-            var quantity27 = BitRate.From(1, BitRateUnit.PebibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity27.PebibitsPerSecond, PebibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PebibitPerSecond, quantity27.Unit);
-
-            var quantity28 = BitRate.From(1, BitRateUnit.PebibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity28.PebibytesPerSecond, PebibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PebibytePerSecond, quantity28.Unit);
-
-            var quantity29 = BitRate.From(1, BitRateUnit.PebioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity29.PebioctetsPerSecond, PebioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PebioctetPerSecond, quantity29.Unit);
-
-            var quantity30 = BitRate.From(1, BitRateUnit.PetabitPerSecond);
-            AssertEx.EqualTolerance(1, quantity30.PetabitsPerSecond, PetabitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PetabitPerSecond, quantity30.Unit);
-
-            var quantity31 = BitRate.From(1, BitRateUnit.PetabytePerSecond);
-            AssertEx.EqualTolerance(1, quantity31.PetabytesPerSecond, PetabytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PetabytePerSecond, quantity31.Unit);
-
-            var quantity32 = BitRate.From(1, BitRateUnit.PetaoctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity32.PetaoctetsPerSecond, PetaoctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.PetaoctetPerSecond, quantity32.Unit);
-
-            var quantity33 = BitRate.From(1, BitRateUnit.TebibitPerSecond);
-            AssertEx.EqualTolerance(1, quantity33.TebibitsPerSecond, TebibitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TebibitPerSecond, quantity33.Unit);
-
-            var quantity34 = BitRate.From(1, BitRateUnit.TebibytePerSecond);
-            AssertEx.EqualTolerance(1, quantity34.TebibytesPerSecond, TebibytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TebibytePerSecond, quantity34.Unit);
-
-            var quantity35 = BitRate.From(1, BitRateUnit.TebioctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity35.TebioctetsPerSecond, TebioctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TebioctetPerSecond, quantity35.Unit);
-
-            var quantity36 = BitRate.From(1, BitRateUnit.TerabitPerSecond);
-            AssertEx.EqualTolerance(1, quantity36.TerabitsPerSecond, TerabitsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TerabitPerSecond, quantity36.Unit);
-
-            var quantity37 = BitRate.From(1, BitRateUnit.TerabytePerSecond);
-            AssertEx.EqualTolerance(1, quantity37.TerabytesPerSecond, TerabytesPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TerabytePerSecond, quantity37.Unit);
-
-            var quantity38 = BitRate.From(1, BitRateUnit.TeraoctetPerSecond);
-            AssertEx.EqualTolerance(1, quantity38.TeraoctetsPerSecond, TeraoctetsPerSecondTolerance);
-            Assert.Equal(BitRateUnit.TeraoctetPerSecond, quantity38.Unit);
-
+            Assert.All(EnumHelper.GetValues<BitRateUnit>(), unit =>
+            {
+                var quantity = BitRate.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

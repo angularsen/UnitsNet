@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -134,30 +135,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Ratio.From(1, RatioUnit.DecimalFraction);
-            AssertEx.EqualTolerance(1, quantity00.DecimalFractions, DecimalFractionsTolerance);
-            Assert.Equal(RatioUnit.DecimalFraction, quantity00.Unit);
-
-            var quantity01 = Ratio.From(1, RatioUnit.PartPerBillion);
-            AssertEx.EqualTolerance(1, quantity01.PartsPerBillion, PartsPerBillionTolerance);
-            Assert.Equal(RatioUnit.PartPerBillion, quantity01.Unit);
-
-            var quantity02 = Ratio.From(1, RatioUnit.PartPerMillion);
-            AssertEx.EqualTolerance(1, quantity02.PartsPerMillion, PartsPerMillionTolerance);
-            Assert.Equal(RatioUnit.PartPerMillion, quantity02.Unit);
-
-            var quantity03 = Ratio.From(1, RatioUnit.PartPerThousand);
-            AssertEx.EqualTolerance(1, quantity03.PartsPerThousand, PartsPerThousandTolerance);
-            Assert.Equal(RatioUnit.PartPerThousand, quantity03.Unit);
-
-            var quantity04 = Ratio.From(1, RatioUnit.PartPerTrillion);
-            AssertEx.EqualTolerance(1, quantity04.PartsPerTrillion, PartsPerTrillionTolerance);
-            Assert.Equal(RatioUnit.PartPerTrillion, quantity04.Unit);
-
-            var quantity05 = Ratio.From(1, RatioUnit.Percent);
-            AssertEx.EqualTolerance(1, quantity05.Percent, PercentTolerance);
-            Assert.Equal(RatioUnit.Percent, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<RatioUnit>(), unit =>
+            {
+                var quantity = Ratio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

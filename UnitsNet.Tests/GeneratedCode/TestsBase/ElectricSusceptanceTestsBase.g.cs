@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -205,70 +206,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Gigamho);
-            AssertEx.EqualTolerance(1, quantity00.Gigamhos, GigamhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Gigamho, quantity00.Unit);
-
-            var quantity01 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Gigasiemens);
-            AssertEx.EqualTolerance(1, quantity01.Gigasiemens, GigasiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Gigasiemens, quantity01.Unit);
-
-            var quantity02 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Kilomho);
-            AssertEx.EqualTolerance(1, quantity02.Kilomhos, KilomhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Kilomho, quantity02.Unit);
-
-            var quantity03 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Kilosiemens);
-            AssertEx.EqualTolerance(1, quantity03.Kilosiemens, KilosiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Kilosiemens, quantity03.Unit);
-
-            var quantity04 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Megamho);
-            AssertEx.EqualTolerance(1, quantity04.Megamhos, MegamhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Megamho, quantity04.Unit);
-
-            var quantity05 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Megasiemens);
-            AssertEx.EqualTolerance(1, quantity05.Megasiemens, MegasiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Megasiemens, quantity05.Unit);
-
-            var quantity06 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Mho);
-            AssertEx.EqualTolerance(1, quantity06.Mhos, MhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Mho, quantity06.Unit);
-
-            var quantity07 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Micromho);
-            AssertEx.EqualTolerance(1, quantity07.Micromhos, MicromhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Micromho, quantity07.Unit);
-
-            var quantity08 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(1, quantity08.Microsiemens, MicrosiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Microsiemens, quantity08.Unit);
-
-            var quantity09 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Millimho);
-            AssertEx.EqualTolerance(1, quantity09.Millimhos, MillimhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Millimho, quantity09.Unit);
-
-            var quantity10 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(1, quantity10.Millisiemens, MillisiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Millisiemens, quantity10.Unit);
-
-            var quantity11 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Nanomho);
-            AssertEx.EqualTolerance(1, quantity11.Nanomhos, NanomhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Nanomho, quantity11.Unit);
-
-            var quantity12 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Nanosiemens);
-            AssertEx.EqualTolerance(1, quantity12.Nanosiemens, NanosiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Nanosiemens, quantity12.Unit);
-
-            var quantity13 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Siemens);
-            AssertEx.EqualTolerance(1, quantity13.Siemens, SiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Siemens, quantity13.Unit);
-
-            var quantity14 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Teramho);
-            AssertEx.EqualTolerance(1, quantity14.Teramhos, TeramhosTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Teramho, quantity14.Unit);
-
-            var quantity15 = ElectricSusceptance.From(1, ElectricSusceptanceUnit.Terasiemens);
-            AssertEx.EqualTolerance(1, quantity15.Terasiemens, TerasiemensTolerance);
-            Assert.Equal(ElectricSusceptanceUnit.Terasiemens, quantity15.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricSusceptanceUnit>(), unit =>
+            {
+                var quantity = ElectricSusceptance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

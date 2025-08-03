@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -195,62 +196,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.KiloohmsCentimeter, KiloohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.KiloohmCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmMeter);
-            AssertEx.EqualTolerance(1, quantity01.KiloohmMeters, KiloohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.KiloohmMeter, quantity01.Unit);
-
-            var quantity02 = ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.MegaohmsCentimeter, MegaohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.MegaohmCentimeter, quantity02.Unit);
-
-            var quantity03 = ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmMeter);
-            AssertEx.EqualTolerance(1, quantity03.MegaohmMeters, MegaohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.MegaohmMeter, quantity03.Unit);
-
-            var quantity04 = ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity04.MicroohmsCentimeter, MicroohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.MicroohmCentimeter, quantity04.Unit);
-
-            var quantity05 = ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmMeter);
-            AssertEx.EqualTolerance(1, quantity05.MicroohmMeters, MicroohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.MicroohmMeter, quantity05.Unit);
-
-            var quantity06 = ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity06.MilliohmsCentimeter, MilliohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.MilliohmCentimeter, quantity06.Unit);
-
-            var quantity07 = ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmMeter);
-            AssertEx.EqualTolerance(1, quantity07.MilliohmMeters, MilliohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.MilliohmMeter, quantity07.Unit);
-
-            var quantity08 = ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity08.NanoohmsCentimeter, NanoohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.NanoohmCentimeter, quantity08.Unit);
-
-            var quantity09 = ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmMeter);
-            AssertEx.EqualTolerance(1, quantity09.NanoohmMeters, NanoohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.NanoohmMeter, quantity09.Unit);
-
-            var quantity10 = ElectricResistivity.From(1, ElectricResistivityUnit.OhmCentimeter);
-            AssertEx.EqualTolerance(1, quantity10.OhmsCentimeter, OhmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.OhmCentimeter, quantity10.Unit);
-
-            var quantity11 = ElectricResistivity.From(1, ElectricResistivityUnit.OhmMeter);
-            AssertEx.EqualTolerance(1, quantity11.OhmMeters, OhmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.OhmMeter, quantity11.Unit);
-
-            var quantity12 = ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmCentimeter);
-            AssertEx.EqualTolerance(1, quantity12.PicoohmsCentimeter, PicoohmsCentimeterTolerance);
-            Assert.Equal(ElectricResistivityUnit.PicoohmCentimeter, quantity12.Unit);
-
-            var quantity13 = ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmMeter);
-            AssertEx.EqualTolerance(1, quantity13.PicoohmMeters, PicoohmMetersTolerance);
-            Assert.Equal(ElectricResistivityUnit.PicoohmMeter, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricResistivityUnit>(), unit =>
+            {
+                var quantity = ElectricResistivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

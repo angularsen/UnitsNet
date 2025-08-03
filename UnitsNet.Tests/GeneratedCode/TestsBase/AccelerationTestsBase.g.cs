@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -195,62 +196,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Acceleration.From(1, AccelerationUnit.CentimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity00.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, quantity00.Unit);
-
-            var quantity01 = Acceleration.From(1, AccelerationUnit.DecimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity01.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, quantity01.Unit);
-
-            var quantity02 = Acceleration.From(1, AccelerationUnit.FootPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity02.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.FootPerSecondSquared, quantity02.Unit);
-
-            var quantity03 = Acceleration.From(1, AccelerationUnit.InchPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity03.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.InchPerSecondSquared, quantity03.Unit);
-
-            var quantity04 = Acceleration.From(1, AccelerationUnit.KilometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity04.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, quantity04.Unit);
-
-            var quantity05 = Acceleration.From(1, AccelerationUnit.KnotPerHour);
-            AssertEx.EqualTolerance(1, quantity05.KnotsPerHour, KnotsPerHourTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerHour, quantity05.Unit);
-
-            var quantity06 = Acceleration.From(1, AccelerationUnit.KnotPerMinute);
-            AssertEx.EqualTolerance(1, quantity06.KnotsPerMinute, KnotsPerMinuteTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerMinute, quantity06.Unit);
-
-            var quantity07 = Acceleration.From(1, AccelerationUnit.KnotPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.KnotsPerSecond, KnotsPerSecondTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerSecond, quantity07.Unit);
-
-            var quantity08 = Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity08.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, quantity08.Unit);
-
-            var quantity09 = Acceleration.From(1, AccelerationUnit.MicrometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity09.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, quantity09.Unit);
-
-            var quantity10 = Acceleration.From(1, AccelerationUnit.MillimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity10.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, quantity10.Unit);
-
-            var quantity11 = Acceleration.From(1, AccelerationUnit.MillistandardGravity);
-            AssertEx.EqualTolerance(1, quantity11.MillistandardGravity, MillistandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.MillistandardGravity, quantity11.Unit);
-
-            var quantity12 = Acceleration.From(1, AccelerationUnit.NanometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity12.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, quantity12.Unit);
-
-            var quantity13 = Acceleration.From(1, AccelerationUnit.StandardGravity);
-            AssertEx.EqualTolerance(1, quantity13.StandardGravity, StandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.StandardGravity, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<AccelerationUnit>(), unit =>
+            {
+                var quantity = Acceleration.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

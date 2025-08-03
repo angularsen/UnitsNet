@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -190,58 +191,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Impulse.From(1, ImpulseUnit.CentinewtonSecond);
-            AssertEx.EqualTolerance(1, quantity00.CentinewtonSeconds, CentinewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.CentinewtonSecond, quantity00.Unit);
-
-            var quantity01 = Impulse.From(1, ImpulseUnit.DecanewtonSecond);
-            AssertEx.EqualTolerance(1, quantity01.DecanewtonSeconds, DecanewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.DecanewtonSecond, quantity01.Unit);
-
-            var quantity02 = Impulse.From(1, ImpulseUnit.DecinewtonSecond);
-            AssertEx.EqualTolerance(1, quantity02.DecinewtonSeconds, DecinewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.DecinewtonSecond, quantity02.Unit);
-
-            var quantity03 = Impulse.From(1, ImpulseUnit.KilogramMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity03.KilogramMetersPerSecond, KilogramMetersPerSecondTolerance);
-            Assert.Equal(ImpulseUnit.KilogramMeterPerSecond, quantity03.Unit);
-
-            var quantity04 = Impulse.From(1, ImpulseUnit.KilonewtonSecond);
-            AssertEx.EqualTolerance(1, quantity04.KilonewtonSeconds, KilonewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.KilonewtonSecond, quantity04.Unit);
-
-            var quantity05 = Impulse.From(1, ImpulseUnit.MeganewtonSecond);
-            AssertEx.EqualTolerance(1, quantity05.MeganewtonSeconds, MeganewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.MeganewtonSecond, quantity05.Unit);
-
-            var quantity06 = Impulse.From(1, ImpulseUnit.MicronewtonSecond);
-            AssertEx.EqualTolerance(1, quantity06.MicronewtonSeconds, MicronewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.MicronewtonSecond, quantity06.Unit);
-
-            var quantity07 = Impulse.From(1, ImpulseUnit.MillinewtonSecond);
-            AssertEx.EqualTolerance(1, quantity07.MillinewtonSeconds, MillinewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.MillinewtonSecond, quantity07.Unit);
-
-            var quantity08 = Impulse.From(1, ImpulseUnit.NanonewtonSecond);
-            AssertEx.EqualTolerance(1, quantity08.NanonewtonSeconds, NanonewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.NanonewtonSecond, quantity08.Unit);
-
-            var quantity09 = Impulse.From(1, ImpulseUnit.NewtonSecond);
-            AssertEx.EqualTolerance(1, quantity09.NewtonSeconds, NewtonSecondsTolerance);
-            Assert.Equal(ImpulseUnit.NewtonSecond, quantity09.Unit);
-
-            var quantity10 = Impulse.From(1, ImpulseUnit.PoundFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.PoundFeetPerSecond, PoundFeetPerSecondTolerance);
-            Assert.Equal(ImpulseUnit.PoundFootPerSecond, quantity10.Unit);
-
-            var quantity11 = Impulse.From(1, ImpulseUnit.PoundForceSecond);
-            AssertEx.EqualTolerance(1, quantity11.PoundForceSeconds, PoundForceSecondsTolerance);
-            Assert.Equal(ImpulseUnit.PoundForceSecond, quantity11.Unit);
-
-            var quantity12 = Impulse.From(1, ImpulseUnit.SlugFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity12.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
-            Assert.Equal(ImpulseUnit.SlugFootPerSecond, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<ImpulseUnit>(), unit =>
+            {
+                var quantity = Impulse.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

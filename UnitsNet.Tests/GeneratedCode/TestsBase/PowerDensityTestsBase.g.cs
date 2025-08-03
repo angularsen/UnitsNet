@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -345,182 +346,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity00.DecawattsPerCubicFoot, DecawattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.DecawattPerCubicFoot, quantity00.Unit);
-
-            var quantity01 = PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity01.DecawattsPerCubicInch, DecawattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.DecawattPerCubicInch, quantity01.Unit);
-
-            var quantity02 = PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity02.DecawattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.DecawattPerCubicMeter, quantity02.Unit);
-
-            var quantity03 = PowerDensity.From(1, PowerDensityUnit.DecawattPerLiter);
-            AssertEx.EqualTolerance(1, quantity03.DecawattsPerLiter, DecawattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.DecawattPerLiter, quantity03.Unit);
-
-            var quantity04 = PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity04.DeciwattsPerCubicFoot, DeciwattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.DeciwattPerCubicFoot, quantity04.Unit);
-
-            var quantity05 = PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity05.DeciwattsPerCubicInch, DeciwattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.DeciwattPerCubicInch, quantity05.Unit);
-
-            var quantity06 = PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity06.DeciwattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.DeciwattPerCubicMeter, quantity06.Unit);
-
-            var quantity07 = PowerDensity.From(1, PowerDensityUnit.DeciwattPerLiter);
-            AssertEx.EqualTolerance(1, quantity07.DeciwattsPerLiter, DeciwattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.DeciwattPerLiter, quantity07.Unit);
-
-            var quantity08 = PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity08.GigawattsPerCubicFoot, GigawattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.GigawattPerCubicFoot, quantity08.Unit);
-
-            var quantity09 = PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity09.GigawattsPerCubicInch, GigawattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.GigawattPerCubicInch, quantity09.Unit);
-
-            var quantity10 = PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity10.GigawattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.GigawattPerCubicMeter, quantity10.Unit);
-
-            var quantity11 = PowerDensity.From(1, PowerDensityUnit.GigawattPerLiter);
-            AssertEx.EqualTolerance(1, quantity11.GigawattsPerLiter, GigawattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.GigawattPerLiter, quantity11.Unit);
-
-            var quantity12 = PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity12.KilowattsPerCubicFoot, KilowattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.KilowattPerCubicFoot, quantity12.Unit);
-
-            var quantity13 = PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity13.KilowattsPerCubicInch, KilowattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.KilowattPerCubicInch, quantity13.Unit);
-
-            var quantity14 = PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity14.KilowattsPerCubicMeter, KilowattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.KilowattPerCubicMeter, quantity14.Unit);
-
-            var quantity15 = PowerDensity.From(1, PowerDensityUnit.KilowattPerLiter);
-            AssertEx.EqualTolerance(1, quantity15.KilowattsPerLiter, KilowattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.KilowattPerLiter, quantity15.Unit);
-
-            var quantity16 = PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity16.MegawattsPerCubicFoot, MegawattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.MegawattPerCubicFoot, quantity16.Unit);
-
-            var quantity17 = PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity17.MegawattsPerCubicInch, MegawattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.MegawattPerCubicInch, quantity17.Unit);
-
-            var quantity18 = PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity18.MegawattsPerCubicMeter, MegawattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.MegawattPerCubicMeter, quantity18.Unit);
-
-            var quantity19 = PowerDensity.From(1, PowerDensityUnit.MegawattPerLiter);
-            AssertEx.EqualTolerance(1, quantity19.MegawattsPerLiter, MegawattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.MegawattPerLiter, quantity19.Unit);
-
-            var quantity20 = PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity20.MicrowattsPerCubicFoot, MicrowattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.MicrowattPerCubicFoot, quantity20.Unit);
-
-            var quantity21 = PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity21.MicrowattsPerCubicInch, MicrowattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.MicrowattPerCubicInch, quantity21.Unit);
-
-            var quantity22 = PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity22.MicrowattsPerCubicMeter, MicrowattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.MicrowattPerCubicMeter, quantity22.Unit);
-
-            var quantity23 = PowerDensity.From(1, PowerDensityUnit.MicrowattPerLiter);
-            AssertEx.EqualTolerance(1, quantity23.MicrowattsPerLiter, MicrowattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.MicrowattPerLiter, quantity23.Unit);
-
-            var quantity24 = PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity24.MilliwattsPerCubicFoot, MilliwattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.MilliwattPerCubicFoot, quantity24.Unit);
-
-            var quantity25 = PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity25.MilliwattsPerCubicInch, MilliwattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.MilliwattPerCubicInch, quantity25.Unit);
-
-            var quantity26 = PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity26.MilliwattsPerCubicMeter, MilliwattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.MilliwattPerCubicMeter, quantity26.Unit);
-
-            var quantity27 = PowerDensity.From(1, PowerDensityUnit.MilliwattPerLiter);
-            AssertEx.EqualTolerance(1, quantity27.MilliwattsPerLiter, MilliwattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.MilliwattPerLiter, quantity27.Unit);
-
-            var quantity28 = PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity28.NanowattsPerCubicFoot, NanowattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.NanowattPerCubicFoot, quantity28.Unit);
-
-            var quantity29 = PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity29.NanowattsPerCubicInch, NanowattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.NanowattPerCubicInch, quantity29.Unit);
-
-            var quantity30 = PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity30.NanowattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.NanowattPerCubicMeter, quantity30.Unit);
-
-            var quantity31 = PowerDensity.From(1, PowerDensityUnit.NanowattPerLiter);
-            AssertEx.EqualTolerance(1, quantity31.NanowattsPerLiter, NanowattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.NanowattPerLiter, quantity31.Unit);
-
-            var quantity32 = PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity32.PicowattsPerCubicFoot, PicowattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.PicowattPerCubicFoot, quantity32.Unit);
-
-            var quantity33 = PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity33.PicowattsPerCubicInch, PicowattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.PicowattPerCubicInch, quantity33.Unit);
-
-            var quantity34 = PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity34.PicowattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.PicowattPerCubicMeter, quantity34.Unit);
-
-            var quantity35 = PowerDensity.From(1, PowerDensityUnit.PicowattPerLiter);
-            AssertEx.EqualTolerance(1, quantity35.PicowattsPerLiter, PicowattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.PicowattPerLiter, quantity35.Unit);
-
-            var quantity36 = PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity36.TerawattsPerCubicFoot, TerawattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.TerawattPerCubicFoot, quantity36.Unit);
-
-            var quantity37 = PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity37.TerawattsPerCubicInch, TerawattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.TerawattPerCubicInch, quantity37.Unit);
-
-            var quantity38 = PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity38.TerawattsPerCubicMeter, TerawattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.TerawattPerCubicMeter, quantity38.Unit);
-
-            var quantity39 = PowerDensity.From(1, PowerDensityUnit.TerawattPerLiter);
-            AssertEx.EqualTolerance(1, quantity39.TerawattsPerLiter, TerawattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.TerawattPerLiter, quantity39.Unit);
-
-            var quantity40 = PowerDensity.From(1, PowerDensityUnit.WattPerCubicFoot);
-            AssertEx.EqualTolerance(1, quantity40.WattsPerCubicFoot, WattsPerCubicFootTolerance);
-            Assert.Equal(PowerDensityUnit.WattPerCubicFoot, quantity40.Unit);
-
-            var quantity41 = PowerDensity.From(1, PowerDensityUnit.WattPerCubicInch);
-            AssertEx.EqualTolerance(1, quantity41.WattsPerCubicInch, WattsPerCubicInchTolerance);
-            Assert.Equal(PowerDensityUnit.WattPerCubicInch, quantity41.Unit);
-
-            var quantity42 = PowerDensity.From(1, PowerDensityUnit.WattPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity42.WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            Assert.Equal(PowerDensityUnit.WattPerCubicMeter, quantity42.Unit);
-
-            var quantity43 = PowerDensity.From(1, PowerDensityUnit.WattPerLiter);
-            AssertEx.EqualTolerance(1, quantity43.WattsPerLiter, WattsPerLiterTolerance);
-            Assert.Equal(PowerDensityUnit.WattPerLiter, quantity43.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerDensityUnit>(), unit =>
+            {
+                var quantity = PowerDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
