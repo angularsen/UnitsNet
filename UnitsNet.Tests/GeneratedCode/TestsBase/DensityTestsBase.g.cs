@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -329,15 +330,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Density_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            DensityUnit[] unitsOrderedByName = EnumHelper.GetValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Density(1, DensityUnit.KilogramPerCubicMeter);
 
-            QuantityInfo<DensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Density, DensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Density.Zero, quantityInfo.Zero);
             Assert.Equal("Density", quantityInfo.Name);
-
-            var units = Enum.GetValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Density.Zero, quantityInfo.Zero);
+            Assert.Equal(Density.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Density.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<DensityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -133,15 +134,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalInsulance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ThermalInsulanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
-            QuantityInfo<ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalInsulance", quantityInfo.Name);
-
-            var units = Enum.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
+            Assert.Equal(ThermalInsulance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ThermalInsulance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ThermalInsulanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

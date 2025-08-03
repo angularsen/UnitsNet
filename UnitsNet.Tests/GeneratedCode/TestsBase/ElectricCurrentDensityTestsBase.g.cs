@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,15 +118,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
-            QuantityInfo<ElectricCurrentDensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricCurrentDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentDensity", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricCurrentDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricCurrentDensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricCurrentDensityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

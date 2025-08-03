@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Illuminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            IlluminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Illuminance(1, IlluminanceUnit.Lux);
 
-            QuantityInfo<IlluminanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Illuminance, IlluminanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
             Assert.Equal("Illuminance", quantityInfo.Name);
-
-            var units = Enum.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
+            Assert.Equal(Illuminance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Illuminance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<IlluminanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -113,15 +114,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlowPerArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VolumeFlowPerAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
-            QuantityInfo<VolumeFlowPerAreaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VolumeFlowPerArea.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlowPerArea", quantityInfo.Name);
-
-            var units = Enum.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VolumeFlowPerArea.Zero, quantityInfo.Zero);
+            Assert.Equal(VolumeFlowPerArea.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VolumeFlowPerArea.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VolumeFlowPerAreaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

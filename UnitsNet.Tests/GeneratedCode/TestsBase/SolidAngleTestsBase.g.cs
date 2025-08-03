@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
 
-            QuantityInfo<SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SolidAngle, SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
-
-            var units = Enum.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
+            Assert.Equal(SolidAngle.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SolidAngle.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SolidAngleUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

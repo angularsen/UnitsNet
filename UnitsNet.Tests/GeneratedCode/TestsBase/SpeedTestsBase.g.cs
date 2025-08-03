@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -237,15 +238,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
 
-            QuantityInfo<SpeedUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Speed, SpeedUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Speed.Zero, quantityInfo.Zero);
             Assert.Equal("Speed", quantityInfo.Name);
-
-            var units = Enum.GetValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Speed.Zero, quantityInfo.Zero);
+            Assert.Equal(Speed.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Speed.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SpeedUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

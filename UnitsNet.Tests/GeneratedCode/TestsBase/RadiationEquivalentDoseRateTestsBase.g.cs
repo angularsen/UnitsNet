@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,15 +146,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationEquivalentDoseRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RadiationEquivalentDoseRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.SievertPerSecond);
 
-            QuantityInfo<RadiationEquivalentDoseRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RadiationEquivalentDoseRate.Zero, quantityInfo.Zero);
             Assert.Equal("RadiationEquivalentDoseRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<RadiationEquivalentDoseRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RadiationEquivalentDoseRate.Zero, quantityInfo.Zero);
+            Assert.Equal(RadiationEquivalentDoseRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RadiationEquivalentDoseRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RadiationEquivalentDoseRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

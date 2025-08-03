@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -141,15 +142,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEntropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SpecificEntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin);
 
-            QuantityInfo<SpecificEntropyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SpecificEntropy, SpecificEntropyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SpecificEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEntropy", quantityInfo.Name);
-
-            var units = Enum.GetValues<SpecificEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SpecificEntropy.Zero, quantityInfo.Zero);
+            Assert.Equal(SpecificEntropy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SpecificEntropy.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SpecificEntropyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

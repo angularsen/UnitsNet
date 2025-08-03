@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -265,15 +266,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Energy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Energy(1, EnergyUnit.Joule);
 
-            QuantityInfo<EnergyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Energy, EnergyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Energy.Zero, quantityInfo.Zero);
             Assert.Equal("Energy", quantityInfo.Name);
-
-            var units = Enum.GetValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Energy.Zero, quantityInfo.Zero);
+            Assert.Equal(Energy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Energy.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<EnergyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

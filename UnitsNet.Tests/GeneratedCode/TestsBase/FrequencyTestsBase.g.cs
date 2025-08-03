@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -153,15 +154,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Frequency_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            FrequencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Frequency(1, FrequencyUnit.Hertz);
 
-            QuantityInfo<FrequencyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Frequency, FrequencyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
-
-            var units = Enum.GetValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Frequency.Zero, quantityInfo.Zero);
+            Assert.Equal(Frequency.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Frequency.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<FrequencyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

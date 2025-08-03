@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -213,15 +214,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Mass(1, MassUnit.Kilogram);
 
-            QuantityInfo<MassUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Mass, MassUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal(Mass.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Mass.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

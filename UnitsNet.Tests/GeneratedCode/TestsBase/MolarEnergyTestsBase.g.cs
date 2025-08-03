@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,15 +118,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MolarEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MolarEnergy(1, MolarEnergyUnit.JoulePerMole);
 
-            QuantityInfo<MolarEnergyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MolarEnergy, MolarEnergyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
-
-            var units = Enum.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
+            Assert.Equal(MolarEnergy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MolarEnergy.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MolarEnergyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

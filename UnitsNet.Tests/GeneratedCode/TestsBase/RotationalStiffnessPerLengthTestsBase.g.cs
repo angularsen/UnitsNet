@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -125,15 +126,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalStiffnessPerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
-            QuantityInfo<RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalStiffnessPerLength", quantityInfo.Name);
-
-            var units = Enum.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalStiffnessPerLength.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RotationalStiffnessPerLength.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RotationalStiffnessPerLengthUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

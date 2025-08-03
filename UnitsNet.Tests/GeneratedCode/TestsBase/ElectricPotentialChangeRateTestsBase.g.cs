@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -185,15 +186,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotentialChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricPotentialChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond);
 
-            QuantityInfo<ElectricPotentialChangeRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricPotentialChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricPotentialChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricPotentialChangeRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricPotentialChangeRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricPotentialChangeRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -141,15 +142,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void KinematicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond);
 
-            QuantityInfo<KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<KinematicViscosity, KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
-
-            var units = Enum.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
+            Assert.Equal(KinematicViscosity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(KinematicViscosity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<KinematicViscosityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -125,15 +126,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void PorousMediumPermeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter);
 
-            QuantityInfo<PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
             Assert.Equal("PorousMediumPermeability", quantityInfo.Name);
-
-            var units = Enum.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
+            Assert.Equal(PorousMediumPermeability.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(PorousMediumPermeability.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PorousMediumPermeabilityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificFuelConsumption_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
 
-            QuantityInfo<SpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SpecificFuelConsumption, SpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificFuelConsumption", quantityInfo.Name);
-
-            var units = Enum.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
+            Assert.Equal(SpecificFuelConsumption.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SpecificFuelConsumption.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SpecificFuelConsumptionUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

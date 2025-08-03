@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -113,15 +114,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ThermalResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ThermalResistance(1, ThermalResistanceUnit.KelvinPerWatt);
 
-            QuantityInfo<ThermalResistanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ThermalResistance, ThermalResistanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
-
-            var units = Enum.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
+            Assert.Equal(ThermalResistance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ThermalResistance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ThermalResistanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

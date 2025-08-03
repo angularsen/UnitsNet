@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -217,15 +218,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter);
 
-            QuantityInfo<MassMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MassMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("MassMomentOfInertia", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MassMomentOfInertia.Zero, quantityInfo.Zero);
+            Assert.Equal(MassMomentOfInertia.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MassMomentOfInertia.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassMomentOfInertiaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

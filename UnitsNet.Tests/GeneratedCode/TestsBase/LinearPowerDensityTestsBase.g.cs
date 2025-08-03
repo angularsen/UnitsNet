@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -205,15 +206,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void LinearPowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LinearPowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter);
 
-            QuantityInfo<LinearPowerDensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
-
-            var units = Enum.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(LinearPowerDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(LinearPowerDensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LinearPowerDensityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Turbidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            TurbidityUnit[] unitsOrderedByName = EnumHelper.GetValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Turbidity(1, TurbidityUnit.NTU);
 
-            QuantityInfo<TurbidityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Turbidity, TurbidityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
-
-            var units = Enum.GetValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
+            Assert.Equal(Turbidity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Turbidity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<TurbidityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

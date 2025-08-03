@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -129,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MagneticField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MagneticFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MagneticField(1, MagneticFieldUnit.Tesla);
 
-            QuantityInfo<MagneticFieldUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MagneticField, MagneticFieldUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticField", quantityInfo.Name);
-
-            var units = Enum.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
+            Assert.Equal(MagneticField.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MagneticField.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MagneticFieldUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

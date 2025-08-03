@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void LeakRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond);
 
-            QuantityInfo<LeakRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<LeakRate, LeakRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(LeakRate.Zero, quantityInfo.Zero);
             Assert.Equal("LeakRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(LeakRate.Zero, quantityInfo.Zero);
+            Assert.Equal(LeakRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(LeakRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LeakRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

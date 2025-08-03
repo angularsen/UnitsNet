@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,15 +110,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Permeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Permeability(1, PermeabilityUnit.HenryPerMeter);
 
-            QuantityInfo<PermeabilityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Permeability, PermeabilityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Permeability.Zero, quantityInfo.Zero);
             Assert.Equal("Permeability", quantityInfo.Name);
-
-            var units = Enum.GetValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Permeability.Zero, quantityInfo.Zero);
+            Assert.Equal(Permeability.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Permeability.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PermeabilityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

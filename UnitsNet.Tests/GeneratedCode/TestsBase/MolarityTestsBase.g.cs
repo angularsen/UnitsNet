@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -149,15 +150,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molarity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MolarityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Molarity(1, MolarityUnit.MolePerCubicMeter);
 
-            QuantityInfo<MolarityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Molarity, MolarityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Molarity.Zero, quantityInfo.Zero);
             Assert.Equal("Molarity", quantityInfo.Name);
-
-            var units = Enum.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Molarity.Zero, quantityInfo.Zero);
+            Assert.Equal(Molarity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Molarity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MolarityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

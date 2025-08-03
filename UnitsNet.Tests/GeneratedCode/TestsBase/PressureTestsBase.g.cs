@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -297,15 +298,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Pressure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Pressure(1, PressureUnit.Pascal);
 
-            QuantityInfo<PressureUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Pressure, PressureUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
-
-            var units = Enum.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Pressure.Zero, quantityInfo.Zero);
+            Assert.Equal(Pressure.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Pressure.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PressureUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

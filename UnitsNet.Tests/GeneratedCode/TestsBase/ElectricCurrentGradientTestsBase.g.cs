@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -133,15 +134,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricCurrentGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond);
 
-            QuantityInfo<ElectricCurrentGradientUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricCurrentGradient.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricCurrentGradient.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricCurrentGradientUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

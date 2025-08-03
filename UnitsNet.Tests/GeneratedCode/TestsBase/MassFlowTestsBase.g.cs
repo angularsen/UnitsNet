@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -237,15 +238,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassFlow(1, MassFlowUnit.GramPerSecond);
 
-            QuantityInfo<MassFlowUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MassFlow, MassFlowUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
+            Assert.Equal(MassFlow.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MassFlow.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassFlowUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

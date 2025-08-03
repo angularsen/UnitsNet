@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -281,15 +282,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter);
 
-            QuantityInfo<PowerDensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<PowerDensity, PowerDensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("PowerDensity", quantityInfo.Name);
-
-            var units = Enum.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(PowerDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(PowerDensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PowerDensityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

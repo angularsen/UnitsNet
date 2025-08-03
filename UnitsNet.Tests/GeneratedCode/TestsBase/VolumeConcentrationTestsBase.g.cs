@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -164,15 +165,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction);
 
-            QuantityInfo<VolumeConcentrationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
-
-            var units = Enum.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
+            Assert.Equal(VolumeConcentration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VolumeConcentration.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VolumeConcentrationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

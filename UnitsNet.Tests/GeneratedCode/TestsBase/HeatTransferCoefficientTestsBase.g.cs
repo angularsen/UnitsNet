@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -125,15 +126,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void HeatTransferCoefficient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            HeatTransferCoefficientUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
-            QuantityInfo<HeatTransferCoefficientUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
-
-            var units = Enum.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
+            Assert.Equal(HeatTransferCoefficient.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(HeatTransferCoefficient.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<HeatTransferCoefficientUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

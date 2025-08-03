@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -205,15 +206,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Torque_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            TorqueUnit[] unitsOrderedByName = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Torque(1, TorqueUnit.NewtonMeter);
 
-            QuantityInfo<TorqueUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Torque, TorqueUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Torque.Zero, quantityInfo.Zero);
             Assert.Equal("Torque", quantityInfo.Name);
-
-            var units = Enum.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Torque.Zero, quantityInfo.Zero);
+            Assert.Equal(Torque.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Torque.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<TorqueUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

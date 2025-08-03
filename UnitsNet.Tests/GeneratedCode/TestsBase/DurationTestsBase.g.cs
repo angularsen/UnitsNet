@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -157,15 +158,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Duration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            DurationUnit[] unitsOrderedByName = EnumHelper.GetValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Duration(1, DurationUnit.Second);
 
-            QuantityInfo<DurationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Duration, DurationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
-
-            var units = Enum.GetValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Duration.Zero, quantityInfo.Zero);
+            Assert.Equal(Duration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Duration.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<DurationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

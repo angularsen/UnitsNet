@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -181,15 +182,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
-            QuantityInfo<FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<FluidResistance, FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
             Assert.Equal("FluidResistance", quantityInfo.Name);
-
-            var units = Enum.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
+            Assert.Equal(FluidResistance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(FluidResistance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<FluidResistanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

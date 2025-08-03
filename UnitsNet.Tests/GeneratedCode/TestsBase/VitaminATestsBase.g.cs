@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
 
-            QuantityInfo<VitaminAUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VitaminA, VitaminAUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
-
-            var units = Enum.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
+            Assert.Equal(VitaminA.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VitaminA.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VitaminAUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

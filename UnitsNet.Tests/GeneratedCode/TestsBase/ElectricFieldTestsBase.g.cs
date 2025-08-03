@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,15 +110,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricField(1, ElectricFieldUnit.VoltPerMeter);
 
-            QuantityInfo<ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricField, ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricField", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricField.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricField.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricFieldUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

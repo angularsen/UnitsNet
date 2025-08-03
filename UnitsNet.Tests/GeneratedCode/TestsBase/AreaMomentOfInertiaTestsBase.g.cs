@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -129,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
 
-            QuantityInfo<AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
-
-            var units = Enum.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
+            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(AreaMomentOfInertia.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AreaMomentOfInertiaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

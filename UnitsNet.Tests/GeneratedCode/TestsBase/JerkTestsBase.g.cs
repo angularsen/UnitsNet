@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -149,15 +150,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Jerk_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Jerk(1, JerkUnit.MeterPerSecondCubed);
 
-            QuantityInfo<JerkUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Jerk, JerkUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Jerk.Zero, quantityInfo.Zero);
             Assert.Equal("Jerk", quantityInfo.Name);
-
-            var units = Enum.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Jerk.Zero, quantityInfo.Zero);
+            Assert.Equal(Jerk.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Jerk.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<JerkUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

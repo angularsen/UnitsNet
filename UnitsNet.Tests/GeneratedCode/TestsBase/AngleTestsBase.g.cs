@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -144,15 +145,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Angle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Angle(1, AngleUnit.Radian);
 
-            QuantityInfo<AngleUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Angle, AngleUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Angle.Zero, quantityInfo.Zero);
             Assert.Equal("Angle", quantityInfo.Name);
-
-            var units = Enum.GetValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Angle.Zero, quantityInfo.Zero);
+            Assert.Equal(Angle.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Angle.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AngleUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

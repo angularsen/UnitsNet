@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -133,15 +134,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCapacitance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricCapacitanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricCapacitance(1, ElectricCapacitanceUnit.Farad);
 
-            QuantityInfo<ElectricCapacitanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricCapacitance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCapacitance", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricCapacitance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricCapacitance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricCapacitance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricCapacitanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

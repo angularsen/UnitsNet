@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -173,15 +174,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void AmountOfSubstance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AmountOfSubstanceUnit[] unitsOrderedByName = EnumHelper.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new AmountOfSubstance(1, AmountOfSubstanceUnit.Mole);
 
-            QuantityInfo<AmountOfSubstanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
             Assert.Equal("AmountOfSubstance", quantityInfo.Name);
-
-            var units = Enum.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
+            Assert.Equal(AmountOfSubstance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(AmountOfSubstance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AmountOfSubstanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

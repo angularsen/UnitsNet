@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -109,15 +110,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousIntensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LuminousIntensity(1, LuminousIntensityUnit.Candela);
 
-            QuantityInfo<LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<LuminousIntensity, LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
             Assert.Equal("LuminousIntensity", quantityInfo.Name);
-
-            var units = Enum.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
+            Assert.Equal(LuminousIntensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(LuminousIntensity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LuminousIntensityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -161,15 +162,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Area_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AreaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Area(1, AreaUnit.SquareMeter);
 
-            QuantityInfo<AreaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Area, AreaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
-
-            var units = Enum.GetValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Area.Zero, quantityInfo.Zero);
+            Assert.Equal(Area.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Area.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AreaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

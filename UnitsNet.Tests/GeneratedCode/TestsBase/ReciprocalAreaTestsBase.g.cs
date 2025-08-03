@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -149,15 +150,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ReciprocalAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter);
 
-            QuantityInfo<ReciprocalAreaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ReciprocalArea, ReciprocalAreaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
-
-            var units = Enum.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
+            Assert.Equal(ReciprocalArea.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ReciprocalArea.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ReciprocalAreaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -161,15 +162,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Acceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Acceleration(1, AccelerationUnit.MeterPerSecondSquared);
 
-            QuantityInfo<AccelerationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Acceleration, AccelerationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
             Assert.Equal("Acceleration", quantityInfo.Name);
-
-            var units = Enum.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
+            Assert.Equal(Acceleration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Acceleration.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AccelerationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

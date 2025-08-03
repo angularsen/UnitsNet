@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -108,15 +109,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ratio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Ratio(1, RatioUnit.DecimalFraction);
 
-            QuantityInfo<RatioUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Ratio, RatioUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Ratio.Zero, quantityInfo.Zero);
             Assert.Equal("Ratio", quantityInfo.Name);
-
-            var units = Enum.GetValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Ratio.Zero, quantityInfo.Zero);
+            Assert.Equal(Ratio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Ratio.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RatioUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

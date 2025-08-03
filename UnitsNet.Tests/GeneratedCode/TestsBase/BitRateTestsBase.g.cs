@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -261,15 +262,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void BitRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            BitRateUnit[] unitsOrderedByName = EnumHelper.GetValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new BitRate(1, BitRateUnit.BitPerSecond);
 
-            QuantityInfo<BitRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<BitRate, BitRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(BitRate.Zero, quantityInfo.Zero);
             Assert.Equal("BitRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(BitRate.Zero, quantityInfo.Zero);
+            Assert.Equal(BitRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(BitRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<BitRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

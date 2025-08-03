@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -113,15 +114,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalConductivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ThermalConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin);
 
-            QuantityInfo<ThermalConductivityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ThermalConductivity, ThermalConductivityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalConductivity", quantityInfo.Name);
-
-            var units = Enum.GetValues<ThermalConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
+            Assert.Equal(ThermalConductivity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ThermalConductivity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ThermalConductivityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

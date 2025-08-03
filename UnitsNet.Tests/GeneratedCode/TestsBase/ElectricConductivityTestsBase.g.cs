@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -129,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricConductivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter);
 
-            QuantityInfo<ElectricConductivityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricConductivity, ElectricConductivityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricConductivity", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricConductivity.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricConductivity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricConductivity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricConductivityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

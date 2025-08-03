@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalAcceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RotationalAccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared);
 
-            QuantityInfo<RotationalAccelerationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RotationalAcceleration.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalAcceleration", quantityInfo.Name);
-
-            var units = Enum.GetValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RotationalAcceleration.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalAcceleration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RotationalAcceleration.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RotationalAccelerationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

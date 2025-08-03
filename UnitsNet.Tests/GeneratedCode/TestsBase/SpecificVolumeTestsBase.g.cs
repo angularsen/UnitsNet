@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -117,15 +118,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificVolume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram);
 
-            QuantityInfo<SpecificVolumeUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SpecificVolume, SpecificVolumeUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SpecificVolume.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificVolume", quantityInfo.Name);
-
-            var units = Enum.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SpecificVolume.Zero, quantityInfo.Zero);
+            Assert.Equal(SpecificVolume.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SpecificVolume.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SpecificVolumeUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
