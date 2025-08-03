@@ -65,7 +65,7 @@ public static class QuantityExtensions
     /// <exception cref="ArgumentNullException">Thrown when the collection is null.</exception>
     /// <exception cref="InvalidOperationException">Thrown when the collection is empty.</exception>
     internal static TQuantity ArithmeticMean<TQuantity>(this IEnumerable<TQuantity> quantities)
-        where TQuantity : IQuantityInstance<TQuantity>
+        where TQuantity : IQuantityOfType<TQuantity>
     {
         if (quantities is null)
         {

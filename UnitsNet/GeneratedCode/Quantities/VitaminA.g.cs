@@ -204,7 +204,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<VitaminA> IQuantityInstance<VitaminA>.QuantityInfo => Info;
+        IQuantityInstanceInfo<VitaminA> IQuantityOfType<VitaminA>.QuantityInfo => Info;
 #endif
 
         #endregion

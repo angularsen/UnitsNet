@@ -221,7 +221,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<MagneticFlux> IQuantityInstance<MagneticFlux>.QuantityInfo => Info;
+        IQuantityInstanceInfo<MagneticFlux> IQuantityOfType<MagneticFlux>.QuantityInfo => Info;
 #endif
 
         #endregion

@@ -255,7 +255,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RotationalStiffness> IQuantityInstance<RotationalStiffness>.QuantityInfo => Info;
+        IQuantityInstanceInfo<RotationalStiffness> IQuantityOfType<RotationalStiffness>.QuantityInfo => Info;
 #endif
 
         #endregion

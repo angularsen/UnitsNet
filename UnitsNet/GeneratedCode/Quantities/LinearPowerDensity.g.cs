@@ -245,7 +245,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<LinearPowerDensity> IQuantityInstance<LinearPowerDensity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<LinearPowerDensity> IQuantityOfType<LinearPowerDensity>.QuantityInfo => Info;
 #endif
 
         #endregion

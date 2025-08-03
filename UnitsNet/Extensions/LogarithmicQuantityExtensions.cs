@@ -33,32 +33,18 @@ public static class LogarithmicQuantityExtensions
     /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
     public static bool Equals<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther? other, TTolerance tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
-        where TOther : IQuantityInstance<TQuantity>
-        where TTolerance : IQuantityInstance<TQuantity>
+        where TOther : IQuantityOfType<TQuantity>
+        where TTolerance : IQuantityOfType<TQuantity>
     {
         return other is not null && quantity.EqualsAbsolute(other, tolerance);
     }
 
     /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
-    /// <exception cref="ArgumentException">
-    ///     Thrown when the <paramref name="tolerance" /> is not of the same type as the
-    ///     <paramref name="quantity" />.
-    /// </exception>
-    public static bool Equals<TQuantity>(this TQuantity quantity, IQuantity? other, IQuantity tolerance)
+    public static bool Equals<TQuantity, TTolerance>(this TQuantity quantity, IQuantity? other, TTolerance tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
+        where TTolerance : IQuantityOfType<TQuantity>
     {
-        if (other is not TQuantity otherInstance)
-        {
-            return false;
-        }
-
-        // TODO see about this (I think the exception should take precedence to the null check, but the QuantityTests disagree)
-        if (tolerance is not TQuantity toleranceQuantity)
-        {
-            throw ExceptionHelper.CreateArgumentException<TQuantity>(tolerance, nameof(tolerance));
-        }
-
-        return quantity.EqualsAbsolute(otherInstance, toleranceQuantity);
+        return other is TQuantity otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
     }
 
     /// <summary>
@@ -93,10 +79,10 @@ public static class LogarithmicQuantityExtensions
     ///         comparer, which is significantly more performant.
     ///     </para>
     /// </remarks>
-    public static bool EqualsAbsolute<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther other, TTolerance tolerance)
+    private static bool EqualsAbsolute<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther other, TTolerance tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
-        where TOther : IQuantityInstance<TQuantity>
-        where TTolerance : IQuantityInstance<TQuantity>
+        where TOther : IQuantityOfType<TQuantity>
+        where TTolerance : IQuantityOfType<TQuantity>
     {
         UnitKey quantityUnit = quantity.UnitKey;
 #if NET

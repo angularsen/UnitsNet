@@ -220,7 +220,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ElectricReactiveEnergy> IQuantityInstance<ElectricReactiveEnergy>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ElectricReactiveEnergy> IQuantityOfType<ElectricReactiveEnergy>.QuantityInfo => Info;
 #endif
 
         #endregion

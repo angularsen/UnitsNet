@@ -223,7 +223,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ElectricSurfaceChargeDensity> IQuantityInstance<ElectricSurfaceChargeDensity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ElectricSurfaceChargeDensity> IQuantityOfType<ElectricSurfaceChargeDensity>.QuantityInfo => Info;
 #endif
 
         #endregion

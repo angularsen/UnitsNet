@@ -224,7 +224,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<FuelEfficiency> IQuantityInstance<FuelEfficiency>.QuantityInfo => Info;
+        IQuantityInstanceInfo<FuelEfficiency> IQuantityOfType<FuelEfficiency>.QuantityInfo => Info;
 #endif
 
         #endregion

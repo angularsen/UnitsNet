@@ -237,7 +237,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<AbsorbedDoseOfIonizingRadiation> IQuantityInstance<AbsorbedDoseOfIonizingRadiation>.QuantityInfo => Info;
+        IQuantityInstanceInfo<AbsorbedDoseOfIonizingRadiation> IQuantityOfType<AbsorbedDoseOfIonizingRadiation>.QuantityInfo => Info;
 #endif
 
         #endregion

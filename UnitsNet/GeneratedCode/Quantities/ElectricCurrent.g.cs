@@ -236,7 +236,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ElectricCurrent> IQuantityInstance<ElectricCurrent>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ElectricCurrent> IQuantityOfType<ElectricCurrent>.QuantityInfo => Info;
 #endif
 
         #endregion

@@ -10,7 +10,7 @@ public class LogarithmicQuantityExtensionsTest
     [InlineData(1, 2)]
     [InlineData(100, 110)]
     [InlineData(100, 90)]
-    public void Equals_TQuantity_TOther_TTolerance_ComparesInLinearSpace(double firstValue, double secondValue)
+    public void Equals_TQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
     {
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
@@ -29,7 +29,7 @@ public class LogarithmicQuantityExtensionsTest
     [InlineData(1, 2)]
     [InlineData(100, 110)]
     [InlineData(100, 90)]
-    public void Equals_TQuantity_IQuantity_IQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
+    public void Equals_IQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
     {
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
@@ -51,33 +51,9 @@ public class LogarithmicQuantityExtensionsTest
         var tolerance = PowerRatio.FromDecibelWatts(1);
         Assert.False(quantity.Equals(null, tolerance));
     }
-
-    [Fact]
-    public void Equals_NullQuantity_And_NullTolerance_ReturnsFalse()
-    {
-        var quantity = PowerRatio.FromDecibelWatts(1);
-        var tolerance = PowerRatio.FromDecibelWatts(1);
-        Assert.False(quantity.Equals(null, tolerance));
-    }
-
-    [Fact]
-    public void Equals_NullQuantity_And_AnotherToleranceType_ReturnsFalse()
-    {
-        var quantity = PowerRatio.FromDecibelWatts(1);
-        var tolerance = AmplitudeRatio.FromDecibelVolts(1);
-        Assert.False(quantity.Equals(null, tolerance));
-    }
-
-    [Fact]
-    public void Equals_IQuantity_And_AnotherToleranceType_ThrowsArgumentException()
-    {
-        var quantity = PowerRatio.FromDecibelWatts(1);
-        var tolerance = AmplitudeRatio.FromDecibelVolts(1);
-        Assert.Throws<ArgumentException>(() => quantity.Equals(quantity, tolerance));
-    }
     
     [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_TQuantity_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
         var invalidQuantity = new PowerRatio(1, (PowerRatioUnit)(-1));
@@ -87,7 +63,7 @@ public class LogarithmicQuantityExtensionsTest
     }
     
     [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_IQuantity_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
         var invalidQuantity = new PowerRatio(1, (PowerRatioUnit)(-1));
@@ -103,6 +79,7 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(1);
         var negativeTolerance = PowerRatio.FromDecibelWatts(-1);
         Assert.True(quantity.Equals(quantity, negativeTolerance));
+        Assert.True(quantity.Equals((IQuantity)quantity, negativeTolerance));
     }
 
     [Fact]

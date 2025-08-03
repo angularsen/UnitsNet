@@ -235,7 +235,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<KinematicViscosity> IQuantityInstance<KinematicViscosity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<KinematicViscosity> IQuantityOfType<KinematicViscosity>.QuantityInfo => Info;
 #endif
 
         #endregion

@@ -225,7 +225,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<LuminousIntensity> IQuantityInstance<LuminousIntensity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<LuminousIntensity> IQuantityOfType<LuminousIntensity>.QuantityInfo => Info;
 #endif
 
         #endregion

@@ -266,7 +266,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ForcePerLength> IQuantityInstance<ForcePerLength>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ForcePerLength> IQuantityOfType<ForcePerLength>.QuantityInfo => Info;
 #endif
 
         #endregion

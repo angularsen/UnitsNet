@@ -227,7 +227,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Temperature> IQuantityInstance<Temperature>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Temperature> IQuantityOfType<Temperature>.QuantityInfo => Info;
 #endif
 
         #endregion

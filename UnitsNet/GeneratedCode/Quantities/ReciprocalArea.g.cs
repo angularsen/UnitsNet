@@ -238,7 +238,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ReciprocalArea> IQuantityInstance<ReciprocalArea>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ReciprocalArea> IQuantityOfType<ReciprocalArea>.QuantityInfo => Info;
 #endif
 
         #endregion

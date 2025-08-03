@@ -219,7 +219,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RatioChangeRate> IQuantityInstance<RatioChangeRate>.QuantityInfo => Info;
+        IQuantityInstanceInfo<RatioChangeRate> IQuantityOfType<RatioChangeRate>.QuantityInfo => Info;
 #endif
 
         #endregion

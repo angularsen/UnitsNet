@@ -251,7 +251,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Torque> IQuantityInstance<Torque>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Torque> IQuantityOfType<Torque>.QuantityInfo => Info;
 #endif
 
         #endregion

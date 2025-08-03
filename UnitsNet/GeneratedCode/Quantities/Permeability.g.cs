@@ -221,7 +221,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Permeability> IQuantityInstance<Permeability>.QuantityInfo => Info;
+        IQuantityInstanceInfo<Permeability> IQuantityOfType<Permeability>.QuantityInfo => Info;
 #endif
 
         #endregion

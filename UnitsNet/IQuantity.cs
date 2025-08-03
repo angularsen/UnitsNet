@@ -141,7 +141,7 @@ namespace UnitsNet
     ///     methods, without having to include the unit type as additional generic parameter.
     /// </remarks>
     /// <typeparam name="TQuantity"></typeparam>
-    public interface IQuantityInstance<out TQuantity> : IQuantity
+    public interface IQuantityOfType<out TQuantity> : IQuantity
         where TQuantity : IQuantity
     {
 #if NET
@@ -157,7 +157,7 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-    public interface IQuantity<TSelf, TUnitType> : IQuantityInstance<TSelf>, IQuantity<TUnitType>
+    public interface IQuantity<TSelf, TUnitType> : IQuantityOfType<TSelf>, IQuantity<TUnitType>
         where TSelf : IQuantity<TSelf, TUnitType>
         where TUnitType : struct, Enum
     {
@@ -173,7 +173,7 @@ namespace UnitsNet
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
         static abstract TSelf From(double value, TUnitType unit);
 
-        static TSelf IQuantityInstance<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
+        static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
         IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(TUnitType unit)
         {

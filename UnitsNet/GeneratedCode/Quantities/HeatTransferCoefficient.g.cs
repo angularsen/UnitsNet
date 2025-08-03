@@ -222,7 +222,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<HeatTransferCoefficient> IQuantityInstance<HeatTransferCoefficient>.QuantityInfo => Info;
+        IQuantityInstanceInfo<HeatTransferCoefficient> IQuantityOfType<HeatTransferCoefficient>.QuantityInfo => Info;
 #endif
 
         #endregion

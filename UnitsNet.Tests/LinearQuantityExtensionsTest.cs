@@ -55,7 +55,7 @@ public class LinearQuantityExtensionsTest
     {
         var quantity1 = Length.FromMeters(value1);
         IQuantity quantity2 = Length.FromMeters(value2);
-        IQuantity toleranceQuantity = Length.FromMeters(tolerance);
+        var toleranceQuantity = Length.FromMeters(tolerance);
 
         var result = quantity1.Equals(quantity2, toleranceQuantity);
 
@@ -66,37 +66,15 @@ public class LinearQuantityExtensionsTest
     public void Equals_WithNullOther_ReturnsFalse()
     {
         var quantity = Length.FromMeters(2.0);
-        Length? otherQuantity = null;
-        var tolerance = Length.FromMeters(0.1);
-
-        var result = quantity.Equals(otherQuantity, tolerance);
-
-        Assert.False(result);
-    }
-
-    [Fact]
-    public void Equals_IQuantity_WithNullOther_ReturnsFalse()
-    {
-        var quantity = Length.FromMeters(2.0);
         var tolerance = Length.FromMeters(0.1);
 
         var result = quantity.Equals(null, tolerance);
 
         Assert.False(result);
     }
-
-    [Fact]
-    public void Equals_WithDifferentTypeTolerance_ThrowsArgumentException()
-    {
-        var quantity = Length.FromMeters(2.0);
-        var other = Length.FromMeters(2.0);
-        var tolerance = Mass.FromKilograms(0.1);
-
-        Assert.Throws<ArgumentException>(() => quantity.Equals(other, tolerance));
-    }
     
     [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_TQuantity_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);
         var invalidQuantity = new Length(1, (LengthUnit)(-1));
@@ -106,7 +84,7 @@ public class LinearQuantityExtensionsTest
     }
 
     [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_IQuantity_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
+    public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);
         var invalidQuantity = new Length(1, (LengthUnit)(-1));
@@ -116,13 +94,14 @@ public class LinearQuantityExtensionsTest
     }
 
     [Fact]
-    public void EqualsAbsolute_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+    public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
     {
         var quantity = Length.FromMeters(2.0);
         var other = Length.FromMeters(2.0);
         var tolerance = Length.FromMeters(-0.1);
 
-        Assert.Throws<ArgumentOutOfRangeException>(() => quantity.EqualsAbsolute(other, tolerance));
+        Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(other, tolerance));
+        Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals((IQuantity)other, tolerance));
     }
 
     [Fact]

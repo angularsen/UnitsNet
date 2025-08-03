@@ -234,7 +234,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RotationalSpeed> IQuantityInstance<RotationalSpeed>.QuantityInfo => Info;
+        IQuantityInstanceInfo<RotationalSpeed> IQuantityOfType<RotationalSpeed>.QuantityInfo => Info;
 #endif
 
         #endregion

@@ -224,7 +224,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<BrakeSpecificFuelConsumption> IQuantityInstance<BrakeSpecificFuelConsumption>.QuantityInfo => Info;
+        IQuantityInstanceInfo<BrakeSpecificFuelConsumption> IQuantityOfType<BrakeSpecificFuelConsumption>.QuantityInfo => Info;
 #endif
 
         #endregion

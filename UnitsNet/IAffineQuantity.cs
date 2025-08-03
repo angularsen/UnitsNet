@@ -29,7 +29,7 @@ public interface IAffineQuantity<TSelf, TUnitType, TOffset> : IQuantity<TSelf, T
 /// </summary>
 /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
 /// <typeparam name="TOffset"></typeparam>
-public interface IAffineQuantity<TSelf, TOffset> : IQuantityInstance<TSelf>
+public interface IAffineQuantity<TSelf, TOffset> : IQuantityOfType<TSelf>
 #if NET7_0_OR_GREATER
     , IAdditiveIdentity<TSelf, TOffset>
     where TOffset : IAdditiveIdentity<TOffset, TOffset>

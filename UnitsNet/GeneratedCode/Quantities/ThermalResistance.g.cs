@@ -219,7 +219,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ThermalResistance> IQuantityInstance<ThermalResistance>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ThermalResistance> IQuantityOfType<ThermalResistance>.QuantityInfo => Info;
 #endif
 
         #endregion

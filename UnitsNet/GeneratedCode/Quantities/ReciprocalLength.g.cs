@@ -239,7 +239,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ReciprocalLength> IQuantityInstance<ReciprocalLength>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ReciprocalLength> IQuantityOfType<ReciprocalLength>.QuantityInfo => Info;
 #endif
 
         #endregion

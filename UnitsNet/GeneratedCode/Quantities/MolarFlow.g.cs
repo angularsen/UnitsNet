@@ -232,7 +232,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<MolarFlow> IQuantityInstance<MolarFlow>.QuantityInfo => Info;
+        IQuantityInstanceInfo<MolarFlow> IQuantityOfType<MolarFlow>.QuantityInfo => Info;
 #endif
 
         #endregion

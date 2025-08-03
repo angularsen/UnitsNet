@@ -220,7 +220,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<MolarEntropy> IQuantityInstance<MolarEntropy>.QuantityInfo => Info;
+        IQuantityInstanceInfo<MolarEntropy> IQuantityOfType<MolarEntropy>.QuantityInfo => Info;
 #endif
 
         #endregion

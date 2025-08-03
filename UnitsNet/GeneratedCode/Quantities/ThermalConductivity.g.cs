@@ -222,7 +222,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<ThermalConductivity> IQuantityInstance<ThermalConductivity>.QuantityInfo => Info;
+        IQuantityInstanceInfo<ThermalConductivity> IQuantityOfType<ThermalConductivity>.QuantityInfo => Info;
 #endif
 
         #endregion

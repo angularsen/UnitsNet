@@ -393,7 +393,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<{_quantity.Name}> IQuantityInstance<{_quantity.Name}>.QuantityInfo => Info;
+        IQuantityInstanceInfo<{_quantity.Name}> IQuantityOfType<{_quantity.Name}>.QuantityInfo => Info;
 #endif
 ");
             if (_quantity.Logarithmic)

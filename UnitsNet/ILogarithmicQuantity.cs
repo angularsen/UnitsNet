@@ -34,7 +34,7 @@ public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnit
 ///     to logarithmic quantities, including arithmetic operations and a logarithmic scaling factor.
 ///     The logarithmic scale assumed here is base-10.
 /// </remarks>
-public interface ILogarithmicQuantity<TSelf> : IQuantityInstance<TSelf>
+public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>
 #if NET7_0_OR_GREATER
     , IMultiplicativeIdentity<TSelf, TSelf>
 #endif

@@ -245,7 +245,7 @@ namespace UnitsNet
 
 #if NETSTANDARD2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<MassMomentOfInertia> IQuantityInstance<MassMomentOfInertia>.QuantityInfo => Info;
+        IQuantityInstanceInfo<MassMomentOfInertia> IQuantityOfType<MassMomentOfInertia>.QuantityInfo => Info;
 #endif
 
         #endregion
