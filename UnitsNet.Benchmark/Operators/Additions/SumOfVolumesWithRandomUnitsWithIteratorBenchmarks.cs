@@ -32,10 +32,6 @@ public class SumOfVolumesWithRandomUnitsWithIteratorBenchmarks
     [Benchmark(Baseline = true)]
     public Volume SumOfVolumes()
     {
-#if NET
-        return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
-#else
-        throw new NotImplementedException();
-#endif
+        return _quantities.Sum();
     }
 }

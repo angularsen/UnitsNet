@@ -32,17 +32,7 @@ public class SumOfVolumesWithSameUnitsBenchmarks
     [Benchmark(Baseline = true)]
     public Volume SumOfVolumes()
     {
-#if NET
-        return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
-#else
-        Volume sum = Volume.Zero;
-        foreach (var quantity in _quantities)
-        {
-            sum = quantity + sum;
-        }
-
-        return sum;
-#endif
+        return _quantities.Sum();
     }
 
     [Benchmark(Baseline = false)]

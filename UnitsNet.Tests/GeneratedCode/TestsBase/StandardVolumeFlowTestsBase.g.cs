@@ -783,23 +783,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            Assert.True(v.Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(1), StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(StandardVolumeFlow.Zero, StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.True(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), 0.3, ComparisonType.Relative));
-            Assert.False(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
@@ -811,6 +794,32 @@ namespace UnitsNet.Tests
         {
             StandardVolumeFlow standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
             Assert.False(standardcubicmeterpersecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(firstValue);
+            var otherQuantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(secondValue);
+            StandardVolumeFlow maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, StandardVolumeFlow.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
+            var negativeTolerance = StandardVolumeFlow.FromStandardCubicMetersPerSecond(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -907,7 +916,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(new {StandardVolumeFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]
